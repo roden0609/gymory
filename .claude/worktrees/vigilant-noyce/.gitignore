@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+.next/
+dist/
+out/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Turbo cache
+.turbo/
+
+# Supabase
+supabase/.branches/
+supabase/.temp/
+
+# Firebase service account (never commit real credentials)
+firebase/service-account.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"port\\\\|PORT\\\\|3000\\\\|3001\\\\|5000\\\\|8000\\\\|8080\" /Users/rodenmacmini/Workspace/gymory --include=*.json --include=*.ts --include=*.js --include=*.yml --include=*.yaml)",
+      "Bash(cat /Users/rodenmacmini/Workspace/gymory/.github/workflows/*.yml)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(grep -E \"^next$|^pnpm$\")"
+    ]
+  }
+}

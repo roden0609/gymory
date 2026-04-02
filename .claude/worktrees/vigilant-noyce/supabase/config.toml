@@ -1,0 +1,11 @@
+# Supabase local dev config
+# Run `supabase init` and `supabase start` to use local dev environment
+
+[api]
+port = 54321
+
+[db]
+port = 54322
+
+[studio]
+port = 54323

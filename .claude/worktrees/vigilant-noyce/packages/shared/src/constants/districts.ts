@@ -1,0 +1,30 @@
+// Singapore districts — expand for other cities later
+export const SG_DISTRICTS = [
+  "Central",
+  "Tanjong Pagar",
+  "Queenstown",
+  "Tiong Bahru",
+  "Novena",
+  "Orchard",
+  "Bukit Timah",
+  "Clementi",
+  "Jurong East",
+  "Jurong West",
+  "Woodlands",
+  "Yishun",
+  "Ang Mo Kio",
+  "Bishan",
+  "Toa Payoh",
+  "Serangoon",
+  "Tampines",
+  "Bedok",
+  "Pasir Ris",
+  "Changi",
+  "Geylang",
+  "Kallang",
+  "Buona Vista",
+  "One-North",
+  "Harbourfront",
+] as const;
+
+export type SgDistrict = (typeof SG_DISTRICTS)[number];
