@@ -1,4 +1,4 @@
--- Sample seed data — 5 Singapore gyms for local dev / testing
+-- Sample seed data — 5 Hong Kong gyms for local dev / testing
 -- Run after all migrations
 
 insert into gyms (
@@ -16,11 +16,11 @@ insert into gyms (
   data_source, equipment_last_verified_at
 ) values
 (
-  'IronBase SG (Tanjong Pagar)', 'ironbase-sg-tanjong-pagar',
-  '1 Anson Rd, #01-01, Singapore 079903', 'Tanjong Pagar', 'Singapore', '079903',
-  1.2763, 103.8430,
+  'IronBase HK (Wan Chai)', 'ironbase-hk-wan-chai',
+  '1 Harbour Rd, Wan Chai, Hong Kong', 'Wan Chai', 'Hong Kong', null,
+  22.2793, 114.1720,
   'large', 6000,
-  25.00, true, true,
+  200.00, true, true,
   6, 8, 4, 60.0,
   3, 2, 4, 1,
   4, 2, 2, 2, 1,
@@ -29,11 +29,11 @@ insert into gyms (
   'admin', now()
 ),
 (
-  'Lift District Novena', 'lift-district-novena',
-  '101 Thomson Rd, Singapore 307591', 'Novena', 'Singapore', '307591',
-  1.3201, 103.8434,
+  'Lift District Mong Kok', 'lift-district-mong-kok',
+  '68 Argyle St, Mong Kok, Hong Kong', 'Yau Tsim Mong', 'Hong Kong', null,
+  22.3193, 114.1694,
   'medium', 3500,
-  20.00, true, true,
+  180.00, true, true,
   4, 6, 3, 50.0,
   2, 1, 2, 0,
   3, 1, 1, 1, 1,
@@ -42,11 +42,11 @@ insert into gyms (
   'admin', now()
 ),
 (
-  'RackSpace Jurong East', 'rackspace-jurong-east',
-  '3 Gateway Dr, Singapore 608532', 'Jurong East', 'Singapore', '608532',
-  1.3334, 103.7436,
+  'RackSpace Sha Tin', 'rackspace-sha-tin',
+  '2-8 Yuen Wo Rd, Sha Tin, Hong Kong', 'Sha Tin', 'Hong Kong', null,
+  22.3832, 114.1876,
   'large', 8000,
-  18.00, true, false,
+  150.00, true, false,
   8, 10, 6, 70.0,
   4, 2, 6, 2,
   6, 3, 3, 3, 2,
@@ -55,11 +55,11 @@ insert into gyms (
   'user_submission', now() - interval '7 days'
 ),
 (
-  'Flex Studio Orchard', 'flex-studio-orchard',
-  '391 Orchard Rd, Singapore 238872', 'Orchard', 'Singapore', '238872',
-  1.3009, 103.8356,
+  'Flex Studio Central', 'flex-studio-central',
+  '18 Queen''s Rd Central, Central, Hong Kong', 'Central & Western', 'Hong Kong', null,
+  22.2825, 114.1558,
   'small', 1200,
-  30.00, true, true,
+  280.00, true, true,
   1, 3, 1, 40.0,
   1, 0, 2, 0,
   2, 1, 1, 1, 0,
@@ -68,11 +68,11 @@ insert into gyms (
   'admin', now()
 ),
 (
-  'HYROX Hub Tampines', 'hyrox-hub-tampines',
-  '10 Tampines Central 1, Singapore 529536', 'Tampines', 'Singapore', '529536',
-  1.3521, 103.9451,
+  'HYROX Hub Kwun Tong', 'hyrox-hub-kwun-tong',
+  '12 Hoi Yuen Rd, Kwun Tong, Hong Kong', 'Kwun Tong', 'Hong Kong', null,
+  22.3124, 114.2261,
   'large', 5500,
-  22.00, true, true,
+  160.00, true, true,
   4, 6, 3, 50.0,
   6, 4, 8, 2,
   3, 2, 1, 2, 1,

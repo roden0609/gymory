@@ -1,30 +1,26 @@
-// Singapore districts — expand for other cities later
-export const SG_DISTRICTS = [
-  "Central",
-  "Tanjong Pagar",
-  "Queenstown",
-  "Tiong Bahru",
-  "Novena",
-  "Orchard",
-  "Bukit Timah",
-  "Clementi",
-  "Jurong East",
-  "Jurong West",
-  "Woodlands",
-  "Yishun",
-  "Ang Mo Kio",
-  "Bishan",
-  "Toa Payoh",
-  "Serangoon",
-  "Tampines",
-  "Bedok",
-  "Pasir Ris",
-  "Changi",
-  "Geylang",
-  "Kallang",
-  "Buona Vista",
-  "One-North",
-  "Harbourfront",
+// Hong Kong 18 districts
+export const HK_DISTRICTS = [
+  // Hong Kong Island
+  "Central & Western",
+  "Wan Chai",
+  "Eastern",
+  "Southern",
+  // Kowloon
+  "Yau Tsim Mong",
+  "Sham Shui Po",
+  "Kowloon City",
+  "Wong Tai Sin",
+  "Kwun Tong",
+  // New Territories
+  "Kwai Tsing",
+  "Tsuen Wan",
+  "Tuen Mun",
+  "Yuen Long",
+  "North",
+  "Tai Po",
+  "Sha Tin",
+  "Sai Kung",
+  "Islands",
 ] as const;
 
-export type SgDistrict = (typeof SG_DISTRICTS)[number];
+export type HkDistrict = (typeof HK_DISTRICTS)[number];

@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
-import { SG_DISTRICTS } from "@gymory/shared";
+import { HK_DISTRICTS } from "@gymory/shared";
 
 export function SearchFilters() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export function SearchFilters() {
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
           >
             <option value="">Any district</option>
-            {SG_DISTRICTS.map((d) => (
+            {HK_DISTRICTS.map((d) => (
               <option key={d} value={d}>
                 {d}
               </option>
@@ -73,7 +73,7 @@ export function SearchFilters() {
 
         {/* Min dumbbell weight */}
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-gray-700">Min dumbbell (kg)</label>
+          <label className="text-sm font-medium text-gray-700">Max dumbbell ≥ (kg)</label>
           <input
             type="number"
             min={0}
