@@ -1,0 +1,51 @@
+import Link from "next/link";
+import type { GymSummary } from "@gymory/shared";
+
+function EquipmentBadge({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
+      {label}
+    </span>
+  );
+}
+
+export function GymCard({ gym }: { gym: GymSummary }) {
+  const equipmentHighlights: string[] = [];
+
+  if (gym.rack_count > 0) equipmentHighlights.push(`${gym.rack_count} rack${gym.rack_count > 1 ? "s" : ""}`);
+  if (gym.dumbbell_max_weight_kg) equipmentHighlights.push(`DB up to ${gym.dumbbell_max_weight_kg}kg`);
+  if (gym.assault_bike_count > 0) equipmentHighlights.push("Assault bike");
+  if (gym.ski_erg_count > 0) equipmentHighlights.push("Ski erg");
+  if (gym.rower_count > 0) equipmentHighlights.push("Rower");
+
+  return (
+    <Link
+      href={`/gyms/${gym.slug}`}
+      className="block bg-white border border-gray-200 rounded-xl p-5 hover:border-gray-400 hover:shadow-sm transition-all"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h3 className="font-semibold text-gray-900 truncate">{gym.name}</h3>
+          <p className="mt-0.5 text-sm text-gray-500">
+            {gym.district}
+            {gym.address ? ` · ${gym.address}` : ""}
+          </p>
+        </div>
+
+        {gym.is_verified && (
+          <span className="shrink-0 inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 border border-green-200">
+            Verified
+          </span>
+        )}
+      </div>
+
+      {equipmentHighlights.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {equipmentHighlights.map((label) => (
+            <EquipmentBadge key={label} label={label} />
+          ))}
+        </div>
+      )}
+    </Link>
+  );
+}
