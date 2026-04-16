@@ -6,10 +6,12 @@ export type DataSource = "admin" | "owner" | "user_submission" | "import";
 export interface Gym {
   id: string;
   name: string;
+  name_zh: string | null;
   slug: string;
   address: string | null;
-  district: string;
-  country: string;
+  address_zh: string | null;
+  district_code: string;
+  country_code: string;
   postal_code: string | null;
   website_url: string | null;
   instagram_url: string | null;
@@ -80,9 +82,11 @@ export type GymSummary = Pick<
   Gym,
   | "id"
   | "name"
+  | "name_zh"
   | "slug"
-  | "district"
+  | "district_code"
   | "address"
+  | "address_zh"
   | "lat"
   | "lng"
   | "size_category"

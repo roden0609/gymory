@@ -15,7 +15,7 @@
 ### Search query pattern
 ```sql
 select * from gyms
-where district = 'Tanjong Pagar'
+where district_code = 'HK-WC'
   and rack_count >= 2
   and assault_bike_count >= 1
   and dumbbell_max_weight_kg >= 40

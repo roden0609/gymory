@@ -2,13 +2,14 @@
 
 import { useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { HK_DISTRICTS } from "@gymory/shared";
 
 export function SearchFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const locale = useLocale();
   const t = useTranslations("search");
   const tCommon = useTranslations("common");
 
@@ -55,7 +56,9 @@ export function SearchFilters() {
           >
             <option value="">{t("anyDistrict")}</option>
             {HK_DISTRICTS.map((d) => (
-              <option key={d} value={d}>{d}</option>
+              <option key={d.code} value={d.code}>
+                {locale === "zh-HK" ? d.nameZh : d.nameEn}
+              </option>
             ))}
           </select>
         </div>

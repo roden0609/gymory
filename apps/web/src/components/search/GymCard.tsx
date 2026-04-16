@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
+import { getHkDistrictLabel } from "@gymory/shared";
 
 function EquipmentBadge({ label }: { label: string }) {
   return (
@@ -10,6 +14,11 @@ function EquipmentBadge({ label }: { label: string }) {
 }
 
 export function GymCard({ gym }: { gym: GymSummary }) {
+  const locale = useLocale() as "en" | "zh-HK";
+  const displayName = locale === "zh-HK" && gym.name_zh ? gym.name_zh : gym.name;
+  const displayAddress =
+    locale === "zh-HK" && gym.address_zh ? gym.address_zh : gym.address;
+  const districtLabel = getHkDistrictLabel(gym.district_code, locale);
   const equipmentHighlights: string[] = [];
 
   if (gym.rack_count > 0) equipmentHighlights.push(`${gym.rack_count} rack${gym.rack_count > 1 ? "s" : ""}`);
@@ -25,10 +34,10 @@ export function GymCard({ gym }: { gym: GymSummary }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="font-semibold text-gray-900 truncate">{gym.name}</h3>
+          <h3 className="font-semibold text-gray-900 truncate">{displayName}</h3>
           <p className="mt-0.5 text-sm text-gray-500">
-            {gym.district}
-            {gym.address ? ` · ${gym.address}` : ""}
+            {districtLabel}
+            {displayAddress ? ` · ${displayAddress}` : ""}
           </p>
         </div>
 

@@ -8,8 +8,8 @@ export { searchParamsSchema } from "./types/search";
 export { submissionSchema } from "./types/submission";
 
 // Constants
-export { HK_DISTRICTS } from "./constants/districts";
-export type { HkDistrict } from "./constants/districts";
+export { HK_DISTRICTS, getHkDistrictLabel } from "./constants/districts";
+export type { HkDistrict, HkDistrictCode } from "./constants/districts";
 export { EQUIPMENT_TAGS } from "./constants/equipment-tags";
 export type { EquipmentTag } from "./constants/equipment-tags";
 export { SIZE_CATEGORIES, SIZE_LABELS } from "./constants/size-categories";
