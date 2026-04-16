@@ -19,6 +19,8 @@ export function SearchFilters() {
   const [hasAssaultBike, setHasAssaultBike] = useState(searchParams.get("hasAssaultBike") === "true");
   const [hasSkiErg, setHasSkiErg] = useState(searchParams.get("hasSkiErg") === "true");
   const [hasRower, setHasRower] = useState(searchParams.get("hasRower") === "true");
+  const [hasSled, setHasSled] = useState(searchParams.get("hasSled") === "true");
+  const [hasWallBall, setHasWallBall] = useState(searchParams.get("hasWallBall") === "true");
 
   const applyFilters = useCallback(() => {
     const params = new URLSearchParams();
@@ -28,8 +30,10 @@ export function SearchFilters() {
     if (hasAssaultBike) params.set("hasAssaultBike", "true");
     if (hasSkiErg) params.set("hasSkiErg", "true");
     if (hasRower) params.set("hasRower", "true");
+    if (hasSled) params.set("hasSled", "true");
+    if (hasWallBall) params.set("hasWallBall", "true");
     router.push(`/search?${params.toString()}`);
-  }, [district, minRackCount, minDumbbellWeight, hasAssaultBike, hasSkiErg, hasRower, router]);
+  }, [district, minRackCount, minDumbbellWeight, hasAssaultBike, hasSkiErg, hasRower, hasSled, hasWallBall, router]);
 
   const clearFilters = useCallback(() => {
     setDistrict("");
@@ -38,6 +42,8 @@ export function SearchFilters() {
     setHasAssaultBike(false);
     setHasSkiErg(false);
     setHasRower(false);
+    setHasSled(false);
+    setHasWallBall(false);
     router.push("/search");
   }, [router]);
 
@@ -97,6 +103,8 @@ export function SearchFilters() {
               { key: "assaultBike", value: hasAssaultBike, set: setHasAssaultBike },
               { key: "skiErg", value: hasSkiErg, set: setHasSkiErg },
               { key: "rower", value: hasRower, set: setHasRower },
+              { key: "sled", value: hasSled, set: setHasSled },
+              { key: "wallBall", value: hasWallBall, set: setHasWallBall },
             ].map(({ key, value, set }) => (
               <label key={key} className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -105,7 +113,7 @@ export function SearchFilters() {
                   onChange={(e) => set(e.target.checked)}
                   className="rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                 />
-                <span className="text-sm text-gray-700">{t(key as "assaultBike" | "skiErg" | "rower")}</span>
+                <span className="text-sm text-gray-700">{t(key as "assaultBike" | "skiErg" | "rower" | "sled" | "wallBall")}</span>
               </label>
             ))}
           </div>

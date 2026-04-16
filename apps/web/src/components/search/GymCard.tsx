@@ -23,9 +23,12 @@ export function GymCard({ gym }: { gym: GymSummary }) {
 
   if (gym.rack_count > 0) equipmentHighlights.push(`${gym.rack_count} rack${gym.rack_count > 1 ? "s" : ""}`);
   if (gym.dumbbell_max_weight_kg) equipmentHighlights.push(`DB up to ${gym.dumbbell_max_weight_kg}kg`);
+  if (gym.plate_max_weight_kg) equipmentHighlights.push(`Plates up to ${gym.plate_max_weight_kg}kg`);
   if (gym.assault_bike_count > 0) equipmentHighlights.push("Assault bike");
   if (gym.ski_erg_count > 0) equipmentHighlights.push("Ski erg");
   if (gym.rower_count > 0) equipmentHighlights.push("Rower");
+  if (gym.sled_count > 0) equipmentHighlights.push("Sled");
+  if (gym.wall_ball_count > 0) equipmentHighlights.push("Wall ball");
 
   return (
     <Link

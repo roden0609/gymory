@@ -14,6 +14,8 @@ export async function searchGyms(
     hasAssaultBike: rawParams.hasAssaultBike,
     hasSkiErg: rawParams.hasSkiErg,
     hasRower: rawParams.hasRower,
+    hasSled: rawParams.hasSled,
+    hasWallBall: rawParams.hasWallBall,
     minSize: rawParams.minSize,
   });
 
@@ -25,7 +27,7 @@ export async function searchGyms(
   let query = supabase
     .from("gyms")
     .select(
-      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, is_verified, equipment_last_verified_at"
+      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, wall_ball_count, is_verified, equipment_last_verified_at"
     )
     .eq("is_active", true)
     .order("is_verified", { ascending: false })
@@ -40,6 +42,8 @@ export async function searchGyms(
   if (params.hasAssaultBike === "true") query = query.gt("assault_bike_count", 0);
   if (params.hasSkiErg === "true") query = query.gt("ski_erg_count", 0);
   if (params.hasRower === "true") query = query.gt("rower_count", 0);
+  if (params.hasSled === "true") query = query.gt("sled_count", 0);
+  if (params.hasWallBall === "true") query = query.gt("wall_ball_count", 0);
   if (params.minSize) query = query.gte("estimated_size_sqft", params.minSize);
 
   const { data, error } = await query;

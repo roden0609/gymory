@@ -7,6 +7,8 @@ export const searchParamsSchema = z.object({
   hasAssaultBike: z.string().optional(),
   hasSkiErg: z.string().optional(),
   hasRower: z.string().optional(),
+  hasSled: z.string().optional(),
+  hasWallBall: z.string().optional(),
   minSize: z.coerce.number().min(0).optional(),
 });
 

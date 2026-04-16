@@ -32,9 +32,11 @@
     "minRacks": "最少深蹲架數量",
     "maxDumbbell": "啞鈴最大重量 ≥ (kg)",
     "equipment": "器械",
-    "assaultBike": "Assault bike",
-    "skiErg": "Ski erg",
-    "rower": "划船機"
+    "assaultBike": "風阻健身車",
+    "skiErg": "滑雪機",
+    "rower": "划船機",
+    "sled": "雪橇",
+    "wallBall": "牆球"
   },
   "submit": {
     "title": "新增健身房",

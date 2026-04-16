@@ -41,6 +41,7 @@ export interface Gym {
   ski_erg_count: number;
   rower_count: number;
   sled_count: number;
+  wall_ball_count: number;
   treadmill_count: number;
 
   // Strength machine counts
@@ -95,6 +96,9 @@ export type GymSummary = Pick<
   | "assault_bike_count"
   | "ski_erg_count"
   | "rower_count"
+  | "sled_count"
+  | "wall_ball_count"
+  | "plate_max_weight_kg"
   | "is_verified"
   | "equipment_last_verified_at"
 >;

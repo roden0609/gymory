@@ -34,7 +34,9 @@
     "equipment": "Equipment",
     "assaultBike": "Assault bike",
     "skiErg": "Ski erg",
-    "rower": "Rower"
+    "rower": "Rower",
+    "sled": "Sled",
+    "wallBall": "Wall ball"
   },
   "submit": {
     "title": "Add a Gym",
