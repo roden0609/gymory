@@ -1,0 +1,48 @@
+{
+  "common": {
+    "appName": "Gymory",
+    "tagline": "搵啱健身房，唔係搵最近嗰間。",
+    "search": "搜尋",
+    "submit": "提交",
+    "back": "← 返回",
+    "clear": "清除"
+  },
+  "home": {
+    "hero": "搵啱健身房，唔係搵最近嗰間。",
+    "heroSub": "按器械搜尋健身房——深蹲架、機械、真正訓練器具。"
+  },
+  "gym": {
+    "equipment": "器械",
+    "location": "地點",
+    "openingHours": "營業時間",
+    "dayPass": "單次入場",
+    "suggestUpdate": "建議更新",
+    "allGyms": "所有健身房"
+  },
+  "search": {
+    "title": "搵健身房",
+    "placeholder": "按地區或器械搜尋...",
+    "filters": "篩選",
+    "noResults": "未找到健身房",
+    "noResultsSub": "試試調整篩選條件或搜尋其他地區。",
+    "gymsFound": "找到 {count} 間健身房",
+    "gymsFoundPlural": "找到 {count} 間健身房",
+    "district": "地區",
+    "anyDistrict": "所有地區",
+    "minRacks": "最少深蹲架數量",
+    "maxDumbbell": "啞鈴最大重量 ≥ (kg)",
+    "equipment": "器械",
+    "assaultBike": "Assault bike",
+    "skiErg": "Ski erg",
+    "rower": "划船機"
+  },
+  "submit": {
+    "title": "新增健身房",
+    "description": "知道一間未收錄的健身房？在這裡新增。"
+  },
+  "admin": {
+    "dashboard": "管理員面板",
+    "manageGyms": "管理健身房",
+    "submissions": "待審提交"
+  }
+}

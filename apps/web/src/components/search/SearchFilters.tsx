@@ -1,12 +1,16 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { HK_DISTRICTS } from "@gymory/shared";
 
 export function SearchFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("search");
+  const tCommon = useTranslations("common");
 
   const [district, setDistrict] = useState(searchParams.get("district") ?? "");
   const [minRackCount, setMinRackCount] = useState(searchParams.get("minRackCount") ?? "");
@@ -39,28 +43,26 @@ export function SearchFilters() {
   return (
     <aside className="w-full md:w-64 shrink-0">
       <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-5">
-        <h2 className="font-semibold text-gray-900">Filters</h2>
+        <h2 className="font-semibold text-gray-900">{t("filters")}</h2>
 
         {/* District */}
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-gray-700">District</label>
+          <label className="text-sm font-medium text-gray-700">{t("district")}</label>
           <select
             value={district}
             onChange={(e) => setDistrict(e.target.value)}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
           >
-            <option value="">Any district</option>
+            <option value="">{t("anyDistrict")}</option>
             {HK_DISTRICTS.map((d) => (
-              <option key={d} value={d}>
-                {d}
-              </option>
+              <option key={d} value={d}>{d}</option>
             ))}
           </select>
         </div>
 
         {/* Min rack count */}
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-gray-700">Min racks</label>
+          <label className="text-sm font-medium text-gray-700">{t("minRacks")}</label>
           <input
             type="number"
             min={0}
@@ -73,7 +75,7 @@ export function SearchFilters() {
 
         {/* Min dumbbell weight */}
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-gray-700">Max dumbbell ≥ (kg)</label>
+          <label className="text-sm font-medium text-gray-700">{t("maxDumbbell")}</label>
           <input
             type="number"
             min={0}
@@ -86,21 +88,21 @@ export function SearchFilters() {
 
         {/* Equipment checkboxes */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Equipment</label>
+          <label className="text-sm font-medium text-gray-700">{t("equipment")}</label>
           <div className="space-y-2">
             {[
-              { label: "Assault bike", value: hasAssaultBike, set: setHasAssaultBike },
-              { label: "Ski erg", value: hasSkiErg, set: setHasSkiErg },
-              { label: "Rower", value: hasRower, set: setHasRower },
-            ].map(({ label, value, set }) => (
-              <label key={label} className="flex items-center gap-2 cursor-pointer">
+              { key: "assaultBike", value: hasAssaultBike, set: setHasAssaultBike },
+              { key: "skiErg", value: hasSkiErg, set: setHasSkiErg },
+              { key: "rower", value: hasRower, set: setHasRower },
+            ].map(({ key, value, set }) => (
+              <label key={key} className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={value}
                   onChange={(e) => set(e.target.checked)}
                   className="rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                 />
-                <span className="text-sm text-gray-700">{label}</span>
+                <span className="text-sm text-gray-700">{t(key as "assaultBike" | "skiErg" | "rower")}</span>
               </label>
             ))}
           </div>
@@ -112,13 +114,13 @@ export function SearchFilters() {
             onClick={applyFilters}
             className="w-full rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 transition-colors"
           >
-            Search
+            {tCommon("search")}
           </button>
           <button
             onClick={clearFilters}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
           >
-            Clear
+            {tCommon("clear")}
           </button>
         </div>
       </div>

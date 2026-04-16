@@ -1,0 +1,48 @@
+{
+  "common": {
+    "appName": "Gymory",
+    "tagline": "Find the right gym — not just the nearest one.",
+    "search": "Search",
+    "submit": "Submit",
+    "back": "← Back",
+    "clear": "Clear"
+  },
+  "home": {
+    "hero": "Find the right gym — not just the nearest one.",
+    "heroSub": "Search gyms by racks, machines, and real training gear."
+  },
+  "gym": {
+    "equipment": "Equipment",
+    "location": "Location",
+    "openingHours": "Opening Hours",
+    "dayPass": "Day Pass",
+    "suggestUpdate": "Suggest an Update",
+    "allGyms": "All Gyms"
+  },
+  "search": {
+    "title": "Find a gym",
+    "placeholder": "Search by district or equipment...",
+    "filters": "Filters",
+    "noResults": "No gyms found",
+    "noResultsSub": "Try adjusting your filters or searching a different district.",
+    "gymsFound": "{count} gym found",
+    "gymsFoundPlural": "{count} gyms found",
+    "district": "District",
+    "anyDistrict": "Any district",
+    "minRacks": "Min racks",
+    "maxDumbbell": "Max dumbbell ≥ (kg)",
+    "equipment": "Equipment",
+    "assaultBike": "Assault bike",
+    "skiErg": "Ski erg",
+    "rower": "Rower"
+  },
+  "submit": {
+    "title": "Add a Gym",
+    "description": "Know a gym that's not listed? Add it here."
+  },
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "manageGyms": "Manage Gyms",
+    "submissions": "Pending Submissions"
+  }
+}
