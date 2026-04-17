@@ -181,6 +181,10 @@ export default async function GymDetailPage({ params }: Props) {
     [t("trapBar"), gym.has_trap_bar],
     [t("safetySquatBar"), gym.has_safety_squat_bar],
     [t("farmersHandles"), gym.has_farmer_handles || gym.has_farmers_handles],
+    [t("landmineAttachment"), gym.has_landmine_attachment],
+    [t("swissBar"), gym.has_swiss_bar],
+    [t("camberedBar"), gym.has_cambered_bar],
+    [t("ezBar"), gym.has_ez_bar],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
@@ -197,12 +201,38 @@ export default async function GymDetailPage({ params }: Props) {
     { label: t("skiErg"), value: gym.ski_erg_count },
     { label: t("rower"), value: gym.rower_count },
     { label: t("sled"), value: gym.sled_count },
+    { label: t("wallBall"), value: gym.has_wall_ball ? t("available") : t("notListed") },
     { label: t("wallBall4kg"), value: gym.wall_ball_4kg_count },
     { label: t("wallBall6kg"), value: gym.wall_ball_6kg_count },
     { label: t("wallBall9kg"), value: gym.wall_ball_9kg_count },
     { label: t("wallBallPlate9ft"), value: gym.wall_ball_plate_9ft_count },
     { label: t("wallBallPlate10ft"), value: gym.wall_ball_plate_10ft_count },
+    { label: t("sandbag"), value: gym.has_sandbag ? t("available") : t("notListed") },
+    { label: t("sandbag10kg"), value: gym.sandbag_10kg_count },
+    { label: t("sandbag20kg"), value: gym.sandbag_20kg_count },
+    { label: t("sandbag30kg"), value: gym.sandbag_30kg_count },
+    { label: t("kettlebell"), value: gym.has_kettlebell ? t("available") : t("notListed") },
+    { label: t("kettlebell16kg"), value: gym.kettlebell_16kg_count },
+    { label: t("kettlebell24kg"), value: gym.kettlebell_24kg_count },
+    { label: t("kettlebell32kg"), value: gym.kettlebell_32kg_count },
   ];
+
+  const otherEquipment = [
+    [t("battleRope"), gym.has_battle_rope || gym.has_battle_ropes],
+    [t("foamRoller"), gym.has_foam_roller],
+    [t("medicineBall"), gym.has_medicine_ball],
+    [t("dipBelt"), gym.has_dip_belt],
+    [t("weightVest"), gym.has_weight_vest],
+    [t("liftingStraps"), gym.has_lifting_straps],
+    [t("plyoBox"), gym.has_plyo_box],
+    [t("balanceBall"), gym.has_balance_ball],
+    [t("trx"), gym.has_trx],
+    [t("resistanceBands"), gym.has_resistance_band],
+    [t("rings"), gym.has_rings],
+    [t("gluteHamDeveloper"), gym.has_glute_ham_developer],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
 
   const cable = [
     { label: t("cableMachine"), value: gym.cable_machine_count },
@@ -380,6 +410,10 @@ export default async function GymDetailPage({ params }: Props) {
 
           <Section title={t("legMachine")}>
             <FeaturePills items={legMachines} fallback={t("notListed")} />
+          </Section>
+
+          <Section title={t("otherEquipment")}>
+            <FeaturePills items={otherEquipment} fallback={t("notListed")} />
           </Section>
 
           <Section title={t("equipmentTags")}>

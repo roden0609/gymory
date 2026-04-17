@@ -87,6 +87,12 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
     ["wall_ball_9kg_count", t("wallBall9kgCount")],
     ["wall_ball_plate_9ft_count", t("wallBallPlate9ftCount")],
     ["wall_ball_plate_10ft_count", t("wallBallPlate10ftCount")],
+    ["sandbag_10kg_count", t("sandbag10kgCount")],
+    ["sandbag_20kg_count", t("sandbag20kgCount")],
+    ["sandbag_30kg_count", t("sandbag30kgCount")],
+    ["kettlebell_16kg_count", t("kettlebell16kgCount")],
+    ["kettlebell_24kg_count", t("kettlebell24kgCount")],
+    ["kettlebell_32kg_count", t("kettlebell32kgCount")],
   ];
 
   const machineCountFields = [
@@ -105,6 +111,18 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
         ["has_trap_bar", tGym("trapBar")],
         ["has_safety_squat_bar", tGym("safetySquatBar")],
         ["has_farmer_handles", tGym("farmersHandles")],
+        ["has_landmine_attachment", tGym("landmineAttachment")],
+        ["has_swiss_bar", tGym("swissBar")],
+        ["has_cambered_bar", tGym("camberedBar")],
+        ["has_ez_bar", tGym("ezBar")],
+      ],
+    },
+    {
+      title: t("hyrox"),
+      fields: [
+        ["has_wall_ball", tGym("wallBall")],
+        ["has_sandbag", tGym("sandbag")],
+        ["has_kettlebell", tGym("kettlebell")],
       ],
     },
     {
@@ -163,6 +181,19 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
         ["has_seated_calf_raise_machine", tGym("seatedCalfRaiseMachine")],
         ["has_squat_machine", tGym("squatMachine")],
         ["has_standing_calf_raise_machine", tGym("standingCalfRaiseMachine")],
+      ],
+    },
+    {
+      title: tGym("otherEquipment"),
+      fields: [
+        ["has_battle_rope", tGym("battleRope")],
+        ["has_foam_roller", tGym("foamRoller")],
+        ["has_medicine_ball", tGym("medicineBall")],
+        ["has_dip_belt", tGym("dipBelt")],
+        ["has_weight_vest", tGym("weightVest")],
+        ["has_lifting_straps", tGym("liftingStraps")],
+        ["has_plyo_box", tGym("plyoBox")],
+        ["has_balance_ball", tGym("balanceBall")],
       ],
     },
   ];
@@ -247,6 +278,24 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
         ),
         wall_ball_plate_10ft_count: toNumber(
           String(formData.get("wall_ball_plate_10ft_count") ?? "")
+        ),
+        sandbag_10kg_count: toNumber(
+          String(formData.get("sandbag_10kg_count") ?? "")
+        ),
+        sandbag_20kg_count: toNumber(
+          String(formData.get("sandbag_20kg_count") ?? "")
+        ),
+        sandbag_30kg_count: toNumber(
+          String(formData.get("sandbag_30kg_count") ?? "")
+        ),
+        kettlebell_16kg_count: toNumber(
+          String(formData.get("kettlebell_16kg_count") ?? "")
+        ),
+        kettlebell_24kg_count: toNumber(
+          String(formData.get("kettlebell_24kg_count") ?? "")
+        ),
+        kettlebell_32kg_count: toNumber(
+          String(formData.get("kettlebell_32kg_count") ?? "")
         ),
         cable_machine_count: toNumber(
           String(formData.get("cable_machine_count") ?? "")

@@ -27,7 +27,7 @@ export async function searchGyms(
   let query = supabase
     .from("gyms")
     .select(
-      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, equipment_last_verified_at"
+      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, has_wall_ball, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, equipment_last_verified_at"
     )
     .eq("is_active", true)
     .order("is_verified", { ascending: false })
@@ -45,7 +45,7 @@ export async function searchGyms(
   if (params.hasSled === "true") query = query.gt("sled_count", 0);
   if (params.hasWallBall === "true") {
     query = query.or(
-      "wall_ball_4kg_count.gt.0,wall_ball_6kg_count.gt.0,wall_ball_9kg_count.gt.0,wall_ball_count.gt.0"
+      "has_wall_ball.eq.true,wall_ball_4kg_count.gt.0,wall_ball_6kg_count.gt.0,wall_ball_9kg_count.gt.0,wall_ball_count.gt.0"
     );
   }
   if (params.minSize) query = query.gte("estimated_size_sqft", params.minSize);

@@ -29,6 +29,7 @@ export function GymCard({ gym }: { gym: GymSummary }) {
   if (gym.rower_count > 0) equipmentHighlights.push("Rower");
   if (gym.sled_count > 0) equipmentHighlights.push("Sled");
   if (
+    gym.has_wall_ball ||
     gym.wall_ball_count > 0 ||
     gym.wall_ball_4kg_count > 0 ||
     gym.wall_ball_6kg_count > 0 ||

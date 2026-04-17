@@ -40,6 +40,10 @@ export interface Gym {
   has_trap_bar: boolean;
   has_safety_squat_bar: boolean;
   has_farmer_handles: boolean;
+  has_landmine_attachment: boolean;
+  has_swiss_bar: boolean;
+  has_cambered_bar: boolean;
+  has_ez_bar: boolean;
 
   // Cardio
   treadmill_count: number;
@@ -52,12 +56,21 @@ export interface Gym {
   ski_erg_count: number;
   rower_count: number;
   sled_count: number;
+  has_wall_ball: boolean;
   wall_ball_count: number;
   wall_ball_4kg_count: number;
   wall_ball_6kg_count: number;
   wall_ball_9kg_count: number;
   wall_ball_plate_9ft_count: number;
   wall_ball_plate_10ft_count: number;
+  has_sandbag: boolean;
+  sandbag_10kg_count: number;
+  sandbag_20kg_count: number;
+  sandbag_30kg_count: number;
+  has_kettlebell: boolean;
+  kettlebell_16kg_count: number;
+  kettlebell_24kg_count: number;
+  kettlebell_32kg_count: number;
 
   // Cable
   cable_machine_count: number;
@@ -122,6 +135,16 @@ export interface Gym {
   has_squat_machine: boolean;
   has_standing_calf_raise_machine: boolean;
 
+  // Other equipment
+  has_battle_rope: boolean;
+  has_foam_roller: boolean;
+  has_medicine_ball: boolean;
+  has_dip_belt: boolean;
+  has_weight_vest: boolean;
+  has_lifting_straps: boolean;
+  has_plyo_box: boolean;
+  has_balance_ball: boolean;
+
   // Flexible
   equipment_tags: string[];
   equipment_notes: string | null;
@@ -157,6 +180,7 @@ export type GymSummary = Pick<
   | "ski_erg_count"
   | "rower_count"
   | "sled_count"
+  | "has_wall_ball"
   | "wall_ball_count"
   | "wall_ball_4kg_count"
   | "wall_ball_6kg_count"
