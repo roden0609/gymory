@@ -34,24 +34,46 @@ export interface Gym {
   bench_count: number;
   barbell_count: number;
   dumbbell_max_weight_kg: number | null;
+  plate_min_weight_kg: number | null;
   plate_max_weight_kg: number | null;
+  has_roman_chair: boolean;
+  has_trap_bar: boolean;
+  has_safety_squat_bar: boolean;
+  has_farmer_handles: boolean;
 
-  // Cardio / conditioning counts
+  // Cardio
+  treadmill_count: number;
   assault_bike_count: number;
+  exercise_bike_count: number;
+  climber_count: number;
+
+  // HYROX
+  assault_runner_count: number;
   ski_erg_count: number;
   rower_count: number;
   sled_count: number;
   wall_ball_count: number;
-  treadmill_count: number;
+  wall_ball_4kg_count: number;
+  wall_ball_6kg_count: number;
+  wall_ball_9kg_count: number;
+  wall_ball_plate_9ft_count: number;
+  wall_ball_plate_10ft_count: number;
 
-  // Strength machine counts
+  // Cable
   cable_machine_count: number;
+  has_lat_pulldown_cable: boolean;
+  has_seated_row_cable: boolean;
+
+  // Legacy machine counts kept for backwards-compatible reads
   lat_pulldown_count: number;
   chest_press_count: number;
   leg_press_count: number;
   hack_squat_count: number;
 
-  // Boolean equipment
+  // Full body machine
+  smith_machine_count: number;
+
+  // Legacy boolean equipment kept for backwards-compatible reads
   has_smith_machine: boolean;
   has_deadlift_platform: boolean;
   has_pull_up_bar: boolean;
@@ -63,6 +85,42 @@ export interface Gym {
   has_glute_ham_developer: boolean;
   has_reverse_hyper: boolean;
   has_farmers_handles: boolean;
+
+  // Arm machine
+  has_bicep_curl_machine: boolean;
+  has_tricep_extension_machine: boolean;
+
+  // Chest machine
+  has_chest_press_machine: boolean;
+  has_incline_chest_press_machine: boolean;
+  has_iso_lateral_chest_press_machine: boolean;
+  has_pec_deck_machine: boolean;
+  has_chest_fly_machine: boolean;
+
+  // Back machine
+  has_lat_pulldown_machine: boolean;
+  has_seated_row_machine: boolean;
+  has_back_extension_machine: boolean;
+  has_iso_lateral_row_machine: boolean;
+  has_t_bar_row_machine: boolean;
+
+  // Shoulder machine
+  has_lateral_raise_machine: boolean;
+  has_reverse_fly_machine: boolean;
+  has_shoulder_press_machine: boolean;
+  has_iso_lateral_shoulder_press_machine: boolean;
+
+  // Leg machine
+  has_hip_abductor_machine: boolean;
+  has_hip_adductor_machine: boolean;
+  has_leg_extension_machine: boolean;
+  has_leg_press_machine: boolean;
+  has_seated_leg_press_machine: boolean;
+  has_lying_leg_curl_machine: boolean;
+  has_seated_leg_curl_machine: boolean;
+  has_seated_calf_raise_machine: boolean;
+  has_squat_machine: boolean;
+  has_standing_calf_raise_machine: boolean;
 
   // Flexible
   equipment_tags: string[];
@@ -93,12 +151,16 @@ export type GymSummary = Pick<
   | "size_category"
   | "rack_count"
   | "dumbbell_max_weight_kg"
+  | "plate_min_weight_kg"
+  | "plate_max_weight_kg"
   | "assault_bike_count"
   | "ski_erg_count"
   | "rower_count"
   | "sled_count"
   | "wall_ball_count"
-  | "plate_max_weight_kg"
+  | "wall_ball_4kg_count"
+  | "wall_ball_6kg_count"
+  | "wall_ball_9kg_count"
   | "is_verified"
   | "equipment_last_verified_at"
 >;

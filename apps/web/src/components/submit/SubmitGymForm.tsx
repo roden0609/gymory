@@ -26,9 +26,11 @@ function formatTag(tag: string) {
 export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
   const locale = useLocale();
   const t = useTranslations("submit");
+  const tGym = useTranslations("gym");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
 
   const isUpdate = Boolean(gymId);
   const title = isUpdate ? t("updateTitle") : t("title");
@@ -51,6 +53,142 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
     );
   }
 
+  function toggleFeature(feature: string) {
+    setSelectedFeatures((current) =>
+      current.includes(feature)
+        ? current.filter((item) => item !== feature)
+        : [...current, feature]
+    );
+  }
+
+  const freeWeightFields = [
+    ["rack_count", t("rackCount")],
+    ["bench_count", t("benchCount")],
+    ["barbell_count", t("barbellCount")],
+    ["dumbbell_max_weight_kg", t("dumbbellMax")],
+    ["plate_min_weight_kg", t("plateMin")],
+    ["plate_max_weight_kg", t("plateMax")],
+  ];
+
+  const cardioFields = [
+    ["treadmill_count", t("treadmillCount")],
+    ["assault_bike_count", t("assaultBikeCount")],
+    ["exercise_bike_count", t("exerciseBikeCount")],
+    ["climber_count", t("climberCount")],
+  ];
+
+  const hyroxFields = [
+    ["assault_runner_count", t("assaultRunnerCount")],
+    ["ski_erg_count", t("skiErgCount")],
+    ["rower_count", t("rowerCount")],
+    ["sled_count", t("sledCount")],
+    ["wall_ball_4kg_count", t("wallBall4kgCount")],
+    ["wall_ball_6kg_count", t("wallBall6kgCount")],
+    ["wall_ball_9kg_count", t("wallBall9kgCount")],
+    ["wall_ball_plate_9ft_count", t("wallBallPlate9ftCount")],
+    ["wall_ball_plate_10ft_count", t("wallBallPlate10ftCount")],
+  ];
+
+  const machineCountFields = [
+    ["cable_machine_count", t("cableMachineCount")],
+    ["smith_machine_count", t("smithMachineCount")],
+  ];
+
+  const featureSections = [
+    {
+      title: t("freeWeight"),
+      fields: [
+        ["has_roman_chair", tGym("romanChair")],
+        ["has_dip_station", tGym("dipStation")],
+        ["has_pull_up_bar", tGym("pullUpBar")],
+        ["has_reverse_hyper", tGym("reverseHyper")],
+        ["has_trap_bar", tGym("trapBar")],
+        ["has_safety_squat_bar", tGym("safetySquatBar")],
+        ["has_farmer_handles", tGym("farmersHandles")],
+      ],
+    },
+    {
+      title: tGym("cable"),
+      fields: [
+        ["has_lat_pulldown_cable", tGym("latPulldownCable")],
+        ["has_seated_row_cable", tGym("seatedRowCable")],
+      ],
+    },
+    {
+      title: tGym("armMachine"),
+      fields: [
+        ["has_bicep_curl_machine", tGym("bicepCurlMachine")],
+        ["has_tricep_extension_machine", tGym("tricepExtensionMachine")],
+      ],
+    },
+    {
+      title: tGym("chestMachine"),
+      fields: [
+        ["has_chest_press_machine", tGym("chestPressMachine")],
+        ["has_incline_chest_press_machine", tGym("inclineChestPressMachine")],
+        ["has_iso_lateral_chest_press_machine", tGym("isoLateralChestPressMachine")],
+        ["has_pec_deck_machine", tGym("pecDeckMachine")],
+        ["has_chest_fly_machine", tGym("chestFlyMachine")],
+      ],
+    },
+    {
+      title: tGym("backMachine"),
+      fields: [
+        ["has_lat_pulldown_machine", tGym("latPulldownMachine")],
+        ["has_seated_row_machine", tGym("seatedRowMachine")],
+        ["has_back_extension_machine", tGym("backExtensionMachine")],
+        ["has_iso_lateral_row_machine", tGym("isoLateralRowMachine")],
+        ["has_t_bar_row_machine", tGym("tBarRowMachine")],
+      ],
+    },
+    {
+      title: tGym("shoulderMachine"),
+      fields: [
+        ["has_lateral_raise_machine", tGym("lateralRaiseMachine")],
+        ["has_reverse_fly_machine", tGym("reverseFlyMachine")],
+        ["has_shoulder_press_machine", tGym("shoulderPressMachine")],
+        ["has_iso_lateral_shoulder_press_machine", tGym("isoLateralShoulderPressMachine")],
+      ],
+    },
+    {
+      title: tGym("legMachine"),
+      fields: [
+        ["has_hip_abductor_machine", tGym("hipAbductorMachine")],
+        ["has_hip_adductor_machine", tGym("hipAdductorMachine")],
+        ["has_leg_extension_machine", tGym("legExtensionMachine")],
+        ["has_leg_press_machine", tGym("legPressMachine")],
+        ["has_seated_leg_press_machine", tGym("seatedLegPressMachine")],
+        ["has_lying_leg_curl_machine", tGym("lyingLegCurlMachine")],
+        ["has_seated_leg_curl_machine", tGym("seatedLegCurlMachine")],
+        ["has_seated_calf_raise_machine", tGym("seatedCalfRaiseMachine")],
+        ["has_squat_machine", tGym("squatMachine")],
+        ["has_standing_calf_raise_machine", tGym("standingCalfRaiseMachine")],
+      ],
+    },
+  ];
+
+  const featureNames = featureSections.flatMap((section) =>
+    section.fields.map(([name]) => name)
+  );
+
+  function renderNumberFields(fields: string[][]) {
+    return (
+      <div className="grid gap-4 md:grid-cols-2">
+        {fields.map(([name, label]) => (
+          <label key={name} className="space-y-1.5">
+            <span className="text-sm font-medium text-gray-700">{label}</span>
+            <input
+              name={name}
+              type="number"
+              min={0}
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+            />
+          </label>
+        ))}
+      </div>
+    );
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("submitting");
@@ -70,16 +208,55 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
       },
       equipment: {
         rack_count: toNumber(String(formData.get("rack_count") ?? "")),
+        bench_count: toNumber(String(formData.get("bench_count") ?? "")),
+        barbell_count: toNumber(String(formData.get("barbell_count") ?? "")),
         dumbbell_max_weight_kg: toNumber(
           String(formData.get("dumbbell_max_weight_kg") ?? "")
         ),
+        plate_min_weight_kg: toNumber(
+          String(formData.get("plate_min_weight_kg") ?? "")
+        ),
+        plate_max_weight_kg: toNumber(
+          String(formData.get("plate_max_weight_kg") ?? "")
+        ),
+        treadmill_count: toNumber(String(formData.get("treadmill_count") ?? "")),
         assault_bike_count: toNumber(
           String(formData.get("assault_bike_count") ?? "")
+        ),
+        exercise_bike_count: toNumber(
+          String(formData.get("exercise_bike_count") ?? "")
+        ),
+        climber_count: toNumber(String(formData.get("climber_count") ?? "")),
+        assault_runner_count: toNumber(
+          String(formData.get("assault_runner_count") ?? "")
         ),
         ski_erg_count: toNumber(String(formData.get("ski_erg_count") ?? "")),
         rower_count: toNumber(String(formData.get("rower_count") ?? "")),
         sled_count: toNumber(String(formData.get("sled_count") ?? "")),
-        wall_ball_count: toNumber(String(formData.get("wall_ball_count") ?? "")),
+        wall_ball_4kg_count: toNumber(
+          String(formData.get("wall_ball_4kg_count") ?? "")
+        ),
+        wall_ball_6kg_count: toNumber(
+          String(formData.get("wall_ball_6kg_count") ?? "")
+        ),
+        wall_ball_9kg_count: toNumber(
+          String(formData.get("wall_ball_9kg_count") ?? "")
+        ),
+        wall_ball_plate_9ft_count: toNumber(
+          String(formData.get("wall_ball_plate_9ft_count") ?? "")
+        ),
+        wall_ball_plate_10ft_count: toNumber(
+          String(formData.get("wall_ball_plate_10ft_count") ?? "")
+        ),
+        cable_machine_count: toNumber(
+          String(formData.get("cable_machine_count") ?? "")
+        ),
+        smith_machine_count: toNumber(
+          String(formData.get("smith_machine_count") ?? "")
+        ),
+        ...Object.fromEntries(
+          featureNames.map((name) => [name, selectedFeatures.includes(name)])
+        ),
       },
       equipment_tags: selectedTags,
     };
@@ -102,6 +279,7 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
       setStatus("success");
       event.currentTarget.reset();
       setSelectedTags([]);
+      setSelectedFeatures([]);
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : t("errorMessage"));
@@ -213,34 +391,57 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
           </div>
         </fieldset>
 
-        <fieldset className="space-y-4 border-t border-gray-200 pt-6">
+        <fieldset className="space-y-6 border-t border-gray-200 pt-6">
           <legend className="text-lg font-semibold text-gray-900">
             {t("equipment")}
           </legend>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              ["rack_count", t("rackCount")],
-              ["dumbbell_max_weight_kg", t("dumbbellMax")],
-              ["assault_bike_count", t("assaultBikeCount")],
-              ["ski_erg_count", t("skiErgCount")],
-              ["rower_count", t("rowerCount")],
-              ["sled_count", t("sledCount")],
-              ["wall_ball_count", t("wallBallCount")],
-            ].map(([name, label]) => (
-              <label key={name} className="space-y-1.5">
-                <span className="text-sm font-medium text-gray-700">
-                  {label}
-                </span>
-                <input
-                  name={name}
-                  type="number"
-                  min={0}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
-                />
-              </label>
-            ))}
+          <div className="space-y-3">
+            <h2 className="text-sm font-semibold text-gray-900">{t("freeWeight")}</h2>
+            {renderNumberFields(freeWeightFields)}
           </div>
+
+          <div className="space-y-3">
+            <h2 className="text-sm font-semibold text-gray-900">{t("cardio")}</h2>
+            {renderNumberFields(cardioFields)}
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-sm font-semibold text-gray-900">{t("hyrox")}</h2>
+            {renderNumberFields(hyroxFields)}
+          </div>
+
+          <details className="rounded-lg border border-gray-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-gray-900">
+              {t("machineOptional")}
+            </summary>
+            <div className="mt-4 space-y-5">
+              {renderNumberFields(machineCountFields)}
+              {featureSections.map((section) => (
+                <div key={section.title} className="space-y-2">
+                  <h3 className="text-sm font-medium text-gray-700">
+                    {section.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {section.fields.map(([name, label]) => (
+                      <button
+                        key={name}
+                        type="button"
+                        onClick={() => toggleFeature(name)}
+                        className={`rounded-full border px-3 py-1 text-sm font-medium transition-colors ${
+                          selectedFeatures.includes(name)
+                            ? "border-gray-900 bg-gray-900 text-white"
+                            : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </details>
         </fieldset>
 
         <fieldset className="space-y-3 border-t border-gray-200 pt-6">

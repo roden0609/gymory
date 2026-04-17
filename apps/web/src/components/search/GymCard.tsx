@@ -28,7 +28,14 @@ export function GymCard({ gym }: { gym: GymSummary }) {
   if (gym.ski_erg_count > 0) equipmentHighlights.push("Ski erg");
   if (gym.rower_count > 0) equipmentHighlights.push("Rower");
   if (gym.sled_count > 0) equipmentHighlights.push("Sled");
-  if (gym.wall_ball_count > 0) equipmentHighlights.push("Wall ball");
+  if (
+    gym.wall_ball_count > 0 ||
+    gym.wall_ball_4kg_count > 0 ||
+    gym.wall_ball_6kg_count > 0 ||
+    gym.wall_ball_9kg_count > 0
+  ) {
+    equipmentHighlights.push("Wall ball");
+  }
 
   return (
     <Link

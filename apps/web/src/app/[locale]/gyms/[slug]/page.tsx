@@ -71,6 +71,51 @@ function Section({
   );
 }
 
+function ValueGrid({
+  items,
+}: {
+  items: Array<{ label: string; value: string | number }>;
+}) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <div
+          key={item.label}
+          className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
+        >
+          <span className="text-gray-600">{item.label}</span>
+          <span className="font-medium text-gray-900">{item.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FeaturePills({
+  items,
+  fallback,
+}: {
+  items: string[];
+  fallback: string;
+}) {
+  if (items.length === 0) {
+    return <p className="text-sm text-gray-500">{fallback}</p>;
+  }
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {items.map((label) => (
+        <span
+          key={label}
+          className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700"
+        >
+          {label}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const gym = await getGymBySlug(slug);
@@ -108,7 +153,7 @@ export default async function GymDetailPage({ params }: Props) {
       ? `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`
       : null;
 
-  const keyEquipment = [
+  const freeWeight = [
     { label: t("racks"), value: gym.rack_count },
     { label: t("benches"), value: gym.bench_count },
     { label: t("barbells"), value: gym.barbell_count },
@@ -119,39 +164,111 @@ export default async function GymDetailPage({ params }: Props) {
         : t("notListed"),
     },
     {
-      label: t("plates"),
-      value: gym.plate_max_weight_kg
-        ? `${gym.plate_max_weight_kg}kg`
-        : t("notListed"),
+      label: t("plateMin"),
+      value: gym.plate_min_weight_kg ? `${gym.plate_min_weight_kg}kg` : t("notListed"),
     },
+    {
+      label: t("plateMax"),
+      value: gym.plate_max_weight_kg ? `${gym.plate_max_weight_kg}kg` : t("notListed"),
+    },
+  ];
+
+  const freeWeightFeatures = [
+    [t("romanChair"), gym.has_roman_chair],
+    [t("dipStation"), gym.has_dip_station],
+    [t("pullUpBar"), gym.has_pull_up_bar],
+    [t("reverseHyper"), gym.has_reverse_hyper],
+    [t("trapBar"), gym.has_trap_bar],
+    [t("safetySquatBar"), gym.has_safety_squat_bar],
+    [t("farmersHandles"), gym.has_farmer_handles || gym.has_farmers_handles],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
+  const cardio = [
+    { label: t("treadmill"), value: gym.treadmill_count },
     { label: t("assaultBike"), value: gym.assault_bike_count },
+    { label: t("exerciseBike"), value: gym.exercise_bike_count },
+    { label: t("climber"), value: gym.climber_count },
+  ];
+
+  const hyrox = [
+    { label: t("assaultRunner"), value: gym.assault_runner_count },
     { label: t("skiErg"), value: gym.ski_erg_count },
     { label: t("rower"), value: gym.rower_count },
     { label: t("sled"), value: gym.sled_count },
-    { label: t("wallBall"), value: gym.wall_ball_count },
+    { label: t("wallBall4kg"), value: gym.wall_ball_4kg_count },
+    { label: t("wallBall6kg"), value: gym.wall_ball_6kg_count },
+    { label: t("wallBall9kg"), value: gym.wall_ball_9kg_count },
+    { label: t("wallBallPlate9ft"), value: gym.wall_ball_plate_9ft_count },
+    { label: t("wallBallPlate10ft"), value: gym.wall_ball_plate_10ft_count },
   ];
 
-  const machines = [
+  const cable = [
     { label: t("cableMachine"), value: gym.cable_machine_count },
-    { label: t("latPulldown"), value: gym.lat_pulldown_count },
-    { label: t("chestPress"), value: gym.chest_press_count },
-    { label: t("legPress"), value: gym.leg_press_count },
-    { label: t("hackSquat"), value: gym.hack_squat_count },
   ];
 
-  const features = [
-    [t("smithMachine"), gym.has_smith_machine],
-    [t("deadliftPlatform"), gym.has_deadlift_platform],
-    [t("pullUpBar"), gym.has_pull_up_bar],
-    [t("dipStation"), gym.has_dip_station],
-    [t("trx"), gym.has_trx],
-    [t("resistanceBands"), gym.has_resistance_band],
-    [t("battleRopes"), gym.has_battle_ropes],
-    [t("rings"), gym.has_rings],
-    [t("gluteHamDeveloper"), gym.has_glute_ham_developer],
-    [t("reverseHyper"), gym.has_reverse_hyper],
-    [t("farmersHandles"), gym.has_farmers_handles],
-  ].filter(([, hasFeature]) => hasFeature);
+  const cableFeatures = [
+    [t("latPulldownCable"), gym.has_lat_pulldown_cable],
+    [t("seatedRowCable"), gym.has_seated_row_cable],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
+  const fullBodyMachine = [
+    { label: t("smithMachine"), value: gym.smith_machine_count },
+  ];
+
+  const armMachines = [
+    [t("bicepCurlMachine"), gym.has_bicep_curl_machine],
+    [t("tricepExtensionMachine"), gym.has_tricep_extension_machine],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
+  const chestMachines = [
+    [t("chestPressMachine"), gym.has_chest_press_machine],
+    [t("inclineChestPressMachine"), gym.has_incline_chest_press_machine],
+    [t("isoLateralChestPressMachine"), gym.has_iso_lateral_chest_press_machine],
+    [t("pecDeckMachine"), gym.has_pec_deck_machine],
+    [t("chestFlyMachine"), gym.has_chest_fly_machine],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
+  const backMachines = [
+    [t("latPulldownMachine"), gym.has_lat_pulldown_machine],
+    [t("seatedRowMachine"), gym.has_seated_row_machine],
+    [t("backExtensionMachine"), gym.has_back_extension_machine],
+    [t("isoLateralRowMachine"), gym.has_iso_lateral_row_machine],
+    [t("tBarRowMachine"), gym.has_t_bar_row_machine],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
+  const shoulderMachines = [
+    [t("lateralRaiseMachine"), gym.has_lateral_raise_machine],
+    [t("reverseFlyMachine"), gym.has_reverse_fly_machine],
+    [t("shoulderPressMachine"), gym.has_shoulder_press_machine],
+    [t("isoLateralShoulderPressMachine"), gym.has_iso_lateral_shoulder_press_machine],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
+  const legMachines = [
+    [t("hipAbductorMachine"), gym.has_hip_abductor_machine],
+    [t("hipAdductorMachine"), gym.has_hip_adductor_machine],
+    [t("legExtensionMachine"), gym.has_leg_extension_machine],
+    [t("legPressMachine"), gym.has_leg_press_machine],
+    [t("seatedLegPressMachine"), gym.has_seated_leg_press_machine],
+    [t("lyingLegCurlMachine"), gym.has_lying_leg_curl_machine],
+    [t("seatedLegCurlMachine"), gym.has_seated_leg_curl_machine],
+    [t("seatedCalfRaiseMachine"), gym.has_seated_calf_raise_machine],
+    [t("squatMachine"), gym.has_squat_machine],
+    [t("standingCalfRaiseMachine"), gym.has_standing_calf_raise_machine],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -219,49 +336,50 @@ export default async function GymDetailPage({ params }: Props) {
         </div>
 
         <div className="mt-8 rounded-lg border border-gray-200 bg-white px-5">
-          <Section title={t("equipment")}>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {keyEquipment.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
-                >
-                  <span className="text-gray-600">{item.label}</span>
-                  <span className="font-medium text-gray-900">{item.value}</span>
-                </div>
-              ))}
+          <Section title={t("freeWeight")}>
+            <ValueGrid items={freeWeight} />
+            <div className="mt-4">
+              <FeaturePills items={freeWeightFeatures} fallback={t("notListed")} />
             </div>
           </Section>
 
-          <Section title={t("machines")}>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {machines.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
-                >
-                  <span className="text-gray-600">{item.label}</span>
-                  <span className="font-medium text-gray-900">{item.value}</span>
-                </div>
-              ))}
+          <Section title={t("cardio")}>
+            <ValueGrid items={cardio} />
+          </Section>
+
+          <Section title={t("hyrox")}>
+            <ValueGrid items={hyrox} />
+          </Section>
+
+          <Section title={t("cable")}>
+            <ValueGrid items={cable} />
+            <div className="mt-4">
+              <FeaturePills items={cableFeatures} fallback={t("notListed")} />
             </div>
           </Section>
 
-          <Section title={t("features")}>
-            {features.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {features.map(([label]) => (
-                  <span
-                    key={label as string}
-                    className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700"
-                  >
-                    {label}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-gray-500">{t("notListed")}</p>
-            )}
+          <Section title={t("fullBodyMachine")}>
+            <ValueGrid items={fullBodyMachine} />
+          </Section>
+
+          <Section title={t("armMachine")}>
+            <FeaturePills items={armMachines} fallback={t("notListed")} />
+          </Section>
+
+          <Section title={t("chestMachine")}>
+            <FeaturePills items={chestMachines} fallback={t("notListed")} />
+          </Section>
+
+          <Section title={t("backMachine")}>
+            <FeaturePills items={backMachines} fallback={t("notListed")} />
+          </Section>
+
+          <Section title={t("shoulderMachine")}>
+            <FeaturePills items={shoulderMachines} fallback={t("notListed")} />
+          </Section>
+
+          <Section title={t("legMachine")}>
+            <FeaturePills items={legMachines} fallback={t("notListed")} />
           </Section>
 
           <Section title={t("equipmentTags")}>
