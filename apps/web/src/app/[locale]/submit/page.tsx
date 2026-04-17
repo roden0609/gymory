@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SubmitGymForm } from "@/components/submit/SubmitGymForm";
 
 export async function generateMetadata({
   params,
@@ -13,19 +14,17 @@ export async function generateMetadata({
 
 export default async function SubmitPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: { gymId?: string };
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations("submit");
-
   return (
-    <main className="min-h-screen p-8">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
-      <p className="mt-2 text-gray-500">{t("description")}</p>
-      {/* TODO: SubmitGymForm */}
+    <main className="min-h-screen bg-gray-50">
+      <SubmitGymForm gymId={searchParams.gymId} />
     </main>
   );
 }

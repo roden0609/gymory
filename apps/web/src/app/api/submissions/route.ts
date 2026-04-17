@@ -12,17 +12,15 @@ export async function POST(request: NextRequest) {
   }
 
   const supabase = await createClient();
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("gym_update_submissions")
     .insert({
       gym_id: parsed.data.gymId ?? null,
       submission_type: parsed.data.submissionType,
       payload: parsed.data.payload,
       status: "pending",
-    })
-    .select()
-    .single();
+    });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ submission: data }, { status: 201 });
+  return NextResponse.json({ status: "ok" }, { status: 201 });
 }
