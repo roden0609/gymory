@@ -4,8 +4,10 @@
     "tagline": "按你嘅訓練方式，搵啱健身房。",
     "search": "搜尋",
     "submit": "提交",
+    "submitNewGym": "提交新健身房",
     "back": "← 返回",
-    "clear": "清除"
+    "clear": "清除",
+    "cancel": "取消"
   },
   "home": {
     "hero": "搵啱健身房，唔係搵最近嗰間。",

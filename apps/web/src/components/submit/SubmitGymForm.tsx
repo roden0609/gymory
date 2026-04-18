@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { HK_DISTRICTS } from "@gymory/shared";
@@ -17,8 +18,10 @@ function toNumber(value: string) {
 }
 
 export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
+  const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("submit");
+  const tCommon = useTranslations("common");
   const tGym = useTranslations("gym");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -486,13 +489,23 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
           />
         </label>
 
-        <button
-          type="submit"
-          disabled={status === "submitting"}
-          className="w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-400"
-        >
-          {status === "submitting" ? t("submitting") : t("submitButton")}
-        </button>
+        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            disabled={status === "submitting"}
+            className="rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400"
+          >
+            {tCommon("cancel")}
+          </button>
+          <button
+            type="submit"
+            disabled={status === "submitting"}
+            className="rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+          >
+            {status === "submitting" ? t("submitting") : t("submitButton")}
+          </button>
+        </div>
       </form>
     </div>
   );

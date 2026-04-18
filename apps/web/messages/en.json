@@ -4,8 +4,10 @@
     "tagline": "Find the right gym for how you train.",
     "search": "Search",
     "submit": "Submit",
+    "submitNewGym": "Submit new gym",
     "back": "← Back",
-    "clear": "Clear"
+    "clear": "Clear",
+    "cancel": "Cancel"
   },
   "home": {
     "hero": "Find the right gym — not just the nearest one.",
