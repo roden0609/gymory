@@ -21,8 +21,8 @@ function getLocalizedGym(gym: Gym, locale: Locale) {
   };
 }
 
-function formatTag(tag: string) {
-  return tag
+function formatLabel(value: string) {
+  return value
     .split("_")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
@@ -361,7 +361,7 @@ export default async function GymDetailPage({ params }: Props) {
           />
           <StatCard
             label={t("dataSource")}
-            value={gym.data_source ? formatTag(gym.data_source) : t("notListed")}
+            value={gym.data_source ?? t("notListed")}
           />
         </div>
 
@@ -416,28 +416,6 @@ export default async function GymDetailPage({ params }: Props) {
             <FeaturePills items={otherEquipment} fallback={t("notListed")} />
           </Section>
 
-          <Section title={t("equipmentTags")}>
-            {gym.equipment_tags.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {gym.equipment_tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700"
-                  >
-                    {formatTag(tag)}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-gray-500">{t("notListed")}</p>
-            )}
-            {gym.equipment_notes && (
-              <p className="mt-4 text-sm leading-6 text-gray-600">
-                {gym.equipment_notes}
-              </p>
-            )}
-          </Section>
-
           <Section title={t("location")}>
             <div className="rounded-lg bg-gray-50 p-4">
               <p className="font-medium text-gray-900">{display.district}</p>
@@ -465,7 +443,7 @@ export default async function GymDetailPage({ params }: Props) {
                     key={day}
                     className="flex justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
                   >
-                    <dt className="font-medium text-gray-700">{formatTag(day)}</dt>
+                    <dt className="font-medium text-gray-700">{formatLabel(day)}</dt>
                     <dd className="text-gray-600">{hours}</dd>
                   </div>
                 ))}

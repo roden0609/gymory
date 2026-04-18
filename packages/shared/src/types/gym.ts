@@ -145,8 +145,6 @@ export interface Gym {
   has_plyo_box: boolean;
   has_balance_ball: boolean;
 
-  // Flexible
-  equipment_tags: string[];
   equipment_notes: string | null;
 
   // Trust / freshness

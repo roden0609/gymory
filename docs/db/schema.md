@@ -9,7 +9,7 @@
 |------|---------|
 | `integer count` | Equipment where quantity matters (racks, assault bikes, rowers…) |
 | `boolean` | Equipment where "has / doesn't have" is enough (smith machine, TRX…) |
-| `text[]` equipment_tags | Niche accessories that don't warrant their own column (trap bar, etc.) |
+| `boolean` | Other equipment presence columns (has_battle_rope, has_foam_roller, etc.) |
 | `numeric` | Weight ranges (dumbbell_max_weight_kg, plate_max_weight_kg) |
 
 ### Search query pattern

@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { EQUIPMENT_TAGS, HK_DISTRICTS } from "@gymory/shared";
+import { HK_DISTRICTS } from "@gymory/shared";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -16,20 +16,12 @@ function toNumber(value: string) {
   return Number.isFinite(number) ? number : null;
 }
 
-function formatTag(tag: string) {
-  return tag
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
 export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
   const locale = useLocale();
   const t = useTranslations("submit");
   const tGym = useTranslations("gym");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
 
   const isUpdate = Boolean(gymId);
@@ -44,14 +36,6 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
       })),
     [locale]
   );
-
-  function toggleTag(tag: string) {
-    setSelectedTags((current) =>
-      current.includes(tag)
-        ? current.filter((item) => item !== tag)
-        : [...current, tag]
-    );
-  }
 
   function toggleFeature(feature: string) {
     setSelectedFeatures((current) =>
@@ -307,7 +291,6 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
           featureNames.map((name) => [name, selectedFeatures.includes(name)])
         ),
       },
-      equipment_tags: selectedTags,
     };
 
     try {
@@ -327,7 +310,6 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
 
       setStatus("success");
       event.currentTarget.reset();
-      setSelectedTags([]);
       setSelectedFeatures([]);
     } catch (error) {
       setStatus("error");
@@ -491,29 +473,6 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
               ))}
             </div>
           </details>
-        </fieldset>
-
-        <fieldset className="space-y-3 border-t border-gray-200 pt-6">
-          <legend className="text-lg font-semibold text-gray-900">
-            {t("equipmentTags")}
-          </legend>
-
-          <div className="flex flex-wrap gap-2">
-            {EQUIPMENT_TAGS.map((tag) => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => toggleTag(tag)}
-                className={`rounded-full border px-3 py-1 text-sm font-medium transition-colors ${
-                  selectedTags.includes(tag)
-                    ? "border-gray-900 bg-gray-900 text-white"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-                }`}
-              >
-                {formatTag(tag)}
-              </button>
-            ))}
-          </div>
         </fieldset>
 
         <label className="block space-y-1.5 border-t border-gray-200 pt-6">
