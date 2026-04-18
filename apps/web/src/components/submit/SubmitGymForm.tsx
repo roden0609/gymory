@@ -3,14 +3,68 @@
 import { FormEvent, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import { HK_DISTRICTS } from "@gymory/shared";
+import { HK_DISTRICTS, type Gym } from "@gymory/shared";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 type SubmitGymFormProps = {
   gymId?: string;
+  initialGym?: Gym | null;
   returnTo?: string;
 };
+
+const FEATURE_FIELD_NAMES = [
+  "has_roman_chair",
+  "has_dip_station",
+  "has_pull_up_bar",
+  "has_reverse_hyper",
+  "has_trap_bar",
+  "has_safety_squat_bar",
+  "has_farmer_handles",
+  "has_landmine_attachment",
+  "has_swiss_bar",
+  "has_cambered_bar",
+  "has_ez_bar",
+  "has_wall_ball",
+  "has_sandbag",
+  "has_kettlebell",
+  "has_lat_pulldown_cable",
+  "has_seated_row_cable",
+  "has_bicep_curl_machine",
+  "has_tricep_extension_machine",
+  "has_chest_press_machine",
+  "has_incline_chest_press_machine",
+  "has_iso_lateral_chest_press_machine",
+  "has_pec_deck_machine",
+  "has_chest_fly_machine",
+  "has_lat_pulldown_machine",
+  "has_seated_row_machine",
+  "has_back_extension_machine",
+  "has_iso_lateral_row_machine",
+  "has_t_bar_row_machine",
+  "has_lateral_raise_machine",
+  "has_reverse_fly_machine",
+  "has_shoulder_press_machine",
+  "has_iso_lateral_shoulder_press_machine",
+  "has_hip_abductor_machine",
+  "has_hip_adductor_machine",
+  "has_leg_extension_machine",
+  "has_leg_press_machine",
+  "has_seated_leg_press_machine",
+  "has_lying_leg_curl_machine",
+  "has_seated_leg_curl_machine",
+  "has_seated_calf_raise_machine",
+  "has_squat_machine",
+  "has_standing_calf_raise_machine",
+  "has_battle_rope",
+  "has_foam_roller",
+  "has_medicine_ball",
+  "has_dip_belt",
+  "has_weight_vest",
+  "has_lifting_straps",
+  "has_plyo_box",
+  "has_balance_ball",
+] as const;
 
 function toNumber(value: string) {
   if (!value) return null;
@@ -18,7 +72,11 @@ function toNumber(value: string) {
   return Number.isFinite(number) ? number : null;
 }
 
-export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
+export function SubmitGymForm({
+  gymId,
+  initialGym,
+  returnTo,
+}: SubmitGymFormProps) {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("submit");
@@ -26,7 +84,9 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
   const tGym = useTranslations("gym");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(() =>
+    FEATURE_FIELD_NAMES.filter((name) => Boolean(initialGym?.[name]))
+  );
 
   const isUpdate = Boolean(gymId);
   const title = isUpdate ? t("updateTitle") : t("title");
@@ -47,6 +107,11 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
         ? current.filter((item) => item !== feature)
         : [...current, feature]
     );
+  }
+
+  function getDefaultValue(field: keyof Gym) {
+    const value = initialGym?.[field];
+    return value === null || value === undefined ? "" : String(value);
   }
 
   const freeWeightFields = [
@@ -200,6 +265,7 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
               name={name}
               type="number"
               min={0}
+              defaultValue={getDefaultValue(name as keyof Gym)}
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
             />
           </label>
@@ -359,6 +425,7 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
               <input
                 name="name"
                 required={!isUpdate}
+                defaultValue={getDefaultValue("name")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               />
             </label>
@@ -369,6 +436,7 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
               </span>
               <input
                 name="name_zh"
+                defaultValue={getDefaultValue("name_zh")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               />
             </label>
@@ -381,6 +449,7 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
             <input
               name="address"
               required={!isUpdate}
+              defaultValue={getDefaultValue("address")}
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
             />
           </label>
@@ -391,6 +460,7 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
             </span>
             <input
               name="address_zh"
+              defaultValue={getDefaultValue("address_zh")}
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
             />
           </label>
@@ -403,6 +473,7 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
               <select
                 name="district_code"
                 required={!isUpdate}
+                defaultValue={getDefaultValue("district_code")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               >
                 <option value="">{t("selectDistrict")}</option>
@@ -422,6 +493,7 @@ export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
                 name="website_url"
                 type="url"
                 placeholder="https://"
+                defaultValue={getDefaultValue("website_url")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               />
             </label>
