@@ -209,10 +209,11 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setStatus("submitting");
     setErrorMessage("");
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     const payload = {
       gym: {
         name: formData.get("name"),
@@ -312,7 +313,7 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
       }
 
       setStatus("success");
-      event.currentTarget.reset();
+      form.reset();
       setSelectedFeatures([]);
     } catch (error) {
       setStatus("error");
