@@ -1,14 +1,15 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { HK_DISTRICTS } from "@gymory/shared";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 type SubmitGymFormProps = {
   gymId?: string;
+  returnTo?: string;
 };
 
 function toNumber(value: string) {
@@ -17,7 +18,7 @@ function toNumber(value: string) {
   return Number.isFinite(number) ? number : null;
 }
 
-export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
+export function SubmitGymForm({ gymId, returnTo }: SubmitGymFormProps) {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("submit");
@@ -315,6 +316,7 @@ export function SubmitGymForm({ gymId }: SubmitGymFormProps) {
       setStatus("success");
       form.reset();
       setSelectedFeatures([]);
+      router.push(isUpdate && returnTo ? returnTo : "/");
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : t("errorMessage"));

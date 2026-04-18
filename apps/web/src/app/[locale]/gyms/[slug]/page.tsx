@@ -335,7 +335,7 @@ export default async function GymDetailPage({ params }: Props) {
             </div>
 
             <Link
-              href={`/submit?gymId=${gym.id}`}
+              href={`/submit?gymId=${gym.id}&returnTo=/gyms/${gym.slug}`}
               className="inline-flex h-10 items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
             >
               {t("suggestUpdate")}

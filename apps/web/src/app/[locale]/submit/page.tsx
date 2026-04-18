@@ -17,14 +17,18 @@ export default async function SubmitPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: { gymId?: string };
+  searchParams: { gymId?: string; returnTo?: string };
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const returnTo =
+    searchParams.returnTo?.startsWith("/") && !searchParams.returnTo.startsWith("//")
+      ? searchParams.returnTo
+      : undefined;
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <SubmitGymForm gymId={searchParams.gymId} />
+      <SubmitGymForm gymId={searchParams.gymId} returnTo={returnTo} />
     </main>
   );
 }
