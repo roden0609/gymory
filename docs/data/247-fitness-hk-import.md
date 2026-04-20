@@ -55,7 +55,7 @@ Set these env vars first:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_SECRET_KEY=your-sb-secret-key
 ```
 
 Then run:
@@ -67,6 +67,9 @@ pnpm import:247-fitness-hk --upsert
 The importer upserts on `slug`. It writes listing metadata only and does not
 write rack counts, machines, accessories, weights, `is_verified`, or equipment
 verification timestamps.
+
+`SUPABASE_SECRET_KEY` is preferred for new Supabase API keys. The importer also
+accepts the legacy `SUPABASE_SERVICE_ROLE_KEY` as a fallback.
 
 ## District Overrides
 

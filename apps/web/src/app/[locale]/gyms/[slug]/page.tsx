@@ -28,6 +28,25 @@ function formatLabel(value: string) {
     .join(" ");
 }
 
+function formatDataSource(
+  value: Gym["data_source"],
+  t: Awaited<ReturnType<typeof getTranslations>>
+) {
+  if (!value) return t("notListed");
+
+  switch (value) {
+    case "admin":
+      return t("dataSourceAdmin");
+    case "owner":
+      return t("dataSourceOwner");
+    case "import":
+    case "user_submission":
+      return t("dataSourceAnonymous");
+    default:
+      return formatLabel(value);
+  }
+}
+
 function formatDate(value: string | null, locale: Locale) {
   if (!value) return null;
   return new Intl.DateTimeFormat(locale, {
@@ -361,7 +380,7 @@ export default async function GymDetailPage({ params }: Props) {
           />
           <StatCard
             label={t("dataSource")}
-            value={gym.data_source ?? t("notListed")}
+            value={formatDataSource(gym.data_source, t)}
           />
         </div>
 

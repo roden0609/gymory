@@ -17,6 +17,8 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+await loadEnvFiles([".env.local", "apps/web/.env.local"]);
+
 const LIST_URL = "https://247.fitness/app-api/cms/store/?lang=zh-hk";
 const DETAIL_URL =
   "https://247.fitness/app-api/cms/store/global/detail?lang=zh-hk&countryCode=HK&storeId=";
@@ -89,6 +91,42 @@ function parseArgs(argv) {
     }
   }
   return parsed;
+}
+
+async function loadEnvFiles(filePaths) {
+  for (const filePath of filePaths) {
+    let raw;
+    try {
+      raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
+    } catch (error) {
+      if (error?.code === "ENOENT") continue;
+      throw error;
+    }
+
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+
+      const match = trimmed.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+      if (!match) continue;
+
+      const [, key, rawValue] = match;
+      if (process.env[key] !== undefined) continue;
+
+      process.env[key] = parseEnvValue(rawValue);
+    }
+  }
+}
+
+function parseEnvValue(value) {
+  const trimmed = value.trim();
+  if (
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+  ) {
+    return trimmed.slice(1, -1).replace(/\\n/g, "\n");
+  }
+  return trimmed;
 }
 
 async function fetchJson(url) {
@@ -317,19 +355,19 @@ async function loadDetailsFile(filePath) {
 
 async function upsertRows(rows) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const apiKey = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-  if (!supabaseUrl || !serviceRoleKey) {
+  if (!supabaseUrl || !apiKey) {
     throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY for --upsert"
+      "Missing NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY or SUPABASE_SERVICE_ROLE_KEY for --upsert"
     );
   }
 
   const response = await fetch(`${supabaseUrl}/rest/v1/gyms?on_conflict=slug`, {
     method: "POST",
     headers: {
-      apikey: serviceRoleKey,
-      Authorization: `Bearer ${serviceRoleKey}`,
+      apikey: apiKey,
+      Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
       Prefer: "resolution=merge-duplicates,return=minimal",
     },
