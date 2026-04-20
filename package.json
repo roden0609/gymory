@@ -9,7 +9,8 @@
     "test": "turbo test",
     "typecheck": "turbo typecheck",
     "dev:web": "pnpm --filter web dev",
-    "build:web": "pnpm --filter web build"
+    "build:web": "pnpm --filter web build",
+    "import:247-fitness-hk": "node scripts/import-247-fitness-hk.mjs"
   },
   "devDependencies": {
     "turbo": "^2.0.0",
