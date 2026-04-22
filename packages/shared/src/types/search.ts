@@ -2,6 +2,8 @@ import { z } from "zod";
 
 export const searchParamsSchema = z.object({
   district: z.string().optional(),
+  page: z.coerce.number().int().min(1).optional(),
+  pageSize: z.coerce.number().int().min(1).max(50).optional(),
   minRackCount: z.coerce.number().min(0).optional(),
   minDumbbellWeight: z.coerce.number().min(0).optional(),
   minPlateWeight: z.coerce.number().min(0).optional(),

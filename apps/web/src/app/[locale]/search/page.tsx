@@ -30,7 +30,7 @@ export default async function SearchPage({
   setRequestLocale(locale);
 
   const t = await getTranslations("common");
-  const gyms = await searchGyms(searchParams);
+  const result = await searchGyms(searchParams);
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -56,7 +56,7 @@ export default async function SearchPage({
           <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
             <SearchFilters />
           </Suspense>
-          <GymList gyms={gyms} />
+          <GymList {...result} />
         </div>
       </div>
     </main>

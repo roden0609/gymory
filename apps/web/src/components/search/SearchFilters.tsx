@@ -190,6 +190,8 @@ export function SearchFilters() {
       params.set("minDumbbellWeight", minDumbbellWeight);
     }
     if (minPlateWeight) params.set("minPlateWeight", minPlateWeight);
+    params.delete("page");
+    params.delete("pageSize");
     selectedFilters.forEach((param) => params.set(param, "true"));
 
     const queryString = params.toString();
