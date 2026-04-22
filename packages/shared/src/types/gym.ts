@@ -30,120 +30,120 @@ export interface Gym {
   is_verified: boolean;
 
   // Free weight / racks
-  rack_count: number;
-  bench_count: number;
-  barbell_count: number;
+  rack_count: number | null;
+  bench_count: number | null;
+  barbell_count: number | null;
   dumbbell_max_weight_kg: number | null;
   plate_min_weight_kg: number | null;
   plate_max_weight_kg: number | null;
-  has_roman_chair: boolean;
-  has_trap_bar: boolean;
-  has_safety_squat_bar: boolean;
-  has_farmer_handles: boolean;
-  has_landmine_attachment: boolean;
-  has_swiss_bar: boolean;
-  has_cambered_bar: boolean;
-  has_ez_bar: boolean;
+  has_roman_chair: boolean | null;
+  has_trap_bar: boolean | null;
+  has_safety_squat_bar: boolean | null;
+  has_farmer_handles: boolean | null;
+  has_landmine_attachment: boolean | null;
+  has_swiss_bar: boolean | null;
+  has_cambered_bar: boolean | null;
+  has_ez_bar: boolean | null;
 
   // Cardio
-  treadmill_count: number;
-  assault_bike_count: number;
-  exercise_bike_count: number;
-  climber_count: number;
+  treadmill_count: number | null;
+  assault_bike_count: number | null;
+  exercise_bike_count: number | null;
+  climber_count: number | null;
 
   // HYROX
-  assault_runner_count: number;
-  ski_erg_count: number;
-  rower_count: number;
-  sled_count: number;
-  has_wall_ball: boolean;
-  wall_ball_count: number;
-  wall_ball_4kg_count: number;
-  wall_ball_6kg_count: number;
-  wall_ball_9kg_count: number;
-  wall_ball_plate_9ft_count: number;
-  wall_ball_plate_10ft_count: number;
-  has_sandbag: boolean;
-  sandbag_10kg_count: number;
-  sandbag_20kg_count: number;
-  sandbag_30kg_count: number;
-  has_kettlebell: boolean;
-  kettlebell_16kg_count: number;
-  kettlebell_24kg_count: number;
-  kettlebell_32kg_count: number;
+  assault_runner_count: number | null;
+  ski_erg_count: number | null;
+  rower_count: number | null;
+  sled_count: number | null;
+  has_wall_ball: boolean | null;
+  wall_ball_count: number | null;
+  wall_ball_4kg_count: number | null;
+  wall_ball_6kg_count: number | null;
+  wall_ball_9kg_count: number | null;
+  wall_ball_plate_9ft_count: number | null;
+  wall_ball_plate_10ft_count: number | null;
+  has_sandbag: boolean | null;
+  sandbag_10kg_count: number | null;
+  sandbag_20kg_count: number | null;
+  sandbag_30kg_count: number | null;
+  has_kettlebell: boolean | null;
+  kettlebell_16kg_count: number | null;
+  kettlebell_24kg_count: number | null;
+  kettlebell_32kg_count: number | null;
 
   // Cable
-  cable_machine_count: number;
-  has_lat_pulldown_cable: boolean;
-  has_seated_row_cable: boolean;
+  cable_machine_count: number | null;
+  has_lat_pulldown_cable: boolean | null;
+  has_seated_row_cable: boolean | null;
 
   // Legacy machine counts kept for backwards-compatible reads
-  lat_pulldown_count: number;
-  chest_press_count: number;
-  leg_press_count: number;
-  hack_squat_count: number;
+  lat_pulldown_count: number | null;
+  chest_press_count: number | null;
+  leg_press_count: number | null;
+  hack_squat_count: number | null;
 
   // Full body machine
-  smith_machine_count: number;
+  smith_machine_count: number | null;
 
   // Legacy boolean equipment kept for backwards-compatible reads
-  has_smith_machine: boolean;
-  has_deadlift_platform: boolean;
-  has_pull_up_bar: boolean;
-  has_dip_station: boolean;
-  has_trx: boolean;
-  has_resistance_band: boolean;
-  has_battle_ropes: boolean;
-  has_rings: boolean;
-  has_glute_ham_developer: boolean;
-  has_reverse_hyper: boolean;
-  has_farmers_handles: boolean;
+  has_smith_machine: boolean | null;
+  has_deadlift_platform: boolean | null;
+  has_pull_up_bar: boolean | null;
+  has_dip_station: boolean | null;
+  has_trx: boolean | null;
+  has_resistance_band: boolean | null;
+  has_battle_ropes: boolean | null;
+  has_rings: boolean | null;
+  has_glute_ham_developer: boolean | null;
+  has_reverse_hyper: boolean | null;
+  has_farmers_handles: boolean | null;
 
   // Arm machine
-  has_bicep_curl_machine: boolean;
-  has_tricep_extension_machine: boolean;
+  has_bicep_curl_machine: boolean | null;
+  has_tricep_extension_machine: boolean | null;
 
   // Chest machine
-  has_chest_press_machine: boolean;
-  has_incline_chest_press_machine: boolean;
-  has_iso_lateral_chest_press_machine: boolean;
-  has_pec_deck_machine: boolean;
-  has_chest_fly_machine: boolean;
+  has_chest_press_machine: boolean | null;
+  has_incline_chest_press_machine: boolean | null;
+  has_iso_lateral_chest_press_machine: boolean | null;
+  has_pec_deck_machine: boolean | null;
+  has_chest_fly_machine: boolean | null;
 
   // Back machine
-  has_lat_pulldown_machine: boolean;
-  has_seated_row_machine: boolean;
-  has_back_extension_machine: boolean;
-  has_iso_lateral_row_machine: boolean;
-  has_t_bar_row_machine: boolean;
+  has_lat_pulldown_machine: boolean | null;
+  has_seated_row_machine: boolean | null;
+  has_back_extension_machine: boolean | null;
+  has_iso_lateral_row_machine: boolean | null;
+  has_t_bar_row_machine: boolean | null;
 
   // Shoulder machine
-  has_lateral_raise_machine: boolean;
-  has_reverse_fly_machine: boolean;
-  has_shoulder_press_machine: boolean;
-  has_iso_lateral_shoulder_press_machine: boolean;
+  has_lateral_raise_machine: boolean | null;
+  has_reverse_fly_machine: boolean | null;
+  has_shoulder_press_machine: boolean | null;
+  has_iso_lateral_shoulder_press_machine: boolean | null;
 
   // Leg machine
-  has_hip_abductor_machine: boolean;
-  has_hip_adductor_machine: boolean;
-  has_leg_extension_machine: boolean;
-  has_leg_press_machine: boolean;
-  has_seated_leg_press_machine: boolean;
-  has_lying_leg_curl_machine: boolean;
-  has_seated_leg_curl_machine: boolean;
-  has_seated_calf_raise_machine: boolean;
-  has_squat_machine: boolean;
-  has_standing_calf_raise_machine: boolean;
+  has_hip_abductor_machine: boolean | null;
+  has_hip_adductor_machine: boolean | null;
+  has_leg_extension_machine: boolean | null;
+  has_leg_press_machine: boolean | null;
+  has_seated_leg_press_machine: boolean | null;
+  has_lying_leg_curl_machine: boolean | null;
+  has_seated_leg_curl_machine: boolean | null;
+  has_seated_calf_raise_machine: boolean | null;
+  has_squat_machine: boolean | null;
+  has_standing_calf_raise_machine: boolean | null;
 
   // Other equipment
-  has_battle_rope: boolean;
-  has_foam_roller: boolean;
-  has_medicine_ball: boolean;
-  has_dip_belt: boolean;
-  has_weight_vest: boolean;
-  has_lifting_straps: boolean;
-  has_plyo_box: boolean;
-  has_balance_ball: boolean;
+  has_battle_rope: boolean | null;
+  has_foam_roller: boolean | null;
+  has_medicine_ball: boolean | null;
+  has_dip_belt: boolean | null;
+  has_weight_vest: boolean | null;
+  has_lifting_straps: boolean | null;
+  has_plyo_box: boolean | null;
+  has_balance_ball: boolean | null;
 
   equipment_notes: string | null;
 

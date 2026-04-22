@@ -66,6 +66,14 @@ function formatPrice(value: number | null, countryCode: string, locale: Locale) 
   }).format(value);
 }
 
+function formatCount(value: number | null, fallback: string) {
+  return value === null ? fallback : value;
+}
+
+function formatWeight(value: number | null, fallback: string) {
+  return value === null ? fallback : `${value}kg`;
+}
+
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4">
@@ -173,22 +181,23 @@ export default async function GymDetailPage({ params }: Props) {
       : null;
 
   const freeWeight = [
-    { label: t("racks"), value: gym.rack_count },
-    { label: t("benches"), value: gym.bench_count },
-    { label: t("barbells"), value: gym.barbell_count },
+    { label: t("racks"), value: formatCount(gym.rack_count, t("notListed")) },
+    { label: t("benches"), value: formatCount(gym.bench_count, t("notListed")) },
+    {
+      label: t("barbells"),
+      value: formatCount(gym.barbell_count, t("notListed")),
+    },
     {
       label: t("dumbbells"),
-      value: gym.dumbbell_max_weight_kg
-        ? `${gym.dumbbell_max_weight_kg}kg`
-        : t("notListed"),
+      value: formatWeight(gym.dumbbell_max_weight_kg, t("notListed")),
     },
     {
       label: t("plateMin"),
-      value: gym.plate_min_weight_kg ? `${gym.plate_min_weight_kg}kg` : t("notListed"),
+      value: formatWeight(gym.plate_min_weight_kg, t("notListed")),
     },
     {
       label: t("plateMax"),
-      value: gym.plate_max_weight_kg ? `${gym.plate_max_weight_kg}kg` : t("notListed"),
+      value: formatWeight(gym.plate_max_weight_kg, t("notListed")),
     },
   ];
 
@@ -209,31 +218,31 @@ export default async function GymDetailPage({ params }: Props) {
     .map(([label]) => label as string);
 
   const cardio = [
-    { label: t("treadmill"), value: gym.treadmill_count },
-    { label: t("assaultBike"), value: gym.assault_bike_count },
-    { label: t("exerciseBike"), value: gym.exercise_bike_count },
-    { label: t("climber"), value: gym.climber_count },
+    { label: t("treadmill"), value: formatCount(gym.treadmill_count, t("notListed")) },
+    { label: t("assaultBike"), value: formatCount(gym.assault_bike_count, t("notListed")) },
+    { label: t("exerciseBike"), value: formatCount(gym.exercise_bike_count, t("notListed")) },
+    { label: t("climber"), value: formatCount(gym.climber_count, t("notListed")) },
   ];
 
   const hyrox = [
-    { label: t("assaultRunner"), value: gym.assault_runner_count },
-    { label: t("skiErg"), value: gym.ski_erg_count },
-    { label: t("rower"), value: gym.rower_count },
-    { label: t("sled"), value: gym.sled_count },
+    { label: t("assaultRunner"), value: formatCount(gym.assault_runner_count, t("notListed")) },
+    { label: t("skiErg"), value: formatCount(gym.ski_erg_count, t("notListed")) },
+    { label: t("rower"), value: formatCount(gym.rower_count, t("notListed")) },
+    { label: t("sled"), value: formatCount(gym.sled_count, t("notListed")) },
     { label: t("wallBall"), value: gym.has_wall_ball ? t("available") : t("notListed") },
-    { label: t("wallBall4kg"), value: gym.wall_ball_4kg_count },
-    { label: t("wallBall6kg"), value: gym.wall_ball_6kg_count },
-    { label: t("wallBall9kg"), value: gym.wall_ball_9kg_count },
-    { label: t("wallBallPlate9ft"), value: gym.wall_ball_plate_9ft_count },
-    { label: t("wallBallPlate10ft"), value: gym.wall_ball_plate_10ft_count },
+    { label: t("wallBall4kg"), value: formatCount(gym.wall_ball_4kg_count, t("notListed")) },
+    { label: t("wallBall6kg"), value: formatCount(gym.wall_ball_6kg_count, t("notListed")) },
+    { label: t("wallBall9kg"), value: formatCount(gym.wall_ball_9kg_count, t("notListed")) },
+    { label: t("wallBallPlate9ft"), value: formatCount(gym.wall_ball_plate_9ft_count, t("notListed")) },
+    { label: t("wallBallPlate10ft"), value: formatCount(gym.wall_ball_plate_10ft_count, t("notListed")) },
     { label: t("sandbag"), value: gym.has_sandbag ? t("available") : t("notListed") },
-    { label: t("sandbag10kg"), value: gym.sandbag_10kg_count },
-    { label: t("sandbag20kg"), value: gym.sandbag_20kg_count },
-    { label: t("sandbag30kg"), value: gym.sandbag_30kg_count },
+    { label: t("sandbag10kg"), value: formatCount(gym.sandbag_10kg_count, t("notListed")) },
+    { label: t("sandbag20kg"), value: formatCount(gym.sandbag_20kg_count, t("notListed")) },
+    { label: t("sandbag30kg"), value: formatCount(gym.sandbag_30kg_count, t("notListed")) },
     { label: t("kettlebell"), value: gym.has_kettlebell ? t("available") : t("notListed") },
-    { label: t("kettlebell16kg"), value: gym.kettlebell_16kg_count },
-    { label: t("kettlebell24kg"), value: gym.kettlebell_24kg_count },
-    { label: t("kettlebell32kg"), value: gym.kettlebell_32kg_count },
+    { label: t("kettlebell16kg"), value: formatCount(gym.kettlebell_16kg_count, t("notListed")) },
+    { label: t("kettlebell24kg"), value: formatCount(gym.kettlebell_24kg_count, t("notListed")) },
+    { label: t("kettlebell32kg"), value: formatCount(gym.kettlebell_32kg_count, t("notListed")) },
   ];
 
   const otherEquipment = [
@@ -254,7 +263,7 @@ export default async function GymDetailPage({ params }: Props) {
     .map(([label]) => label as string);
 
   const cable = [
-    { label: t("cableMachine"), value: gym.cable_machine_count },
+    { label: t("cableMachine"), value: formatCount(gym.cable_machine_count, t("notListed")) },
   ];
 
   const cableFeatures = [
@@ -265,7 +274,7 @@ export default async function GymDetailPage({ params }: Props) {
     .map(([label]) => label as string);
 
   const fullBodyMachine = [
-    { label: t("smithMachine"), value: gym.smith_machine_count },
+    { label: t("smithMachine"), value: formatCount(gym.smith_machine_count, t("notListed")) },
   ];
 
   const armMachines = [
@@ -369,7 +378,7 @@ export default async function GymDetailPage({ params }: Props) {
           <StatCard
             label={t("floorArea")}
             value={
-              gym.estimated_size_sqft
+              gym.estimated_size_sqft !== null
                 ? `${gym.estimated_size_sqft.toLocaleString()} sqft`
                 : t("notListed")
             }

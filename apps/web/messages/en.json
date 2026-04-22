@@ -7,7 +7,10 @@
     "submitNewGym": "Submit new gym",
     "back": "← Back",
     "clear": "Clear",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "unknown": "Unknown"
   },
   "home": {
     "hero": "Find the right gym — not just the nearest one.",
@@ -207,6 +210,7 @@
     "cableMachineCount": "Cable machine count",
     "smithMachineCount": "Smith machine count",
     "availableEquipment": "Available equipment",
+    "featureStateHint": "Tap each item to cycle Yes, No, and Unknown.",
     "notes": "Notes",
     "submitButton": "Submit for review",
     "submitting": "Submitting...",

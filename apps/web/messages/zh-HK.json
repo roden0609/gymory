@@ -7,7 +7,10 @@
     "submitNewGym": "提交新健身房",
     "back": "← 返回",
     "clear": "清除",
-    "cancel": "取消"
+    "cancel": "取消",
+    "yes": "有",
+    "no": "無",
+    "unknown": "未提供"
   },
   "home": {
     "hero": "搵啱健身房，唔係搵最近嗰間。",
@@ -207,6 +210,7 @@
     "cableMachineCount": "Cable 機數量",
     "smithMachineCount": "史密夫機數量",
     "availableEquipment": "有以下器械",
+    "featureStateHint": "點一下可切換成有、無、未提供。",
     "notes": "備註",
     "submitButton": "提交審核",
     "submitting": "提交中...",

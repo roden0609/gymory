@@ -13,6 +13,15 @@ function EquipmentBadge({ label }: { label: string }) {
   );
 }
 
+function formatCountBadge(
+  count: number | null,
+  singular: string,
+  plural: string = `${singular}s`
+) {
+  if (count === null) return null;
+  return `${count} ${count === 1 ? singular : plural}`;
+}
+
 export function GymCard({ gym }: { gym: GymSummary }) {
   const locale = useLocale() as "en" | "zh-HK";
   const displayName = locale === "zh-HK" && gym.name_zh ? gym.name_zh : gym.name;
@@ -21,19 +30,24 @@ export function GymCard({ gym }: { gym: GymSummary }) {
   const districtLabel = getHkDistrictLabel(gym.district_code, locale);
   const equipmentHighlights: string[] = [];
 
-  if (gym.rack_count > 0) equipmentHighlights.push(`${gym.rack_count} rack${gym.rack_count > 1 ? "s" : ""}`);
+  const rackBadge = formatCountBadge(gym.rack_count, "rack");
+  if (rackBadge) equipmentHighlights.push(rackBadge);
   if (gym.dumbbell_max_weight_kg) equipmentHighlights.push(`DB up to ${gym.dumbbell_max_weight_kg}kg`);
   if (gym.plate_max_weight_kg) equipmentHighlights.push(`Plates up to ${gym.plate_max_weight_kg}kg`);
-  if (gym.assault_bike_count > 0) equipmentHighlights.push("Assault bike");
-  if (gym.ski_erg_count > 0) equipmentHighlights.push("Ski erg");
-  if (gym.rower_count > 0) equipmentHighlights.push("Rower");
-  if (gym.sled_count > 0) equipmentHighlights.push("Sled");
+  const assaultBikeBadge = formatCountBadge(gym.assault_bike_count, "assault bike");
+  if (assaultBikeBadge) equipmentHighlights.push(assaultBikeBadge);
+  const skiErgBadge = formatCountBadge(gym.ski_erg_count, "ski erg");
+  if (skiErgBadge) equipmentHighlights.push(skiErgBadge);
+  const rowerBadge = formatCountBadge(gym.rower_count, "rower");
+  if (rowerBadge) equipmentHighlights.push(rowerBadge);
+  const sledBadge = formatCountBadge(gym.sled_count, "sled");
+  if (sledBadge) equipmentHighlights.push(sledBadge);
   if (
     gym.has_wall_ball ||
-    gym.wall_ball_count > 0 ||
-    gym.wall_ball_4kg_count > 0 ||
-    gym.wall_ball_6kg_count > 0 ||
-    gym.wall_ball_9kg_count > 0
+    (gym.wall_ball_count !== null && gym.wall_ball_count > 0) ||
+    (gym.wall_ball_4kg_count !== null && gym.wall_ball_4kg_count > 0) ||
+    (gym.wall_ball_6kg_count !== null && gym.wall_ball_6kg_count > 0) ||
+    (gym.wall_ball_9kg_count !== null && gym.wall_ball_9kg_count > 0)
   ) {
     equipmentHighlights.push("Wall ball");
   }
@@ -41,7 +55,7 @@ export function GymCard({ gym }: { gym: GymSummary }) {
   return (
     <Link
       href={`/gyms/${gym.slug}`}
-      className="block bg-white border border-gray-200 rounded-xl p-5 hover:border-gray-400 hover:shadow-sm transition-all"
+      className="block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-400 hover:shadow-sm transition-all"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">

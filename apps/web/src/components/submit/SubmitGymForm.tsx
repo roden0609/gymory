@@ -13,6 +13,9 @@ type SubmitGymFormProps = {
   returnTo?: string;
 };
 
+type FeatureFieldName = (typeof FEATURE_FIELD_NAMES)[number];
+type FeatureStateMap = Record<FeatureFieldName, boolean | null>;
+
 const FEATURE_FIELD_NAMES = [
   "has_roman_chair",
   "has_dip_station",
@@ -66,6 +69,12 @@ const FEATURE_FIELD_NAMES = [
   "has_balance_ball",
 ] as const;
 
+function buildFeatureStateMap(initialGym?: Gym | null): FeatureStateMap {
+  return Object.fromEntries(
+    FEATURE_FIELD_NAMES.map((name) => [name, initialGym?.[name] ?? null])
+  ) as FeatureStateMap;
+}
+
 function toNumber(value: string) {
   if (!value) return null;
   const number = Number(value);
@@ -84,8 +93,12 @@ export function SubmitGymForm({
   const tGym = useTranslations("gym");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(() =>
-    FEATURE_FIELD_NAMES.filter((name) => Boolean(initialGym?.[name]))
+  const initialFeatureState = useMemo(
+    () => buildFeatureStateMap(initialGym),
+    [initialGym]
+  );
+  const [featureStates, setFeatureStates] = useState<FeatureStateMap>(
+    initialFeatureState
   );
 
   const isUpdate = Boolean(gymId);
@@ -101,12 +114,17 @@ export function SubmitGymForm({
     [locale]
   );
 
-  function toggleFeature(feature: string) {
-    setSelectedFeatures((current) =>
-      current.includes(feature)
-        ? current.filter((item) => item !== feature)
-        : [...current, feature]
-    );
+  function cycleFeatureState(feature: FeatureFieldName) {
+    setFeatureStates((current) => {
+      const currentValue = current[feature];
+      const nextValue =
+        currentValue === null ? true : currentValue === true ? false : null;
+
+      return {
+        ...current,
+        [feature]: nextValue,
+      };
+    });
   }
 
   function getDefaultValue(field: keyof Gym) {
@@ -359,7 +377,10 @@ export function SubmitGymForm({
           String(formData.get("smith_machine_count") ?? "")
         ),
         ...Object.fromEntries(
-          featureNames.map((name) => [name, selectedFeatures.includes(name)])
+          featureNames.map((name) => [
+            name,
+            featureStates[name as FeatureFieldName] ?? null,
+          ])
         ),
       },
     };
@@ -381,7 +402,7 @@ export function SubmitGymForm({
 
       setStatus("success");
       form.reset();
-      setSelectedFeatures([]);
+      setFeatureStates(initialFeatureState);
       router.push(isUpdate && returnTo ? returnTo : "/");
     } catch (error) {
       setStatus("error");
@@ -525,6 +546,7 @@ export function SubmitGymForm({
               {t("machineOptional")}
             </summary>
             <div className="mt-4 space-y-5">
+              <p className="text-sm text-gray-500">{t("featureStateHint")}</p>
               {renderNumberFields(machineCountFields)}
               {featureSections.map((section) => (
                 <div key={section.title} className="space-y-2">
@@ -536,14 +558,23 @@ export function SubmitGymForm({
                       <button
                         key={name}
                         type="button"
-                        onClick={() => toggleFeature(name)}
+                        onClick={() => cycleFeatureState(name as FeatureFieldName)}
                         className={`rounded-full border px-3 py-1 text-sm font-medium transition-colors ${
-                          selectedFeatures.includes(name)
+                          featureStates[name as FeatureFieldName] === true
                             ? "border-gray-900 bg-gray-900 text-white"
-                            : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                            : featureStates[name as FeatureFieldName] === false
+                              ? "border-red-200 bg-red-50 text-red-700 hover:bg-red-100"
+                              : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                         }`}
                       >
                         {label}
+                        <span className="ml-1.5 text-xs font-semibold uppercase tracking-wide">
+                          {featureStates[name as FeatureFieldName] === true
+                            ? tCommon("yes")
+                            : featureStates[name as FeatureFieldName] === false
+                              ? tCommon("no")
+                              : tCommon("unknown")}
+                        </span>
                       </button>
                     ))}
                   </div>
