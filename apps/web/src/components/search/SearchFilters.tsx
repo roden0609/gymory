@@ -258,6 +258,7 @@ export function SearchFilters() {
             label={t("maxDumbbell")}
             value={minDumbbellWeight}
             placeholder="e.g. 40"
+            step="0.1"
             onChange={setMinDumbbellWeight}
           />
           <NumberFilter

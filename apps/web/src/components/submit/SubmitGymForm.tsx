@@ -70,6 +70,12 @@ const FEATURE_FIELD_NAMES = [
   "has_balance_ball",
 ] as const;
 
+const NUMBER_FIELD_STEPS: Partial<Record<keyof Gym, string>> = {
+  dumbbell_max_weight_kg: "0.1",
+  plate_min_weight_kg: "0.25",
+  plate_max_weight_kg: "0.25",
+};
+
 function buildFeatureStateMap(initialGym?: Gym | null): FeatureStateMap {
   return Object.fromEntries(
     FEATURE_FIELD_NAMES.map((name) => [name, initialGym?.[name] ?? null])
@@ -290,6 +296,7 @@ export function SubmitGymForm({
               name={name}
               type="number"
               min={0}
+              step={NUMBER_FIELD_STEPS[name as keyof Gym] ?? "1"}
               defaultValue={getDefaultValue(name as keyof Gym)}
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
             />
