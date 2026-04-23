@@ -8,9 +8,9 @@
 
 The API provides branch listing metadata such as store name, address, phone,
 status, latitude, longitude, and images. It does not provide equipment
-inventory, so the importer intentionally leaves all Gymory equipment fields out
-of the payload. New rows receive DB defaults; existing rows keep any verified
-equipment data unless a later equipment-specific process updates it.
+inventory, so the importer explicitly writes all Gymory equipment fields as
+`null`. That keeps "no upstream data" distinct from a real `0` count or
+confirmed `false` boolean.
 
 ## Generate Baseline JSON
 
@@ -64,9 +64,8 @@ Then run:
 pnpm import:247-fitness-hk --upsert
 ```
 
-The importer upserts on `slug`. It writes listing metadata only and does not
-write rack counts, machines, accessories, weights, `is_verified`, or equipment
-verification timestamps.
+The importer upserts on `slug`. It writes listing metadata plus explicit `null`
+equipment fields, and it does not mark any branch as equipment-verified.
 
 `SUPABASE_SECRET_KEY` is preferred for new Supabase API keys. The importer also
 accepts the legacy `SUPABASE_SERVICE_ROLE_KEY` as a fallback.
