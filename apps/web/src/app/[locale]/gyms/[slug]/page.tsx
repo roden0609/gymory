@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Gym } from "@gymory/shared";
 import { getHkDistrictLabel } from "@gymory/shared";
+import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
 import { getGymBySlug } from "@/lib/db/queries/gyms";
 
@@ -10,6 +11,7 @@ type Locale = "en" | "zh-HK";
 
 type Props = {
   params: Promise<{ locale: Locale; slug: string }>;
+  searchParams: Promise<{ flash?: string }>;
 };
 
 function getLocalizedGym(gym: Gym, locale: Locale) {
@@ -163,8 +165,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function GymDetailPage({ params }: Props) {
+export default async function GymDetailPage({ params, searchParams }: Props) {
   const { locale, slug } = await params;
+  const { flash } = await searchParams;
   setRequestLocale(locale);
 
   const gym = await getGymBySlug(slug);
@@ -373,6 +376,12 @@ export default async function GymDetailPage({ params }: Props) {
       </div>
 
       <div className="mx-auto max-w-5xl px-4 py-8">
+        {flash === "submission-success" && (
+          <TransientBanner
+            message={common("submissionPendingReview")}
+            clearQueryKeys={["flash"]}
+          />
+        )}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard label={t("size")} value={gym.size_category ?? t("notListed")} />
           <StatCard

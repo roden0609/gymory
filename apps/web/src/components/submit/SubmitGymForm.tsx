@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { TransientBanner } from "@/components/common/TransientBanner";
 import { useRouter } from "@/i18n/navigation";
 import { HK_DISTRICTS, type Gym } from "@gymory/shared";
 
@@ -79,6 +80,12 @@ function toNumber(value: string) {
   if (!value) return null;
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
+}
+
+function withFlashParam(path: string, flash: string) {
+  const url = new URL(path, "http://localhost");
+  url.searchParams.set("flash", flash);
+  return `${url.pathname}${url.search}${url.hash}`;
 }
 
 export function SubmitGymForm({
@@ -397,13 +404,22 @@ export function SubmitGymForm({
       });
 
       if (!response.ok) {
-        throw new Error(t("errorMessage"));
+        const responseBody = (await response.json().catch(() => null)) as
+          | { error?: string | { formErrors?: string[] } }
+          | null;
+        const serverError =
+          typeof responseBody?.error === "string"
+            ? responseBody.error
+            : responseBody?.error?.formErrors?.[0];
+
+        throw new Error(serverError ?? t("errorMessage"));
       }
 
-      setStatus("success");
       form.reset();
       setFeatureStates(initialFeatureState);
-      router.push(isUpdate && returnTo ? returnTo : "/");
+      router.push(
+        withFlashParam(isUpdate && returnTo ? returnTo : "/", "submission-success")
+      );
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : t("errorMessage"));
@@ -417,16 +433,8 @@ export function SubmitGymForm({
         <p className="mt-2 text-gray-500">{description}</p>
       </div>
 
-      {status === "success" && (
-        <div className="mb-5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
-          {t("successMessage")}
-        </div>
-      )}
-
       {status === "error" && (
-        <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          {errorMessage}
-        </div>
+        <TransientBanner key={errorMessage} message={errorMessage} tone="error" />
       )}
 
       <form

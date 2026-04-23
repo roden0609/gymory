@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { TransientBanner } from "@/components/common/TransientBanner";
 import { SearchFilters } from "@/components/search/SearchFilters";
 import { GymList } from "@/components/search/GymList";
 import { Link } from "@/i18n/navigation";
@@ -24,7 +25,7 @@ export default async function SearchPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: RawSearchParams;
+  searchParams: RawSearchParams & { flash?: string };
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -52,6 +53,12 @@ export default async function SearchPage({
       </div>
 
       <div className="mx-auto max-w-6xl px-4 py-6">
+        {searchParams.flash === "submission-success" && (
+          <TransientBanner
+            message={t("submissionPendingReview")}
+            clearQueryKeys={["flash"]}
+          />
+        )}
         <div className="flex flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
             <SearchFilters />
