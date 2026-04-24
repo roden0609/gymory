@@ -1,12 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/db/supabase-server";
+import { getFirebaseSessionUser, isAdminUser } from "@/lib/auth/session";
+import { createAdminClient } from "@/lib/db/supabase-admin";
 
 // GET /api/gyms/[id]
 export async function GET(
   _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const supabase = await createClient();
+  const user = await getFirebaseSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (!isAdminUser(user)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("gyms")
     .select("*")
@@ -22,9 +31,16 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  // TODO: verify admin session
+  const user = await getFirebaseSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (!isAdminUser(user)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const body = await request.json();
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data, error } = await supabase
     .from("gyms")

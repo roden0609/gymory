@@ -218,6 +218,17 @@
     "successMessage": "多謝，你嘅提交已等待審核。",
     "errorMessage": "提交失敗，請再試一次。"
   },
+  "login": {
+    "title": "登入以使用更多功能",
+    "description": "登入後可按你嘅角色使用留言、投票同管理功能。",
+    "back": "← 返回",
+    "login": "登入",
+    "logout": "登出",
+    "continueWithGoogle": "使用 Google 登入",
+    "loading": "登入中...",
+    "loggingOut": "登出中...",
+    "error": "登入失敗，請再試一次。"
+  },
   "admin": {
     "dashboard": "管理員面板",
     "manageGyms": "管理健身房",

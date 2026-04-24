@@ -218,6 +218,17 @@
     "successMessage": "Thanks. Your submission is pending review.",
     "errorMessage": "Something went wrong. Please try again."
   },
+  "login": {
+    "title": "Sign in for more features",
+    "description": "Sign in to unlock comments, voting, and admin tools based on your role.",
+    "back": "← Back",
+    "login": "Login",
+    "logout": "Logout",
+    "continueWithGoogle": "Continue with Google",
+    "loading": "Signing in...",
+    "loggingOut": "Logging out...",
+    "error": "Sign-in failed. Please try again."
+  },
   "admin": {
     "dashboard": "Admin Dashboard",
     "manageGyms": "Manage Gyms",

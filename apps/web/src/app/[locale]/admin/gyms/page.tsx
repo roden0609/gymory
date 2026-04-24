@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { requireAdminSession } from "@/lib/auth/session";
 
 export default async function AdminGymsPage({
   params,
@@ -7,6 +8,10 @@ export default async function AdminGymsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await requireAdminSession(
+    `/${locale}/login?next=/${locale}/admin/gyms`,
+    `/${locale}`
+  );
 
   const t = await getTranslations("admin");
 
