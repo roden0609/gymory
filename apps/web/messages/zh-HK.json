@@ -11,7 +11,7 @@
     "submissionPendingReview": "多謝，你嘅提交已等待審核。",
     "yes": "有",
     "no": "無",
-    "unknown": "未提供"
+    "unknown": "未有資料"
   },
   "home": {
     "hero": "搵啱健身房，唔係搵最近嗰間。",
@@ -25,8 +25,9 @@
     "suggestUpdate": "建議更新",
     "allGyms": "所有健身房",
     "verified": "已驗證",
-    "lastVerified": "器械資料最後更新時間 {date}",
-    "notListed": "未提供",
+    "verifiedAt": "器械資料於 {date} 驗證",
+    "lastUpdated": "器械資料最後更新時間 {date}",
+    "notListed": "未有資料",
     "available": "有",
     "size": "規模",
     "floorArea": "面積",
@@ -218,7 +219,7 @@
     "cableMachineCount": "Cable 機數量",
     "smithMachineCount": "史密夫機數量",
     "availableEquipment": "有以下器械",
-    "featureStateHint": "點一下可切換成有、無、未提供。",
+    "featureStateHint": "點一下可切換成有、無、未有資料。",
     "notes": "備註",
     "submitButton": "提交審核",
     "submitting": "提交中...",
