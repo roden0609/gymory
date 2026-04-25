@@ -4,7 +4,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { useRouter } from "@/i18n/navigation";
-import { HK_DISTRICTS, type Gym } from "@gymory/shared";
+import { HK_DISTRICTS, SIZE_CATEGORIES, type Gym } from "@gymory/shared";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -125,6 +125,15 @@ export function SubmitGymForm({
         label: locale === "zh-HK" ? district.nameZh : district.nameEn,
       })),
     [locale]
+  );
+
+  const sizeOptions = useMemo(
+    () =>
+      SIZE_CATEGORIES.map((size) => ({
+        value: size,
+        label: t(size),
+      })),
+    [t]
   );
 
   function cycleFeatureState(feature: FeatureFieldName) {
@@ -322,6 +331,11 @@ export function SubmitGymForm({
         district_code: formData.get("district_code") || null,
         country_code: "HK",
         website_url: formData.get("website_url") || null,
+        size_category: formData.get("size_category") || null,
+        estimated_size_sqft: toNumber(
+          String(formData.get("estimated_size_sqft") ?? "")
+        ),
+        day_pass_price: toNumber(String(formData.get("day_pass_price") ?? "")),
         notes: formData.get("notes") || null,
       },
       equipment: {
@@ -530,6 +544,54 @@ export function SubmitGymForm({
                 type="url"
                 placeholder="https://"
                 defaultValue={getDefaultValue("website_url")}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+              />
+            </label>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            <label className="space-y-1.5">
+              <span className="text-sm font-medium text-gray-700">
+                {t("sizeCategory")}
+              </span>
+              <select
+                name="size_category"
+                defaultValue={getDefaultValue("size_category")}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+              >
+                <option value="">{t("selectSizeCategory")}</option>
+                {sizeOptions.map((size) => (
+                  <option key={size.value} value={size.value}>
+                    {size.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="space-y-1.5">
+              <span className="text-sm font-medium text-gray-700">
+                {t("floorArea")}
+              </span>
+              <input
+                name="estimated_size_sqft"
+                type="number"
+                min={0}
+                step="1"
+                defaultValue={getDefaultValue("estimated_size_sqft")}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+              />
+            </label>
+
+            <label className="space-y-1.5">
+              <span className="text-sm font-medium text-gray-700">
+                {t("dayPassPrice")}
+              </span>
+              <input
+                name="day_pass_price"
+                type="number"
+                min={0}
+                step="0.1"
+                defaultValue={getDefaultValue("day_pass_price")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               />
             </label>
