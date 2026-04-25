@@ -25,7 +25,7 @@
     "suggestUpdate": "建議更新",
     "allGyms": "所有健身房",
     "verified": "已驗證",
-    "lastVerified": "器械資料於 {date} 驗證",
+    "lastVerified": "器械資料最後更新時間 {date}",
     "notListed": "未提供",
     "available": "有",
     "size": "規模",

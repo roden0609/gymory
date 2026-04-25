@@ -25,7 +25,7 @@
     "suggestUpdate": "Suggest an Update",
     "allGyms": "All Gyms",
     "verified": "Verified",
-    "lastVerified": "Equipment verified {date}",
+    "lastVerified": "Equipment last updated {date}",
     "notListed": "Not listed",
     "available": "Available",
     "size": "Size",

@@ -176,7 +176,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
   const display = getLocalizedGym(gym, locale);
-  const verifiedDate = formatDate(gym.equipment_last_verified_at, locale);
+  const verifiedDate = formatDate(gym.updated_at, locale);
   const dayPassPrice = formatPrice(gym.day_pass_price, gym.country_code, locale);
   const mapsUrl =
     gym.lat !== null && gym.lng !== null
