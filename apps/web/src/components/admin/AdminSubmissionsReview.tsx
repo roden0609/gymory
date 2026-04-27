@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useLocale } from "next-intl";
+import { TransientBanner } from "@/components/common/TransientBanner";
 import type { SubmissionReviewRow } from "@/lib/db/queries/submissions";
 
 type AdminSubmissionsReviewProps = {
@@ -36,7 +37,9 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
   const locale = useLocale();
   const [isPending, startTransition] = useTransition();
   const [reviewNotes, setReviewNotes] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const feedbackRef = useRef<HTMLDivElement | null>(null);
 
   const displayName =
     locale === "zh-HK" && submission.gyms?.name_zh
@@ -60,6 +63,7 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
 
   function handleReview(action: ReviewAction) {
     startTransition(async () => {
+      setSuccessMessage("");
       setErrorMessage("");
 
       const response = await fetch(`/api/admin/submissions/${submission.id}`, {
@@ -79,12 +83,37 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
         return;
       }
 
-      router.refresh();
+      setSuccessMessage(
+        action === "approve"
+          ? "Submission approved successfully."
+          : "Submission rejected successfully."
+      );
+
+      window.setTimeout(() => {
+        router.refresh();
+      }, 900);
     });
   }
 
   return (
     <section className="rounded-lg border border-gray-200 bg-white p-5">
+      <div
+        ref={feedbackRef}
+        className={
+          successMessage || errorMessage
+            ? "sticky top-3 z-10 -mx-2 mb-3 px-2"
+            : undefined
+        }
+      >
+        {successMessage ? (
+          <TransientBanner message={successMessage} tone="success" />
+        ) : null}
+
+        {errorMessage ? (
+          <TransientBanner key={errorMessage} message={errorMessage} tone="error" />
+        ) : null}
+      </div>
+
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="text-lg font-semibold text-gray-900">
@@ -131,10 +160,6 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
             placeholder="Optional internal note"
           />
         </label>
-
-        {errorMessage ? (
-          <p className="text-sm text-red-600">{errorMessage}</p>
-        ) : null}
 
         <div className="flex flex-col gap-2 sm:flex-row">
           <button
