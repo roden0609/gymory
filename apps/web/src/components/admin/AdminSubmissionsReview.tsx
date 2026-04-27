@@ -51,6 +51,13 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
     minute: "2-digit",
   }).format(new Date(submission.created_at));
 
+  const actionLabel =
+    submission.action_type === "I"
+      ? "Insert"
+      : submission.action_type === "D"
+        ? "Delete"
+        : "Update";
+
   function handleReview(action: ReviewAction) {
     startTransition(async () => {
       setErrorMessage("");
@@ -87,6 +94,9 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
             {displayName}
             {submission.gyms?.slug ? ` · /gyms/${submission.gyms.slug}` : ""}
           </p>
+          <p className="mt-1 text-xs text-gray-500">
+            {actionLabel} · {submission.actor_type}
+          </p>
           <p className="mt-1 text-xs text-gray-400">{createdAt}</p>
         </div>
         <span className="rounded-full bg-yellow-50 px-2.5 py-1 text-xs font-medium text-yellow-700">
@@ -95,6 +105,7 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
       </div>
 
       <div className="mt-4 space-y-3">
+        <PayloadBlock title="Changed fields" value={submission.changed_fields} />
         <PayloadBlock
           title="Gym payload"
           value={(submission.payload.gym as Record<string, unknown> | undefined) ?? null}

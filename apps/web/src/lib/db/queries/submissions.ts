@@ -4,8 +4,11 @@ export type SubmissionReviewRow = {
   id: string;
   gym_id: string | null;
   submission_type: string;
+  action_type: "I" | "U" | "D";
+  actor_type: "user_submission" | "admin" | "owner" | "import";
   status: "pending" | "approved" | "rejected";
   payload: Record<string, unknown>;
+  changed_fields: Record<string, unknown> | null;
   review_notes: string | null;
   created_at: string;
   gyms: {
@@ -21,7 +24,7 @@ export async function getPendingSubmissions(): Promise<SubmissionReviewRow[]> {
   const { data, error } = await supabase
     .from("gym_update_submissions")
     .select(
-      "id, gym_id, submission_type, status, payload, review_notes, created_at, gyms(id, name, name_zh, slug)"
+      "id, gym_id, submission_type, action_type, actor_type, status, payload, changed_fields, review_notes, created_at, gyms(id, name, name_zh, slug)"
     )
     .eq("status", "pending")
     .order("created_at", { ascending: true });
