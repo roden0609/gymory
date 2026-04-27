@@ -18,6 +18,7 @@
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
 
 await loadEnvFiles([".env.local", "apps/web/.env.local"]);
 
@@ -807,18 +808,10 @@ async function upsertRows(rows) {
     );
   }
 
-  const response = await fetch(`${supabaseUrl}/rest/v1/gyms?on_conflict=slug`, {
-    method: "POST",
-    headers: {
-      apikey: apiKey,
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-      Prefer: "resolution=merge-duplicates,return=minimal",
-    },
-    body: JSON.stringify(rows),
+  await upsertGymsWithSubmissions({
+    rows,
+    actorType: "import",
+    supabaseUrl,
+    apiKey,
   });
-
-  if (!response.ok) {
-    throw new Error(`Supabase upsert failed: ${response.status} ${await response.text()}`);
-  }
 }

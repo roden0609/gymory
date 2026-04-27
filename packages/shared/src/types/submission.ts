@@ -6,7 +6,8 @@ export type SubmissionType =
   | "add_equipment"
   | "edit_equipment"
   | "remove_equipment"
-  | "upload_photo";
+  | "upload_photo"
+  | "delete_gym";
 
 export const submissionSchema = z.object({
   gymId: z.string().uuid().optional(),
@@ -17,6 +18,7 @@ export const submissionSchema = z.object({
     "edit_equipment",
     "remove_equipment",
     "upload_photo",
+    "delete_gym",
   ]),
   payload: z.record(z.unknown()),
 });

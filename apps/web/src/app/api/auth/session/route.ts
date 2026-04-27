@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminAuth } from "@/lib/auth/firebase-admin";
+import { createAdminClient } from "@/lib/db/supabase-admin";
+import { ensureAppUser } from "@/lib/db/users";
 
 // POST /api/auth/session — exchange Firebase ID token for a session cookie
 export async function POST(request: NextRequest) {
@@ -10,6 +12,8 @@ export async function POST(request: NextRequest) {
 
   const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 days
   const adminAuth = getAdminAuth();
+  const decodedToken = await adminAuth.verifyIdToken(idToken);
+  await ensureAppUser(decodedToken, createAdminClient());
   const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
 
   const response = NextResponse.json({ status: "ok" });

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SubmitGymForm } from "@/components/submit/SubmitGymForm";
+import { requireFirebaseSession } from "@/lib/auth/session";
 import { getGymById } from "@/lib/db/queries/gyms";
 
 export async function generateMetadata({
@@ -23,6 +24,19 @@ export default async function SubmitPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const gymIdQuery = searchParams.gymId
+    ? `gymId=${encodeURIComponent(searchParams.gymId)}`
+    : "";
+  const returnToQuery = searchParams.returnTo
+    ? `returnTo=${encodeURIComponent(searchParams.returnTo)}`
+    : "";
+  const query = [gymIdQuery, returnToQuery].filter(Boolean).join("&");
+  const submitPath = `/${locale}/submit${query ? `?${query}` : ""}`;
+
+  await requireFirebaseSession(
+    `/${locale}/login?next=${encodeURIComponent(submitPath)}`
+  );
+
   const initialGym = searchParams.gymId
     ? await getGymById(searchParams.gymId)
     : null;
