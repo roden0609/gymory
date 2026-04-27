@@ -11,6 +11,7 @@
     "dev:web": "pnpm --filter web dev",
     "build:web": "pnpm --filter web build",
     "import:247-fitness-hk": "node scripts/import-247-fitness-hk.mjs",
+    "import:efx24-hk": "node scripts/import-efx24-hk.mjs",
     "firebase:set-claims": "pnpm --filter web exec node scripts/set-firebase-custom-claims.mjs"
   },
   "devDependencies": {

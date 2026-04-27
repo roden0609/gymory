@@ -95,3 +95,32 @@ pnpm import:247-fitness-hk --upsert
 
 This importer writes `data/imports/247-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
 For full notes, overrides, and API caveats, see `docs/data/247-fitness-hk-import.md`.
+
+## EFX24 HK import
+
+Generate the latest EFX24 Hong Kong baseline file:
+
+```bash
+pnpm import:efx24-hk
+```
+
+Save the parsed branch detail snapshot during the run:
+
+```bash
+pnpm import:efx24-hk --details-out data/imports/raw-efx24-hk-details.json
+```
+
+Rebuild from a saved detail snapshot:
+
+```bash
+pnpm import:efx24-hk --details-file data/imports/raw-efx24-hk-details.json
+```
+
+Upsert imported rows into Supabase:
+
+```bash
+pnpm import:efx24-hk --upsert
+```
+
+This importer writes `data/imports/efx24-hk-baseline.json` and sets unknown equipment fields to `null`.
+For full notes and override handling, see `docs/data/efx24-hk-import.md`.
