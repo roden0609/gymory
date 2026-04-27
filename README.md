@@ -104,6 +104,9 @@ Generate the latest EFX24 Hong Kong baseline file:
 pnpm import:efx24-hk
 ```
 
+If `MAPBOX_PRIVATE_TOKEN` or `NEXT_PUBLIC_MAPBOX_TOKEN` is set, the importer
+will also geocode branch addresses and fill `lat` / `lng`.
+
 Save the parsed branch detail snapshot during the run:
 
 ```bash
@@ -114,6 +117,12 @@ Rebuild from a saved detail snapshot:
 
 ```bash
 pnpm import:efx24-hk --details-file data/imports/raw-efx24-hk-details.json
+```
+
+Skip geocoding even if a Mapbox token is available:
+
+```bash
+pnpm import:efx24-hk --skip-geocode
 ```
 
 Upsert imported rows into Supabase:

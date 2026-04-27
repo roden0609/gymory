@@ -35,6 +35,8 @@
     "dataSourceAdmin": "管理員",
     "dataSourceOwner": "場主",
     "dataSourceAnonymous": "匿名",
+    "dataSourceOnline": "網上資料",
+    "dataSourceUser": "用戶",
     "machines": "機械",
     "features": "設施",
     "freeWeight": "自由重量",

@@ -12,6 +12,7 @@
  *   node scripts/import-efx24-hk.mjs --out data/imports/efx24-hk.json
  *   node scripts/import-efx24-hk.mjs --details-out data/imports/raw-efx24-hk-details.json
  *   node scripts/import-efx24-hk.mjs --details-file data/imports/raw-efx24-hk-details.json
+ *   node scripts/import-efx24-hk.mjs --skip-geocode
  *   node scripts/import-efx24-hk.mjs --upsert
  */
 
@@ -22,6 +23,7 @@ await loadEnvFiles([".env.local", "apps/web/.env.local"]);
 
 const LIST_URL = "https://efx24.com/find-us/";
 const SOURCE_URL = LIST_URL;
+const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -34,6 +36,7 @@ async function main() {
   const districtOverrides = args["district-overrides"]
     ? await loadDistrictOverrides(args["district-overrides"])
     : {};
+  const geocoder = createMapboxGeocoder(args);
 
   const details = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
@@ -49,6 +52,14 @@ async function main() {
   const rows = details
     .map((detail) => mapBranchToGymRow(detail, districtOverrides))
     .sort((a, b) => a.slug.localeCompare(b.slug));
+
+  if (geocoder) {
+    for (const row of rows) {
+      const coordinates = await geocoder(row);
+      row.lat = coordinates?.lat ?? null;
+      row.lng = coordinates?.lng ?? null;
+    }
+  }
 
   const unknownDistricts = rows.filter((row) => !row.district_code);
   if (unknownDistricts.length > 0) {
@@ -133,6 +144,78 @@ function parseEnvValue(value) {
     return trimmed.slice(1, -1).replace(/\\n/g, "\n");
   }
   return trimmed;
+}
+
+function createMapboxGeocoder(parsedArgs) {
+  if (parsedArgs["skip-geocode"]) return null;
+
+  const accessToken = process.env.MAPBOX_PRIVATE_TOKEN ?? process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+  if (!accessToken) return null;
+
+  const cache = new Map();
+  const tokenSource = process.env.MAPBOX_PRIVATE_TOKEN
+    ? "MAPBOX_PRIVATE_TOKEN"
+    : "NEXT_PUBLIC_MAPBOX_TOKEN";
+  let geocodingDisabled = false;
+
+  return async function geocodeRow(row) {
+    if (geocodingDisabled) return null;
+
+    const query = row.address_zh ?? row.address;
+    if (!query) return null;
+
+    const cacheKey = `${query}|${row.district_code ?? ""}`;
+    if (cache.has(cacheKey)) return cache.get(cacheKey);
+
+    const url = new URL(MAPBOX_GEOCODE_URL);
+    url.searchParams.set("q", query);
+    url.searchParams.set("access_token", accessToken);
+    url.searchParams.set("country", "HK");
+    url.searchParams.set("language", "zh-Hant,en");
+    url.searchParams.set("limit", "1");
+    url.searchParams.set("autocomplete", "false");
+    url.searchParams.set("permanent", "false");
+
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "gymory-importer/1.0 (+https://gymory.io)",
+        Accept: "application/json",
+      },
+    });
+
+    const payload = await response.text();
+    if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        geocodingDisabled = true;
+        console.warn(
+          [
+            `Skipping Mapbox geocoding after ${response.status} on "${row.slug}".`,
+            `Current token source: ${tokenSource}.`,
+            "Set a server-side MAPBOX_PRIVATE_TOKEN with Search/Geocoding access, or rerun with --skip-geocode.",
+          ].join(" ")
+        );
+        return null;
+      }
+      throw new Error(`Mapbox geocoding failed for "${row.slug}": ${response.status} ${payload.slice(0, 300)}`);
+    }
+
+    const data = JSON.parse(payload);
+    const feature = Array.isArray(data?.features) ? data.features[0] : null;
+    const coordinates = Array.isArray(feature?.geometry?.coordinates)
+      ? {
+          lng: toNumber(feature.geometry.coordinates[0]),
+          lat: toNumber(feature.geometry.coordinates[1]),
+        }
+      : null;
+
+    const result =
+      coordinates && coordinates.lat !== null && coordinates.lng !== null
+        ? coordinates
+        : null;
+
+    cache.set(cacheKey, result);
+    return result;
+  };
 }
 
 async function fetchHtml(url) {
@@ -506,6 +589,8 @@ function mapBranchToGymRow(detail, districtOverrides) {
     country_code: "HK",
     website_url: detail.url ?? SOURCE_URL,
     contact_phone: normalizePhone(detail.phone),
+    lat: null,
+    lng: null,
     is_active: detail.is_active ?? true,
     data_source: "import",
     last_reported_at: new Date().toISOString(),
@@ -648,6 +733,12 @@ function getString(value) {
 function normalizePhone(value) {
   const phone = getString(value);
   return phone?.replace(/\s+/g, "") ?? null;
+}
+
+function toNumber(value) {
+  if (value === null || value === undefined || value === "") return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
 }
 
 function toSlug(value) {

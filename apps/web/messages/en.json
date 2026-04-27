@@ -35,6 +35,8 @@
     "dataSourceAdmin": "Admin",
     "dataSourceOwner": "Owner",
     "dataSourceAnonymous": "anonymous",
+    "dataSourceOnline": "Online",
+    "dataSourceUser": "User",
     "machines": "Machines",
     "features": "Features",
     "freeWeight": "Free weight",

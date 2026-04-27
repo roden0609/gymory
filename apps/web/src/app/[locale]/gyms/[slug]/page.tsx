@@ -42,8 +42,9 @@ function formatDataSource(
     case "owner":
       return t("dataSourceOwner");
     case "import":
+      return t("dataSourceOnline");
     case "user_submission":
-      return t("dataSourceAnonymous");
+      return t("dataSourceUser");
     default:
       return formatLabel(value);
   }

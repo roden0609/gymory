@@ -13,6 +13,12 @@ equipment inventory, so the importer explicitly writes all Gymory equipment
 fields as `null`. That keeps "no upstream data" distinct from a real `0` count
 or confirmed `false` boolean.
 
+If `MAPBOX_PRIVATE_TOKEN` or `NEXT_PUBLIC_MAPBOX_TOKEN` is present, the importer
+also calls the Mapbox Geocoding API to fill `lat` and `lng`. Because the
+results are written to a JSON baseline file and may be upserted into Supabase,
+the importer uses Mapbox permanent geocoding. Per Mapbox's documentation, that
+requires a valid billing setup for your token.
+
 ## Generate Baseline JSON
 
 ```bash
@@ -29,6 +35,12 @@ To also capture the parsed branch detail snapshots used to build the baseline:
 
 ```bash
 pnpm import:efx24-hk --details-out data/imports/raw-efx24-hk-details.json
+```
+
+Skip Mapbox geocoding even if a token is available:
+
+```bash
+pnpm import:efx24-hk --skip-geocode
 ```
 
 If you want to re-run baseline generation without hitting the live site, pass
@@ -48,6 +60,7 @@ Rows are mapped to `gyms` listing fields:
 | Traditional Chinese address block | `address_zh` |
 | Branch phone number | `contact_phone` |
 | Branch detail URL | `website_url` |
+| Mapbox geocoding result | `lat` / `lng` |
 | Active detail page | `is_active` |
 
 The generated slug comes from the English branch title, for example:
