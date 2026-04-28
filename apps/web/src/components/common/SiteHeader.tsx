@@ -3,15 +3,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
 import { auth } from "@/lib/auth/firebase-client";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 
 export function SiteHeader() {
   const locale = useLocale();
   const pathname = usePathname();
   const t = useTranslations("common");
   const tLogin = useTranslations("login");
+  const nextLocale = locale === "en" ? "zh-HK" : "en";
+  const switchLocaleLabel = locale === "en" ? "中文" : "EN";
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -56,6 +57,15 @@ export function SiteHeader() {
         </Link>
 
         <div className="flex items-center gap-3">
+          <Link
+            href={pathname || "/"}
+            locale={nextLocale}
+            aria-label={t("switchLanguage")}
+            className="inline-flex h-10 items-center justify-center rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+          >
+            {switchLocaleLabel}
+          </Link>
+
           {user?.email ? (
             <span className="hidden text-sm text-gray-500 sm:inline">
               {user.email}
