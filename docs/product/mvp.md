@@ -12,7 +12,7 @@ Let users find nearby gyms that match their equipment needs — not just by loca
 1. **Home** — search bar + quick filter chips (rack, dumbbell, assault bike)
 2. **Search results** — list + map toggle
 3. **Gym detail** — equipment summary, map, suggest update button
-4. **Add gym** — simple form, no login required
+4. **Add gym** — simple form, login required
 
 ## MVP filters
 - District
