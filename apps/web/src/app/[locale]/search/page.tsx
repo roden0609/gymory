@@ -38,9 +38,6 @@ export default async function SearchPage({
       <div className="bg-white border-b border-gray-200">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="max-w-3xl text-3xl font-bold text-gray-900">
-              {t("appName")}
-            </h1>
             <p className="mt-2 max-w-2xl text-gray-500">{t("tagline")}</p>
           </div>
           <Link
