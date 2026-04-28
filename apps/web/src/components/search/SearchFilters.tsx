@@ -142,6 +142,7 @@ export function SearchFilters() {
   const tGym = useTranslations("gym");
 
   const [district, setDistrict] = useState(searchParams.get("district") ?? "");
+  const currentView = searchParams.get("view");
   const [minRackCount, setMinRackCount] = useState(
     searchParams.get("minRackCount") ?? ""
   );
@@ -214,6 +215,9 @@ export function SearchFilters() {
 
   const applyFilters = useCallback(() => {
     const params = new URLSearchParams();
+    if (currentView === "map" || currentView === "split") {
+      params.set("view", currentView);
+    }
     if (district) params.set("district", district);
     if (minRackCount) params.set("minRackCount", minRackCount);
     if (minPlatformCount) {
@@ -234,6 +238,7 @@ export function SearchFilters() {
     router.push(queryString ? `/search?${queryString}` : "/search");
   }, [
     district,
+    currentView,
     minDumbbellWeight,
     minPlateWeight,
     minPlatformCount,
@@ -251,8 +256,13 @@ export function SearchFilters() {
     setMinPlateWeight("");
     setSelectedBrandSlugs([]);
     setSelectedFilters(new Set());
-    router.push("/search");
-  }, [router]);
+    const params = new URLSearchParams();
+    if (currentView === "map" || currentView === "split") {
+      params.set("view", currentView);
+    }
+    const query = params.toString();
+    router.push(query ? `/search?${query}` : "/search");
+  }, [currentView, router]);
 
   return (
     <aside className="w-full shrink-0 md:w-72">

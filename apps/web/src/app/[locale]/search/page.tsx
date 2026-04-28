@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { SearchFilters } from "@/components/search/SearchFilters";
-import { GymList } from "@/components/search/GymList";
+import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
 import { Link } from "@/i18n/navigation";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
 
@@ -25,7 +25,7 @@ export default async function SearchPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: RawSearchParams & { flash?: string };
+  searchParams: RawSearchParams & { flash?: string; view?: string };
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -60,7 +60,12 @@ export default async function SearchPage({
           <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
             <SearchFilters />
           </Suspense>
-          <GymList {...result} />
+          <SearchResultsPanel
+            result={result}
+            initialView={
+              typeof searchParams.view === "string" ? searchParams.view : undefined
+            }
+          />
         </div>
       </div>
     </main>
