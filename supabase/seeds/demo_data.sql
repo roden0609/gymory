@@ -8,7 +8,7 @@ insert into gyms (
   day_pass_price, is_active, is_verified,
 
   -- Free weight
-  rack_count, bench_count, barbell_count,
+  rack_count, bench_count, barbell_count, platform_count,
   dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg,
   has_roman_chair, has_dip_station, has_pull_up_bar, has_reverse_hyper,
   has_trap_bar, has_safety_squat_bar, has_farmer_handles,
@@ -55,7 +55,7 @@ insert into gyms (
   'large', 6000,
   200.00, true, true,
 
-  6, 8, 4, 60.0, 1.25, 25.0,
+  6, 8, 4, 4, 60.0, 1.25, 25.0,
   true, true, true, true,
   true, true, true,
   true, true, false, false,
@@ -90,7 +90,7 @@ insert into gyms (
   'medium', 3500,
   180.00, true, true,
 
-  4, 6, 3, 50.0, 2.5, 25.0,
+  4, 6, 3, 2, 50.0, 2.5, 25.0,
   false, true, true, false,
   false, false, false,
   true, false, false, true,
@@ -125,7 +125,7 @@ insert into gyms (
   'large', 8000,
   150.00, true, false,
 
-  8, 10, 6, 70.0, 1.25, 25.0,
+  8, 10, 6, 6, 70.0, 1.25, 25.0,
   true, true, true, true,
   true, false, true,
   true, true, true, false,
@@ -160,7 +160,7 @@ insert into gyms (
   'small', 1200,
   280.00, true, true,
 
-  1, 3, 1, 40.0, 2.5, 20.0,
+  1, 3, 1, 1, 40.0, 2.5, 20.0,
   false, false, true, false,
   false, false, false,
   false, false, false, false,
@@ -195,7 +195,7 @@ insert into gyms (
   'large', 5500,
   160.00, true, true,
 
-  4, 6, 3, 50.0, 2.5, 25.0,
+  4, 6, 3, 2, 50.0, 2.5, 25.0,
   false, true, true, false,
   false, false, false,
   true, false, false, false,

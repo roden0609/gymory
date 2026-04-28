@@ -5,6 +5,7 @@ export const searchParamsSchema = z.object({
   page: z.coerce.number().int().min(1).optional(),
   pageSize: z.coerce.number().int().min(1).max(50).optional(),
   minRackCount: z.coerce.number().min(0).optional(),
+  minPlatformCount: z.coerce.number().min(0).optional(),
   minDumbbellWeight: z.coerce.number().min(0).optional(),
   minPlateWeight: z.coerce.number().min(0).optional(),
   hasAssaultBike: z.string().optional(),

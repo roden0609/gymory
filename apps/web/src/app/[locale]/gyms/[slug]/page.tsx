@@ -193,6 +193,10 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
       value: formatCount(gym.barbell_count, t("notListed")),
     },
     {
+      label: t("platforms"),
+      value: formatCount(gym.platform_count, t("notListed")),
+    },
+    {
       label: t("dumbbells"),
       value: formatWeight(gym.dumbbell_max_weight_kg, t("notListed")),
     },

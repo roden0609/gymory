@@ -158,6 +158,7 @@ export function SubmitGymForm({
     ["rack_count", t("rackCount")],
     ["bench_count", t("benchCount")],
     ["barbell_count", t("barbellCount")],
+    ["platform_count", t("platformCount")],
     ["dumbbell_max_weight_kg", t("dumbbellMax")],
     ["plate_min_weight_kg", t("plateMin")],
     ["plate_max_weight_kg", t("plateMax")],
@@ -342,6 +343,7 @@ export function SubmitGymForm({
         rack_count: toNumber(String(formData.get("rack_count") ?? "")),
         bench_count: toNumber(String(formData.get("bench_count") ?? "")),
         barbell_count: toNumber(String(formData.get("barbell_count") ?? "")),
+        platform_count: toNumber(String(formData.get("platform_count") ?? "")),
         dumbbell_max_weight_kg: toNumber(
           String(formData.get("dumbbell_max_weight_kg") ?? "")
         ),

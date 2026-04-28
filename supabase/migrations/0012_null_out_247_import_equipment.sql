@@ -7,6 +7,7 @@ set
   rack_count = null,
   bench_count = null,
   barbell_count = null,
+  platform_count = null,
   dumbbell_max_weight_kg = null,
   plate_min_weight_kg = null,
   plate_max_weight_kg = null,

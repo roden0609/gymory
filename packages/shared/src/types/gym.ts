@@ -33,6 +33,7 @@ export interface Gym {
   rack_count: number | null;
   bench_count: number | null;
   barbell_count: number | null;
+  platform_count: number | null;
   dumbbell_max_weight_kg: number | null;
   plate_min_weight_kg: number | null;
   plate_max_weight_kg: number | null;

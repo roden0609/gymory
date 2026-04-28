@@ -24,6 +24,7 @@ export async function searchGyms(
     page: rawParams.page,
     pageSize: rawParams.pageSize,
     minRackCount: rawParams.minRackCount,
+    minPlatformCount: rawParams.minPlatformCount,
     minDumbbellWeight: rawParams.minDumbbellWeight,
     minPlateWeight: rawParams.minPlateWeight,
     hasAssaultBike: rawParams.hasAssaultBike,
@@ -109,6 +110,9 @@ export async function searchGyms(
 
   if (params.district) query = query.eq("district_code", params.district);
   if (params.minRackCount) query = query.gte("rack_count", params.minRackCount);
+  if (params.minPlatformCount) {
+    query = query.gte("platform_count", params.minPlatformCount);
+  }
   if (params.minDumbbellWeight) {
     query = query.gte("dumbbell_max_weight_kg", params.minDumbbellWeight);
   }

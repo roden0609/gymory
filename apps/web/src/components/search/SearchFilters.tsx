@@ -145,6 +145,9 @@ export function SearchFilters() {
   const [minRackCount, setMinRackCount] = useState(
     searchParams.get("minRackCount") ?? ""
   );
+  const [minPlatformCount, setMinPlatformCount] = useState(
+    searchParams.get("minPlatformCount") ?? ""
+  );
   const [minDumbbellWeight, setMinDumbbellWeight] = useState(
     searchParams.get("minDumbbellWeight") ?? ""
   );
@@ -164,10 +167,18 @@ export function SearchFilters() {
     () =>
       Number(Boolean(district)) +
       Number(Boolean(minRackCount)) +
+      Number(Boolean(minPlatformCount)) +
       Number(Boolean(minDumbbellWeight)) +
       Number(Boolean(minPlateWeight)) +
       selectedFilters.size,
-    [district, minDumbbellWeight, minPlateWeight, minRackCount, selectedFilters]
+    [
+      district,
+      minDumbbellWeight,
+      minPlateWeight,
+      minPlatformCount,
+      minRackCount,
+      selectedFilters,
+    ]
   );
 
   const toggleFilter = useCallback((param: string, checked: boolean) => {
@@ -186,6 +197,9 @@ export function SearchFilters() {
     const params = new URLSearchParams();
     if (district) params.set("district", district);
     if (minRackCount) params.set("minRackCount", minRackCount);
+    if (minPlatformCount) {
+      params.set("minPlatformCount", minPlatformCount);
+    }
     if (minDumbbellWeight) {
       params.set("minDumbbellWeight", minDumbbellWeight);
     }
@@ -200,6 +214,7 @@ export function SearchFilters() {
     district,
     minDumbbellWeight,
     minPlateWeight,
+    minPlatformCount,
     minRackCount,
     router,
     selectedFilters,
@@ -208,6 +223,7 @@ export function SearchFilters() {
   const clearFilters = useCallback(() => {
     setDistrict("");
     setMinRackCount("");
+    setMinPlatformCount("");
     setMinDumbbellWeight("");
     setMinPlateWeight("");
     setSelectedFilters(new Set());
@@ -253,6 +269,12 @@ export function SearchFilters() {
             value={minRackCount}
             placeholder="e.g. 4"
             onChange={setMinRackCount}
+          />
+          <NumberFilter
+            label={t("minPlatforms")}
+            value={minPlatformCount}
+            placeholder="e.g. 2"
+            onChange={setMinPlatformCount}
           />
           <NumberFilter
             label={t("maxDumbbell")}

@@ -35,6 +35,7 @@ export const EQUIPMENT_FIELDS: Array<keyof Gym> = [
   "rack_count",
   "bench_count",
   "barbell_count",
+  "platform_count",
   "dumbbell_max_weight_kg",
   "plate_min_weight_kg",
   "plate_max_weight_kg",
