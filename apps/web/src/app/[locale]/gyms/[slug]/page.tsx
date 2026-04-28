@@ -5,6 +5,7 @@ import type { Gym } from "@gymory/shared";
 import { getHkDistrictLabel } from "@gymory/shared";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
+import { getGymEquipmentBrands } from "@/lib/db/queries/equipment-brands";
 import { getGymBySlug } from "@/lib/db/queries/gyms";
 
 type Locale = "en" | "zh-HK";
@@ -173,6 +174,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
   const gym = await getGymBySlug(slug);
   if (!gym) notFound();
+  const brands = await getGymEquipmentBrands(gym.id);
 
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
@@ -462,6 +464,15 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
           <Section title={t("otherEquipment")}>
             <FeaturePills items={otherEquipment} fallback={t("notListed")} />
+          </Section>
+
+          <Section title={t("equipmentBrands")}>
+            <FeaturePills
+              items={brands.map((brand) =>
+                locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en
+              )}
+              fallback={t("notListed")}
+            />
           </Section>
 
           <Section title={t("location")}>

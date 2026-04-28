@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SubmitGymForm } from "@/components/submit/SubmitGymForm";
 import { requireFirebaseSession } from "@/lib/auth/session";
+import { getGymEquipmentBrandSlugs } from "@/lib/db/queries/equipment-brands";
 import { getGymById } from "@/lib/db/queries/gyms";
 
 export async function generateMetadata({
@@ -40,6 +41,10 @@ export default async function SubmitPage({
   const initialGym = searchParams.gymId
     ? await getGymById(searchParams.gymId)
     : null;
+  const initialBrandSlugs =
+    searchParams.gymId && initialGym
+      ? await getGymEquipmentBrandSlugs(searchParams.gymId)
+      : [];
 
   if (searchParams.gymId && !initialGym) notFound();
 
@@ -55,6 +60,7 @@ export default async function SubmitPage({
       <SubmitGymForm
         gymId={searchParams.gymId}
         initialGym={initialGym}
+        initialBrandSlugs={initialBrandSlugs}
         returnTo={returnTo}
       />
     </main>

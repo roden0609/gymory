@@ -32,9 +32,19 @@ export async function POST(request: NextRequest) {
     const existingGym = parsed.data.gymId
       ? await fetchGymById(supabase, parsed.data.gymId)
       : null;
+    const existingBrandSlugs = parsed.data.gymId
+      ? await fetchGymBrandSlugs(supabase, parsed.data.gymId)
+      : [];
+    const submittedBrandSlugs = normalizeBrandSlugs(payload.brands);
     const actionType = parsed.data.submissionType === "add_gym" ? "I" : "U";
-    const changedFields =
+    const baseChangedFields =
       actionType === "I" ? patch : buildChangedFields(existingGym, patch);
+    const changedFields = mergeBrandChanges({
+      baseChangedFields,
+      actionType,
+      existingBrandSlugs,
+      submittedBrandSlugs,
+    });
 
     await insertSubmissionRecord({
       supabase,
@@ -72,4 +82,64 @@ async function fetchGymById(
   }
 
   return data as Record<string, unknown>;
+}
+
+async function fetchGymBrandSlugs(
+  supabase: ReturnType<typeof createAdminClient>,
+  gymId: string
+) {
+  const { data, error } = await supabase
+    .from("gym_brand_inventory")
+    .select("equipment_brands(slug)")
+    .eq("gym_id", gymId);
+
+  if (error || !data) return [];
+
+  return data
+    .flatMap((row) => row.equipment_brands ?? [])
+    .map((brand) => brand.slug)
+    .filter((slug): slug is string => typeof slug === "string");
+}
+
+function normalizeBrandSlugs(value: unknown) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .filter((item): item is string => typeof item === "string")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function mergeBrandChanges({
+  baseChangedFields,
+  actionType,
+  existingBrandSlugs,
+  submittedBrandSlugs,
+}: {
+  baseChangedFields: Record<string, unknown> | null;
+  actionType: "I" | "U";
+  existingBrandSlugs: string[];
+  submittedBrandSlugs: string[];
+}) {
+  const changed = { ...(baseChangedFields ?? {}) } as Record<string, unknown>;
+
+  if (actionType === "I") {
+    if (submittedBrandSlugs.length > 0) {
+      changed.brand_slugs = submittedBrandSlugs;
+    }
+    return Object.keys(changed).length > 0 ? changed : null;
+  }
+
+  const existingSet = new Set(existingBrandSlugs);
+  const submittedSet = new Set(submittedBrandSlugs);
+
+  const added = submittedBrandSlugs.filter((slug) => !existingSet.has(slug));
+  const removed = existingBrandSlugs.filter((slug) => !submittedSet.has(slug));
+
+  if (added.length > 0 || removed.length > 0) {
+    changed.brand_slugs = submittedBrandSlugs;
+    changed.brand_slugs_added = added;
+    changed.brand_slugs_removed = removed;
+  }
+
+  return Object.keys(changed).length > 0 ? changed : null;
 }

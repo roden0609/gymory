@@ -96,6 +96,7 @@ async function applySubmission(
   const submittedName = payload.gym?.name;
   const submittedCountryCode = payload.gym?.country_code;
   const patch = buildGymPatchFromPayload(payload);
+  const brandSlugs = getSubmittedBrandSlugs(payload);
 
   if (submissionType === "add_gym") {
     const name = typeof submittedName === "string" ? submittedName : null;
@@ -126,7 +127,9 @@ async function applySubmission(
       throw new Error(error?.message ?? "Failed to create gym");
     }
 
-    return data.id as string;
+    const insertedGymId = data.id as string;
+    await replaceGymBrands(supabase, insertedGymId, brandSlugs);
+    return insertedGymId;
   }
 
   if (!gymId) {
@@ -158,7 +161,53 @@ async function applySubmission(
     throw new Error(error?.message ?? "Failed to update gym");
   }
 
+  await replaceGymBrands(supabase, gymId, brandSlugs);
+
   return gymId;
+}
+
+function getSubmittedBrandSlugs(payload: SubmissionPayload): string[] {
+  const values = payload.brands;
+  if (!Array.isArray(values)) return [];
+  return values
+    .filter((value): value is string => typeof value === "string")
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
+async function replaceGymBrands(
+  supabase: ReturnType<typeof createAdminClient>,
+  gymId: string,
+  brandSlugs: string[]
+) {
+  const { error: clearError } = await supabase
+    .from("gym_brand_inventory")
+    .delete()
+    .eq("gym_id", gymId);
+  if (clearError) throw new Error(clearError.message);
+
+  if (brandSlugs.length === 0) return;
+
+  const { data: brands, error: brandsError } = await supabase
+    .from("equipment_brands")
+    .select("id, slug")
+    .in("slug", brandSlugs);
+
+  if (brandsError) throw new Error(brandsError.message);
+
+  const brandIds = (brands ?? []).map((brand) => brand.id as string);
+  if (brandIds.length === 0) return;
+
+  const rows = brandIds.map((brandId) => ({
+    gym_id: gymId,
+    brand_id: brandId,
+    confidence: "reported" as const,
+  }));
+
+  const { error: upsertError } = await supabase
+    .from("gym_brand_inventory")
+    .upsert(rows, { onConflict: "gym_id,brand_id" });
+  if (upsertError) throw new Error(upsertError.message);
 }
 
 async function generateUniqueSlug(

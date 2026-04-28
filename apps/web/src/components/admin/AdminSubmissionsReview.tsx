@@ -145,6 +145,14 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
             (submission.payload.equipment as Record<string, unknown> | undefined) ?? null
           }
         />
+        <PayloadBlock
+          title="Brands payload"
+          value={
+            Array.isArray(submission.payload.brands)
+              ? { brands: submission.payload.brands }
+              : null
+          }
+        />
       </div>
 
       <div className="mt-4 space-y-2">

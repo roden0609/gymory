@@ -21,6 +21,7 @@ export async function searchGyms(
 ): Promise<PaginatedGymSearchResult> {
   const parsed = searchParamsSchema.safeParse({
     district: rawParams.district,
+    brandSlugs: rawParams.brandSlugs,
     page: rawParams.page,
     pageSize: rawParams.pageSize,
     minRackCount: rawParams.minRackCount,
@@ -107,6 +108,55 @@ export async function searchGyms(
     .eq("is_active", true)
     .order("is_verified", { ascending: false })
     .order("updated_at", { ascending: false });
+
+  if (params.brandSlugs && params.brandSlugs.length > 0) {
+    const { data: brands, error: brandsError } = await supabase
+      .from("equipment_brands")
+      .select("id")
+      .in("slug", params.brandSlugs);
+
+    if (brandsError || !brands || brands.length === 0) {
+      return {
+        gyms: [],
+        totalCount: 0,
+        page,
+        pageSize,
+        totalPages: 0,
+        hasNextPage: false,
+      };
+    }
+
+    const brandIds = brands.map((brand) => brand.id);
+    const { data: inventoryRows, error: inventoryError } = await supabase
+      .from("gym_brand_inventory")
+      .select("gym_id")
+      .in("brand_id", brandIds);
+
+    if (inventoryError || !inventoryRows || inventoryRows.length === 0) {
+      return {
+        gyms: [],
+        totalCount: 0,
+        page,
+        pageSize,
+        totalPages: 0,
+        hasNextPage: false,
+      };
+    }
+
+    const matchedGymIds = [...new Set(inventoryRows.map((row) => row.gym_id))];
+    if (matchedGymIds.length === 0) {
+      return {
+        gyms: [],
+        totalCount: 0,
+        page,
+        pageSize,
+        totalPages: 0,
+        hasNextPage: false,
+      };
+    }
+
+    query = query.in("id", matchedGymIds);
+  }
 
   if (params.district) query = query.eq("district_code", params.district);
   if (params.minRackCount) query = query.gte("rack_count", params.minRackCount);

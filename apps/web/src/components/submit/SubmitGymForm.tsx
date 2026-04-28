@@ -4,13 +4,19 @@ import { FormEvent, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { useRouter } from "@/i18n/navigation";
-import { HK_DISTRICTS, SIZE_CATEGORIES, type Gym } from "@gymory/shared";
+import {
+  EQUIPMENT_BRANDS,
+  HK_DISTRICTS,
+  SIZE_CATEGORIES,
+  type Gym,
+} from "@gymory/shared";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 type SubmitGymFormProps = {
   gymId?: string;
   initialGym?: Gym | null;
+  initialBrandSlugs?: string[];
   returnTo?: string;
 };
 
@@ -97,6 +103,7 @@ function withFlashParam(path: string, flash: string) {
 export function SubmitGymForm({
   gymId,
   initialGym,
+  initialBrandSlugs = [],
   returnTo,
 }: SubmitGymFormProps) {
   const router = useRouter();
@@ -113,6 +120,8 @@ export function SubmitGymForm({
   const [featureStates, setFeatureStates] = useState<FeatureStateMap>(
     initialFeatureState
   );
+  const [selectedBrandSlugs, setSelectedBrandSlugs] =
+    useState<string[]>(initialBrandSlugs);
 
   const isUpdate = Boolean(gymId);
   const title = isUpdate ? t("updateTitle") : t("title");
@@ -152,6 +161,16 @@ export function SubmitGymForm({
   function getDefaultValue(field: keyof Gym) {
     const value = initialGym?.[field];
     return value === null || value === undefined ? "" : String(value);
+  }
+
+  function toggleBrand(brandSlug: string, checked: boolean) {
+    setSelectedBrandSlugs((current) => {
+      if (checked) {
+        if (current.includes(brandSlug)) return current;
+        return [...current, brandSlug];
+      }
+      return current.filter((slug) => slug !== brandSlug);
+    });
   }
 
   const freeWeightFields = [
@@ -413,6 +432,7 @@ export function SubmitGymForm({
           ])
         ),
       },
+      brands: selectedBrandSlugs,
     };
 
     try {
@@ -440,6 +460,7 @@ export function SubmitGymForm({
 
       form.reset();
       setFeatureStates(initialFeatureState);
+      setSelectedBrandSlugs(initialBrandSlugs);
       router.push(
         withFlashParam(isUpdate && returnTo ? returnTo : "/", "submission-success")
       );
@@ -659,6 +680,45 @@ export function SubmitGymForm({
                   </div>
                 </div>
               ))}
+            </div>
+          </details>
+
+          <details className="rounded-lg border border-gray-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-gray-900">
+              {t("equipmentBrands")}
+            </summary>
+            <div className="mt-4 space-y-2">
+              <p className="text-sm text-gray-500">{t("equipmentBrandsHint")}</p>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {EQUIPMENT_BRANDS.map((brand) => {
+                  const checked = selectedBrandSlugs.includes(brand.slug);
+                  const label =
+                    locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en;
+                  const country =
+                    locale === "zh-HK"
+                      ? brand.country ?? null
+                      : brand.country ?? null;
+                  return (
+                    <label
+                      key={brand.slug}
+                      className="flex cursor-pointer items-start gap-2 rounded-lg border border-gray-200 px-3 py-2"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(event) => toggleBrand(brand.slug, event.target.checked)}
+                        className="mt-0.5 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                      />
+                      <span className="text-sm leading-5 text-gray-700">
+                        {label}
+                        {country ? (
+                          <span className="block text-xs text-gray-500">{country}</span>
+                        ) : null}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
             </div>
           </details>
         </fieldset>

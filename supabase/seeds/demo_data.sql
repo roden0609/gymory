@@ -223,3 +223,31 @@ insert into gyms (
   'HYROX-focused gym with wall balls, sleds, rowers, and ski ergs.',
   'admin', now()
 );
+
+-- Demo gym-brand mappings
+insert into gym_brand_inventory (gym_id, brand_id, confidence)
+select g.id, b.id, 'confirmed'
+from gyms g
+join equipment_brands b on b.slug in ('eleiko', 'rogue-fitness', 'hammer-strength', 'concept2')
+where g.slug = 'ironbase-hk-wan-chai'
+on conflict (gym_id, brand_id) do update
+set confidence = excluded.confidence,
+    updated_at = now();
+
+insert into gym_brand_inventory (gym_id, brand_id, confidence)
+select g.id, b.id, 'confirmed'
+from gyms g
+join equipment_brands b on b.slug in ('life-fitness', 'matrix-fitness', 'precor')
+where g.slug = 'lift-district-mong-kok'
+on conflict (gym_id, brand_id) do update
+set confidence = excluded.confidence,
+    updated_at = now();
+
+insert into gym_brand_inventory (gym_id, brand_id, confidence)
+select g.id, b.id, 'confirmed'
+from gyms g
+join equipment_brands b on b.slug in ('concept2', 'assault-fitness', 'rogue-fitness')
+where g.slug = 'hyrox-hub-kwun-tong'
+on conflict (gym_id, brand_id) do update
+set confidence = excluded.confidence,
+    updated_at = now();

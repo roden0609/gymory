@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import { HK_DISTRICTS } from "@gymory/shared";
+import { EQUIPMENT_BRANDS, HK_DISTRICTS } from "@gymory/shared";
 
 type CheckboxFilter = {
   labelKey: string;
@@ -162,6 +162,13 @@ export function SearchFilters() {
         ).map((filter) => filter.param)
       )
   );
+  const [selectedBrandSlugs, setSelectedBrandSlugs] = useState<string[]>(
+    () =>
+      (searchParams.get("brandSlugs") ?? "")
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean)
+  );
 
   const activeFilterCount = useMemo(
     () =>
@@ -170,13 +177,15 @@ export function SearchFilters() {
       Number(Boolean(minPlatformCount)) +
       Number(Boolean(minDumbbellWeight)) +
       Number(Boolean(minPlateWeight)) +
-      selectedFilters.size,
+      selectedFilters.size +
+      selectedBrandSlugs.length,
     [
       district,
       minDumbbellWeight,
       minPlateWeight,
       minPlatformCount,
       minRackCount,
+      selectedBrandSlugs.length,
       selectedFilters,
     ]
   );
@@ -193,6 +202,16 @@ export function SearchFilters() {
     });
   }, []);
 
+  const toggleBrand = useCallback((slug: string, checked: boolean) => {
+    setSelectedBrandSlugs((current) => {
+      if (checked) {
+        if (current.includes(slug)) return current;
+        return [...current, slug];
+      }
+      return current.filter((value) => value !== slug);
+    });
+  }, []);
+
   const applyFilters = useCallback(() => {
     const params = new URLSearchParams();
     if (district) params.set("district", district);
@@ -204,6 +223,9 @@ export function SearchFilters() {
       params.set("minDumbbellWeight", minDumbbellWeight);
     }
     if (minPlateWeight) params.set("minPlateWeight", minPlateWeight);
+    if (selectedBrandSlugs.length > 0) {
+      params.set("brandSlugs", selectedBrandSlugs.join(","));
+    }
     params.delete("page");
     params.delete("pageSize");
     selectedFilters.forEach((param) => params.set(param, "true"));
@@ -217,6 +239,7 @@ export function SearchFilters() {
     minPlatformCount,
     minRackCount,
     router,
+    selectedBrandSlugs,
     selectedFilters,
   ]);
 
@@ -226,6 +249,7 @@ export function SearchFilters() {
     setMinPlatformCount("");
     setMinDumbbellWeight("");
     setMinPlateWeight("");
+    setSelectedBrandSlugs([]);
     setSelectedFilters(new Set());
     router.push("/search");
   }, [router]);
@@ -310,6 +334,24 @@ export function SearchFilters() {
             </FilterSection>
           ))}
         </div>
+
+        <FilterSection title={tGym("equipmentBrands")}>
+          <p className="mb-2 text-xs text-gray-500">{t("brandOrHint")}</p>
+          <div className="grid gap-2">
+            {EQUIPMENT_BRANDS.map((brand) => {
+              const label =
+                locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en;
+              return (
+                <CheckboxFilter
+                  key={brand.slug}
+                  label={label}
+                  checked={selectedBrandSlugs.includes(brand.slug)}
+                  onChange={(checked) => toggleBrand(brand.slug, checked)}
+                />
+              );
+            })}
+          </div>
+        </FilterSection>
 
         <div className="flex flex-col gap-2 pt-1">
           <button

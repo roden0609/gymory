@@ -1,9 +1,18 @@
 import { z } from "zod";
 
+const brandSlugsSchema = z.preprocess((value) => {
+  if (typeof value !== "string") return [];
+  return value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}, z.array(z.string()));
+
 export const searchParamsSchema = z.object({
   district: z.string().optional(),
   page: z.coerce.number().int().min(1).optional(),
   pageSize: z.coerce.number().int().min(1).max(50).optional(),
+  brandSlugs: brandSlugsSchema.optional(),
   minRackCount: z.coerce.number().min(0).optional(),
   minPlatformCount: z.coerce.number().min(0).optional(),
   minDumbbellWeight: z.coerce.number().min(0).optional(),
