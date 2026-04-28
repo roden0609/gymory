@@ -133,3 +133,41 @@ pnpm import:efx24-hk --upsert
 
 This importer writes `data/imports/efx24-hk-baseline.json` and sets unknown equipment fields to `null`.
 For full notes and override handling, see `docs/data/efx24-hk-import.md`.
+
+## GO24 Fitness HK import
+
+Generate the latest GO24 Fitness Hong Kong baseline file:
+
+```bash
+pnpm import:go24-fitness-hk
+```
+
+If `MAPBOX_PRIVATE_TOKEN` or `NEXT_PUBLIC_MAPBOX_TOKEN` is set, the importer
+will also geocode branch addresses and fill `lat` / `lng`.
+
+Save the parsed branch detail snapshot during the run:
+
+```bash
+pnpm import:go24-fitness-hk --details-out data/imports/raw-go24-fitness-hk-details.json
+```
+
+Rebuild from a saved detail snapshot:
+
+```bash
+pnpm import:go24-fitness-hk --details-file data/imports/raw-go24-fitness-hk-details.json
+```
+
+Skip geocoding even if a Mapbox token is available:
+
+```bash
+pnpm import:go24-fitness-hk --skip-geocode
+```
+
+Upsert imported rows into Supabase:
+
+```bash
+pnpm import:go24-fitness-hk --upsert
+```
+
+This importer writes `data/imports/go24-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
+For full notes and override handling, see `docs/data/go24-fitness-hk-import.md`.
