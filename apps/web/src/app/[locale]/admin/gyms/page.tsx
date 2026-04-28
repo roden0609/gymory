@@ -4,6 +4,7 @@ import { getHkDistrictLabel } from "@gymory/shared";
 import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
+import { AdminDeleteGymButton } from "@/components/admin/AdminDeleteGymButton";
 
 type Locale = "en" | "zh-HK";
 const DEFAULT_PAGE = 1;
@@ -182,12 +183,18 @@ export default async function AdminGymsPage({
                           {formatDate(gym.updated_at, currentLocale)}
                         </td>
                         <td className="px-4 py-3">
-                          <Link
-                            href={`/gyms/${gym.slug}`}
-                            className="text-sm font-medium text-gray-700 underline-offset-2 hover:text-gray-900 hover:underline"
-                          >
-                            View
-                          </Link>
+                          <div className="flex items-center gap-3">
+                            <Link
+                              href={`/gyms/${gym.slug}`}
+                              className="text-sm font-medium text-gray-700 underline-offset-2 hover:text-gray-900 hover:underline"
+                            >
+                              View
+                            </Link>
+                            <AdminDeleteGymButton
+                              gymId={gym.id}
+                              gymName={displayName}
+                            />
+                          </div>
                         </td>
                       </tr>
                     );

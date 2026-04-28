@@ -123,7 +123,20 @@ export async function DELETE(
     return NextResponse.json({ error: "Gym not found" }, { status: 404 });
   }
 
-  const { error } = await supabase.from("gyms").delete().eq("id", params.id);
+  if (existing.is_active === false) {
+    return NextResponse.json({ error: "Gym is already inactive" }, { status: 409 });
+  }
+
+  const { data, error } = await supabase
+    .from("gyms")
+    .update({
+      is_active: false,
+      data_source: "admin",
+    })
+    .eq("id", params.id)
+    .select()
+    .single();
+
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -139,10 +152,11 @@ export async function DELETE(
       actorType: "admin",
       actionType: "D",
       payload: {
-        gymId: params.id,
-        snapshot: existing,
+        softDelete: true,
+        before: existing,
+        after: data,
       },
-      changedFields: null,
+      changedFields: buildChangedFields(existing, data),
       reviewedAt: new Date().toISOString(),
     });
   } catch (submissionError) {
