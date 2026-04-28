@@ -1,7 +1,20 @@
 name: CI
 
 on:
-  workflow_dispatch: # manual trigger only — re-enable push/PR when app is ready
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
+      - develop
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   typecheck-lint:

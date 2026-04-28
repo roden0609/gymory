@@ -27,6 +27,15 @@ gymory/
 └─ .github/           # CI workflows
 ```
 
+## Deployment
+
+See [docs/deploy.md](docs/deploy.md) for:
+
+- branch strategy (`main`/`develop`/`feature/*`)
+- Vercel environment mapping to Supabase (`gymory-prod`/`gymory-dev`)
+- branch protection and CI requirements
+- release flow and migration discipline
+
 ## Getting started
 
 ```bash
