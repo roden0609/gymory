@@ -340,15 +340,17 @@ function resolveUrl(baseUrl, href) {
 }
 
 function extractTitle(html) {
+  const heading = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+  const headingText = heading ? decodeHtmlEntities(stripTags(heading[1])) : null;
+  if (headingText) return headingText;
+
   const metaTitle =
     extractMetaContent(html, "og:title") ??
     extractMetaContent(html, "twitter:title") ??
     extractTagContent(html, "title");
 
   if (metaTitle) return metaTitle;
-
-  const heading = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-  return heading ? decodeHtmlEntities(stripTags(heading[1])) : null;
+  return null;
 }
 
 function extractMetaContent(html, property) {
@@ -383,7 +385,11 @@ function extractTagContent(html, tag) {
 function cleanTitle(value) {
   const title = getString(value);
   if (!title) return null;
-  return title.replace(/\s+[–-]\s+EFX24$/i, "").trim();
+  return title
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .replace(/\s+[|–-]\s+EFX24$/i, "")
+    .replace(/\s*\((coming soon|temporarily closed)\)\s*$/i, "")
+    .trim();
 }
 
 function htmlToTextBlocks(html) {
@@ -453,10 +459,18 @@ function extractEmail(blocks) {
 
 function findTitleIndex(blocks, title) {
   if (!title) return -1;
-  const normalizedTitle = title.replace(/\s+/g, " ").trim().toLowerCase();
+  const normalizedTitle = normalizeComparableText(title);
   return blocks.findIndex(
-    (block) => block.replace(/\s+/g, " ").trim().toLowerCase() === normalizedTitle
+    (block) => normalizeComparableText(block) === normalizedTitle
   );
+}
+
+function normalizeComparableText(value) {
+  return value
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
 }
 
 function extractAddress(blocks, { phone, locale, titleIndex = -1 }) {
