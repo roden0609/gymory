@@ -351,7 +351,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           </Link>
 
           <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-3xl font-bold text-gray-900">
                   {display.name}
@@ -362,7 +362,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                   </span>
                 )}
               </div>
-              <p className="mt-2 text-gray-500">
+              <p className="mt-2 break-words text-gray-500">
                 {display.district}
                 {display.address ? ` · ${display.address}` : ""}
               </p>
@@ -380,7 +380,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
             <Link
               href={`/submit?gymId=${gym.id}&returnTo=/gyms/${gym.slug}`}
-              className="inline-flex h-10 items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+              className="inline-flex h-10 shrink-0 whitespace-nowrap items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
             >
               {t("suggestUpdate")}
             </Link>

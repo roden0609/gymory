@@ -486,6 +486,9 @@ function extractAddress(blocks, { phone, locale, titleIndex = -1 }) {
 
 function looksLikeAddress(value, locale) {
   if (!value || value.length < 8) return false;
+  // Marketing paragraphs can contain location-ish words (e.g. "centered")
+  // but should never be treated as addresses.
+  if (value.length > 160) return false;
   if (isPhoneBlock(value)) return false;
   if (/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(value)) return false;
   if (/^(free|chat|google|professional|training|facilities|hygiene|entertainment|會員|專業|訓練|便利|衛生|娛樂|立即|experience|located|kickstart|one membership|monthly payment)/i.test(value)) {
@@ -504,7 +507,7 @@ function looksLikeAddress(value, locale) {
   return (
     /[A-Za-z]/.test(value) &&
     /\d/.test(value) &&
-    /(road|rd|street|st|floor|f\/|shop|plaza|centre|center|mall|station|hong kong|kowloon|building|tower)/i.test(value)
+    /\b(road|rd|street|st|floor|f\/|shop|plaza|centre|center|mall|station|hong kong|kowloon|building|tower)\b/i.test(value)
   );
 }
 
@@ -516,7 +519,7 @@ function scoreAddressCandidate(value, locale) {
     if (/(號|樓|舖|鋪|中心|廣場|大廈|道|街|路)/.test(value)) score += 4;
     if (/香港|九龍|新界/.test(value)) score += 1;
   } else {
-    if (/(road|rd|street|st|floor|f\/|shop|plaza|centre|center|mall|building|tower)/i.test(value)) score += 4;
+    if (/\b(road|rd|street|st|floor|f\/|shop|plaza|centre|center|mall|building|tower)\b/i.test(value)) score += 4;
     if (/hong kong|kowloon/i.test(value)) score += 1;
   }
   return score;
