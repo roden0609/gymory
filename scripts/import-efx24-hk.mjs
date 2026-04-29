@@ -20,7 +20,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
 
-await loadEnvFiles([".env.local", "apps/web/.env.local"]);
+await loadEnvFiles(["apps/web/.env.dev"]);
+// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const LIST_URL = "https://efx24.com/find-us/";
 const SOURCE_URL = LIST_URL;
@@ -270,8 +271,6 @@ async function fetchBranchDetail(url) {
     locale: "zh",
     titleIndex: zhTitleIndex,
   });
-  const pageText = blocks.join("\n");
-
   return {
     url,
     zh_url: zhUrl,
@@ -281,7 +280,7 @@ async function fetchBranchDetail(url) {
     address_zh: addressZh,
     phone,
     email,
-    is_active: inferIsActive(pageText),
+    is_active: inferIsActive(blocks, titleIndex),
   };
 }
 
@@ -560,8 +559,15 @@ function normalizeEnglishAddressSegment(value) {
     .trim();
 }
 
-function inferIsActive(pageText) {
-  return !/(coming soon|temporarily closed|branch closed|closed permanently)/i.test(pageText);
+function inferIsActive(blocks, titleIndex = -1) {
+  const statusPattern = /(coming soon|temporarily closed|branch closed|closed permanently)/i;
+  if (!Array.isArray(blocks) || blocks.length === 0) return true;
+
+  // Only inspect text near the branch-specific section to avoid footer/menu noise.
+  const start = titleIndex >= 0 ? Math.max(0, titleIndex - 2) : 0;
+  const end = titleIndex >= 0 ? Math.min(blocks.length, titleIndex + 16) : Math.min(blocks.length, 12);
+  const localText = blocks.slice(start, end).join("\n");
+  return !statusPattern.test(localText);
 }
 
 function mapBranchToGymRow(detail, districtOverrides) {

@@ -20,7 +20,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
 
-await loadEnvFiles([".env.local", "apps/web/.env.local"]);
+await loadEnvFiles(["apps/web/.env.dev"]);
+// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const LIST_URL = "https://www.go24fitness.com/en/locations";
 const SOURCE_URL = LIST_URL;

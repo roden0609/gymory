@@ -18,11 +18,15 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
 
-await loadEnvFiles([".env.local", "apps/web/.env.local"]);
+await loadEnvFiles(["apps/web/.env.dev"]);
+// await loadEnvFiles(["apps/web/.env.prod"]);
 
-const LIST_URL = "https://247.fitness/app-api/cms/store/?lang=zh-hk";
-const DETAIL_URL =
-  "https://247.fitness/app-api/cms/store/global/detail?lang=zh-hk&countryCode=HK&storeId=";
+const LIST_URL_ZH = "https://247.fitness/app-api/cms/store/?lang=zh-HK";
+const LIST_URL_EN = "https://247.fitness/app-api/cms/store/?lang=en";
+const DETAIL_URL_ZH =
+  "https://247.fitness/app-api/cms/store/global/detail?lang=zh-HK&countryCode=HK&storeId=";
+const DETAIL_URL_EN =
+  "https://247.fitness/app-api/cms/store/global/detail?lang=en&countryCode=HK&storeId=";
 const SOURCE_URL = "https://247.fitness/zh-hk/contact_us/stores";
 
 const args = parseArgs(process.argv.slice(2));
@@ -150,8 +154,8 @@ async function fetchJson(url) {
   }
 }
 
-async function fetchStoreList() {
-  const payload = await fetchJson(LIST_URL);
+async function fetchStoreList(url) {
+  const payload = await fetchJson(url);
   const countryNodes = payload?.data?.countryNodes;
   if (!Array.isArray(countryNodes)) {
     throw new Error("Could not find countryNodes in 24/7 Fitness list response");
@@ -172,23 +176,59 @@ async function fetchStoreList() {
   return stores;
 }
 
-async function fetchStoreDetail(storeId) {
-  const payload = await fetchJson(`${DETAIL_URL}${encodeURIComponent(storeId)}`);
+async function fetchStoreDetailByLang(storeId, lang) {
+  const detailUrl = lang === "en" ? DETAIL_URL_EN : DETAIL_URL_ZH;
+  const payload = await fetchJson(`${detailUrl}${encodeURIComponent(storeId)}`);
   return findObject(payload, (item) => getStoreId(item) === storeId) ?? payload?.data ?? payload;
 }
 
-function mapStoreToGymRow(detail, districtOverrides) {
-  const storeId = getStoreId(detail);
-  const names = splitLocalized(detail.storeName ?? detail.name ?? detail.store_name);
-  const addresses = splitLocalized(detail.address ?? detail.storeAddress ?? detail.store_address);
-  const name = names.en ?? names.zh ?? `24/7 Fitness ${storeId}`;
-  const nameZh = names.zh ?? null;
-  const address = addresses.en ?? addresses.zh ?? null;
-  const addressZh = addresses.zh ?? null;
+function mapStoreToGymRow(detailBundle, districtOverrides) {
+  const { detailZh, detailEn, listZh, listEn } = detailBundle;
+  const storeId = getStoreId(detailZh ?? detailEn ?? listZh ?? listEn);
+  const names = resolveLocalizedText(detailZh ?? detailEn ?? {}, [
+    ["storeName", "storeNameEn", "storeNameZh", "storeNameTc", "storeNameSc"],
+    ["name", "nameEn", "nameZh", "nameTc", "nameSc"],
+    ["store_name", "store_name_en", "store_name_zh", "store_name_tc", "store_name_sc"],
+  ]);
+  const addresses = resolveLocalizedText(detailEn ?? detailZh ?? {}, [
+    ["address", "addressEn", "addressZh", "addressTc", "addressSc"],
+    ["storeAddress", "storeAddressEn", "storeAddressZh", "storeAddressTc", "storeAddressSc"],
+    ["store_address", "store_address_en", "store_address_zh", "store_address_tc", "store_address_sc"],
+  ]);
+  const listNameZh = getString(listZh?.storeName);
+  const listNameEn = getString(listEn?.storeName);
+  const detailNameEn = getString(detailEn?.storeName);
+  const detailNameZh = getString(detailZh?.storeName);
+  const detailAddressEn = getString(detailEn?.address);
+  const detailAddressZh = getString(detailZh?.address);
+
+  const nameEnCandidate =
+    firstMatching([detailNameEn, listNameEn, names.en, detailNameZh, listNameZh, names.zh], (value) =>
+      isLikelyEnglish(value)
+    ) ?? detailNameEn ?? listNameEn ?? names.en ?? detailNameZh ?? listNameZh ?? names.zh;
+  const nameZhCandidate =
+    firstMatching([listNameZh, detailNameZh, names.zh, listNameEn, detailNameEn], (value) =>
+      containsCjk(value)
+    ) ?? null;
+
+  const addressEnCandidate =
+    firstMatching([detailAddressEn, detailAddressZh, addresses.en, addresses.zh], (value) =>
+      isLikelyEnglish(value)
+    ) ?? detailAddressEn ?? detailAddressZh ?? addresses.en ?? addresses.zh ?? null;
+  const addressZhCandidate =
+    firstMatching([detailAddressZh, detailAddressEn, addresses.zh], (value) => containsCjk(value)) ??
+    null;
+
+  const name = nameEnCandidate ?? `24/7 Fitness ${storeId}`;
+  const nameZh = nameZhCandidate;
+  const address = addressEnCandidate;
+  const addressZh = addressZhCandidate;
   const slug = toSlug(["24-7-fitness", name, storeId].filter(Boolean).join(" "));
-  const lat = toNumber(detail.latitude ?? detail.lat);
-  const lng = toNumber(detail.longitude ?? detail.lng ?? detail.lon);
-  const status = toNumber(detail.status);
+  const lat = toNumber((detailEn ?? detailZh)?.latitude ?? (detailEn ?? detailZh)?.lat);
+  const lng = toNumber(
+    (detailEn ?? detailZh)?.longitude ?? (detailEn ?? detailZh)?.lng ?? (detailEn ?? detailZh)?.lon
+  );
+  const status = toNumber((detailEn ?? detailZh)?.status ?? listEn?.status ?? listZh?.status);
 
   return {
     name: `24/7 Fitness ${name}`,
@@ -199,10 +239,28 @@ function mapStoreToGymRow(detail, districtOverrides) {
     district_code:
       districtOverrides[String(storeId)] ??
       districtOverrides[slug] ??
-      inferDistrictCode([name, nameZh, address, addressZh].filter(Boolean).join(" ")),
+      inferDistrictCode(
+        [
+          name,
+          nameZh,
+          address,
+          addressZh,
+          detailZh?.areaName,
+          detailEn?.areaName,
+        ]
+          .filter(Boolean)
+          .join(" ")
+      ),
     country_code: "HK",
     website_url: SOURCE_URL,
-    contact_phone: normalizePhone(detail.mobile ?? detail.phone ?? detail.tel),
+    contact_phone: normalizePhone(
+      detailEn?.mobile ??
+        detailEn?.phone ??
+        detailEn?.tel ??
+        detailZh?.mobile ??
+        detailZh?.phone ??
+        detailZh?.tel
+    ),
     lat,
     lng,
     is_active: status === null ? true : status === 1,
@@ -311,14 +369,29 @@ function buildNullEquipmentFields() {
 }
 
 async function fetchStoreDetailsFromApi() {
-  const stores = await fetchStoreList();
-  const limitedStores = args.limit ? stores.slice(0, Number(args.limit)) : stores;
+  const [storesZh, storesEn] = await Promise.all([
+    fetchStoreList(LIST_URL_ZH),
+    fetchStoreList(LIST_URL_EN),
+  ]);
+  const storesByIdZh = new Map(storesZh.map((store) => [getStoreId(store), store]));
+  const storesByIdEn = new Map(storesEn.map((store) => [getStoreId(store), store]));
+  const storeIds = Array.from(new Set([...storesByIdZh.keys(), ...storesByIdEn.keys()])).filter(Boolean);
+  const limitedStoreIds = args.limit ? storeIds.slice(0, Number(args.limit)) : storeIds;
   const details = [];
 
-  for (const store of limitedStores) {
-    const storeId = getStoreId(store);
+  for (const storeId of limitedStoreIds) {
     if (!storeId) continue;
-    details.push(await fetchStoreDetail(storeId));
+    const [detailZh, detailEn] = await Promise.all([
+      fetchStoreDetailByLang(storeId, "zh-hk"),
+      fetchStoreDetailByLang(storeId, "en"),
+    ]);
+    details.push({
+      storeId,
+      listZh: storesByIdZh.get(storeId) ?? null,
+      listEn: storesByIdEn.get(storeId) ?? null,
+      detailZh: detailZh ?? null,
+      detailEn: detailEn ?? null,
+    });
   }
 
   return details;
@@ -337,6 +410,83 @@ function splitLocalized(value) {
     zhHans: parts[2] ?? null,
   };
 }
+
+function resolveLocalizedText(source, keyGroups) {
+  for (const keys of keyGroups) {
+    const parsed = parseLocalizedCandidate(source, keys);
+    if (parsed.en || parsed.zh) return parsed;
+  }
+  return { zh: null, en: null, zhHans: null };
+}
+
+function parseLocalizedCandidate(source, keys) {
+  const bySuffix = {
+    en: null,
+    zh: null,
+    zhHans: null,
+  };
+
+  for (const key of keys) {
+    const value = getString(source?.[key]);
+    if (!value) continue;
+
+    if (/(zh|tc)$/i.test(key)) {
+      bySuffix.zh ??= value;
+      continue;
+    }
+    if (/(sc)$/i.test(key)) {
+      bySuffix.zhHans ??= value;
+      continue;
+    }
+    if (/(en)$/i.test(key)) {
+      bySuffix.en ??= value;
+      continue;
+    }
+
+    const split = splitLocalized(value);
+    if (split.zh || split.en || split.zhHans) {
+      bySuffix.zh ??= split.zh;
+      bySuffix.en ??= split.en;
+      bySuffix.zhHans ??= split.zhHans;
+      continue;
+    }
+
+    if (containsCjk(value)) {
+      bySuffix.zh ??= value;
+    } else {
+      bySuffix.en ??= value;
+    }
+  }
+
+  // Do not duplicate English into zh when the upstream payload lacks Chinese.
+  if (bySuffix.zh && bySuffix.en && normalizeComparable(bySuffix.zh) === normalizeComparable(bySuffix.en)) {
+    bySuffix.zh = null;
+  }
+
+  return bySuffix;
+}
+
+function containsCjk(value) {
+  return /[\u3400-\u9FFF]/.test(value);
+}
+
+function isLikelyEnglish(value) {
+  if (!value) return false;
+  return !containsCjk(value);
+}
+
+function firstMatching(values, predicate) {
+  for (const value of values) {
+    if (!value) continue;
+    if (predicate(value)) return value;
+  }
+  return null;
+}
+
+function normalizeComparable(value) {
+  return value.replace(/\s+/g, " ").trim().toLowerCase();
+}
+
 
 function inferDistrictCode(text) {
   const haystack = text.toLowerCase();
