@@ -87,8 +87,7 @@ pnpm import:efx24-hk --upsert
 The importer upserts on `slug`. It writes listing metadata plus explicit `null`
 equipment fields, and it does not mark any branch as equipment-verified.
 
-`SUPABASE_SECRET_KEY` is preferred for new Supabase API keys. The importer also
-accepts the legacy `SUPABASE_SERVICE_ROLE_KEY` as a fallback.
+Use `SUPABASE_SECRET_KEY` for upsert access.
 
 ## District Overrides
 

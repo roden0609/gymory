@@ -43,7 +43,7 @@ See [docs/deploy.md](docs/deploy.md) for:
 pnpm install
 
 # Copy env file and fill in your keys
-cp .env.example apps/web/.env.local
+cp apps/web/.env.example apps/web/.env.local
 
 # Start local dev
 pnpm dev:web

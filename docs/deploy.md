@@ -20,7 +20,7 @@ Required variable groups:
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
 - Server-only vars:
-  - `SUPABASE_SECRET_KEY` (or `SUPABASE_SERVICE_ROLE_KEY`)
+  - `SUPABASE_SECRET_KEY`
 
 Never expose server-only vars with `NEXT_PUBLIC_*`.
 

@@ -59,7 +59,7 @@ pnpm import:go24-fitness-hk --upsert
 Required env vars:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
-- `SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY`
+- `SUPABASE_SECRET_KEY`
 
 The importer upserts by `slug` and records approved import history in
 `gym_update_submissions`.

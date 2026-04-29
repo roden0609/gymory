@@ -801,12 +801,10 @@ async function loadDetailsFile(filePath) {
 
 async function upsertRows(rows) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const apiKey = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const apiKey = process.env.SUPABASE_SECRET_KEY;
 
   if (!supabaseUrl || !apiKey) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY or SUPABASE_SERVICE_ROLE_KEY for --upsert"
-    );
+    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY for --upsert");
   }
 
   await upsertGymsWithSubmissions({

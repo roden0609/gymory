@@ -11,6 +11,10 @@ out/
 .env
 .env.local
 .env.*.local
+apps/web/.env.local
+apps/web/.env.dev
+apps/web/.env.prod
+apps/web/.env.*.local
 
 # Turbo cache
 .turbo/
