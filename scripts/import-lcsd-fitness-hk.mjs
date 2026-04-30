@@ -420,6 +420,7 @@ function mapEquipmentToSchema(items) {
   let exerciseBikeCount = 0;
   let rowerCount = 0;
   let climberCount = 0;
+  let skiErgCount = 0;
   let latPulldownCount = 0;
   let chestPressCount = 0;
   let legPressCount = 0;
@@ -441,6 +442,11 @@ function mapEquipmentToSchema(items) {
   let hasHipAbductorMachine = false;
   let hasHipAdductorMachine = false;
   let hasShoulderPressMachine = false;
+  let hasLateralRaiseMachine = false;
+  let hasMultiPressMachine = false;
+  let hasMultiHipMachine = false;
+  let hasStretchingMachine = false;
+  let hasEllipticalMachine = false;
   let hasPecDeckMachine = false;
   let hasChestFlyMachine = false;
   let hasBicepCurlMachine = false;
@@ -471,16 +477,23 @@ function mapEquipmentToSchema(items) {
       exerciseBikeCount += count;
       matched = true;
     }
-    if (/rower|rowing machine|rowing ergometer|划艇機/.test(canonical)) {
+    if (/rower|rowing machine|rowing ergometer|rowing|划艇機/.test(canonical)) {
       rowerCount += count;
       matched = true;
     }
-    if (/stair climber|stepping machine|stepper|climber|橢圓|elliptical|cross trainer|arc trainer/.test(canonical)) {
+    if (/stair climber|stairmaster|stepping machine|stepper|climber|橢圓|elliptical|cross trainer|arc trainer/.test(canonical)) {
       climberCount += count;
+      if (/elliptical|cross trainer|arc trainer|橢圓/.test(canonical)) {
+        hasEllipticalMachine = true;
+      }
       matched = true;
     }
-    if (/lat pull|lat pulldown|pull down|pulldown|高拉力/.test(canonical)) {
+    if (/lat pull|lat pulldown|pull down|pull-down|pulldown|高拉力/.test(canonical)) {
       latPulldownCount += count;
+      hasLatPulldownMachine = true;
+      matched = true;
+    }
+    if (/lat row|lat \/ row|traditional lat row|multi lat machine/.test(canonical)) {
       hasLatPulldownMachine = true;
       matched = true;
     }
@@ -515,31 +528,41 @@ function mapEquipmentToSchema(items) {
       hasDipStation = true;
       matched = true;
     }
-    if (/leg extension|提腿|屈腿/.test(canonical)) {
+    if (/leg extension|knee extension|提腿|屈腿/.test(canonical)) {
       hasLegExtensionMachine = true;
       matched = true;
     }
-    if (/seated leg curl/.test(canonical)) {
+    if (/seated leg curl|seated knee flexion/.test(canonical)) {
       hasSeatedLegCurlMachine = true;
       matched = true;
     } else if (/leg curl/.test(canonical)) {
       hasLyingLegCurlMachine = true;
       matched = true;
     }
-    if (/back extension|lower back|後腰|back machine|back raise/.test(canonical)) {
+    if (/back extension|standing back hyperextension|ab low back|lower back|後腰|back machine|back raise/.test(canonical)) {
       hasBackExtensionMachine = true;
       matched = true;
     }
-    if (/hip abduction|abductor|inner outer thigh|multi hip|rotary hip/.test(canonical)) {
+    if (/hip abduction|abductor|inner outer thigh|outer thigh|multi hip|rotary hip/.test(canonical)) {
       hasHipAbductorMachine = true;
+      if (/multi hip/.test(canonical)) hasMultiHipMachine = true;
       matched = true;
     }
-    if (/hip adduction|adductor|inner outer thigh|multi hip|rotary hip/.test(canonical)) {
+    if (/hip adduction|adductor|inner outer thigh|dual inner|multi hip|rotary hip/.test(canonical)) {
       hasHipAdductorMachine = true;
+      if (/multi hip/.test(canonical)) hasMultiHipMachine = true;
       matched = true;
     }
     if (/shoulder press|overhead press|推膊|chest shoulder press/.test(canonical)) {
       hasShoulderPressMachine = true;
+      matched = true;
+    }
+    if (/deltoid raise|lateral raise/.test(canonical)) {
+      hasLateralRaiseMachine = true;
+      matched = true;
+    }
+    if (/multi press/.test(canonical)) {
+      hasMultiPressMachine = true;
       matched = true;
     }
     if (/pec fly|rear fly|butterfly|蝴蝶式胸肌|pectoral fly|fly/.test(canonical)) {
@@ -547,7 +570,7 @@ function mapEquipmentToSchema(items) {
       hasChestFlyMachine = true;
       matched = true;
     }
-    if (/bicep|arm curl/.test(canonical)) {
+    if (/bicep|arm curl|scott curl/.test(canonical)) {
       hasBicepCurlMachine = true;
       matched = true;
     }
@@ -563,13 +586,18 @@ function mapEquipmentToSchema(items) {
       hasMedicineBall = true;
       matched = true;
     }
-    if (/abdominal|crunch|torso rotation|rotary torso|vertical knee raise|leg raise chair/.test(canonical)) {
+    if (/abdominal|crunch|sit up board|leg raise|knee raise station|torso rotation|rotary torso|vertical knee raise|leg raise chair/.test(canonical)) {
       matched = true;
     }
     if (/stretch trainer|stretch machine|stretcher|body stretch|trebistretch/.test(canonical)) {
+      hasStretchingMachine = true;
       matched = true;
     }
     if (/scale|digital weight scale/.test(canonical)) {
+      matched = true;
+    }
+    if (/skierg indoor skiing machine|ski erg|ski-erg|skierg/.test(canonical)) {
+      skiErgCount += count;
       matched = true;
     }
     if (/upper body ergometer|krank cycle|natural runner/.test(canonical)) {
@@ -593,6 +621,7 @@ function mapEquipmentToSchema(items) {
     exercise_bike_count: exerciseBikeCount > 0 ? exerciseBikeCount : null,
     rower_count: rowerCount > 0 ? rowerCount : null,
     climber_count: climberCount > 0 ? climberCount : null,
+    ski_erg_count: skiErgCount > 0 ? skiErgCount : null,
     cable_machine_count: cableMachineCount > 0 ? cableMachineCount : null,
     lat_pulldown_count: latPulldownCount > 0 ? latPulldownCount : null,
     chest_press_count: chestPressCount > 0 ? chestPressCount : null,
@@ -610,6 +639,11 @@ function mapEquipmentToSchema(items) {
     has_back_extension_machine: hasBackExtensionMachine ? true : null,
     has_hip_abductor_machine: hasHipAbductorMachine ? true : null,
     has_hip_adductor_machine: hasHipAdductorMachine ? true : null,
+    has_lateral_raise_machine: hasLateralRaiseMachine ? true : null,
+    has_multi_press_machine: hasMultiPressMachine ? true : null,
+    has_multi_hip_machine: hasMultiHipMachine ? true : null,
+    has_stretching_machine: hasStretchingMachine ? true : null,
+    has_elliptical_machine: hasEllipticalMachine ? true : null,
     has_shoulder_press_machine: hasShoulderPressMachine ? true : null,
     has_pec_deck_machine: hasPecDeckMachine ? true : null,
     has_chest_fly_machine: hasChestFlyMachine ? true : null,
@@ -639,20 +673,44 @@ function canonicalizeEquipmentName(normalized) {
     .replace(/\barm curl \/ arm extension machine\b/g, "arm curl tricep")
     .replace(/\binner\s*\/\s*outer thigh machine\b/g, "inner outer thigh")
     .replace(/\binner\/outer thigh machine\b/g, "inner outer thigh")
+    .replace(/\bdual inner\b/g, "dual inner")
+    .replace(/\bouter thigh\b/g, "outer thigh")
+    .replace(/\btroso rotation\b/g, "torso rotation")
+    .replace(/\bkeen raise station\b/g, "knee raise station")
+    .replace(/\blet extension \/ curl\b/g, "leg extension leg curl")
+    .replace(/\bdeltoid raise machine\b/g, "deltoid raise")
+    .replace(/\bdeltoid raise\b/g, "lateral raise")
     .replace(/\bmulti-functional muscle trainer\b/g, "multi functional trainer")
     .replace(/\bmulti-functional muscle trainers\b/g, "multi functional trainer")
     .replace(/\bmulti-press machine\b/g, "multi press machine")
     .replace(/\bmulti-press\b/g, "multi press machine")
+    .replace(/\bmulti press\b/g, "multi press machine")
+    .replace(/\brow\/ rear delt\b/g, "rear fly")
+    .replace(/\brear\/ delt row\b/g, "rear fly")
+    .replace(/\brow rear delt\b/g, "rear fly")
+    .replace(/\blat \/ row\b/g, "lat row")
+    .replace(/\btraditional lat\/row\b/g, "traditional lat row")
+    .replace(/\btraditional lat \/ row\b/g, "traditional lat row")
+    .replace(/\bdual traditional lat\/row\b/g, "traditional lat row")
+    .replace(/\bmulti-lat machine\b/g, "multi lat machine")
     .replace(/\bpulldown\b/g, "lat pulldown")
     .replace(/\bpull down\b/g, "lat pulldown")
     .replace(/\bstepping machine\b/g, "stepper")
     .replace(/\bstretch machine\b/g, "stretch trainer")
+    .replace(/\bstretching machine\b/g, "stretch trainer")
     .replace(/\bstretcher trainer\b/g, "stretch trainer")
     .replace(/\bstretcher\b/g, "stretch trainer")
     .replace(/\bweighting scale\b/g, "scale")
     .replace(/\bdigital weight scale with height measuring sensor\b/g, "scale")
     .replace(/\bupper body ergometer \*\b/g, "upper body ergometer")
     .replace(/\bkrank cycle \*\b/g, "krank cycle")
+    .replace(/\bcross-trainer\b/g, "cross trainer")
+    .replace(/\bcrosstrainer\b/g, "cross trainer")
+    .replace(/\bmulti-hip machine\b/g, "multi hip")
+    .replace(/\bmulti-hip station\b/g, "multi hip")
+    .replace(/\bmulti-hip\b/g, "multi hip")
+    .replace(/\bmulti-hip\b/g, "multi hip")
+    .replace(/\bmulti hip\b/g, "multi hip")
     .trim();
 }
 
@@ -731,6 +789,11 @@ function buildNullEquipmentFields() {
     has_reverse_fly_machine: null,
     has_shoulder_press_machine: null,
     has_iso_lateral_shoulder_press_machine: null,
+    has_multi_press_machine: null,
+    has_multi_hip_machine: null,
+    has_stretching_machine: null,
+    has_elliptical_machine: null,
+    has_mobility_stick: null,
     has_hip_abductor_machine: null,
     has_hip_adductor_machine: null,
     has_leg_extension_machine: null,
