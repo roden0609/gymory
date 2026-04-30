@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useCallback, useMemo, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { EQUIPMENT_BRANDS, HK_DISTRICTS } from "@gymory/shared";
@@ -133,6 +133,8 @@ const ALL_CHECKBOX_FILTERS = CHECKBOX_SECTIONS.flatMap(
   (section) => section.filters
 );
 
+const FILTER_DEBOUNCE_MS = 300;
+
 export function SearchFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -213,7 +215,7 @@ export function SearchFilters() {
     });
   }, []);
 
-  const applyFilters = useCallback(() => {
+  const nextQueryString = useMemo(() => {
     const params = new URLSearchParams();
     if (currentView === "map" || currentView === "split") {
       params.set("view", currentView);
@@ -230,23 +232,37 @@ export function SearchFilters() {
     if (selectedBrandSlugs.length > 0) {
       params.set("brandSlugs", selectedBrandSlugs.join(","));
     }
-    params.delete("page");
-    params.delete("pageSize");
     selectedFilters.forEach((param) => params.set(param, "true"));
-
-    const queryString = params.toString();
-    router.push(queryString ? `/search?${queryString}` : "/search");
+    return params.toString();
   }, [
-    district,
     currentView,
+    district,
     minDumbbellWeight,
     minPlateWeight,
     minPlatformCount,
     minRackCount,
-    router,
     selectedBrandSlugs,
     selectedFilters,
   ]);
+
+  useEffect(() => {
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.delete("page");
+    currentParams.delete("pageSize");
+    const currentFilterQuery = currentParams.toString();
+
+    if (nextQueryString === currentFilterQuery) return;
+
+    const timer = window.setTimeout(() => {
+      router.replace(nextQueryString ? `/search?${nextQueryString}` : "/search");
+    }, FILTER_DEBOUNCE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [nextQueryString, router, searchParams]);
+
+  const applyFiltersNow = useCallback(() => {
+    router.replace(nextQueryString ? `/search?${nextQueryString}` : "/search");
+  }, [nextQueryString, router]);
 
   const clearFilters = useCallback(() => {
     setDistrict("");
@@ -256,13 +272,7 @@ export function SearchFilters() {
     setMinPlateWeight("");
     setSelectedBrandSlugs([]);
     setSelectedFilters(new Set());
-    const params = new URLSearchParams();
-    if (currentView === "map" || currentView === "split") {
-      params.set("view", currentView);
-    }
-    const query = params.toString();
-    router.push(query ? `/search?${query}` : "/search");
-  }, [currentView, router]);
+  }, []);
 
   return (
     <aside className="w-full shrink-0 md:w-72">
@@ -365,7 +375,7 @@ export function SearchFilters() {
 
         <div className="flex flex-col gap-2 pt-1">
           <button
-            onClick={applyFilters}
+            onClick={applyFiltersNow}
             className="w-full rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
           >
             {tCommon("search")}
