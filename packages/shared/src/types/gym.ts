@@ -95,7 +95,6 @@ export interface Gym {
   lat_pulldown_count: number | null;
   chest_press_count: number | null;
   leg_press_count: number | null;
-  hack_squat_count: number | null;
 
   // Full body machine
   smith_machine_count: number | null;
@@ -151,6 +150,7 @@ export interface Gym {
   has_seated_leg_curl_machine: boolean | null;
   has_seated_calf_raise_machine: boolean | null;
   has_squat_machine: boolean | null;
+  has_hack_squat: boolean | null;
   has_standing_calf_raise_machine: boolean | null;
 
   // Other equipment

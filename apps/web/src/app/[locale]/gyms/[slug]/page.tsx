@@ -229,6 +229,18 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
       label: t("plateMax"),
       value: formatWeight(gym.plate_max_weight_kg, t("notListed")),
     },
+    {
+      label: t("preacherCurlBench"),
+      value: formatCount(gym.preacher_curl_bench_count, t("notListed")),
+    },
+    {
+      label: t("overheadPressChair"),
+      value: formatCount(gym.overhead_press_chair_count, t("notListed")),
+    },
+    {
+      label: t("abCrunchBench"),
+      value: formatCount(gym.ab_crunch_bench_count, t("notListed")),
+    },
   ];
 
   const freeWeightFeatures = [
@@ -357,16 +369,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     { label: t("smithMachine"), value: formatCount(gym.smith_machine_count, t("notListed")) },
   ];
 
-  const otherMachines = [
-    { label: t("abCrunchBench"), value: formatCount(gym.ab_crunch_bench_count, t("notListed")) },
-  ];
+  const otherMachines: Array<{ label: string; value: string }> = [];
 
-  const armMachineCounts = [
-    {
-      label: t("preacherCurlBench"),
-      value: formatCount(gym.preacher_curl_bench_count, t("notListed")),
-    },
-  ];
+  const armMachineCounts: Array<{ label: string; value: string }> = [];
 
   const armMachines = [
     [t("bicepCurlMachine"), gym.has_bicep_curl_machine],
@@ -405,12 +410,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
 
-  const shoulderMachineCounts = [
-    {
-      label: t("overheadPressChair"),
-      value: formatCount(gym.overhead_press_chair_count, t("notListed")),
-    },
-  ];
+  const shoulderMachineCounts: Array<{ label: string; value: string }> = [];
 
   const legMachines = [
     [t("multiHipMachine"), gym.has_multi_hip_machine],
@@ -423,14 +423,11 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("seatedLegCurlMachine"), gym.has_seated_leg_curl_machine],
     [t("seatedCalfRaiseMachine"), gym.has_seated_calf_raise_machine],
     [t("squatMachine"), gym.has_squat_machine],
+    [t("hackSquatMachine"), gym.has_hack_squat],
     [t("standingCalfRaiseMachine"), gym.has_standing_calf_raise_machine],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
-
-  const legMachineCounts = [
-    { label: t("hackSquat"), value: formatCount(gym.hack_squat_count, t("notListed")) },
-  ];
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -568,10 +565,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           </Section>
 
           <Section title={t("legMachine")}>
-            <ValueGrid items={legMachineCounts} />
-            <div className="mt-4">
-              <FeaturePills items={legMachines} fallback={t("notListed")} />
-            </div>
+            <FeaturePills items={legMachines} fallback={t("notListed")} />
           </Section>
 
           <Section title={t("otherMachine")}>

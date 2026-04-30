@@ -229,7 +229,6 @@ export function SubmitGymForm({
   const machineCountFields = [
     ["cable_machine_count", t("cableMachineCount")],
     ["smith_machine_count", t("smithMachineCount")],
-    ["hack_squat_count", t("hackSquatCount")],
     ["ab_crunch_bench_count", t("abCrunchBenchCount")],
     ["preacher_curl_bench_count", t("preacherCurlBenchCount")],
     ["overhead_press_chair_count", t("overheadPressChairCount")],
@@ -317,6 +316,7 @@ export function SubmitGymForm({
         ["has_seated_leg_curl_machine", tGym("seatedLegCurlMachine")],
         ["has_seated_calf_raise_machine", tGym("seatedCalfRaiseMachine")],
         ["has_squat_machine", tGym("squatMachine")],
+        ["has_hack_squat", t("hackSquatMachine")],
         ["has_standing_calf_raise_machine", tGym("standingCalfRaiseMachine")],
       ],
     },
@@ -491,7 +491,6 @@ export function SubmitGymForm({
         smith_machine_count: toNumber(
           String(formData.get("smith_machine_count") ?? "")
         ),
-        hack_squat_count: toNumber(String(formData.get("hack_squat_count") ?? "")),
         ab_crunch_bench_count: toNumber(
           String(formData.get("ab_crunch_bench_count") ?? "")
         ),

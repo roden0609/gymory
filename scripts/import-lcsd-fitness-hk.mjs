@@ -760,7 +760,7 @@ function buildNullEquipmentFields() {
     lat_pulldown_count: null,
     chest_press_count: null,
     leg_press_count: null,
-    hack_squat_count: null,
+    has_hack_squat: null,
     smith_machine_count: null,
     has_smith_machine: null,
     has_deadlift_platform: null,
