@@ -254,8 +254,12 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     { label: t("climber"), value: formatCount(gym.climber_count, t("notListed")) },
   ];
 
-  const hyrox = [
-    { label: t("assaultRunner"), value: formatCount(gym.assault_runner_count, t("notListed")) },
+  const hyroxRace = {
+    label: t("assaultRunner"),
+    value: formatCount(gym.assault_runner_count, t("notListed")),
+  };
+
+  const hyroxStations = [
     { label: t("skiErg"), value: formatCount(gym.ski_erg_count, t("notListed")) },
     { label: t("sled"), value: formatCount(gym.sled_count, t("notListed")) },
     { label: t("rower"), value: formatCount(gym.rower_count, t("notListed")) },
@@ -498,7 +502,17 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           </Section>
 
           <Section title={t("hyrox")}>
-            <ValueGrid items={hyrox} />
+            <div className="mb-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="flex items-start justify-between gap-3 rounded-lg bg-gray-50 px-3 py-2 text-sm">
+                <span className="shrink-0 text-gray-600">{hyroxRace.label}</span>
+                <span className="min-w-0 text-right font-medium text-gray-900 break-words [overflow-wrap:anywhere]">
+                  {hyroxRace.value}
+                </span>
+              </div>
+              <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
+              <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
+            </div>
+            <ValueGrid items={hyroxStations} />
           </Section>
 
           <Section title={t("cable")}>
