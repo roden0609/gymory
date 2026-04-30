@@ -17,10 +17,8 @@ import { getAuth } from "firebase-admin/auth";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-await loadEnvFiles([
-  path.resolve(__dirname, "../.env.local"),
-  path.resolve(__dirname, "../apps/web/.env.local"),
-]);
+await loadEnvFiles(["apps/web/.env.dev"]);
+// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const args = parseArgs(process.argv.slice(2));
 

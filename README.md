@@ -180,3 +180,31 @@ pnpm import:go24-fitness-hk --upsert
 
 This importer writes `data/imports/go24-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
 For full notes and override handling, see `docs/data/go24-fitness-hk-import.md`.
+
+## LCSD Fitness Rooms HK import
+
+Generate the latest LCSD Fitness Rooms Hong Kong baseline file:
+
+```bash
+pnpm import:lcsd-fitness-hk
+```
+
+Save the parsed LCSD detail snapshot during the run:
+
+```bash
+pnpm import:lcsd-fitness-hk --details-out data/imports/raw-lcsd-fitness-hk-details.json
+```
+
+Rebuild from a saved LCSD detail snapshot:
+
+```bash
+pnpm import:lcsd-fitness-hk --details-file data/imports/raw-lcsd-fitness-hk-details.json
+```
+
+Upsert imported rows into Supabase:
+
+```bash
+pnpm import:lcsd-fitness-hk --upsert
+```
+
+This importer writes `data/imports/lcsd-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.

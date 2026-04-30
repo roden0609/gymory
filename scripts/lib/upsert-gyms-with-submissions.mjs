@@ -22,14 +22,15 @@ export async function upsertGymsWithSubmissions({
       continue;
     }
 
-    const changedFields = buildChangedFields(existing, row);
+    const nextRow = buildUpsertRow(existing, row, actorType);
+    const changedFields = buildChangedFields(existing, nextRow);
     if (!changedFields) continue;
 
     const updated = await updateGym({
       supabaseUrl,
       apiKey,
       gymId: existing.id,
-      row,
+      row: nextRow,
     });
 
     await insertSubmission({
@@ -43,6 +44,19 @@ export async function upsertGymsWithSubmissions({
       changedFields,
     });
   }
+}
+
+function buildUpsertRow(existing, row, actorType) {
+  if (!existing || actorType !== "import") return row;
+
+  const nextRow = { ...row };
+  for (const [key, value] of Object.entries(nextRow)) {
+    if (value !== null) continue;
+    if (existing[key] === null || existing[key] === undefined) continue;
+    delete nextRow[key];
+  }
+
+  return nextRow;
 }
 
 async function fetchGymBySlug({ supabaseUrl, apiKey, slug }) {
@@ -155,6 +169,7 @@ function buildChangedFields(existing, nextRow) {
 
   for (const [key, value] of Object.entries(nextRow)) {
     if (
+      key === "data_source" ||
       key === "created_at" ||
       key === "updated_at" ||
       key === "last_reported_at"

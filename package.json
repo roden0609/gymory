@@ -13,6 +13,7 @@
     "import:247-fitness-hk": "node scripts/import-247-fitness-hk.mjs",
     "import:efx24-hk": "node scripts/import-efx24-hk.mjs",
     "import:go24-fitness-hk": "node scripts/import-go24-fitness-hk.mjs",
+    "import:lcsd-fitness-hk": "node scripts/import-lcsd-fitness-hk.mjs",
     "firebase:set-claims": "pnpm --filter web exec node scripts/set-firebase-custom-claims.mjs"
   },
   "devDependencies": {

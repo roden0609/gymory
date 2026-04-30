@@ -151,6 +151,7 @@ export function buildChangedFields(
   const changed: JsonRecord = {};
   for (const [key, value] of Object.entries(after)) {
     if (
+      key === "data_source" ||
       key === "created_at" ||
       key === "updated_at" ||
       key === "last_reported_at"
