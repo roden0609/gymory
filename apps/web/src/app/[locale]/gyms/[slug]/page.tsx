@@ -129,10 +129,12 @@ function ValueGrid({
       {items.map((item) => (
         <div
           key={item.label}
-          className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
+          className="flex items-start justify-between gap-3 rounded-lg bg-gray-50 px-3 py-2 text-sm"
         >
-          <span className="text-gray-600">{item.label}</span>
-          <span className="font-medium text-gray-900">{item.value}</span>
+          <span className="shrink-0 text-gray-600">{item.label}</span>
+          <span className="min-w-0 text-right font-medium text-gray-900 break-words [overflow-wrap:anywhere]">
+            {item.value}
+          </span>
         </div>
       ))}
     </div>
@@ -255,32 +257,17 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const hyrox = [
     { label: t("assaultRunner"), value: formatCount(gym.assault_runner_count, t("notListed")) },
     { label: t("skiErg"), value: formatCount(gym.ski_erg_count, t("notListed")) },
-    { label: t("rower"), value: formatCount(gym.rower_count, t("notListed")) },
     { label: t("sled"), value: formatCount(gym.sled_count, t("notListed")) },
-    { label: t("wallBall4kg"), value: formatCount(gym.wall_ball_4kg_count, t("notListed")) },
-    { label: t("wallBall6kg"), value: formatCount(gym.wall_ball_6kg_count, t("notListed")) },
-    { label: t("wallBall9kg"), value: formatCount(gym.wall_ball_9kg_count, t("notListed")) },
-    { label: t("sandbag10kg"), value: formatCount(gym.sandbag_10kg_count, t("notListed")) },
-    { label: t("sandbag20kg"), value: formatCount(gym.sandbag_20kg_count, t("notListed")) },
-    { label: t("sandbag30kg"), value: formatCount(gym.sandbag_30kg_count, t("notListed")) },
+    { label: t("rower"), value: formatCount(gym.rower_count, t("notListed")) },
     { label: t("kettlebell16kg"), value: formatCount(gym.kettlebell_16kg_count, t("notListed")) },
     { label: t("kettlebell24kg"), value: formatCount(gym.kettlebell_24kg_count, t("notListed")) },
     { label: t("kettlebell32kg"), value: formatCount(gym.kettlebell_32kg_count, t("notListed")) },
-    {
-      label: t("sandbagSummary"),
-      value: formatAvailableWeightsSummary({
-        availableLabel: t("available"),
-        notListedLabel: t("notListed"),
-        weights: [
-          { kg: 5, count: gym.sandbag_5kg_count },
-          { kg: 10, count: gym.sandbag_10kg_count },
-          { kg: 15, count: gym.sandbag_15kg_count },
-          { kg: 20, count: gym.sandbag_20kg_count },
-          { kg: 25, count: gym.sandbag_25kg_count },
-          { kg: 30, count: gym.sandbag_30kg_count },
-        ],
-      }),
-    },
+    { label: t("sandbag10kg"), value: formatCount(gym.sandbag_10kg_count, t("notListed")) },
+    { label: t("sandbag20kg"), value: formatCount(gym.sandbag_20kg_count, t("notListed")) },
+    { label: t("sandbag30kg"), value: formatCount(gym.sandbag_30kg_count, t("notListed")) },
+    { label: t("wallBall4kg"), value: formatCount(gym.wall_ball_4kg_count, t("notListed")) },
+    { label: t("wallBall6kg"), value: formatCount(gym.wall_ball_6kg_count, t("notListed")) },
+    { label: t("wallBall9kg"), value: formatCount(gym.wall_ball_9kg_count, t("notListed")) },
     {
       label: t("kettlebellSummary"),
       value: formatAvailableWeightsSummary({
@@ -298,6 +285,34 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           { kg: 20, count: gym.kettlebell_20kg_count },
           { kg: 24, count: gym.kettlebell_24kg_count },
           { kg: 32, count: gym.kettlebell_32kg_count },
+        ],
+      }),
+    },
+    {
+      label: t("wallBallSummary"),
+      value: formatAvailableWeightsSummary({
+        availableLabel: t("available"),
+        notListedLabel: t("notListed"),
+        weights: [
+          { kg: 4, count: gym.wall_ball_4kg_count },
+          { kg: 6, count: gym.wall_ball_6kg_count },
+          { kg: 9, count: gym.wall_ball_9kg_count },
+          { kg: 10, count: gym.wall_ball_10kg_count },
+        ],
+      }),
+    },
+    {
+      label: t("sandbagSummary"),
+      value: formatAvailableWeightsSummary({
+        availableLabel: t("available"),
+        notListedLabel: t("notListed"),
+        weights: [
+          { kg: 5, count: gym.sandbag_5kg_count },
+          { kg: 10, count: gym.sandbag_10kg_count },
+          { kg: 15, count: gym.sandbag_15kg_count },
+          { kg: 20, count: gym.sandbag_20kg_count },
+          { kg: 25, count: gym.sandbag_25kg_count },
+          { kg: 30, count: gym.sandbag_30kg_count },
         ],
       }),
     },
