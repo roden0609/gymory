@@ -51,6 +51,7 @@ export interface Gym {
   assault_bike_count: number | null;
   exercise_bike_count: number | null;
   climber_count: number | null;
+  elliptical_machine_count: number | null;
 
   // HYROX
   assault_runner_count: number | null;
@@ -138,7 +139,6 @@ export interface Gym {
   has_multi_press_machine: boolean | null;
   has_multi_hip_machine: boolean | null;
   has_stretching_machine: boolean | null;
-  has_elliptical_machine: boolean | null;
   has_mobility_stick: boolean | null;
 
   // Leg machine

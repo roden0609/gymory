@@ -59,7 +59,6 @@ const FEATURE_FIELD_NAMES = [
   "has_multi_press_machine",
   "has_multi_hip_machine",
   "has_stretching_machine",
-  "has_elliptical_machine",
   "has_mobility_stick",
   "has_hip_abductor_machine",
   "has_hip_adductor_machine",
@@ -72,6 +71,7 @@ const FEATURE_FIELD_NAMES = [
   "has_squat_machine",
   "has_standing_calf_raise_machine",
   "has_battle_rope",
+  "has_resistance_band",
   "has_foam_roller",
   "has_medicine_ball",
   "has_dip_belt",
@@ -193,6 +193,7 @@ export function SubmitGymForm({
     ["assault_bike_count", t("assaultBikeCount")],
     ["exercise_bike_count", t("exerciseBikeCount")],
     ["climber_count", t("climberCount")],
+    ["elliptical_machine_count", t("ellipticalMachineCount")],
   ];
 
   const hyroxFields = [
@@ -228,6 +229,7 @@ export function SubmitGymForm({
   const machineCountFields = [
     ["cable_machine_count", t("cableMachineCount")],
     ["smith_machine_count", t("smithMachineCount")],
+    ["hack_squat_count", t("hackSquatCount")],
     ["ab_crunch_bench_count", t("abCrunchBenchCount")],
     ["preacher_curl_bench_count", t("preacherCurlBenchCount")],
     ["overhead_press_chair_count", t("overheadPressChairCount")],
@@ -329,8 +331,8 @@ export function SubmitGymForm({
         ["has_lifting_straps", tGym("liftingStraps")],
         ["has_plyo_box", tGym("plyoBox")],
         ["has_balance_ball", tGym("balanceBall")],
+        ["has_resistance_band", tGym("resistanceBands")],
         ["has_stretching_machine", tGym("stretchingMachine")],
-        ["has_elliptical_machine", tGym("ellipticalMachine")],
         ["has_mobility_stick", tGym("mobilityStick")],
       ],
     },
@@ -405,6 +407,9 @@ export function SubmitGymForm({
           String(formData.get("exercise_bike_count") ?? "")
         ),
         climber_count: toNumber(String(formData.get("climber_count") ?? "")),
+        elliptical_machine_count: toNumber(
+          String(formData.get("elliptical_machine_count") ?? "")
+        ),
         assault_runner_count: toNumber(
           String(formData.get("assault_runner_count") ?? "")
         ),
@@ -486,6 +491,7 @@ export function SubmitGymForm({
         smith_machine_count: toNumber(
           String(formData.get("smith_machine_count") ?? "")
         ),
+        hack_squat_count: toNumber(String(formData.get("hack_squat_count") ?? "")),
         ab_crunch_bench_count: toNumber(
           String(formData.get("ab_crunch_bench_count") ?? "")
         ),
@@ -501,6 +507,7 @@ export function SubmitGymForm({
             featureStates[name as FeatureFieldName] ?? null,
           ])
         ),
+        brand_slugs: selectedBrandSlugs,
       },
       brands: selectedBrandSlugs,
     };
