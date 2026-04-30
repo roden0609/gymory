@@ -358,6 +358,8 @@ function dedupeEquipmentItems(items) {
 function mapFacilityToGymRow(detail, districtOverrides) {
   const title = detail.name ?? detail.name_zh ?? `LCSD Fitness Room ${detail.id}`;
   const slug = toSlug(["lcsd", title, detail.id].filter(Boolean).join(" "));
+  const prefixedName = ensurePrefix(title, "LCSD ");
+  const prefixedNameZh = detail.name_zh ? ensurePrefix(detail.name_zh, "康文署") : null;
 
   const districtText = [
     detail.name,
@@ -377,8 +379,8 @@ function mapFacilityToGymRow(detail, districtOverrides) {
       : null;
 
   return {
-    name: title,
-    name_zh: detail.name_zh ?? null,
+    name: prefixedName,
+    name_zh: prefixedNameZh,
     slug,
     address: detail.address ?? null,
     address_zh: detail.address_zh ?? null,
@@ -398,6 +400,12 @@ function mapFacilityToGymRow(detail, districtOverrides) {
     ...buildNullEquipmentFields(),
     ...equipment,
   };
+}
+
+function ensurePrefix(value, prefix) {
+  const text = getString(value);
+  if (!text) return value;
+  return text.startsWith(prefix) ? text : `${prefix}${text}`;
 }
 
 function mapEquipmentToSchema(items) {
@@ -444,8 +452,9 @@ function mapEquipmentToSchema(items) {
 
   for (const item of items) {
     const normalized = normalizeComparableEquipmentName(item.name);
+    const canonical = canonicalizeEquipmentName(normalized);
     const count = toNumber(item.count);
-    if (!normalized || count === null) continue;
+    if (!normalized || !canonical || count === null) continue;
 
     const detectedMaxKg = detectDumbbellMaxKg(item.name);
     if (detectedMaxKg !== null) {
@@ -454,104 +463,122 @@ function mapEquipmentToSchema(items) {
 
     let matched = false;
 
-    if (/\btreadmill\b|跑步機/.test(normalized)) {
+    if (/\btreadmill\b|跑步機/.test(canonical)) {
       treadmillCount += count;
       matched = true;
     }
-    if (/\bbike\b|單車|靠背式單車/.test(normalized) && !/assault/.test(normalized)) {
+    if (/\bbike\b|cycle|單車|靠背式單車/.test(canonical) && !/assault/.test(canonical)) {
       exerciseBikeCount += count;
       matched = true;
     }
-    if (/rower|rowing machine|划艇機/.test(normalized)) {
+    if (/rower|rowing machine|rowing ergometer|划艇機/.test(canonical)) {
       rowerCount += count;
       matched = true;
     }
-    if (/stair climber|climber|橢圓|elliptical|cross trainer|arc trainer/.test(normalized)) {
+    if (/stair climber|stepping machine|stepper|climber|橢圓|elliptical|cross trainer|arc trainer/.test(canonical)) {
       climberCount += count;
       matched = true;
     }
-    if (/lat pull|lat pulldown|高拉力/.test(normalized)) {
+    if (/lat pull|lat pulldown|pull down|pulldown|高拉力/.test(canonical)) {
       latPulldownCount += count;
       hasLatPulldownMachine = true;
       matched = true;
     }
-    if (/chest press|chess press|推胸/.test(normalized)) {
+    if (/chest press|chess press|推胸/.test(canonical)) {
       chestPressCount += count;
       hasChestPressMachine = true;
       matched = true;
     }
-    if (/leg press|推腿/.test(normalized)) {
+    if (/leg press|推腿|撐腿/.test(canonical)) {
       legPressCount += count;
       hasLegPressMachine = true;
       matched = true;
     }
-    if (/bench/.test(normalized) && !/abdominal|crunch|dip/.test(normalized)) {
+    if (/bench/.test(canonical) && !/abdominal|crunch|dip/.test(canonical)) {
       benchCount += count;
       matched = true;
     }
-    if (/cable crossover|pulley|functional trainer|multi functional trainer|erocolina|traditional lat row/.test(normalized)) {
+    if (/cable crossover|pulley|functional trainer|multi functional trainer|erocolina|traditional lat row|dual adjustable pulley/.test(canonical)) {
       cableMachineCount += count;
       matched = true;
     }
-    if (/smith/.test(normalized)) {
+    if (/smith/.test(canonical)) {
       smithMachineCount += count;
       hasSmithMachine = true;
       matched = true;
     }
-    if (/chin up|chinning bar|chin up frame|pull up/.test(normalized)) {
+    if (/chin up|chinning bar|chin up frame|pull up|wall bar/.test(canonical)) {
       hasPullUpBar = true;
       matched = true;
     }
-    if (/dip/.test(normalized)) {
+    if (/dip/.test(canonical)) {
       hasDipStation = true;
       matched = true;
     }
-    if (/leg extension|提腿|屈腿/.test(normalized)) {
+    if (/leg extension|提腿|屈腿/.test(canonical)) {
       hasLegExtensionMachine = true;
       matched = true;
     }
-    if (/seated leg curl/.test(normalized)) {
+    if (/seated leg curl/.test(canonical)) {
       hasSeatedLegCurlMachine = true;
       matched = true;
-    } else if (/leg curl/.test(normalized)) {
+    } else if (/leg curl/.test(canonical)) {
       hasLyingLegCurlMachine = true;
       matched = true;
     }
-    if (/back extension|lower back|後腰|back machine/.test(normalized)) {
+    if (/back extension|lower back|後腰|back machine|back raise/.test(canonical)) {
       hasBackExtensionMachine = true;
       matched = true;
     }
-    if (/hip abduction|abductor|inner outer thigh/.test(normalized)) {
+    if (/hip abduction|abductor|inner outer thigh|multi hip|rotary hip/.test(canonical)) {
       hasHipAbductorMachine = true;
       matched = true;
     }
-    if (/hip adduction|adductor|inner outer thigh/.test(normalized)) {
+    if (/hip adduction|adductor|inner outer thigh|multi hip|rotary hip/.test(canonical)) {
       hasHipAdductorMachine = true;
       matched = true;
     }
-    if (/shoulder press|overhead press|推膊/.test(normalized)) {
+    if (/shoulder press|overhead press|推膊|chest shoulder press/.test(canonical)) {
       hasShoulderPressMachine = true;
       matched = true;
     }
-    if (/pec fly|rear fly|butterfly|蝴蝶式胸肌|pectoral fly/.test(normalized)) {
+    if (/pec fly|rear fly|butterfly|蝴蝶式胸肌|pectoral fly|fly/.test(canonical)) {
       hasPecDeckMachine = true;
       hasChestFlyMachine = true;
       matched = true;
     }
-    if (/bicep/.test(normalized)) {
+    if (/bicep|arm curl/.test(canonical)) {
       hasBicepCurlMachine = true;
       matched = true;
     }
-    if (/tricep/.test(normalized)) {
+    if (/tricep|arm extension/.test(canonical)) {
       hasTricepExtensionMachine = true;
       matched = true;
     }
-    if (/kettleball|kettlebell/.test(normalized)) {
+    if (/kettleball|kettlebell/.test(canonical)) {
       hasKettlebell = true;
       matched = true;
     }
-    if (/medicine ball/.test(normalized)) {
+    if (/medicine ball|fitball/.test(canonical)) {
       hasMedicineBall = true;
+      matched = true;
+    }
+    if (/abdominal|crunch|torso rotation|rotary torso|vertical knee raise|leg raise chair/.test(canonical)) {
+      matched = true;
+    }
+    if (/stretch trainer|stretch machine|stretcher|body stretch|trebistretch/.test(canonical)) {
+      matched = true;
+    }
+    if (/scale|digital weight scale/.test(canonical)) {
+      matched = true;
+    }
+    if (/upper body ergometer|krank cycle|natural runner/.test(canonical)) {
+      matched = true;
+    }
+    if (/dumbbell/.test(canonical)) {
+      matched = true;
+    }
+    if (/barbell/.test(canonical)) {
       matched = true;
     }
 
@@ -594,6 +621,39 @@ function mapEquipmentToSchema(items) {
     equipment_notes: unmatched.length > 0 ? `Unmapped LCSD equipment: ${unmatched.join("; ")}` : null,
     equipment_last_verified_at: new Date().toISOString(),
   };
+}
+
+function canonicalizeEquipmentName(normalized) {
+  if (!normalized) return normalized;
+
+  return normalized
+    .replace(/\brecumbent cycle\b/g, "recumbent bike")
+    .replace(/\bupright cycle\b/g, "upright bike")
+    .replace(/\bupright bikes\b/g, "upright bike")
+    .replace(/\bfly\s*\/\s*rear delt\b/g, "pec fly rear fly")
+    .replace(/\bfly\/rear delt\b/g, "pec fly rear fly")
+    .replace(/\brotary torso machine\b/g, "torso rotation")
+    .replace(/\brotary torso\b/g, "torso rotation")
+    .replace(/\barm curl machine\b/g, "arm curl")
+    .replace(/\barm curl \/ extension\b/g, "arm curl tricep")
+    .replace(/\barm curl \/ arm extension machine\b/g, "arm curl tricep")
+    .replace(/\binner\s*\/\s*outer thigh machine\b/g, "inner outer thigh")
+    .replace(/\binner\/outer thigh machine\b/g, "inner outer thigh")
+    .replace(/\bmulti-functional muscle trainer\b/g, "multi functional trainer")
+    .replace(/\bmulti-functional muscle trainers\b/g, "multi functional trainer")
+    .replace(/\bmulti-press machine\b/g, "multi press machine")
+    .replace(/\bmulti-press\b/g, "multi press machine")
+    .replace(/\bpulldown\b/g, "lat pulldown")
+    .replace(/\bpull down\b/g, "lat pulldown")
+    .replace(/\bstepping machine\b/g, "stepper")
+    .replace(/\bstretch machine\b/g, "stretch trainer")
+    .replace(/\bstretcher trainer\b/g, "stretch trainer")
+    .replace(/\bstretcher\b/g, "stretch trainer")
+    .replace(/\bweighting scale\b/g, "scale")
+    .replace(/\bdigital weight scale with height measuring sensor\b/g, "scale")
+    .replace(/\bupper body ergometer \*\b/g, "upper body ergometer")
+    .replace(/\bkrank cycle \*\b/g, "krank cycle")
+    .trim();
 }
 
 function buildNullEquipmentFields() {

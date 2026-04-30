@@ -56,6 +56,11 @@ const FEATURE_FIELD_NAMES = [
   "has_reverse_fly_machine",
   "has_shoulder_press_machine",
   "has_iso_lateral_shoulder_press_machine",
+  "has_multi_press_machine",
+  "has_multi_hip_machine",
+  "has_stretching_machine",
+  "has_elliptical_machine",
+  "has_mobility_stick",
   "has_hip_abductor_machine",
   "has_hip_adductor_machine",
   "has_leg_extension_machine",
@@ -198,12 +203,24 @@ export function SubmitGymForm({
     ["wall_ball_4kg_count", t("wallBall4kgCount")],
     ["wall_ball_6kg_count", t("wallBall6kgCount")],
     ["wall_ball_9kg_count", t("wallBall9kgCount")],
+    ["wall_ball_10kg_count", t("wallBall10kgCount")],
     ["wall_ball_plate_9ft_count", t("wallBallPlate9ftCount")],
     ["wall_ball_plate_10ft_count", t("wallBallPlate10ftCount")],
+    ["sandbag_5kg_count", t("sandbag5kgCount")],
     ["sandbag_10kg_count", t("sandbag10kgCount")],
+    ["sandbag_15kg_count", t("sandbag15kgCount")],
     ["sandbag_20kg_count", t("sandbag20kgCount")],
+    ["sandbag_25kg_count", t("sandbag25kgCount")],
     ["sandbag_30kg_count", t("sandbag30kgCount")],
+    ["kettlebell_4kg_count", t("kettlebell4kgCount")],
+    ["kettlebell_6kg_count", t("kettlebell6kgCount")],
+    ["kettlebell_8kg_count", t("kettlebell8kgCount")],
+    ["kettlebell_10kg_count", t("kettlebell10kgCount")],
+    ["kettlebell_12kg_count", t("kettlebell12kgCount")],
+    ["kettlebell_14kg_count", t("kettlebell14kgCount")],
     ["kettlebell_16kg_count", t("kettlebell16kgCount")],
+    ["kettlebell_18kg_count", t("kettlebell18kgCount")],
+    ["kettlebell_20kg_count", t("kettlebell20kgCount")],
     ["kettlebell_24kg_count", t("kettlebell24kgCount")],
     ["kettlebell_32kg_count", t("kettlebell32kgCount")],
   ];
@@ -211,6 +228,9 @@ export function SubmitGymForm({
   const machineCountFields = [
     ["cable_machine_count", t("cableMachineCount")],
     ["smith_machine_count", t("smithMachineCount")],
+    ["ab_crunch_bench_count", t("abCrunchBenchCount")],
+    ["preacher_curl_bench_count", t("preacherCurlBenchCount")],
+    ["overhead_press_chair_count", t("overheadPressChairCount")],
   ];
 
   const featureSections = [
@@ -279,11 +299,13 @@ export function SubmitGymForm({
         ["has_reverse_fly_machine", tGym("reverseFlyMachine")],
         ["has_shoulder_press_machine", tGym("shoulderPressMachine")],
         ["has_iso_lateral_shoulder_press_machine", tGym("isoLateralShoulderPressMachine")],
+        ["has_multi_press_machine", tGym("multiPressMachine")],
       ],
     },
     {
       title: tGym("legMachine"),
       fields: [
+        ["has_multi_hip_machine", tGym("multiHipMachine")],
         ["has_hip_abductor_machine", tGym("hipAbductorMachine")],
         ["has_hip_adductor_machine", tGym("hipAdductorMachine")],
         ["has_leg_extension_machine", tGym("legExtensionMachine")],
@@ -307,6 +329,9 @@ export function SubmitGymForm({
         ["has_lifting_straps", tGym("liftingStraps")],
         ["has_plyo_box", tGym("plyoBox")],
         ["has_balance_ball", tGym("balanceBall")],
+        ["has_stretching_machine", tGym("stretchingMachine")],
+        ["has_elliptical_machine", tGym("ellipticalMachine")],
+        ["has_mobility_stick", tGym("mobilityStick")],
       ],
     },
   ];
@@ -395,23 +420,59 @@ export function SubmitGymForm({
         wall_ball_9kg_count: toNumber(
           String(formData.get("wall_ball_9kg_count") ?? "")
         ),
+        wall_ball_10kg_count: toNumber(
+          String(formData.get("wall_ball_10kg_count") ?? "")
+        ),
         wall_ball_plate_9ft_count: toNumber(
           String(formData.get("wall_ball_plate_9ft_count") ?? "")
         ),
         wall_ball_plate_10ft_count: toNumber(
           String(formData.get("wall_ball_plate_10ft_count") ?? "")
         ),
+        sandbag_5kg_count: toNumber(
+          String(formData.get("sandbag_5kg_count") ?? "")
+        ),
         sandbag_10kg_count: toNumber(
           String(formData.get("sandbag_10kg_count") ?? "")
+        ),
+        sandbag_15kg_count: toNumber(
+          String(formData.get("sandbag_15kg_count") ?? "")
         ),
         sandbag_20kg_count: toNumber(
           String(formData.get("sandbag_20kg_count") ?? "")
         ),
+        sandbag_25kg_count: toNumber(
+          String(formData.get("sandbag_25kg_count") ?? "")
+        ),
         sandbag_30kg_count: toNumber(
           String(formData.get("sandbag_30kg_count") ?? "")
         ),
+        kettlebell_4kg_count: toNumber(
+          String(formData.get("kettlebell_4kg_count") ?? "")
+        ),
+        kettlebell_6kg_count: toNumber(
+          String(formData.get("kettlebell_6kg_count") ?? "")
+        ),
+        kettlebell_8kg_count: toNumber(
+          String(formData.get("kettlebell_8kg_count") ?? "")
+        ),
+        kettlebell_10kg_count: toNumber(
+          String(formData.get("kettlebell_10kg_count") ?? "")
+        ),
+        kettlebell_12kg_count: toNumber(
+          String(formData.get("kettlebell_12kg_count") ?? "")
+        ),
+        kettlebell_14kg_count: toNumber(
+          String(formData.get("kettlebell_14kg_count") ?? "")
+        ),
         kettlebell_16kg_count: toNumber(
           String(formData.get("kettlebell_16kg_count") ?? "")
+        ),
+        kettlebell_18kg_count: toNumber(
+          String(formData.get("kettlebell_18kg_count") ?? "")
+        ),
+        kettlebell_20kg_count: toNumber(
+          String(formData.get("kettlebell_20kg_count") ?? "")
         ),
         kettlebell_24kg_count: toNumber(
           String(formData.get("kettlebell_24kg_count") ?? "")
@@ -424,6 +485,15 @@ export function SubmitGymForm({
         ),
         smith_machine_count: toNumber(
           String(formData.get("smith_machine_count") ?? "")
+        ),
+        ab_crunch_bench_count: toNumber(
+          String(formData.get("ab_crunch_bench_count") ?? "")
+        ),
+        preacher_curl_bench_count: toNumber(
+          String(formData.get("preacher_curl_bench_count") ?? "")
+        ),
+        overhead_press_chair_count: toNumber(
+          String(formData.get("overhead_press_chair_count") ?? "")
         ),
         ...Object.fromEntries(
           featureNames.map((name) => [

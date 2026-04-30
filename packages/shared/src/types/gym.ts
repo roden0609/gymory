@@ -62,14 +62,26 @@ export interface Gym {
   wall_ball_4kg_count: number | null;
   wall_ball_6kg_count: number | null;
   wall_ball_9kg_count: number | null;
+  wall_ball_10kg_count: number | null;
   wall_ball_plate_9ft_count: number | null;
   wall_ball_plate_10ft_count: number | null;
   has_sandbag: boolean | null;
+  sandbag_5kg_count: number | null;
   sandbag_10kg_count: number | null;
+  sandbag_15kg_count: number | null;
   sandbag_20kg_count: number | null;
+  sandbag_25kg_count: number | null;
   sandbag_30kg_count: number | null;
   has_kettlebell: boolean | null;
+  kettlebell_4kg_count: number | null;
+  kettlebell_6kg_count: number | null;
+  kettlebell_8kg_count: number | null;
+  kettlebell_10kg_count: number | null;
+  kettlebell_12kg_count: number | null;
+  kettlebell_14kg_count: number | null;
   kettlebell_16kg_count: number | null;
+  kettlebell_18kg_count: number | null;
+  kettlebell_20kg_count: number | null;
   kettlebell_24kg_count: number | null;
   kettlebell_32kg_count: number | null;
 
@@ -123,6 +135,11 @@ export interface Gym {
   has_reverse_fly_machine: boolean | null;
   has_shoulder_press_machine: boolean | null;
   has_iso_lateral_shoulder_press_machine: boolean | null;
+  has_multi_press_machine: boolean | null;
+  has_multi_hip_machine: boolean | null;
+  has_stretching_machine: boolean | null;
+  has_elliptical_machine: boolean | null;
+  has_mobility_stick: boolean | null;
 
   // Leg machine
   has_hip_abductor_machine: boolean | null;
@@ -145,6 +162,9 @@ export interface Gym {
   has_lifting_straps: boolean | null;
   has_plyo_box: boolean | null;
   has_balance_ball: boolean | null;
+  ab_crunch_bench_count: number | null;
+  preacher_curl_bench_count: number | null;
+  overhead_press_chair_count: number | null;
 
   equipment_notes: string | null;
 

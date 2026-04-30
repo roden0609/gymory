@@ -78,6 +78,23 @@ function formatWeight(value: number | null, fallback: string) {
   return value === null ? fallback : `${value}kg`;
 }
 
+function formatAvailableWeightsSummary({
+  availableLabel,
+  notListedLabel,
+  weights,
+}: {
+  availableLabel: string;
+  notListedLabel: string;
+  weights: Array<{ kg: number; count: number | null }>;
+}) {
+  const availableWeights = weights
+    .filter((item) => item.count !== null && item.count > 0)
+    .map((item) => `${item.kg}kg`);
+
+  if (availableWeights.length === 0) return `${notListedLabel}`;
+  return `${availableLabel} (${availableWeights.join("/")})`;
+}
+
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4">
@@ -240,20 +257,50 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     { label: t("skiErg"), value: formatCount(gym.ski_erg_count, t("notListed")) },
     { label: t("rower"), value: formatCount(gym.rower_count, t("notListed")) },
     { label: t("sled"), value: formatCount(gym.sled_count, t("notListed")) },
-    { label: t("wallBall"), value: gym.has_wall_ball ? t("available") : t("notListed") },
     { label: t("wallBall4kg"), value: formatCount(gym.wall_ball_4kg_count, t("notListed")) },
     { label: t("wallBall6kg"), value: formatCount(gym.wall_ball_6kg_count, t("notListed")) },
     { label: t("wallBall9kg"), value: formatCount(gym.wall_ball_9kg_count, t("notListed")) },
-    { label: t("wallBallPlate9ft"), value: formatCount(gym.wall_ball_plate_9ft_count, t("notListed")) },
-    { label: t("wallBallPlate10ft"), value: formatCount(gym.wall_ball_plate_10ft_count, t("notListed")) },
-    { label: t("sandbag"), value: gym.has_sandbag ? t("available") : t("notListed") },
     { label: t("sandbag10kg"), value: formatCount(gym.sandbag_10kg_count, t("notListed")) },
     { label: t("sandbag20kg"), value: formatCount(gym.sandbag_20kg_count, t("notListed")) },
     { label: t("sandbag30kg"), value: formatCount(gym.sandbag_30kg_count, t("notListed")) },
-    { label: t("kettlebell"), value: gym.has_kettlebell ? t("available") : t("notListed") },
     { label: t("kettlebell16kg"), value: formatCount(gym.kettlebell_16kg_count, t("notListed")) },
     { label: t("kettlebell24kg"), value: formatCount(gym.kettlebell_24kg_count, t("notListed")) },
     { label: t("kettlebell32kg"), value: formatCount(gym.kettlebell_32kg_count, t("notListed")) },
+    {
+      label: t("sandbagSummary"),
+      value: formatAvailableWeightsSummary({
+        availableLabel: t("available"),
+        notListedLabel: t("notListed"),
+        weights: [
+          { kg: 5, count: gym.sandbag_5kg_count },
+          { kg: 10, count: gym.sandbag_10kg_count },
+          { kg: 15, count: gym.sandbag_15kg_count },
+          { kg: 20, count: gym.sandbag_20kg_count },
+          { kg: 25, count: gym.sandbag_25kg_count },
+          { kg: 30, count: gym.sandbag_30kg_count },
+        ],
+      }),
+    },
+    {
+      label: t("kettlebellSummary"),
+      value: formatAvailableWeightsSummary({
+        availableLabel: t("available"),
+        notListedLabel: t("notListed"),
+        weights: [
+          { kg: 4, count: gym.kettlebell_4kg_count },
+          { kg: 6, count: gym.kettlebell_6kg_count },
+          { kg: 8, count: gym.kettlebell_8kg_count },
+          { kg: 10, count: gym.kettlebell_10kg_count },
+          { kg: 12, count: gym.kettlebell_12kg_count },
+          { kg: 14, count: gym.kettlebell_14kg_count },
+          { kg: 16, count: gym.kettlebell_16kg_count },
+          { kg: 18, count: gym.kettlebell_18kg_count },
+          { kg: 20, count: gym.kettlebell_20kg_count },
+          { kg: 24, count: gym.kettlebell_24kg_count },
+          { kg: 32, count: gym.kettlebell_32kg_count },
+        ],
+      }),
+    },
   ];
 
   const otherEquipment = [
@@ -269,6 +316,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("resistanceBands"), gym.has_resistance_band],
     [t("rings"), gym.has_rings],
     [t("gluteHamDeveloper"), gym.has_glute_ham_developer],
+    [t("stretchingMachine"), gym.has_stretching_machine],
+    [t("ellipticalMachine"), gym.has_elliptical_machine],
+    [t("mobilityStick"), gym.has_mobility_stick],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
@@ -286,6 +336,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
   const fullBodyMachine = [
     { label: t("smithMachine"), value: formatCount(gym.smith_machine_count, t("notListed")) },
+    { label: t("abCrunchBench"), value: formatCount(gym.ab_crunch_bench_count, t("notListed")) },
+    { label: t("preacherCurlBench"), value: formatCount(gym.preacher_curl_bench_count, t("notListed")) },
+    { label: t("overheadPressChair"), value: formatCount(gym.overhead_press_chair_count, t("notListed")) },
   ];
 
   const armMachines = [
@@ -320,11 +373,13 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("reverseFlyMachine"), gym.has_reverse_fly_machine],
     [t("shoulderPressMachine"), gym.has_shoulder_press_machine],
     [t("isoLateralShoulderPressMachine"), gym.has_iso_lateral_shoulder_press_machine],
+    [t("multiPressMachine"), gym.has_multi_press_machine],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
 
   const legMachines = [
+    [t("multiHipMachine"), gym.has_multi_hip_machine],
     [t("hipAbductorMachine"), gym.has_hip_abductor_machine],
     [t("hipAdductorMachine"), gym.has_hip_adductor_machine],
     [t("legExtensionMachine"), gym.has_leg_extension_machine],
