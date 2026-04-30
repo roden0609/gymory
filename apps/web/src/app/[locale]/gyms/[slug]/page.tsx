@@ -369,8 +369,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     { label: t("smithMachine"), value: formatCount(gym.smith_machine_count, t("notListed")) },
   ];
 
-  const otherMachines: Array<{ label: string; value: string }> = [];
-
   const armMachineCounts: Array<{ label: string; value: string }> = [];
 
   const armMachines = [
@@ -566,10 +564,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
           <Section title={t("legMachine")}>
             <FeaturePills items={legMachines} fallback={t("notListed")} />
-          </Section>
-
-          <Section title={t("otherMachine")}>
-            <ValueGrid items={otherMachines} />
           </Section>
 
           <Section title={t("otherEquipment")}>
