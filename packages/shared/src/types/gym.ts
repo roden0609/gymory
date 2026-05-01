@@ -2,6 +2,7 @@
 
 export type SizeCategory = "small" | "medium" | "large";
 export type DataSource = "admin" | "owner" | "user_submission" | "import";
+export type DataAccuracyStatus = "normal" | "needs_review";
 
 export interface Gym {
   id: string;
@@ -170,6 +171,8 @@ export interface Gym {
 
   // Trust / freshness
   data_source: DataSource | null;
+  data_accuracy_status: DataAccuracyStatus;
+  data_accuracy_flagged_at: string | null;
   equipment_last_verified_at: string | null;
   last_reported_at: string | null;
 
@@ -205,5 +208,10 @@ export type GymSummary = Pick<
   | "wall_ball_6kg_count"
   | "wall_ball_9kg_count"
   | "is_verified"
+  | "data_accuracy_status"
   | "equipment_last_verified_at"
->;
+> & {
+  accuracy_like_count?: number;
+  accuracy_dislike_count?: number;
+  accuracy_total_votes?: number;
+};

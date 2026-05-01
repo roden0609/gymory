@@ -3,8 +3,11 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Gym } from "@gymory/shared";
 import { getHkDistrictLabel } from "@gymory/shared";
+import { GymAccuracyVoting } from "@/components/gym/GymAccuracyVoting";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
+import { getFirebaseSessionUser } from "@/lib/auth/session";
+import { getGymAccuracySnapshot } from "@/lib/db/queries/gym-accuracy";
 import { getGymEquipmentBrands } from "@/lib/db/queries/equipment-brands";
 import { getGymBySlug } from "@/lib/db/queries/gyms";
 
@@ -193,7 +196,11 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
   const gym = await getGymBySlug(slug);
   if (!gym) notFound();
-  const brands = await getGymEquipmentBrands(gym.id);
+  const sessionUser = await getFirebaseSessionUser();
+  const [brands, accuracySnapshot] = await Promise.all([
+    getGymEquipmentBrands(gym.id),
+    getGymAccuracySnapshot({ gymId: gym.id, firebaseUid: sessionUser?.uid }),
+  ]);
 
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
@@ -483,6 +490,13 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
             clearQueryKeys={["flash"]}
           />
         )}
+        <div className="mb-6">
+          <GymAccuracyVoting
+            gymId={gym.id}
+            initialSnapshot={accuracySnapshot}
+            isLoggedIn={Boolean(sessionUser)}
+          />
+        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard label={t("size")} value={gym.size_category ?? t("notListed")} />
           <StatCard

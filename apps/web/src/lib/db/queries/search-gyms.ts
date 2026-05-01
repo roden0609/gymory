@@ -102,7 +102,7 @@ export async function searchGyms(
   let query = supabase
     .from("gyms")
     .select(
-      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, has_wall_ball, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, equipment_last_verified_at",
+      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, has_wall_ball, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, data_accuracy_status, equipment_last_verified_at",
       { count: "exact" }
     )
     .eq("is_active", true)
@@ -302,8 +302,43 @@ export async function searchGyms(
   const totalCount = count ?? 0;
   const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
 
+  const gyms = (data ?? []) as GymSummary[];
+
+  const gymIds = gyms.map((gym) => gym.id);
+  if (gymIds.length > 0) {
+    const { data: votes } = await supabase
+      .from("gym_accuracy_votes")
+      .select("gym_id, vote")
+      .in("gym_id", gymIds);
+
+    const tallies = new Map<
+      string,
+      { likeCount: number; dislikeCount: number; totalVotes: number }
+    >();
+
+    for (const vote of votes ?? []) {
+      const current = tallies.get(vote.gym_id) ?? {
+        likeCount: 0,
+        dislikeCount: 0,
+        totalVotes: 0,
+      };
+
+      if (vote.vote === "like") current.likeCount += 1;
+      if (vote.vote === "dislike") current.dislikeCount += 1;
+      current.totalVotes += 1;
+      tallies.set(vote.gym_id, current);
+    }
+
+    for (const gym of gyms) {
+      const tally = tallies.get(gym.id);
+      gym.accuracy_like_count = tally?.likeCount ?? 0;
+      gym.accuracy_dislike_count = tally?.dislikeCount ?? 0;
+      gym.accuracy_total_votes = tally?.totalVotes ?? 0;
+    }
+  }
+
   return {
-    gyms: (data ?? []) as GymSummary[],
+    gyms,
     totalCount,
     page,
     pageSize,

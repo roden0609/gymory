@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
 import { getHkDistrictLabel } from "@gymory/shared";
 
@@ -24,6 +24,7 @@ function formatCountBadge(
 
 export function GymCard({ gym }: { gym: GymSummary }) {
   const locale = useLocale() as "en" | "zh-HK";
+  const t = useTranslations("search");
   const displayName = locale === "zh-HK" && gym.name_zh ? gym.name_zh : gym.name;
   const displayAddress =
     locale === "zh-HK" && gym.address_zh ? gym.address_zh : gym.address;
@@ -51,6 +52,9 @@ export function GymCard({ gym }: { gym: GymSummary }) {
   ) {
     equipmentHighlights.push("Wall ball");
   }
+
+  const likeCount = gym.accuracy_like_count ?? 0;
+  const dislikeCount = gym.accuracy_dislike_count ?? 0;
 
   return (
     <Link
@@ -80,6 +84,16 @@ export function GymCard({ gym }: { gym: GymSummary }) {
           ))}
         </div>
       )}
+
+      <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+        <span className="font-medium text-gray-600">{t("accuracyHeading")}:</span>
+        <span className="rounded-full bg-gray-100 px-2.5 py-1 font-medium text-gray-700">
+          👍 {likeCount}
+        </span>
+        <span className="rounded-full bg-gray-100 px-2.5 py-1 font-medium text-gray-700">
+          👎 {dislikeCount}
+        </span>
+      </div>
     </Link>
   );
 }
