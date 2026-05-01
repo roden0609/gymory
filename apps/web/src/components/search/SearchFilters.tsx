@@ -172,6 +172,8 @@ export function SearchFilters() {
         .map((item) => item.trim())
         .filter(Boolean)
   );
+  const [isLocating, setIsLocating] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
 
   const activeFilterCount = useMemo(
     () =>
@@ -217,8 +219,14 @@ export function SearchFilters() {
 
   const nextQueryString = useMemo(() => {
     const params = new URLSearchParams();
+    const userLat = searchParams.get("userLat");
+    const userLng = searchParams.get("userLng");
     if (currentView === "map" || currentView === "split") {
       params.set("view", currentView);
+    }
+    if (userLat && userLng) {
+      params.set("userLat", userLat);
+      params.set("userLng", userLng);
     }
     if (district) params.set("district", district);
     if (minRackCount) params.set("minRackCount", minRackCount);
@@ -241,6 +249,7 @@ export function SearchFilters() {
     minPlateWeight,
     minPlatformCount,
     minRackCount,
+    searchParams,
     selectedBrandSlugs,
     selectedFilters,
   ]);
@@ -274,6 +283,64 @@ export function SearchFilters() {
     setSelectedFilters(new Set());
   }, []);
 
+  const applyLocationParams = useCallback(
+    (lat: number, lng: number) => {
+      const params = new URLSearchParams(nextQueryString);
+      params.set("userLat", lat.toFixed(6));
+      params.set("userLng", lng.toFixed(6));
+      params.delete("page");
+      params.delete("pageSize");
+      router.replace(params.toString() ? `/search?${params.toString()}` : "/search");
+    },
+    [nextQueryString, router]
+  );
+
+  const clearLocation = useCallback(() => {
+    const params = new URLSearchParams(nextQueryString);
+    params.delete("userLat");
+    params.delete("userLng");
+    params.delete("page");
+    params.delete("pageSize");
+    setLocationError(null);
+    router.replace(params.toString() ? `/search?${params.toString()}` : "/search");
+  }, [nextQueryString, router]);
+
+  const requestUserLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      setLocationError(t("locationUnsupported"));
+      return;
+    }
+
+    setIsLocating(true);
+    setLocationError(null);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setIsLocating(false);
+        applyLocationParams(position.coords.latitude, position.coords.longitude);
+      },
+      (error) => {
+        setIsLocating(false);
+        if (error.code === error.PERMISSION_DENIED) {
+          setLocationError(t("locationPermissionDenied"));
+          return;
+        }
+        if (error.code === error.TIMEOUT) {
+          setLocationError(t("locationTimeout"));
+          return;
+        }
+        setLocationError(t("locationFailed"));
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 12000,
+        maximumAge: 300000,
+      }
+    );
+  }, [applyLocationParams, t]);
+
+  const hasUserLocation =
+    Boolean(searchParams.get("userLat")) && Boolean(searchParams.get("userLng"));
+
   return (
     <aside className="w-full shrink-0 md:w-72">
       <div className="space-y-5 rounded-lg border border-gray-200 bg-white p-5">
@@ -283,6 +350,31 @@ export function SearchFilters() {
             <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
               {activeFilterCount}
             </span>
+          )}
+        </div>
+
+        <div className="space-y-1.5">
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={requestUserLocation}
+              disabled={isLocating}
+              className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isLocating ? t("locating") : t("useMyLocation")}
+            </button>
+            {hasUserLocation && (
+              <button
+                type="button"
+                onClick={clearLocation}
+                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+              >
+                {t("clearLocation")}
+              </button>
+            )}
+          </div>
+          {locationError && (
+            <p className="text-xs text-red-600">{locationError}</p>
           )}
         </div>
 

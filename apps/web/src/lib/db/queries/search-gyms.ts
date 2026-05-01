@@ -21,6 +21,8 @@ export async function searchGyms(
 ): Promise<PaginatedGymSearchResult> {
   const parsed = searchParamsSchema.safeParse({
     district: rawParams.district,
+    userLat: rawParams.userLat,
+    userLng: rawParams.userLng,
     brandSlugs: rawParams.brandSlugs,
     page: rawParams.page,
     pageSize: rawParams.pageSize,
@@ -102,12 +104,10 @@ export async function searchGyms(
   let query = supabase
     .from("gyms")
     .select(
-      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, has_wall_ball, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, data_accuracy_status, equipment_last_verified_at",
+      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, has_wall_ball, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, data_accuracy_status, equipment_last_verified_at, updated_at",
       { count: "exact" }
     )
-    .eq("is_active", true)
-    .order("is_verified", { ascending: false })
-    .order("updated_at", { ascending: false });
+    .eq("is_active", true);
 
   if (params.brandSlugs && params.brandSlugs.length > 0) {
     const { data: brands, error: brandsError } = await supabase
@@ -287,7 +287,7 @@ export async function searchGyms(
   }
   if (params.minSize) query = query.gte("estimated_size_sqft", params.minSize);
 
-  const { data, error, count } = await query.range(from, to);
+  const { data, error, count } = await query;
   if (error) {
     return {
       gyms: [],
@@ -299,12 +299,9 @@ export async function searchGyms(
     };
   }
 
-  const totalCount = count ?? 0;
-  const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
+  const allGyms = (data ?? []) as GymSummary[];
 
-  const gyms = (data ?? []) as GymSummary[];
-
-  const gymIds = gyms.map((gym) => gym.id);
+  const gymIds = allGyms.map((gym) => gym.id);
   if (gymIds.length > 0) {
     const { data: votes } = await supabase
       .from("gym_accuracy_votes")
@@ -329,13 +326,39 @@ export async function searchGyms(
       tallies.set(vote.gym_id, current);
     }
 
-    for (const gym of gyms) {
+    for (const gym of allGyms) {
       const tally = tallies.get(gym.id);
       gym.accuracy_like_count = tally?.likeCount ?? 0;
       gym.accuracy_dislike_count = tally?.dislikeCount ?? 0;
       gym.accuracy_total_votes = tally?.totalVotes ?? 0;
     }
   }
+
+  const hasUserLocation =
+    typeof params.userLat === "number" &&
+    Number.isFinite(params.userLat) &&
+    typeof params.userLng === "number" &&
+    Number.isFinite(params.userLng);
+
+  const sortedGyms = [...allGyms].sort((a, b) => {
+    if (hasUserLocation) {
+      const aDistance = distanceKm(params.userLat!, params.userLng!, a.lat, a.lng);
+      const bDistance = distanceKm(params.userLat!, params.userLng!, b.lat, b.lng);
+      if (aDistance !== bDistance) return aDistance - bDistance;
+    }
+
+    const accuracyDiff = accuracyScore(b) - accuracyScore(a);
+    if (accuracyDiff !== 0) return accuracyDiff;
+
+    const updatedDiff = timestampMs(b.updated_at) - timestampMs(a.updated_at);
+    if (updatedDiff !== 0) return updatedDiff;
+
+    return a.slug.localeCompare(b.slug);
+  });
+
+  const totalCount = count ?? sortedGyms.length;
+  const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
+  const gyms = sortedGyms.slice(from, to + 1);
 
   return {
     gyms,
@@ -345,4 +368,49 @@ export async function searchGyms(
     totalPages,
     hasNextPage: page < totalPages,
   };
+}
+
+function accuracyScore(gym: GymSummary): number {
+  const statusScore = gym.data_accuracy_status === "normal" ? 1000 : 0;
+  const voteScore =
+    (gym.accuracy_like_count ?? 0) -
+    (gym.accuracy_dislike_count ?? 0) +
+    Math.min(gym.accuracy_total_votes ?? 0, 20) * 0.1;
+  const verifiedScore = gym.is_verified ? 50 : 0;
+  return statusScore + voteScore + verifiedScore;
+}
+
+function timestampMs(value: string | null | undefined): number {
+  if (!value) return 0;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function distanceKm(
+  originLat: number,
+  originLng: number,
+  targetLat: number | null,
+  targetLng: number | null
+): number {
+  if (
+    targetLat === null ||
+    targetLng === null ||
+    !Number.isFinite(targetLat) ||
+    !Number.isFinite(targetLng)
+  ) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+  const earthRadiusKm = 6371;
+  const deltaLat = toRadians(targetLat - originLat);
+  const deltaLng = toRadians(targetLng - originLng);
+  const lat1 = toRadians(originLat);
+  const lat2 = toRadians(targetLat);
+
+  const a =
+    Math.sin(deltaLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLng / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return earthRadiusKm * c;
 }

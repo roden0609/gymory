@@ -210,6 +210,7 @@ export type GymSummary = Pick<
   | "is_verified"
   | "data_accuracy_status"
   | "equipment_last_verified_at"
+  | "updated_at"
 > & {
   accuracy_like_count?: number;
   accuracy_dislike_count?: number;

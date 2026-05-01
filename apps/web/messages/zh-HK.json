@@ -218,7 +218,14 @@
     "skiErg": "滑雪機",
     "rower": "划船機",
     "sled": "雪橇",
-    "wallBall": "牆球"
+    "wallBall": "牆球",
+    "useMyLocation": "使用我的位置",
+    "locating": "定位中...",
+    "clearLocation": "清除位置",
+    "locationUnsupported": "你的瀏覽器不支援定位功能。",
+    "locationPermissionDenied": "你拒絕了定位權限。",
+    "locationTimeout": "定位要求逾時。",
+    "locationFailed": "暫時未能取得你的位置。"
   },
   "submit": {
     "title": "新增健身房",

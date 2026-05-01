@@ -10,6 +10,8 @@ const brandSlugsSchema = z.preprocess((value) => {
 
 export const searchParamsSchema = z.object({
   district: z.string().optional(),
+  userLat: z.coerce.number().min(-90).max(90).optional(),
+  userLng: z.coerce.number().min(-180).max(180).optional(),
   page: z.coerce.number().int().min(1).optional(),
   pageSize: z.coerce.number().int().min(1).max(50).optional(),
   brandSlugs: brandSlugsSchema.optional(),

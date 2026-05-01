@@ -218,7 +218,14 @@
     "skiErg": "Ski erg",
     "rower": "Rower",
     "sled": "Sled",
-    "wallBall": "Wall ball"
+    "wallBall": "Wall ball",
+    "useMyLocation": "Use my location",
+    "locating": "Locating...",
+    "clearLocation": "Clear location",
+    "locationUnsupported": "Your browser does not support location.",
+    "locationPermissionDenied": "Location permission denied.",
+    "locationTimeout": "Location request timed out.",
+    "locationFailed": "Unable to get your location right now."
   },
   "submit": {
     "title": "Add a Gym",
