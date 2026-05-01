@@ -12,6 +12,7 @@
  *   node scripts/import-lcsd-fitness-hk.mjs --out data/imports/lcsd-fitness-hk-baseline.json
  *   node scripts/import-lcsd-fitness-hk.mjs --details-out data/imports/raw-lcsd-fitness-hk-details.json
  *   node scripts/import-lcsd-fitness-hk.mjs --details-file data/imports/raw-lcsd-fitness-hk-details.json
+ *   node scripts/import-lcsd-fitness-hk.mjs --skip-geocode
  *   node scripts/import-lcsd-fitness-hk.mjs --upsert
  */
 
@@ -26,6 +27,7 @@ const LIST_URL_EN = "https://www.lcsd.gov.hk/clpss/en/webApp/FitnessRooms.do";
 const LIST_URL_ZH = "https://www.lcsd.gov.hk/clpss/tc/webApp/FitnessRooms.do";
 const SOURCE_URL = LIST_URL_EN;
 const BASE_URL = "https://www.lcsd.gov.hk";
+const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -38,6 +40,7 @@ async function main() {
   const districtOverrides = args["district-overrides"]
     ? await loadDistrictOverrides(args["district-overrides"])
     : {};
+  const geocoder = createMapboxGeocoder(args);
 
   const details = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
@@ -53,6 +56,14 @@ async function main() {
   const rows = details
     .map((detail) => mapFacilityToGymRow(detail, districtOverrides))
     .sort((a, b) => a.slug.localeCompare(b.slug));
+
+  if (geocoder) {
+    for (const row of rows) {
+      const coordinates = await geocoder(row);
+      row.lat = coordinates?.lat ?? null;
+      row.lng = coordinates?.lng ?? null;
+    }
+  }
 
   const unknownDistricts = rows.filter((row) => !row.district_code);
   if (unknownDistricts.length > 0) {
@@ -137,6 +148,166 @@ function parseEnvValue(value) {
     return trimmed.slice(1, -1).replace(/\\n/g, "\n");
   }
   return trimmed;
+}
+
+function createMapboxGeocoder(parsedArgs) {
+  if (parsedArgs["skip-geocode"]) return null;
+
+  const accessToken = process.env.MAPBOX_PRIVATE_TOKEN ?? process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+  if (!accessToken) return null;
+
+  const cache = new Map();
+  const tokenSource = process.env.MAPBOX_PRIVATE_TOKEN
+    ? "MAPBOX_PRIVATE_TOKEN"
+    : "NEXT_PUBLIC_MAPBOX_TOKEN";
+  let geocodingDisabled = false;
+
+  return async function geocodeRow(row) {
+    if (geocodingDisabled) return null;
+
+    const originalQuery = normalizeGeocodeQuery(row.address_zh ?? row.address);
+    if (!originalQuery) return null;
+
+    const cacheKey = `${originalQuery}|${row.district_code ?? ""}`;
+    if (cache.has(cacheKey)) return cache.get(cacheKey);
+
+    const retryQueries = buildRetryGeocodeQueries(originalQuery);
+
+    for (const query of retryQueries) {
+      const url = new URL(MAPBOX_GEOCODE_URL);
+      url.searchParams.set("q", query);
+      url.searchParams.set("access_token", accessToken);
+      url.searchParams.set("country", "HK");
+      url.searchParams.set("language", "zh-Hant,en");
+      url.searchParams.set("limit", "1");
+      url.searchParams.set("autocomplete", "false");
+      url.searchParams.set("permanent", "false");
+
+      const response = await fetch(url, {
+        headers: {
+          "User-Agent": "gymory-importer/1.0 (+https://gymory.io)",
+          Accept: "application/json",
+        },
+      });
+
+      const payload = await response.text();
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          geocodingDisabled = true;
+          console.warn(
+            [
+              `Skipping Mapbox geocoding after ${response.status} on "${row.slug}".`,
+              `Current token source: ${tokenSource}.`,
+              "Set a server-side MAPBOX_PRIVATE_TOKEN with Search/Geocoding access, or rerun with --skip-geocode.",
+            ].join(" ")
+          );
+          return null;
+        }
+
+        const isQueryTooLong =
+          response.status === 422 && /query too long|VALIDATION_ERROR/i.test(payload);
+        if (isQueryTooLong) {
+          continue;
+        }
+
+        throw new Error(
+          `Mapbox geocoding failed for "${row.slug}": ${response.status} ${payload.slice(0, 300)}`
+        );
+      }
+
+      const data = JSON.parse(payload);
+      const feature = Array.isArray(data?.features) ? data.features[0] : null;
+      const coordinates = Array.isArray(feature?.geometry?.coordinates)
+        ? {
+            lng: toNumber(feature.geometry.coordinates[0]),
+            lat: toNumber(feature.geometry.coordinates[1]),
+          }
+        : null;
+
+      const result =
+        coordinates && coordinates.lat !== null && coordinates.lng !== null
+          ? coordinates
+          : null;
+      if (result) {
+        cache.set(cacheKey, result);
+        return result;
+      }
+    }
+
+    cache.set(cacheKey, null);
+    return null;
+  };
+}
+
+function normalizeGeocodeQuery(value) {
+  if (typeof value !== "string") return null;
+  const compact = value.replace(/\s+/g, " ").trim();
+  return compact || null;
+}
+
+function buildRetryGeocodeQueries(originalQuery) {
+  const queries = [originalQuery];
+  const withoutFloor = removeFloorTokens(originalQuery);
+  if (withoutFloor && withoutFloor !== originalQuery) {
+    queries.push(withoutFloor);
+  }
+
+  const seed = withoutFloor ?? originalQuery;
+  const tailTrimmed = trimAddressFromTail(seed);
+  for (const query of tailTrimmed) {
+    if (!queries.includes(query)) queries.push(query);
+  }
+  return queries;
+}
+
+function removeFloorTokens(value) {
+  if (!value) return value;
+
+  let next = value;
+  const patterns = [
+    /\b(?:g\/f|ug\/f|lg\/f|m\/f|p\/f)\b/gi,
+    /\b(?:basement|b)\s*\d+\b/gi,
+    /\b(?:floor|fl|f)\s*\d+[a-z]?\b/gi,
+    /\b\d+[a-z]?\s*(?:floor|fl|f)\b/gi,
+    /(?:地[下庫庫]|地庫|地下|高層地下|低層地下|平台|天台)\s*\d*/g,
+    /(?:[0-9０-９]+)\s*樓/g,
+    /(?:[0-9０-９]+)\s*(?:層|字樓)/g,
+    /\broom\s*[a-z0-9-]+\b/gi,
+    /\bunit\s*[a-z0-9-]+\b/gi,
+    /\bshop\s*[a-z0-9-]+\b/gi,
+  ];
+
+  for (const pattern of patterns) {
+    next = next.replace(pattern, " ");
+  }
+
+  next = next
+    .replace(/[()（）]/g, " ")
+    .replace(/\s*,\s*,+/g, ", ")
+    .replace(/\s{2,}/g, " ")
+    .replace(/^[,\s]+|[,\s]+$/g, "");
+
+  return normalizeGeocodeQuery(next);
+}
+
+function trimAddressFromTail(value) {
+  const normalized = normalizeGeocodeQuery(value);
+  if (!normalized) return [];
+
+  const parts = normalized
+    .split(/[,，;；]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (parts.length <= 1) return [];
+
+  const outputs = [];
+  for (let keep = parts.length - 1; keep >= 2; keep -= 1) {
+    const candidate = normalizeGeocodeQuery(parts.slice(0, keep).join(", "));
+    if (candidate && candidate !== normalized) {
+      outputs.push(candidate);
+    }
+  }
+  return outputs;
 }
 
 async function fetchHtml(url) {
