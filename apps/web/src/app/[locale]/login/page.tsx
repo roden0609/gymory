@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AdminLoginForm } from "@/components/auth/AdminLoginForm";
 import { Link } from "@/i18n/navigation";
+import { buildSeoMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -10,7 +11,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "login" });
-  return { title: t("title") };
+  return buildSeoMetadata({
+    locale,
+    path: "/login",
+    title: t("title"),
+    description: t("description"),
+    robots: { index: false, follow: false },
+  });
 }
 
 export default async function LoginPage({

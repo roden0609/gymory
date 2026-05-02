@@ -10,6 +10,7 @@ import { getFirebaseSessionUser } from "@/lib/auth/session";
 import { getGymAccuracySnapshot } from "@/lib/db/queries/gym-accuracy";
 import { getGymEquipmentBrands } from "@/lib/db/queries/equipment-brands";
 import { getGymBySlug } from "@/lib/db/queries/gyms";
+import { buildSeoMetadata, getLocalizedUrl } from "@/lib/seo";
 
 type Locale = "en" | "zh-HK";
 
@@ -25,6 +26,62 @@ function getLocalizedGym(gym: Gym, locale: Locale) {
       locale === "zh-HK" && gym.address_zh ? gym.address_zh : gym.address,
     district: getHkDistrictLabel(gym.district_code, locale),
   };
+}
+
+function removeUndefinedValues(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map(removeUndefinedValues).filter((item) => item !== undefined);
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value)
+        .map(([key, item]) => [key, removeUndefinedValues(item)])
+        .filter(([, item]) => item !== undefined)
+    );
+  }
+
+  return value === undefined || value === null || value === "" ? undefined : value;
+}
+
+function buildGymJsonLd({
+  gym,
+  locale,
+  display,
+  description,
+}: {
+  gym: Gym;
+  locale: Locale;
+  display: ReturnType<typeof getLocalizedGym>;
+  description: string;
+}) {
+  const sameAs = [gym.website_url, gym.instagram_url].filter(Boolean);
+
+  return removeUndefinedValues({
+    "@context": "https://schema.org",
+    "@type": "ExerciseGym",
+    name: display.name,
+    description,
+    url: getLocalizedUrl(locale, `/gyms/${gym.slug}`),
+    telephone: gym.contact_phone,
+    sameAs: sameAs.length > 0 ? sameAs : undefined,
+    priceRange: gym.day_pass_price !== null ? `HK$${gym.day_pass_price}` : undefined,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: display.address,
+      addressLocality: display.district,
+      addressCountry: gym.country_code,
+      postalCode: gym.postal_code,
+    },
+    geo:
+      gym.lat !== null && gym.lng !== null
+        ? {
+            "@type": "GeoCoordinates",
+            latitude: gym.lat,
+            longitude: gym.lng,
+          }
+        : undefined,
+  });
 }
 
 function formatLabel(value: string) {
@@ -182,11 +239,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .filter(Boolean)
     .join(" · ");
 
-  return {
+  return buildSeoMetadata({
+    locale,
+    path: `/gyms/${slug}`,
     title: display.name,
     description:
       description || "Gym equipment, location, and training details on Gymory.",
-  };
+  });
 }
 
 export default async function GymDetailPage({ params, searchParams }: Props) {
@@ -205,6 +264,15 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
   const display = getLocalizedGym(gym, locale);
+  const metaDescription =
+    [display.district, display.address].filter(Boolean).join(" · ") ||
+    "Gym equipment, location, and training details on Gymory.";
+  const jsonLd = buildGymJsonLd({
+    gym,
+    locale,
+    display,
+    description: metaDescription,
+  });
   const verifiedDate = formatDate(gym.equipment_last_verified_at, locale);
   const updatedDate = formatDate(gym.updated_at, locale);
   const dayPassPrice = formatPrice(gym.day_pass_price, gym.country_code, locale);
@@ -436,6 +504,12 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
   return (
     <main className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="border-b border-gray-200 bg-white">
         <div className="mx-auto max-w-5xl px-4 py-8">
           <Link

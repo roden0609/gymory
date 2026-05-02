@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { TransientBanner } from "@/components/common/TransientBanner";
@@ -5,6 +6,22 @@ import { SearchFilters } from "@/components/search/SearchFilters";
 import { GymList } from "@/components/search/GymList";
 import { Link } from "@/i18n/navigation";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
+import { buildSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "common" });
+
+  return buildSeoMetadata({
+    locale,
+    title: "Gymory — Find gyms with the equipment you need",
+    description: t("tagline"),
+  });
+}
 
 export default async function HomePage({
   params,

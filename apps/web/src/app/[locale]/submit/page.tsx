@@ -5,6 +5,7 @@ import { SubmitGymForm } from "@/components/submit/SubmitGymForm";
 import { requireFirebaseSession } from "@/lib/auth/session";
 import { getGymEquipmentBrandSlugs } from "@/lib/db/queries/equipment-brands";
 import { getGymById } from "@/lib/db/queries/gyms";
+import { buildSeoMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -13,7 +14,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "submit" });
-  return { title: t("title") };
+  return buildSeoMetadata({
+    locale,
+    path: "/submit",
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default async function SubmitPage({

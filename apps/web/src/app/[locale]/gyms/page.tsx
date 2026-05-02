@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { GymList } from "@/components/search/GymList";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
+import { buildSeoMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -10,7 +11,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "gym" });
-  return { title: t("allGyms") };
+  return buildSeoMetadata({
+    locale,
+    path: "/gyms",
+    title: t("allGyms"),
+    description: "Browse Hong Kong gyms listed on Gymory.",
+  });
 }
 
 export default async function GymsPage({

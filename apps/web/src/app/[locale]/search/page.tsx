@@ -6,6 +6,7 @@ import { SearchFilters } from "@/components/search/SearchFilters";
 import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
 import { Link } from "@/i18n/navigation";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
+import { buildSeoMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -14,10 +15,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "search" });
-  return {
+  return buildSeoMetadata({
+    locale,
+    path: "/search",
     title: t("title"),
     description: "Search nearby gyms by equipment, location, and size.",
-  };
+  });
 }
 
 export default async function SearchPage({
