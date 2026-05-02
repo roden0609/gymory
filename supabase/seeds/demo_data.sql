@@ -21,7 +21,7 @@ insert into gyms (
   assault_runner_count, ski_erg_count, rower_count, sled_count,
   has_wall_ball, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count,
   wall_ball_plate_9ft_count, wall_ball_plate_10ft_count,
-  has_sandbag, sandbag_10kg_count, sandbag_20kg_count, sandbag_30kg_count,
+  has_workout_sandbag, sandbag_10kg_count, sandbag_20kg_count, sandbag_30kg_count,
   has_kettlebell, kettlebell_16kg_count, kettlebell_24kg_count, kettlebell_32kg_count,
 
   -- Cable

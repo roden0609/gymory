@@ -917,7 +917,7 @@ function buildNullEquipmentFields() {
     wall_ball_9kg_count: null,
     wall_ball_plate_9ft_count: null,
     wall_ball_plate_10ft_count: null,
-    has_sandbag: null,
+    has_workout_sandbag: null,
     sandbag_10kg_count: null,
     sandbag_20kg_count: null,
     sandbag_30kg_count: null,

@@ -36,7 +36,7 @@ const FEATURE_FIELD_NAMES = [
   "has_cambered_bar",
   "has_ez_bar",
   "has_wall_ball",
-  "has_sandbag",
+  "has_workout_sandbag",
   "has_kettlebell",
   "has_lat_pulldown_cable",
   "has_seated_row_cable",
@@ -255,7 +255,7 @@ export function SubmitGymForm({
       title: t("hyrox"),
       fields: [
         ["has_wall_ball", tGym("wallBall")],
-        ["has_sandbag", tGym("sandbag")],
+        ["has_workout_sandbag", tGym("sandbag")],
         ["has_kettlebell", tGym("kettlebell")],
       ],
     },

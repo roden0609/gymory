@@ -178,7 +178,7 @@ export async function searchGyms(
       "wall_ball_plate_9ft_count.gt.0,wall_ball_plate_10ft_count.gt.0"
     );
   }
-  if (params.hasSandbag === "true") query = query.eq("has_sandbag", true);
+  if (params.hasSandbag === "true") query = query.eq("has_workout_sandbag", true);
   if (params.hasKettlebell === "true") query = query.eq("has_kettlebell", true);
   if (params.hasTreadmill === "true") query = query.gt("treadmill_count", 0);
   if (params.hasExerciseBike === "true") {

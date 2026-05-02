@@ -67,7 +67,7 @@ export interface Gym {
   wall_ball_10kg_count: number | null;
   wall_ball_plate_9ft_count: number | null;
   wall_ball_plate_10ft_count: number | null;
-  has_sandbag: boolean | null;
+  has_workout_sandbag: boolean | null;
   sandbag_5kg_count: number | null;
   sandbag_10kg_count: number | null;
   sandbag_15kg_count: number | null;
