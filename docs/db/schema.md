@@ -10,6 +10,7 @@
 | `integer count` | Equipment where quantity matters (racks, assault bikes, rowers…) |
 | `boolean` | Equipment where "has / doesn't have" is enough (smith machine, TRX…) |
 | `boolean` | Other equipment presence columns (has_battle_rope, has_foam_roller, etc.) |
+| `boolean` | Amenity presence columns (has_washroom, has_bathroom, has_yoga_block, has_yoga_mat) |
 | `numeric` | Weight ranges (dumbbell_max_weight_kg, plate_max_weight_kg) |
 
 ### Search query pattern

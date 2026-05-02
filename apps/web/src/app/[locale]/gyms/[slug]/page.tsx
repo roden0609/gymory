@@ -420,12 +420,21 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("liftingStraps"), gym.has_lifting_straps],
     [t("plyoBox"), gym.has_plyo_box],
     [t("balanceBall"), gym.has_balance_ball],
+    [t("yogaBlock"), gym.has_yoga_block],
+    [t("yogaMat"), gym.has_yoga_mat],
     [t("trx"), gym.has_trx],
     [t("resistanceBands"), gym.has_resistance_band],
     [t("rings"), gym.has_rings],
     [t("gluteHamDeveloper"), gym.has_glute_ham_developer],
     [t("stretchingMachine"), gym.has_stretching_machine],
     [t("mobilityStick"), gym.has_mobility_stick],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
+  const amenities = [
+    [t("washroom"), gym.has_washroom],
+    [t("bathroom"), gym.has_bathroom],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
@@ -657,6 +666,10 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
           <Section title={t("otherEquipment")}>
             <FeaturePills items={otherEquipment} fallback={t("notListed")} />
+          </Section>
+
+          <Section title={t("amenities")}>
+            <FeaturePills items={amenities} fallback={t("notListed")} />
           </Section>
 
           <Section title={t("equipmentBrands")}>

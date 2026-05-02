@@ -80,6 +80,10 @@ const FEATURE_FIELD_NAMES = [
   "has_lifting_straps",
   "has_plyo_box",
   "has_balance_ball",
+  "has_washroom",
+  "has_bathroom",
+  "has_yoga_block",
+  "has_yoga_mat",
 ] as const;
 
 const NUMBER_FIELD_STEPS: Partial<Record<keyof Gym, string>> = {
@@ -333,9 +337,18 @@ export function SubmitGymForm({
         ["has_lifting_straps", tGym("liftingStraps")],
         ["has_plyo_box", tGym("plyoBox")],
         ["has_balance_ball", tGym("balanceBall")],
+        ["has_yoga_block", tGym("yogaBlock")],
+        ["has_yoga_mat", tGym("yogaMat")],
         ["has_resistance_band", tGym("resistanceBands")],
         ["has_stretching_machine", tGym("stretchingMachine")],
         ["has_mobility_stick", tGym("mobilityStick")],
+      ],
+    },
+    {
+      title: tGym("amenities"),
+      fields: [
+        ["has_washroom", tGym("washroom")],
+        ["has_bathroom", tGym("bathroom")],
       ],
     },
   ];

@@ -164,6 +164,10 @@ export interface Gym {
   has_lifting_straps: boolean | null;
   has_plyo_box: boolean | null;
   has_balance_ball: boolean | null;
+  has_washroom: boolean | null;
+  has_bathroom: boolean | null;
+  has_yoga_block: boolean | null;
+  has_yoga_mat: boolean | null;
   ab_crunch_bench_count: number | null;
   preacher_curl_bench_count: number | null;
   overhead_press_chair_count: number | null;

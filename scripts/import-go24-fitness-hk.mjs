@@ -752,6 +752,10 @@ function buildNullEquipmentFields() {
     has_lifting_straps: null,
     has_plyo_box: null,
     has_balance_ball: null,
+    has_washroom: null,
+    has_bathroom: null,
+    has_yoga_block: null,
+    has_yoga_mat: null,
     equipment_notes: null,
     equipment_last_verified_at: null,
   };
