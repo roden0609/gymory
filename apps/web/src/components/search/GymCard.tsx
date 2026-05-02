@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
 import { getHkDistrictLabel } from "@gymory/shared";
