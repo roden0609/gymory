@@ -411,6 +411,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   ];
 
   const otherEquipment = [
+    [t("boxingSandbag"), gym.has_boxing_sandbag],
     [t("battleRope"), gym.has_battle_rope || gym.has_battle_ropes],
     [t("foamRoller"), gym.has_foam_roller],
     [t("medicineBall"), gym.has_medicine_ball],

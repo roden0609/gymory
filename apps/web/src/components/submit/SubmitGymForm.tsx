@@ -37,6 +37,7 @@ const FEATURE_FIELD_NAMES = [
   "has_ez_bar",
   "has_wall_ball",
   "has_workout_sandbag",
+  "has_boxing_sandbag",
   "has_kettlebell",
   "has_lat_pulldown_cable",
   "has_seated_row_cable",
@@ -323,6 +324,7 @@ export function SubmitGymForm({
     {
       title: tGym("otherEquipment"),
       fields: [
+        ["has_boxing_sandbag", tGym("boxingSandbag")],
         ["has_battle_rope", tGym("battleRope")],
         ["has_foam_roller", tGym("foamRoller")],
         ["has_medicine_ball", tGym("medicineBall")],

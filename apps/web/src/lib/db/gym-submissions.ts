@@ -65,6 +65,7 @@ export const EQUIPMENT_FIELDS: Array<keyof Gym> = [
   "wall_ball_plate_9ft_count",
   "wall_ball_plate_10ft_count",
   "has_workout_sandbag",
+  "has_boxing_sandbag",
   "sandbag_5kg_count",
   "sandbag_10kg_count",
   "sandbag_15kg_count",
