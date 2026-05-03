@@ -368,17 +368,15 @@ export function SubmitGymForm({
         ["has_mobility_stick", tGym("mobilityStick")],
       ],
     },
-    {
-      title: tGym("amenities"),
-      fields: [
-        ["has_washroom", tGym("washroom")],
-        ["has_bathroom", tGym("bathroom")],
-      ],
-    },
   ];
 
-  const featureNames = featureSections.flatMap((section) =>
-    section.fields.map(([name]) => name)
+  const amenityFields = [
+    ["has_washroom", tGym("washroom")],
+    ["has_bathroom", tGym("bathroom")],
+  ];
+
+  const featureNames = [...featureSections, { fields: amenityFields }].flatMap(
+    (section) => section.fields.map(([name]) => name)
   );
 
   function renderNumberFields(fields: string[][]) {
@@ -843,6 +841,37 @@ export function SubmitGymForm({
                     ))}
                   </div>
                 </div>
+              ))}
+            </div>
+          </details>
+
+          <details className="rounded-lg border border-gray-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-gray-900">
+              {tGym("amenities")}
+            </summary>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {amenityFields.map(([name, label]) => (
+                <button
+                  key={name}
+                  type="button"
+                  onClick={() => cycleFeatureState(name as FeatureFieldName)}
+                  className={`rounded-full border px-3 py-1 text-sm font-medium transition-colors ${
+                    featureStates[name as FeatureFieldName] === true
+                      ? "border-gray-900 bg-gray-900 text-white"
+                      : featureStates[name as FeatureFieldName] === false
+                        ? "border-red-200 bg-red-50 text-red-700 hover:bg-red-100"
+                        : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  {label}
+                  <span className="ml-1.5 text-xs font-semibold uppercase tracking-wide">
+                    {featureStates[name as FeatureFieldName] === true
+                      ? tCommon("yes")
+                      : featureStates[name as FeatureFieldName] === false
+                        ? tCommon("no")
+                        : tCommon("unknown")}
+                  </span>
+                </button>
               ))}
             </div>
           </details>
