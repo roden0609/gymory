@@ -14,6 +14,17 @@ import { buildSeoMetadata, getLocalizedUrl } from "@/lib/seo";
 
 type Locale = "en" | "zh-HK";
 
+const OPENING_HOURS_DAY_ORDER = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+  "public_holidays",
+] as const;
+
 type Props = {
   params: Promise<{ locale: Locale; slug: string }>;
   searchParams: Promise<{ flash?: string }>;
@@ -115,6 +126,19 @@ function formatOpeningHoursDay(
     default:
       return formatLabel(day);
   }
+}
+
+function sortOpeningHoursEntries(openingHours: Record<string, string>) {
+  const dayOrder = new Map<string, number>(
+    OPENING_HOURS_DAY_ORDER.map((day, index) => [day, index])
+  );
+
+  return Object.entries(openingHours).sort(([dayA], [dayB]) => {
+    const orderA = dayOrder.get(dayA) ?? Number.MAX_SAFE_INTEGER;
+    const orderB = dayOrder.get(dayB) ?? Number.MAX_SAFE_INTEGER;
+    if (orderA !== orderB) return orderA - orderB;
+    return dayA.localeCompare(dayB);
+  });
 }
 
 function formatDataSource(
@@ -747,17 +771,19 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           <Section title={t("openingHours")}>
             {gym.opening_hours_json ? (
               <dl className="grid gap-2 sm:grid-cols-2">
-                {Object.entries(gym.opening_hours_json).map(([day, hours]) => (
-                  <div
-                    key={day}
-                    className="flex justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
-                  >
-                    <dt className="font-medium text-gray-700">
-                      {formatOpeningHoursDay(day, t)}
-                    </dt>
-                    <dd className="text-gray-600">{hours}</dd>
-                  </div>
-                ))}
+                {sortOpeningHoursEntries(gym.opening_hours_json).map(
+                  ([day, hours]) => (
+                    <div
+                      key={day}
+                      className="flex justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
+                    >
+                      <dt className="font-medium text-gray-700">
+                        {formatOpeningHoursDay(day, t)}
+                      </dt>
+                      <dd className="text-gray-600">{hours}</dd>
+                    </div>
+                  )
+                )}
               </dl>
             ) : (
               <p className="text-sm text-gray-500">{t("notListed")}</p>
