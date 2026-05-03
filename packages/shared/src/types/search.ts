@@ -67,6 +67,8 @@ export const searchParamsSchema = z.object({
   hasLiftingStraps: z.string().optional(),
   hasPlyoBox: z.string().optional(),
   hasBalanceBall: z.string().optional(),
+  hasWashroom: z.string().optional(),
+  hasBathroom: z.string().optional(),
   minSize: z.coerce.number().min(0).optional(),
 });
 

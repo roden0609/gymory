@@ -127,6 +127,13 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
       { labelKey: "balanceBall", param: "hasBalanceBall" },
     ],
   },
+  {
+    titleKey: "amenities",
+    filters: [
+      { labelKey: "washroom", param: "hasWashroom" },
+      { labelKey: "bathroom", param: "hasBathroom" },
+    ],
+  },
 ];
 
 const ALL_CHECKBOX_FILTERS = CHECKBOX_SECTIONS.flatMap(

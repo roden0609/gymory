@@ -79,6 +79,8 @@ export async function searchGyms(
     hasLiftingStraps: rawParams.hasLiftingStraps,
     hasPlyoBox: rawParams.hasPlyoBox,
     hasBalanceBall: rawParams.hasBalanceBall,
+    hasWashroom: rawParams.hasWashroom,
+    hasBathroom: rawParams.hasBathroom,
     minSize: rawParams.minSize,
   });
 
@@ -285,6 +287,8 @@ export async function searchGyms(
   if (params.hasBalanceBall === "true") {
     query = query.eq("has_balance_ball", true);
   }
+  if (params.hasWashroom === "true") query = query.eq("has_washroom", true);
+  if (params.hasBathroom === "true") query = query.eq("has_bathroom", true);
   if (params.minSize) query = query.gte("estimated_size_sqft", params.minSize);
 
   const { data, error, count } = await query;
