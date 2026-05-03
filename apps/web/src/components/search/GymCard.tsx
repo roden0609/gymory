@@ -13,36 +13,45 @@ function EquipmentBadge({ label }: { label: string }) {
   );
 }
 
-function formatCountBadge(
-  count: number | null,
-  singular: string,
-  plural: string = `${singular}s`
-) {
+function hasPositiveCount(count: number | null) {
   if (count === null) return null;
-  return `${count} ${count === 1 ? singular : plural}`;
+  return count > 0 ? count : null;
 }
 
 export function GymCard({ gym }: { gym: GymSummary }) {
   const locale = useLocale() as "en" | "zh-HK";
   const t = useTranslations("search");
+  const tGym = useTranslations("gym");
   const displayName = locale === "zh-HK" && gym.name_zh ? gym.name_zh : gym.name;
   const displayAddress =
     locale === "zh-HK" && gym.address_zh ? gym.address_zh : gym.address;
   const districtLabel = getHkDistrictLabel(gym.district_code, locale);
   const equipmentHighlights: string[] = [];
 
-  const rackBadge = formatCountBadge(gym.rack_count, "rack");
-  if (rackBadge) equipmentHighlights.push(rackBadge);
-  if (gym.dumbbell_max_weight_kg) equipmentHighlights.push(`DB up to ${gym.dumbbell_max_weight_kg}kg`);
-  if (gym.plate_max_weight_kg) equipmentHighlights.push(`Plates up to ${gym.plate_max_weight_kg}kg`);
-  const assaultBikeBadge = formatCountBadge(gym.assault_bike_count, "assault bike");
-  if (assaultBikeBadge) equipmentHighlights.push(assaultBikeBadge);
-  const skiErgBadge = formatCountBadge(gym.ski_erg_count, "ski erg");
-  if (skiErgBadge) equipmentHighlights.push(skiErgBadge);
-  const rowerBadge = formatCountBadge(gym.rower_count, "rower");
-  if (rowerBadge) equipmentHighlights.push(rowerBadge);
-  const sledBadge = formatCountBadge(gym.sled_count, "sled");
-  if (sledBadge) equipmentHighlights.push(sledBadge);
+  const rackCount = hasPositiveCount(gym.rack_count);
+  if (rackCount) equipmentHighlights.push(t("rackBadge", { count: rackCount }));
+  if (gym.dumbbell_max_weight_kg) {
+    equipmentHighlights.push(
+      t("dumbbellMaxBadge", { weight: gym.dumbbell_max_weight_kg })
+    );
+  }
+  if (gym.plate_max_weight_kg) {
+    equipmentHighlights.push(
+      t("plateMaxBadge", { weight: gym.plate_max_weight_kg })
+    );
+  }
+  const assaultBikeCount = hasPositiveCount(gym.assault_bike_count);
+  if (assaultBikeCount) {
+    equipmentHighlights.push(
+      t("assaultBikeBadge", { count: assaultBikeCount })
+    );
+  }
+  const skiErgCount = hasPositiveCount(gym.ski_erg_count);
+  if (skiErgCount) equipmentHighlights.push(t("skiErgBadge", { count: skiErgCount }));
+  const rowerCount = hasPositiveCount(gym.rower_count);
+  if (rowerCount) equipmentHighlights.push(t("rowerBadge", { count: rowerCount }));
+  const sledCount = hasPositiveCount(gym.sled_count);
+  if (sledCount) equipmentHighlights.push(t("sledBadge", { count: sledCount }));
   if (
     gym.has_wall_ball ||
     (gym.wall_ball_count !== null && gym.wall_ball_count > 0) ||
@@ -50,7 +59,7 @@ export function GymCard({ gym }: { gym: GymSummary }) {
     (gym.wall_ball_6kg_count !== null && gym.wall_ball_6kg_count > 0) ||
     (gym.wall_ball_9kg_count !== null && gym.wall_ball_9kg_count > 0)
   ) {
-    equipmentHighlights.push("Wall ball");
+    equipmentHighlights.push(tGym("wallBall"));
   }
 
   const likeCount = gym.accuracy_like_count ?? 0;
@@ -72,7 +81,7 @@ export function GymCard({ gym }: { gym: GymSummary }) {
 
         {gym.is_verified && (
           <span className="shrink-0 inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 border border-green-200">
-            Verified
+            {tGym("verified")}
           </span>
         )}
       </div>
