@@ -798,10 +798,14 @@ export function SubmitGymForm({
             {renderNumberFields(cardioFields)}
           </div>
 
-          <div className="space-y-3">
-            <h2 className="text-sm font-semibold text-gray-900">{t("hyrox")}</h2>
-            {renderNumberFields(hyroxFields)}
-          </div>
+          <details className="rounded-lg border border-gray-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-gray-900">
+              {t("hyrox")}
+            </summary>
+            <div className="mt-4">
+              {renderNumberFields(hyroxFields)}
+            </div>
+          </details>
 
           <details className="rounded-lg border border-gray-200 p-4">
             <summary className="cursor-pointer text-sm font-semibold text-gray-900">
