@@ -193,6 +193,7 @@ export default async function AdminGymsPage({
                             <AdminDeleteGymButton
                               gymId={gym.id}
                               gymName={displayName}
+                              isActive={gym.is_active}
                             />
                           </div>
                         </td>

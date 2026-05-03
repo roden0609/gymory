@@ -6,11 +6,13 @@ import { useRouter } from "next/navigation";
 type AdminDeleteGymButtonProps = {
   gymId: string;
   gymName: string;
+  isActive: boolean;
 };
 
 export function AdminDeleteGymButton({
   gymId,
   gymName,
+  isActive,
 }: AdminDeleteGymButtonProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -18,7 +20,7 @@ export function AdminDeleteGymButton({
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  function handleDelete() {
+  function handleDeactivate() {
     startTransition(async () => {
       setSuccessMessage(null);
       setErrorMessage(null);
@@ -28,11 +30,11 @@ export function AdminDeleteGymButton({
         const body = (await response.json().catch(() => null)) as
           | { error?: string }
           | null;
-        setErrorMessage(body?.error ?? "Failed to delete gym.");
+        setErrorMessage(body?.error ?? "Failed to deactivate gym.");
         return;
       }
 
-      setSuccessMessage("Gym deleted successfully.");
+      setSuccessMessage("Gym deactivated successfully.");
       setIsConfirmOpen(false);
       window.setTimeout(() => {
         router.refresh();
@@ -45,10 +47,10 @@ export function AdminDeleteGymButton({
       <button
         type="button"
         onClick={() => setIsConfirmOpen(true)}
-        disabled={isPending}
+        disabled={isPending || !isActive}
         className="text-sm font-medium text-red-700 underline-offset-2 transition-colors hover:text-red-800 hover:underline disabled:cursor-not-allowed disabled:text-red-300"
       >
-        {isPending ? "Deleting..." : "Delete"}
+        {isPending ? "Deactivating..." : "Deactivate"}
       </button>
       {successMessage ? (
         <span className="text-xs text-green-700">{successMessage}</span>
@@ -60,10 +62,13 @@ export function AdminDeleteGymButton({
       {isConfirmOpen ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="w-full max-w-md rounded-xl bg-white p-5 shadow-xl">
-            <h3 className="text-base font-semibold text-gray-900">Delete gym?</h3>
+            <h3 className="text-base font-semibold text-gray-900">
+              Deactivate gym?
+            </h3>
             <p className="mt-2 text-sm text-gray-600">
-              You are about to delete <span className="font-medium">{gymName}</span>.
-              This action cannot be undone.
+              You are about to deactivate{" "}
+              <span className="font-medium">{gymName}</span>. It will be hidden from
+              public search results and gym pages.
             </p>
             <div className="mt-5 flex items-center justify-end gap-2">
               <button
@@ -76,11 +81,11 @@ export function AdminDeleteGymButton({
               </button>
               <button
                 type="button"
-                onClick={handleDelete}
+                onClick={handleDeactivate}
                 disabled={isPending}
                 className="inline-flex h-10 items-center justify-center rounded-lg bg-red-700 px-4 text-sm font-medium text-white transition-colors hover:bg-red-800 disabled:cursor-not-allowed disabled:bg-red-300"
               >
-                {isPending ? "Deleting..." : "Delete gym"}
+                {isPending ? "Deactivating..." : "Deactivate gym"}
               </button>
             </div>
           </div>
