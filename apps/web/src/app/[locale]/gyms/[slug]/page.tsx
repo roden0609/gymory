@@ -164,6 +164,24 @@ function formatWeight(value: number | null, fallback: string) {
   return value === null ? fallback : `${value}kg`;
 }
 
+function formatSizeCategory(
+  value: Gym["size_category"],
+  t: Awaited<ReturnType<typeof getTranslations>>
+) {
+  if (!value) return t("notListed");
+
+  switch (value) {
+    case "small":
+      return t("sizeSmall");
+    case "medium":
+      return t("sizeMedium");
+    case "large":
+      return t("sizeLarge");
+    default:
+      return formatLabel(value);
+  }
+}
+
 function formatAvailableWeightsSummary({
   availableLabel,
   notListedLabel,
@@ -608,7 +626,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           />
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label={t("size")} value={gym.size_category ?? t("notListed")} />
+          <StatCard label={t("size")} value={formatSizeCategory(gym.size_category, t)} />
           <StatCard
             label={t("floorArea")}
             value={
