@@ -393,6 +393,8 @@ export function SubmitGymForm({
         district_code: formData.get("district_code") || null,
         country_code: "HK",
         website_url: formData.get("website_url") || null,
+        instagram_url: formData.get("instagram_url") || null,
+        contact_phone: formData.get("contact_phone") || null,
         size_category: formData.get("size_category") || null,
         estimated_size_sqft: toNumber(
           String(formData.get("estimated_size_sqft") ?? "")
@@ -658,6 +660,31 @@ export function SubmitGymForm({
                 type="url"
                 placeholder="https://"
                 defaultValue={getDefaultValue("website_url")}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+              />
+            </label>
+
+            <label className="space-y-1.5">
+              <span className="text-sm font-medium text-gray-700">
+                {t("instagram")}
+              </span>
+              <input
+                name="instagram_url"
+                type="url"
+                placeholder="https://instagram.com/"
+                defaultValue={getDefaultValue("instagram_url")}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+              />
+            </label>
+
+            <label className="space-y-1.5">
+              <span className="text-sm font-medium text-gray-700">
+                {t("contactPhone")}
+              </span>
+              <input
+                name="contact_phone"
+                type="tel"
+                defaultValue={getDefaultValue("contact_phone")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               />
             </label>
