@@ -58,6 +58,21 @@ export async function PATCH(
     return NextResponse.json({ error: "Gym not found" }, { status: 404 });
   }
 
+  if (body?.is_verified === true) {
+    if (existing.is_active === false) {
+      return NextResponse.json(
+        { error: "Inactive gyms cannot be verified" },
+        { status: 409 }
+      );
+    }
+    if (existing.is_verified === true) {
+      return NextResponse.json(
+        { error: "Gym is already verified" },
+        { status: 409 }
+      );
+    }
+  }
+
   const { data, error } = await supabase
     .from("gyms")
     .update({

@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { AdminDeleteGymButton } from "@/components/admin/AdminDeleteGymButton";
+import { AdminVerifyGymButton } from "@/components/admin/AdminVerifyGymButton";
 
 type Locale = "en" | "zh-HK";
 const DEFAULT_PAGE = 1;
@@ -190,6 +191,11 @@ export default async function AdminGymsPage({
                             >
                               View
                             </Link>
+                            <AdminVerifyGymButton
+                              gymId={gym.id}
+                              isActive={gym.is_active}
+                              isVerified={gym.is_verified}
+                            />
                             <AdminDeleteGymButton
                               gymId={gym.id}
                               gymName={displayName}
