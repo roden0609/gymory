@@ -23,6 +23,17 @@ type SubmitGymFormProps = {
 type FeatureFieldName = (typeof FEATURE_FIELD_NAMES)[number];
 type FeatureStateMap = Record<FeatureFieldName, boolean | null>;
 
+const OPENING_HOUR_FIELDS = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+  "public_holidays",
+] as const;
+
 const FEATURE_FIELD_NAMES = [
   "has_roman_chair",
   "has_dip_station",
@@ -110,6 +121,15 @@ function withFlashParam(path: string, flash: string) {
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
+function buildOpeningHoursJson(formData: FormData) {
+  const entries = OPENING_HOUR_FIELDS.map((day) => [
+    day,
+    String(formData.get(`opening_hours_${day}`) ?? "").trim(),
+  ]).filter(([, hours]) => hours);
+
+  return entries.length > 0 ? Object.fromEntries(entries) : null;
+}
+
 export function SubmitGymForm({
   gymId,
   initialGym,
@@ -171,6 +191,10 @@ export function SubmitGymForm({
   function getDefaultValue(field: keyof Gym) {
     const value = initialGym?.[field];
     return value === null || value === undefined ? "" : String(value);
+  }
+
+  function getOpeningHourDefault(day: (typeof OPENING_HOUR_FIELDS)[number]) {
+    return initialGym?.opening_hours_json?.[day] ?? "";
   }
 
   function toggleBrand(brandSlug: string, checked: boolean) {
@@ -395,6 +419,7 @@ export function SubmitGymForm({
         website_url: formData.get("website_url") || null,
         instagram_url: formData.get("instagram_url") || null,
         contact_phone: formData.get("contact_phone") || null,
+        opening_hours_json: buildOpeningHoursJson(formData),
         size_category: formData.get("size_category") || null,
         estimated_size_sqft: toNumber(
           String(formData.get("estimated_size_sqft") ?? "")
@@ -737,6 +762,27 @@ export function SubmitGymForm({
               />
             </label>
           </div>
+
+          <details className="rounded-lg border border-gray-200 p-4">
+            <summary className="cursor-pointer text-sm font-semibold text-gray-900">
+              {t("openingHours")}
+            </summary>
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              {OPENING_HOUR_FIELDS.map((day) => (
+                <label key={day} className="space-y-1.5">
+                  <span className="text-sm font-medium text-gray-700">
+                    {t(day)}
+                  </span>
+                  <input
+                    name={`opening_hours_${day}`}
+                    placeholder={t("openingHoursPlaceholder")}
+                    defaultValue={getOpeningHourDefault(day)}
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+                  />
+                </label>
+              ))}
+            </div>
+          </details>
         </fieldset>
 
         <fieldset className="space-y-6 border-t border-gray-200 pt-6">

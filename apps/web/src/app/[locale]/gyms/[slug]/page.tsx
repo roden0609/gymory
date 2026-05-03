@@ -91,6 +91,32 @@ function formatLabel(value: string) {
     .join(" ");
 }
 
+function formatOpeningHoursDay(
+  day: string,
+  t: Awaited<ReturnType<typeof getTranslations>>
+) {
+  switch (day) {
+    case "monday":
+      return t("openingDayMonday");
+    case "tuesday":
+      return t("openingDayTuesday");
+    case "wednesday":
+      return t("openingDayWednesday");
+    case "thursday":
+      return t("openingDayThursday");
+    case "friday":
+      return t("openingDayFriday");
+    case "saturday":
+      return t("openingDaySaturday");
+    case "sunday":
+      return t("openingDaySunday");
+    case "public_holidays":
+      return t("openingDayPublicHolidays");
+    default:
+      return formatLabel(day);
+  }
+}
+
 function formatDataSource(
   value: Gym["data_source"],
   t: Awaited<ReturnType<typeof getTranslations>>
@@ -708,7 +734,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                     key={day}
                     className="flex justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
                   >
-                    <dt className="font-medium text-gray-700">{formatLabel(day)}</dt>
+                    <dt className="font-medium text-gray-700">
+                      {formatOpeningHoursDay(day, t)}
+                    </dt>
                     <dd className="text-gray-600">{hours}</dd>
                   </div>
                 ))}
