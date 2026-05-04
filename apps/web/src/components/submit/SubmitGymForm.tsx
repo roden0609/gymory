@@ -84,6 +84,7 @@ const FEATURE_FIELD_NAMES = [
   "has_seated_leg_curl_machine",
   "has_seated_calf_raise_machine",
   "has_squat_machine",
+  "has_hack_squat",
   "has_standing_calf_raise_machine",
   "has_battle_rope",
   "has_resistance_band",

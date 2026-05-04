@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { useLocale, useTranslations } from "next-intl";
 import { auth } from "@/lib/auth/firebase-client";
@@ -9,6 +10,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 export function SiteHeader() {
   const locale = useLocale();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const t = useTranslations("common");
   const tLogin = useTranslations("login");
   const nextLocale = locale === "en" ? "zh-HK" : "en";
@@ -25,14 +27,23 @@ export function SiteHeader() {
   }, []);
 
   const loginHref = useMemo(() => {
-    const safePath =
-      pathname && pathname.startsWith(`/${locale}`) ? pathname : `/${locale}`;
+    const path = pathname || "/";
+    const query = searchParams.toString();
+    const pathWithQuery = `${path}${query ? `?${query}` : ""}`;
+    const safePath = path.startsWith(`/${locale}`)
+      ? pathWithQuery
+      : `/${locale}${path === "/" ? "" : path}${query ? `?${query}` : ""}`;
 
     return {
       pathname: "/login",
       query: { next: safePath },
     };
-  }, [locale, pathname]);
+  }, [locale, pathname, searchParams]);
+
+  const localeSwitchHref = useMemo(() => {
+    const query = searchParams.toString();
+    return `${pathname || "/"}${query ? `?${query}` : ""}`;
+  }, [pathname, searchParams]);
 
   async function handleLogout() {
     setIsLoggingOut(true);
@@ -58,7 +69,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <Link
-            href={pathname || "/"}
+            href={localeSwitchHref}
             locale={nextLocale}
             aria-label={t("switchLanguage")}
             className="inline-flex h-10 items-center justify-center rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
