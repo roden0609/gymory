@@ -35,6 +35,7 @@ export interface Gym {
   bench_count: number | null;
   barbell_count: number | null;
   platform_count: number | null;
+  dumbbell_min_weight_kg: number | null;
   dumbbell_max_weight_kg: number | null;
   plate_min_weight_kg: number | null;
   plate_max_weight_kg: number | null;
@@ -115,6 +116,7 @@ export interface Gym {
   has_farmers_handles: boolean | null;
 
   // Arm machine
+  has_preacher_curl_bench: boolean | null;
   has_bicep_curl_machine: boolean | null;
   has_tricep_extension_machine: boolean | null;
 
@@ -133,6 +135,7 @@ export interface Gym {
   has_t_bar_row_machine: boolean | null;
 
   // Shoulder machine
+  has_overhead_chair: boolean | null;
   has_lateral_raise_machine: boolean | null;
   has_reverse_fly_machine: boolean | null;
   has_shoulder_press_machine: boolean | null;
@@ -168,9 +171,9 @@ export interface Gym {
   has_bathroom: boolean | null;
   has_yoga_block: boolean | null;
   has_yoga_mat: boolean | null;
-  ab_crunch_bench_count: number | null;
-  preacher_curl_bench_count: number | null;
-  overhead_press_chair_count: number | null;
+
+  // Core machine
+  has_ab_crunch_bench: boolean | null;
 
   equipment_notes: string | null;
 
@@ -200,6 +203,7 @@ export type GymSummary = Pick<
   | "lng"
   | "size_category"
   | "rack_count"
+  | "dumbbell_min_weight_kg"
   | "dumbbell_max_weight_kg"
   | "plate_min_weight_kg"
   | "plate_max_weight_kg"

@@ -361,7 +361,11 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
       value: formatCount(gym.platform_count, t("notListed")),
     },
     {
-      label: t("dumbbells"),
+      label: t("dumbbellMin"),
+      value: formatWeight(gym.dumbbell_min_weight_kg, t("notListed")),
+    },
+    {
+      label: t("dumbbellMax"),
       value: formatWeight(gym.dumbbell_max_weight_kg, t("notListed")),
     },
     {
@@ -371,18 +375,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     {
       label: t("plateMax"),
       value: formatWeight(gym.plate_max_weight_kg, t("notListed")),
-    },
-    {
-      label: t("preacherCurlBench"),
-      value: formatCount(gym.preacher_curl_bench_count, t("notListed")),
-    },
-    {
-      label: t("overheadPressChair"),
-      value: formatCount(gym.overhead_press_chair_count, t("notListed")),
-    },
-    {
-      label: t("abCrunchBench"),
-      value: formatCount(gym.ab_crunch_bench_count, t("notListed")),
     },
   ];
 
@@ -522,9 +514,16 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     { label: t("smithMachine"), value: formatCount(gym.smith_machine_count, t("notListed")) },
   ];
 
+  const coreMachines = [
+    [t("abCrunchBench"), gym.has_ab_crunch_bench],
+  ]
+    .filter(([, hasFeature]) => hasFeature)
+    .map(([label]) => label as string);
+
   const armMachineCounts: Array<{ label: string; value: string }> = [];
 
   const armMachines = [
+    [t("preacherCurlBench"), gym.has_preacher_curl_bench],
     [t("bicepCurlMachine"), gym.has_bicep_curl_machine],
     [t("tricepExtensionMachine"), gym.has_tricep_extension_machine],
   ]
@@ -552,6 +551,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     .map(([label]) => label as string);
 
   const shoulderMachines = [
+    [t("overheadPressChair"), gym.has_overhead_chair],
     [t("lateralRaiseMachine"), gym.has_lateral_raise_machine],
     [t("reverseFlyMachine"), gym.has_reverse_fly_machine],
     [t("shoulderPressMachine"), gym.has_shoulder_press_machine],
@@ -704,6 +704,10 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
           <Section title={t("fullBodyMachine")}>
             <ValueGrid items={fullBodyMachine} />
+          </Section>
+
+          <Section title={t("coreMachine")}>
+            <FeaturePills items={coreMachines} fallback={t("notListed")} />
           </Section>
 
           <Section title={t("armMachine")}>

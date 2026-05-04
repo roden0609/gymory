@@ -52,6 +52,8 @@ const FEATURE_FIELD_NAMES = [
   "has_kettlebell",
   "has_lat_pulldown_cable",
   "has_seated_row_cable",
+  "has_ab_crunch_bench",
+  "has_preacher_curl_bench",
   "has_bicep_curl_machine",
   "has_tricep_extension_machine",
   "has_chest_press_machine",
@@ -64,6 +66,7 @@ const FEATURE_FIELD_NAMES = [
   "has_back_extension_machine",
   "has_iso_lateral_row_machine",
   "has_t_bar_row_machine",
+  "has_overhead_chair",
   "has_lateral_raise_machine",
   "has_reverse_fly_machine",
   "has_shoulder_press_machine",
@@ -98,6 +101,7 @@ const FEATURE_FIELD_NAMES = [
 ] as const;
 
 const NUMBER_FIELD_STEPS: Partial<Record<keyof Gym, string>> = {
+  dumbbell_min_weight_kg: "0.1",
   dumbbell_max_weight_kg: "0.1",
   plate_min_weight_kg: "0.25",
   plate_max_weight_kg: "0.25",
@@ -212,6 +216,9 @@ export function SubmitGymForm({
     ["bench_count", t("benchCount")],
     ["barbell_count", t("barbellCount")],
     ["platform_count", t("platformCount")],
+    ["cable_machine_count", t("cableMachineCount")],
+    ["smith_machine_count", t("smithMachineCount")],
+    ["dumbbell_min_weight_kg", t("dumbbellMin")],
     ["dumbbell_max_weight_kg", t("dumbbellMax")],
     ["plate_min_weight_kg", t("plateMin")],
     ["plate_max_weight_kg", t("plateMax")],
@@ -255,14 +262,6 @@ export function SubmitGymForm({
     ["kettlebell_32kg_count", t("kettlebell32kgCount")],
   ];
 
-  const machineCountFields = [
-    ["cable_machine_count", t("cableMachineCount")],
-    ["smith_machine_count", t("smithMachineCount")],
-    ["ab_crunch_bench_count", t("abCrunchBenchCount")],
-    ["preacher_curl_bench_count", t("preacherCurlBenchCount")],
-    ["overhead_press_chair_count", t("overheadPressChairCount")],
-  ];
-
   const featureSections = [
     {
       title: t("freeWeight"),
@@ -296,8 +295,13 @@ export function SubmitGymForm({
       ],
     },
     {
+      title: tGym("coreMachine"),
+      fields: [["has_ab_crunch_bench", tGym("abCrunchBench")]],
+    },
+    {
       title: tGym("armMachine"),
       fields: [
+        ["has_preacher_curl_bench", tGym("preacherCurlBench")],
         ["has_bicep_curl_machine", tGym("bicepCurlMachine")],
         ["has_tricep_extension_machine", tGym("tricepExtensionMachine")],
       ],
@@ -325,6 +329,7 @@ export function SubmitGymForm({
     {
       title: tGym("shoulderMachine"),
       fields: [
+        ["has_overhead_chair", tGym("overheadPressChair")],
         ["has_lateral_raise_machine", tGym("lateralRaiseMachine")],
         ["has_reverse_fly_machine", tGym("reverseFlyMachine")],
         ["has_shoulder_press_machine", tGym("shoulderPressMachine")],
@@ -430,6 +435,9 @@ export function SubmitGymForm({
         bench_count: toNumber(String(formData.get("bench_count") ?? "")),
         barbell_count: toNumber(String(formData.get("barbell_count") ?? "")),
         platform_count: toNumber(String(formData.get("platform_count") ?? "")),
+        dumbbell_min_weight_kg: toNumber(
+          String(formData.get("dumbbell_min_weight_kg") ?? "")
+        ),
         dumbbell_max_weight_kg: toNumber(
           String(formData.get("dumbbell_max_weight_kg") ?? "")
         ),
@@ -530,15 +538,6 @@ export function SubmitGymForm({
         ),
         smith_machine_count: toNumber(
           String(formData.get("smith_machine_count") ?? "")
-        ),
-        ab_crunch_bench_count: toNumber(
-          String(formData.get("ab_crunch_bench_count") ?? "")
-        ),
-        preacher_curl_bench_count: toNumber(
-          String(formData.get("preacher_curl_bench_count") ?? "")
-        ),
-        overhead_press_chair_count: toNumber(
-          String(formData.get("overhead_press_chair_count") ?? "")
         ),
         ...Object.fromEntries(
           featureNames.map((name) => [
@@ -813,7 +812,6 @@ export function SubmitGymForm({
             </summary>
             <div className="mt-4 space-y-5">
               <p className="text-sm text-gray-500">{t("featureStateHint")}</p>
-              {renderNumberFields(machineCountFields)}
               {featureSections.map((section) => (
                 <div key={section.title} className="space-y-2">
                   <h3 className="text-sm font-medium text-gray-700">

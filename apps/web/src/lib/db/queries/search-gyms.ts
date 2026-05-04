@@ -106,7 +106,7 @@ export async function searchGyms(
   let query = supabase
     .from("gyms")
     .select(
-      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, has_wall_ball, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, data_accuracy_status, equipment_last_verified_at, updated_at",
+      "id, name, name_zh, slug, district_code, address, address_zh, lat, lng, size_category, rack_count, dumbbell_min_weight_kg, dumbbell_max_weight_kg, plate_min_weight_kg, plate_max_weight_kg, assault_bike_count, ski_erg_count, rower_count, sled_count, has_wall_ball, wall_ball_count, wall_ball_4kg_count, wall_ball_6kg_count, wall_ball_9kg_count, is_verified, data_accuracy_status, equipment_last_verified_at, updated_at",
       { count: "exact" }
     )
     .eq("is_active", true);
