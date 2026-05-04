@@ -379,7 +379,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   ];
 
   const freeWeightFeatures = [
-    [t("romanChair"), gym.has_roman_chair],
     [t("dipStation"), gym.has_dip_station],
     [t("pullUpBar"), gym.has_pull_up_bar],
     [t("reverseHyper"), gym.has_reverse_hyper],
@@ -515,6 +514,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   ];
 
   const coreMachines = [
+    [t("romanChair"), gym.has_roman_chair],
     [t("abCrunchBench"), gym.has_ab_crunch_bench],
   ]
     .filter(([, hasFeature]) => hasFeature)

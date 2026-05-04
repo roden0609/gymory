@@ -266,7 +266,6 @@ export function SubmitGymForm({
     {
       title: t("freeWeight"),
       fields: [
-        ["has_roman_chair", tGym("romanChair")],
         ["has_dip_station", tGym("dipStation")],
         ["has_pull_up_bar", tGym("pullUpBar")],
         ["has_reverse_hyper", tGym("reverseHyper")],
@@ -296,7 +295,10 @@ export function SubmitGymForm({
     },
     {
       title: tGym("coreMachine"),
-      fields: [["has_ab_crunch_bench", tGym("abCrunchBench")]],
+      fields: [
+        ["has_roman_chair", tGym("romanChair")],
+        ["has_ab_crunch_bench", tGym("abCrunchBench")],
+      ],
     },
     {
       title: tGym("armMachine"),
