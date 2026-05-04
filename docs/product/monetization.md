@@ -73,7 +73,7 @@ Gyms can pay to:
 
 ### Revenue Model
 
-- monthly subscription (e.g. $30–$200/month depending on region)
+- monthly subscription (e.g. HK$230–HK$1,550/month depending on gym size)
 - or pay-per-location
 
 ### Why It Works
@@ -86,7 +86,47 @@ This is high-intent traffic:
 
 ---
 
-## Phase 3 — Lead Generation
+## Phase 3 — Personal Trainer Featured Ads
+
+### Description
+
+Personal trainers without a fixed gym can pay to have their profile appear within gym search results, targeting users who are actively searching for a gym in their area.
+
+### Placement
+
+A PT ad card appears inline within the gym list (e.g. after every 5–8 gym results), clearly labelled as "Featured PT" or "Sponsored". It is visually distinct but contextually relevant.
+
+### Minimum PT Profile Fields
+
+- Name
+- Speciality (e.g. Powerlifting, HYROX, Bodybuilding)
+- Active districts
+- Contact method (WhatsApp, Instagram, email)
+
+### Revenue Model
+
+- Monthly flat fee per district (e.g. HK$1,500–$3,800/month)
+- Or cost per lead (CPL) if contact tracking is implemented
+
+### Why It Works
+
+- Users searching for a gym are exactly the audience a PT wants to reach
+- High relevance means low friction — it feels like useful information, not an ad
+- PTs are solo operators with direct ROI sensitivity, willing to pay for qualified leads
+- Does not require a large PT user base to be valuable — even a handful of paying PTs generates revenue from day one
+
+### Trust Requirements
+
+- Must be clearly labelled as sponsored/featured
+- PT profiles should be manually reviewed before going live (MVP: manual onboarding)
+
+### When to Build
+
+Phase 2 — earlier than gym SaaS tools. Low engineering cost (a PT profile is a simple record), high monetization potential relative to effort.
+
+---
+
+## Phase 4 — Lead Generation
 
 ### Description
 
@@ -157,6 +197,36 @@ Use aggregated data to provide insights:
 
 ---
 
+## Target Segments
+
+---
+
+### Segment 1 — Serious Gym-Goers
+
+Powerlifters, bodybuilders, HYROX athletes, and anyone who trains with a specific programme that demands specific equipment. The primary user Gymory was designed for.
+
+**Pain point:** Existing platforms don't show equipment-level detail. They waste time visiting gyms that don't have what they need.
+
+---
+
+### Segment 2 — Personal Trainers Without a Fixed Gym
+
+PTs who are freelance or gym-independent, and bring clients to commercial gyms for sessions. This group has a stronger and more frequent version of the same pain point as Segment 1 — equipment availability directly affects their ability to deliver sessions and retain clients.
+
+**Pain point:** Every client has different goals and requires different equipment. A PT doing HYROX prep needs ski ergs and sleds; a powerlifting client needs platforms and a sufficient rack count. Finding a suitable gym for each session is a recurring operational problem, not a one-off decision.
+
+**Why this matters for monetization:**
+- PTs are repeat, high-intent users — they search more frequently than regular gym-goers
+- They are professional buyers, more receptive to paid tools that save time
+- Phase 2-3 opportunity: PT featured profiles on gym detail pages, allowing clients who find the right gym to also discover a PT who trains there regularly
+
+**Additional data needs for this segment (not yet collected):**
+- Whether a gym allows external PTs to bring clients
+- Day pass pricing for PT + client pairs
+- Peak hour congestion (affects session scheduling)
+
+---
+
 ## Ads Strategy (Optional)
 
 ### Recommendation
@@ -185,13 +255,17 @@ Users want fast decisions, not distractions.
 
 ### Featured Listing
 
-- small gym: $30–$50/month
-- mid-tier gym: $50–$100/month
-- premium gym: $100–$200/month
+- small gym: HK$230–HK$390/month
+- mid-tier gym: HK$390–HK$780/month
+- premium gym: HK$780–HK$1,550/month
+
+### PT Featured Ads
+
+- HK$1,500–HK$3,800/month per district
 
 ### Lead Generation
 
-- $2–$10 per lead (region dependent)
+- HK$15–HK$78 per lead
 
 ---
 
