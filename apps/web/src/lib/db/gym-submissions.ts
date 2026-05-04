@@ -189,12 +189,36 @@ export function buildChangedFields(
     ) {
       continue;
     }
-    if (!before || JSON.stringify(before[key]) !== JSON.stringify(value)) {
+    if (!before || !isEqualJsonValue(before[key], value)) {
       changed[key] = value;
     }
   }
 
   return Object.keys(changed).length > 0 ? changed : null;
+}
+
+function isEqualJsonValue(left: unknown, right: unknown): boolean {
+  if (Object.is(left, right)) return true;
+
+  if (Array.isArray(left) || Array.isArray(right)) {
+    if (!Array.isArray(left) || !Array.isArray(right)) return false;
+    if (left.length !== right.length) return false;
+    return left.every((item, index) => isEqualJsonValue(item, right[index]));
+  }
+
+  if (isPlainRecord(left) || isPlainRecord(right)) {
+    if (!isPlainRecord(left) || !isPlainRecord(right)) return false;
+    const leftKeys = Object.keys(left).sort();
+    const rightKeys = Object.keys(right).sort();
+    if (!isEqualJsonValue(leftKeys, rightKeys)) return false;
+    return leftKeys.every((key) => isEqualJsonValue(left[key], right[key]));
+  }
+
+  return false;
+}
+
+function isPlainRecord(value: unknown): value is JsonRecord {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
 export function buildSubmissionPayloadFromGymSnapshot(snapshot: JsonRecord) {
