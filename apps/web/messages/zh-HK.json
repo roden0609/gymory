@@ -70,6 +70,8 @@
     "barbells": "槓鈴",
     "platforms": "平台",
     "dumbbells": "啞鈴",
+    "dumbbellMin": "啞鈴最小重量",
+    "dumbbellMax": "啞鈴最大重量",
     "plates": "槓片",
     "plateMin": "最細槓片",
     "plateMax": "最重槓片",

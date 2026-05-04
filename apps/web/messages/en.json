@@ -70,6 +70,8 @@
     "barbells": "Barbells",
     "platforms": "Platforms",
     "dumbbells": "Dumbbells",
+    "dumbbellMin": "Min dumbbell",
+    "dumbbellMax": "Max dumbbell",
     "plates": "Plates",
     "plateMin": "Smallest plate",
     "plateMax": "Heaviest plate",
