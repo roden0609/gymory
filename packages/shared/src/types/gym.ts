@@ -64,6 +64,7 @@ export interface Gym {
   wall_ball_count: number | null;
   wall_ball_4kg_count: number | null;
   wall_ball_6kg_count: number | null;
+  wall_ball_8kg_count: number | null;
   wall_ball_9kg_count: number | null;
   wall_ball_10kg_count: number | null;
   wall_ball_plate_9ft_count: number | null;
@@ -157,11 +158,17 @@ export interface Gym {
   has_squat_machine: boolean | null;
   has_hack_squat: boolean | null;
   has_standing_calf_raise_machine: boolean | null;
+  has_glute_extension_machine: boolean | null;
+  has_hip_thrust_machine: boolean | null;
+  has_booty_builder: boolean | null;
 
   // Other equipment
   has_battle_rope: boolean | null;
   has_foam_roller: boolean | null;
   has_medicine_ball: boolean | null;
+  has_exercise_stepper: boolean | null;
+  has_ab_roller: boolean | null;
+  has_massage_ball: boolean | null;
   has_dip_belt: boolean | null;
   has_weight_vest: boolean | null;
   has_lifting_straps: boolean | null;
@@ -169,11 +176,16 @@ export interface Gym {
   has_balance_ball: boolean | null;
   has_washroom: boolean | null;
   has_bathroom: boolean | null;
+  has_dry_sauna: boolean | null;
+  has_wet_sauna: boolean | null;
+  has_ice_bath: boolean | null;
   has_yoga_block: boolean | null;
   has_yoga_mat: boolean | null;
 
   // Core machine
   has_ab_crunch_bench: boolean | null;
+  has_torso_rotation_machine: boolean | null;
+  has_ab_crunch_machine: boolean | null;
 
   equipment_notes: string | null;
 
@@ -215,6 +227,7 @@ export type GymSummary = Pick<
   | "wall_ball_count"
   | "wall_ball_4kg_count"
   | "wall_ball_6kg_count"
+  | "wall_ball_8kg_count"
   | "wall_ball_9kg_count"
   | "is_verified"
   | "data_accuracy_status"

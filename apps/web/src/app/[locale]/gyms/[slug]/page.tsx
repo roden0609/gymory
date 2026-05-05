@@ -440,19 +440,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
       }),
     },
     {
-      label: t("wallBallSummary"),
-      value: formatAvailableWeightsSummary({
-        availableLabel: t("available"),
-        notListedLabel: t("notListed"),
-        weights: [
-          { kg: 4, count: gym.wall_ball_4kg_count },
-          { kg: 6, count: gym.wall_ball_6kg_count },
-          { kg: 9, count: gym.wall_ball_9kg_count },
-          { kg: 10, count: gym.wall_ball_10kg_count },
-        ],
-      }),
-    },
-    {
       label: t("sandbagSummary"),
       value: formatAvailableWeightsSummary({
         availableLabel: t("available"),
@@ -467,6 +454,20 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
         ],
       }),
     },
+    {
+      label: t("wallBallSummary"),
+      value: formatAvailableWeightsSummary({
+        availableLabel: t("available"),
+        notListedLabel: t("notListed"),
+        weights: [
+          { kg: 4, count: gym.wall_ball_4kg_count },
+          { kg: 6, count: gym.wall_ball_6kg_count },
+          { kg: 8, count: gym.wall_ball_8kg_count },
+          { kg: 9, count: gym.wall_ball_9kg_count },
+          { kg: 10, count: gym.wall_ball_10kg_count },
+        ],
+      }),
+    },
   ];
 
   const otherEquipment = [
@@ -474,6 +475,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("battleRope"), gym.has_battle_rope || gym.has_battle_ropes],
     [t("foamRoller"), gym.has_foam_roller],
     [t("medicineBall"), gym.has_medicine_ball],
+    [t("exerciseStepper"), gym.has_exercise_stepper],
+    [t("abRoller"), gym.has_ab_roller],
+    [t("massageBall"), gym.has_massage_ball],
     [t("dipBelt"), gym.has_dip_belt],
     [t("weightVest"), gym.has_weight_vest],
     [t("liftingStraps"), gym.has_lifting_straps],
@@ -494,6 +498,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const amenities = [
     [t("washroom"), gym.has_washroom],
     [t("bathroom"), gym.has_bathroom],
+    [t("drySauna"), gym.has_dry_sauna],
+    [t("wetSauna"), gym.has_wet_sauna],
+    [t("iceBath"), gym.has_ice_bath],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
@@ -516,6 +523,8 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const coreMachines = [
     [t("romanChair"), gym.has_roman_chair],
     [t("abCrunchBench"), gym.has_ab_crunch_bench],
+    [t("torsoRotationMachine"), gym.has_torso_rotation_machine],
+    [t("abCrunchMachine"), gym.has_ab_crunch_machine],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
@@ -576,6 +585,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("squatMachine"), gym.has_squat_machine],
     [t("hackSquatMachine"), gym.has_hack_squat],
     [t("standingCalfRaiseMachine"), gym.has_standing_calf_raise_machine],
+    [t("gluteExtensionMachine"), gym.has_glute_extension_machine],
+    [t("hipThrustMachine"), gym.has_hip_thrust_machine],
+    [t("bootyBuilder"), gym.has_booty_builder],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);

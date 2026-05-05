@@ -86,10 +86,16 @@ const FEATURE_FIELD_NAMES = [
   "has_squat_machine",
   "has_hack_squat",
   "has_standing_calf_raise_machine",
+  "has_glute_extension_machine",
+  "has_hip_thrust_machine",
+  "has_booty_builder",
   "has_battle_rope",
   "has_resistance_band",
   "has_foam_roller",
   "has_medicine_ball",
+  "has_exercise_stepper",
+  "has_ab_roller",
+  "has_massage_ball",
   "has_dip_belt",
   "has_weight_vest",
   "has_lifting_straps",
@@ -97,8 +103,13 @@ const FEATURE_FIELD_NAMES = [
   "has_balance_ball",
   "has_washroom",
   "has_bathroom",
+  "has_dry_sauna",
+  "has_wet_sauna",
+  "has_ice_bath",
   "has_yoga_block",
   "has_yoga_mat",
+  "has_torso_rotation_machine",
+  "has_ab_crunch_machine",
 ] as const;
 
 const NUMBER_FIELD_STEPS: Partial<Record<keyof Gym, string>> = {
@@ -240,6 +251,7 @@ export function SubmitGymForm({
     ["sled_count", t("sledCount")],
     ["wall_ball_4kg_count", t("wallBall4kgCount")],
     ["wall_ball_6kg_count", t("wallBall6kgCount")],
+    ["wall_ball_8kg_count", t("wallBall8kgCount")],
     ["wall_ball_9kg_count", t("wallBall9kgCount")],
     ["wall_ball_10kg_count", t("wallBall10kgCount")],
     ["wall_ball_plate_9ft_count", t("wallBallPlate9ftCount")],
@@ -299,6 +311,8 @@ export function SubmitGymForm({
       fields: [
         ["has_roman_chair", tGym("romanChair")],
         ["has_ab_crunch_bench", tGym("abCrunchBench")],
+        ["has_torso_rotation_machine", tGym("torsoRotationMachine")],
+        ["has_ab_crunch_machine", tGym("abCrunchMachine")],
       ],
     },
     {
@@ -355,6 +369,9 @@ export function SubmitGymForm({
         ["has_squat_machine", tGym("squatMachine")],
         ["has_hack_squat", t("hackSquatMachine")],
         ["has_standing_calf_raise_machine", tGym("standingCalfRaiseMachine")],
+        ["has_glute_extension_machine", tGym("gluteExtensionMachine")],
+        ["has_hip_thrust_machine", tGym("hipThrustMachine")],
+        ["has_booty_builder", tGym("bootyBuilder")],
       ],
     },
     {
@@ -364,6 +381,9 @@ export function SubmitGymForm({
         ["has_battle_rope", tGym("battleRope")],
         ["has_foam_roller", tGym("foamRoller")],
         ["has_medicine_ball", tGym("medicineBall")],
+        ["has_exercise_stepper", tGym("exerciseStepper")],
+        ["has_ab_roller", tGym("abRoller")],
+        ["has_massage_ball", tGym("massageBall")],
         ["has_dip_belt", tGym("dipBelt")],
         ["has_weight_vest", tGym("weightVest")],
         ["has_lifting_straps", tGym("liftingStraps")],
@@ -381,6 +401,9 @@ export function SubmitGymForm({
   const amenityFields = [
     ["has_washroom", tGym("washroom")],
     ["has_bathroom", tGym("bathroom")],
+    ["has_dry_sauna", tGym("drySauna")],
+    ["has_wet_sauna", tGym("wetSauna")],
+    ["has_ice_bath", tGym("iceBath")],
   ];
 
   const featureNames = [...featureSections, { fields: amenityFields }].flatMap(
@@ -472,6 +495,9 @@ export function SubmitGymForm({
         ),
         wall_ball_6kg_count: toNumber(
           String(formData.get("wall_ball_6kg_count") ?? "")
+        ),
+        wall_ball_8kg_count: toNumber(
+          String(formData.get("wall_ball_8kg_count") ?? "")
         ),
         wall_ball_9kg_count: toNumber(
           String(formData.get("wall_ball_9kg_count") ?? "")

@@ -57,6 +57,7 @@ export function GymCard({ gym }: { gym: GymSummary }) {
     (gym.wall_ball_count !== null && gym.wall_ball_count > 0) ||
     (gym.wall_ball_4kg_count !== null && gym.wall_ball_4kg_count > 0) ||
     (gym.wall_ball_6kg_count !== null && gym.wall_ball_6kg_count > 0) ||
+    (gym.wall_ball_8kg_count !== null && gym.wall_ball_8kg_count > 0) ||
     (gym.wall_ball_9kg_count !== null && gym.wall_ball_9kg_count > 0)
   ) {
     equipmentHighlights.push(tGym("wallBall"));
