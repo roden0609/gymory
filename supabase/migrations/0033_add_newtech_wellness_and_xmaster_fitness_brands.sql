@@ -1,9 +1,7 @@
-alter table public.gyms
-  add column if not exists has_boxing_sandbag boolean;
-
 insert into public.equipment_brands (slug, name_en, name_zh, country)
 values
-  ('sportsart', 'SportsArt', 'SportsArt', 'Taiwan')
+  ('newtech-wellness', 'Newtech Wellness', 'Newtech Wellness', 'South Korea'),
+  ('xmaster-fitness', 'XMaster Fitness', 'XMaster Fitness', 'China')
 on conflict (slug) do update
 set
   name_en = excluded.name_en,

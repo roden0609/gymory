@@ -33,5 +33,7 @@ export const EQUIPMENT_BRANDS: EquipmentBrandOption[] = [
   { slug: "dhz-fitness", name_en: "DHZ Fitness", name_zh: "DHZ Fitness", country: "China" },
   { slug: "shua-fitness", name_en: "Shua Fitness", name_zh: "Shua Fitness", country: "China" },
   { slug: "luxiaojun-fitness", name_en: "LUXIAOJUN Fitness", name_zh: "LUXIAOJUN Fitness", country: "China" },
-  { slug: "sportsart", name_en: "SportsArt", name_zh: "SportsArt", country: null },
+  { slug: "sportsart", name_en: "SportsArt", name_zh: "SportsArt", country: "Taiwan" },
+  { slug: "newtech-wellness", name_en: "Newtech Wellness", name_zh: "Newtech Wellness", country: "South Korea" },
+  { slug: "xmaster-fitness", name_en: "XMaster Fitness", name_zh: "XMaster Fitness", country: "China" },
 ];
