@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, type ReactNode, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { useRouter } from "@/i18n/navigation";
@@ -22,6 +22,11 @@ type SubmitGymFormProps = {
 
 type FeatureFieldName = (typeof FEATURE_FIELD_NAMES)[number];
 type FeatureStateMap = Record<FeatureFieldName, boolean | null>;
+type SubmitPayload = {
+  gym: Record<string, FormDataEntryValue | string | number | null | Record<string, string>>;
+  equipment: Record<string, string[] | number | boolean | null>;
+  brands: string[];
+};
 
 const OPENING_HOUR_FIELDS = [
   "monday",
@@ -137,6 +142,27 @@ function withFlashParam(path: string, flash: string) {
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
+function FieldLabel({
+  children,
+  required = false,
+  requiredLabel,
+}: {
+  children: ReactNode;
+  required?: boolean;
+  requiredLabel: string;
+}) {
+  return (
+    <span className="flex items-center gap-2 text-sm font-medium text-gray-700">
+      <span>{children}</span>
+      {required ? (
+        <span className="rounded-full bg-red-50 px-2 py-0.5 text-xs font-semibold text-red-700">
+          {requiredLabel}
+        </span>
+      ) : null}
+    </span>
+  );
+}
+
 function buildOpeningHoursJson(formData: FormData) {
   const entries = OPENING_HOUR_FIELDS.map((day) => [
     day,
@@ -144,6 +170,70 @@ function buildOpeningHoursJson(formData: FormData) {
   ]).filter(([, hours]) => hours);
 
   return entries.length > 0 ? Object.fromEntries(entries) : null;
+}
+
+function buildClientPatchFromPayload(payload: SubmitPayload) {
+  const { notes, ...gymPatch } = payload.gym;
+  const equipmentPatch = { ...payload.equipment };
+  delete equipmentPatch.brand_slugs;
+
+  return {
+    ...gymPatch,
+    ...equipmentPatch,
+    equipment_notes: notes ?? null,
+  };
+}
+
+function hasMeaningfulUpdateChange({
+  initialGym,
+  initialBrandSlugs,
+  payload,
+}: {
+  initialGym?: Gym | null;
+  initialBrandSlugs: string[];
+  payload: SubmitPayload;
+}) {
+  if (!initialGym) return true;
+
+  const patch = buildClientPatchFromPayload(payload);
+  for (const [key, value] of Object.entries(patch)) {
+    if (!isEqualJsonValue(initialGym[key as keyof Gym], value)) {
+      return true;
+    }
+  }
+
+  return !isEqualStringArray(initialBrandSlugs, payload.brands);
+}
+
+function isEqualStringArray(left: string[], right: string[]) {
+  if (left.length !== right.length) return false;
+  const sortedLeft = [...left].sort();
+  const sortedRight = [...right].sort();
+  return sortedLeft.every((value, index) => value === sortedRight[index]);
+}
+
+function isEqualJsonValue(left: unknown, right: unknown): boolean {
+  if (Object.is(left, right)) return true;
+
+  if (Array.isArray(left) || Array.isArray(right)) {
+    if (!Array.isArray(left) || !Array.isArray(right)) return false;
+    if (left.length !== right.length) return false;
+    return left.every((item, index) => isEqualJsonValue(item, right[index]));
+  }
+
+  if (isPlainRecord(left) || isPlainRecord(right)) {
+    if (!isPlainRecord(left) || !isPlainRecord(right)) return false;
+    const leftKeys = Object.keys(left).sort();
+    const rightKeys = Object.keys(right).sort();
+    if (!isEqualJsonValue(leftKeys, rightKeys)) return false;
+    return leftKeys.every((key) => isEqualJsonValue(left[key], right[key]));
+  }
+
+  return false;
+}
+
+function isPlainRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
 export function SubmitGymForm({
@@ -172,6 +262,7 @@ export function SubmitGymForm({
   const isUpdate = Boolean(gymId);
   const title = isUpdate ? t("updateTitle") : t("title");
   const description = isUpdate ? t("updateDescription") : t("description");
+  const isCoreGymInfoRequired = true;
 
   const districtOptions = useMemo(
     () =>
@@ -437,7 +528,7 @@ export function SubmitGymForm({
     setErrorMessage("");
 
     const formData = new FormData(form);
-    const payload = {
+    const payload: SubmitPayload = {
       gym: {
         name: formData.get("name"),
         name_zh: formData.get("name_zh") || null,
@@ -579,6 +670,15 @@ export function SubmitGymForm({
       brands: selectedBrandSlugs,
     };
 
+    if (
+      isUpdate &&
+      !hasMeaningfulUpdateChange({ initialGym, initialBrandSlugs, payload })
+    ) {
+      setStatus("error");
+      setErrorMessage(t("noChangesError"));
+      return;
+    }
+
     try {
       const response = await fetch("/api/submissions", {
         method: "POST",
@@ -636,12 +736,15 @@ export function SubmitGymForm({
 
           <div className="grid gap-4 md:grid-cols-2">
             <label className="space-y-1.5">
-              <span className="text-sm font-medium text-gray-700">
+              <FieldLabel
+                required={isCoreGymInfoRequired}
+                requiredLabel={t("required")}
+              >
                 {t("gymName")}
-              </span>
+              </FieldLabel>
               <input
                 name="name"
-                required={!isUpdate}
+                required={isCoreGymInfoRequired}
                 defaultValue={getDefaultValue("name")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               />
@@ -660,12 +763,15 @@ export function SubmitGymForm({
           </div>
 
           <label className="block space-y-1.5">
-            <span className="text-sm font-medium text-gray-700">
+            <FieldLabel
+              required={isCoreGymInfoRequired}
+              requiredLabel={t("required")}
+            >
               {t("address")}
-            </span>
+            </FieldLabel>
             <input
               name="address"
-              required={!isUpdate}
+              required={isCoreGymInfoRequired}
               defaultValue={getDefaultValue("address")}
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
             />
@@ -684,12 +790,15 @@ export function SubmitGymForm({
 
           <div className="grid gap-4 md:grid-cols-2">
             <label className="space-y-1.5">
-              <span className="text-sm font-medium text-gray-700">
+              <FieldLabel
+                required={isCoreGymInfoRequired}
+                requiredLabel={t("required")}
+              >
                 {t("district")}
-              </span>
+              </FieldLabel>
               <select
                 name="district_code"
-                required={!isUpdate}
+                required={isCoreGymInfoRequired}
                 defaultValue={getDefaultValue("district_code")}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               >
@@ -954,6 +1063,7 @@ export function SubmitGymForm({
           <textarea
             name="notes"
             rows={4}
+            defaultValue={getDefaultValue("equipment_notes")}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
           />
         </label>

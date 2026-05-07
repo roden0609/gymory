@@ -31,6 +31,12 @@ export const GYM_FIELDS: Array<keyof Gym> = [
   "day_pass_price",
 ];
 
+export const REQUIRED_GYM_INFO_FIELDS = [
+  "name",
+  "address",
+  "district_code",
+] as const;
+
 export const EQUIPMENT_FIELDS: Array<keyof Gym> = [
   "rack_count",
   "bench_count",
@@ -183,6 +189,13 @@ export function buildGymPatchFromPayload(payload: SubmissionPayload) {
     ...gymPatch,
     ...equipmentPatch,
   };
+}
+
+export function getMissingRequiredGymInfoFields(payload: SubmissionPayload) {
+  return REQUIRED_GYM_INFO_FIELDS.filter((field) => {
+    const value = payload.gym?.[field];
+    return typeof value !== "string" || value.trim().length === 0;
+  });
 }
 
 export function buildChangedFields(

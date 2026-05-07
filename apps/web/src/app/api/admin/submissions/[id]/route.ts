@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getFirebaseSessionUser, isAdminUser } from "@/lib/auth/session";
-import { buildGymPatchFromPayload, type SubmissionPayload } from "@/lib/db/gym-submissions";
+import {
+  buildGymPatchFromPayload,
+  getMissingRequiredGymInfoFields,
+  type SubmissionPayload,
+} from "@/lib/db/gym-submissions";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { ensureAppUser } from "@/lib/db/users";
 import { toSlug } from "@/lib/utils/slug";
@@ -93,6 +97,13 @@ async function applySubmission(
   payload: SubmissionPayload,
   _user: NonNullable<Awaited<ReturnType<typeof getFirebaseSessionUser>>>
 ) {
+  const missingRequiredFields = getMissingRequiredGymInfoFields(payload);
+  if (missingRequiredFields.length > 0) {
+    throw new Error(
+      `Missing required gym fields: ${missingRequiredFields.join(", ")}`
+    );
+  }
+
   const submittedName = payload.gym?.name;
   const submittedCountryCode = payload.gym?.country_code;
   const patch = buildGymPatchFromPayload(payload);

@@ -3,6 +3,7 @@ import { getFirebaseSessionUser } from "@/lib/auth/session";
 import {
   buildChangedFields,
   buildGymPatchFromPayload,
+  getMissingRequiredGymInfoFields,
   insertSubmissionRecord,
   type SubmissionPayload,
 } from "@/lib/db/gym-submissions";
@@ -24,10 +25,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
+  const payload = parsed.data.payload as SubmissionPayload;
+  const missingRequiredFields = getMissingRequiredGymInfoFields(payload);
+  if (missingRequiredFields.length > 0) {
+    return NextResponse.json(
+      {
+        error: `Missing required gym fields: ${missingRequiredFields.join(", ")}`,
+      },
+      { status: 400 }
+    );
+  }
+
   try {
     const supabase = createAdminClient();
     const appUser = await ensureAppUser(user, supabase);
-    const payload = parsed.data.payload as SubmissionPayload;
     const patch = buildGymPatchFromPayload(payload);
     const existingGym = parsed.data.gymId
       ? await fetchGymById(supabase, parsed.data.gymId)
@@ -45,6 +56,13 @@ export async function POST(request: NextRequest) {
       existingBrandSlugs,
       submittedBrandSlugs,
     });
+
+    if (actionType === "U" && !changedFields) {
+      return NextResponse.json(
+        { error: "Please change at least one field before submitting." },
+        { status: 400 }
+      );
+    }
 
     await insertSubmissionRecord({
       supabase,
