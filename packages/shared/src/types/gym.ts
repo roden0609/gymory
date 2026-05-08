@@ -120,10 +120,14 @@ export interface Gym {
   has_preacher_curl_bench: boolean | null;
   has_bicep_curl_machine: boolean | null;
   has_tricep_extension_machine: boolean | null;
+  has_dip_machine: boolean | null;
 
   // Chest machine
   has_chest_press_machine: boolean | null;
   has_incline_chest_press_machine: boolean | null;
+  has_decline_chest_press_machine: boolean | null;
+  has_bench_rack: boolean | null;
+  has_incline_bench_rack: boolean | null;
   has_iso_lateral_chest_press_machine: boolean | null;
   has_pec_deck_machine: boolean | null;
   has_chest_fly_machine: boolean | null;
@@ -134,10 +138,12 @@ export interface Gym {
   has_back_extension_machine: boolean | null;
   has_iso_lateral_row_machine: boolean | null;
   has_t_bar_row_machine: boolean | null;
+  has_pull_over_machine: boolean | null;
 
   // Shoulder machine
   has_overhead_chair: boolean | null;
   has_lateral_raise_machine: boolean | null;
+  has_standing_lateral_raise_machine: boolean | null;
   has_reverse_fly_machine: boolean | null;
   has_shoulder_press_machine: boolean | null;
   has_iso_lateral_shoulder_press_machine: boolean | null;
@@ -157,6 +163,7 @@ export interface Gym {
   has_seated_calf_raise_machine: boolean | null;
   has_squat_machine: boolean | null;
   has_hack_squat: boolean | null;
+  has_belt_squat_machine: boolean | null;
   has_standing_calf_raise_machine: boolean | null;
   has_glute_extension_machine: boolean | null;
   has_hip_thrust_machine: boolean | null;

@@ -535,6 +535,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("preacherCurlBench"), gym.has_preacher_curl_bench],
     [t("bicepCurlMachine"), gym.has_bicep_curl_machine],
     [t("tricepExtensionMachine"), gym.has_tricep_extension_machine],
+    [t("dipMachine"), gym.has_dip_machine],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
@@ -542,6 +543,9 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const chestMachines = [
     [t("chestPressMachine"), gym.has_chest_press_machine],
     [t("inclineChestPressMachine"), gym.has_incline_chest_press_machine],
+    [t("declineChestPressMachine"), gym.has_decline_chest_press_machine],
+    [t("benchRack"), gym.has_bench_rack],
+    [t("inclineBenchRack"), gym.has_incline_bench_rack],
     [t("isoLateralChestPressMachine"), gym.has_iso_lateral_chest_press_machine],
     [t("pecDeckMachine"), gym.has_pec_deck_machine],
     [t("chestFlyMachine"), gym.has_chest_fly_machine],
@@ -555,6 +559,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("backExtensionMachine"), gym.has_back_extension_machine],
     [t("isoLateralRowMachine"), gym.has_iso_lateral_row_machine],
     [t("tBarRowMachine"), gym.has_t_bar_row_machine],
+    [t("pullOverMachine"), gym.has_pull_over_machine],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
@@ -562,6 +567,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const shoulderMachines = [
     [t("overheadPressChair"), gym.has_overhead_chair],
     [t("lateralRaiseMachine"), gym.has_lateral_raise_machine],
+    [t("standingLateralRaiseMachine"), gym.has_standing_lateral_raise_machine],
     [t("reverseFlyMachine"), gym.has_reverse_fly_machine],
     [t("shoulderPressMachine"), gym.has_shoulder_press_machine],
     [t("isoLateralShoulderPressMachine"), gym.has_iso_lateral_shoulder_press_machine],
@@ -584,6 +590,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("seatedCalfRaiseMachine"), gym.has_seated_calf_raise_machine],
     [t("squatMachine"), gym.has_squat_machine],
     [t("hackSquatMachine"), gym.has_hack_squat],
+    [t("beltSquatMachine"), gym.has_belt_squat_machine],
     [t("standingCalfRaiseMachine"), gym.has_standing_calf_raise_machine],
     [t("gluteExtensionMachine"), gym.has_glute_extension_machine],
     [t("hipThrustMachine"), gym.has_hip_thrust_machine],
