@@ -182,6 +182,8 @@ export interface Gym {
   has_balance_ball: boolean | null;
   has_washroom: boolean | null;
   has_bathroom: boolean | null;
+  has_changing_room: boolean | null;
+  has_free_water: boolean | null;
   has_dry_sauna: boolean | null;
   has_wet_sauna: boolean | null;
   has_ice_bath: boolean | null;

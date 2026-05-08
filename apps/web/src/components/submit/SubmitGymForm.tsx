@@ -114,6 +114,8 @@ const FEATURE_FIELD_NAMES = [
   "has_balance_ball",
   "has_washroom",
   "has_bathroom",
+  "has_changing_room",
+  "has_free_water",
   "has_dry_sauna",
   "has_wet_sauna",
   "has_ice_bath",
@@ -504,6 +506,8 @@ export function SubmitGymForm({
   const amenityFields = [
     ["has_washroom", tGym("washroom")],
     ["has_bathroom", tGym("bathroom")],
+    ["has_changing_room", tGym("changingRoom")],
+    ["has_free_water", tGym("freeWater")],
     ["has_dry_sauna", tGym("drySauna")],
     ["has_wet_sauna", tGym("wetSauna")],
     ["has_ice_bath", tGym("iceBath")],

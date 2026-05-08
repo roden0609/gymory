@@ -153,6 +153,8 @@ export const EQUIPMENT_FIELDS: Array<keyof Gym> = [
   "has_balance_ball",
   "has_washroom",
   "has_bathroom",
+  "has_changing_room",
+  "has_free_water",
   "has_dry_sauna",
   "has_wet_sauna",
   "has_ice_bath",

@@ -498,6 +498,8 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const amenities = [
     [t("washroom"), gym.has_washroom],
     [t("bathroom"), gym.has_bathroom],
+    [t("changingRoom"), gym.has_changing_room],
+    [t("freeWater"), gym.has_free_water],
     [t("drySauna"), gym.has_dry_sauna],
     [t("wetSauna"), gym.has_wet_sauna],
     [t("iceBath"), gym.has_ice_bath],
