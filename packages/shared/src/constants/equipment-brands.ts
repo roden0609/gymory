@@ -36,4 +36,5 @@ export const EQUIPMENT_BRANDS: EquipmentBrandOption[] = [
   { slug: "sportsart", name_en: "SportsArt", name_zh: "SportsArt", country: "Taiwan" },
   { slug: "newtech-wellness", name_en: "Newtech Wellness", name_zh: "Newtech Wellness", country: "South Korea" },
   { slug: "xmaster-fitness", name_en: "XMaster Fitness", name_zh: "XMaster Fitness", country: "China" },
+  { slug: "booty-builder", name_en: "Booty Builder", name_zh: "Booty Builder", country: "Norway" },
 ];

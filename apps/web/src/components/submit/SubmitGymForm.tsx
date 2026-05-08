@@ -100,7 +100,6 @@ const FEATURE_FIELD_NAMES = [
   "has_standing_calf_raise_machine",
   "has_glute_extension_machine",
   "has_hip_thrust_machine",
-  "has_booty_builder",
   "has_battle_rope",
   "has_resistance_band",
   "has_foam_roller",
@@ -476,7 +475,6 @@ export function SubmitGymForm({
         ["has_standing_calf_raise_machine", tGym("standingCalfRaiseMachine")],
         ["has_glute_extension_machine", tGym("gluteExtensionMachine")],
         ["has_hip_thrust_machine", tGym("hipThrustMachine")],
-        ["has_booty_builder", tGym("bootyBuilder")],
       ],
     },
     {

@@ -594,7 +594,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     [t("standingCalfRaiseMachine"), gym.has_standing_calf_raise_machine],
     [t("gluteExtensionMachine"), gym.has_glute_extension_machine],
     [t("hipThrustMachine"), gym.has_hip_thrust_machine],
-    [t("bootyBuilder"), gym.has_booty_builder],
   ]
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);

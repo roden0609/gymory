@@ -167,7 +167,6 @@ export interface Gym {
   has_standing_calf_raise_machine: boolean | null;
   has_glute_extension_machine: boolean | null;
   has_hip_thrust_machine: boolean | null;
-  has_booty_builder: boolean | null;
 
   // Other equipment
   has_battle_rope: boolean | null;

@@ -139,7 +139,6 @@ export const EQUIPMENT_FIELDS: Array<keyof Gym> = [
   "has_standing_calf_raise_machine",
   "has_glute_extension_machine",
   "has_hip_thrust_machine",
-  "has_booty_builder",
   "has_battle_rope",
   "has_resistance_band",
   "has_foam_roller",
