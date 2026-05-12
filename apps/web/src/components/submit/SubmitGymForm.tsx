@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, type ReactNode, useMemo, useState } from "react";
+import { FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { useRouter } from "@/i18n/navigation";
@@ -22,6 +22,34 @@ type SubmitGymFormProps = {
 
 type FeatureFieldName = (typeof FEATURE_FIELD_NAMES)[number];
 type FeatureStateMap = Record<FeatureFieldName, boolean | null>;
+type CollapsibleSectionId = "hyrox" | "machines" | "amenities" | "brands";
+
+const SUBMIT_SECTION_HASHES = {
+  freeWeight: "submit-section-free-weight",
+  cardio: "submit-section-cardio",
+  hyrox: "submit-section-hyrox",
+  cable: "submit-section-cable",
+  fullBodyMachine: "submit-section-full-body-machine",
+  coreMachine: "submit-section-core-machine",
+  armMachine: "submit-section-arm-machine",
+  chestMachine: "submit-section-chest-machine",
+  backMachine: "submit-section-back-machine",
+  shoulderMachine: "submit-section-shoulder-machine",
+  legMachine: "submit-section-leg-machine",
+  otherEquipment: "submit-section-other-equipment",
+  amenities: "submit-section-amenities",
+  equipmentBrands: "submit-section-equipment-brands",
+} as const;
+
+const MACHINE_SECTION_HASHES = new Set<string>([
+  SUBMIT_SECTION_HASHES.coreMachine,
+  SUBMIT_SECTION_HASHES.armMachine,
+  SUBMIT_SECTION_HASHES.chestMachine,
+  SUBMIT_SECTION_HASHES.backMachine,
+  SUBMIT_SECTION_HASHES.shoulderMachine,
+  SUBMIT_SECTION_HASHES.legMachine,
+  SUBMIT_SECTION_HASHES.otherEquipment,
+]);
 type SubmitPayload = {
   gym: Record<string, FormDataEntryValue | string | number | null | Record<string, string>>;
   equipment: Record<string, string[] | number | boolean | null>;
@@ -270,7 +298,42 @@ export function SubmitGymForm({
   const isUpdate = Boolean(gymId);
   const title = isUpdate ? t("updateTitle") : t("title");
   const description = isUpdate ? t("updateDescription") : t("description");
+  const cancelHref = isUpdate && returnTo ? returnTo : "/";
   const isCoreGymInfoRequired = true;
+  const [openSections, setOpenSections] = useState<
+    Record<CollapsibleSectionId, boolean>
+  >({
+    hyrox: false,
+    machines: false,
+    amenities: false,
+    brands: false,
+  });
+
+  useEffect(() => {
+    const targetId = window.location.hash.slice(1);
+    if (!targetId) return;
+
+    if (targetId === SUBMIT_SECTION_HASHES.hyrox) {
+      setOpenSections((current) => ({ ...current, hyrox: true }));
+    } else if (MACHINE_SECTION_HASHES.has(targetId)) {
+      setOpenSections((current) => ({ ...current, machines: true }));
+    } else if (targetId === SUBMIT_SECTION_HASHES.amenities) {
+      setOpenSections((current) => ({ ...current, amenities: true }));
+    } else if (targetId === SUBMIT_SECTION_HASHES.equipmentBrands) {
+      setOpenSections((current) => ({ ...current, brands: true }));
+    }
+
+    window.requestAnimationFrame(() => {
+      document.getElementById(targetId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }, []);
+
+  function setSectionOpen(section: CollapsibleSectionId, open: boolean) {
+    setOpenSections((current) => ({ ...current, [section]: open }));
+  }
 
   const districtOptions = useMemo(
     () =>
@@ -327,8 +390,6 @@ export function SubmitGymForm({
     ["bench_count", t("benchCount")],
     ["barbell_count", t("barbellCount")],
     ["platform_count", t("platformCount")],
-    ["cable_machine_count", t("cableMachineCount")],
-    ["smith_machine_count", t("smithMachineCount")],
     ["dumbbell_min_weight_kg", t("dumbbellMin")],
     ["dumbbell_max_weight_kg", t("dumbbellMax")],
     ["plate_min_weight_kg", t("plateMin")],
@@ -342,6 +403,9 @@ export function SubmitGymForm({
     ["climber_count", t("climberCount")],
     ["elliptical_machine_count", t("ellipticalMachineCount")],
   ];
+
+  const cableFields = [["cable_machine_count", t("cableMachineCount")]];
+  const fullBodyMachineFields = [["smith_machine_count", t("smithMachineCount")]];
 
   const hyroxFields = [
     ["assault_runner_count", t("assaultRunnerCount")],
@@ -376,6 +440,7 @@ export function SubmitGymForm({
 
   const featureSections = [
     {
+      id: "submit-section-free-weight-features",
       title: t("freeWeight"),
       fields: [
         ["has_dip_station", tGym("dipStation")],
@@ -391,6 +456,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: "submit-section-hyrox-features",
       title: t("hyrox"),
       fields: [
         ["has_wall_ball", tGym("wallBall")],
@@ -399,6 +465,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: "submit-section-cable-features",
       title: tGym("cable"),
       fields: [
         ["has_lat_pulldown_cable", tGym("latPulldownCable")],
@@ -406,6 +473,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: SUBMIT_SECTION_HASHES.coreMachine,
       title: tGym("coreMachine"),
       fields: [
         ["has_roman_chair", tGym("romanChair")],
@@ -415,6 +483,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: SUBMIT_SECTION_HASHES.armMachine,
       title: tGym("armMachine"),
       fields: [
         ["has_preacher_curl_bench", tGym("preacherCurlBench")],
@@ -424,6 +493,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: SUBMIT_SECTION_HASHES.chestMachine,
       title: tGym("chestMachine"),
       fields: [
         ["has_chest_press_machine", tGym("chestPressMachine")],
@@ -437,6 +507,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: SUBMIT_SECTION_HASHES.backMachine,
       title: tGym("backMachine"),
       fields: [
         ["has_lat_pulldown_machine", tGym("latPulldownMachine")],
@@ -448,6 +519,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: SUBMIT_SECTION_HASHES.shoulderMachine,
       title: tGym("shoulderMachine"),
       fields: [
         ["has_overhead_chair", tGym("overheadPressChair")],
@@ -460,6 +532,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: SUBMIT_SECTION_HASHES.legMachine,
       title: tGym("legMachine"),
       fields: [
         ["has_multi_hip_machine", tGym("multiHipMachine")],
@@ -480,6 +553,7 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: SUBMIT_SECTION_HASHES.otherEquipment,
       title: tGym("otherEquipment"),
       fields: [
         ["has_boxing_sandbag", tGym("boxingSandbag")],
@@ -941,17 +1015,37 @@ export function SubmitGymForm({
             {t("equipment")}
           </legend>
 
-          <div className="space-y-3">
+          <div id={SUBMIT_SECTION_HASHES.freeWeight} className="space-y-3 scroll-mt-24">
             <h2 className="text-sm font-semibold text-gray-900">{t("freeWeight")}</h2>
             {renderNumberFields(freeWeightFields)}
           </div>
 
-          <div className="space-y-3">
+          <div id={SUBMIT_SECTION_HASHES.cardio} className="space-y-3 scroll-mt-24">
             <h2 className="text-sm font-semibold text-gray-900">{t("cardio")}</h2>
             {renderNumberFields(cardioFields)}
           </div>
 
-          <details className="rounded-lg border border-gray-200 p-4">
+          <div id={SUBMIT_SECTION_HASHES.cable} className="space-y-3 scroll-mt-24">
+            <h2 className="text-sm font-semibold text-gray-900">{tGym("cable")}</h2>
+            {renderNumberFields(cableFields)}
+          </div>
+
+          <div
+            id={SUBMIT_SECTION_HASHES.fullBodyMachine}
+            className="space-y-3 scroll-mt-24"
+          >
+            <h2 className="text-sm font-semibold text-gray-900">
+              {tGym("fullBodyMachine")}
+            </h2>
+            {renderNumberFields(fullBodyMachineFields)}
+          </div>
+
+          <details
+            id={SUBMIT_SECTION_HASHES.hyrox}
+            open={openSections.hyrox}
+            onToggle={(event) => setSectionOpen("hyrox", event.currentTarget.open)}
+            className="scroll-mt-24 rounded-lg border border-gray-200 p-4"
+          >
             <summary className="cursor-pointer text-sm font-semibold text-gray-900">
               {t("hyrox")}
             </summary>
@@ -960,14 +1054,23 @@ export function SubmitGymForm({
             </div>
           </details>
 
-          <details className="rounded-lg border border-gray-200 p-4">
+          <details
+            id="submit-section-machines"
+            open={openSections.machines}
+            onToggle={(event) => setSectionOpen("machines", event.currentTarget.open)}
+            className="scroll-mt-24 rounded-lg border border-gray-200 p-4"
+          >
             <summary className="cursor-pointer text-sm font-semibold text-gray-900">
               {t("machineOptional")}
             </summary>
             <div className="mt-4 space-y-5">
               <p className="text-sm text-gray-500">{t("featureStateHint")}</p>
               {featureSections.map((section) => (
-                <div key={section.title} className="space-y-2">
+                <div
+                  key={section.title}
+                  id={section.id}
+                  className="space-y-2 scroll-mt-24"
+                >
                   <h3 className="text-sm font-medium text-gray-700">
                     {section.title}
                   </h3>
@@ -1001,7 +1104,12 @@ export function SubmitGymForm({
             </div>
           </details>
 
-          <details className="rounded-lg border border-gray-200 p-4">
+          <details
+            id={SUBMIT_SECTION_HASHES.amenities}
+            open={openSections.amenities}
+            onToggle={(event) => setSectionOpen("amenities", event.currentTarget.open)}
+            className="scroll-mt-24 rounded-lg border border-gray-200 p-4"
+          >
             <summary className="cursor-pointer text-sm font-semibold text-gray-900">
               {tGym("amenities")}
             </summary>
@@ -1032,7 +1140,12 @@ export function SubmitGymForm({
             </div>
           </details>
 
-          <details className="rounded-lg border border-gray-200 p-4">
+          <details
+            id={SUBMIT_SECTION_HASHES.equipmentBrands}
+            open={openSections.brands}
+            onToggle={(event) => setSectionOpen("brands", event.currentTarget.open)}
+            className="scroll-mt-24 rounded-lg border border-gray-200 p-4"
+          >
             <summary className="cursor-pointer text-sm font-semibold text-gray-900">
               {t("equipmentBrands")}
             </summary>
@@ -1087,7 +1200,7 @@ export function SubmitGymForm({
         <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
-            onClick={() => router.back()}
+            onClick={() => router.push(cancelHref)}
             disabled={status === "submitting"}
             className="rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400"
           >

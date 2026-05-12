@@ -33,7 +33,8 @@ export default async function SearchPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations("common");
+  const common = await getTranslations("common");
+  const t = await getTranslations("search");
   const result = await searchGyms(searchParams);
 
   return (
@@ -41,13 +42,15 @@ export default async function SearchPage({
       <div className="bg-white border-b border-gray-200">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="mt-2 max-w-2xl text-gray-500">{t("tagline")}</p>
+            <p className="mt-2 max-w-2xl text-gray-500">
+              {common("tagline")}
+            </p>
           </div>
           <Link
             href="/submit"
             className="inline-flex min-h-10 items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
           >
-            {t("submitNewGym")}
+            {common("submitNewGym")}
           </Link>
         </div>
       </div>
@@ -55,10 +58,13 @@ export default async function SearchPage({
       <div className="mx-auto max-w-6xl px-4 py-6">
         {searchParams.flash === "submission-success" && (
           <TransientBanner
-            message={t("submissionPendingReview")}
+            message={common("submissionPendingReview")}
             clearQueryKeys={["flash"]}
           />
         )}
+        <p className="mb-4 max-w-3xl text-sm text-gray-500">
+          {t("communityContribution")}
+        </p>
         <div className="flex flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
             <SearchFilters />

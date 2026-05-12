@@ -223,6 +223,13 @@ function formatAvailableWeightsSummary({
   return `${availableLabel} (${availableWeights.join("/")})`;
 }
 
+function hasKnownData(values: readonly unknown[]) {
+  return values.some((value) => {
+    if (typeof value === "string") return value.trim().length > 0;
+    return value !== null && value !== undefined;
+  });
+}
+
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4">
@@ -246,6 +253,48 @@ function Section({
     </section>
   );
 }
+
+function MissingEquipmentCta({
+  href,
+  label,
+  actionLabel,
+}: {
+  href: string;
+  label: string;
+  actionLabel: string;
+}) {
+  return (
+    <p className="text-sm text-gray-500">
+      {label}{" "}
+      <Link
+        href={href}
+        className="font-medium text-gray-700 underline underline-offset-4 hover:text-gray-900"
+      >
+        {actionLabel}
+      </Link>
+    </p>
+  );
+}
+
+const SUBMIT_SECTION_HASHES = {
+  freeWeight: "submit-section-free-weight",
+  cardio: "submit-section-cardio",
+  hyrox: "submit-section-hyrox",
+  cable: "submit-section-cable",
+  fullBodyMachine: "submit-section-full-body-machine",
+  coreMachine: "submit-section-core-machine",
+  armMachine: "submit-section-arm-machine",
+  chestMachine: "submit-section-chest-machine",
+  backMachine: "submit-section-back-machine",
+  shoulderMachine: "submit-section-shoulder-machine",
+  legMachine: "submit-section-leg-machine",
+  otherEquipment: "submit-section-other-equipment",
+  amenities: "submit-section-amenities",
+  equipmentBrands: "submit-section-equipment-brands",
+} as const;
+
+type SubmitSectionHash =
+  (typeof SUBMIT_SECTION_HASHES)[keyof typeof SUBMIT_SECTION_HASHES];
 
 function ValueGrid({
   items,
@@ -600,6 +649,176 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
 
+  const submitHref = `/submit?gymId=${gym.id}&returnTo=/gyms/${gym.slug}`;
+  const submitSectionHref = (hash: SubmitSectionHash) => `${submitHref}#${hash}`;
+  const missingEquipmentCta = (hash: SubmitSectionHash) => (
+    <MissingEquipmentCta
+      href={submitSectionHref(hash)}
+      label={t("noDataYet")}
+      actionLabel={t("addEquipmentDetails")}
+    />
+  );
+  const freeWeightHasData = hasKnownData([
+    gym.rack_count,
+    gym.bench_count,
+    gym.barbell_count,
+    gym.platform_count,
+    gym.dumbbell_min_weight_kg,
+    gym.dumbbell_max_weight_kg,
+    gym.plate_min_weight_kg,
+    gym.plate_max_weight_kg,
+    gym.has_dip_station,
+    gym.has_pull_up_bar,
+    gym.has_reverse_hyper,
+    gym.has_trap_bar,
+    gym.has_safety_squat_bar,
+    gym.has_farmer_handles,
+    gym.has_farmers_handles,
+    gym.has_landmine_attachment,
+    gym.has_swiss_bar,
+    gym.has_cambered_bar,
+    gym.has_ez_bar,
+  ]);
+  const cardioHasData = hasKnownData([
+    gym.treadmill_count,
+    gym.assault_bike_count,
+    gym.exercise_bike_count,
+    gym.climber_count,
+    gym.elliptical_machine_count,
+  ]);
+  const hyroxHasData = hasKnownData([
+    gym.assault_runner_count,
+    gym.ski_erg_count,
+    gym.sled_count,
+    gym.rower_count,
+    gym.has_kettlebell,
+    gym.kettlebell_4kg_count,
+    gym.kettlebell_6kg_count,
+    gym.kettlebell_8kg_count,
+    gym.kettlebell_10kg_count,
+    gym.kettlebell_12kg_count,
+    gym.kettlebell_14kg_count,
+    gym.kettlebell_16kg_count,
+    gym.kettlebell_18kg_count,
+    gym.kettlebell_20kg_count,
+    gym.kettlebell_24kg_count,
+    gym.kettlebell_32kg_count,
+    gym.has_workout_sandbag,
+    gym.has_boxing_sandbag,
+    gym.sandbag_5kg_count,
+    gym.sandbag_10kg_count,
+    gym.sandbag_15kg_count,
+    gym.sandbag_20kg_count,
+    gym.sandbag_25kg_count,
+    gym.sandbag_30kg_count,
+    gym.has_wall_ball,
+    gym.wall_ball_count,
+    gym.wall_ball_4kg_count,
+    gym.wall_ball_6kg_count,
+    gym.wall_ball_8kg_count,
+    gym.wall_ball_9kg_count,
+    gym.wall_ball_10kg_count,
+    gym.wall_ball_plate_9ft_count,
+    gym.wall_ball_plate_10ft_count,
+  ]);
+  const cableHasData = hasKnownData([
+    gym.cable_machine_count,
+    gym.has_lat_pulldown_cable,
+    gym.has_seated_row_cable,
+  ]);
+  const fullBodyMachineHasData = hasKnownData([
+    gym.smith_machine_count,
+    gym.has_smith_machine,
+  ]);
+  const coreMachineHasData = hasKnownData([
+    gym.has_roman_chair,
+    gym.has_ab_crunch_bench,
+    gym.has_torso_rotation_machine,
+    gym.has_ab_crunch_machine,
+  ]);
+  const armMachineHasData = hasKnownData([
+    gym.has_preacher_curl_bench,
+    gym.has_bicep_curl_machine,
+    gym.has_tricep_extension_machine,
+    gym.has_dip_machine,
+  ]);
+  const chestMachineHasData = hasKnownData([
+    gym.has_chest_press_machine,
+    gym.has_incline_chest_press_machine,
+    gym.has_decline_chest_press_machine,
+    gym.has_bench_rack,
+    gym.has_incline_bench_rack,
+    gym.has_iso_lateral_chest_press_machine,
+    gym.has_pec_deck_machine,
+    gym.has_chest_fly_machine,
+  ]);
+  const backMachineHasData = hasKnownData([
+    gym.has_lat_pulldown_machine,
+    gym.has_seated_row_machine,
+    gym.has_back_extension_machine,
+    gym.has_iso_lateral_row_machine,
+    gym.has_t_bar_row_machine,
+    gym.has_pull_over_machine,
+  ]);
+  const shoulderMachineHasData = hasKnownData([
+    gym.has_overhead_chair,
+    gym.has_lateral_raise_machine,
+    gym.has_standing_lateral_raise_machine,
+    gym.has_reverse_fly_machine,
+    gym.has_shoulder_press_machine,
+    gym.has_iso_lateral_shoulder_press_machine,
+    gym.has_multi_press_machine,
+  ]);
+  const legMachineHasData = hasKnownData([
+    gym.has_multi_hip_machine,
+    gym.has_hip_abductor_machine,
+    gym.has_hip_adductor_machine,
+    gym.has_leg_extension_machine,
+    gym.has_leg_press_machine,
+    gym.has_seated_leg_press_machine,
+    gym.has_lying_leg_curl_machine,
+    gym.has_seated_leg_curl_machine,
+    gym.has_seated_calf_raise_machine,
+    gym.has_squat_machine,
+    gym.has_hack_squat,
+    gym.has_belt_squat_machine,
+    gym.has_standing_calf_raise_machine,
+    gym.has_glute_extension_machine,
+    gym.has_hip_thrust_machine,
+  ]);
+  const otherEquipmentHasData = hasKnownData([
+    gym.has_boxing_sandbag,
+    gym.has_battle_rope,
+    gym.has_battle_ropes,
+    gym.has_foam_roller,
+    gym.has_medicine_ball,
+    gym.has_exercise_stepper,
+    gym.has_ab_roller,
+    gym.has_massage_ball,
+    gym.has_dip_belt,
+    gym.has_weight_vest,
+    gym.has_lifting_straps,
+    gym.has_plyo_box,
+    gym.has_balance_ball,
+    gym.has_yoga_block,
+    gym.has_yoga_mat,
+    gym.has_trx,
+    gym.has_resistance_band,
+    gym.has_rings,
+    gym.has_glute_ham_developer,
+    gym.has_stretching_machine,
+    gym.has_mobility_stick,
+  ]);
+  const amenitiesHasData = hasKnownData([
+    gym.has_washroom,
+    gym.has_bathroom,
+    gym.has_changing_room,
+    gym.has_free_water,
+    gym.has_dry_sauna,
+    gym.has_wet_sauna,
+    gym.has_ice_bath,
+  ]);
+
   return (
     <main className="min-h-screen bg-gray-50">
       <script
@@ -646,7 +865,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
             </div>
 
             <Link
-              href={`/submit?gymId=${gym.id}&returnTo=/gyms/${gym.slug}`}
+              href={submitHref}
               className="inline-flex h-10 shrink-0 whitespace-nowrap items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
             >
               {t("suggestUpdate")}
@@ -691,86 +910,152 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
         <div className="mt-8 rounded-lg border border-gray-200 bg-white px-5">
           <Section title={t("freeWeight")}>
-            <ValueGrid items={freeWeight} />
-            <div className="mt-4">
-              <FeaturePills items={freeWeightFeatures} fallback={t("notListed")} />
-            </div>
+            {freeWeightHasData ? (
+              <>
+                <ValueGrid items={freeWeight} />
+                <div className="mt-4">
+                  <FeaturePills items={freeWeightFeatures} fallback={t("notListed")} />
+                </div>
+              </>
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.freeWeight)
+            )}
           </Section>
 
           <Section title={t("cardio")}>
-            <ValueGrid items={cardio} />
+            {cardioHasData ? (
+              <ValueGrid items={cardio} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.cardio)
+            )}
           </Section>
 
           <Section title={t("hyrox")}>
-            <div className="mb-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="flex items-start justify-between gap-3 rounded-lg bg-gray-50 px-3 py-2 text-sm">
-                <span className="shrink-0 text-gray-600">{hyroxRace.label}</span>
-                <span className="min-w-0 text-right font-medium text-gray-900 break-words [overflow-wrap:anywhere]">
-                  {hyroxRace.value}
-                </span>
-              </div>
-              <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
-              <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
-            </div>
-            <ValueGrid items={hyroxStations} />
+            {hyroxHasData ? (
+              <>
+                <div className="mb-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="flex items-start justify-between gap-3 rounded-lg bg-gray-50 px-3 py-2 text-sm">
+                    <span className="shrink-0 text-gray-600">{hyroxRace.label}</span>
+                    <span className="min-w-0 break-words text-right font-medium text-gray-900 [overflow-wrap:anywhere]">
+                      {hyroxRace.value}
+                    </span>
+                  </div>
+                  <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
+                  <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
+                </div>
+                <ValueGrid items={hyroxStations} />
+              </>
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.hyrox)
+            )}
           </Section>
 
           <Section title={t("cable")}>
-            <ValueGrid items={cable} />
-            <div className="mt-4">
-              <FeaturePills items={cableFeatures} fallback={t("notListed")} />
-            </div>
+            {cableHasData ? (
+              <>
+                <ValueGrid items={cable} />
+                <div className="mt-4">
+                  <FeaturePills items={cableFeatures} fallback={t("notListed")} />
+                </div>
+              </>
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.cable)
+            )}
           </Section>
 
           <Section title={t("fullBodyMachine")}>
-            <ValueGrid items={fullBodyMachine} />
+            {fullBodyMachineHasData ? (
+              <ValueGrid items={fullBodyMachine} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.fullBodyMachine)
+            )}
           </Section>
 
           <Section title={t("coreMachine")}>
-            <FeaturePills items={coreMachines} fallback={t("notListed")} />
+            {coreMachineHasData ? (
+              <FeaturePills items={coreMachines} fallback={t("notListed")} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.coreMachine)
+            )}
           </Section>
 
           <Section title={t("armMachine")}>
-            <ValueGrid items={armMachineCounts} />
-            <div className="mt-4">
-              <FeaturePills items={armMachines} fallback={t("notListed")} />
-            </div>
+            {armMachineHasData ? (
+              <>
+                <ValueGrid items={armMachineCounts} />
+                <div className="mt-4">
+                  <FeaturePills items={armMachines} fallback={t("notListed")} />
+                </div>
+              </>
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.armMachine)
+            )}
           </Section>
 
           <Section title={t("chestMachine")}>
-            <FeaturePills items={chestMachines} fallback={t("notListed")} />
+            {chestMachineHasData ? (
+              <FeaturePills items={chestMachines} fallback={t("notListed")} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.chestMachine)
+            )}
           </Section>
 
           <Section title={t("backMachine")}>
-            <FeaturePills items={backMachines} fallback={t("notListed")} />
+            {backMachineHasData ? (
+              <FeaturePills items={backMachines} fallback={t("notListed")} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.backMachine)
+            )}
           </Section>
 
           <Section title={t("shoulderMachine")}>
-            <ValueGrid items={shoulderMachineCounts} />
-            <div className="mt-4">
-              <FeaturePills items={shoulderMachines} fallback={t("notListed")} />
-            </div>
+            {shoulderMachineHasData ? (
+              <>
+                <ValueGrid items={shoulderMachineCounts} />
+                <div className="mt-4">
+                  <FeaturePills items={shoulderMachines} fallback={t("notListed")} />
+                </div>
+              </>
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.shoulderMachine)
+            )}
           </Section>
 
           <Section title={t("legMachine")}>
-            <FeaturePills items={legMachines} fallback={t("notListed")} />
+            {legMachineHasData ? (
+              <FeaturePills items={legMachines} fallback={t("notListed")} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.legMachine)
+            )}
           </Section>
 
           <Section title={t("otherEquipment")}>
-            <FeaturePills items={otherEquipment} fallback={t("notListed")} />
+            {otherEquipmentHasData ? (
+              <FeaturePills items={otherEquipment} fallback={t("notListed")} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.otherEquipment)
+            )}
           </Section>
 
           <Section title={t("amenities")}>
-            <FeaturePills items={amenities} fallback={t("notListed")} />
+            {amenitiesHasData ? (
+              <FeaturePills items={amenities} fallback={t("notListed")} />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.amenities)
+            )}
           </Section>
 
           <Section title={t("equipmentBrands")}>
-            <FeaturePills
-              items={brands.map((brand) =>
-                locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en
-              )}
-              fallback={t("notListed")}
-            />
+            {brands.length > 0 ? (
+              <FeaturePills
+                items={brands.map((brand) =>
+                  locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en
+                )}
+                fallback={t("notListed")}
+              />
+            ) : (
+              missingEquipmentCta(SUBMIT_SECTION_HASHES.equipmentBrands)
+            )}
           </Section>
 
           <Section title={t("location")}>

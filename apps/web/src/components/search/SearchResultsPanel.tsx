@@ -1,12 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import type { PaginatedGymSearchResult } from "@/lib/db/queries/search-gyms";
 import { GymList } from "./GymList";
-import { GymMap } from "./GymMap";
+
+const GymMap = dynamic(() => import("./GymMap").then((mod) => mod.GymMap), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[62vh] min-h-[420px] w-full animate-pulse rounded-xl border border-gray-200 bg-gray-100" />
+  ),
+});
 
 type ViewMode = "list" | "map" | "split";
 

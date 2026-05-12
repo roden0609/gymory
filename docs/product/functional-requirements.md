@@ -1,7 +1,7 @@
 # Gymory — Functional Requirements
 
-**Version:** 1.0  
-**Last updated:** 2026-05-08  
+**Version:** 1.1  
+**Last updated:** 2026-05-12  
 **Status:** Living document — update as features ship or scope changes
 
 ---
@@ -34,13 +34,23 @@ Gymory is a gym equipment discovery platform. Users can search for gyms in Hong 
 
 **Available filters:**
 - District (Hong Kong districts)
+- Geolocation ("Use my location" — sorts results by proximity)
 - Minimum rack count
-- Minimum dumbbell weight (kg)
-- Has assault bike (boolean)
-- Has ski erg (boolean)
-- Has rower (boolean)
-- Has cable machine (boolean)
-- Has hack squat (boolean)
+- Minimum platform count
+- Maximum dumbbell weight ≥ (kg)
+- Smallest plate ≤ (kg)
+- Equipment brand (OR logic — any selected brand matches)
+- HYROX: assault bike, ski erg, rower, sled, wall ball, sandbag, kettlebell
+- Cardio: treadmill, exercise bike, climber
+- Cable: cable machine, lat pulldown cable, seated row cable
+- Full body: Smith machine
+- Arm machines: bicep curl, tricep extension
+- Chest machines: chest press, incline chest press, iso-lateral chest press, pec deck, chest fly
+- Back machines: lat pulldown machine, seated row machine, back extension, iso-lateral row, T-bar row
+- Shoulder machines: lateral raise, reverse fly, shoulder press, iso-lateral shoulder press
+- Leg machines: hip abductor, hip adductor, leg extension, leg press, seated leg press, lying leg curl, seated leg curl, seated calf raise, squat machine, standing calf raise
+- Other: battle rope, foam roller, medicine ball, dip belt, weight vest, lifting straps, plyo box, balance ball
+- Amenities: washroom, bathroom
 
 **Edge cases:**
 - If no gyms match the filters, show an empty state with a prompt to broaden filters or submit a missing gym
@@ -92,20 +102,25 @@ Gymory is a gym equipment discovery platform. Users can search for gyms in Hong 
 
 ### 2.3 Gym Submission
 
-**Description:** Any user can submit a new gym or suggest an update to an existing gym's equipment data.
+**Description:** Logged-in users can submit a new gym or suggest an update to an existing gym's equipment data.
 
 **Behaviour:**
 - Accessible at `/submit`
-- No login required to submit
+- Login required (Firebase Auth — Google SSO). Unauthenticated users are redirected to `/login?next=...` and returned to the form after sign-in
 - Submissions are stored in a `gym_update_submissions` table and are pending admin review before going live
 - If accessed via `/submit?gymId=X&returnTo=/gyms/[slug]`, the form is pre-filled as an update suggestion for an existing gym
 - After submission, user is redirected with `?flash=submission-success` showing a confirmation banner
+- The form diffs the submitted data against existing gym data — unchanged fields are not submitted
 
 **Form fields (new gym submission):**
-- Gym name (required)
+- Gym name (required), Chinese gym name
 - District (required)
-- Address
-- Equipment counts and booleans (same structure as gym detail)
+- Address, Chinese address
+- Website, Instagram, contact phone
+- Opening hours (per day)
+- Size category, floor area (sqft), day pass price
+- Full equipment counts and booleans (same structure as gym detail page)
+- Equipment brands
 - Notes / additional information
 
 ---
@@ -163,15 +178,52 @@ Gymory is a gym equipment discovery platform. Users can search for gyms in Hong 
 **Description:** Search results can be viewed on a map using Mapbox.
 
 **Behaviour:**
-- Toggle between list view and map view on the search results page
+- Toggle between list view, map view, and split view on the search results page
 - Gym pins are shown at lat/lng coordinates
 - Clicking a pin navigates to the gym detail page
+- Gyms without coordinates are excluded from the map and a count is shown ("X gyms in this result are hidden — coordinates missing")
 
 ---
 
 ## 3. Planned Features
 
-### 3.1 Gym Photos
+### 3.1 Community Data Contribution Improvements
+
+**Priority:** High — directly addresses the cold-start data problem.
+
+**Context:**
+As of May 2026, Gymory has ~300+ gyms with names and addresses, but most equipment fields are empty (`null`). The goal is to encourage logged-in users to fill in missing data without requiring significant engineering effort.
+
+**Problem:**
+- Current gym cards show no equipment badges for data-empty gyms — they look identical to each other and give users no reason to click or contribute
+- The "Suggest an Update" button on gym detail pages is present but not prominent when all sections are empty
+- There is no in-product prompt that explains why contributing is valuable
+
+**Proposed changes:**
+
+**A. Gym card empty state CTA**
+When a gym card has no equipment highlights (i.e. all equipment fields are `null`), replace the empty badge area with a small prompt:
+- Text: "Equipment details missing — be the first to add them"
+- Styled as a muted inline link, not a button (low visual noise)
+- Links to `/submit?gymId=[id]`
+
+**B. Gym detail page section-level CTA**
+When an entire equipment section (e.g. Free Weight, HYROX) has no data:
+- Replace the "Not listed" fallback with: "No data yet — [Add equipment details]"
+- The link goes to `/submit?gymId=[id]&returnTo=/gyms/[slug]`
+- Applies to all sections, not just the first one
+
+**C. Community contribution copy**
+Add a short explanation somewhere visible (e.g. above the filter panel or on the homepage) explaining the community model — that equipment data is contributed by users who have visited the gyms.
+
+**Out of scope for this iteration:**
+- Gamification (points, leaderboards)
+- Contributor attribution on gym pages
+- Notifications when a submission is approved
+
+---
+
+### 3.2 Gym Photos
 
 **Status:** Schema and storage design documented (`docs/product/gym-photos-fr.md`). Not yet implemented in the UI.
 
@@ -182,7 +234,7 @@ Gymory is a gym equipment discovery platform. Users can search for gyms in Hong 
 
 ---
 
-### 3.2 Static SEO Landing Pages
+### 3.3 Static SEO Landing Pages
 
 **Priority:** High — directly impacts organic traffic growth.
 
@@ -218,18 +270,22 @@ Create static, pre-rendered landing pages for district and equipment combination
 
 ---
 
-### 3.3 Gym Owner Claim Flow
+### 3.4 Gym Owner Claim Flow
 
-**Status:** Not yet built.
+**Status:** Not yet built. Deprioritised — see rationale below.
 
-**Scope:**
+**Rationale:**
+Owner claim flow is a meaningful feature but requires identity verification and a moderation layer to prevent fake claims corrupting gym data. The cost/benefit is low until there is sufficient traffic for gym owners to see value in managing their listing. The decision to build this should be triggered by inbound requests from owners, not by the roadmap.
+
+**Scope (when built):**
 - Gym owners can claim their listing
 - Claimed gyms can be edited directly by the owner without admin review
 - Claimed gyms display an "Owner managed" indicator
+- Some form of identity verification before claim is approved (e.g. admin review of claim request)
 
 ---
 
-### 3.4 User Accounts (Non-Admin)
+### 3.5 User Accounts (Non-Admin)
 
 **Status:** Auth is implemented (Firebase). Non-admin user features are not yet built.
 
@@ -240,7 +296,7 @@ Create static, pre-rendered landing pages for district and equipment combination
 
 ---
 
-### 3.5 Personal Trainer Profiles
+### 3.6 Personal Trainer Profiles
 
 **Status:** Documented in monetization strategy. Not yet designed or built.
 
