@@ -34,6 +34,7 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   const t = await getTranslations("common");
+  const search = await getTranslations("search");
   const result = await searchGyms(searchParams);
 
   return (
@@ -59,6 +60,9 @@ export default async function HomePage({
             clearQueryKeys={["flash"]}
           />
         )}
+        <p className="mb-4 max-w-3xl text-sm text-gray-500">
+          {search("communityContribution")}
+        </p>
         <div className="flex flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
             <SearchFilters />
