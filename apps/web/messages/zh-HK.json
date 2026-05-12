@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Gymory",
-    "tagline": "搵到啱你訓練嘅健身室 🏋️‍♀️",
+    "tagline": "搵到啱你課表嘅健身室 🏋️‍♀️",
     "search": "搜尋",
     "submit": "提交",
     "submitNewGym": "提交新健身房",
@@ -247,7 +247,7 @@
     "mapNoCoordinatesSub": "目前有 {count} 間健身房未有定位資料。",
     "mapMissingCoordinates": "結果中有 {count} 間因未有座標而未能顯示喺地圖。",
     "mapLoadFailed": "地圖載入失敗，你可以先用清單模式。",
-    "communityContribution": "器械資料由去過嘅用戶補充｜最近去過健身室？幫手更新資料啦 💪",
+    "communityContribution": "器械資料由去過嘅用戶補充｜最近去過健身室？歡迎補充資料",
     "equipmentMissingCta": "未有器械資料，成為第一個補充嘅人",
     "accuracyHeading": "資料真確性",
     "accuracyAccurate": "資料準確",

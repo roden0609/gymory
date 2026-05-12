@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Gymory",
-    "tagline": "Find the right gym for your training 🏋️‍♀️",
+    "tagline": "Find a gym that fits your program 🏋️‍♀️",
     "search": "Search",
     "submit": "Submit",
     "submitNewGym": "Submit new gym",
@@ -247,7 +247,7 @@
     "mapNoCoordinatesSub": "{count} gyms are currently missing location data.",
     "mapMissingCoordinates": "{count} gyms in this result are hidden on map because coordinates are missing.",
     "mapLoadFailed": "Map failed to load. You can continue in list view.",
-    "communityContribution": "Equipment data is contributed by gym-goers | Trained somewhere recently? Help update the details 💪",
+    "communityContribution": "Equipment data is contributed by gym-goers | Trained somewhere recently? Feel free to add details",
     "equipmentMissingCta": "Equipment details missing - be the first to add them",
     "accuracyHeading": "Data accuracy",
     "accuracyAccurate": "Accurate",
