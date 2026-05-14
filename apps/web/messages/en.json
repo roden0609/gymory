@@ -393,6 +393,7 @@
     "submitEquipment": "Submit equipment data",
     "items": {
       "hack-squat": {
+        "shortName": "Hack Squat",
         "title": "Gyms with Hack Squat in Hong Kong",
         "description": "Find Hong Kong gyms with a hack squat machine, grouped by district and verified equipment data where available.",
         "h1": "Gyms with Hack Squat in Hong Kong",
@@ -400,6 +401,7 @@
         "criteria": "A gym appears here when its equipment data says a hack squat machine is available."
       },
       "ski-erg": {
+        "shortName": "SkiErg",
         "title": "Gyms with SkiErg in Hong Kong",
         "description": "Find Hong Kong gyms with SkiErg machines for HYROX and hybrid training.",
         "h1": "Gyms with SkiErg in Hong Kong",
@@ -407,6 +409,7 @@
         "criteria": "A gym appears here when its SkiErg count is greater than zero."
       },
       "sled": {
+        "shortName": "Sled Push",
         "title": "Gyms with Sled Push in Hong Kong",
         "description": "Find Hong Kong gyms with sled equipment for HYROX, conditioning, and power training.",
         "h1": "Gyms with Sled Push in Hong Kong",
@@ -414,6 +417,7 @@
         "criteria": "A gym appears here when its sled count is greater than zero."
       },
       "power-rack": {
+        "shortName": "Power Racks",
         "title": "Gyms with Power Racks in Hong Kong",
         "description": "Find Hong Kong gyms with racks for squats, strength training, and powerlifting-style sessions.",
         "h1": "Gyms with Power Racks in Hong Kong",
@@ -421,6 +425,7 @@
         "criteria": "A gym appears here when its rack count is greater than zero."
       },
       "deadlift-platform": {
+        "shortName": "Deadlift Platforms",
         "title": "Gyms with Deadlift Platforms in Hong Kong",
         "description": "Find Hong Kong gyms with deadlift platforms or lifting platforms for strength training.",
         "h1": "Gyms with Deadlift Platforms in Hong Kong",
@@ -428,6 +433,7 @@
         "criteria": "A gym appears here when it has a deadlift platform signal or a platform count greater than zero."
       },
       "assault-bike": {
+        "shortName": "Assault Bikes",
         "title": "Gyms with Assault Bikes in Hong Kong",
         "description": "Find Hong Kong gyms with assault bikes for conditioning, HYROX-style work, and hybrid training.",
         "h1": "Gyms with Assault Bikes in Hong Kong",
@@ -435,6 +441,7 @@
         "criteria": "A gym appears here when its assault bike count is greater than zero."
       },
       "rower": {
+        "shortName": "Rowers",
         "title": "Gyms with Rowers in Hong Kong",
         "description": "Find Hong Kong gyms with rowing machines for HYROX, cardio, and hybrid training.",
         "h1": "Gyms with Rowers in Hong Kong",
@@ -442,6 +449,7 @@
         "criteria": "A gym appears here when its rower count is greater than zero."
       },
       "wall-ball": {
+        "shortName": "Wall Balls",
         "title": "Gyms with Wall Balls in Hong Kong",
         "description": "Find Hong Kong gyms with wall balls or wall ball targets for HYROX training.",
         "h1": "Gyms with Wall Balls in Hong Kong",
@@ -449,6 +457,7 @@
         "criteria": "A gym appears here when it has wall balls, wall ball counts, or wall ball target plates recorded."
       },
       "heavy-dumbbells": {
+        "shortName": "Heavy Dumbbells",
         "title": "Gyms with Heavy Dumbbells in Hong Kong",
         "description": "Find Hong Kong gyms with dumbbells up to 40kg or heavier.",
         "h1": "Gyms with Heavy Dumbbells in Hong Kong",
@@ -456,6 +465,7 @@
         "criteria": "A gym appears here when its recorded maximum dumbbell weight is at least 40kg."
       },
       "eleiko": {
+        "shortName": "Eleiko Equipment",
         "title": "Gyms with Eleiko Equipment in Hong Kong",
         "description": "Find Hong Kong gyms where Eleiko equipment has been recorded by Gymory.",
         "h1": "Gyms with Eleiko Equipment in Hong Kong",
@@ -463,6 +473,14 @@
         "criteria": "A gym appears here when its brand inventory includes Eleiko."
       }
     }
+  },
+  "districtEquipmentPages": {
+    "title": "Gyms with {equipment} in {district}",
+    "description": "Find gyms with {equipment} in {district}, Hong Kong, with community-contributed equipment data and verification signals.",
+    "h1": "Gyms with {equipment} in {district}",
+    "intro": "Looking for {equipment} in {district}? This page filters Gymory's Hong Kong gym database to show places where this equipment has been recorded.",
+    "gymListTitle": "{district} gyms matching {equipment}",
+    "noResults": "No {district} gyms with {equipment} yet"
   },
   "login": {
     "title": "Sign in for more features",

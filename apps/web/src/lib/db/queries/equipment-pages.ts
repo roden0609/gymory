@@ -12,7 +12,8 @@ export type EquipmentLandingResult = {
 };
 
 export async function getGymsForEquipmentPage(
-  definition: EquipmentPageDefinition
+  definition: EquipmentPageDefinition,
+  options: { districtCode?: string } = {}
 ): Promise<EquipmentLandingResult> {
   const supabase = await createClient();
 
@@ -20,6 +21,10 @@ export async function getGymsForEquipmentPage(
     .from("gyms")
     .select(GYM_SEARCH_COLUMNS, { count: "exact" })
     .eq("is_active", true);
+
+  if (options.districtCode) {
+    query = query.eq("district_code", options.districtCode);
+  }
 
   if (definition.brandSlug) {
     const { data: brands, error: brandsError } = await supabase
@@ -72,6 +77,30 @@ export async function getIndexableEquipmentPageSlugs() {
   );
 
   return results.filter((slug): slug is string => Boolean(slug));
+}
+
+export async function getIndexableEquipmentDistrictPagePaths(
+  districts: Array<{ code: string; slug: string }>
+) {
+  const paths = await Promise.all(
+    districts.flatMap((district) =>
+      EQUIPMENT_PAGE_DEFINITIONS.map(async (definition) => {
+        const result = await getGymsForEquipmentPage(definition, {
+          districtCode: district.code,
+        });
+
+        if (result.totalCount === 0) return null;
+        return {
+          district: district.slug,
+          equipment: definition.slug,
+        };
+      })
+    )
+  );
+
+  return paths.filter(
+    (path): path is { district: string; equipment: string } => Boolean(path)
+  );
 }
 
 async function attachAccuracyTallies(gyms: GymSummary[]) {

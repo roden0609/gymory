@@ -1,7 +1,11 @@
 import type { MetadataRoute } from "next";
 import { createClient } from "@/lib/db/supabase-server";
 import { routing } from "@/i18n/routing";
-import { getIndexableEquipmentPageSlugs } from "@/lib/db/queries/equipment-pages";
+import {
+  getIndexableEquipmentDistrictPagePaths,
+  getIndexableEquipmentPageSlugs,
+} from "@/lib/db/queries/equipment-pages";
+import { DISTRICT_PAGE_DEFINITIONS } from "@/lib/district-pages";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://gymory.io";
@@ -13,6 +17,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .eq("is_active", true);
 
   const equipmentPageSlugs = await getIndexableEquipmentPageSlugs();
+  const equipmentDistrictPaths = await getIndexableEquipmentDistrictPagePaths(
+    DISTRICT_PAGE_DEFINITIONS
+  );
 
   const localizedUrls = routing.locales.flatMap((locale) => {
     const localeBaseUrl = `${baseUrl}/${locale}`;
@@ -26,6 +33,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${localeBaseUrl}/equipment/${slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    }));
+    const equipmentDistrictUrls = equipmentDistrictPaths.map((path) => ({
+      url: `${localeBaseUrl}/gyms/${path.district}/${path.equipment}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
     }));
 
     return [
@@ -46,6 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.5,
       },
       ...equipmentUrls,
+      ...equipmentDistrictUrls,
       ...gymUrls,
     ];
   });

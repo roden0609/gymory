@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { HK_DISTRICTS, getHkDistrictLabel } from "@gymory/shared";
 import { GymCard } from "@/components/search/GymCard";
 import { Link } from "@/i18n/navigation";
+import { getDistrictPageDefinitionByCode } from "@/lib/district-pages";
 import {
   EQUIPMENT_PAGE_DEFINITIONS,
   getEquipmentPageDefinition,
@@ -111,12 +112,15 @@ export default async function EquipmentLandingPage({ params }: Props) {
                 {t("districts")}
               </span>
               {districtCounts.map((district) => {
-                const districtQuery = new URLSearchParams(searchQuery);
-                districtQuery.set("district", district.code);
+                const districtPage = getDistrictPageDefinitionByCode(district.code);
                 return (
                   <Link
                     key={district.code}
-                    href={`/search?${districtQuery.toString()}`}
+                    href={
+                      districtPage
+                        ? `/gyms/${districtPage.slug}/${definition.slug}`
+                        : searchHref
+                    }
                     className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400"
                   >
                     {district.label} · {district.count}
