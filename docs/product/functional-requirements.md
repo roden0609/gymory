@@ -321,6 +321,7 @@ Create static, indexable landing pages for high-intent equipment, district, bran
 
 **Priority collection pages:**
 - `/gyms/hyrox-hong-kong`
+- `/gyms/olympic-lifting-hong-kong`
 - `/gyms/powerlifting-hong-kong`
 - `/gyms/bodybuilding-hong-kong`
 - `/gyms/hybrid-training-hong-kong`
@@ -330,6 +331,41 @@ Create static, indexable landing pages for high-intent equipment, district, bran
 - Define the equipment criteria used for inclusion
 - Show matching gyms and the specific equipment signals that qualify them
 - Include contribution CTA for missing or unverified equipment details
+
+**Inclusion criteria:**
+
+`/gyms/hyrox-hong-kong` should represent HYROX-ready gyms, not gyms with only one HYROX-adjacent item. A gym is included only when all of the following are recorded:
+- Assault runner count > 0
+- Ski erg count > 0
+- Sled count > 0
+- Rower count > 0
+- 4kg wall ball count > 0
+- 6kg wall ball count > 0
+- 10kg sandbag count > 0
+- 20kg sandbag count > 0
+- 16kg kettlebell count > 0
+- 24kg kettlebell count > 0
+
+`/gyms/olympic-lifting-hong-kong` should represent gyms with the essentials for Olympic lifting. A gym is included only when all of the following are recorded:
+- Platform count > 0
+- Barbell count > 0
+- Plate data exists (`plate_min_weight_kg` or `plate_max_weight_kg` is not null)
+
+`/gyms/powerlifting-hong-kong` should represent gyms with the essentials for powerlifting-style training. A gym is included only when all of the following are recorded:
+- Rack count > 0
+- Barbell count > 0
+- Plate data exists (`plate_min_weight_kg` or `plate_max_weight_kg` is not null)
+
+`/gyms/bodybuilding-hong-kong` should represent gyms with enough machine variety across major body parts. A gym is included only when all of the following are true:
+- At least 2 chest machine signals are recorded
+- At least 2 back machine signals are recorded
+- At least 2 shoulder machine signals are recorded
+- At least 2 leg machine signals are recorded
+
+`/gyms/hybrid-training-hong-kong` should represent gyms with movement, strength, and conditioning coverage. A gym is included only when all of the following are true:
+- Plyo box is recorded
+- At least 1 strength signal is recorded: rack, platform, or barbell
+- At least 1 conditioning signal is recorded: ski erg, sled, rower, assault bike, or treadmill
 
 **D. Brand landing pages**
 
@@ -374,12 +410,13 @@ Build a small number of high-quality static landing pages before scaling program
 
 **First implementation batch:**
 1. `/gyms/hyrox-hong-kong` — high search intent, niche audience
-2. `/gyms/powerlifting-hong-kong`
-3. `/equipment/hack-squat`
-4. `/equipment/ski-erg`
-5. `/equipment/sled`
-6. `/equipment/power-rack`
-7. `/brands/eleiko`
+2. `/gyms/olympic-lifting-hong-kong`
+3. `/gyms/powerlifting-hong-kong`
+4. `/equipment/hack-squat`
+5. `/equipment/ski-erg`
+6. `/equipment/sled`
+7. `/equipment/power-rack`
+8. `/brands/eleiko`
 
 **Requirements:**
 - Pages are statically generated or server-rendered with stable, crawlable URLs

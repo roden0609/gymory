@@ -5,6 +5,7 @@ import {
   getIndexableEquipmentDistrictPagePaths,
   getIndexableEquipmentPageSlugs,
 } from "@/lib/db/queries/equipment-pages";
+import { getIndexableTrainingPageSlugs } from "@/lib/db/queries/training-pages";
 import { DISTRICT_PAGE_DEFINITIONS } from "@/lib/district-pages";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -20,6 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const equipmentDistrictPaths = await getIndexableEquipmentDistrictPagePaths(
     DISTRICT_PAGE_DEFINITIONS
   );
+  const trainingPageSlugs = await getIndexableTrainingPageSlugs();
 
   const localizedUrls = routing.locales.flatMap((locale) => {
     const localeBaseUrl = `${baseUrl}/${locale}`;
@@ -39,6 +41,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.75,
     }));
+    const trainingUrls = trainingPageSlugs.map((slug) => ({
+      url: `${localeBaseUrl}/gyms/${slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    }));
 
     return [
       { url: localeBaseUrl, changeFrequency: "daily" as const, priority: 1 },
@@ -57,6 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "monthly" as const,
         priority: 0.5,
       },
+      ...trainingUrls,
       ...equipmentUrls,
       ...equipmentDistrictUrls,
       ...gymUrls,
