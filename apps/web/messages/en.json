@@ -378,6 +378,92 @@
     "preacherCurlBenchCount": "Preacher curl bench count",
     "overheadPressChairCount": "Overhead press chair count"
   },
+  "equipmentPages": {
+    "openInSearch": "Open in search",
+    "matchedGyms": "Matching gyms",
+    "verifiedGyms": "Verified gyms",
+    "mappedGyms": "Gyms with map location",
+    "criteria": "What this page checks",
+    "communityNote": "Equipment data is contributed by gym-goers and may need verification. If you trained somewhere recently, help keep this list accurate.",
+    "districts": "Districts",
+    "gymListTitle": "Gyms matching this equipment",
+    "gymListSubtitle": "Verified and recently updated gyms are surfaced first.",
+    "noResults": "No matching gyms yet",
+    "noResultsSub": "Be the first to add this equipment data for the Hong Kong training community.",
+    "submitEquipment": "Submit equipment data",
+    "items": {
+      "hack-squat": {
+        "title": "Gyms with Hack Squat in Hong Kong",
+        "description": "Find Hong Kong gyms with a hack squat machine, grouped by district and verified equipment data where available.",
+        "h1": "Gyms with Hack Squat in Hong Kong",
+        "intro": "Looking for a hack squat machine in Hong Kong? This page lists gyms where Gymory has a positive hack squat signal, with district links and community verification prompts.",
+        "criteria": "A gym appears here when its equipment data says a hack squat machine is available."
+      },
+      "ski-erg": {
+        "title": "Gyms with SkiErg in Hong Kong",
+        "description": "Find Hong Kong gyms with SkiErg machines for HYROX and hybrid training.",
+        "h1": "Gyms with SkiErg in Hong Kong",
+        "intro": "SkiErg access matters for HYROX, conditioning, and hybrid training blocks. This page lists Hong Kong gyms with recorded SkiErg availability.",
+        "criteria": "A gym appears here when its SkiErg count is greater than zero."
+      },
+      "sled": {
+        "title": "Gyms with Sled Push in Hong Kong",
+        "description": "Find Hong Kong gyms with sled equipment for HYROX, conditioning, and power training.",
+        "h1": "Gyms with Sled Push in Hong Kong",
+        "intro": "Sled space can be hard to confirm from normal gym listings. Gymory tracks gyms with recorded sled equipment so you can plan HYROX and conditioning sessions.",
+        "criteria": "A gym appears here when its sled count is greater than zero."
+      },
+      "power-rack": {
+        "title": "Gyms with Power Racks in Hong Kong",
+        "description": "Find Hong Kong gyms with racks for squats, strength training, and powerlifting-style sessions.",
+        "h1": "Gyms with Power Racks in Hong Kong",
+        "intro": "Racks are one of the clearest signals that a gym can support serious strength training. This page lists gyms with at least one recorded rack.",
+        "criteria": "A gym appears here when its rack count is greater than zero."
+      },
+      "deadlift-platform": {
+        "title": "Gyms with Deadlift Platforms in Hong Kong",
+        "description": "Find Hong Kong gyms with deadlift platforms or lifting platforms for strength training.",
+        "h1": "Gyms with Deadlift Platforms in Hong Kong",
+        "intro": "Deadlift-friendly setups are not always obvious from photos or gym websites. This page lists gyms with recorded deadlift platforms or platform counts.",
+        "criteria": "A gym appears here when it has a deadlift platform signal or a platform count greater than zero."
+      },
+      "assault-bike": {
+        "title": "Gyms with Assault Bikes in Hong Kong",
+        "description": "Find Hong Kong gyms with assault bikes for conditioning, HYROX-style work, and hybrid training.",
+        "h1": "Gyms with Assault Bikes in Hong Kong",
+        "intro": "Assault bikes are useful for conditioning, intervals, and hybrid training. This page lists gyms with recorded assault bike availability.",
+        "criteria": "A gym appears here when its assault bike count is greater than zero."
+      },
+      "rower": {
+        "title": "Gyms with Rowers in Hong Kong",
+        "description": "Find Hong Kong gyms with rowing machines for HYROX, cardio, and hybrid training.",
+        "h1": "Gyms with Rowers in Hong Kong",
+        "intro": "Rowers are a key part of many conditioning and HYROX sessions. This page lists gyms with recorded rower availability.",
+        "criteria": "A gym appears here when its rower count is greater than zero."
+      },
+      "wall-ball": {
+        "title": "Gyms with Wall Balls in Hong Kong",
+        "description": "Find Hong Kong gyms with wall balls or wall ball targets for HYROX training.",
+        "h1": "Gyms with Wall Balls in Hong Kong",
+        "intro": "Wall balls and targets are easy to miss in generic gym listings. This page tracks gyms where wall ball equipment has been recorded.",
+        "criteria": "A gym appears here when it has wall balls, wall ball counts, or wall ball target plates recorded."
+      },
+      "heavy-dumbbells": {
+        "title": "Gyms with Heavy Dumbbells in Hong Kong",
+        "description": "Find Hong Kong gyms with dumbbells up to 40kg or heavier.",
+        "h1": "Gyms with Heavy Dumbbells in Hong Kong",
+        "intro": "If your program needs heavier dumbbells, a normal gym listing rarely tells you the top weight. This page lists gyms with dumbbells recorded at 40kg or heavier.",
+        "criteria": "A gym appears here when its recorded maximum dumbbell weight is at least 40kg."
+      },
+      "eleiko": {
+        "title": "Gyms with Eleiko Equipment in Hong Kong",
+        "description": "Find Hong Kong gyms where Eleiko equipment has been recorded by Gymory.",
+        "h1": "Gyms with Eleiko Equipment in Hong Kong",
+        "intro": "Eleiko equipment is a useful signal for serious strength and weightlifting setups. This page lists gyms where Eleiko has been recorded in Gymory brand inventory.",
+        "criteria": "A gym appears here when its brand inventory includes Eleiko."
+      }
+    }
+  },
   "login": {
     "title": "Sign in for more features",
     "description": "Sign in to unlock comments, voting, and admin tools based on your role.",

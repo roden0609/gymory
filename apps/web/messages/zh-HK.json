@@ -378,6 +378,92 @@
     "preacherCurlBenchCount": "牧師椅彎舉椅數量",
     "overheadPressChairCount": "肩上推舉椅數量"
   },
+  "equipmentPages": {
+    "openInSearch": "喺搜尋開啟",
+    "matchedGyms": "符合健身房",
+    "verifiedGyms": "已驗證健身房",
+    "mappedGyms": "有地圖位置",
+    "criteria": "呢頁點樣判斷",
+    "communityNote": "器械資料由去過嘅用戶補充，可能仍需核實。最近練過嘅話，歡迎幫手更新資料。",
+    "districts": "地區",
+    "gymListTitle": "符合呢項器械嘅健身房",
+    "gymListSubtitle": "已驗證同最近更新嘅健身房會優先顯示。",
+    "noResults": "暫時未有符合健身房",
+    "noResultsSub": "成為第一個為香港訓練社群補充呢項器械資料嘅人。",
+    "submitEquipment": "提交器械資料",
+    "items": {
+      "hack-squat": {
+        "title": "香港有 Hack Squat 嘅健身房",
+        "description": "搵香港有哈克深蹲機嘅健身房，按地區同已驗證器械資料整理。",
+        "h1": "香港有 Hack Squat 嘅健身房",
+        "intro": "想搵香港邊間 gym 有 hack squat？呢頁列出 Gymory 已記錄有哈克深蹲機嘅健身房，並提供地區連結同社群核實提示。",
+        "criteria": "當健身房器械資料顯示有哈克深蹲機，就會出現喺呢頁。"
+      },
+      "ski-erg": {
+        "title": "香港有 SkiErg 嘅健身房",
+        "description": "搵香港有 SkiErg 滑雪機嘅健身房，適合 HYROX 同 hybrid training。",
+        "h1": "香港有 SkiErg 嘅健身房",
+        "intro": "SkiErg 對 HYROX、體能同 hybrid training 好重要。呢頁列出已記錄有 SkiErg 嘅香港健身房。",
+        "criteria": "當健身房 SkiErg 數量大過 0，就會出現喺呢頁。"
+      },
+      "sled": {
+        "title": "香港有 Sled Push 嘅健身房",
+        "description": "搵香港有 sled 雪橇器械嘅健身房，適合 HYROX、體能同爆發力訓練。",
+        "h1": "香港有 Sled Push 嘅健身房",
+        "intro": "一般 gym listing 好少講清楚有冇 sled 同推 sled 空間。Gymory 會整理已記錄有 sled 嘅健身房，方便你安排 HYROX 或體能訓練。",
+        "criteria": "當健身房 sled 數量大過 0，就會出現喺呢頁。"
+      },
+      "power-rack": {
+        "title": "香港有 Power Rack 嘅健身房",
+        "description": "搵香港有深蹲架嘅健身房，適合深蹲、力量訓練同 powerlifting。",
+        "h1": "香港有 Power Rack 嘅健身房",
+        "intro": "深蹲架係判斷一間 gym 適唔適合認真力量訓練嘅重要訊號。呢頁列出已記錄至少有一個 rack 嘅健身房。",
+        "criteria": "當健身房 rack 數量大過 0，就會出現喺呢頁。"
+      },
+      "deadlift-platform": {
+        "title": "香港有 Deadlift Platform 嘅健身房",
+        "description": "搵香港有硬拉平台或舉重平台嘅健身房。",
+        "h1": "香港有 Deadlift Platform 嘅健身房",
+        "intro": "一間 gym 係咪適合 deadlift，單靠相或官網通常睇唔清。呢頁列出已記錄有 deadlift platform 或 platform 數量嘅健身房。",
+        "criteria": "當健身房有 deadlift platform 訊號，或者 platform 數量大過 0，就會出現喺呢頁。"
+      },
+      "assault-bike": {
+        "title": "香港有 Assault Bike 嘅健身房",
+        "description": "搵香港有 assault bike 嘅健身房，適合體能、HYROX 類訓練同 hybrid training。",
+        "h1": "香港有 Assault Bike 嘅健身房",
+        "intro": "Assault bike 適合間歇、體能同 hybrid training。呢頁列出已記錄有 assault bike 嘅健身房。",
+        "criteria": "當健身房 assault bike 數量大過 0，就會出現喺呢頁。"
+      },
+      "rower": {
+        "title": "香港有划船機嘅健身房",
+        "description": "搵香港有 rower 划船機嘅健身房，適合 HYROX、帶氧同 hybrid training。",
+        "h1": "香港有划船機嘅健身房",
+        "intro": "划船機係 HYROX 同好多體能課表常用器械。呢頁列出已記錄有 rower 嘅香港健身房。",
+        "criteria": "當健身房 rower 數量大過 0，就會出現喺呢頁。"
+      },
+      "wall-ball": {
+        "title": "香港有 Wall Ball 嘅健身房",
+        "description": "搵香港有牆球或牆球靶嘅健身房，適合 HYROX 訓練。",
+        "h1": "香港有 Wall Ball 嘅健身房",
+        "intro": "一般 gym listing 好少標示有冇 wall ball 同 wall ball target。呢頁整理已記錄有牆球相關器械嘅健身房。",
+        "criteria": "當健身房有 wall ball、wall ball 數量或牆球靶資料，就會出現喺呢頁。"
+      },
+      "heavy-dumbbells": {
+        "title": "香港啞鈴較重嘅健身房",
+        "description": "搵香港啞鈴最高 40kg 或以上嘅健身房。",
+        "h1": "香港啞鈴較重嘅健身房",
+        "intro": "如果你訓練需要較重啞鈴，一般 gym listing 好少寫清楚最高去到幾多 kg。呢頁列出已記錄啞鈴最高 40kg 或以上嘅健身房。",
+        "criteria": "當健身房已記錄啞鈴最大重量至少 40kg，就會出現喺呢頁。"
+      },
+      "eleiko": {
+        "title": "香港有 Eleiko 器械嘅健身房",
+        "description": "搵香港已記錄有 Eleiko 器械嘅健身房。",
+        "h1": "香港有 Eleiko 器械嘅健身房",
+        "intro": "Eleiko 對認真力量訓練同舉重 setup 係一個有用訊號。呢頁列出 Gymory brand inventory 入面已記錄有 Eleiko 嘅健身房。",
+        "criteria": "當健身房品牌資料包括 Eleiko，就會出現喺呢頁。"
+      }
+    }
+  },
   "login": {
     "title": "登入以使用更多功能",
     "description": "登入後可按你嘅角色使用留言、投票同管理功能。",

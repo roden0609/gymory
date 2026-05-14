@@ -15,7 +15,7 @@ export type PaginatedGymSearchResult = {
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_PAGE_SIZE = 20;
-const GYM_SEARCH_COLUMNS = [
+export const GYM_SEARCH_COLUMNS = [
   "id",
   "name",
   "name_zh",
@@ -186,6 +186,7 @@ export async function searchGyms(
     hasRower: rawParams.hasRower,
     hasSled: rawParams.hasSled,
     hasWallBallPlate: rawParams.hasWallBallPlate,
+    hasWallBall: rawParams.hasWallBall,
     hasSandbag: rawParams.hasSandbag,
     hasKettlebell: rawParams.hasKettlebell,
     hasTreadmill: rawParams.hasTreadmill,
@@ -221,6 +222,8 @@ export async function searchGyms(
     hasSeatedLegCurlMachine: rawParams.hasSeatedLegCurlMachine,
     hasSeatedCalfRaiseMachine: rawParams.hasSeatedCalfRaiseMachine,
     hasSquatMachine: rawParams.hasSquatMachine,
+    hasHackSquat: rawParams.hasHackSquat,
+    hasDeadliftPlatform: rawParams.hasDeadliftPlatform,
     hasStandingCalfRaiseMachine: rawParams.hasStandingCalfRaiseMachine,
     hasBattleRope: rawParams.hasBattleRope,
     hasFoamRoller: rawParams.hasFoamRoller,
@@ -328,6 +331,11 @@ export async function searchGyms(
       "wall_ball_plate_9ft_count.gt.0,wall_ball_plate_10ft_count.gt.0"
     );
   }
+  if (params.hasWallBall === "true") {
+    query = query.or(
+      "has_wall_ball.eq.true,wall_ball_count.gt.0,wall_ball_4kg_count.gt.0,wall_ball_6kg_count.gt.0,wall_ball_8kg_count.gt.0,wall_ball_9kg_count.gt.0,wall_ball_10kg_count.gt.0,wall_ball_plate_9ft_count.gt.0,wall_ball_plate_10ft_count.gt.0"
+    );
+  }
   if (params.hasSandbag === "true") query = query.eq("has_workout_sandbag", true);
   if (params.hasKettlebell === "true") query = query.eq("has_kettlebell", true);
   if (params.hasTreadmill === "true") query = query.gt("treadmill_count", 0);
@@ -418,6 +426,10 @@ export async function searchGyms(
     query = query.eq("has_seated_calf_raise_machine", true);
   }
   if (params.hasSquatMachine === "true") query = query.eq("has_squat_machine", true);
+  if (params.hasHackSquat === "true") query = query.eq("has_hack_squat", true);
+  if (params.hasDeadliftPlatform === "true") {
+    query = query.or("has_deadlift_platform.eq.true,platform_count.gt.0");
+  }
   if (params.hasStandingCalfRaiseMachine === "true") {
     query = query.eq("has_standing_calf_raise_machine", true);
   }
