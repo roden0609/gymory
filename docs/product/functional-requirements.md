@@ -1,7 +1,7 @@
 # Gymory — Functional Requirements
 
 **Version:** 1.1  
-**Last updated:** 2026-05-12  
+**Last updated:** 2026-05-14  
 **Status:** Living document — update as features ship or scope changes
 
 ---
@@ -216,14 +216,191 @@ When an entire equipment section (e.g. Free Weight, HYROX) has no data:
 **C. Community contribution copy**
 Add a short explanation somewhere visible (e.g. above the filter panel or on the homepage) explaining the community model — that equipment data is contributed by users who have visited the gyms.
 
-**Out of scope for this iteration:**
-- Gamification (points, leaderboards)
-- Contributor attribution on gym pages
+**D. "Claim first contributor" prompt**
+When a gym has no meaningful equipment data yet, the UI should frame the missing state as a contribution opportunity:
+- "No equipment data yet — be the first to add it"
+- "Help verify this gym for the HK training community"
+- "Trained here recently? Add what you saw"
+
+This should be used on gym detail pages, search result cards, and relevant landing pages where data is missing.
+
+**E. Contributor recognition**
+Contributor recognition should be introduced after the submission flow is working smoothly:
+- Contributor badge on user profile or submission history
+- "First contributor" attribution for the first accepted equipment submission on a gym
+- Verified contributor status for users with consistently accurate submissions
+- Monthly top contributors list
+- Community copy that reinforces the mission: "Help the HK training community find gyms with the right equipment"
+
+**F. Leaderboards**
+Leaderboards are planned but should not block the first contribution flow:
+- Top contributors this month
+- Most verified submissions
+- Most accurate spotters
+
+**Out of scope for the first iteration:**
+- Full points economy
+- Public social profiles
 - Notifications when a submission is approved
+- Automated trust scoring
 
 ---
 
-### 3.2 Gym Photos
+### 3.2 Content-Driven SEO Landing Pages
+
+**Priority:** High — primary growth lever.
+
+**Positioning:**
+Gymory should not only be a generic gym directory. The strongest SEO opportunity is to become the Hong Kong training infrastructure database: gyms by equipment, district, brand, and training use case.
+
+**Problem:**
+The current `/search?district=X&equipment=Y` URL structure is useful for users but not ideal for organic search. Query-parameter pages are often under-indexed, and they do not provide enough page-specific context for long-tail searches such as:
+- "Hong Kong hack squat gym"
+- "HYROX gym HK"
+- "gym with Eleiko Hong Kong"
+- "Sham Shui Po powerlifting gym"
+- "Mong Kok gym deadlift"
+- "gym with sled push Hong Kong"
+- "香港 gym 有 ski erg"
+
+**Solution:**
+Create static, indexable landing pages for high-intent equipment, district, brand, and training-use-case queries.
+
+**A. Equipment landing pages**
+
+**Proposed URL structure:**
+- `/equipment/[equipment]` — e.g. `/equipment/hack-squat`
+- Localised variants are served under locale routes:
+  - `/en/equipment/hack-squat`
+  - `/zh-HK/equipment/hack-squat`
+
+**First-batch equipment pages:**
+- Hack squat
+- Ski erg
+- Sled
+- Power rack
+- Deadlift platform
+- Assault bike
+- Rower
+- Wall ball
+- Heavy dumbbells
+- Eleiko equipment
+
+**Page requirements:**
+- Server-rendered and indexable
+- Unique title and meta description per locale
+- H1 targeting the specific equipment query
+- Short editorial introduction explaining what the equipment is useful for
+- List of gyms that have the equipment
+- District filter or district grouping
+- Nearby gyms where location is available
+- Verified gyms surfaced before unverified gyms
+- Equipment counts where count data exists
+- Clear missing-data CTA for gyms where the relevant field is unknown
+- Link back to search with the same filter applied
+- Included in `sitemap.xml` only when the page has enough matching data
+
+**B. District + equipment combination pages**
+
+**Proposed URL structure:**
+- `/gyms/[district]/[equipment]` — e.g. `/gyms/mong-kok/hack-squat`
+- `/gyms/[district]/hyrox` — e.g. `/gyms/kwun-tong/hyrox`
+
+**Example page titles:**
+- "Best gyms with Hack Squat in Mong Kok"
+- "HYROX gyms in Hong Kong"
+- "Powerlifting gyms in Kowloon"
+- "Gyms with SkiErg in Central"
+
+**Indexing rules:**
+- Only index pages with enough useful results or substantial editorial context
+- Thin pages should be excluded from the sitemap and may use `noindex`
+- Avoid generating hundreds of near-empty pages purely for keyword coverage
+
+**C. Training-use-case collection pages**
+
+**Priority collection pages:**
+- `/gyms/hyrox-hong-kong`
+- `/gyms/powerlifting-hong-kong`
+- `/gyms/bodybuilding-hong-kong`
+- `/gyms/hybrid-training-hong-kong`
+
+**Page requirements:**
+- Explain the training use case in 2-3 sentences
+- Define the equipment criteria used for inclusion
+- Show matching gyms and the specific equipment signals that qualify them
+- Include contribution CTA for missing or unverified equipment details
+
+**D. Brand landing pages**
+
+**Proposed URL structure:**
+- `/brands/[brand]` — e.g. `/brands/eleiko`
+- Localised variants under `/en/...` and `/zh-HK/...`
+
+**First-batch brand pages:**
+- Eleiko
+- Rogue Fitness
+- Hammer Strength
+- Concept2
+- Technogym
+- Life Fitness
+
+**Page requirements:**
+- List gyms with the selected equipment brand
+- Show confidence/verification state where available
+- Explain that brand data is community-contributed and may need verification
+
+**E. Comparison articles**
+
+**Examples:**
+- "Pure vs Anytime Fitness for strength training"
+- "Best gyms in Hong Kong for HYROX training"
+- "Top gyms with Eleiko equipment in Hong Kong"
+
+**Requirements:**
+- Must be data-backed using Gymory fields where possible
+- Should avoid subjective claims that cannot be supported by data
+- Should link to relevant gym, equipment, brand, and district pages
+- Should include a contribution CTA where data is incomplete
+
+---
+
+### 3.3 Static SEO Landing Pages (Initial Scope)
+
+**Priority:** High — first implementation slice of Section 3.2.
+
+**Scope:**
+Build a small number of high-quality static landing pages before scaling programmatic SEO.
+
+**First implementation batch:**
+1. `/gyms/hyrox-hong-kong` — high search intent, niche audience
+2. `/gyms/powerlifting-hong-kong`
+3. `/equipment/hack-squat`
+4. `/equipment/ski-erg`
+5. `/equipment/sled`
+6. `/equipment/power-rack`
+7. `/brands/eleiko`
+
+**Requirements:**
+- Pages are statically generated or server-rendered with stable, crawlable URLs
+- Each page has a unique `<title>` and `<meta description>` targeting the relevant keyword
+- Each page renders filtered gym results matching the page intent
+- Pages are added to `sitemap.xml` only if they are useful enough to index
+- Canonical URLs are set correctly to avoid duplicate content issues
+- Pages are available in both `en` and `zh-HK`
+
+**Content requirements per landing page:**
+- H1 with the target keyword (e.g. "HYROX Gyms in Hong Kong")
+- Short editorial paragraph (2-3 sentences) describing what the page is for
+- Gym list filtered to relevant results
+- District grouping or district filter where useful
+- Verified and recently updated gyms surfaced prominently
+- Missing-data CTA for incomplete gym records
+- Link to the main search page for broader exploration
+
+---
+
+### 3.4 Gym Photos
 
 **Status:** Schema and storage design documented (`docs/product/gym-photos-fr.md`). Not yet implemented in the UI.
 
@@ -234,43 +411,7 @@ Add a short explanation somewhere visible (e.g. above the filter panel or on the
 
 ---
 
-### 3.3 Static SEO Landing Pages
-
-**Priority:** High — directly impacts organic traffic growth.
-
-**Problem:**
-The current `/search?district=X&equipment=Y` URL structure is not reliably indexed by Google. Query parameters are treated as dynamic content and are often skipped by crawlers. This means Gymory is missing a large volume of potential organic traffic from searches like "central gym hong kong" or "hyrox training gym hong kong".
-
-**Solution:**
-Create static, pre-rendered landing pages for district and equipment combinations.
-
-**Proposed URL structure:**
-- `/gyms/[district]` — e.g. `/gyms/central`, `/gyms/mong-kok`
-- `/gyms/[equipment-category]` — e.g. `/gyms/hyrox-hong-kong`, `/gyms/powerlifting-gym-hong-kong`
-- `/gyms/[district]/[equipment-category]` — e.g. `/gyms/central/hyrox`
-
-**Requirements:**
-- Pages are statically generated at build time (`generateStaticParams`)
-- Each page has a unique `<title>` and `<meta description>` targeting the relevant keyword
-- Each page renders the filtered gym list matching the district or equipment category
-- Pages are added to `sitemap.xml`
-- Canonical URLs are set correctly to avoid duplicate content issues
-- Pages are available in both `en` and `zh-HK`
-
-**Content requirements per landing page:**
-- H1 with the target keyword (e.g. "HYROX Gyms in Hong Kong")
-- Short editorial paragraph (2–3 sentences) describing what the page is for
-- Gym list filtered to relevant results
-- Link to the main search page for broader exploration
-
-**Priority landing pages (first batch):**
-1. `/gyms/hyrox-hong-kong` — high search intent, niche audience
-2. `/gyms/powerlifting-hong-kong`
-3. One page per Hong Kong district (18 districts)
-
----
-
-### 3.4 Gym Owner Claim Flow
+### 3.5 Gym Owner Claim Flow
 
 **Status:** Not yet built. Deprioritised — see rationale below.
 
@@ -285,7 +426,7 @@ Owner claim flow is a meaningful feature but requires identity verification and 
 
 ---
 
-### 3.5 User Accounts (Non-Admin)
+### 3.6 User Accounts (Non-Admin)
 
 **Status:** Auth is implemented (Firebase). Non-admin user features are not yet built.
 
@@ -296,7 +437,7 @@ Owner claim flow is a meaningful feature but requires identity verification and 
 
 ---
 
-### 3.6 Personal Trainer Profiles
+### 3.7 Personal Trainer Profiles
 
 **Status:** Documented in monetization strategy. Not yet designed or built.
 
