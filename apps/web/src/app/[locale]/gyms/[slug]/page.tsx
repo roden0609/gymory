@@ -276,6 +276,38 @@ function MissingEquipmentCta({
   );
 }
 
+function FirstContributorCta({
+  href,
+  title,
+  description,
+  actionLabel,
+  helperText,
+}: {
+  href: string;
+  title: string;
+  description: string;
+  actionLabel: string;
+  helperText: string;
+}) {
+  return (
+    <div className="mb-6 rounded-lg border border-dashed border-gray-300 bg-white p-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <p className="text-base font-semibold text-gray-900">{title}</p>
+          <p className="mt-1 text-sm text-gray-600">{description}</p>
+          <p className="mt-1 text-sm text-gray-500">{helperText}</p>
+        </div>
+        <Link
+          href={href}
+          className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+        >
+          {actionLabel}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 const SUBMIT_SECTION_HASHES = {
   freeWeight: "submit-section-free-weight",
   cardio: "submit-section-cardio",
@@ -818,6 +850,20 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     gym.has_wet_sauna,
     gym.has_ice_bath,
   ]);
+  const hasAnyTrainingEquipmentData =
+    freeWeightHasData ||
+    cardioHasData ||
+    hyroxHasData ||
+    cableHasData ||
+    fullBodyMachineHasData ||
+    coreMachineHasData ||
+    armMachineHasData ||
+    chestMachineHasData ||
+    backMachineHasData ||
+    shoulderMachineHasData ||
+    legMachineHasData ||
+    otherEquipmentHasData ||
+    brands.length > 0;
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -888,6 +934,15 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
             isLoggedIn={Boolean(sessionUser)}
           />
         </div>
+        {!hasAnyTrainingEquipmentData && (
+          <FirstContributorCta
+            href={submitHref}
+            title={t("firstContributorTitle")}
+            description={t("firstContributorDescription")}
+            helperText={t("firstContributorHelper")}
+            actionLabel={t("firstContributorAction")}
+          />
+        )}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard label={t("size")} value={formatSizeCategory(gym.size_category, t)} />
           <StatCard
