@@ -408,43 +408,7 @@ Create static, indexable landing pages for high-intent equipment, district, bran
 
 ---
 
-### 3.3 Static SEO Landing Pages (Initial Scope)
-
-**Priority:** High — first implementation slice of Section 3.2.
-
-**Scope:**
-Build a small number of high-quality static landing pages before scaling programmatic SEO.
-
-**First implementation batch:**
-1. `/gyms/hyrox-hong-kong` — high search intent, niche audience
-2. `/gyms/olympic-lifting-hong-kong`
-3. `/gyms/powerlifting-hong-kong`
-4. `/equipment/hack-squat`
-5. `/equipment/ski-erg`
-6. `/equipment/sled`
-7. `/equipment/power-rack`
-8. `/brands/eleiko`
-
-**Requirements:**
-- Pages are statically generated or server-rendered with stable, crawlable URLs
-- Each page has a unique `<title>` and `<meta description>` targeting the relevant keyword
-- Each page renders filtered gym results matching the page intent
-- Pages are added to `sitemap.xml` only if they are useful enough to index
-- Canonical URLs are set correctly to avoid duplicate content issues
-- Pages are available in both `en` and `zh-HK`
-
-**Content requirements per landing page:**
-- H1 with the target keyword (e.g. "HYROX Gyms in Hong Kong")
-- Short editorial paragraph (2-3 sentences) describing what the page is for
-- Gym list filtered to relevant results
-- District grouping or district filter where useful
-- Verified and recently updated gyms surfaced prominently
-- Missing-data CTA for incomplete gym records
-- Link to the main search page for broader exploration
-
----
-
-### 3.4 Gym Photos
+### 3.3 Gym Photos
 
 **Status:** Schema and storage design documented (`docs/product/gym-photos-fr.md`). Not yet implemented in the UI.
 
@@ -455,7 +419,7 @@ Build a small number of high-quality static landing pages before scaling program
 
 ---
 
-### 3.5 Gym Owner Claim Flow
+### 3.4 Gym Owner Claim Flow
 
 **Status:** Not yet built. Deprioritised — see rationale below.
 
@@ -470,7 +434,7 @@ Owner claim flow is a meaningful feature but requires identity verification and 
 
 ---
 
-### 3.6 User Accounts (Non-Admin)
+### 3.5 User Accounts (Non-Admin)
 
 **Status:** Auth is implemented (Firebase). Non-admin user features are not yet built.
 
@@ -481,7 +445,7 @@ Owner claim flow is a meaningful feature but requires identity verification and 
 
 ---
 
-### 3.7 Personal Trainer Profiles
+### 3.6 Personal Trainer Profiles
 
 **Status:** Documented in monetization strategy. Not yet designed or built.
 
