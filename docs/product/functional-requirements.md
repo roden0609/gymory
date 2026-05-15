@@ -31,8 +31,10 @@ Gymory is a gym equipment discovery platform. Users can search for gyms in Hong 
 - Multiple filters can be combined
 - Results update without a full page reload (client-side state managed via URL)
 - Results show a list view and a map view toggle
+- Training collection filters are applied via `collection=[slug]` (e.g. `/search?collection=bodybuilding-hong-kong`)
 
 **Available filters:**
+- Training collection (`collection`) for complex SEO/training-use-case pages
 - District (Hong Kong districts)
 - Geolocation ("Use my location" — sorts results by proximity)
 - Minimum rack count
@@ -55,6 +57,10 @@ Gymory is a gym equipment discovery platform. Users can search for gyms in Hong 
 **Edge cases:**
 - If no gyms match the filters, show an empty state with a prompt to broaden filters or submit a missing gym
 - If the database is unreachable, show an error state
+- If `collection` is present, the search result must use the same inclusion predicate as the corresponding training-use-case collection page
+- If `collection` is present, the filter panel should show an active collection chip that can be cleared independently
+- `collection` can be combined with normal filters such as district, brand, geolocation, and equipment filters
+- Clearing all filters must remove `collection` as well as ordinary filter params
 
 ---
 
@@ -331,6 +337,8 @@ Create static, indexable landing pages for high-intent equipment, district, bran
 - Define the equipment criteria used for inclusion
 - Show matching gyms and the specific equipment signals that qualify them
 - Include contribution CTA for missing or unverified equipment details
+- The "Open in search" link must use `/search?collection=[slug]` instead of attempting to approximate complex criteria with ordinary checkbox filters
+- `/search?collection=[slug]` must reuse the same inclusion predicate as the corresponding collection page, so the collection page and search page remain consistent
 
 **Inclusion criteria:**
 

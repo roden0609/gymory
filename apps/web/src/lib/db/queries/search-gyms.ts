@@ -1,5 +1,6 @@
 import type { GymSummary } from "@gymory/shared";
 import { searchParamsSchema } from "@gymory/shared";
+import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { createClient } from "../supabase-server";
 
 export type RawSearchParams = Record<string, string | string[] | undefined>;
@@ -171,6 +172,7 @@ export async function searchGyms(
   rawParams: RawSearchParams
 ): Promise<PaginatedGymSearchResult> {
   const parsed = searchParamsSchema.safeParse({
+    collection: rawParams.collection,
     district: rawParams.district,
     userLat: rawParams.userLat,
     userLng: rawParams.userLng,
@@ -254,6 +256,10 @@ export async function searchGyms(
   const pageSize = params.pageSize ?? DEFAULT_PAGE_SIZE;
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
+  const collection =
+    typeof params.collection === "string"
+      ? getTrainingPageDefinition(params.collection)
+      : null;
 
   const supabase = await createClient();
 
@@ -463,7 +469,9 @@ export async function searchGyms(
     };
   }
 
-  const allGyms = (data ?? []) as unknown as GymSummary[];
+  const allGyms = ((data ?? []) as unknown as GymSummary[]).filter((gym) =>
+    collection ? collection.matchesGym(gym) : true
+  );
 
   const gymIds = allGyms.map((gym) => gym.id);
   if (gymIds.length > 0) {
@@ -520,7 +528,7 @@ export async function searchGyms(
     return a.slug.localeCompare(b.slug);
   });
 
-  const totalCount = count ?? sortedGyms.length;
+  const totalCount = collection ? sortedGyms.length : count ?? sortedGyms.length;
   const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
   const gyms = sortedGyms.slice(from, to + 1);
 

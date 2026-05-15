@@ -230,6 +230,8 @@
     "title": "Find a gym",
     "placeholder": "Search by district or equipment...",
     "filters": "Filters",
+    "collectionFilter": "Collection",
+    "clearCollection": "Clear",
     "noResults": "No gyms found",
     "noResultsSub": "Try adjusting your filters or searching a different district.",
     "gymsFound": "{count} gym found",

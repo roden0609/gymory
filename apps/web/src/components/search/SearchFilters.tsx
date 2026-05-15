@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
+import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { EQUIPMENT_BRANDS, HK_DISTRICTS } from "@gymory/shared";
 
 type CheckboxFilter = {
@@ -149,7 +150,11 @@ export function SearchFilters() {
   const t = useTranslations("search");
   const tCommon = useTranslations("common");
   const tGym = useTranslations("gym");
+  const tTraining = useTranslations("trainingPages");
 
+  const [collection, setCollection] = useState(
+    searchParams.get("collection") ?? ""
+  );
   const [district, setDistrict] = useState(searchParams.get("district") ?? "");
   const currentView = searchParams.get("view");
   const [minRackCount, setMinRackCount] = useState(
@@ -189,9 +194,11 @@ export function SearchFilters() {
       Number(Boolean(minPlatformCount)) +
       Number(Boolean(minDumbbellWeight)) +
       Number(Boolean(minPlateWeight)) +
+      Number(Boolean(collection)) +
       selectedFilters.size +
       selectedBrandSlugs.length,
     [
+      collection,
       district,
       minDumbbellWeight,
       minPlateWeight,
@@ -235,6 +242,7 @@ export function SearchFilters() {
       params.set("userLat", userLat);
       params.set("userLng", userLng);
     }
+    if (collection) params.set("collection", collection);
     if (district) params.set("district", district);
     if (minRackCount) params.set("minRackCount", minRackCount);
     if (minPlatformCount) {
@@ -250,6 +258,7 @@ export function SearchFilters() {
     selectedFilters.forEach((param) => params.set(param, "true"));
     return params.toString();
   }, [
+    collection,
     currentView,
     district,
     minDumbbellWeight,
@@ -286,6 +295,7 @@ export function SearchFilters() {
     setMinPlatformCount("");
     setMinDumbbellWeight("");
     setMinPlateWeight("");
+    setCollection("");
     setSelectedBrandSlugs([]);
     setSelectedFilters(new Set());
   }, []);
@@ -347,6 +357,9 @@ export function SearchFilters() {
 
   const hasUserLocation =
     Boolean(searchParams.get("userLat")) && Boolean(searchParams.get("userLng"));
+  const activeCollection = collection
+    ? getTrainingPageDefinition(collection)
+    : null;
 
   return (
     <aside className="w-full shrink-0 md:w-72">
@@ -359,6 +372,26 @@ export function SearchFilters() {
             </span>
           )}
         </div>
+
+        {activeCollection && (
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+            <p className="text-xs font-medium uppercase text-gray-500">
+              {t("collectionFilter")}
+            </p>
+            <div className="mt-2 flex items-start justify-between gap-3">
+              <p className="text-sm font-medium text-gray-900">
+                {tTraining(`items.${activeCollection.slug}.h1`)}
+              </p>
+              <button
+                type="button"
+                onClick={() => setCollection("")}
+                className="shrink-0 text-sm font-medium text-gray-500 underline underline-offset-4 hover:text-gray-900"
+              >
+                {t("clearCollection")}
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="space-y-1.5">
           <div className="flex flex-wrap gap-2">

@@ -7,7 +7,6 @@ export type TrainingSignal = {
 
 export type TrainingPageDefinition = {
   slug: string;
-  searchParams: Record<string, string>;
   orFilter: string;
   equipmentLinks: string[];
   matchesGym: (gym: GymSummary) => boolean;
@@ -40,12 +39,6 @@ function countBooleans(values: Array<boolean | null>) {
 export const TRAINING_PAGE_DEFINITIONS: TrainingPageDefinition[] = [
   {
     slug: "hyrox-hong-kong",
-    searchParams: {
-      hasSkiErg: "true",
-      hasSled: "true",
-      hasRower: "true",
-      hasWallBall: "true",
-    },
     orFilter:
       "assault_runner_count.gt.0,ski_erg_count.gt.0,sled_count.gt.0,rower_count.gt.0,wall_ball_4kg_count.gt.0,wall_ball_6kg_count.gt.0,sandbag_10kg_count.gt.0,sandbag_20kg_count.gt.0,kettlebell_16kg_count.gt.0,kettlebell_24kg_count.gt.0",
     equipmentLinks: ["ski-erg", "sled", "rower", "wall-ball", "assault-bike"],
@@ -76,9 +69,6 @@ export const TRAINING_PAGE_DEFINITIONS: TrainingPageDefinition[] = [
   },
   {
     slug: "olympic-lifting-hong-kong",
-    searchParams: {
-      minPlatformCount: "1",
-    },
     orFilter: "platform_count.gt.0,barbell_count.gt.0",
     equipmentLinks: ["deadlift-platform", "power-rack"],
     matchesGym: (gym) =>
@@ -95,9 +85,6 @@ export const TRAINING_PAGE_DEFINITIONS: TrainingPageDefinition[] = [
   },
   {
     slug: "powerlifting-hong-kong",
-    searchParams: {
-      minRackCount: "1",
-    },
     orFilter:
       "rack_count.gt.0,barbell_count.gt.0",
     equipmentLinks: ["power-rack", "deadlift-platform", "heavy-dumbbells"],
@@ -120,12 +107,6 @@ export const TRAINING_PAGE_DEFINITIONS: TrainingPageDefinition[] = [
   },
   {
     slug: "bodybuilding-hong-kong",
-    searchParams: {
-      hasChestPressMachine: "true",
-      hasLatPulldownMachine: "true",
-      hasShoulderPressMachine: "true",
-      hasLegPressMachine: "true",
-    },
     orFilter:
       "has_chest_press_machine.eq.true,has_incline_chest_press_machine.eq.true,has_decline_chest_press_machine.eq.true,has_bench_rack.eq.true,has_incline_bench_rack.eq.true,has_iso_lateral_chest_press_machine.eq.true,has_pec_deck_machine.eq.true,has_chest_fly_machine.eq.true,has_lat_pulldown_machine.eq.true,has_seated_row_machine.eq.true,has_back_extension_machine.eq.true,has_iso_lateral_row_machine.eq.true,has_t_bar_row_machine.eq.true,has_pull_over_machine.eq.true,has_overhead_chair.eq.true,has_lateral_raise_machine.eq.true,has_standing_lateral_raise_machine.eq.true,has_reverse_fly_machine.eq.true,has_shoulder_press_machine.eq.true,has_iso_lateral_shoulder_press_machine.eq.true,has_multi_press_machine.eq.true,has_multi_hip_machine.eq.true,has_hip_abductor_machine.eq.true,has_hip_adductor_machine.eq.true,has_leg_extension_machine.eq.true,has_leg_press_machine.eq.true,has_seated_leg_press_machine.eq.true,has_lying_leg_curl_machine.eq.true,has_seated_leg_curl_machine.eq.true,has_seated_calf_raise_machine.eq.true,has_squat_machine.eq.true,has_hack_squat.eq.true,has_belt_squat_machine.eq.true,has_standing_calf_raise_machine.eq.true,has_glute_extension_machine.eq.true,has_hip_thrust_machine.eq.true",
     equipmentLinks: ["hack-squat", "heavy-dumbbells"],
@@ -191,11 +172,6 @@ export const TRAINING_PAGE_DEFINITIONS: TrainingPageDefinition[] = [
   },
   {
     slug: "hybrid-training-hong-kong",
-    searchParams: {
-      minRackCount: "1",
-      hasRower: "true",
-      hasPlyoBox: "true",
-    },
     orFilter:
       "has_plyo_box.eq.true,rack_count.gt.0,platform_count.gt.0,barbell_count.gt.0,ski_erg_count.gt.0,sled_count.gt.0,rower_count.gt.0,assault_bike_count.gt.0,treadmill_count.gt.0",
     equipmentLinks: [
@@ -237,5 +213,5 @@ export function getTrainingPageDefinition(slug: string) {
 }
 
 export function getTrainingSearchQuery(definition: TrainingPageDefinition) {
-  return new URLSearchParams(definition.searchParams).toString();
+  return new URLSearchParams({ collection: definition.slug }).toString();
 }

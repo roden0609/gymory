@@ -230,6 +230,8 @@
     "title": "搵健身房",
     "placeholder": "按地區或器械搜尋...",
     "filters": "篩選",
+    "collectionFilter": "集合",
+    "clearCollection": "清除",
     "noResults": "未找到健身房",
     "noResultsSub": "試試調整篩選條件或搜尋其他地區。",
     "gymsFound": "找到 {count} 間健身房",
