@@ -6,6 +6,10 @@ import {
   getMissingRequiredGymInfoFields,
   type SubmissionPayload,
 } from "@/lib/db/gym-submissions";
+import {
+  recordFirstContributorIfNeeded,
+  refreshContributorStats,
+} from "@/lib/db/contributor-stats";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { ensureAppUser } from "@/lib/db/users";
 import { toSlug } from "@/lib/utils/slug";
@@ -38,7 +42,7 @@ export async function PATCH(
   const adminAppUser = await ensureAppUser(user, adminSupabase);
   const { data: submission, error: submissionError } = await adminSupabase
     .from("gym_update_submissions")
-    .select("id, gym_id, submission_type, status, payload")
+    .select("id, gym_id, submitted_by_user_id, submission_type, status, payload")
     .eq("id", params.id)
     .single();
 
@@ -79,6 +83,21 @@ export async function PATCH(
 
     if (reviewError) {
       throw new Error(reviewError.message);
+    }
+
+    if (parsed.data.action === "approve" && submission.submitted_by_user_id) {
+      await recordFirstContributorIfNeeded({
+        supabase: adminSupabase,
+        gymId: approvedGymId,
+        userId: submission.submitted_by_user_id,
+        submissionId: submission.id,
+        submissionType: submission.submission_type,
+        payload: (submission.payload ?? {}) as SubmissionPayload,
+      });
+      await refreshContributorStats(
+        submission.submitted_by_user_id,
+        adminSupabase
+      );
     }
   } catch (error) {
     return NextResponse.json(

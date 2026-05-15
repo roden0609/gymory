@@ -238,11 +238,20 @@ Contributor recognition should be introduced after the submission flow is workin
 - Monthly top contributors list
 - Community copy that reinforces the mission: "Help the HK training community find gyms with the right equipment"
 
+**Current foundation:**
+- Submissions are linked to `public.users` through `gym_update_submissions.submitted_by_user_id`
+- Minimal contributor identity uses Firebase Google profile data (`display_name`, `avatar_url`, `firebase_email`)
+- Approved submissions refresh private `contributor_stats`
+- First equipment contributors are recorded per gym in `contributor_gym_firsts`
+- Admin submission review shows contributor identity and private contribution stats
+
 **F. Leaderboards**
 Leaderboards are planned but should not block the first contribution flow:
 - Top contributors this month
 - Most verified submissions
 - Most accurate spotters
+
+**Status:** Public `/contributors` and `/contributors/[handle]` are implemented with lightweight contributor stats and badges. Monthly ranking windows are not yet implemented; the current leaderboard is all-time.
 
 **Out of scope for the first iteration:**
 - Full points economy
@@ -436,7 +445,7 @@ Owner claim flow is a meaningful feature but requires identity verification and 
 
 ### 3.5 User Accounts (Non-Admin)
 
-**Status:** Auth is implemented (Firebase). Non-admin user features are not yet built.
+**Status:** Auth is implemented (Firebase). A minimal internal user profile is implemented for contributor identity (`public.users` with Firebase UID, email, display name, avatar URL, role, and last-seen timestamp). Private contributor stats are tracked for future badges and leaderboards. Non-admin user-facing account features are not yet built.
 
 **Planned scope:**
 - Save / bookmark gyms

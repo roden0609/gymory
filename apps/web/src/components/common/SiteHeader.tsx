@@ -18,6 +18,8 @@ export function SiteHeader() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const userLabel = user?.displayName ?? user?.email ?? null;
+  const userPhotoUrl = user?.photoURL ?? null;
 
   useEffect(() => {
     return onAuthStateChanged(auth, (nextUser) => {
@@ -77,9 +79,16 @@ export function SiteHeader() {
             {switchLocaleLabel}
           </Link>
 
-          {user?.email ? (
-            <span className="hidden text-sm text-gray-500 sm:inline">
-              {user.email}
+          {userLabel ? (
+            <span className="hidden items-center gap-2 text-sm text-gray-500 sm:inline-flex">
+              {userPhotoUrl ? (
+                <span
+                  aria-hidden="true"
+                  className="h-7 w-7 rounded-full bg-cover bg-center bg-gray-100"
+                  style={{ backgroundImage: `url(${userPhotoUrl})` }}
+                />
+              ) : null}
+              <span className="max-w-40 truncate">{userLabel}</span>
             </span>
           ) : null}
 

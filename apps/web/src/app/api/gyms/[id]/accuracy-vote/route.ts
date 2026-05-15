@@ -13,6 +13,7 @@ import {
   shouldThrottleVote,
   upsertGymAccuracyVote,
 } from "@/lib/db/queries/gym-accuracy";
+import { refreshContributorStats } from "@/lib/db/contributor-stats";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { ensureAppUser } from "@/lib/db/users";
 
@@ -112,6 +113,7 @@ export async function POST(
   });
 
   await maybeFlagGymAsNeedsReview({ gymId: params.id, snapshot, supabase });
+  await refreshContributorStats(appUser.id, supabase);
 
   const refreshedSnapshot = await getGymAccuracySnapshot({
     gymId: params.id,

@@ -5,6 +5,7 @@
     "search": "Search",
     "submit": "Submit",
     "submitNewGym": "Submit new gym",
+    "contributors": "Contributors",
     "back": "← Back",
     "clear": "Clear",
     "cancel": "Cancel",
@@ -483,6 +484,25 @@
     "intro": "Looking for {equipment} in {district}? This page filters Gymory's Hong Kong gym database to show places where this equipment has been recorded.",
     "gymListTitle": "{district} gyms matching {equipment}",
     "noResults": "No {district} gyms with {equipment} yet"
+  },
+  "contributors": {
+    "title": "Gymory Contributors",
+    "description": "See Gymory contributors helping the Hong Kong training community keep gym equipment data accurate.",
+    "h1": "Gymory Contributors",
+    "intro": "These contributors help keep Gymory useful by submitting gym equipment updates, first sightings, and accuracy checks for the Hong Kong training community.",
+    "profileTitle": "{name} on Gymory",
+    "profileDescription": "View {name}'s Gymory contributor stats and badges.",
+    "updated": "Updated",
+    "firsts": "Firsts",
+    "accuracy": "Accuracy",
+    "joined": "Joined {date}",
+    "badges": "Badges",
+    "noBadges": "No badges yet.",
+    "badgeContributor": "Contributor",
+    "badgeFirstContributor": "First contributor",
+    "badgeAccuracySpotter": "Accuracy spotter",
+    "emptyTitle": "No contributors yet",
+    "emptyDescription": "Approved submissions will appear here once the community starts filling equipment data."
   },
   "brandPages": {
     "title": "Gyms with {brand} Equipment in Hong Kong",

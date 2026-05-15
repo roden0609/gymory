@@ -46,12 +46,20 @@ export default async function SearchPage({
               {common("tagline")}
             </p>
           </div>
-          <Link
-            href="/submit"
-            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
-          >
-            {common("submitNewGym")}
-          </Link>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Link
+              href="/contributors"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            >
+              {common("contributors")}
+            </Link>
+            <Link
+              href="/submit"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+            >
+              {common("submitNewGym")}
+            </Link>
+          </div>
         </div>
       </div>
 

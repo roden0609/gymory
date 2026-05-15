@@ -5,6 +5,7 @@
     "search": "搜尋",
     "submit": "提交",
     "submitNewGym": "提交新健身房",
+    "contributors": "貢獻者",
     "back": "← 返回",
     "clear": "清除",
     "cancel": "取消",
@@ -483,6 +484,25 @@
     "intro": "想喺{district}搵有{equipment}嘅 gym？呢頁會篩選 Gymory 香港健身房資料庫，列出已記錄有呢項器械嘅場地。",
     "gymListTitle": "{district}符合{equipment}嘅健身房",
     "noResults": "{district}暫時未有{equipment}資料"
+  },
+  "contributors": {
+    "title": "Gymory 貢獻者",
+    "description": "查看幫香港訓練社群維持健身房器械資料準確嘅 Gymory 貢獻者。",
+    "h1": "Gymory 貢獻者",
+    "intro": "呢啲貢獻者透過提交器械更新、第一手發現同資料真確性檢查，令 Gymory 對香港訓練社群更有用。",
+    "profileTitle": "{name} 的 Gymory 貢獻者資料",
+    "profileDescription": "查看 {name} 的 Gymory 貢獻統計同徽章。",
+    "updated": "已更新",
+    "firsts": "第一手",
+    "accuracy": "真確性",
+    "joined": "{date} 加入",
+    "badges": "徽章",
+    "noBadges": "暫時未有徽章。",
+    "badgeContributor": "貢獻者",
+    "badgeFirstContributor": "第一位貢獻者",
+    "badgeAccuracySpotter": "資料真確性觀察員",
+    "emptyTitle": "暫時未有貢獻者",
+    "emptyDescription": "當社群開始補充器械資料並通過審核，貢獻者會顯示喺呢度。"
   },
   "brandPages": {
     "title": "香港有 {brand} 器械嘅健身房",

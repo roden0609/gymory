@@ -60,6 +60,11 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
       : submission.action_type === "D"
         ? "Delete"
         : "Update";
+  const submitterLabel =
+    submission.submitter?.display_name ??
+    submission.submitter?.firebase_email ??
+    "Unknown contributor";
+  const stats = submission.submitter?.stats;
 
   function handleReview(action: ReviewAction) {
     startTransition(async () => {
@@ -133,6 +138,51 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
         </span>
       </div>
 
+      {submission.submitter ? (
+        <div className="mt-4 flex flex-col gap-3 rounded-lg border border-gray-200 bg-gray-50 p-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 items-center gap-3">
+            {submission.submitter.avatar_url ? (
+              <span
+                aria-hidden="true"
+                className="h-10 w-10 shrink-0 rounded-full bg-cover bg-center bg-gray-200"
+                style={{
+                  backgroundImage: `url(${submission.submitter.avatar_url})`,
+                }}
+              />
+            ) : (
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-200 text-sm font-semibold text-gray-600"
+              >
+                {submitterLabel.slice(0, 1).toUpperCase()}
+              </span>
+            )}
+            <div className="min-w-0">
+              <p className="truncate text-sm font-medium text-gray-900">
+                {submitterLabel}
+              </p>
+              <p className="truncate text-xs text-gray-500">
+                {submission.submitter.firebase_email}
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-xs text-gray-600">
+            <ContributorStat
+              label="Updated"
+              value={stats?.approved_submission_count ?? 0}
+            />
+            <ContributorStat
+              label="Firsts"
+              value={stats?.first_contributor_count ?? 0}
+            />
+            <ContributorStat
+              label="Accuracy"
+              value={stats?.accuracy_vote_count ?? 0}
+            />
+          </div>
+        </div>
+      ) : null}
+
       <div className="mt-4 space-y-3">
         <PayloadBlock title="Changed fields" value={submission.changed_fields} />
         <PayloadBlock
@@ -189,6 +239,15 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function ContributorStat({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="rounded-md bg-white px-2.5 py-2 text-center">
+      <p className="font-semibold text-gray-900">{value}</p>
+      <p className="mt-0.5 text-gray-500">{label}</p>
+    </div>
   );
 }
 
