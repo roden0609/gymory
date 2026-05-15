@@ -484,6 +484,23 @@
     "gymListTitle": "{district}符合{equipment}嘅健身房",
     "noResults": "{district}暫時未有{equipment}資料"
   },
+  "brandPages": {
+    "title": "香港有 {brand} 器械嘅健身房",
+    "description": "搵香港已記錄有 {brand} 器械嘅健身房，資料來自 Gymory 社群器械資料庫。",
+    "h1": "香港有 {brand} 器械嘅健身房",
+    "intro": "想搵有 {brand} 器械嘅 gym？呢頁列出 Gymory 已記錄有呢個品牌器械嘅香港健身房，已驗證同最近更新嘅場地會優先顯示。",
+    "openInSearch": "喺搜尋開啟",
+    "matchedGyms": "符合健身房",
+    "verifiedGyms": "已驗證健身房",
+    "country": "品牌來源地",
+    "unknownCountry": "未有資料",
+    "dataNoteTitle": "社群品牌資料",
+    "dataNote": "{brand} 資料由去過嘅用戶補充，可能仍需核實。如果你親身見過某間 gym 有呢個品牌器械，歡迎幫手更新資料。",
+    "gymListTitle": "有 {brand} 嘅健身房",
+    "gymListSubtitle": "已驗證同最近更新嘅健身房會優先顯示。",
+    "noResults": "暫時未記錄到有 {brand} 嘅健身房",
+    "noResultsSub": "呢個品牌頁可以訪問，但要等到 Gymory 有符合健身房資料先會被 index。"
+  },
   "trainingPages": {
     "openInSearch": "喺搜尋開啟",
     "matchedGyms": "符合健身房",

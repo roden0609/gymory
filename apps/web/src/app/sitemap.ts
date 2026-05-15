@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
+import { EQUIPMENT_BRANDS } from "@gymory/shared";
 import { createClient } from "@/lib/db/supabase-server";
 import { routing } from "@/i18n/routing";
+import { getIndexableBrandPageSlugs } from "@/lib/db/queries/equipment-brands";
 import {
   getIndexableEquipmentDistrictPagePaths,
   getIndexableEquipmentPageSlugs,
@@ -22,6 +24,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     DISTRICT_PAGE_DEFINITIONS
   );
   const trainingPageSlugs = await getIndexableTrainingPageSlugs();
+  const brandPageSlugs = await getIndexableBrandPageSlugs(
+    EQUIPMENT_BRANDS.map((brand) => brand.slug)
+  );
 
   const localizedUrls = routing.locales.flatMap((locale) => {
     const localeBaseUrl = `${baseUrl}/${locale}`;
@@ -46,6 +51,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.85,
     }));
+    const brandUrls = brandPageSlugs.map((slug) => ({
+      url: `${localeBaseUrl}/brands/${slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    }));
 
     return [
       { url: localeBaseUrl, changeFrequency: "daily" as const, priority: 1 },
@@ -67,6 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...trainingUrls,
       ...equipmentUrls,
       ...equipmentDistrictUrls,
+      ...brandUrls,
       ...gymUrls,
     ];
   });

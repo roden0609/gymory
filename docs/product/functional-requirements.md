@@ -381,18 +381,17 @@ Create static, indexable landing pages for high-intent equipment, district, bran
 - `/brands/[brand]` — e.g. `/brands/eleiko`
 - Localised variants under `/en/...` and `/zh-HK/...`
 
-**First-batch brand pages:**
-- Eleiko
-- Rogue Fitness
-- Hammer Strength
-- Concept2
-- Technogym
-- Life Fitness
+**Generation rules:**
+- Generate a page for every active brand in the controlled `EQUIPMENT_BRANDS` list
+- All brand pages should be directly accessible, even if no gyms currently match the brand
+- Brand pages with at least one matching active gym should be indexable and included in `sitemap.xml`
+- Brand pages with no matching gyms should use `noindex, follow` and should not be included in `sitemap.xml`
 
 **Page requirements:**
 - List gyms with the selected equipment brand
 - Show confidence/verification state where available
 - Explain that brand data is community-contributed and may need verification
+- Empty brand pages should include a contribution CTA encouraging users to submit brand sightings
 
 **E. Comparison articles**
 

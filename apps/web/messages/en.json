@@ -484,6 +484,23 @@
     "gymListTitle": "{district} gyms matching {equipment}",
     "noResults": "No {district} gyms with {equipment} yet"
   },
+  "brandPages": {
+    "title": "Gyms with {brand} Equipment in Hong Kong",
+    "description": "Find Hong Kong gyms where {brand} equipment has been recorded by Gymory's community equipment database.",
+    "h1": "Gyms with {brand} Equipment in Hong Kong",
+    "intro": "Looking for gyms with {brand} equipment? This page lists Hong Kong gyms where Gymory has a recorded brand signal, with verified and recently updated gyms surfaced first.",
+    "openInSearch": "Open in search",
+    "matchedGyms": "Matching gyms",
+    "verifiedGyms": "Verified gyms",
+    "country": "Brand origin",
+    "unknownCountry": "Unknown",
+    "dataNoteTitle": "Community brand data",
+    "dataNote": "{brand} data is contributed by gym-goers and may need verification. If you have trained somewhere with this equipment, help keep the record accurate.",
+    "gymListTitle": "Gyms with {brand}",
+    "gymListSubtitle": "Verified and recently updated gyms are surfaced first.",
+    "noResults": "No gyms with {brand} recorded yet",
+    "noResultsSub": "This brand page is available, but it will only be indexed once Gymory has matching gym data."
+  },
   "trainingPages": {
     "openInSearch": "Open in search",
     "matchedGyms": "Matching gyms",
