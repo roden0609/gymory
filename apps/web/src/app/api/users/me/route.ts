@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getFirebaseSessionUser } from "@/lib/auth/session";
 import { refreshContributorStats } from "@/lib/db/contributor-stats";
+import { getClientIp, hashIpAddress } from "@/lib/db/queries/gym-accuracy";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import {
   ensureAppUser,
+  insertUserProfileAuditEvent,
   isHandleAvailable,
   normalizeUserHandle,
   updateAppUserProfile,
@@ -86,12 +88,35 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "handle_taken" }, { status: 409 });
   }
 
+  const oldValues = {
+    display_name: appUser.display_name,
+    handle: appUser.handle,
+  };
+  const newValues = {
+    display_name: displayName,
+    handle,
+  };
+  const hasProfileChanges =
+    oldValues.display_name !== newValues.display_name ||
+    oldValues.handle !== newValues.handle;
+
   const updatedUser = await updateAppUserProfile({
     userId: appUser.id,
     displayName,
     handle,
     supabase,
   });
+  if (hasProfileChanges) {
+    await insertUserProfileAuditEvent({
+      userId: appUser.id,
+      actorUserId: appUser.id,
+      oldValues,
+      newValues,
+      ipHash: hashIpAddress(getClientIp(request.headers)),
+      userAgent: request.headers.get("user-agent"),
+      supabase,
+    });
+  }
   const stats = await refreshContributorStats(updatedUser.id, supabase);
 
   return NextResponse.json({

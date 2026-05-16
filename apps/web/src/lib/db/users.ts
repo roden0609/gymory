@@ -101,6 +101,38 @@ export async function updateAppUserProfile({
   return data as AppUserRow;
 }
 
+export async function insertUserProfileAuditEvent({
+  userId,
+  actorUserId,
+  oldValues,
+  newValues,
+  ipHash,
+  userAgent,
+  supabase = createAdminClient(),
+}: {
+  userId: string;
+  actorUserId: string | null;
+  oldValues: Record<string, string | null>;
+  newValues: Record<string, string | null>;
+  ipHash: string | null;
+  userAgent: string | null;
+  supabase?: ReturnType<typeof createAdminClient>;
+}) {
+  const { error } = await supabase.from("user_profile_audit_events").insert({
+    user_id: userId,
+    actor_user_id: actorUserId,
+    event_type: "profile_updated",
+    old_values: oldValues,
+    new_values: newValues,
+    ip_hash: ipHash,
+    user_agent: userAgent,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
 export async function isHandleAvailable({
   handle,
   userId,
