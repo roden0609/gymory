@@ -504,6 +504,35 @@
     "emptyTitle": "No contributors yet",
     "emptyDescription": "Approved submissions will appear here once the community starts filling equipment data."
   },
+  "account": {
+    "title": "Account Settings",
+    "description": "Update your Gymory contributor display name and handle.",
+    "h1": "Account Settings",
+    "intro": "Control how your contributor identity appears on Gymory. Your avatar currently comes from your Google account.",
+    "displayName": "Display name",
+    "handle": "Handle",
+    "handleHint": "Use lowercase letters, numbers, and hyphens only.",
+    "avatarNote": "Profile photos use your Google avatar for now.",
+    "viewPublicProfile": "View public contributor profile",
+    "save": "Save profile",
+    "saving": "Saving...",
+    "success": "Profile updated.",
+    "updated": "Updated",
+    "firsts": "Firsts",
+    "accuracy": "Accuracy",
+    "errors": {
+      "display_name_too_short": "Display name must be at least 2 characters.",
+      "display_name_too_long": "Display name must be 40 characters or fewer.",
+      "handle_too_short": "Handle must be at least 3 characters.",
+      "handle_too_long": "Handle must be 30 characters or fewer.",
+      "handle_invalid": "Handle can only use lowercase letters, numbers, and hyphens.",
+      "handle_reserved": "This handle is reserved.",
+      "handle_taken": "This handle is already taken.",
+      "invalid_payload": "Please check the form and try again.",
+      "unauthorized": "Please sign in again.",
+      "generic": "Unable to update profile right now."
+    }
+  },
   "brandPages": {
     "title": "Gyms with {brand} Equipment in Hong Kong",
     "description": "Find Hong Kong gyms where {brand} equipment has been recorded by Gymory's community equipment database.",

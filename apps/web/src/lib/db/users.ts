@@ -4,7 +4,7 @@ import type { DecodedIdToken } from "firebase-admin/auth";
 import { getFirebaseRole } from "@/lib/auth/session";
 import { createAdminClient } from "./supabase-admin";
 
-type AppUserRow = {
+export type AppUserRow = {
   id: string;
   firebase_uid: string;
   firebase_email: string;
@@ -23,12 +23,13 @@ export async function ensureAppUser(
   supabase = createAdminClient()
 ): Promise<AppUserRow> {
   const now = new Date().toISOString();
+  const existingUser = await getAppUserByFirebaseUid(user.uid, supabase);
   const payload = {
     firebase_uid: user.uid,
     firebase_email: user.email ?? `${user.uid}@unknown.local`,
     firebase_login_type: getFirebaseLoginType(user),
-    display_name: getDisplayName(user),
-    handle: getUserHandle(user),
+    display_name: existingUser?.display_name ?? getDisplayName(user),
+    handle: existingUser?.handle ?? getUserHandle(user),
     avatar_url: getAvatarUrl(user),
     role: getFirebaseRole(user) === "admin" ? "admin" : "basic",
     updated_at: now,
@@ -67,6 +68,96 @@ export async function getAppUserByFirebaseUid(
   }
 
   return (data as AppUserRow | null) ?? null;
+}
+
+export async function updateAppUserProfile({
+  userId,
+  displayName,
+  handle,
+  supabase = createAdminClient(),
+}: {
+  userId: string;
+  displayName: string;
+  handle: string;
+  supabase?: ReturnType<typeof createAdminClient>;
+}): Promise<AppUserRow> {
+  const { data, error } = await supabase
+    .from("users")
+    .update({
+      display_name: displayName,
+      handle,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", userId)
+    .select(
+      "id, firebase_uid, firebase_email, firebase_login_type, display_name, handle, avatar_url, role, created_at, updated_at, last_seen_at"
+    )
+    .single();
+
+  if (error || !data) {
+    throw new Error(error?.message ?? "Failed to update app user profile");
+  }
+
+  return data as AppUserRow;
+}
+
+export async function isHandleAvailable({
+  handle,
+  userId,
+  supabase = createAdminClient(),
+}: {
+  handle: string;
+  userId: string;
+  supabase?: ReturnType<typeof createAdminClient>;
+}) {
+  const { data, error } = await supabase
+    .from("users")
+    .select("id")
+    .eq("handle", handle)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return !data || data.id === userId;
+}
+
+export const RESERVED_USER_HANDLES = new Set([
+  "account",
+  "admin",
+  "api",
+  "auth",
+  "brands",
+  "contributors",
+  "equipment",
+  "gyms",
+  "login",
+  "logout",
+  "search",
+  "settings",
+  "submit",
+  "users",
+]);
+
+export function normalizeUserHandle(value: string) {
+  return value.trim().toLowerCase();
+}
+
+export function validateDisplayName(value: string) {
+  const trimmed = value.trim();
+  if (trimmed.length < 2) return "display_name_too_short";
+  if (trimmed.length > 40) return "display_name_too_long";
+  return null;
+}
+
+export function validateUserHandle(value: string) {
+  const handle = normalizeUserHandle(value);
+  if (handle.length < 3) return "handle_too_short";
+  if (handle.length > 30) return "handle_too_long";
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(handle)) return "handle_invalid";
+  if (RESERVED_USER_HANDLES.has(handle)) return "handle_reserved";
+  return null;
 }
 
 function getFirebaseLoginType(user: DecodedIdToken) {

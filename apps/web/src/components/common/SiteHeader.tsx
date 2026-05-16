@@ -80,7 +80,10 @@ export function SiteHeader() {
           </Link>
 
           {userLabel ? (
-            <span className="hidden items-center gap-2 text-sm text-gray-500 sm:inline-flex">
+            <Link
+              href="/account"
+              className="hidden items-center gap-2 rounded-lg px-2 py-1 text-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-900 sm:inline-flex"
+            >
               {userPhotoUrl ? (
                 <span
                   aria-hidden="true"
@@ -89,7 +92,7 @@ export function SiteHeader() {
                 />
               ) : null}
               <span className="max-w-40 truncate">{userLabel}</span>
-            </span>
+            </Link>
           ) : null}
 
           {isLoading ? (

@@ -504,6 +504,35 @@
     "emptyTitle": "暫時未有貢獻者",
     "emptyDescription": "當社群開始補充器械資料並通過審核，貢獻者會顯示喺呢度。"
   },
+  "account": {
+    "title": "帳戶設定",
+    "description": "更新你喺 Gymory 嘅貢獻者顯示名稱同 handle。",
+    "h1": "帳戶設定",
+    "intro": "控制你嘅貢獻者身份喺 Gymory 點樣顯示。頭像暫時會沿用你嘅 Google 頭像。",
+    "displayName": "顯示名稱",
+    "handle": "Handle",
+    "handleHint": "只可使用小寫英文字母、數字同 hyphen。",
+    "avatarNote": "個人頭像暫時會使用你嘅 Google 頭像。",
+    "viewPublicProfile": "查看公開貢獻者頁面",
+    "save": "儲存資料",
+    "saving": "儲存中...",
+    "success": "個人資料已更新。",
+    "updated": "已更新",
+    "firsts": "第一手",
+    "accuracy": "真確性",
+    "errors": {
+      "display_name_too_short": "顯示名稱至少需要 2 個字元。",
+      "display_name_too_long": "顯示名稱最多 40 個字元。",
+      "handle_too_short": "Handle 至少需要 3 個字元。",
+      "handle_too_long": "Handle 最多 30 個字元。",
+      "handle_invalid": "Handle 只可使用小寫英文字母、數字同 hyphen。",
+      "handle_reserved": "呢個 handle 已被保留。",
+      "handle_taken": "呢個 handle 已被使用。",
+      "invalid_payload": "請檢查表格後再試。",
+      "unauthorized": "請重新登入。",
+      "generic": "暫時未能更新個人資料。"
+    }
+  },
   "brandPages": {
     "title": "香港有 {brand} 器械嘅健身房",
     "description": "搵香港已記錄有 {brand} 器械嘅健身房，資料來自 Gymory 社群器械資料庫。",
