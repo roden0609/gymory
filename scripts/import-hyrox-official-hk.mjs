@@ -13,13 +13,14 @@
  *   node scripts/import-hyrox-official-hk.mjs
  *   node scripts/import-hyrox-official-hk.mjs --out data/imports/hyrox-official-hk.json
  *   node scripts/import-hyrox-official-hk.mjs --upsert
+ *   node scripts/import-hyrox-official-hk.mjs --repair-stale
  */
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
+// await loadEnvFiles(["apps/web/.env.dev"]);
+await loadEnvFiles(["apps/web/.env.prod"]);
 
 const SOURCE_URL = "https://hyrox.com/find-a-hyrox-partner-gym/";
 const FINDER_ENDPOINT =
@@ -75,6 +76,9 @@ async function main() {
         `Skipped ${result.skipped} unchanged gyms.`,
       ].join(" ")
     );
+  } else if (args["repair-stale"]) {
+    const result = await repairStaleHyroxFlags(rows);
+    console.log(`Cleared stale HYROX metadata from ${result.cleared} gyms.`);
   } else {
     console.log("Dry run only. Pass --upsert to write HYROX metadata to Supabase.");
   }
@@ -316,28 +320,46 @@ function findExistingGym(existingGyms, row) {
   const rowSlug = normalizeText(row.slug);
   const rowName = normalizeName(row.name);
   const rowAddress = normalizeAddress(row.address);
+  const partnerIdMatch = existingGyms.find(
+    (gym) =>
+      rowPartnerId &&
+      normalizeText(gym.hyrox_partner_id) &&
+      normalizeText(gym.hyrox_partner_id) === rowPartnerId
+  );
+  if (partnerIdMatch) {
+    return isCompatibleExistingMatch(partnerIdMatch, row) ? partnerIdMatch : null;
+  }
 
   return (
+    existingGyms.find((gym) => normalizeText(gym.slug) === rowSlug) ??
+    existingGyms.find((gym) => hasCompatibleAddress(gym, row)) ??
     existingGyms.find(
       (gym) =>
-        rowPartnerId &&
-        normalizeText(gym.hyrox_partner_id) &&
-        normalizeText(gym.hyrox_partner_id) === rowPartnerId
+        normalizeName(gym.name) === rowName &&
+        (hasCompatibleAddress(gym, row) ||
+          distanceKm(gym.lat, gym.lng, row.lat, row.lng) <= 0.03)
     ) ??
-    existingGyms.find((gym) => normalizeText(gym.slug) === rowSlug) ??
-    existingGyms.find((gym) => normalizeName(gym.name) === rowName) ??
-    existingGyms.find((gym) => {
-      const existingAddress = normalizeAddress(gym.address);
-      return (
-        rowAddress &&
-        existingAddress &&
-        (rowAddress === existingAddress ||
-          rowAddress.includes(existingAddress) ||
-          existingAddress.includes(rowAddress))
-      );
-    }) ??
-    existingGyms.find((gym) => isLikelySamePlace(gym, row)) ??
+    existingGyms.find((gym) => isLikelySamePartnerGym(gym, row)) ??
     null
+  );
+}
+
+function isCompatibleExistingMatch(existing, row) {
+  if (normalizeText(existing.slug) === normalizeText(row.slug)) return true;
+  if (hasCompatibleAddress(existing, row)) return true;
+  return isLikelySamePartnerGym(existing, row);
+}
+
+function hasCompatibleAddress(existing, row) {
+  const existingAddress = normalizeAddress(existing.address);
+  const rowAddress = normalizeAddress(row.address);
+
+  return (
+    rowAddress &&
+    existingAddress &&
+    (rowAddress === existingAddress ||
+      rowAddress.includes(existingAddress) ||
+      existingAddress.includes(rowAddress))
   );
 }
 
@@ -400,6 +422,60 @@ async function updateGym({ supabaseUrl, apiKey, gymId, row }) {
   return Array.isArray(data) ? data[0] : data;
 }
 
+async function repairStaleHyroxFlags(sourceRows) {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const apiKey = process.env.SUPABASE_SECRET_KEY;
+
+  if (!supabaseUrl || !apiKey) {
+    throw new Error(
+      "Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY before running --repair-stale."
+    );
+  }
+
+  const existingGyms = await fetchExistingGyms({ supabaseUrl, apiKey });
+  const sourceRowsByPartnerId = new Map(
+    sourceRows
+      .filter((row) => row.hyrox_partner_id)
+      .map((row) => [normalizeText(row.hyrox_partner_id), row])
+  );
+  let cleared = 0;
+
+  for (const gym of existingGyms) {
+    if (!gym.is_hyrox_official || !gym.hyrox_partner_id) continue;
+
+    const sourceRow = sourceRowsByPartnerId.get(normalizeText(gym.hyrox_partner_id));
+    if (!sourceRow || isCompatibleExistingMatch(gym, sourceRow)) continue;
+
+    const updateRow = {
+      is_hyrox_official: false,
+      hyrox_partner_id: null,
+      hyrox_source_url: null,
+      hyrox_source_synced_at: null,
+    };
+
+    const updatedGym = await updateGym({
+      supabaseUrl,
+      apiKey,
+      gymId: gym.id,
+      row: updateRow,
+    });
+
+    await insertSubmission({
+      supabaseUrl,
+      apiKey,
+      gymId: gym.id,
+      submissionType: "edit_gym_info",
+      actionType: "U",
+      payload: { snapshot: updatedGym },
+      changedFields: buildChangedFields(gym, updateRow),
+      reviewNotes: "Cleared stale HYROX partner metadata after stricter source matching",
+    });
+    cleared += 1;
+  }
+
+  return { cleared };
+}
+
 async function insertSubmission({
   supabaseUrl,
   apiKey,
@@ -408,6 +484,7 @@ async function insertSubmission({
   actionType,
   payload,
   changedFields,
+  reviewNotes = "HYROX official partner finder import",
 }) {
   const response = await fetch(`${supabaseUrl}/rest/v1/gym_update_submissions`, {
     method: "POST",
@@ -428,7 +505,7 @@ async function insertSubmission({
       actor_type: "import",
       reviewed_by_user_id: null,
       reviewed_at: new Date().toISOString(),
-      review_notes: "HYROX official partner finder import",
+      review_notes: reviewNotes,
     }),
   });
 
@@ -459,9 +536,9 @@ function buildChangedFields(existing, nextRow) {
   return Object.keys(changed).length > 0 ? changed : null;
 }
 
-function isLikelySamePlace(existing, row) {
+function isLikelySamePartnerGym(existing, row) {
   const distance = distanceKm(existing.lat, existing.lng, row.lat, row.lng);
-  if (distance > 0.08) return false;
+  if (distance > 0.05) return false;
 
   const nameOverlap = tokenOverlap(normalizeName(existing.name), normalizeName(row.name));
   const addressOverlap = tokenOverlap(
@@ -469,7 +546,7 @@ function isLikelySamePlace(existing, row) {
     normalizeAddress(row.address)
   );
 
-  return nameOverlap >= 0.4 || addressOverlap >= 0.35;
+  return nameOverlap >= 0.75 && addressOverlap >= 0.6;
 }
 
 function tokenOverlap(a, b) {
