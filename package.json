@@ -14,6 +14,7 @@
     "import:247-fitness-hk": "node scripts/import-247-fitness-hk.mjs",
     "import:efx24-hk": "node scripts/import-efx24-hk.mjs",
     "import:go24-fitness-hk": "node scripts/import-go24-fitness-hk.mjs",
+    "import:hyrox-official-hk": "node scripts/import-hyrox-official-hk.mjs",
     "import:lcsd-fitness-hk": "node scripts/import-lcsd-fitness-hk.mjs",
     "import:pure-fitness-hk": "node scripts/import-pure-fitness-hk.mjs",
     "import:snap-fitness-hk": "node scripts/import-snap-fitness-hk.mjs",

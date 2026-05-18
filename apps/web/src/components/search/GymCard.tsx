@@ -218,11 +218,21 @@ export function GymCard({ gym }: { gym: GymSummary }) {
             </p>
           </div>
 
-          {gym.is_verified && (
-            <span className="inline-flex shrink-0 items-center rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
-              {tGym("verified")}
-            </span>
-          )}
+          <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
+            {gym.is_hyrox_official && (
+              <span
+                className="inline-flex items-center rounded-full border border-yellow-200 bg-yellow-50 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
+                title={tGym("hyroxOfficialSource")}
+              >
+                {tGym("hyroxOfficial")}
+              </span>
+            )}
+            {gym.is_verified && (
+              <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+                {tGym("verified")}
+              </span>
+            )}
+          </div>
         </div>
 
         {equipmentHighlights.length > 0 && (

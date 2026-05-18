@@ -35,6 +35,8 @@
     "suggestUpdate": "建議更新",
     "allGyms": "所有健身房",
     "verified": "已驗證",
+    "hyroxOfficial": "HYROX Official",
+    "hyroxOfficialSource": "已列於 HYROX partner gym finder",
     "verifiedAt": "器械資料於 {date} 驗證",
     "lastUpdated": "器械資料最後更新時間 {date}",
     "notListed": "未有資料",
@@ -616,12 +618,19 @@
       "plyoBox": "Plyo box"
     },
     "items": {
-      "hyrox-hong-kong": {
+      "hyrox-friendly-hong-kong": {
         "title": "香港 HYROX 健身房",
         "description": "搵香港有 HYROX 相關器械嘅健身房，例如 SkiErg、sled、划船機、wall ball 同 assault bike。",
         "h1": "香港 HYROX 健身房",
         "intro": "HYROX 訓練需要完整 race-prep setup，一般 gym listing 好少寫清楚。呢頁只整理 Gymory 已記錄有核心 HYROX 器械組合嘅香港健身房。",
         "criteria": "只有當 Gymory 記錄到以下全部器械，健身房先會出現喺呢頁：assault runner、SkiErg、sled、划船機、4kg wall ball、6kg wall ball、10kg 沙包、20kg 沙包、16kg 壺鈴同 24kg 壺鈴。"
+      },
+      "hyrox-official-hong-kong": {
+        "title": "香港 HYROX Official 健身房",
+        "description": "搵香港已列於 HYROX partner gym finder 嘅健身房。",
+        "h1": "香港 HYROX Official 健身房",
+        "intro": "呢頁整理已列於 HYROX partner gym finder 嘅香港健身房，方便你分清官方 partner location 同純粹按器械推斷嘅 HYROX-friendly gym。",
+        "criteria": "只有當 Gymory 已將健身房配對到 HYROX partner gym finder source，先會出現喺呢頁。"
       },
       "olympic-lifting-hong-kong": {
         "title": "香港 Olympic Lifting 健身房",

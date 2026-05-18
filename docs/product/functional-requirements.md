@@ -335,7 +335,8 @@ Create static, indexable landing pages for high-intent equipment, district, bran
 **C. Training-use-case collection pages**
 
 **Priority collection pages:**
-- `/gyms/hyrox-hong-kong`
+- `/gyms/hyrox-official-hong-kong`
+- `/gyms/hyrox-friendly-hong-kong`
 - `/gyms/olympic-lifting-hong-kong`
 - `/gyms/powerlifting-hong-kong`
 - `/gyms/bodybuilding-hong-kong`
@@ -351,7 +352,12 @@ Create static, indexable landing pages for high-intent equipment, district, bran
 
 **Inclusion criteria:**
 
-`/gyms/hyrox-hong-kong` should represent HYROX-ready gyms, not gyms with only one HYROX-adjacent item. A gym is included only when all of the following are recorded:
+`/gyms/hyrox-official-hong-kong` should represent gyms matched to the HYROX partner gym finder, not equipment-inferred gyms. A gym is included only when:
+- `is_hyrox_official = true`
+- The flag is backed by HYROX source trace fields (`hyrox_partner_id`, `hyrox_source_url`, and `hyrox_source_synced_at`) where available
+- The page must remain separate from `/gyms/hyrox-friendly-hong-kong`, because official partner status and recorded equipment completeness are different signals
+
+`/gyms/hyrox-friendly-hong-kong` should represent HYROX-ready gyms, not gyms with only one HYROX-adjacent item. A gym is included only when all of the following are recorded:
 - Assault runner count > 0
 - Ski erg count > 0
 - Sled count > 0

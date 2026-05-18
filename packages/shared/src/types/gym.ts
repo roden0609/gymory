@@ -29,6 +29,10 @@ export interface Gym {
   day_pass_price: number | null;
   is_active: boolean;
   is_verified: boolean;
+  is_hyrox_official: boolean;
+  hyrox_partner_id: string | null;
+  hyrox_source_url: string | null;
+  hyrox_source_synced_at: string | null;
 
   // Free weight / racks
   rack_count: number | null;
@@ -358,6 +362,10 @@ export type GymSummary = Pick<
   | "has_ab_crunch_machine"
   | "equipment_notes"
   | "is_verified"
+  | "is_hyrox_official"
+  | "hyrox_partner_id"
+  | "hyrox_source_url"
+  | "hyrox_source_synced_at"
   | "data_accuracy_status"
   | "equipment_last_verified_at"
   | "updated_at"

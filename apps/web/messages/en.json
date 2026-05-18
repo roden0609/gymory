@@ -35,6 +35,8 @@
     "suggestUpdate": "Suggest an Update",
     "allGyms": "All Gyms",
     "verified": "Verified",
+    "hyroxOfficial": "HYROX Official",
+    "hyroxOfficialSource": "Listed on the HYROX partner gym finder",
     "verifiedAt": "Equipment verified {date}",
     "lastUpdated": "Equipment last updated {date}",
     "notListed": "Not listed",
@@ -616,12 +618,19 @@
       "plyoBox": "Plyo box"
     },
     "items": {
-      "hyrox-hong-kong": {
+      "hyrox-friendly-hong-kong": {
         "title": "HYROX Gyms in Hong Kong",
         "description": "Find Hong Kong gyms with HYROX-relevant equipment such as SkiErg, sleds, rowers, wall balls, and assault bikes.",
         "h1": "HYROX Gyms in Hong Kong",
         "intro": "HYROX training depends on a full race-prep setup that normal gym listings often miss. This page only highlights Hong Kong gyms where Gymory has recorded the core HYROX equipment set.",
         "criteria": "A gym appears here only when Gymory has recorded all of these: assault runner, SkiErg, sled, rower, 4kg wall ball, 6kg wall ball, 10kg sandbag, 20kg sandbag, 16kg kettlebell, and 24kg kettlebell."
+      },
+      "hyrox-official-hong-kong": {
+        "title": "Official HYROX Gyms in Hong Kong",
+        "description": "Find Hong Kong gyms listed on the HYROX partner gym finder.",
+        "h1": "Official HYROX Gyms in Hong Kong",
+        "intro": "This page highlights Hong Kong gyms that are listed by the HYROX partner gym finder, so athletes can separate official partner locations from equipment-based HYROX-friendly gyms.",
+        "criteria": "A gym appears here only when Gymory has matched it to the HYROX partner gym finder source."
       },
       "olympic-lifting-hong-kong": {
         "title": "Olympic Lifting Gyms in Hong Kong",

@@ -38,7 +38,21 @@ function countBooleans(values: Array<boolean | null>) {
 
 export const TRAINING_PAGE_DEFINITIONS: TrainingPageDefinition[] = [
   {
-    slug: "hyrox-hong-kong",
+    slug: "hyrox-official-hong-kong",
+    orFilter: "is_hyrox_official.eq.true",
+    equipmentLinks: ["ski-erg", "sled", "rower", "wall-ball"],
+    matchesGym: (gym) => gym.is_hyrox_official === true,
+    getSignals: (gym) =>
+      [
+        gym.is_hyrox_official ? { labelKey: "hyroxOfficial" } : null,
+        countSignal("assaultRunner", gym.assault_runner_count),
+        countSignal("skiErg", gym.ski_erg_count),
+        countSignal("sled", gym.sled_count),
+        countSignal("rower", gym.rower_count),
+      ].filter((signal): signal is TrainingSignal => Boolean(signal)),
+  },
+  {
+    slug: "hyrox-friendly-hong-kong",
     orFilter:
       "assault_runner_count.gt.0,ski_erg_count.gt.0,sled_count.gt.0,rower_count.gt.0,wall_ball_4kg_count.gt.0,wall_ball_6kg_count.gt.0,sandbag_10kg_count.gt.0,sandbag_20kg_count.gt.0,kettlebell_16kg_count.gt.0,kettlebell_24kg_count.gt.0",
     equipmentLinks: ["ski-erg", "sled", "rower", "wall-ball", "assault-bike"],

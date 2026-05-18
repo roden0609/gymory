@@ -893,6 +893,14 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                     {t("verified")}
                   </span>
                 )}
+                {gym.is_hyrox_official && (
+                  <span
+                    className="rounded-full border border-yellow-200 bg-yellow-50 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
+                    title={t("hyroxOfficialSource")}
+                  >
+                    {t("hyroxOfficial")}
+                  </span>
+                )}
               </div>
               <p className="mt-2 break-words text-gray-500">
                 {display.district}

@@ -11,6 +11,8 @@
 | `boolean` | Equipment where "has / doesn't have" is enough (smith machine, TRX…) |
 | `boolean` | Other equipment presence columns (has_battle_rope, has_foam_roller, etc.) |
 | `boolean` | Amenity presence columns (has_washroom, has_bathroom, has_yoga_block, has_yoga_mat) |
+| `boolean` | Source-backed partner flags (is_hyrox_official) |
+| `text / timestamptz` | Source trace fields for partner imports (hyrox_partner_id, hyrox_source_url, hyrox_source_synced_at) |
 | `numeric` | Weight ranges (dumbbell_max_weight_kg, plate_max_weight_kg) |
 
 ### Search query pattern
