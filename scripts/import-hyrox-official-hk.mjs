@@ -19,8 +19,8 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-// await loadEnvFiles(["apps/web/.env.dev"]);
-await loadEnvFiles(["apps/web/.env.prod"]);
+await loadEnvFiles(["apps/web/.env.dev"]);
+// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const SOURCE_URL = "https://hyrox.com/find-a-hyrox-partner-gym/";
 const FINDER_ENDPOINT =
