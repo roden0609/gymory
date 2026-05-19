@@ -526,6 +526,8 @@
     "avatarCropVertical": "Vertical",
     "avatarSuccess": "Profile photo updated.",
     "avatarRemoved": "Profile photo removed.",
+    "viewAvatar": "View profile photo",
+    "closeAvatar": "Close",
     "viewPublicProfile": "View public contributor profile",
     "save": "Save profile",
     "saving": "Saving...",

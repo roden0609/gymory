@@ -7,6 +7,12 @@ import { useLocale, useTranslations } from "next-intl";
 import { auth } from "@/lib/auth/firebase-client";
 import { Link, usePathname } from "@/i18n/navigation";
 
+type HeaderProfile = {
+  displayName: string | null;
+  email: string | null;
+  avatarUrl: string | null;
+};
+
 export function SiteHeader() {
   const locale = useLocale();
   const pathname = usePathname();
@@ -16,17 +22,55 @@ export function SiteHeader() {
   const nextLocale = locale === "en" ? "zh-HK" : "en";
   const switchLocaleLabel = locale === "en" ? "中文" : "EN";
   const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<HeaderProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const userLabel = user?.displayName ?? user?.email ?? null;
-  const userPhotoUrl = user?.photoURL ?? null;
+  const userLabel =
+    profile?.displayName ?? user?.displayName ?? profile?.email ?? user?.email ?? null;
+  const userPhotoUrl = profile?.avatarUrl ?? user?.photoURL ?? null;
 
   useEffect(() => {
     return onAuthStateChanged(auth, (nextUser) => {
       setUser(nextUser);
+      if (!nextUser) setProfile(null);
       setIsLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (!user) return;
+
+    let isCancelled = false;
+
+    async function loadProfile() {
+      const response = await fetch("/api/users/me");
+      const body = (await response.json().catch(() => null)) as
+        | {
+            user?: {
+              displayName?: string | null;
+              email?: string | null;
+              avatarUrl?: string | null;
+            } | null;
+          }
+        | null;
+
+      if (isCancelled || !response.ok || !body?.user) return;
+
+      setProfile({
+        displayName: body.user.displayName ?? null,
+        email: body.user.email ?? null,
+        avatarUrl: body.user.avatarUrl ?? null,
+      });
+    }
+
+    void loadProfile();
+    window.addEventListener("gymory:profile-updated", loadProfile);
+
+    return () => {
+      isCancelled = true;
+      window.removeEventListener("gymory:profile-updated", loadProfile);
+    };
+  }, [user]);
 
   const loginHref = useMemo(() => {
     const path = pathname || "/";
@@ -82,7 +126,8 @@ export function SiteHeader() {
           {userLabel ? (
             <Link
               href="/account"
-              className="hidden items-center gap-2 rounded-lg px-2 py-1 text-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-900 sm:inline-flex"
+              aria-label={userLabel}
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-900 sm:w-auto sm:gap-2 sm:px-2 sm:py-1"
             >
               {userPhotoUrl ? (
                 <span
@@ -90,8 +135,15 @@ export function SiteHeader() {
                   className="h-7 w-7 rounded-full bg-cover bg-center bg-gray-100"
                   style={{ backgroundImage: `url(${userPhotoUrl})` }}
                 />
-              ) : null}
-              <span className="max-w-40 truncate">{userLabel}</span>
+              ) : (
+                <span
+                  aria-hidden="true"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-600"
+                >
+                  {userLabel.slice(0, 1).toUpperCase()}
+                </span>
+              )}
+              <span className="hidden max-w-40 truncate sm:inline">{userLabel}</span>
             </Link>
           ) : null}
 

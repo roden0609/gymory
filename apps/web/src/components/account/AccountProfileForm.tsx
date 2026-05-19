@@ -83,6 +83,7 @@ export function AccountProfileForm({
   const [successMessage, setSuccessMessage] = useState("");
   const [avatarErrorMessage, setAvatarErrorMessage] = useState("");
   const [avatarSuccessMessage, setAvatarSuccessMessage] = useState("");
+  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
   const [isAvatarPending, setIsAvatarPending] = useState(false);
   const [isPending, startTransition] = useTransition();
   const avatarDragRef = useRef<AvatarDragState | null>(null);
@@ -105,6 +106,17 @@ export function AccountProfileForm({
 
     return () => URL.revokeObjectURL(nextPreviewUrl);
   }, [selectedAvatarFile]);
+
+  useEffect(() => {
+    if (!isAvatarModalOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsAvatarModalOpen(false);
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isAvatarModalOpen]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -223,6 +235,7 @@ export function AccountProfileForm({
       setSelectedAvatarFile(null);
       setSelectedAvatarPreviewUrl(null);
       setAvatarInputKey((key) => key + 1);
+      window.dispatchEvent(new Event("gymory:profile-updated"));
       setAvatarSuccessMessage(t("avatarSuccess"));
     } finally {
       setIsAvatarPending(false);
@@ -256,6 +269,7 @@ export function AccountProfileForm({
       setSelectedAvatarFile(null);
       setSelectedAvatarPreviewUrl(null);
       setAvatarInputKey((key) => key + 1);
+      window.dispatchEvent(new Event("gymory:profile-updated"));
       setAvatarSuccessMessage(t("avatarRemoved"));
     } finally {
       setIsAvatarPending(false);
@@ -267,8 +281,10 @@ export function AccountProfileForm({
       <section className="rounded-lg border border-gray-200 bg-white p-5">
         <div className="flex items-center gap-3">
           {previewAvatarUrl ? (
-            <span
-              aria-hidden="true"
+            <button
+              type="button"
+              onClick={() => setIsAvatarModalOpen(true)}
+              aria-label={t("viewAvatar")}
               className="h-14 w-14 shrink-0 rounded-full bg-cover bg-center bg-gray-200 ring-2 ring-white"
               style={previewAvatarStyle}
             />
@@ -380,6 +396,36 @@ export function AccountProfileForm({
           <p className="mt-3 rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
             {avatarSuccessMessage}
           </p>
+        ) : null}
+        {isAvatarModalOpen && previewAvatarUrl ? (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("viewAvatar")}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+            onClick={() => setIsAvatarModalOpen(false)}
+          >
+            <div
+              className="w-full max-w-lg rounded-lg bg-white p-4 shadow-xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-semibold text-gray-900">{t("viewAvatar")}</p>
+                <button
+                  type="button"
+                  onClick={() => setIsAvatarModalOpen(false)}
+                  className="inline-flex h-9 items-center justify-center rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                >
+                  {t("closeAvatar")}
+                </button>
+              </div>
+              <div
+                aria-hidden="true"
+                className="mx-auto mt-4 aspect-square w-full max-w-md rounded-full bg-gray-100 bg-cover bg-center"
+                style={previewAvatarStyle}
+              />
+            </div>
+          </div>
         ) : null}
       </section>
 

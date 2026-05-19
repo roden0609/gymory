@@ -526,6 +526,8 @@
     "avatarCropVertical": "上下位置",
     "avatarSuccess": "個人頭像已更新。",
     "avatarRemoved": "個人頭像已移除。",
+    "viewAvatar": "查看個人頭像",
+    "closeAvatar": "關閉",
     "viewPublicProfile": "查看公開貢獻者頁面",
     "save": "儲存資料",
     "saving": "儲存中...",
