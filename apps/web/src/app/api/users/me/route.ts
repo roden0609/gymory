@@ -8,8 +8,10 @@ import {
   ensureAppUser,
   insertUserProfileAuditEvent,
   isHandleAvailable,
+  normalizeAvatarUrl,
   normalizeUserHandle,
   updateAppUserProfile,
+  validateAvatarUrl,
   validateDisplayName,
   validateUserHandle,
 } from "@/lib/db/users";
@@ -17,6 +19,7 @@ import {
 const profileSchema = z.object({
   displayName: z.string(),
   handle: z.string(),
+  avatarUrl: z.string().nullable().optional(),
 });
 
 export async function GET() {
@@ -76,8 +79,20 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: handleError }, { status: 400 });
   }
 
+  const submittedAvatarUrl =
+    parsed.data.avatarUrl === undefined
+      ? undefined
+      : normalizeAvatarUrl(parsed.data.avatarUrl);
+  const avatarUrlError =
+    submittedAvatarUrl === undefined ? null : validateAvatarUrl(submittedAvatarUrl);
+  if (avatarUrlError) {
+    return NextResponse.json({ error: avatarUrlError }, { status: 400 });
+  }
+
   const supabase = createAdminClient();
   const appUser = await ensureAppUser(user, supabase);
+  const avatarUrl =
+    submittedAvatarUrl === undefined ? appUser.avatar_url : submittedAvatarUrl;
   const available = await isHandleAvailable({
     handle,
     userId: appUser.id,
@@ -91,19 +106,23 @@ export async function PATCH(request: NextRequest) {
   const oldValues = {
     display_name: appUser.display_name,
     handle: appUser.handle,
+    avatar_url: appUser.avatar_url,
   };
   const newValues = {
     display_name: displayName,
     handle,
+    avatar_url: avatarUrl,
   };
   const hasProfileChanges =
     oldValues.display_name !== newValues.display_name ||
-    oldValues.handle !== newValues.handle;
+    oldValues.handle !== newValues.handle ||
+    oldValues.avatar_url !== newValues.avatar_url;
 
   const updatedUser = await updateAppUserProfile({
     userId: appUser.id,
     displayName,
     handle,
+    avatarUrl,
     supabase,
   });
   if (hasProfileChanges) {

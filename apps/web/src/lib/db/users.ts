@@ -30,7 +30,7 @@ export async function ensureAppUser(
     firebase_login_type: getFirebaseLoginType(user),
     display_name: existingUser?.display_name ?? getDisplayName(user),
     handle: existingUser?.handle ?? getUserHandle(user),
-    avatar_url: getAvatarUrl(user),
+    avatar_url: existingUser?.avatar_url ?? getAvatarUrl(user),
     role: getFirebaseRole(user) === "admin" ? "admin" : "basic",
     updated_at: now,
     last_seen_at: now,
@@ -74,11 +74,13 @@ export async function updateAppUserProfile({
   userId,
   displayName,
   handle,
+  avatarUrl,
   supabase = createAdminClient(),
 }: {
   userId: string;
   displayName: string;
   handle: string;
+  avatarUrl: string | null;
   supabase?: ReturnType<typeof createAdminClient>;
 }): Promise<AppUserRow> {
   const { data, error } = await supabase
@@ -86,6 +88,7 @@ export async function updateAppUserProfile({
     .update({
       display_name: displayName,
       handle,
+      avatar_url: avatarUrl,
       updated_at: new Date().toISOString(),
     })
     .eq("id", userId)
@@ -131,6 +134,46 @@ export async function insertUserProfileAuditEvent({
   if (error) {
     throw new Error(error.message);
   }
+}
+
+export async function updateAppUserAvatar({
+  userId,
+  avatarUrl,
+  supabase = createAdminClient(),
+}: {
+  userId: string;
+  avatarUrl: string | null;
+  supabase?: ReturnType<typeof createAdminClient>;
+}): Promise<AppUserRow> {
+  const { data, error } = await supabase
+    .from("users")
+    .update({
+      avatar_url: avatarUrl,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", userId)
+    .select(
+      "id, firebase_uid, firebase_email, firebase_login_type, display_name, handle, avatar_url, role, created_at, updated_at, last_seen_at"
+    )
+    .single();
+
+  if (error || !data) {
+    throw new Error(error?.message ?? "Failed to update app user avatar");
+  }
+
+  return data as AppUserRow;
+}
+
+export function getAvatarStoragePath(userId: string, mimeType: string) {
+  const extension = getAvatarFileExtension(mimeType);
+  if (!extension) return null;
+  return `${userId}/avatar.${extension}`;
+}
+
+export function validateAvatarFile(file: File) {
+  if (!AVATAR_MIME_TYPES.has(file.type)) return "avatar_file_type_invalid";
+  if (file.size > AVATAR_MAX_FILE_SIZE_BYTES) return "avatar_file_too_large";
+  return null;
 }
 
 export async function isHandleAvailable({
@@ -189,6 +232,36 @@ export function validateUserHandle(value: string) {
   if (handle.length > 30) return "handle_too_long";
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(handle)) return "handle_invalid";
   if (RESERVED_USER_HANDLES.has(handle)) return "handle_reserved";
+  return null;
+}
+
+export function normalizeAvatarUrl(value: string | null | undefined) {
+  const trimmed = value?.trim() ?? "";
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+export function validateAvatarUrl(value: string | null) {
+  if (value === null) return null;
+  if (value.length > 500) return "avatar_url_too_long";
+
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    return "avatar_url_invalid";
+  }
+
+  if (url.protocol !== "https:") return "avatar_url_https_only";
+  return null;
+}
+
+const AVATAR_MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;
+const AVATAR_MIME_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+
+function getAvatarFileExtension(mimeType: string) {
+  if (mimeType === "image/jpeg") return "jpg";
+  if (mimeType === "image/png") return "png";
+  if (mimeType === "image/webp") return "webp";
   return null;
 }
 
