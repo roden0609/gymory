@@ -84,6 +84,8 @@ export function AccountProfileForm({
   const [avatarErrorMessage, setAvatarErrorMessage] = useState("");
   const [avatarSuccessMessage, setAvatarSuccessMessage] = useState("");
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
+  const [isRemoveAvatarConfirmOpen, setIsRemoveAvatarConfirmOpen] =
+    useState(false);
   const [isAvatarPending, setIsAvatarPending] = useState(false);
   const [isPending, startTransition] = useTransition();
   const avatarDragRef = useRef<AvatarDragState | null>(null);
@@ -108,15 +110,17 @@ export function AccountProfileForm({
   }, [selectedAvatarFile]);
 
   useEffect(() => {
-    if (!isAvatarModalOpen) return;
+    if (!isAvatarModalOpen && !isRemoveAvatarConfirmOpen) return;
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsAvatarModalOpen(false);
+      if (event.key !== "Escape") return;
+      setIsAvatarModalOpen(false);
+      setIsRemoveAvatarConfirmOpen(false);
     }
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isAvatarModalOpen]);
+  }, [isAvatarModalOpen, isRemoveAvatarConfirmOpen]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -162,6 +166,15 @@ export function AccountProfileForm({
     setAvatarSuccessMessage("");
     setAvatarCrop(DEFAULT_AVATAR_CROP);
     setSelectedAvatarFile(event.target.files?.[0] ?? null);
+  }
+
+  function handleAvatarPreviewClear() {
+    setSelectedAvatarFile(null);
+    setSelectedAvatarPreviewUrl(null);
+    setAvatarCrop(DEFAULT_AVATAR_CROP);
+    setAvatarInputKey((key) => key + 1);
+    setAvatarErrorMessage("");
+    setAvatarSuccessMessage("");
   }
 
   function handleAvatarCropPointerDown(event: PointerEvent<HTMLDivElement>) {
@@ -269,6 +282,7 @@ export function AccountProfileForm({
       setSelectedAvatarFile(null);
       setSelectedAvatarPreviewUrl(null);
       setAvatarInputKey((key) => key + 1);
+      setIsRemoveAvatarConfirmOpen(false);
       window.dispatchEvent(new Event("gymory:profile-updated"));
       setAvatarSuccessMessage(t("avatarRemoved"));
     } finally {
@@ -303,7 +317,15 @@ export function AccountProfileForm({
         </div>
         <p className="mt-3 text-sm text-gray-500">{t("avatarNote")}</p>
         {selectedAvatarPreviewUrl ? (
-          <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
+          <div className="relative mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <button
+              type="button"
+              onClick={handleAvatarPreviewClear}
+              aria-label={t("clearAvatarPreview")}
+              className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white text-lg leading-none text-gray-500 shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
             <div className="flex flex-col items-center gap-3">
               <div
                 role="presentation"
@@ -359,32 +381,44 @@ export function AccountProfileForm({
             />
           </div>
         ) : null}
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="mt-4 flex flex-col gap-2">
           <input
             key={avatarInputKey}
+            id="avatar-file-input"
             type="file"
             accept="image/jpeg,image/png,image/webp"
             onChange={handleAvatarFileChange}
-            className="block w-full text-sm text-gray-600 file:mr-3 file:h-10 file:rounded-lg file:border-0 file:bg-gray-900 file:px-4 file:text-sm file:font-medium file:text-white hover:file:bg-gray-700 sm:max-w-sm"
+            className="sr-only"
           />
-          <button
-            type="button"
-            onClick={handleAvatarUpload}
-            disabled={isAvatarPending || !selectedAvatarFile}
-            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-400"
-          >
-            {isAvatarPending ? t("uploadingAvatar") : t("uploadAvatar")}
-          </button>
-          {savedAvatarUrl ? (
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <label
+              htmlFor="avatar-file-input"
+              className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            >
+              {t("chooseAvatarPhoto")}
+            </label>
             <button
               type="button"
-              onClick={handleAvatarRemove}
-              disabled={isAvatarPending}
-              className="inline-flex min-h-10 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400"
+              onClick={handleAvatarUpload}
+              disabled={isAvatarPending || !selectedAvatarFile}
+              className="inline-flex min-h-10 items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-400"
             >
-              {t("removeAvatar")}
+              {isAvatarPending ? t("uploadingAvatar") : t("uploadAvatar")}
             </button>
-          ) : null}
+            {savedAvatarUrl ? (
+              <button
+                type="button"
+                onClick={() => setIsRemoveAvatarConfirmOpen(true)}
+                disabled={isAvatarPending}
+                className="inline-flex min-h-10 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400"
+              >
+                {t("removeAvatar")}
+              </button>
+            ) : null}
+          </div>
+          <p className="truncate text-sm text-gray-500">
+            {selectedAvatarFile?.name ?? t("noAvatarFileChosen")}
+          </p>
         </div>
         <p className="mt-2 text-xs text-gray-500">{t("avatarUploadHint")}</p>
         {avatarErrorMessage ? (
@@ -424,6 +458,56 @@ export function AccountProfileForm({
                 className="mx-auto mt-4 aspect-square w-full max-w-md rounded-full bg-gray-100 bg-cover bg-center"
                 style={previewAvatarStyle}
               />
+            </div>
+          </div>
+        ) : null}
+        {isRemoveAvatarConfirmOpen ? (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="remove-avatar-title"
+            aria-describedby="remove-avatar-description"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+            onClick={() => {
+              if (!isAvatarPending) setIsRemoveAvatarConfirmOpen(false);
+            }}
+          >
+            <div
+              className="w-full max-w-sm rounded-lg bg-white p-5 shadow-xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <p
+                id="remove-avatar-title"
+                className="text-base font-semibold text-gray-900"
+              >
+                {t("confirmRemoveAvatarTitle")}
+              </p>
+              <p
+                id="remove-avatar-description"
+                className="mt-2 text-sm text-gray-500"
+              >
+                {t("confirmRemoveAvatarDescription")}
+              </p>
+              <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                <button
+                  type="button"
+                  onClick={() => setIsRemoveAvatarConfirmOpen(false)}
+                  disabled={isAvatarPending}
+                  className="inline-flex min-h-10 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400"
+                >
+                  {t("cancelRemoveAvatar")}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAvatarRemove}
+                  disabled={isAvatarPending}
+                  className="inline-flex min-h-10 items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-red-300"
+                >
+                  {isAvatarPending
+                    ? t("removingAvatar")
+                    : t("confirmRemoveAvatarAction")}
+                </button>
+              </div>
             </div>
           </div>
         ) : null}
