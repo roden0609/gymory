@@ -19,6 +19,7 @@ Required variable groups:
 - Public client vars:
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
+  - `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 - Server-only vars:
   - `SUPABASE_SECRET_KEY`
 
