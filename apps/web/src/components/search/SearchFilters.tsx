@@ -21,7 +21,6 @@ type CheckboxSection = {
 const CHECKBOX_SECTIONS: CheckboxSection[] = [
   {
     titleKey: "hyrox",
-    defaultOpen: true,
     filters: [
       { labelKey: "assaultBike", param: "hasAssaultBike" },
       { labelKey: "skiErg", param: "hasSkiErg" },
