@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { SearchFilters } from "@/components/search/SearchFilters";
 import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
+import { TrainingTagLinks } from "@/components/search/TrainingTagLinks";
 import { Link } from "@/i18n/navigation";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
 import { buildSeoMetadata } from "@/lib/seo";
@@ -73,6 +74,7 @@ export default async function SearchPage({
         <p className="mb-4 max-w-3xl text-sm text-gray-500">
           {t("communityContribution")}
         </p>
+        <TrainingTagLinks />
         <div className="flex flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
             <SearchFilters />
