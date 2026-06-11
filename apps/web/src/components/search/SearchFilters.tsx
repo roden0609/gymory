@@ -22,6 +22,7 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
   {
     titleKey: "hyrox",
     filters: [
+      { labelKey: "hyroxOfficial", param: "isHyroxOfficial" },
       { labelKey: "assaultBike", param: "hasAssaultBike" },
       { labelKey: "skiErg", param: "hasSkiErg" },
       { labelKey: "rower", param: "hasRower" },

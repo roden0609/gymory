@@ -25,6 +25,7 @@ export const searchParamsSchema = z.object({
   pageSize: z.coerce.number().int().min(1).max(50).optional(),
   brandSlugs: brandSlugsSchema.optional(),
   gymChains: commaSeparatedListSchema.optional(),
+  isHyroxOfficial: z.string().optional(),
   minRackCount: z.coerce.number().min(0).optional(),
   minPlatformCount: z.coerce.number().min(0).optional(),
   minDumbbellWeight: z.coerce.number().min(0).optional(),

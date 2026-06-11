@@ -182,6 +182,7 @@ export async function searchGyms(
     userLng: rawParams.userLng,
     brandSlugs: rawParams.brandSlugs,
     gymChains: rawParams.gymChains,
+    isHyroxOfficial: rawParams.isHyroxOfficial,
     page: rawParams.page,
     pageSize: rawParams.pageSize,
     minRackCount: rawParams.minRackCount,
@@ -352,6 +353,9 @@ export async function searchGyms(
   }
   if (params.minPlateWeight) {
     query = query.lte("plate_min_weight_kg", params.minPlateWeight);
+  }
+  if (params.isHyroxOfficial === "true") {
+    query = query.eq("is_hyrox_official", true);
   }
   if (params.hasAssaultBike === "true") query = query.gt("assault_bike_count", 0);
   if (params.hasSkiErg === "true") query = query.gt("ski_erg_count", 0);
