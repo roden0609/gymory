@@ -1,5 +1,5 @@
 import type { GymSummary } from "@gymory/shared";
-import { searchParamsSchema } from "@gymory/shared";
+import { getGymChainsBySlug, searchParamsSchema } from "@gymory/shared";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { createClient } from "../supabase-server";
 
@@ -181,6 +181,7 @@ export async function searchGyms(
     userLat: rawParams.userLat,
     userLng: rawParams.userLng,
     brandSlugs: rawParams.brandSlugs,
+    gymChains: rawParams.gymChains,
     page: rawParams.page,
     pageSize: rawParams.pageSize,
     minRackCount: rawParams.minRackCount,
@@ -319,6 +320,26 @@ export async function searchGyms(
     }
 
     query = query.in("id", matchedGymIds);
+  }
+
+  if (params.gymChains && params.gymChains.length > 0) {
+    const chains = getGymChainsBySlug(params.gymChains);
+    const slugPatterns = chains.flatMap((chain) => chain.slugPrefixes);
+
+    if (slugPatterns.length === 0) {
+      return {
+        gyms: [],
+        totalCount: 0,
+        page,
+        pageSize,
+        totalPages: 0,
+        hasNextPage: false,
+      };
+    }
+
+    query = query.or(
+      slugPatterns.map((prefix) => `slug.like.${prefix}*`).join(",")
+    );
   }
 
   if (params.district) query = query.eq("district_code", params.district);

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
-import { EQUIPMENT_BRANDS, HK_DISTRICTS } from "@gymory/shared";
+import { EQUIPMENT_BRANDS, GYM_CHAINS, HK_DISTRICTS } from "@gymory/shared";
 
 type CheckboxFilter = {
   labelKey: string;
@@ -183,6 +183,13 @@ export function SearchFilters() {
         .map((item) => item.trim())
         .filter(Boolean)
   );
+  const [selectedGymChains, setSelectedGymChains] = useState<string[]>(
+    () =>
+      (searchParams.get("gymChains") ?? "")
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean)
+  );
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
 
@@ -195,6 +202,7 @@ export function SearchFilters() {
       Number(Boolean(minPlateWeight)) +
       Number(Boolean(collection)) +
       selectedFilters.size +
+      selectedGymChains.length +
       selectedBrandSlugs.length,
     [
       collection,
@@ -203,6 +211,7 @@ export function SearchFilters() {
       minPlateWeight,
       minPlatformCount,
       minRackCount,
+      selectedGymChains.length,
       selectedBrandSlugs.length,
       selectedFilters,
     ]
@@ -222,6 +231,16 @@ export function SearchFilters() {
 
   const toggleBrand = useCallback((slug: string, checked: boolean) => {
     setSelectedBrandSlugs((current) => {
+      if (checked) {
+        if (current.includes(slug)) return current;
+        return [...current, slug];
+      }
+      return current.filter((value) => value !== slug);
+    });
+  }, []);
+
+  const toggleGymChain = useCallback((slug: string, checked: boolean) => {
+    setSelectedGymChains((current) => {
       if (checked) {
         if (current.includes(slug)) return current;
         return [...current, slug];
@@ -254,6 +273,9 @@ export function SearchFilters() {
     if (selectedBrandSlugs.length > 0) {
       params.set("brandSlugs", selectedBrandSlugs.join(","));
     }
+    if (selectedGymChains.length > 0) {
+      params.set("gymChains", selectedGymChains.join(","));
+    }
     selectedFilters.forEach((param) => params.set(param, "true"));
     return params.toString();
   }, [
@@ -266,6 +288,7 @@ export function SearchFilters() {
     minRackCount,
     searchParams,
     selectedBrandSlugs,
+    selectedGymChains,
     selectedFilters,
   ]);
 
@@ -296,6 +319,7 @@ export function SearchFilters() {
     setMinPlateWeight("");
     setCollection("");
     setSelectedBrandSlugs([]);
+    setSelectedGymChains([]);
     setSelectedFilters(new Set());
   }, []);
 
@@ -466,6 +490,26 @@ export function SearchFilters() {
             onChange={setMinPlateWeight}
           />
         </div>
+
+        <FilterSection title={t("gymBrands")}>
+          <p className="mb-2 text-xs text-gray-500">{t("gymBrandHint")}</p>
+          <div className="grid gap-2">
+            {GYM_CHAINS.map((chain) => {
+              const label =
+                locale === "zh-HK" && chain.name_zh
+                  ? chain.name_zh
+                  : chain.name_en;
+              return (
+                <CheckboxFilter
+                  key={chain.slug}
+                  label={label}
+                  checked={selectedGymChains.includes(chain.slug)}
+                  onChange={(checked) => toggleGymChain(chain.slug, checked)}
+                />
+              );
+            })}
+          </div>
+        </FilterSection>
 
         <div className="space-y-3">
           {CHECKBOX_SECTIONS.map((section) => (

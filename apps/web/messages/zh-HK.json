@@ -246,6 +246,8 @@
     "maxDumbbell": "啞鈴最大重量 ≥ (kg)",
     "smallestPlate": "最細槓片 ≤ (kg)",
     "equipment": "器械",
+    "gymBrands": "健身房品牌",
+    "gymBrandHint": "健身房品牌篩選使用 OR：揀中任何一個品牌都會符合。",
     "brandOrHint": "品牌篩選使用 OR：揀中任何一個品牌都會符合。",
     "loadMore": "載入更多",
     "loadingMore": "載入中...",

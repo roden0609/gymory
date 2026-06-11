@@ -8,6 +8,14 @@ const brandSlugsSchema = z.preprocess((value) => {
     .filter(Boolean);
 }, z.array(z.string()));
 
+const commaSeparatedListSchema = z.preprocess((value) => {
+  if (typeof value !== "string") return [];
+  return value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}, z.array(z.string()));
+
 export const searchParamsSchema = z.object({
   collection: z.string().optional(),
   district: z.string().optional(),
@@ -16,6 +24,7 @@ export const searchParamsSchema = z.object({
   page: z.coerce.number().int().min(1).optional(),
   pageSize: z.coerce.number().int().min(1).max(50).optional(),
   brandSlugs: brandSlugsSchema.optional(),
+  gymChains: commaSeparatedListSchema.optional(),
   minRackCount: z.coerce.number().min(0).optional(),
   minPlatformCount: z.coerce.number().min(0).optional(),
   minDumbbellWeight: z.coerce.number().min(0).optional(),

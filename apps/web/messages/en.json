@@ -246,6 +246,8 @@
     "maxDumbbell": "Max dumbbell ≥ (kg)",
     "smallestPlate": "Smallest plate ≤ (kg)",
     "equipment": "Equipment",
+    "gymBrands": "Gym brands",
+    "gymBrandHint": "Gym brand matches use OR: any selected brand will match.",
     "brandOrHint": "Brand matches use OR: any selected brand will match.",
     "loadMore": "Load more",
     "loadingMore": "Loading...",
