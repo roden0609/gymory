@@ -70,19 +70,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
       { url: localeBaseUrl, changeFrequency: "daily" as const, priority: 1 },
       {
-        url: `${localeBaseUrl}/search`,
-        changeFrequency: "daily" as const,
-        priority: 0.9,
-      },
-      {
         url: `${localeBaseUrl}/gyms`,
         changeFrequency: "daily" as const,
         priority: 0.9,
-      },
-      {
-        url: `${localeBaseUrl}/submit`,
-        changeFrequency: "monthly" as const,
-        priority: 0.5,
       },
       {
         url: `${localeBaseUrl}/contributors`,

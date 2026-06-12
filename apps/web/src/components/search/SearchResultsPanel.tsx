@@ -29,9 +29,11 @@ function cx(...classes: Array<string | false>) {
 export function SearchResultsPanel({
   result,
   initialView,
+  apiSearchParams,
 }: {
   result: PaginatedGymSearchResult;
   initialView: string | undefined;
+  apiSearchParams?: Record<string, string>;
 }) {
   const t = useTranslations("search");
   const router = useRouter();
@@ -85,7 +87,9 @@ export function SearchResultsPanel({
         })}
       </div>
 
-      {currentView === "list" ? <GymList {...result} /> : null}
+      {currentView === "list" ? (
+        <GymList {...result} apiSearchParams={apiSearchParams} />
+      ) : null}
 
       {currentView === "map" ? (
         <GymMap gyms={result.gyms} onFallbackToList={() => updateView("list")} />
@@ -93,7 +97,7 @@ export function SearchResultsPanel({
 
       {currentView === "split" ? (
         <div className="grid gap-4 lg:grid-cols-2">
-          <GymList {...result} />
+          <GymList {...result} apiSearchParams={apiSearchParams} />
           <GymMap gyms={result.gyms} onFallbackToList={() => updateView("list")} />
         </div>
       ) : null}

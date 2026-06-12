@@ -19,6 +19,7 @@ export async function generateMetadata({
     path: "/submit",
     title: t("title"),
     description: t("description"),
+    robots: { index: false, follow: false },
   });
 }
 

@@ -145,12 +145,14 @@ const FILTER_DEBOUNCE_MS = 300;
 
 type SearchFiltersProps = {
   basePath?: string;
+  fixedCollection?: string;
   fixedDistrict?: string;
   hideDistrictSelect?: boolean;
 };
 
 export function SearchFilters({
   basePath = "/search",
+  fixedCollection,
   fixedDistrict,
   hideDistrictSelect = false,
 }: SearchFiltersProps) {
@@ -163,7 +165,7 @@ export function SearchFilters({
   const tTraining = useTranslations("trainingPages");
 
   const [collection, setCollection] = useState(
-    searchParams.get("collection") ?? ""
+    fixedCollection ?? searchParams.get("collection") ?? ""
   );
   const [district, setDistrict] = useState(
     fixedDistrict ?? searchParams.get("district") ?? ""
@@ -213,13 +215,14 @@ export function SearchFilters({
       Number(Boolean(minPlatformCount)) +
       Number(Boolean(minDumbbellWeight)) +
       Number(Boolean(minPlateWeight)) +
-      Number(Boolean(collection)) +
+      Number(Boolean(collection) && !fixedCollection) +
       selectedFilters.size +
       selectedGymChains.length +
       selectedBrandSlugs.length,
     [
       collection,
       district,
+      fixedCollection,
       fixedDistrict,
       minDumbbellWeight,
       minPlateWeight,
@@ -274,7 +277,10 @@ export function SearchFilters({
       params.set("userLat", userLat);
       params.set("userLng", userLng);
     }
-    if (collection) params.set("collection", collection);
+    const nextCollection = fixedCollection ?? collection;
+    if (nextCollection && !fixedCollection) {
+      params.set("collection", nextCollection);
+    }
     const nextDistrict = fixedDistrict ?? district;
     if (nextDistrict && !fixedDistrict) params.set("district", nextDistrict);
     if (minRackCount) params.set("minRackCount", minRackCount);
@@ -297,6 +303,7 @@ export function SearchFilters({
     collection,
     currentView,
     district,
+    fixedCollection,
     fixedDistrict,
     minDumbbellWeight,
     minPlateWeight,
@@ -333,11 +340,11 @@ export function SearchFilters({
     setMinPlatformCount("");
     setMinDumbbellWeight("");
     setMinPlateWeight("");
-    setCollection("");
+    setCollection(fixedCollection ?? "");
     setSelectedBrandSlugs([]);
     setSelectedGymChains([]);
     setSelectedFilters(new Set());
-  }, [fixedDistrict]);
+  }, [fixedCollection, fixedDistrict]);
 
   const applyLocationParams = useCallback(
     (lat: number, lng: number) => {
@@ -412,7 +419,7 @@ export function SearchFilters({
           )}
         </div>
 
-        {activeCollection && (
+        {activeCollection && !fixedCollection && (
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
             <p className="text-xs font-medium uppercase text-gray-500">
               {t("collectionFilter")}
