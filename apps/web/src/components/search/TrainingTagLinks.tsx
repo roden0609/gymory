@@ -11,18 +11,24 @@ const TRAINING_TAG_SLUGS = [
 
 export async function TrainingTagLinks() {
   const trainingPages = await getTranslations("trainingPages");
+  const search = await getTranslations("search");
 
   return (
-    <div className="mb-5 flex flex-wrap gap-2">
-      {TRAINING_TAG_SLUGS.map((slug) => (
-        <Link
-          key={slug}
-          href={`/gyms/${slug}`}
-          className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
-        >
-          {trainingPages(`items.${slug}.tagLabel`)}
-        </Link>
-      ))}
-    </div>
+    <section className="mb-5">
+      <h2 className="mb-2 text-sm font-semibold text-gray-900">
+        {search("browseByCategory")}
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        {TRAINING_TAG_SLUGS.map((slug) => (
+          <Link
+            key={slug}
+            href={`/gyms/${slug}`}
+            className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+          >
+            {trainingPages(`items.${slug}.tagLabel`)}
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

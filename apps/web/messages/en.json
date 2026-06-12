@@ -233,6 +233,7 @@
     "title": "Find a gym",
     "placeholder": "Search by district or equipment...",
     "filters": "Filters",
+    "browseByCategory": "Browse by category",
     "collectionFilter": "Collection",
     "clearCollection": "Clear",
     "noResults": "No gyms found",
