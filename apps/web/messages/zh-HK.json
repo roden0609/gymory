@@ -35,8 +35,8 @@
     "suggestUpdate": "建議更新",
     "allGyms": "所有健身房",
     "verified": "已驗證",
-    "hyroxOfficial": "HYROX Official",
-    "hyroxOfficialSource": "已列於 HYROX partner gym finder",
+    "hyroxOfficial": "HYROX 健身俱樂部",
+    "hyroxOfficialSource": "已列為 HYROX 健身俱樂部",
     "verifiedAt": "器械資料於 {date} 驗證",
     "lastUpdated": "器械資料最後更新時間 {date}",
     "notListed": "未有資料",
@@ -625,7 +625,7 @@
       "heavy-dumbbells": "較重啞鈴"
     },
     "signals": {
-      "hyroxOfficial": "HYROX Official",
+      "hyroxOfficial": "HYROX 健身俱樂部",
       "skiErg": "SkiErg",
       "assaultRunner": "Assault runner",
       "sled": "Sled",
@@ -674,15 +674,15 @@
         "criteria": "只有當 Gymory 記錄到以下全部器械，健身房先會出現喺呢頁：assault runner、SkiErg、sled、划船機、4kg wall ball、6kg wall ball、10kg 沙包、20kg 沙包、16kg 壺鈴同 24kg 壺鈴。"
       },
       "hyrox-official-hong-kong": {
-        "tagLabel": "HYROX Official 健身房",
-        "title": "香港 HYROX Official 健身房",
-        "description": "搵香港已列於 HYROX partner gym finder 嘅健身房。",
-        "h1": "香港 HYROX Official 健身房",
-        "intro": "呢頁整理已列於 HYROX partner gym finder 嘅香港健身房，方便你分清官方 partner location 同純粹按器械推斷嘅 HYROX-friendly gym。",
-        "criteria": "只有當 Gymory 已將健身房配對到 HYROX partner gym finder source，先會出現喺呢頁。"
+        "tagLabel": "HYROX 健身俱樂部",
+        "title": "香港 HYROX 健身俱樂部",
+        "description": "搵香港已列為 HYROX 健身俱樂部嘅健身房。",
+        "h1": "香港 HYROX 健身俱樂部",
+        "intro": "官方認可嘅香港 HYROX 健身俱樂部。",
+        "criteria": "只有當 Gymory 已將健身房配對到 HYROX 健身俱樂部來源，先會出現喺呢頁。"
       },
       "olympic-lifting-hong-kong": {
-        "tagLabel": "Olympic Lifting 健身房",
+        "tagLabel": "奧舉",
         "title": "香港 Olympic Lifting 健身房",
         "description": "搵香港有 Olympic lifting 核心器械嘅健身房：平台、槓鈴同已記錄槓片資料。",
         "h1": "香港 Olympic Lifting 健身房",
@@ -690,7 +690,7 @@
         "criteria": "只有當 Gymory 記錄到以下全部資料，健身房先會出現喺呢頁：平台數量大過 0、槓鈴數量大過 0，以及槓片資料。"
       },
       "powerlifting-hong-kong": {
-        "tagLabel": "Powerlifting 健身房",
+        "tagLabel": "健力",
         "title": "香港 Powerlifting 健身房",
         "description": "搵香港有 powerlifting 相關器械嘅健身房，例如深蹲架、平台、槓鈴、臥推椅同 deadlift platform。",
         "h1": "香港 Powerlifting 健身房",
@@ -698,7 +698,7 @@
         "criteria": "只有當 Gymory 記錄到以下全部資料，健身房先會出現喺呢頁：深蹲架數量大過 0、槓鈴數量大過 0，以及槓片資料。平台同特色槓如果有資料，會作為額外訊號顯示。"
       },
       "bodybuilding-hong-kong": {
-        "tagLabel": "Bodybuilding 健身房",
+        "tagLabel": "健美",
         "title": "香港 Bodybuilding 健身房",
         "description": "搵香港有 bodybuilding 相關機械嘅健身房，例如 hack squat、leg press、chest press、划船、pulldown 同 isolation machines。",
         "h1": "香港 Bodybuilding 健身房",
@@ -706,7 +706,7 @@
         "criteria": "只有當 Gymory 記錄到至少 2 部胸部機械、至少 2 部背部機械、至少 2 部肩膊機械，以及至少 2 部腿部機械，健身房先會出現喺呢頁。"
       },
       "hybrid-training-hong-kong": {
-        "tagLabel": "Hybrid Training 健身房",
+        "tagLabel": "混合訓練",
         "title": "香港 Hybrid Training 健身房",
         "description": "搵香港適合 hybrid training 嘅健身房，包含力量、體能同 HYROX 類器械訊號。",
         "h1": "香港 Hybrid Training 健身房",

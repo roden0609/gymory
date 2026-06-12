@@ -35,8 +35,8 @@
     "suggestUpdate": "Suggest an Update",
     "allGyms": "All Gyms",
     "verified": "Verified",
-    "hyroxOfficial": "HYROX Official",
-    "hyroxOfficialSource": "Listed on the HYROX partner gym finder",
+    "hyroxOfficial": "HYROX Training Club",
+    "hyroxOfficialSource": "Listed as a HYROX Training Club",
     "verifiedAt": "Equipment verified {date}",
     "lastUpdated": "Equipment last updated {date}",
     "notListed": "Not listed",
@@ -625,7 +625,7 @@
       "heavy-dumbbells": "Heavy dumbbells"
     },
     "signals": {
-      "hyroxOfficial": "HYROX Official",
+      "hyroxOfficial": "HYROX Training Club",
       "skiErg": "SkiErg",
       "assaultRunner": "Assault runner",
       "sled": "Sled",
@@ -674,15 +674,15 @@
         "criteria": "A gym appears here only when Gymory has recorded all of these: assault runner, SkiErg, sled, rower, 4kg wall ball, 6kg wall ball, 10kg sandbag, 20kg sandbag, 16kg kettlebell, and 24kg kettlebell."
       },
       "hyrox-official-hong-kong": {
-        "tagLabel": "Official HYROX Gyms",
-        "title": "Official HYROX Gyms in Hong Kong",
-        "description": "Find Hong Kong gyms listed on the HYROX partner gym finder.",
-        "h1": "Official HYROX Gyms in Hong Kong",
-        "intro": "This page highlights Hong Kong gyms that are listed by the HYROX partner gym finder, so athletes can separate official partner locations from equipment-based HYROX-friendly gyms.",
-        "criteria": "A gym appears here only when Gymory has matched it to the HYROX partner gym finder source."
+        "tagLabel": "HYROX Training Club",
+        "title": "HYROX Training Clubs in Hong Kong",
+        "description": "Find Hong Kong gyms listed as HYROX Training Clubs.",
+        "h1": "HYROX Training Clubs in Hong Kong",
+        "intro": "Officially recognized HYROX Training Clubs in Hong Kong.",
+        "criteria": "A gym appears here only when Gymory has matched it to the HYROX Training Club source."
       },
       "olympic-lifting-hong-kong": {
-        "tagLabel": "Olympic Lifting Gyms",
+        "tagLabel": "Olympic Lifting",
         "title": "Olympic Lifting Gyms in Hong Kong",
         "description": "Find Hong Kong gyms with Olympic lifting essentials: platforms, barbells, and recorded plate data.",
         "h1": "Olympic Lifting Gyms in Hong Kong",
@@ -690,7 +690,7 @@
         "criteria": "A gym appears here only when Gymory has recorded all of these: platform count greater than zero, barbell count greater than zero, and plate data."
       },
       "powerlifting-hong-kong": {
-        "tagLabel": "Powerlifting Gyms",
+        "tagLabel": "Powerlifting",
         "title": "Powerlifting Gyms in Hong Kong",
         "description": "Find Hong Kong gyms with powerlifting-relevant equipment such as racks, platforms, barbells, benches, and deadlift platforms.",
         "h1": "Powerlifting Gyms in Hong Kong",
@@ -698,7 +698,7 @@
         "criteria": "A gym appears here only when Gymory has recorded all of these: rack count greater than zero, barbell count greater than zero, and plate data. Platforms and specialty bars may still appear as extra signals when available."
       },
       "bodybuilding-hong-kong": {
-        "tagLabel": "Bodybuilding Gyms",
+        "tagLabel": "Bodybuilding",
         "title": "Bodybuilding Gyms in Hong Kong",
         "description": "Find Hong Kong gyms with bodybuilding-relevant machines such as hack squat, leg press, chest press, rows, pulldowns, and isolation machines.",
         "h1": "Bodybuilding Gyms in Hong Kong",
@@ -706,7 +706,7 @@
         "criteria": "A gym appears here only when Gymory has recorded at least two chest machine signals, at least two back machine signals, at least two shoulder machine signals, and at least two leg machine signals."
       },
       "hybrid-training-hong-kong": {
-        "tagLabel": "Hybrid Training Gyms",
+        "tagLabel": "Hybrid Training",
         "title": "Hybrid Training Gyms in Hong Kong",
         "description": "Find Hong Kong gyms for hybrid training with strength, conditioning, and HYROX-style equipment signals.",
         "h1": "Hybrid Training Gyms in Hong Kong",
