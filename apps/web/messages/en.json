@@ -489,6 +489,21 @@
     "gymListTitle": "{district} gyms matching {equipment}",
     "noResults": "No {district} gyms with {equipment} yet"
   },
+  "districtPages": {
+    "title": "{district} Gyms",
+    "description": "Find {count} gyms in {district}, Hong Kong, with equipment notes, verification signals, and community-contributed training details.",
+    "h1": "{district} Gyms",
+    "intro": "Browse {count} Gymory-listed gyms in {district}. This district page keeps the full gym list indexable while search filters stay available for deeper equipment checks.",
+    "openInSearch": "Open in search",
+    "matchedGyms": "Listed gyms",
+    "verifiedGyms": "Verified gyms",
+    "mappedGyms": "Gyms with map location",
+    "equipmentTitle": "Equipment pages in {district}",
+    "equipmentIntro": "Jump into common equipment searches for {district} gyms.",
+    "gymListTitle": "Gyms in {district}",
+    "gymListSubtitle": "Verified and recently updated gyms are surfaced first.",
+    "browseTitle": "Browse by district"
+  },
   "contributors": {
     "title": "Gymory Contributors",
     "description": "See Gymory contributors helping the Hong Kong training community keep gym equipment data accurate.",

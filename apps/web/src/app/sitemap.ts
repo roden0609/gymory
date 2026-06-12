@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const { data: gyms } = await supabase
     .from("gyms")
-    .select("slug, updated_at")
+    .select("slug, district_code, updated_at")
     .eq("is_active", true);
 
   const equipmentPageSlugs = await getIndexableEquipmentPageSlugs();
@@ -45,6 +45,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${localeBaseUrl}/gyms/${path.district}/${path.equipment}`,
       changeFrequency: "weekly" as const,
       priority: 0.75,
+    }));
+    const activeDistrictCodes = new Set(
+      (gyms ?? []).map((gym) => gym.district_code).filter(Boolean)
+    );
+    const districtUrls = DISTRICT_PAGE_DEFINITIONS.filter((district) =>
+      activeDistrictCodes.has(district.code)
+    ).map((district) => ({
+      url: `${localeBaseUrl}/districts/${district.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     }));
     const trainingUrls = trainingPageSlugs.map((slug) => ({
       url: `${localeBaseUrl}/gyms/${slug}`,
@@ -80,6 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       },
       ...trainingUrls,
+      ...districtUrls,
       ...equipmentUrls,
       ...equipmentDistrictUrls,
       ...brandUrls,

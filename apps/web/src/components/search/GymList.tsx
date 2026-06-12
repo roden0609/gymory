@@ -14,6 +14,7 @@ type GymListProps = {
   pageSize: number;
   totalPages: number;
   hasNextPage: boolean;
+  apiSearchParams?: Record<string, string>;
 };
 
 type SearchApiResponse = GymListProps;
@@ -24,7 +25,7 @@ export function GymList({
   page,
   pageSize,
   totalPages,
-  hasNextPage,
+  apiSearchParams,
 }: GymListProps) {
   const t = useTranslations("search");
   const pathname = usePathname();
@@ -61,7 +62,10 @@ export function GymList({
     if (loadingMore || loadedPage >= totalPages) return;
 
     setLoadingMore(true);
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(apiSearchParams);
+    for (const [key, value] of searchParams.entries()) {
+      params.set(key, value);
+    }
     params.set("page", String(loadedPage + 1));
     params.set("pageSize", String(pageSize));
 

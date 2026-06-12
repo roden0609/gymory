@@ -489,6 +489,21 @@
     "gymListTitle": "{district}符合{equipment}嘅健身房",
     "noResults": "{district}暫時未有{equipment}資料"
   },
+  "districtPages": {
+    "title": "{district}健身房",
+    "description": "搵香港{district} {count} 間健身房，包含器械資料、核實訊號同社群補充嘅訓練細節。",
+    "h1": "{district}健身房",
+    "intro": "瀏覽 Gymory 收錄喺{district}嘅 {count} 間健身房。呢個地區頁會保留可被搜尋引擎收錄嘅完整列表，進階器械篩選就可以繼續用搜尋頁。",
+    "openInSearch": "喺搜尋開啟",
+    "matchedGyms": "已收錄健身房",
+    "verifiedGyms": "已驗證健身房",
+    "mappedGyms": "有地圖位置",
+    "equipmentTitle": "{district}器械頁",
+    "equipmentIntro": "快速查看{district}常用器械搜尋。",
+    "gymListTitle": "{district}健身房",
+    "gymListSubtitle": "已驗證同最近更新嘅健身房會優先顯示。",
+    "browseTitle": "按地區瀏覽"
+  },
   "contributors": {
     "title": "Gymory 貢獻者",
     "description": "查看幫香港訓練社群維持健身房器械資料準確嘅 Gymory 貢獻者。",

@@ -6,7 +6,9 @@ import { SearchFilters } from "@/components/search/SearchFilters";
 import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
 import { TrainingTagLinks } from "@/components/search/TrainingTagLinks";
 import { Link } from "@/i18n/navigation";
+import { HK_DISTRICTS, getHkDistrictLabel } from "@gymory/shared";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
+import { getDistrictPageDefinitionByCode } from "@/lib/district-pages";
 import { buildSeoMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -36,6 +38,7 @@ export default async function SearchPage({
 
   const common = await getTranslations("common");
   const t = await getTranslations("search");
+  const districtPages = await getTranslations("districtPages");
   const result = await searchGyms(searchParams);
 
   return (
@@ -75,6 +78,27 @@ export default async function SearchPage({
           {t("communityContribution")}
         </p>
         <TrainingTagLinks />
+        <section className="mb-5">
+          <h2 className="mb-2 text-sm font-semibold text-gray-900">
+            {districtPages("browseTitle")}
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {HK_DISTRICTS.map((district) => {
+              const districtPage = getDistrictPageDefinitionByCode(district.code);
+              if (!districtPage) return null;
+
+              return (
+                <Link
+                  key={district.code}
+                  href={`/districts/${districtPage.slug}`}
+                  className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+                >
+                  {getHkDistrictLabel(district.code, locale as "en" | "zh-HK")}
+                </Link>
+              );
+            })}
+          </div>
+        </section>
         <div className="flex flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
             <SearchFilters />
