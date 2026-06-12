@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { GymList } from "@/components/search/GymList";
+import { SearchFilters } from "@/components/search/SearchFilters";
 import { Link } from "@/i18n/navigation";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
 import { createClient } from "@/lib/db/supabase-server";
@@ -139,12 +140,19 @@ export default async function DistrictLandingPage({ params, searchParams }: Prop
             </h2>
             <p className="mt-1 text-sm text-gray-500">{t("gymListSubtitle")}</p>
           </div>
-          <GymList
-            {...result}
-            apiSearchParams={{
-              district: district.code,
-            }}
-          />
+          <div className="flex flex-col gap-6 md:flex-row">
+            <SearchFilters
+              basePath={`/districts/${district.slug}`}
+              fixedDistrict={district.code}
+              hideDistrictSelect
+            />
+            <GymList
+              {...result}
+              apiSearchParams={{
+                district: district.code,
+              }}
+            />
+          </div>
         </section>
       </div>
     </main>

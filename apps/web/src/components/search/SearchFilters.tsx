@@ -143,7 +143,17 @@ const ALL_CHECKBOX_FILTERS = CHECKBOX_SECTIONS.flatMap(
 
 const FILTER_DEBOUNCE_MS = 300;
 
-export function SearchFilters() {
+type SearchFiltersProps = {
+  basePath?: string;
+  fixedDistrict?: string;
+  hideDistrictSelect?: boolean;
+};
+
+export function SearchFilters({
+  basePath = "/search",
+  fixedDistrict,
+  hideDistrictSelect = false,
+}: SearchFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const locale = useLocale();
@@ -155,7 +165,9 @@ export function SearchFilters() {
   const [collection, setCollection] = useState(
     searchParams.get("collection") ?? ""
   );
-  const [district, setDistrict] = useState(searchParams.get("district") ?? "");
+  const [district, setDistrict] = useState(
+    fixedDistrict ?? searchParams.get("district") ?? ""
+  );
   const currentView = searchParams.get("view");
   const [minRackCount, setMinRackCount] = useState(
     searchParams.get("minRackCount") ?? ""
@@ -196,7 +208,7 @@ export function SearchFilters() {
 
   const activeFilterCount = useMemo(
     () =>
-      Number(Boolean(district)) +
+      Number(Boolean(district) && !fixedDistrict) +
       Number(Boolean(minRackCount)) +
       Number(Boolean(minPlatformCount)) +
       Number(Boolean(minDumbbellWeight)) +
@@ -208,6 +220,7 @@ export function SearchFilters() {
     [
       collection,
       district,
+      fixedDistrict,
       minDumbbellWeight,
       minPlateWeight,
       minPlatformCount,
@@ -262,7 +275,8 @@ export function SearchFilters() {
       params.set("userLng", userLng);
     }
     if (collection) params.set("collection", collection);
-    if (district) params.set("district", district);
+    const nextDistrict = fixedDistrict ?? district;
+    if (nextDistrict && !fixedDistrict) params.set("district", nextDistrict);
     if (minRackCount) params.set("minRackCount", minRackCount);
     if (minPlatformCount) {
       params.set("minPlatformCount", minPlatformCount);
@@ -283,6 +297,7 @@ export function SearchFilters() {
     collection,
     currentView,
     district,
+    fixedDistrict,
     minDumbbellWeight,
     minPlateWeight,
     minPlatformCount,
@@ -302,18 +317,18 @@ export function SearchFilters() {
     if (nextQueryString === currentFilterQuery) return;
 
     const timer = window.setTimeout(() => {
-      router.replace(nextQueryString ? `/search?${nextQueryString}` : "/search");
+      router.replace(nextQueryString ? `${basePath}?${nextQueryString}` : basePath);
     }, FILTER_DEBOUNCE_MS);
 
     return () => window.clearTimeout(timer);
-  }, [nextQueryString, router, searchParams]);
+  }, [basePath, nextQueryString, router, searchParams]);
 
   const applyFiltersNow = useCallback(() => {
-    router.replace(nextQueryString ? `/search?${nextQueryString}` : "/search");
-  }, [nextQueryString, router]);
+    router.replace(nextQueryString ? `${basePath}?${nextQueryString}` : basePath);
+  }, [basePath, nextQueryString, router]);
 
   const clearFilters = useCallback(() => {
-    setDistrict("");
+    setDistrict(fixedDistrict ?? "");
     setMinRackCount("");
     setMinPlatformCount("");
     setMinDumbbellWeight("");
@@ -322,7 +337,7 @@ export function SearchFilters() {
     setSelectedBrandSlugs([]);
     setSelectedGymChains([]);
     setSelectedFilters(new Set());
-  }, []);
+  }, [fixedDistrict]);
 
   const applyLocationParams = useCallback(
     (lat: number, lng: number) => {
@@ -331,9 +346,9 @@ export function SearchFilters() {
       params.set("userLng", lng.toFixed(6));
       params.delete("page");
       params.delete("pageSize");
-      router.replace(params.toString() ? `/search?${params.toString()}` : "/search");
+      router.replace(params.toString() ? `${basePath}?${params.toString()}` : basePath);
     },
-    [nextQueryString, router]
+    [basePath, nextQueryString, router]
   );
 
   const clearLocation = useCallback(() => {
@@ -343,8 +358,8 @@ export function SearchFilters() {
     params.delete("page");
     params.delete("pageSize");
     setLocationError(null);
-    router.replace(params.toString() ? `/search?${params.toString()}` : "/search");
-  }, [nextQueryString, router]);
+    router.replace(params.toString() ? `${basePath}?${params.toString()}` : basePath);
+  }, [basePath, nextQueryString, router]);
 
   const requestUserLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -442,23 +457,25 @@ export function SearchFilters() {
           )}
         </div>
 
-        <div className="space-y-1.5">
-          <label className="text-sm font-medium text-gray-700">
-            {t("district")}
-          </label>
-          <select
-            value={district}
-            onChange={(e) => setDistrict(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
-          >
-            <option value="">{t("anyDistrict")}</option>
-            {HK_DISTRICTS.map((d) => (
-              <option key={d.code} value={d.code}>
-                {locale === "zh-HK" ? d.nameZh : d.nameEn}
-              </option>
-            ))}
-          </select>
-        </div>
+        {!hideDistrictSelect && (
+          <div className="space-y-1.5">
+            <label className="text-sm font-medium text-gray-700">
+              {t("district")}
+            </label>
+            <select
+              value={district}
+              onChange={(e) => setDistrict(e.target.value)}
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+            >
+              <option value="">{t("anyDistrict")}</option>
+              {HK_DISTRICTS.map((d) => (
+                <option key={d.code} value={d.code}>
+                  {locale === "zh-HK" ? d.nameZh : d.nameEn}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <div className="space-y-3">
           <h3 className="text-sm font-semibold text-gray-900">
