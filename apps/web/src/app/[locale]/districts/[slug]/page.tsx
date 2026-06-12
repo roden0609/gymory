@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { BackButton } from "@/components/common/BackButton";
 import { GymList } from "@/components/search/GymList";
 import { SearchFilters } from "@/components/search/SearchFilters";
 import { Link } from "@/i18n/navigation";
@@ -76,12 +77,12 @@ export default async function DistrictLandingPage({ params, searchParams }: Prop
         <div className="mx-auto max-w-6xl px-4 py-8">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <Link
-                href="/gyms"
+              <BackButton
+                fallbackHref="/search"
                 className="text-sm text-gray-500 transition-colors hover:text-gray-900"
               >
                 {common("back")}
-              </Link>
+              </BackButton>
               <h1 className="mt-4 text-3xl font-bold text-gray-900">
                 {t("h1", { district: districtName })}
               </h1>
