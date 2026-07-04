@@ -152,8 +152,13 @@ export default async function DistrictEquipmentLandingPage({ params }: Props) {
 
           {result.gyms.length > 0 ? (
             <div className="space-y-3">
-              {result.gyms.map((gym) => (
-                <GymCard key={gym.id} gym={gym} />
+              {result.gyms.map((gym, index) => (
+                <GymCard
+                  key={gym.id}
+                  gym={gym}
+                  resultPosition={index + 1}
+                  resultSource="district_page"
+                />
               ))}
             </div>
           ) : (

@@ -4,6 +4,7 @@ import { FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { useRouter } from "@/i18n/navigation";
+import { trackSubmissionSuccess } from "@/lib/analytics";
 import {
   EQUIPMENT_BRANDS,
   HK_DISTRICTS,
@@ -791,6 +792,12 @@ export function SubmitGymForm({
 
         throw new Error(serverError ?? t("errorMessage"));
       }
+
+      trackSubmissionSuccess({
+        submission_type: isUpdate ? "edit_equipment" : "add_gym",
+        gym_slug: initialGym?.slug,
+        locale,
+      });
 
       form.reset();
       setFeatureStates(initialFeatureState);

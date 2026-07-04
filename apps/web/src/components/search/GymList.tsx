@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
 import { Link, usePathname } from "@/i18n/navigation";
+import type { ResultClickSource } from "@/lib/analytics";
 import { GymCard } from "./GymCard";
 
 type GymListProps = {
@@ -15,6 +16,7 @@ type GymListProps = {
   totalPages: number;
   hasNextPage: boolean;
   apiSearchParams?: Record<string, string>;
+  resultSource?: ResultClickSource;
 };
 
 type SearchApiResponse = GymListProps;
@@ -26,6 +28,7 @@ export function GymList({
   pageSize,
   totalPages,
   apiSearchParams,
+  resultSource = "search_results",
 }: GymListProps) {
   const t = useTranslations("search");
   const pathname = usePathname();
@@ -104,8 +107,13 @@ export function GymList({
       </p>
 
       <div className="space-y-3">
-        {visibleGyms.map((gym) => (
-          <GymCard key={gym.id} gym={gym} />
+        {visibleGyms.map((gym, index) => (
+          <GymCard
+            key={gym.id}
+            gym={gym}
+            resultPosition={index + 1}
+            resultSource={resultSource}
+          />
         ))}
       </div>
 

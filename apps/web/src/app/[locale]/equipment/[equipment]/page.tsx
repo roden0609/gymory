@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { HK_DISTRICTS, getHkDistrictLabel } from "@gymory/shared";
+import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 import { GymCard } from "@/components/search/GymCard";
 import { Link } from "@/i18n/navigation";
 import { getDistrictPageDefinitionByCode } from "@/lib/district-pages";
@@ -63,6 +64,13 @@ export default async function EquipmentLandingPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-gray-50">
+      <AnalyticsEventOnMount
+        eventName="view_equipment"
+        params={{
+          equipment: definition.slug,
+          locale,
+        }}
+      />
       <div className="border-b border-gray-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-8">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -145,8 +153,13 @@ export default async function EquipmentLandingPage({ params }: Props) {
 
           {result.gyms.length > 0 ? (
             <div className="space-y-3">
-              {result.gyms.map((gym) => (
-                <GymCard key={gym.id} gym={gym} />
+              {result.gyms.map((gym, index) => (
+                <GymCard
+                  key={gym.id}
+                  gym={gym}
+                  resultPosition={index + 1}
+                  resultSource="equipment_page"
+                />
               ))}
             </div>
           ) : (

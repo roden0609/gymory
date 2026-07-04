@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Gym } from "@gymory/shared";
-import { getHkDistrictLabel } from "@gymory/shared";
+import { GYM_CHAINS, getHkDistrictLabel } from "@gymory/shared";
+import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
+import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
 import { GymAccuracyVoting } from "@/components/gym/GymAccuracyVoting";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
@@ -37,6 +39,14 @@ function getLocalizedGym(gym: Gym, locale: Locale) {
       locale === "zh-HK" && gym.address_zh ? gym.address_zh : gym.address,
     district: getHkDistrictLabel(gym.district_code, locale),
   };
+}
+
+function getGymChainSlug(gymSlug: string) {
+  return (
+    GYM_CHAINS.find((chain) =>
+      chain.slugPrefixes.some((prefix) => gymSlug.startsWith(prefix))
+    )?.slug ?? undefined
+  );
 }
 
 function removeUndefinedValues(value: unknown): unknown {
@@ -867,6 +877,16 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
 
   return (
     <main className="min-h-screen bg-gray-50">
+      <AnalyticsEventOnMount
+        eventName="view_gym"
+        params={{
+          gym_slug: gym.slug,
+          gym_name: display.name,
+          district: gym.district_code,
+          chain: getGymChainSlug(gym.slug),
+          locale,
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -1128,14 +1148,20 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                 <p className="mt-1 text-sm text-gray-600">{display.address}</p>
               )}
               {mapsUrl && (
-                <a
+                <TrackedExternalLink
                   href={mapsUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-3 inline-flex text-sm font-medium text-gray-900 underline"
+                  tracking={{
+                    eventName: "open_google_maps",
+                    gymSlug: gym.slug,
+                    gymName: display.name,
+                    district: gym.district_code,
+                  }}
                 >
                   {t("openMap")}
-                </a>
+                </TrackedExternalLink>
               )}
             </div>
           </Section>
@@ -1165,24 +1191,36 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           <Section title={t("contact")}>
             <div className="flex flex-wrap gap-3">
               {gym.website_url && (
-                <a
+                <TrackedExternalLink
                   href={gym.website_url}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  tracking={{
+                    eventName: "visit_gym_website",
+                    gymSlug: gym.slug,
+                    gymName: display.name,
+                    linkType: "official_website",
+                  }}
                 >
                   {t("website")}
-                </a>
+                </TrackedExternalLink>
               )}
               {gym.instagram_url && (
-                <a
+                <TrackedExternalLink
                   href={gym.instagram_url}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  tracking={{
+                    eventName: "visit_gym_website",
+                    gymSlug: gym.slug,
+                    gymName: display.name,
+                    linkType: "instagram",
+                  }}
                 >
                   Instagram
-                </a>
+                </TrackedExternalLink>
               )}
               {gym.contact_phone && (
                 <a

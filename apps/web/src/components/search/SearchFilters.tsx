@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
+import { trackEquipmentFilter, trackFilterApply } from "@/lib/analytics";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { EQUIPMENT_BRANDS, GYM_CHAINS, HK_DISTRICTS } from "@gymory/shared";
 
@@ -143,6 +144,60 @@ const ALL_CHECKBOX_FILTERS = CHECKBOX_SECTIONS.flatMap(
 
 const FILTER_DEBOUNCE_MS = 300;
 
+const EQUIPMENT_FILTER_SLUGS: Record<string, string> = {
+  isHyroxOfficial: "hyrox-official",
+  hasAssaultBike: "assault-bike",
+  hasSkiErg: "ski-erg",
+  hasRower: "rower",
+  hasSled: "sled",
+  hasWallBallPlate: "wall-ball",
+  hasSandbag: "sandbag",
+  hasKettlebell: "kettlebell",
+  hasTreadmill: "treadmill",
+  hasExerciseBike: "exercise-bike",
+  hasClimber: "climber",
+  hasCableMachine: "cable-machine",
+  hasLatPulldownCable: "lat-pulldown-cable",
+  hasSeatedRowCable: "seated-row-cable",
+  hasSmithMachine: "smith-machine",
+  hasBicepCurlMachine: "bicep-curl-machine",
+  hasTricepExtensionMachine: "tricep-extension-machine",
+  hasChestPressMachine: "chest-press-machine",
+  hasInclineChestPressMachine: "incline-chest-press-machine",
+  hasIsoLateralChestPressMachine: "iso-lateral-chest-press-machine",
+  hasPecDeckMachine: "pec-deck-machine",
+  hasChestFlyMachine: "chest-fly-machine",
+  hasLatPulldownMachine: "lat-pulldown-machine",
+  hasSeatedRowMachine: "seated-row-machine",
+  hasBackExtensionMachine: "back-extension-machine",
+  hasIsoLateralRowMachine: "iso-lateral-row-machine",
+  hasTBarRowMachine: "t-bar-row-machine",
+  hasLateralRaiseMachine: "lateral-raise-machine",
+  hasReverseFlyMachine: "reverse-fly-machine",
+  hasShoulderPressMachine: "shoulder-press-machine",
+  hasIsoLateralShoulderPressMachine: "iso-lateral-shoulder-press-machine",
+  hasHipAbductorMachine: "hip-abductor-machine",
+  hasHipAdductorMachine: "hip-adductor-machine",
+  hasLegExtensionMachine: "leg-extension-machine",
+  hasLegPressMachine: "leg-press-machine",
+  hasSeatedLegPressMachine: "seated-leg-press-machine",
+  hasLyingLegCurlMachine: "lying-leg-curl-machine",
+  hasSeatedLegCurlMachine: "seated-leg-curl-machine",
+  hasSeatedCalfRaiseMachine: "seated-calf-raise-machine",
+  hasSquatMachine: "squat-machine",
+  hasStandingCalfRaiseMachine: "standing-calf-raise-machine",
+  hasBattleRope: "battle-rope",
+  hasFoamRoller: "foam-roller",
+  hasMedicineBall: "medicine-ball",
+  hasDipBelt: "dip-belt",
+  hasWeightVest: "weight-vest",
+  hasLiftingStraps: "lifting-straps",
+  hasPlyoBox: "plyo-box",
+  hasBalanceBall: "balance-ball",
+  hasWashroom: "washroom",
+  hasBathroom: "bathroom",
+};
+
 type SearchFiltersProps = {
   basePath?: string;
   fixedCollection?: string;
@@ -235,6 +290,16 @@ export function SearchFilters({
   );
 
   const toggleFilter = useCallback((param: string, checked: boolean) => {
+    const equipment = EQUIPMENT_FILTER_SLUGS[param];
+    if (equipment) {
+      trackEquipmentFilter({
+        equipment,
+        filter_param: param,
+        selected: checked,
+        source: "search_page",
+      });
+    }
+
     setSelectedFilters((current) => {
       const next = new Set(current);
       if (checked) {
@@ -334,7 +399,45 @@ export function SearchFilters({
     router.replace(nextQueryString ? `${basePath}?${nextQueryString}` : basePath);
   }, [basePath, nextQueryString, router]);
 
+  const trackNumericFilter = useCallback((param: string, value: string) => {
+    if (!value) return;
+
+    trackFilterApply({
+      filter_param: param,
+      filter_value: Number(value),
+      selected: true,
+      source: "search_page",
+    });
+  }, []);
+
   const clearFilters = useCallback(() => {
+    [
+      ["minRackCount", minRackCount],
+      ["minPlatformCount", minPlatformCount],
+      ["minDumbbellWeight", minDumbbellWeight],
+      ["minPlateWeight", minPlateWeight],
+    ].forEach(([param, value]) => {
+      if (value) {
+        trackFilterApply({
+          filter_param: param,
+          selected: false,
+          source: "search_page",
+        });
+      }
+    });
+
+    selectedFilters.forEach((param) => {
+      const equipment = EQUIPMENT_FILTER_SLUGS[param];
+      if (!equipment) return;
+
+      trackEquipmentFilter({
+        equipment,
+        filter_param: param,
+        selected: false,
+        source: "search_page",
+      });
+    });
+
     setDistrict(fixedDistrict ?? "");
     setMinRackCount("");
     setMinPlatformCount("");
@@ -344,7 +447,15 @@ export function SearchFilters({
     setSelectedBrandSlugs([]);
     setSelectedGymChains([]);
     setSelectedFilters(new Set());
-  }, [fixedCollection, fixedDistrict]);
+  }, [
+    fixedCollection,
+    fixedDistrict,
+    minDumbbellWeight,
+    minPlateWeight,
+    minPlatformCount,
+    minRackCount,
+    selectedFilters,
+  ]);
 
   const applyLocationParams = useCallback(
     (lat: number, lng: number) => {
@@ -493,12 +604,14 @@ export function SearchFilters({
             value={minRackCount}
             placeholder="e.g. 4"
             onChange={setMinRackCount}
+            onCommit={(value) => trackNumericFilter("minRackCount", value)}
           />
           <NumberFilter
             label={t("minPlatforms")}
             value={minPlatformCount}
             placeholder="e.g. 2"
             onChange={setMinPlatformCount}
+            onCommit={(value) => trackNumericFilter("minPlatformCount", value)}
           />
           <NumberFilter
             label={t("maxDumbbell")}
@@ -506,6 +619,7 @@ export function SearchFilters({
             placeholder="e.g. 40"
             step="0.1"
             onChange={setMinDumbbellWeight}
+            onCommit={(value) => trackNumericFilter("minDumbbellWeight", value)}
           />
           <NumberFilter
             label={t("smallestPlate")}
@@ -513,6 +627,7 @@ export function SearchFilters({
             placeholder="e.g. 1.25"
             step="0.25"
             onChange={setMinPlateWeight}
+            onCommit={(value) => trackNumericFilter("minPlateWeight", value)}
           />
         </div>
 
@@ -598,12 +713,14 @@ function NumberFilter({
   placeholder,
   step = "1",
   onChange,
+  onCommit,
 }: {
   label: string;
   value: string;
   placeholder: string;
   step?: string;
   onChange: (value: string) => void;
+  onCommit?: (value: string) => void;
 }) {
   return (
     <div className="space-y-1.5">
@@ -614,6 +731,7 @@ function NumberFilter({
         step={step}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={(e) => onCommit?.(e.target.value)}
         placeholder={placeholder}
         className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
       />

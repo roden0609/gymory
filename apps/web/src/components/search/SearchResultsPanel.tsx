@@ -88,7 +88,11 @@ export function SearchResultsPanel({
       </div>
 
       {currentView === "list" ? (
-        <GymList {...result} apiSearchParams={apiSearchParams} />
+        <GymList
+          {...result}
+          apiSearchParams={apiSearchParams}
+          resultSource="search_results"
+        />
       ) : null}
 
       {currentView === "map" ? (
@@ -97,7 +101,11 @@ export function SearchResultsPanel({
 
       {currentView === "split" ? (
         <div className="grid gap-4 lg:grid-cols-2">
-          <GymList {...result} apiSearchParams={apiSearchParams} />
+          <GymList
+            {...result}
+            apiSearchParams={apiSearchParams}
+            resultSource="search_results"
+          />
           <GymMap gyms={result.gyms} onFallbackToList={() => updateView("list")} />
         </div>
       ) : null}

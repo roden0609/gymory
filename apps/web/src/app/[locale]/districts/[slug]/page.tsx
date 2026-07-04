@@ -152,6 +152,7 @@ export default async function DistrictLandingPage({ params, searchParams }: Prop
               apiSearchParams={{
                 district: district.code,
               }}
+              resultSource="district_page"
             />
           </div>
         </section>

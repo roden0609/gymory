@@ -4,6 +4,10 @@ import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
 import { getHkDistrictLabel } from "@gymory/shared";
+import {
+  trackResultClick,
+  type ResultClickSource,
+} from "@/lib/analytics";
 
 function EquipmentBadge({ label }: { label: string }) {
   return (
@@ -157,7 +161,15 @@ function hasKnownEquipmentData(gym: GymSummary) {
   });
 }
 
-export function GymCard({ gym }: { gym: GymSummary }) {
+export function GymCard({
+  gym,
+  resultPosition,
+  resultSource,
+}: {
+  gym: GymSummary;
+  resultPosition?: number;
+  resultSource?: ResultClickSource;
+}) {
   const locale = useLocale() as "en" | "zh-HK";
   const t = useTranslations("search");
   const tGym = useTranslations("gym");
@@ -208,7 +220,18 @@ export function GymCard({ gym }: { gym: GymSummary }) {
 
   return (
     <article className="rounded-lg border border-gray-200 bg-white transition-all hover:border-gray-400 hover:shadow-sm">
-      <Link href={`/gyms/${gym.slug}`} className="block p-5">
+      <Link
+        href={`/gyms/${gym.slug}`}
+        className="block p-5"
+        onClick={() =>
+          trackResultClick({
+            gym_slug: gym.slug,
+            gym_name: displayName,
+            result_position: resultPosition,
+            source: resultSource,
+          })
+        }
+      >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <h3 className="truncate font-semibold text-gray-900">{displayName}</h3>
