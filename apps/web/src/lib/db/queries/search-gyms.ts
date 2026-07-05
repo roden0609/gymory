@@ -186,9 +186,12 @@ export async function searchGyms(
     page: rawParams.page,
     pageSize: rawParams.pageSize,
     minRackCount: rawParams.minRackCount,
+    minBenchCount: rawParams.minBenchCount,
+    minBarbellCount: rawParams.minBarbellCount,
     minPlatformCount: rawParams.minPlatformCount,
     minDumbbellWeight: rawParams.minDumbbellWeight,
     minPlateWeight: rawParams.minPlateWeight,
+    hasAssaultRunner: rawParams.hasAssaultRunner,
     hasAssaultBike: rawParams.hasAssaultBike,
     hasSkiErg: rawParams.hasSkiErg,
     hasRower: rawParams.hasRower,
@@ -200,14 +203,34 @@ export async function searchGyms(
     hasTreadmill: rawParams.hasTreadmill,
     hasExerciseBike: rawParams.hasExerciseBike,
     hasClimber: rawParams.hasClimber,
+    hasEllipticalMachine: rawParams.hasEllipticalMachine,
+    hasPullUpBar: rawParams.hasPullUpBar,
+    hasDipStation: rawParams.hasDipStation,
+    hasTrapBar: rawParams.hasTrapBar,
+    hasSafetySquatBar: rawParams.hasSafetySquatBar,
+    hasLandmineAttachment: rawParams.hasLandmineAttachment,
+    hasSwissBar: rawParams.hasSwissBar,
+    hasCamberedBar: rawParams.hasCamberedBar,
+    hasEzBar: rawParams.hasEzBar,
+    hasGluteHamDeveloper: rawParams.hasGluteHamDeveloper,
+    hasReverseHyper: rawParams.hasReverseHyper,
     hasCableMachine: rawParams.hasCableMachine,
     hasLatPulldownCable: rawParams.hasLatPulldownCable,
     hasSeatedRowCable: rawParams.hasSeatedRowCable,
     hasSmithMachine: rawParams.hasSmithMachine,
+    hasRomanChair: rawParams.hasRomanChair,
+    hasAbCrunchBench: rawParams.hasAbCrunchBench,
+    hasTorsoRotationMachine: rawParams.hasTorsoRotationMachine,
+    hasAbCrunchMachine: rawParams.hasAbCrunchMachine,
+    hasPreacherCurlBench: rawParams.hasPreacherCurlBench,
     hasBicepCurlMachine: rawParams.hasBicepCurlMachine,
     hasTricepExtensionMachine: rawParams.hasTricepExtensionMachine,
+    hasDipMachine: rawParams.hasDipMachine,
     hasChestPressMachine: rawParams.hasChestPressMachine,
     hasInclineChestPressMachine: rawParams.hasInclineChestPressMachine,
+    hasDeclineChestPressMachine: rawParams.hasDeclineChestPressMachine,
+    hasBenchRack: rawParams.hasBenchRack,
+    hasInclineBenchRack: rawParams.hasInclineBenchRack,
     hasIsoLateralChestPressMachine: rawParams.hasIsoLateralChestPressMachine,
     hasPecDeckMachine: rawParams.hasPecDeckMachine,
     hasChestFlyMachine: rawParams.hasChestFlyMachine,
@@ -216,11 +239,15 @@ export async function searchGyms(
     hasBackExtensionMachine: rawParams.hasBackExtensionMachine,
     hasIsoLateralRowMachine: rawParams.hasIsoLateralRowMachine,
     hasTBarRowMachine: rawParams.hasTBarRowMachine,
+    hasPullOverMachine: rawParams.hasPullOverMachine,
     hasLateralRaiseMachine: rawParams.hasLateralRaiseMachine,
+    hasStandingLateralRaiseMachine: rawParams.hasStandingLateralRaiseMachine,
     hasReverseFlyMachine: rawParams.hasReverseFlyMachine,
     hasShoulderPressMachine: rawParams.hasShoulderPressMachine,
     hasIsoLateralShoulderPressMachine:
       rawParams.hasIsoLateralShoulderPressMachine,
+    hasMultiPressMachine: rawParams.hasMultiPressMachine,
+    hasMultiHipMachine: rawParams.hasMultiHipMachine,
     hasHipAbductorMachine: rawParams.hasHipAbductorMachine,
     hasHipAdductorMachine: rawParams.hasHipAdductorMachine,
     hasLegExtensionMachine: rawParams.hasLegExtensionMachine,
@@ -232,17 +259,36 @@ export async function searchGyms(
     hasSquatMachine: rawParams.hasSquatMachine,
     hasHackSquat: rawParams.hasHackSquat,
     hasDeadliftPlatform: rawParams.hasDeadliftPlatform,
+    hasBeltSquatMachine: rawParams.hasBeltSquatMachine,
     hasStandingCalfRaiseMachine: rawParams.hasStandingCalfRaiseMachine,
+    hasGluteExtensionMachine: rawParams.hasGluteExtensionMachine,
+    hasHipThrustMachine: rawParams.hasHipThrustMachine,
+    hasBoxingSandbag: rawParams.hasBoxingSandbag,
     hasBattleRope: rawParams.hasBattleRope,
     hasFoamRoller: rawParams.hasFoamRoller,
     hasMedicineBall: rawParams.hasMedicineBall,
+    hasExerciseStepper: rawParams.hasExerciseStepper,
+    hasAbRoller: rawParams.hasAbRoller,
+    hasMassageBall: rawParams.hasMassageBall,
     hasDipBelt: rawParams.hasDipBelt,
     hasWeightVest: rawParams.hasWeightVest,
     hasLiftingStraps: rawParams.hasLiftingStraps,
     hasPlyoBox: rawParams.hasPlyoBox,
     hasBalanceBall: rawParams.hasBalanceBall,
+    hasTrx: rawParams.hasTrx,
+    hasResistanceBand: rawParams.hasResistanceBand,
+    hasRings: rawParams.hasRings,
+    hasYogaBlock: rawParams.hasYogaBlock,
+    hasYogaMat: rawParams.hasYogaMat,
+    hasStretchingMachine: rawParams.hasStretchingMachine,
+    hasMobilityStick: rawParams.hasMobilityStick,
     hasWashroom: rawParams.hasWashroom,
     hasBathroom: rawParams.hasBathroom,
+    hasChangingRoom: rawParams.hasChangingRoom,
+    hasFreeWater: rawParams.hasFreeWater,
+    hasDrySauna: rawParams.hasDrySauna,
+    hasWetSauna: rawParams.hasWetSauna,
+    hasIceBath: rawParams.hasIceBath,
     minSize: rawParams.minSize,
   });
 
@@ -345,6 +391,12 @@ export async function searchGyms(
 
   if (params.district) query = query.eq("district_code", params.district);
   if (params.minRackCount) query = query.gte("rack_count", params.minRackCount);
+  if (params.minBenchCount) {
+    query = query.gte("bench_count", params.minBenchCount);
+  }
+  if (params.minBarbellCount) {
+    query = query.gte("barbell_count", params.minBarbellCount);
+  }
   if (params.minPlatformCount) {
     query = query.gte("platform_count", params.minPlatformCount);
   }
@@ -356,6 +408,9 @@ export async function searchGyms(
   }
   if (params.isHyroxOfficial === "true") {
     query = query.eq("is_hyrox_official", true);
+  }
+  if (params.hasAssaultRunner === "true") {
+    query = query.gt("assault_runner_count", 0);
   }
   if (params.hasAssaultBike === "true") query = query.gt("assault_bike_count", 0);
   if (params.hasSkiErg === "true") query = query.gt("ski_erg_count", 0);
@@ -378,6 +433,29 @@ export async function searchGyms(
     query = query.gt("exercise_bike_count", 0);
   }
   if (params.hasClimber === "true") query = query.gt("climber_count", 0);
+  if (params.hasEllipticalMachine === "true") {
+    query = query.gt("elliptical_machine_count", 0);
+  }
+  if (params.hasPullUpBar === "true") query = query.eq("has_pull_up_bar", true);
+  if (params.hasDipStation === "true") query = query.eq("has_dip_station", true);
+  if (params.hasTrapBar === "true") query = query.eq("has_trap_bar", true);
+  if (params.hasSafetySquatBar === "true") {
+    query = query.eq("has_safety_squat_bar", true);
+  }
+  if (params.hasLandmineAttachment === "true") {
+    query = query.eq("has_landmine_attachment", true);
+  }
+  if (params.hasSwissBar === "true") query = query.eq("has_swiss_bar", true);
+  if (params.hasCamberedBar === "true") {
+    query = query.eq("has_cambered_bar", true);
+  }
+  if (params.hasEzBar === "true") query = query.eq("has_ez_bar", true);
+  if (params.hasGluteHamDeveloper === "true") {
+    query = query.eq("has_glute_ham_developer", true);
+  }
+  if (params.hasReverseHyper === "true") {
+    query = query.eq("has_reverse_hyper", true);
+  }
   if (params.hasCableMachine === "true") {
     query = query.gt("cable_machine_count", 0);
   }
@@ -388,17 +466,38 @@ export async function searchGyms(
     query = query.eq("has_seated_row_cable", true);
   }
   if (params.hasSmithMachine === "true") query = query.gt("smith_machine_count", 0);
+  if (params.hasRomanChair === "true") query = query.eq("has_roman_chair", true);
+  if (params.hasAbCrunchBench === "true") {
+    query = query.eq("has_ab_crunch_bench", true);
+  }
+  if (params.hasTorsoRotationMachine === "true") {
+    query = query.eq("has_torso_rotation_machine", true);
+  }
+  if (params.hasAbCrunchMachine === "true") {
+    query = query.eq("has_ab_crunch_machine", true);
+  }
+  if (params.hasPreacherCurlBench === "true") {
+    query = query.eq("has_preacher_curl_bench", true);
+  }
   if (params.hasBicepCurlMachine === "true") {
     query = query.eq("has_bicep_curl_machine", true);
   }
   if (params.hasTricepExtensionMachine === "true") {
     query = query.eq("has_tricep_extension_machine", true);
   }
+  if (params.hasDipMachine === "true") query = query.eq("has_dip_machine", true);
   if (params.hasChestPressMachine === "true") {
     query = query.eq("has_chest_press_machine", true);
   }
   if (params.hasInclineChestPressMachine === "true") {
     query = query.eq("has_incline_chest_press_machine", true);
+  }
+  if (params.hasDeclineChestPressMachine === "true") {
+    query = query.eq("has_decline_chest_press_machine", true);
+  }
+  if (params.hasBenchRack === "true") query = query.eq("has_bench_rack", true);
+  if (params.hasInclineBenchRack === "true") {
+    query = query.eq("has_incline_bench_rack", true);
   }
   if (params.hasIsoLateralChestPressMachine === "true") {
     query = query.eq("has_iso_lateral_chest_press_machine", true);
@@ -424,8 +523,14 @@ export async function searchGyms(
   if (params.hasTBarRowMachine === "true") {
     query = query.eq("has_t_bar_row_machine", true);
   }
+  if (params.hasPullOverMachine === "true") {
+    query = query.eq("has_pull_over_machine", true);
+  }
   if (params.hasLateralRaiseMachine === "true") {
     query = query.eq("has_lateral_raise_machine", true);
+  }
+  if (params.hasStandingLateralRaiseMachine === "true") {
+    query = query.eq("has_standing_lateral_raise_machine", true);
   }
   if (params.hasReverseFlyMachine === "true") {
     query = query.eq("has_reverse_fly_machine", true);
@@ -435,6 +540,12 @@ export async function searchGyms(
   }
   if (params.hasIsoLateralShoulderPressMachine === "true") {
     query = query.eq("has_iso_lateral_shoulder_press_machine", true);
+  }
+  if (params.hasMultiPressMachine === "true") {
+    query = query.eq("has_multi_press_machine", true);
+  }
+  if (params.hasMultiHipMachine === "true") {
+    query = query.eq("has_multi_hip_machine", true);
   }
   if (params.hasHipAbductorMachine === "true") {
     query = query.eq("has_hip_abductor_machine", true);
@@ -465,13 +576,32 @@ export async function searchGyms(
   if (params.hasDeadliftPlatform === "true") {
     query = query.or("has_deadlift_platform.eq.true,platform_count.gt.0");
   }
+  if (params.hasBeltSquatMachine === "true") {
+    query = query.eq("has_belt_squat_machine", true);
+  }
   if (params.hasStandingCalfRaiseMachine === "true") {
     query = query.eq("has_standing_calf_raise_machine", true);
+  }
+  if (params.hasGluteExtensionMachine === "true") {
+    query = query.eq("has_glute_extension_machine", true);
+  }
+  if (params.hasHipThrustMachine === "true") {
+    query = query.eq("has_hip_thrust_machine", true);
+  }
+  if (params.hasBoxingSandbag === "true") {
+    query = query.eq("has_boxing_sandbag", true);
   }
   if (params.hasBattleRope === "true") query = query.eq("has_battle_rope", true);
   if (params.hasFoamRoller === "true") query = query.eq("has_foam_roller", true);
   if (params.hasMedicineBall === "true") {
     query = query.eq("has_medicine_ball", true);
+  }
+  if (params.hasExerciseStepper === "true") {
+    query = query.eq("has_exercise_stepper", true);
+  }
+  if (params.hasAbRoller === "true") query = query.eq("has_ab_roller", true);
+  if (params.hasMassageBall === "true") {
+    query = query.eq("has_massage_ball", true);
   }
   if (params.hasDipBelt === "true") query = query.eq("has_dip_belt", true);
   if (params.hasWeightVest === "true") query = query.eq("has_weight_vest", true);
@@ -482,8 +612,28 @@ export async function searchGyms(
   if (params.hasBalanceBall === "true") {
     query = query.eq("has_balance_ball", true);
   }
+  if (params.hasTrx === "true") query = query.eq("has_trx", true);
+  if (params.hasResistanceBand === "true") {
+    query = query.eq("has_resistance_band", true);
+  }
+  if (params.hasRings === "true") query = query.eq("has_rings", true);
+  if (params.hasYogaBlock === "true") query = query.eq("has_yoga_block", true);
+  if (params.hasYogaMat === "true") query = query.eq("has_yoga_mat", true);
+  if (params.hasStretchingMachine === "true") {
+    query = query.eq("has_stretching_machine", true);
+  }
+  if (params.hasMobilityStick === "true") {
+    query = query.eq("has_mobility_stick", true);
+  }
   if (params.hasWashroom === "true") query = query.eq("has_washroom", true);
   if (params.hasBathroom === "true") query = query.eq("has_bathroom", true);
+  if (params.hasChangingRoom === "true") {
+    query = query.eq("has_changing_room", true);
+  }
+  if (params.hasFreeWater === "true") query = query.eq("has_free_water", true);
+  if (params.hasDrySauna === "true") query = query.eq("has_dry_sauna", true);
+  if (params.hasWetSauna === "true") query = query.eq("has_wet_sauna", true);
+  if (params.hasIceBath === "true") query = query.eq("has_ice_bath", true);
   if (params.minSize) query = query.gte("estimated_size_sqft", params.minSize);
 
   const { data, error, count } = await query;

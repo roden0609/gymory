@@ -19,15 +19,31 @@ type CheckboxSection = {
   filters: CheckboxFilter[];
 };
 
+const FREE_WEIGHT_FILTERS: CheckboxFilter[] = [
+  { labelKey: "deadliftPlatform", param: "hasDeadliftPlatform" },
+  { labelKey: "pullUpBar", param: "hasPullUpBar" },
+  { labelKey: "dipStation", param: "hasDipStation" },
+  { labelKey: "trapBar", param: "hasTrapBar" },
+  { labelKey: "safetySquatBar", param: "hasSafetySquatBar" },
+  { labelKey: "landmineAttachment", param: "hasLandmineAttachment" },
+  { labelKey: "swissBar", param: "hasSwissBar" },
+  { labelKey: "camberedBar", param: "hasCamberedBar" },
+  { labelKey: "ezBar", param: "hasEzBar" },
+  { labelKey: "gluteHamDeveloper", param: "hasGluteHamDeveloper" },
+  { labelKey: "reverseHyper", param: "hasReverseHyper" },
+];
+
 const CHECKBOX_SECTIONS: CheckboxSection[] = [
   {
     titleKey: "hyrox",
     filters: [
       { labelKey: "hyroxOfficial", param: "isHyroxOfficial" },
+      { labelKey: "assaultRunner", param: "hasAssaultRunner" },
       { labelKey: "assaultBike", param: "hasAssaultBike" },
       { labelKey: "skiErg", param: "hasSkiErg" },
       { labelKey: "rower", param: "hasRower" },
       { labelKey: "sled", param: "hasSled" },
+      { labelKey: "wallBall", param: "hasWallBall" },
       { labelKey: "wallBallPlate", param: "hasWallBallPlate" },
       { labelKey: "sandbag", param: "hasSandbag" },
       { labelKey: "kettlebell", param: "hasKettlebell" },
@@ -39,6 +55,7 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
       { labelKey: "treadmill", param: "hasTreadmill" },
       { labelKey: "exerciseBike", param: "hasExerciseBike" },
       { labelKey: "climber", param: "hasClimber" },
+      { labelKey: "ellipticalMachine", param: "hasEllipticalMachine" },
     ],
   },
   {
@@ -54,10 +71,21 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
     filters: [{ labelKey: "smithMachine", param: "hasSmithMachine" }],
   },
   {
+    titleKey: "coreMachine",
+    filters: [
+      { labelKey: "romanChair", param: "hasRomanChair" },
+      { labelKey: "abCrunchBench", param: "hasAbCrunchBench" },
+      { labelKey: "torsoRotationMachine", param: "hasTorsoRotationMachine" },
+      { labelKey: "abCrunchMachine", param: "hasAbCrunchMachine" },
+    ],
+  },
+  {
     titleKey: "armMachine",
     filters: [
+      { labelKey: "preacherCurlBench", param: "hasPreacherCurlBench" },
       { labelKey: "bicepCurlMachine", param: "hasBicepCurlMachine" },
       { labelKey: "tricepExtensionMachine", param: "hasTricepExtensionMachine" },
+      { labelKey: "dipMachine", param: "hasDipMachine" },
     ],
   },
   {
@@ -68,6 +96,12 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
         labelKey: "inclineChestPressMachine",
         param: "hasInclineChestPressMachine",
       },
+      {
+        labelKey: "declineChestPressMachine",
+        param: "hasDeclineChestPressMachine",
+      },
+      { labelKey: "benchRack", param: "hasBenchRack" },
+      { labelKey: "inclineBenchRack", param: "hasInclineBenchRack" },
       {
         labelKey: "isoLateralChestPressMachine",
         param: "hasIsoLateralChestPressMachine",
@@ -84,23 +118,30 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
       { labelKey: "backExtensionMachine", param: "hasBackExtensionMachine" },
       { labelKey: "isoLateralRowMachine", param: "hasIsoLateralRowMachine" },
       { labelKey: "tBarRowMachine", param: "hasTBarRowMachine" },
+      { labelKey: "pullOverMachine", param: "hasPullOverMachine" },
     ],
   },
   {
     titleKey: "shoulderMachine",
     filters: [
       { labelKey: "lateralRaiseMachine", param: "hasLateralRaiseMachine" },
+      {
+        labelKey: "standingLateralRaiseMachine",
+        param: "hasStandingLateralRaiseMachine",
+      },
       { labelKey: "reverseFlyMachine", param: "hasReverseFlyMachine" },
       { labelKey: "shoulderPressMachine", param: "hasShoulderPressMachine" },
       {
         labelKey: "isoLateralShoulderPressMachine",
         param: "hasIsoLateralShoulderPressMachine",
       },
+      { labelKey: "multiPressMachine", param: "hasMultiPressMachine" },
     ],
   },
   {
     titleKey: "legMachine",
     filters: [
+      { labelKey: "multiHipMachine", param: "hasMultiHipMachine" },
       { labelKey: "hipAbductorMachine", param: "hasHipAbductorMachine" },
       { labelKey: "hipAdductorMachine", param: "hasHipAdductorMachine" },
       { labelKey: "legExtensionMachine", param: "hasLegExtensionMachine" },
@@ -110,23 +151,38 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
       { labelKey: "seatedLegCurlMachine", param: "hasSeatedLegCurlMachine" },
       { labelKey: "seatedCalfRaiseMachine", param: "hasSeatedCalfRaiseMachine" },
       { labelKey: "squatMachine", param: "hasSquatMachine" },
+      { labelKey: "hackSquatMachine", param: "hasHackSquat" },
+      { labelKey: "beltSquatMachine", param: "hasBeltSquatMachine" },
       {
         labelKey: "standingCalfRaiseMachine",
         param: "hasStandingCalfRaiseMachine",
       },
+      { labelKey: "gluteExtensionMachine", param: "hasGluteExtensionMachine" },
+      { labelKey: "hipThrustMachine", param: "hasHipThrustMachine" },
     ],
   },
   {
     titleKey: "otherEquipment",
     filters: [
+      { labelKey: "boxingSandbag", param: "hasBoxingSandbag" },
       { labelKey: "battleRope", param: "hasBattleRope" },
       { labelKey: "foamRoller", param: "hasFoamRoller" },
       { labelKey: "medicineBall", param: "hasMedicineBall" },
+      { labelKey: "exerciseStepper", param: "hasExerciseStepper" },
+      { labelKey: "abRoller", param: "hasAbRoller" },
+      { labelKey: "massageBall", param: "hasMassageBall" },
       { labelKey: "dipBelt", param: "hasDipBelt" },
       { labelKey: "weightVest", param: "hasWeightVest" },
       { labelKey: "liftingStraps", param: "hasLiftingStraps" },
       { labelKey: "plyoBox", param: "hasPlyoBox" },
       { labelKey: "balanceBall", param: "hasBalanceBall" },
+      { labelKey: "trx", param: "hasTrx" },
+      { labelKey: "resistanceBands", param: "hasResistanceBand" },
+      { labelKey: "rings", param: "hasRings" },
+      { labelKey: "yogaBlock", param: "hasYogaBlock" },
+      { labelKey: "yogaMat", param: "hasYogaMat" },
+      { labelKey: "stretchingMachine", param: "hasStretchingMachine" },
+      { labelKey: "mobilityStick", param: "hasMobilityStick" },
     ],
   },
   {
@@ -134,36 +190,65 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
     filters: [
       { labelKey: "washroom", param: "hasWashroom" },
       { labelKey: "bathroom", param: "hasBathroom" },
+      { labelKey: "changingRoom", param: "hasChangingRoom" },
+      { labelKey: "freeWater", param: "hasFreeWater" },
+      { labelKey: "drySauna", param: "hasDrySauna" },
+      { labelKey: "wetSauna", param: "hasWetSauna" },
+      { labelKey: "iceBath", param: "hasIceBath" },
     ],
   },
 ];
 
-const ALL_CHECKBOX_FILTERS = CHECKBOX_SECTIONS.flatMap(
-  (section) => section.filters
-);
+const ALL_CHECKBOX_FILTERS = [
+  ...FREE_WEIGHT_FILTERS,
+  ...CHECKBOX_SECTIONS.flatMap((section) => section.filters),
+];
 
 const FILTER_DEBOUNCE_MS = 300;
 
 const EQUIPMENT_FILTER_SLUGS: Record<string, string> = {
   isHyroxOfficial: "hyrox-official",
+  hasAssaultRunner: "assault-runner",
   hasAssaultBike: "assault-bike",
   hasSkiErg: "ski-erg",
   hasRower: "rower",
   hasSled: "sled",
+  hasWallBall: "wall-ball",
   hasWallBallPlate: "wall-ball",
   hasSandbag: "sandbag",
   hasKettlebell: "kettlebell",
   hasTreadmill: "treadmill",
   hasExerciseBike: "exercise-bike",
   hasClimber: "climber",
+  hasEllipticalMachine: "elliptical-machine",
+  hasDeadliftPlatform: "deadlift-platform",
+  hasPullUpBar: "pull-up-bar",
+  hasDipStation: "dip-station",
+  hasTrapBar: "trap-bar",
+  hasSafetySquatBar: "safety-squat-bar",
+  hasLandmineAttachment: "landmine-attachment",
+  hasSwissBar: "swiss-bar",
+  hasCamberedBar: "cambered-bar",
+  hasEzBar: "ez-bar",
+  hasGluteHamDeveloper: "glute-ham-developer",
+  hasReverseHyper: "reverse-hyper",
   hasCableMachine: "cable-machine",
   hasLatPulldownCable: "lat-pulldown-cable",
   hasSeatedRowCable: "seated-row-cable",
   hasSmithMachine: "smith-machine",
+  hasRomanChair: "roman-chair",
+  hasAbCrunchBench: "ab-crunch-bench",
+  hasTorsoRotationMachine: "torso-rotation-machine",
+  hasAbCrunchMachine: "ab-crunch-machine",
+  hasPreacherCurlBench: "preacher-curl-bench",
   hasBicepCurlMachine: "bicep-curl-machine",
   hasTricepExtensionMachine: "tricep-extension-machine",
+  hasDipMachine: "dip-machine",
   hasChestPressMachine: "chest-press-machine",
   hasInclineChestPressMachine: "incline-chest-press-machine",
+  hasDeclineChestPressMachine: "decline-chest-press-machine",
+  hasBenchRack: "bench-rack",
+  hasInclineBenchRack: "incline-bench-rack",
   hasIsoLateralChestPressMachine: "iso-lateral-chest-press-machine",
   hasPecDeckMachine: "pec-deck-machine",
   hasChestFlyMachine: "chest-fly-machine",
@@ -172,10 +257,14 @@ const EQUIPMENT_FILTER_SLUGS: Record<string, string> = {
   hasBackExtensionMachine: "back-extension-machine",
   hasIsoLateralRowMachine: "iso-lateral-row-machine",
   hasTBarRowMachine: "t-bar-row-machine",
+  hasPullOverMachine: "pull-over-machine",
   hasLateralRaiseMachine: "lateral-raise-machine",
+  hasStandingLateralRaiseMachine: "standing-lateral-raise-machine",
   hasReverseFlyMachine: "reverse-fly-machine",
   hasShoulderPressMachine: "shoulder-press-machine",
   hasIsoLateralShoulderPressMachine: "iso-lateral-shoulder-press-machine",
+  hasMultiPressMachine: "multi-press-machine",
+  hasMultiHipMachine: "multi-hip-machine",
   hasHipAbductorMachine: "hip-abductor-machine",
   hasHipAdductorMachine: "hip-adductor-machine",
   hasLegExtensionMachine: "leg-extension-machine",
@@ -185,17 +274,37 @@ const EQUIPMENT_FILTER_SLUGS: Record<string, string> = {
   hasSeatedLegCurlMachine: "seated-leg-curl-machine",
   hasSeatedCalfRaiseMachine: "seated-calf-raise-machine",
   hasSquatMachine: "squat-machine",
+  hasHackSquat: "hack-squat",
+  hasBeltSquatMachine: "belt-squat-machine",
   hasStandingCalfRaiseMachine: "standing-calf-raise-machine",
+  hasGluteExtensionMachine: "glute-extension-machine",
+  hasHipThrustMachine: "hip-thrust-machine",
+  hasBoxingSandbag: "boxing-sandbag",
   hasBattleRope: "battle-rope",
   hasFoamRoller: "foam-roller",
   hasMedicineBall: "medicine-ball",
+  hasExerciseStepper: "exercise-stepper",
+  hasAbRoller: "ab-roller",
+  hasMassageBall: "massage-ball",
   hasDipBelt: "dip-belt",
   hasWeightVest: "weight-vest",
   hasLiftingStraps: "lifting-straps",
   hasPlyoBox: "plyo-box",
   hasBalanceBall: "balance-ball",
+  hasTrx: "trx",
+  hasResistanceBand: "resistance-band",
+  hasRings: "rings",
+  hasYogaBlock: "yoga-block",
+  hasYogaMat: "yoga-mat",
+  hasStretchingMachine: "stretching-machine",
+  hasMobilityStick: "mobility-stick",
   hasWashroom: "washroom",
   hasBathroom: "bathroom",
+  hasChangingRoom: "changing-room",
+  hasFreeWater: "free-water",
+  hasDrySauna: "dry-sauna",
+  hasWetSauna: "wet-sauna",
+  hasIceBath: "ice-bath",
 };
 
 type SearchFiltersProps = {
@@ -229,6 +338,12 @@ export function SearchFilters({
   const [minRackCount, setMinRackCount] = useState(
     searchParams.get("minRackCount") ?? ""
   );
+  const [minBenchCount, setMinBenchCount] = useState(
+    searchParams.get("minBenchCount") ?? ""
+  );
+  const [minBarbellCount, setMinBarbellCount] = useState(
+    searchParams.get("minBarbellCount") ?? ""
+  );
   const [minPlatformCount, setMinPlatformCount] = useState(
     searchParams.get("minPlatformCount") ?? ""
   );
@@ -238,6 +353,7 @@ export function SearchFilters({
   const [minPlateWeight, setMinPlateWeight] = useState(
     searchParams.get("minPlateWeight") ?? ""
   );
+  const [minSize, setMinSize] = useState(searchParams.get("minSize") ?? "");
   const [selectedFilters, setSelectedFilters] = useState<Set<string>>(
     () =>
       new Set(
@@ -267,9 +383,12 @@ export function SearchFilters({
     () =>
       Number(Boolean(district) && !fixedDistrict) +
       Number(Boolean(minRackCount)) +
+      Number(Boolean(minBenchCount)) +
+      Number(Boolean(minBarbellCount)) +
       Number(Boolean(minPlatformCount)) +
       Number(Boolean(minDumbbellWeight)) +
       Number(Boolean(minPlateWeight)) +
+      Number(Boolean(minSize)) +
       Number(Boolean(collection) && !fixedCollection) +
       selectedFilters.size +
       selectedGymChains.length +
@@ -279,8 +398,11 @@ export function SearchFilters({
       district,
       fixedCollection,
       fixedDistrict,
+      minBarbellCount,
+      minBenchCount,
       minDumbbellWeight,
       minPlateWeight,
+      minSize,
       minPlatformCount,
       minRackCount,
       selectedGymChains.length,
@@ -349,6 +471,8 @@ export function SearchFilters({
     const nextDistrict = fixedDistrict ?? district;
     if (nextDistrict && !fixedDistrict) params.set("district", nextDistrict);
     if (minRackCount) params.set("minRackCount", minRackCount);
+    if (minBenchCount) params.set("minBenchCount", minBenchCount);
+    if (minBarbellCount) params.set("minBarbellCount", minBarbellCount);
     if (minPlatformCount) {
       params.set("minPlatformCount", minPlatformCount);
     }
@@ -356,6 +480,7 @@ export function SearchFilters({
       params.set("minDumbbellWeight", minDumbbellWeight);
     }
     if (minPlateWeight) params.set("minPlateWeight", minPlateWeight);
+    if (minSize) params.set("minSize", minSize);
     if (selectedBrandSlugs.length > 0) {
       params.set("brandSlugs", selectedBrandSlugs.join(","));
     }
@@ -370,8 +495,11 @@ export function SearchFilters({
     district,
     fixedCollection,
     fixedDistrict,
+    minBarbellCount,
+    minBenchCount,
     minDumbbellWeight,
     minPlateWeight,
+    minSize,
     minPlatformCount,
     minRackCount,
     searchParams,
@@ -413,9 +541,12 @@ export function SearchFilters({
   const clearFilters = useCallback(() => {
     [
       ["minRackCount", minRackCount],
+      ["minBenchCount", minBenchCount],
+      ["minBarbellCount", minBarbellCount],
       ["minPlatformCount", minPlatformCount],
       ["minDumbbellWeight", minDumbbellWeight],
       ["minPlateWeight", minPlateWeight],
+      ["minSize", minSize],
     ].forEach(([param, value]) => {
       if (value) {
         trackFilterApply({
@@ -440,9 +571,12 @@ export function SearchFilters({
 
     setDistrict(fixedDistrict ?? "");
     setMinRackCount("");
+    setMinBenchCount("");
+    setMinBarbellCount("");
     setMinPlatformCount("");
     setMinDumbbellWeight("");
     setMinPlateWeight("");
+    setMinSize("");
     setCollection(fixedCollection ?? "");
     setSelectedBrandSlugs([]);
     setSelectedGymChains([]);
@@ -450,8 +584,11 @@ export function SearchFilters({
   }, [
     fixedCollection,
     fixedDistrict,
+    minBarbellCount,
+    minBenchCount,
     minDumbbellWeight,
     minPlateWeight,
+    minSize,
     minPlatformCount,
     minRackCount,
     selectedFilters,
@@ -595,16 +732,27 @@ export function SearchFilters({
           </div>
         )}
 
-        <div className="space-y-3">
-          <h3 className="text-sm font-semibold text-gray-900">
-            {tGym("freeWeight")}
-          </h3>
+        <FilterSection title={tGym("freeWeight")}>
           <NumberFilter
             label={t("minRacks")}
             value={minRackCount}
             placeholder="e.g. 4"
             onChange={setMinRackCount}
             onCommit={(value) => trackNumericFilter("minRackCount", value)}
+          />
+          <NumberFilter
+            label={t("minBenches")}
+            value={minBenchCount}
+            placeholder="e.g. 6"
+            onChange={setMinBenchCount}
+            onCommit={(value) => trackNumericFilter("minBenchCount", value)}
+          />
+          <NumberFilter
+            label={t("minBarbells")}
+            value={minBarbellCount}
+            placeholder="e.g. 8"
+            onChange={setMinBarbellCount}
+            onCommit={(value) => trackNumericFilter("minBarbellCount", value)}
           />
           <NumberFilter
             label={t("minPlatforms")}
@@ -629,7 +777,24 @@ export function SearchFilters({
             onChange={setMinPlateWeight}
             onCommit={(value) => trackNumericFilter("minPlateWeight", value)}
           />
-        </div>
+          <NumberFilter
+            label={t("minSize")}
+            value={minSize}
+            placeholder="e.g. 5000"
+            onChange={setMinSize}
+            onCommit={(value) => trackNumericFilter("minSize", value)}
+          />
+          <div className="mt-3 border-t border-gray-100 pt-3">
+            {FREE_WEIGHT_FILTERS.map((filter) => (
+              <CheckboxFilter
+                key={filter.param}
+                label={tGym(filter.labelKey)}
+                checked={selectedFilters.has(filter.param)}
+                onChange={(checked) => toggleFilter(filter.param, checked)}
+              />
+            ))}
+          </div>
+        </FilterSection>
 
         <FilterSection title={t("gymBrands")}>
           <p className="mb-2 text-xs text-gray-500">{t("gymBrandHint")}</p>
