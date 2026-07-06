@@ -376,6 +376,7 @@ export function SearchFilters({
         .map((item) => item.trim())
         .filter(Boolean)
   );
+  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
 
@@ -671,8 +672,33 @@ export function SearchFilters({
     : null;
 
   return (
-    <aside className="w-full shrink-0 md:w-72">
-      <div className="space-y-5 rounded-lg border border-gray-200 bg-white p-5">
+    <aside className="w-full min-w-0 max-w-full shrink-0 md:w-72">
+      <button
+        type="button"
+        onClick={() => setIsFilterPanelOpen((current) => !current)}
+        aria-expanded={isFilterPanelOpen}
+        className="mb-3 grid min-h-11 w-full max-w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-3 overflow-hidden rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 md:hidden"
+      >
+        <span className="flex min-w-0 items-center gap-3">
+          <span className="flex h-4 w-5 shrink-0 flex-col justify-between">
+            <span className="h-0.5 rounded-full bg-gray-900" />
+            <span className="h-0.5 rounded-full bg-gray-900" />
+            <span className="h-0.5 rounded-full bg-gray-900" />
+          </span>
+          <span className="truncate">{t("filters")}</span>
+        </span>
+        {activeFilterCount > 0 && (
+          <span className="shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+            {activeFilterCount}
+          </span>
+        )}
+      </button>
+
+      <div
+        className={`w-full min-w-0 max-w-full space-y-5 rounded-lg border border-gray-200 bg-white p-5 ${
+          isFilterPanelOpen ? "block" : "hidden md:block"
+        }`}
+      >
         <div className="flex items-center justify-between gap-3">
           <h2 className="font-semibold text-gray-900">{t("filters")}</h2>
           {activeFilterCount > 0 && (
@@ -688,7 +714,7 @@ export function SearchFilters({
               {t("collectionFilter")}
             </p>
             <div className="mt-2 flex items-start justify-between gap-3">
-              <p className="text-sm font-medium text-gray-900">
+              <p className="min-w-0 break-words text-sm font-medium text-gray-900 [overflow-wrap:anywhere]">
                 {tTraining(`items.${activeCollection.slug}.h1`)}
               </p>
               <button
@@ -703,12 +729,12 @@ export function SearchFilters({
         )}
 
         <div className="space-y-1.5">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex min-w-0 flex-wrap gap-2">
             <button
               type="button"
               onClick={requestUserLocation}
               disabled={isLocating}
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className="min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isLocating ? t("locating") : t("useMyLocation")}
             </button>
@@ -716,7 +742,7 @@ export function SearchFilters({
               <button
                 type="button"
                 onClick={clearLocation}
-                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+                className="min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
               >
                 {t("clearLocation")}
               </button>
@@ -735,7 +761,7 @@ export function SearchFilters({
             <select
               value={district}
               onChange={(e) => setDistrict(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+              className="w-full min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
             >
               <option value="">{t("anyDistrict")}</option>
               {HK_DISTRICTS.map((d) => (
@@ -871,13 +897,13 @@ export function SearchFilters({
         <div className="flex flex-col gap-2 pt-1">
           <button
             onClick={applyFiltersNow}
-            className="w-full rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+            className="w-full min-w-0 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
           >
             {tCommon("search")}
           </button>
           <button
             onClick={clearFilters}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+            className="w-full min-w-0 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
           >
             {tCommon("clear")}
           </button>
@@ -913,7 +939,7 @@ function NumberFilter({
         onChange={(e) => onChange(e.target.value)}
         onBlur={(e) => onCommit?.(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
+        className="w-full min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
       />
     </div>
   );
@@ -931,11 +957,11 @@ function FilterSection({
   return (
     <details
       open={defaultOpen}
-      className="group rounded-lg border border-gray-200 px-3 py-2"
+      className="group min-w-0 rounded-lg border border-gray-200 px-3 py-2"
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-gray-900">
-        <span>{title}</span>
-        <span className="text-gray-400 transition-transform group-open:rotate-180">
+      <summary className="flex min-w-0 cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-gray-900">
+        <span className="min-w-0 break-words [overflow-wrap:anywhere]">{title}</span>
+        <span className="shrink-0 text-gray-400 transition-transform group-open:rotate-180">
           v
         </span>
       </summary>
@@ -954,14 +980,16 @@ function CheckboxFilter({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-start gap-2">
+    <label className="flex min-w-0 cursor-pointer items-start gap-2">
       <input
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="mt-0.5 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+        className="mt-0.5 shrink-0 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
       />
-      <span className="text-sm leading-5 text-gray-700">{label}</span>
+      <span className="min-w-0 break-words text-sm leading-5 text-gray-700 [overflow-wrap:anywhere]">
+        {label}
+      </span>
     </label>
   );
 }

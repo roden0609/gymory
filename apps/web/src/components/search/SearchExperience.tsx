@@ -53,7 +53,7 @@ export async function SearchExperience({
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 py-6">
+      <div className="mx-auto max-w-6xl min-w-0 px-4 py-6">
         {searchParams.flash === "submission-success" && (
           <TransientBanner
             message={common("submissionPendingReview")}
@@ -85,8 +85,8 @@ export async function SearchExperience({
             })}
           </div>
         </section>
-        <div className="flex flex-col gap-6 md:flex-row">
-          <Suspense fallback={<div className="w-full shrink-0 md:w-64" />}>
+        <div className="flex min-w-0 flex-col gap-6 md:flex-row">
+          <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
             <SearchFilters />
           </Suspense>
           <SearchResultsPanel

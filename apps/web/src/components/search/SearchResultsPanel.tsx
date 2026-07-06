@@ -66,7 +66,7 @@ export function SearchResultsPanel({
 
   return (
     <div className="min-w-0 flex-1 space-y-4">
-      <div className="inline-flex rounded-lg border border-gray-300 bg-white p-1">
+      <div className="flex w-full min-w-0 rounded-lg border border-gray-300 bg-white p-1 sm:inline-flex sm:w-auto">
         {controls.map((control) => {
           const active = currentView === control.key;
           return (
@@ -75,7 +75,7 @@ export function SearchResultsPanel({
               type="button"
               onClick={() => updateView(control.key)}
               className={cx(
-                "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                "min-w-0 flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors sm:flex-none",
                 active
                   ? "bg-gray-900 text-white"
                   : "text-gray-700 hover:bg-gray-50"

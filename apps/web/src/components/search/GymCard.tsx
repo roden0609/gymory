@@ -11,7 +11,7 @@ import {
 
 function EquipmentBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
+    <span className="inline-flex max-w-full items-center break-words rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700 [overflow-wrap:anywhere]">
       {label}
     </span>
   );
@@ -219,7 +219,7 @@ export function GymCard({
   const hasAnyEquipmentData = hasKnownEquipmentData(gym);
 
   return (
-    <article className="rounded-lg border border-gray-200 bg-white transition-all hover:border-gray-400 hover:shadow-sm">
+    <article className="min-w-0 max-w-full rounded-lg border border-gray-200 bg-white transition-all hover:border-gray-400 hover:shadow-sm">
       <Link
         href={`/gyms/${gym.slug}`}
         className="block p-5"
@@ -232,26 +232,26 @@ export function GymCard({
           })
         }
       >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
+        <div className="flex min-w-0 items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
             <h3 className="truncate font-semibold text-gray-900">{displayName}</h3>
-            <p className="mt-0.5 text-sm text-gray-500">
+            <p className="mt-0.5 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
               {districtLabel}
               {displayAddress ? ` · ${displayAddress}` : ""}
             </p>
           </div>
 
-          <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
+          <div className="flex min-w-0 max-w-[45%] shrink flex-wrap justify-end gap-1.5">
             {gym.is_hyrox_official && (
               <span
-                className="inline-flex items-center rounded-full border border-yellow-200 bg-yellow-50 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
+                className="inline-flex max-w-full items-center break-words rounded-full border border-yellow-200 bg-yellow-50 px-2.5 py-0.5 text-xs font-medium text-yellow-800 [overflow-wrap:anywhere]"
                 title={tGym("hyroxOfficialSource")}
               >
                 {tGym("hyroxOfficial")}
               </span>
             )}
             {gym.is_verified && (
-              <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+              <span className="inline-flex max-w-full items-center break-words rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 [overflow-wrap:anywhere]">
                 {tGym("verified")}
               </span>
             )}
@@ -259,7 +259,7 @@ export function GymCard({
         </div>
 
         {equipmentHighlights.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1.5">
+          <div className="mt-3 flex min-w-0 flex-wrap gap-1.5">
             {equipmentHighlights.map((label) => (
               <EquipmentBadge key={label} label={label} />
             ))}
