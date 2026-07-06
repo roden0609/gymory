@@ -35,8 +35,16 @@ function withoutUndefined(params?: AnalyticsParams) {
   ) as AnalyticsParams;
 }
 
+function hasAnalyticsOptOutCookie() {
+  return document.cookie
+    .split(";")
+    .map((item) => item.trim())
+    .includes("gymory_no_ga=1");
+}
+
 export function trackEvent(eventName: string, params?: AnalyticsParams) {
   if (typeof window === "undefined") return;
+  if (hasAnalyticsOptOutCookie()) return;
   if (!window.gtag) return;
 
   window.gtag("event", eventName, withoutUndefined(params));

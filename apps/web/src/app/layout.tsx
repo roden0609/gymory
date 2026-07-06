@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
+import { cookies } from "next/headers";
 
 import "./globals.css";
 
@@ -10,12 +11,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const shouldLoadGoogleAnalytics =
+    Boolean(gaMeasurementId) &&
+    cookies().get("gymory_no_ga")?.value !== "1";
+
   return (
     <html>
       <body>
         {children}
         <Analytics />
-        {gaMeasurementId ? <GoogleAnalytics gaId={gaMeasurementId} /> : null}
+        {shouldLoadGoogleAnalytics ? (
+          <GoogleAnalytics gaId={gaMeasurementId!} />
+        ) : null}
       </body>
     </html>
   );

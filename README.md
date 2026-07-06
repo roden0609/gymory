@@ -36,6 +36,31 @@ See [docs/deploy.md](docs/deploy.md) for:
 - branch protection and CI requirements
 - release flow and migration discipline
 
+## Analytics
+
+Google Analytics 4 is enabled when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set.
+Use different GA4 measurement IDs per Vercel environment if needed, for example
+one production GA4 property and one preview/staging GA4 property.
+
+To exclude your own browser from GA4 tracking on any deployed environment:
+
+```text
+https://www.gymory.io/?no_ga=1
+```
+
+This sets a `gymory_no_ga=1` cookie and redirects back to the same URL without
+the `no_ga` query parameter. While the cookie is present, Gymory does not load
+GA4 and client-side `gtag` events are ignored.
+
+To re-enable GA4 tracking for the same browser:
+
+```text
+https://www.gymory.io/?no_ga=0
+```
+
+Local development only sends GA4 traffic if `NEXT_PUBLIC_GA_MEASUREMENT_ID` is
+set locally.
+
 ## Getting started
 
 ```bash
