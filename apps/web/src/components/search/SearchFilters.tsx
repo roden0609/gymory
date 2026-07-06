@@ -732,6 +732,26 @@ export function SearchFilters({
           </div>
         )}
 
+        <FilterSection title={t("gymBrands")}>
+          <p className="mb-2 text-xs text-gray-500">{t("gymBrandHint")}</p>
+          <div className="grid gap-2">
+            {GYM_CHAINS.map((chain) => {
+              const label =
+                locale === "zh-HK" && chain.name_zh
+                  ? chain.name_zh
+                  : chain.name_en;
+              return (
+                <CheckboxFilter
+                  key={chain.slug}
+                  label={label}
+                  checked={selectedGymChains.includes(chain.slug)}
+                  onChange={(checked) => toggleGymChain(chain.slug, checked)}
+                />
+              );
+            })}
+          </div>
+        </FilterSection>
+
         <FilterSection title={tGym("freeWeight")}>
           <NumberFilter
             label={t("minRacks")}
@@ -793,26 +813,6 @@ export function SearchFilters({
                 onChange={(checked) => toggleFilter(filter.param, checked)}
               />
             ))}
-          </div>
-        </FilterSection>
-
-        <FilterSection title={t("gymBrands")}>
-          <p className="mb-2 text-xs text-gray-500">{t("gymBrandHint")}</p>
-          <div className="grid gap-2">
-            {GYM_CHAINS.map((chain) => {
-              const label =
-                locale === "zh-HK" && chain.name_zh
-                  ? chain.name_zh
-                  : chain.name_en;
-              return (
-                <CheckboxFilter
-                  key={chain.slug}
-                  label={label}
-                  checked={selectedGymChains.includes(chain.slug)}
-                  onChange={(checked) => toggleGymChain(chain.slug, checked)}
-                />
-              );
-            })}
           </div>
         </FilterSection>
 
