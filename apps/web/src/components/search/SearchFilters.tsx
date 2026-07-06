@@ -508,6 +508,13 @@ export function SearchFilters({
     selectedFilters,
   ]);
 
+  const replaceWithoutScroll = useCallback(
+    (href: string) => {
+      router.replace(href, { scroll: false });
+    },
+    [router]
+  );
+
   useEffect(() => {
     const currentParams = new URLSearchParams(searchParams.toString());
     currentParams.delete("page");
@@ -517,15 +524,19 @@ export function SearchFilters({
     if (nextQueryString === currentFilterQuery) return;
 
     const timer = window.setTimeout(() => {
-      router.replace(nextQueryString ? `${basePath}?${nextQueryString}` : basePath);
+      replaceWithoutScroll(
+        nextQueryString ? `${basePath}?${nextQueryString}` : basePath
+      );
     }, FILTER_DEBOUNCE_MS);
 
     return () => window.clearTimeout(timer);
-  }, [basePath, nextQueryString, router, searchParams]);
+  }, [basePath, nextQueryString, replaceWithoutScroll, searchParams]);
 
   const applyFiltersNow = useCallback(() => {
-    router.replace(nextQueryString ? `${basePath}?${nextQueryString}` : basePath);
-  }, [basePath, nextQueryString, router]);
+    replaceWithoutScroll(
+      nextQueryString ? `${basePath}?${nextQueryString}` : basePath
+    );
+  }, [basePath, nextQueryString, replaceWithoutScroll]);
 
   const trackNumericFilter = useCallback((param: string, value: string) => {
     if (!value) return;
@@ -601,9 +612,11 @@ export function SearchFilters({
       params.set("userLng", lng.toFixed(6));
       params.delete("page");
       params.delete("pageSize");
-      router.replace(params.toString() ? `${basePath}?${params.toString()}` : basePath);
+      replaceWithoutScroll(
+        params.toString() ? `${basePath}?${params.toString()}` : basePath
+      );
     },
-    [basePath, nextQueryString, router]
+    [basePath, nextQueryString, replaceWithoutScroll]
   );
 
   const clearLocation = useCallback(() => {
@@ -613,8 +626,10 @@ export function SearchFilters({
     params.delete("page");
     params.delete("pageSize");
     setLocationError(null);
-    router.replace(params.toString() ? `${basePath}?${params.toString()}` : basePath);
-  }, [basePath, nextQueryString, router]);
+    replaceWithoutScroll(
+      params.toString() ? `${basePath}?${params.toString()}` : basePath
+    );
+  }, [basePath, nextQueryString, replaceWithoutScroll]);
 
   const requestUserLocation = useCallback(() => {
     if (!navigator.geolocation) {
