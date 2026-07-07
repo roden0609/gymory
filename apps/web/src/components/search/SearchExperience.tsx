@@ -91,9 +91,9 @@ export async function SearchExperience({
         </section>
         {currentDistrictName ? (
           <div className="mb-4 min-w-0 max-w-full">
-            <h1 className="min-w-0 break-words text-xl font-semibold text-gray-900 [overflow-wrap:anywhere]">
+            <p className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
               {districtPages("h1", { district: currentDistrictName })}
-            </h1>
+            </p>
           </div>
         ) : null}
         <div className="flex min-w-0 flex-col gap-6 md:flex-row">
