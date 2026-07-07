@@ -59,7 +59,7 @@ function getGoogleMapsUrl(lat: number, lng: number) {
 
 function MapSkeleton() {
   return (
-    <div className="h-[62vh] min-h-[420px] w-full animate-pulse rounded-xl border border-gray-200 bg-gray-100" />
+    <div className="h-[62vh] min-h-[420px] w-full max-w-full animate-pulse overflow-hidden rounded-xl border border-gray-200 bg-gray-100" />
   );
 }
 
@@ -133,14 +133,14 @@ export function GymMap({
   }
 
   return (
-    <div className="space-y-3">
+    <div className="min-w-0 max-w-full space-y-3 overflow-hidden">
       {gymsWithoutCoordsCount > 0 ? (
         <p className="text-sm text-gray-500">
           {tSearch("mapMissingCoordinates", { count: gymsWithoutCoordsCount })}
         </p>
       ) : null}
 
-      <div className="relative">
+      <div className="relative min-w-0 max-w-full overflow-hidden rounded-xl">
         {!isMapReady ? (
           <div className="absolute inset-0 z-10">
             <MapSkeleton />
@@ -151,7 +151,7 @@ export function GymMap({
           center={mapCenter}
           zoom={DEFAULT_ZOOM}
           scrollWheelZoom
-          className="h-[62vh] min-h-[420px] w-full rounded-xl border border-gray-200"
+          className="h-[62vh] min-h-[420px] w-full max-w-full overflow-hidden rounded-xl border border-gray-200"
           whenReady={() => setIsMapReady(true)}
         >
           <DynamicTileLayer

@@ -16,8 +16,8 @@ export default function RootLayout({
     cookies().get("gymory_no_ga")?.value !== "1";
 
   return (
-    <html>
-      <body>
+    <html className="overflow-x-hidden">
+      <body className="min-w-0 overflow-x-hidden">
         {children}
         <Analytics />
         {shouldLoadGoogleAnalytics ? (

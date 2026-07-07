@@ -11,7 +11,7 @@ import { GymList } from "./GymList";
 const GymMap = dynamic(() => import("./GymMap").then((mod) => mod.GymMap), {
   ssr: false,
   loading: () => (
-    <div className="h-[62vh] min-h-[420px] w-full animate-pulse rounded-xl border border-gray-200 bg-gray-100" />
+    <div className="h-[62vh] min-h-[420px] w-full max-w-full animate-pulse overflow-hidden rounded-xl border border-gray-200 bg-gray-100" />
   ),
 });
 
@@ -65,7 +65,7 @@ export function SearchResultsPanel({
   );
 
   return (
-    <div className="min-w-0 flex-1 space-y-4">
+    <div className="min-w-0 max-w-full flex-1 space-y-4 overflow-hidden">
       <div className="flex w-full min-w-0 rounded-lg border border-gray-300 bg-white p-1 sm:inline-flex sm:w-auto">
         {controls.map((control) => {
           const active = currentView === control.key;
@@ -100,7 +100,7 @@ export function SearchResultsPanel({
       ) : null}
 
       {currentView === "split" ? (
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid min-w-0 max-w-full gap-4 overflow-hidden lg:grid-cols-2">
           <GymList
             {...result}
             apiSearchParams={apiSearchParams}

@@ -52,7 +52,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className={inter.className}>
+      <div className={`${inter.className} min-w-0 overflow-x-hidden`}>
         <Suspense fallback={null}>
           <SiteHeader />
         </Suspense>

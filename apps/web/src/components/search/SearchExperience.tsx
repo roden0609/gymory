@@ -2,6 +2,10 @@ import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
+import {
+  getDistrictPageDefinitionByCode,
+  getDistrictPageLabel,
+} from "@/lib/district-pages";
 import type {
   PaginatedGymSearchResult,
   RawSearchParams,
@@ -20,6 +24,7 @@ type SearchExperienceProps = {
 };
 
 export async function SearchExperience({
+  locale,
   result,
   searchParams,
   filterBasePath = "/search",
@@ -28,9 +33,19 @@ export async function SearchExperience({
   const common = await getTranslations("common");
   const search = await getTranslations("search");
   const districtPages = await getTranslations("districtPages");
+  const currentDistrictCode =
+    fixedDistrict ??
+    (typeof searchParams.district === "string" ? searchParams.district : undefined);
+  const currentDistrict = currentDistrictCode
+    ? getDistrictPageDefinitionByCode(currentDistrictCode)
+    : null;
+  const currentDistrictName =
+    currentDistrict && (locale === "en" || locale === "zh-HK")
+      ? getDistrictPageLabel(currentDistrict, locale)
+      : null;
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen overflow-x-hidden bg-gray-50">
       <div className="bg-white border-b border-gray-200">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -66,19 +81,21 @@ export async function SearchExperience({
           {search("communityContribution")}
         </p>
         <TrainingTagLinks />
-        <section className="mb-5">
+        <section className="mb-5 min-w-0 max-w-full">
           <h2 className="mb-2 text-sm font-semibold text-gray-900">
             {districtPages("browseTitle")}
           </h2>
           <DistrictBrowseControls
-            currentDistrictCode={
-              fixedDistrict ??
-              (typeof searchParams.district === "string"
-                ? searchParams.district
-                : undefined)
-            }
+            currentDistrictCode={currentDistrictCode}
           />
         </section>
+        {currentDistrictName ? (
+          <div className="mb-4 min-w-0 max-w-full">
+            <h1 className="min-w-0 break-words text-xl font-semibold text-gray-900 [overflow-wrap:anywhere]">
+              {districtPages("h1", { district: currentDistrictName })}
+            </h1>
+          </div>
+        ) : null}
         <div className="flex min-w-0 flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
             <SearchFilters basePath={filterBasePath} fixedDistrict={fixedDistrict} />

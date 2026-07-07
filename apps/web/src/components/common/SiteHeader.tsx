@@ -104,21 +104,21 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="border-b border-gray-200 bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <header className="w-full max-w-full overflow-x-hidden border-b border-gray-200 bg-white">
+      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link
           href="/"
-          className="text-lg font-semibold text-gray-900 transition-colors hover:text-gray-700"
+          className="shrink-0 text-lg font-semibold text-gray-900 transition-colors hover:text-gray-700"
         >
           {t("appName")}
         </Link>
 
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center gap-2">
           <Link
             href={localeSwitchHref}
             locale={nextLocale}
             aria-label={t("switchLanguage")}
-            className="inline-flex h-10 items-center justify-center rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
           >
             {switchLocaleLabel}
           </Link>
@@ -148,20 +148,22 @@ export function SiteHeader() {
           ) : null}
 
           {isLoading ? (
-            <span className="text-sm text-gray-400">{tLogin("loading")}</span>
+            <span className="min-w-0 truncate text-sm text-gray-400">
+              {tLogin("loading")}
+            </span>
           ) : user ? (
             <button
               type="button"
               onClick={handleLogout}
               disabled={isLoggingOut}
-              className="inline-flex h-10 items-center justify-center rounded-lg border border-gray-300 px-4 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400"
+              className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400 sm:px-4"
             >
               {isLoggingOut ? tLogin("loggingOut") : tLogin("logout")}
             </button>
           ) : (
             <Link
               href={loginHref}
-              className="inline-flex h-10 items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+              className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg bg-gray-900 px-3 text-sm font-medium text-white transition-colors hover:bg-gray-700 sm:px-4"
             >
               {tLogin("login")}
             </Link>
