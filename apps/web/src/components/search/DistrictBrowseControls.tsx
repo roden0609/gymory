@@ -119,7 +119,7 @@ export function DistrictBrowseControls({
         <select
           value={district}
           onChange={(event) => goToDistrict(event.target.value)}
-          className="min-h-9 w-full min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900 sm:max-w-80"
+          className="h-9 w-full min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900 sm:max-w-80"
         >
           <option value="">{t("anyDistrict")}</option>
           {HK_DISTRICTS.map((item) => (
