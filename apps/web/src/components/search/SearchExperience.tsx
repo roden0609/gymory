@@ -1,13 +1,12 @@
 import { Suspense } from "react";
-import { HK_DISTRICTS, getHkDistrictLabel } from "@gymory/shared";
 import { getTranslations } from "next-intl/server";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
-import { getDistrictPageDefinitionByCode } from "@/lib/district-pages";
 import type {
   PaginatedGymSearchResult,
   RawSearchParams,
 } from "@/lib/db/queries/search-gyms";
+import { DistrictBrowseControls } from "./DistrictBrowseControls";
 import { SearchFilters } from "./SearchFilters";
 import { SearchResultsPanel } from "./SearchResultsPanel";
 import { TrainingTagLinks } from "./TrainingTagLinks";
@@ -16,12 +15,15 @@ type SearchExperienceProps = {
   locale: string;
   result: PaginatedGymSearchResult;
   searchParams: RawSearchParams & { flash?: string; view?: string };
+  filterBasePath?: string;
+  fixedDistrict?: string;
 };
 
 export async function SearchExperience({
-  locale,
   result,
   searchParams,
+  filterBasePath = "/search",
+  fixedDistrict,
 }: SearchExperienceProps) {
   const common = await getTranslations("common");
   const search = await getTranslations("search");
@@ -68,31 +70,30 @@ export async function SearchExperience({
           <h2 className="mb-2 text-sm font-semibold text-gray-900">
             {districtPages("browseTitle")}
           </h2>
-          <div className="flex flex-wrap gap-2">
-            {HK_DISTRICTS.map((district) => {
-              const districtPage = getDistrictPageDefinitionByCode(district.code);
-              if (!districtPage) return null;
-
-              return (
-                <Link
-                  key={district.code}
-                  href={`/districts/${districtPage.slug}`}
-                  className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
-                >
-                  {getHkDistrictLabel(district.code, locale as "en" | "zh-HK")}
-                </Link>
-              );
-            })}
-          </div>
+          <DistrictBrowseControls
+            currentDistrictCode={
+              fixedDistrict ??
+              (typeof searchParams.district === "string"
+                ? searchParams.district
+                : undefined)
+            }
+          />
         </section>
         <div className="flex min-w-0 flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
-            <SearchFilters />
+            <SearchFilters basePath={filterBasePath} fixedDistrict={fixedDistrict} />
           </Suspense>
           <SearchResultsPanel
             result={result}
             initialView={
               typeof searchParams.view === "string" ? searchParams.view : undefined
+            }
+            apiSearchParams={
+              fixedDistrict
+                ? {
+                    district: fixedDistrict,
+                  }
+                : undefined
             }
           />
         </div>

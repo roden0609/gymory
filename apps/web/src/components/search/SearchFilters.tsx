@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { trackEquipmentFilter, trackFilterApply } from "@/lib/analytics";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
-import { EQUIPMENT_BRANDS, GYM_CHAINS, HK_DISTRICTS } from "@gymory/shared";
+import { EQUIPMENT_BRANDS, GYM_CHAINS } from "@gymory/shared";
 
 type CheckboxFilter = {
   labelKey: string;
@@ -311,14 +311,12 @@ type SearchFiltersProps = {
   basePath?: string;
   fixedCollection?: string;
   fixedDistrict?: string;
-  hideDistrictSelect?: boolean;
 };
 
 export function SearchFilters({
   basePath = "/search",
   fixedCollection,
   fixedDistrict,
-  hideDistrictSelect = false,
 }: SearchFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -377,9 +375,6 @@ export function SearchFilters({
         .filter(Boolean)
   );
   const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
-  const [isLocating, setIsLocating] = useState(false);
-  const [locationError, setLocationError] = useState<string | null>(null);
-
   const activeFilterCount = useMemo(
     () =>
       Number(Boolean(district) && !fixedDistrict) +
@@ -606,67 +601,6 @@ export function SearchFilters({
     selectedFilters,
   ]);
 
-  const applyLocationParams = useCallback(
-    (lat: number, lng: number) => {
-      const params = new URLSearchParams(nextQueryString);
-      params.set("userLat", lat.toFixed(6));
-      params.set("userLng", lng.toFixed(6));
-      params.delete("page");
-      params.delete("pageSize");
-      replaceWithoutScroll(
-        params.toString() ? `${basePath}?${params.toString()}` : basePath
-      );
-    },
-    [basePath, nextQueryString, replaceWithoutScroll]
-  );
-
-  const clearLocation = useCallback(() => {
-    const params = new URLSearchParams(nextQueryString);
-    params.delete("userLat");
-    params.delete("userLng");
-    params.delete("page");
-    params.delete("pageSize");
-    setLocationError(null);
-    replaceWithoutScroll(
-      params.toString() ? `${basePath}?${params.toString()}` : basePath
-    );
-  }, [basePath, nextQueryString, replaceWithoutScroll]);
-
-  const requestUserLocation = useCallback(() => {
-    if (!navigator.geolocation) {
-      setLocationError(t("locationUnsupported"));
-      return;
-    }
-
-    setIsLocating(true);
-    setLocationError(null);
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setIsLocating(false);
-        applyLocationParams(position.coords.latitude, position.coords.longitude);
-      },
-      (error) => {
-        setIsLocating(false);
-        if (error.code === error.PERMISSION_DENIED) {
-          setLocationError(t("locationPermissionDenied"));
-          return;
-        }
-        if (error.code === error.TIMEOUT) {
-          setLocationError(t("locationTimeout"));
-          return;
-        }
-        setLocationError(t("locationFailed"));
-      },
-      {
-        enableHighAccuracy: false,
-        timeout: 12000,
-        maximumAge: 300000,
-      }
-    );
-  }, [applyLocationParams, t]);
-
-  const hasUserLocation =
-    Boolean(searchParams.get("userLat")) && Boolean(searchParams.get("userLng"));
   const activeCollection = collection
     ? getTrainingPageDefinition(collection)
     : null;
@@ -725,51 +659,6 @@ export function SearchFilters({
                 {t("clearCollection")}
               </button>
             </div>
-          </div>
-        )}
-
-        <div className="space-y-1.5">
-          <div className="flex min-w-0 flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={requestUserLocation}
-              disabled={isLocating}
-              className="min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {isLocating ? t("locating") : t("useMyLocation")}
-            </button>
-            {hasUserLocation && (
-              <button
-                type="button"
-                onClick={clearLocation}
-                className="min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
-              >
-                {t("clearLocation")}
-              </button>
-            )}
-          </div>
-          {locationError && (
-            <p className="text-xs text-red-600">{locationError}</p>
-          )}
-        </div>
-
-        {!hideDistrictSelect && (
-          <div className="space-y-1.5">
-            <label className="text-sm font-medium text-gray-700">
-              {t("district")}
-            </label>
-            <select
-              value={district}
-              onChange={(e) => setDistrict(e.target.value)}
-              className="w-full min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
-            >
-              <option value="">{t("anyDistrict")}</option>
-              {HK_DISTRICTS.map((d) => (
-                <option key={d.code} value={d.code}>
-                  {locale === "zh-HK" ? d.nameZh : d.nameEn}
-                </option>
-              ))}
-            </select>
           </div>
         )}
 
