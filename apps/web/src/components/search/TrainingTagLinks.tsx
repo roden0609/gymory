@@ -9,7 +9,11 @@ const TRAINING_TAG_SLUGS = [
   "hybrid-training-hong-kong",
 ] as const;
 
-export async function TrainingTagLinks() {
+export async function TrainingTagLinks({
+  currentDistrictSlug,
+}: {
+  currentDistrictSlug?: string;
+}) {
   const trainingPages = await getTranslations("trainingPages");
   const search = await getTranslations("search");
 
@@ -22,7 +26,11 @@ export async function TrainingTagLinks() {
         {TRAINING_TAG_SLUGS.map((slug) => (
           <Link
             key={slug}
-            href={`/gyms/${slug}`}
+            href={
+              currentDistrictSlug
+                ? `/${slug}/districts/${currentDistrictSlug}`
+                : `/${slug}`
+            }
             className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
           >
             {trainingPages(`items.${slug}.tagLabel`)}

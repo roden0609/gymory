@@ -5,6 +5,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getGymsForTrainingPage } from "@/lib/db/queries/training-pages";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
+import {
+  getDistrictPageDefinitionByCode,
+  getDistrictPageLabel,
+  type DistrictPageDefinition,
+} from "@/lib/district-pages";
 import { getEquipmentPageDefinition } from "@/lib/equipment-pages";
 import {
   getTrainingPageDefinition,
@@ -20,20 +25,33 @@ type Locale = "en" | "zh-HK";
 export async function generateTrainingCollectionMetadata({
   locale,
   training,
+  district,
 }: {
   locale: Locale;
   training: string;
+  district?: DistrictPageDefinition;
 }): Promise<Metadata> {
   const definition = getTrainingPageDefinition(training);
   if (!definition) return {};
 
   const t = await getTranslations({ locale, namespace: "trainingPages" });
-  const result = await getGymsForTrainingPage(definition);
+  const result = district
+    ? await searchGyms({
+        collection: definition.slug,
+        district: district.code,
+        pageSize: "1",
+      })
+    : await getGymsForTrainingPage(definition);
+  const districtName = district ? getDistrictPageLabel(district, locale) : null;
 
   return buildSeoMetadata({
     locale,
-    path: `/gyms/${definition.slug}`,
-    title: t(`items.${definition.slug}.title`),
+    path: district
+      ? `/${definition.slug}/districts/${district.slug}`
+      : `/${definition.slug}`,
+    title: districtName
+      ? `${t(`items.${definition.slug}.title`)} - ${districtName}`
+      : t(`items.${definition.slug}.title`),
     description: t(`items.${definition.slug}.description`),
     robots: result.totalCount === 0 ? { index: false, follow: true } : undefined,
   });
@@ -43,10 +61,12 @@ export async function TrainingCollectionPage({
   locale,
   training,
   searchParams,
+  fixedDistrict,
 }: {
   locale: Locale;
   training: string;
   searchParams: RawSearchParams & { view?: string };
+  fixedDistrict?: string;
 }) {
   setRequestLocale(locale);
 
@@ -56,13 +76,27 @@ export async function TrainingCollectionPage({
   const t = await getTranslations("trainingPages");
   const common = await getTranslations("common");
   const districtPages = await getTranslations("districtPages");
-  const statsResult = await getGymsForTrainingPage(definition);
+  const currentDistrictCode =
+    fixedDistrict ??
+    (typeof searchParams.district === "string" ? searchParams.district : undefined);
+  const currentDistrict = currentDistrictCode
+    ? getDistrictPageDefinitionByCode(currentDistrictCode)
+    : null;
+  const currentDistrictName =
+    currentDistrict && (locale === "en" || locale === "zh-HK")
+      ? getDistrictPageLabel(currentDistrict, locale)
+      : null;
   const result = await searchGyms({
     ...searchParams,
     collection: definition.slug,
+    ...(fixedDistrict ? { district: fixedDistrict } : {}),
   });
   const searchQuery = getTrainingSearchQuery(definition);
   const searchHref = searchQuery ? `/search?${searchQuery}` : "/search";
+  const filterBasePath =
+    fixedDistrict && currentDistrict
+      ? `/${definition.slug}/districts/${currentDistrict.slug}`
+      : `/${definition.slug}`;
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-gray-50">
@@ -124,14 +158,26 @@ export async function TrainingCollectionPage({
           <h2 className="mb-2 text-sm font-semibold text-gray-900">
             {districtPages("browseTitle")}
           </h2>
-          <DistrictBrowseControls />
+          <DistrictBrowseControls
+            currentDistrictCode={currentDistrictCode}
+            trainingSlug={definition.slug}
+          />
         </section>
+
+        {currentDistrictName ? (
+          <div className="mb-4 min-w-0 max-w-full">
+            <h1 className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
+              {districtPages("h1", { district: currentDistrictName })}
+            </h1>
+          </div>
+        ) : null}
 
         <div className="flex min-w-0 flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
             <SearchFilters
-              basePath={`/gyms/${definition.slug}`}
+              basePath={filterBasePath}
               fixedCollection={definition.slug}
+              fixedDistrict={fixedDistrict}
             />
           </Suspense>
           <SearchResultsPanel
@@ -141,6 +187,7 @@ export async function TrainingCollectionPage({
             }
             apiSearchParams={{
               collection: definition.slug,
+              ...(fixedDistrict ? { district: fixedDistrict } : {}),
             }}
           />
         </div>

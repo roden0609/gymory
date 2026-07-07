@@ -57,10 +57,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
     const trainingUrls = trainingPageSlugs.map((slug) => ({
-      url: `${localeBaseUrl}/gyms/${slug}`,
+      url: `${localeBaseUrl}/${slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.85,
     }));
+    const trainingDistrictUrls = trainingPageSlugs.flatMap((slug) =>
+      DISTRICT_PAGE_DEFINITIONS.filter((district) =>
+        activeDistrictCodes.has(district.code)
+      ).map((district) => ({
+        url: `${localeBaseUrl}/${slug}/districts/${district.slug}`,
+        changeFrequency: "weekly" as const,
+        priority: 0.75,
+      }))
+    );
     const brandUrls = brandPageSlugs.map((slug) => ({
       url: `${localeBaseUrl}/brands/${slug}`,
       changeFrequency: "weekly" as const,
@@ -80,6 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       },
       ...trainingUrls,
+      ...trainingDistrictUrls,
       ...districtUrls,
       ...equipmentUrls,
       ...equipmentDistrictUrls,

@@ -9,10 +9,12 @@ import { getDistrictPageDefinitionByCode } from "@/lib/district-pages";
 
 type DistrictBrowseControlsProps = {
   currentDistrictCode?: string;
+  trainingSlug?: string;
 };
 
 export function DistrictBrowseControls({
   currentDistrictCode,
+  trainingSlug,
 }: DistrictBrowseControlsProps) {
   const locale = useLocale() as "en" | "zh-HK";
   const router = useRouter();
@@ -33,14 +35,19 @@ export function DistrictBrowseControls({
       setDistrict(nextDistrict);
 
       if (!nextDistrict) {
-        router.push("/search");
+        router.push(trainingSlug ? `/${trainingSlug}` : "/search");
         return;
       }
 
       const districtPage = getDistrictPageDefinitionByCode(nextDistrict);
+      if (trainingSlug && districtPage) {
+        router.push(`/${trainingSlug}/districts/${districtPage.slug}`);
+        return;
+      }
+
       router.push(districtPage ? `/districts/${districtPage.slug}` : "/search");
     },
-    [router]
+    [router, trainingSlug]
   );
 
   const requestUserLocation = useCallback(() => {

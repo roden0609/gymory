@@ -80,7 +80,7 @@ export async function SearchExperience({
         <p className="mb-4 max-w-3xl text-sm text-gray-500">
           {search("communityContribution")}
         </p>
-        <TrainingTagLinks />
+        <TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />
         <section className="mb-5 min-w-0 max-w-full">
           <h2 className="mb-2 text-sm font-semibold text-gray-900">
             {districtPages("browseTitle")}
@@ -91,9 +91,9 @@ export async function SearchExperience({
         </section>
         {currentDistrictName ? (
           <div className="mb-4 min-w-0 max-w-full">
-            <p className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
+            <h1 className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
               {districtPages("h1", { district: currentDistrictName })}
-            </p>
+            </h1>
           </div>
         ) : null}
         <div className="flex min-w-0 flex-col gap-6 md:flex-row">
