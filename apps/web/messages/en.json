@@ -687,33 +687,33 @@
       "olympic-lifting-hong-kong": {
         "tagLabel": "Olympic Lifting",
         "title": "Olympic Lifting Gyms in Hong Kong",
-        "description": "Find Hong Kong gyms with Olympic lifting essentials: platforms, barbells, and recorded plate data.",
+        "description": "Hong Kong gyms with platforms, barbells, and plates.",
         "h1": "Olympic Lifting Gyms in Hong Kong",
-        "intro": "Olympic lifting needs a platform, a barbell, and plates that are suitable for repeated lifts from the floor. This page highlights Hong Kong gyms where Gymory has recorded those core lifting signals.",
+        "intro": "Hong Kong gyms with platforms, barbells, and plates.",
         "criteria": "A gym appears here only when Gymory has recorded all of these: platform count greater than zero, barbell count greater than zero, and plate data."
       },
       "powerlifting-hong-kong": {
         "tagLabel": "Powerlifting",
         "title": "Powerlifting Gyms in Hong Kong",
-        "description": "Find Hong Kong gyms with powerlifting-relevant equipment such as racks, platforms, barbells, benches, and deadlift platforms.",
+        "description": "Hong Kong gyms with racks, barbells, and plates.",
         "h1": "Powerlifting Gyms in Hong Kong",
-        "intro": "Powerlifting-friendly gyms need the basics to be reliable: rack, barbell, and plates. This page highlights Hong Kong gyms where Gymory has recorded those core strength training signals.",
+        "intro": "Hong Kong gyms with racks, barbells, and plates.",
         "criteria": "A gym appears here only when Gymory has recorded all of these: rack count greater than zero, barbell count greater than zero, and plate data. Platforms and specialty bars may still appear as extra signals when available."
       },
       "bodybuilding-hong-kong": {
         "tagLabel": "Bodybuilding",
         "title": "Bodybuilding Gyms in Hong Kong",
-        "description": "Find Hong Kong gyms with bodybuilding-relevant machines such as hack squat, leg press, chest press, rows, pulldowns, and isolation machines.",
+        "description": "Hong Kong gyms with machines for chest, back, shoulders, and legs.",
         "h1": "Bodybuilding Gyms in Hong Kong",
-        "intro": "Bodybuilding training often comes down to machine selection across multiple body parts. This page highlights Hong Kong gyms with enough recorded machine variety for chest, back, shoulders, and legs.",
+        "intro": "Hong Kong gyms with machines for chest, back, shoulders, and legs.",
         "criteria": "A gym appears here only when Gymory has recorded at least two chest machine signals, at least two back machine signals, at least two shoulder machine signals, and at least two leg machine signals."
       },
       "hybrid-training-hong-kong": {
         "tagLabel": "Hybrid Training",
         "title": "Hybrid Training Gyms in Hong Kong",
-        "description": "Find Hong Kong gyms for hybrid training with strength, conditioning, and HYROX-style equipment signals.",
+        "description": "Hong Kong gyms with plyo box access plus strength and conditioning signals.",
         "h1": "Hybrid Training Gyms in Hong Kong",
-        "intro": "Hybrid athletes need a mix of strength, conditioning, and athletic movement tools. This page highlights Hong Kong gyms with recorded plyo box access plus both strength and conditioning signals.",
+        "intro": "Hong Kong gyms with plyo box access plus strength and conditioning signals.",
         "criteria": "A gym appears here only when Gymory has recorded a plyo box, at least one strength signal (rack, platform, or barbell), and at least one conditioning signal (SkiErg, sled, rower, assault bike, or treadmill)."
       }
     }

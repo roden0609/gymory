@@ -687,33 +687,33 @@
       "olympic-lifting-hong-kong": {
         "tagLabel": "奧舉",
         "title": "香港 Olympic Lifting 健身房",
-        "description": "搵香港有 Olympic lifting 核心器械嘅健身房：平台、槓鈴同已記錄槓片資料。",
+        "description": "有平台、槓鈴同槓片嘅香港健身房。",
         "h1": "香港 Olympic Lifting 健身房",
-        "intro": "Olympic lifting 需要平台、槓鈴同適合由地面重複起槓嘅槓片。呢頁整理 Gymory 已記錄有呢幾項核心舉重訊號嘅香港健身房。",
+        "intro": "有平台、槓鈴同槓片嘅香港健身房。",
         "criteria": "只有當 Gymory 記錄到以下全部資料，健身房先會出現喺呢頁：平台數量大過 0、槓鈴數量大過 0，以及槓片資料。"
       },
       "powerlifting-hong-kong": {
         "tagLabel": "健力",
         "title": "香港 Powerlifting 健身房",
-        "description": "搵香港有 powerlifting 相關器械嘅健身房，例如深蹲架、平台、槓鈴、臥推椅同 deadlift platform。",
+        "description": "有深蹲架、槓鈴同槓片嘅香港健身房。",
         "h1": "香港 Powerlifting 健身房",
-        "intro": "適合 powerlifting 嘅 gym，基本要有可靠嘅 rack、barbell 同 plates。呢頁整理 Gymory 已記錄有呢幾項核心力量訓練訊號嘅香港健身房。",
+        "intro": "有深蹲架、槓鈴同槓片嘅香港健身房。",
         "criteria": "只有當 Gymory 記錄到以下全部資料，健身房先會出現喺呢頁：深蹲架數量大過 0、槓鈴數量大過 0，以及槓片資料。平台同特色槓如果有資料，會作為額外訊號顯示。"
       },
       "bodybuilding-hong-kong": {
         "tagLabel": "健美",
         "title": "香港 Bodybuilding 健身房",
-        "description": "搵香港有 bodybuilding 相關機械嘅健身房，例如 hack squat、leg press、chest press、划船、pulldown 同 isolation machines。",
+        "description": "有胸、背、肩、腿機械選擇嘅香港健身房。",
         "h1": "香港 Bodybuilding 健身房",
-        "intro": "Bodybuilding 訓練好多時取決於唔同部位嘅機械選擇。呢頁整理香港已記錄胸、背、肩、腿都有足夠機械變化嘅健身房。",
+        "intro": "有胸、背、肩、腿機械選擇嘅香港健身房。",
         "criteria": "只有當 Gymory 記錄到至少 2 部胸部機械、至少 2 部背部機械、至少 2 部肩膊機械，以及至少 2 部腿部機械，健身房先會出現喺呢頁。"
       },
       "hybrid-training-hong-kong": {
         "tagLabel": "混合訓練",
         "title": "香港 Hybrid Training 健身房",
-        "description": "搵香港適合 hybrid training 嘅健身房，包含力量、體能同 HYROX 類器械訊號。",
+        "description": "已記錄有 plyo box、力量同體能器械訊號嘅香港健身房。",
         "h1": "香港 Hybrid Training 健身房",
-        "intro": "Hybrid athlete 需要力量、體能同動作訓練工具兼備。呢頁整理香港已記錄有 plyo box，同時有力量同體能訊號嘅健身房。",
+        "intro": "已記錄有 plyo box、力量同體能器械訊號嘅香港健身房。",
         "criteria": "只有當 Gymory 記錄到 plyo box、至少一項力量訊號（深蹲架、平台或槓鈴），以及至少一項體能訊號（SkiErg、sled、划船機、assault bike 或跑步機），健身房先會出現喺呢頁。"
       }
     }

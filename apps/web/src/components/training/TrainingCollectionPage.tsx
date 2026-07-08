@@ -97,6 +97,13 @@ export async function TrainingCollectionPage({
     fixedDistrict && currentDistrict
       ? `/${definition.slug}/districts/${currentDistrict.slug}`
       : `/${definition.slug}`;
+  const hidesCriteriaAndRelatedEquipment = [
+    "hyrox-official-hong-kong",
+    "olympic-lifting-hong-kong",
+    "powerlifting-hong-kong",
+    "bodybuilding-hong-kong",
+    "hybrid-training-hong-kong",
+  ].includes(definition.slug);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-gray-50">
@@ -126,33 +133,39 @@ export async function TrainingCollectionPage({
       </div>
 
       <div className="mx-auto max-w-6xl min-w-0 px-4 py-6">
-        <p className="mb-3 max-w-3xl text-sm leading-6 text-gray-500">
-          {t(`items.${definition.slug}.criteria`)}
-        </p>
-        <p className="mb-4 max-w-3xl text-sm text-gray-500">
-          {t("communityNote")}
-        </p>
+        {!hidesCriteriaAndRelatedEquipment ? (
+          <>
+            <p className="mb-3 max-w-3xl text-sm leading-6 text-gray-500">
+              {t(`items.${definition.slug}.criteria`)}
+            </p>
+            <p className="mb-4 max-w-3xl text-sm text-gray-500">
+              {t("communityNote")}
+            </p>
+          </>
+        ) : null}
 
-        <section className="mb-5 min-w-0 max-w-full">
-          <h2 className="mb-2 text-sm font-semibold text-gray-900">
-            {t("relatedEquipment")}
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {definition.equipmentLinks.map((equipmentSlug) => {
-              const equipment = getEquipmentPageDefinition(equipmentSlug);
-              if (!equipment) return null;
-              return (
-                <Link
-                  key={equipmentSlug}
-                  href={`/equipment/${equipmentSlug}`}
-                  className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
-                >
-                  {t(`equipment.${equipment.slug}`)}
-                </Link>
-              );
-            })}
-          </div>
-        </section>
+        {!hidesCriteriaAndRelatedEquipment ? (
+          <section className="mb-5 min-w-0 max-w-full">
+            <h2 className="mb-2 text-sm font-semibold text-gray-900">
+              {t("relatedEquipment")}
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {definition.equipmentLinks.map((equipmentSlug) => {
+                const equipment = getEquipmentPageDefinition(equipmentSlug);
+                if (!equipment) return null;
+                return (
+                  <Link
+                    key={equipmentSlug}
+                    href={`/equipment/${equipmentSlug}`}
+                    className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+                  >
+                    {t(`equipment.${equipment.slug}`)}
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mb-5 min-w-0 max-w-full">
           <h2 className="mb-2 text-sm font-semibold text-gray-900">
