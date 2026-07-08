@@ -11,10 +11,7 @@ import {
   type DistrictPageDefinition,
 } from "@/lib/district-pages";
 import { getEquipmentPageDefinition } from "@/lib/equipment-pages";
-import {
-  getTrainingPageDefinition,
-  getTrainingSearchQuery,
-} from "@/lib/training-pages";
+import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { buildSeoMetadata } from "@/lib/seo";
 import { DistrictBrowseControls } from "@/components/search/DistrictBrowseControls";
 import { SearchFilters } from "@/components/search/SearchFilters";
@@ -91,8 +88,6 @@ export async function TrainingCollectionPage({
     collection: definition.slug,
     ...(fixedDistrict ? { district: fixedDistrict } : {}),
   });
-  const searchQuery = getTrainingSearchQuery(definition);
-  const searchHref = searchQuery ? `/search?${searchQuery}` : "/search";
   const filterBasePath =
     fixedDistrict && currentDistrict
       ? `/${definition.slug}/districts/${currentDistrict.slug}`
@@ -123,12 +118,6 @@ export async function TrainingCollectionPage({
               {t(`items.${definition.slug}.intro`)}
             </p>
           </div>
-          <Link
-            href={searchHref}
-            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
-          >
-            {t("openInSearch")}
-          </Link>
         </div>
       </div>
 
