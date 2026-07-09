@@ -4,7 +4,13 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import { trackEquipmentFilter, trackFilterApply } from "@/lib/analytics";
+import {
+  trackDistrictFilter,
+  trackEquipmentBrandFilter,
+  trackEquipmentFilter,
+  trackFilterApply,
+  trackGymBrandFilter,
+} from "@/lib/analytics";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { EQUIPMENT_BRANDS, GYM_CHAINS } from "@gymory/shared";
 
@@ -430,24 +436,36 @@ export function SearchFilters({
   }, []);
 
   const toggleBrand = useCallback((slug: string, checked: boolean) => {
-    setSelectedBrandSlugs((current) => {
-      if (checked) {
-        if (current.includes(slug)) return current;
-        return [...current, slug];
-      }
-      return current.filter((value) => value !== slug);
+    const isSelected = selectedBrandSlugs.includes(slug);
+    if (checked === isSelected) return;
+
+    trackEquipmentBrandFilter({
+      equipment_brand: slug,
+      filter_param: "brandSlugs",
+      selected: checked,
+      source: "search_page",
     });
-  }, []);
+
+    setSelectedBrandSlugs((current) =>
+      checked ? [...current, slug] : current.filter((value) => value !== slug)
+    );
+  }, [selectedBrandSlugs]);
 
   const toggleGymChain = useCallback((slug: string, checked: boolean) => {
-    setSelectedGymChains((current) => {
-      if (checked) {
-        if (current.includes(slug)) return current;
-        return [...current, slug];
-      }
-      return current.filter((value) => value !== slug);
+    const isSelected = selectedGymChains.includes(slug);
+    if (checked === isSelected) return;
+
+    trackGymBrandFilter({
+      gym_chain: slug,
+      filter_param: "gymChains",
+      selected: checked,
+      source: "search_page",
     });
-  }, []);
+
+    setSelectedGymChains((current) =>
+      checked ? [...current, slug] : current.filter((value) => value !== slug)
+    );
+  }, [selectedGymChains]);
 
   const nextQueryString = useMemo(() => {
     const params = new URLSearchParams();
@@ -576,6 +594,33 @@ export function SearchFilters({
       });
     });
 
+    if (district && !fixedDistrict) {
+      trackDistrictFilter({
+        district,
+        filter_param: "district",
+        selected: false,
+        source: "search_page",
+      });
+    }
+
+    selectedBrandSlugs.forEach((slug) => {
+      trackEquipmentBrandFilter({
+        equipment_brand: slug,
+        filter_param: "brandSlugs",
+        selected: false,
+        source: "search_page",
+      });
+    });
+
+    selectedGymChains.forEach((slug) => {
+      trackGymBrandFilter({
+        gym_chain: slug,
+        filter_param: "gymChains",
+        selected: false,
+        source: "search_page",
+      });
+    });
+
     setDistrict(fixedDistrict ?? "");
     setMinRackCount("");
     setMinBenchCount("");
@@ -590,6 +635,7 @@ export function SearchFilters({
     setSelectedFilters(new Set());
   }, [
     fixedCollection,
+    district,
     fixedDistrict,
     minBarbellCount,
     minBenchCount,
@@ -598,7 +644,9 @@ export function SearchFilters({
     minSize,
     minPlatformCount,
     minRackCount,
+    selectedBrandSlugs,
     selectedFilters,
+    selectedGymChains,
   ]);
 
   const activeCollection = collection

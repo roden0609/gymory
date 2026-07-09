@@ -17,6 +17,12 @@ export type ExternalGymLinkType =
   | "booking"
   | "other";
 
+export type FilterEventSource =
+  | "search_page"
+  | "gym_list"
+  | "equipment_page"
+  | "unknown";
+
 declare global {
   interface Window {
     gtag?: (
@@ -67,9 +73,45 @@ export function trackEquipmentFilter(params: {
   equipment: string;
   filter_param?: string;
   selected: boolean;
-  source?: "search_page" | "gym_list" | "equipment_page" | "unknown";
+  source?: FilterEventSource;
 }) {
   trackEvent("equipment_filter", {
+    ...params,
+    source: params.source ?? "unknown",
+  });
+}
+
+export function trackGymBrandFilter(params: {
+  gym_chain: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: FilterEventSource;
+}) {
+  trackEvent("gym_brand_filter", {
+    ...params,
+    source: params.source ?? "unknown",
+  });
+}
+
+export function trackEquipmentBrandFilter(params: {
+  equipment_brand: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: FilterEventSource;
+}) {
+  trackEvent("equipment_brand_filter", {
+    ...params,
+    source: params.source ?? "unknown",
+  });
+}
+
+export function trackDistrictFilter(params: {
+  district: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: FilterEventSource;
+}) {
+  trackEvent("district_filter", {
     ...params,
     source: params.source ?? "unknown",
   });
@@ -79,7 +121,7 @@ export function trackFilterApply(params: {
   filter_param: string;
   filter_value?: string | number | boolean | null;
   selected?: boolean;
-  source?: "search_page" | "gym_list" | "equipment_page" | "unknown";
+  source?: FilterEventSource;
 }) {
   trackEvent("filter_apply", {
     ...params,

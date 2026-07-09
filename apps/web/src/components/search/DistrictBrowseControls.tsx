@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { HK_DISTRICTS, getHkDistrictLabel } from "@gymory/shared";
 import { useRouter } from "@/i18n/navigation";
+import { trackDistrictFilter } from "@/lib/analytics";
 import { getDistrictPageDefinitionByCode } from "@/lib/district-pages";
 
 type DistrictBrowseControlsProps = {
@@ -35,11 +36,30 @@ export function DistrictBrowseControls({
       setDistrict(nextDistrict);
 
       if (!nextDistrict) {
+        if (currentDistrictCode) {
+          const currentDistrictPage =
+            getDistrictPageDefinitionByCode(currentDistrictCode);
+          trackDistrictFilter({
+            district: currentDistrictPage?.slug ?? currentDistrictCode,
+            filter_param: "district",
+            selected: false,
+            source: "search_page",
+          });
+        }
         router.push(trainingSlug ? `/${trainingSlug}` : "/search");
         return;
       }
 
       const districtPage = getDistrictPageDefinitionByCode(nextDistrict);
+      if (districtPage) {
+        trackDistrictFilter({
+          district: districtPage.slug,
+          filter_param: "district",
+          selected: true,
+          source: "search_page",
+        });
+      }
+
       if (trainingSlug && districtPage) {
         router.push(`/${trainingSlug}/districts/${districtPage.slug}`);
         return;
@@ -47,7 +67,7 @@ export function DistrictBrowseControls({
 
       router.push(districtPage ? `/districts/${districtPage.slug}` : "/search");
     },
-    [router, trainingSlug]
+    [currentDistrictCode, router, trainingSlug]
   );
 
   const requestUserLocation = useCallback(() => {

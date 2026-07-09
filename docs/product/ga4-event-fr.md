@@ -129,7 +129,7 @@ Gymory-specific note:
 - At the time of writing, `/search` is mostly controlled by filters, not a keyword search box.
 - Do not emit `search` for every `SearchFilters` URL update.
 - If a keyword search field is added later, use the submitted query as `search_term`.
-- For filter-only actions, use `equipment_filter`, `district_filter`, or `brand_filter` instead.
+- For filter-only actions, use `equipment_filter`, `gym_brand_filter`, `equipment_brand_filter`, `district_filter`, or `filter_apply` instead.
 
 ---
 
@@ -255,7 +255,109 @@ Gymory-specific implementation:
 
 ---
 
-### 5. `search_result_click`
+### 5. `gym_brand_filter`
+
+Track when a user applies or removes a gym brand / chain filter.
+
+Parameters:
+
+```ts
+{
+  gym_chain: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: "search_page" | "gym_list" | "equipment_page" | "unknown";
+}
+```
+
+Example:
+
+```ts
+trackEvent("gym_brand_filter", {
+  gym_chain: "pure-fitness",
+  filter_param: "gymChains",
+  selected: true,
+  source: "search_page",
+});
+```
+
+Gymory-specific implementation:
+
+- Track `gymChains` checkbox changes separately from equipment filters.
+- Use the gym chain slug as `gym_chain`.
+- Fire `selected: false` when the user unticks a chain or clears all filters.
+
+---
+
+### 6. `equipment_brand_filter`
+
+Track when a user applies or removes an equipment brand filter.
+
+Parameters:
+
+```ts
+{
+  equipment_brand: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: "search_page" | "gym_list" | "equipment_page" | "unknown";
+}
+```
+
+Example:
+
+```ts
+trackEvent("equipment_brand_filter", {
+  equipment_brand: "eleiko",
+  filter_param: "brandSlugs",
+  selected: true,
+  source: "search_page",
+});
+```
+
+Gymory-specific implementation:
+
+- Track `brandSlugs` checkbox changes separately from gym chain filters.
+- Use the equipment brand slug as `equipment_brand`.
+- Fire `selected: false` when the user unticks a brand or clears all filters.
+
+---
+
+### 7. `district_filter`
+
+Track when a user selects or clears a district filter.
+
+Parameters:
+
+```ts
+{
+  district: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: "search_page" | "gym_list" | "equipment_page" | "unknown";
+}
+```
+
+Example:
+
+```ts
+trackEvent("district_filter", {
+  district: "wan-chai",
+  filter_param: "district",
+  selected: true,
+  source: "search_page",
+});
+```
+
+Gymory-specific implementation:
+
+- Track district dropdown changes in the browse-by-district controls.
+- Use the district page slug, such as `wan-chai` or `yau-tsim-mong`, where available.
+- Fire `selected: false` when the user clears a district and returns to the generic search page.
+
+---
+
+### 8. `search_result_click`
 
 Track when a user clicks a gym from search results or listing results.
 
@@ -300,7 +402,7 @@ Gymory-specific implementation:
 
 ---
 
-### 6. `submit_gym_success`
+### 9. `submit_gym_success`
 
 Track successful gym submission or equipment update submission.
 
@@ -336,7 +438,7 @@ Gymory-specific implementation:
 
 ---
 
-### 7. `open_google_maps`
+### 10. `open_google_maps`
 
 Track when a user clicks a Google Maps / directions link.
 
@@ -369,7 +471,7 @@ Gymory-specific implementation:
 
 ---
 
-### 8. `visit_gym_website`
+### 11. `visit_gym_website`
 
 Track when a user clicks the official website or social link of a gym.
 
@@ -407,15 +509,18 @@ Implement these first:
 
 1. `search`
 2. `equipment_filter`
-3. `search_result_click`
-4. `view_gym`
-5. `view_equipment`
-6. `submit_gym_success`
+3. `gym_brand_filter`
+4. `equipment_brand_filter`
+5. `district_filter`
+6. `search_result_click`
+7. `view_gym`
+8. `view_equipment`
+9. `submit_gym_success`
 
 Then implement these if easy:
 
-7. `open_google_maps`
-8. `visit_gym_website`
+10. `open_google_maps`
+11. `visit_gym_website`
 
 ---
 
@@ -440,6 +545,33 @@ export function trackEquipmentFilter(params: {
   source?: string;
 }) {
   trackEvent("equipment_filter", params);
+}
+
+export function trackGymBrandFilter(params: {
+  gym_chain: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: string;
+}) {
+  trackEvent("gym_brand_filter", params);
+}
+
+export function trackEquipmentBrandFilter(params: {
+  equipment_brand: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: string;
+}) {
+  trackEvent("equipment_brand_filter", params);
+}
+
+export function trackDistrictFilter(params: {
+  district: string;
+  filter_param?: string;
+  selected: boolean;
+  source?: string;
+}) {
+  trackEvent("district_filter", params);
 }
 
 export function trackGymView(params: {
@@ -540,6 +672,9 @@ Use lowercase snake_case event names:
 ```txt
 search
 equipment_filter
+gym_brand_filter
+equipment_brand_filter
+district_filter
 search_result_click
 view_gym
 view_equipment
@@ -554,6 +689,13 @@ Use lowercase snake_case parameter names:
 gym_slug
 search_term
 filter_param
+filter_value
+selected
+source
+equipment
+gym_chain
+equipment_brand
+district
 result_position
 submission_type
 link_type
@@ -564,6 +706,9 @@ Use stable slugs for values where possible:
 ```txt
 equipment: "ski-erg"
 equipment: "hack-squat"
+gym_chain: "pure-fitness"
+equipment_brand: "eleiko"
+district: "wan-chai"
 submission_type: "add_gym"
 submission_type: "edit_equipment"
 ```
@@ -600,6 +745,33 @@ Event: equipment_filter
 Parameter: equipment
 ```
 
+### Gym brand demand
+
+Which gym chains are users filtering by?
+
+```txt
+Event: gym_brand_filter
+Parameter: gym_chain
+```
+
+### Equipment brand demand
+
+Which equipment brands are users filtering by?
+
+```txt
+Event: equipment_brand_filter
+Parameter: equipment_brand
+```
+
+### District demand
+
+Which districts are users selecting?
+
+```txt
+Event: district_filter
+Parameter: district
+```
+
 ### Gym demand
 
 Which gyms are users viewing or clicking?
@@ -621,6 +793,37 @@ This event should be considered for marking as a key event in GA4 later.
 
 ---
 
+## GA4 Custom Dimensions
+
+Create event-scoped custom dimensions for any event parameters that need to appear in standard reports or Explore tables:
+
+```txt
+equipment → equipment
+gym_chain → gym_chain
+equipment_brand → equipment_brand
+district → district
+filter_param → filter_param
+filter_value → filter_value
+selected → selected
+source → source
+gym_slug → gym_slug
+submission_type → submission_type
+link_type → link_type
+```
+
+Descriptions are optional in GA4, but useful examples are:
+
+- `equipment`: Equipment slug selected or viewed by the user.
+- `gym_chain`: Gym chain slug selected by the user.
+- `equipment_brand`: Equipment brand slug selected by the user.
+- `district`: District page slug selected by the user.
+- `filter_param`: Search filter query parameter used by the user.
+- `filter_value`: Numeric search filter value entered by the user.
+- `selected`: Whether the filter was selected or removed.
+- `source`: Where the event was triggered.
+
+---
+
 ## Acceptance Criteria
 
 - [ ] A reusable GA4 event tracking helper exists.
@@ -628,6 +831,9 @@ This event should be considered for marking as a key event in GA4 later.
 - [ ] Page-level custom events are fired from Client Components, not directly from Server Components.
 - [ ] `search` event fires when a genuine keyword search is submitted, if such a search UI exists.
 - [ ] `equipment_filter` event fires when equipment filters are applied or removed.
+- [ ] `gym_brand_filter` event fires when gym chain filters are applied or removed.
+- [ ] `equipment_brand_filter` event fires when equipment brand filters are applied or removed.
+- [ ] `district_filter` event fires when a district is selected or cleared.
 - [ ] Filter-driven browsing does not emit misleading `search` events.
 - [ ] `search_result_click` event fires when a user clicks a gym from a result list.
 - [ ] Result click tracking includes source and position where the caller can provide them.
@@ -647,6 +853,9 @@ This event should be considered for marking as a key event in GA4 later.
 3. Perform these actions:
    - Submit a keyword search if a keyword search box exists
    - Apply an equipment filter such as SkiErg or sled
+   - Apply a gym brand filter such as Pure Fitness
+   - Apply an equipment brand filter such as Eleiko
+   - Apply a district filter such as Wan Chai
    - Apply a numeric filter such as minimum rack count
    - Click a gym result
    - Open a gym detail page
@@ -669,8 +878,6 @@ Later, consider adding:
 - `save_gym`
 - `share_gym`
 - `language_switch`
-- `district_filter`
-- `brand_filter`
 - `open_equipment_detail`
 - Funnel report from search → result click → gym view → map click → submission
 
