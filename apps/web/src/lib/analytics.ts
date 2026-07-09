@@ -158,6 +158,14 @@ export function trackEquipmentView(params: {
   trackEvent("view_equipment", params);
 }
 
+export function trackTrainingCollectionView(params: {
+  training_collection: string;
+  district?: string;
+  locale?: string;
+}) {
+  trackEvent("view_training_collection", params);
+}
+
 export function trackSubmissionSuccess(params: {
   submission_type: "add_gym" | "edit_equipment" | "correction" | "unknown";
   gym_slug?: string;

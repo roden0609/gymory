@@ -212,7 +212,50 @@ Gymory-specific implementation:
 
 ---
 
-### 4. `equipment_filter`
+### 4. `view_training_collection`
+
+Track when a user views a training collection page.
+
+Parameters:
+
+```ts
+{
+  training_collection: string;
+  district?: string;
+  locale?: string;
+}
+```
+
+Example:
+
+```ts
+trackEvent("view_training_collection", {
+  training_collection: "hyrox-official-hong-kong",
+  district: "wan-chai",
+  locale,
+});
+```
+
+Use this on pages such as:
+
+```txt
+/hyrox-official-hong-kong
+/olympic-lifting-hong-kong
+/powerlifting-hong-kong
+/bodybuilding-hong-kong
+/hybrid-training-hong-kong
+/hyrox-official-hong-kong/districts/wan-chai
+```
+
+Gymory-specific implementation:
+
+- Fire from a Client Component mounted by `TrainingCollectionPage`.
+- Use the training page slug as `training_collection`.
+- Include the district page slug when the page is scoped to a district.
+
+---
+
+### 5. `equipment_filter`
 
 Track when a user applies or toggles an equipment filter.
 
@@ -255,7 +298,7 @@ Gymory-specific implementation:
 
 ---
 
-### 5. `gym_brand_filter`
+### 6. `gym_brand_filter`
 
 Track when a user applies or removes a gym brand / chain filter.
 
@@ -289,7 +332,7 @@ Gymory-specific implementation:
 
 ---
 
-### 6. `equipment_brand_filter`
+### 7. `equipment_brand_filter`
 
 Track when a user applies or removes an equipment brand filter.
 
@@ -323,7 +366,7 @@ Gymory-specific implementation:
 
 ---
 
-### 7. `district_filter`
+### 8. `district_filter`
 
 Track when a user selects or clears a district filter.
 
@@ -357,7 +400,7 @@ Gymory-specific implementation:
 
 ---
 
-### 8. `search_result_click`
+### 9. `search_result_click`
 
 Track when a user clicks a gym from search results or listing results.
 
@@ -402,7 +445,7 @@ Gymory-specific implementation:
 
 ---
 
-### 9. `submit_gym_success`
+### 10. `submit_gym_success`
 
 Track successful gym submission or equipment update submission.
 
@@ -438,7 +481,7 @@ Gymory-specific implementation:
 
 ---
 
-### 10. `open_google_maps`
+### 11. `open_google_maps`
 
 Track when a user clicks a Google Maps / directions link.
 
@@ -471,7 +514,7 @@ Gymory-specific implementation:
 
 ---
 
-### 11. `visit_gym_website`
+### 12. `visit_gym_website`
 
 Track when a user clicks the official website or social link of a gym.
 
@@ -515,12 +558,13 @@ Implement these first:
 6. `search_result_click`
 7. `view_gym`
 8. `view_equipment`
-9. `submit_gym_success`
+9. `view_training_collection`
+10. `submit_gym_success`
 
 Then implement these if easy:
 
-10. `open_google_maps`
-11. `visit_gym_website`
+11. `open_google_maps`
+12. `visit_gym_website`
 
 ---
 
@@ -590,6 +634,14 @@ This makes future tracking easier and reduces inconsistent event names.
 Recommended Gymory wrapper additions:
 
 ```ts
+export function trackTrainingCollectionView(params: {
+  training_collection: string;
+  district?: string;
+  locale?: string;
+}) {
+  trackEvent("view_training_collection", params);
+}
+
 export function trackResultClick(params: {
   gym_slug: string;
   gym_name?: string;
@@ -632,6 +684,13 @@ export function AnalyticsEventOnMount({
 ```
 
 When using this pattern, make sure the `params` object is stable enough that the effect does not fire repeatedly during one page view.
+
+For standard GA4 page views in a Next.js App Router app:
+
+- Keep the initial page load handled by the GA4 script.
+- Add a small Client Component that listens to `usePathname()` and `useSearchParams()`.
+- Skip the first mount to avoid duplicating the initial `page_view`.
+- On later client-side route changes, send `page_view` with `page_location`, `page_path`, and `page_title`.
 
 ---
 
@@ -678,6 +737,7 @@ district_filter
 search_result_click
 view_gym
 view_equipment
+view_training_collection
 submit_gym_success
 open_google_maps
 visit_gym_website
@@ -696,6 +756,11 @@ equipment
 gym_chain
 equipment_brand
 district
+training_collection
+locale
+page_location
+page_path
+page_title
 result_position
 submission_type
 link_type
@@ -709,6 +774,7 @@ equipment: "hack-squat"
 gym_chain: "pure-fitness"
 equipment_brand: "eleiko"
 district: "wan-chai"
+training_collection: "hyrox-official-hong-kong"
 submission_type: "add_gym"
 submission_type: "edit_equipment"
 ```
@@ -781,6 +847,15 @@ Event: view_gym
 Parameter: gym_slug
 ```
 
+### Training collection demand
+
+Which training collection pages are users viewing?
+
+```txt
+Event: view_training_collection
+Parameter: training_collection
+```
+
 ### Conversion
 
 How many people successfully submit new gym data or updates?
@@ -802,10 +877,12 @@ equipment → equipment
 gym_chain → gym_chain
 equipment_brand → equipment_brand
 district → district
+training_collection → training_collection
 filter_param → filter_param
 filter_value → filter_value
 selected → selected
 source → source
+locale → locale
 gym_slug → gym_slug
 submission_type → submission_type
 link_type → link_type
@@ -817,10 +894,12 @@ Descriptions are optional in GA4, but useful examples are:
 - `gym_chain`: Gym chain slug selected by the user.
 - `equipment_brand`: Equipment brand slug selected by the user.
 - `district`: District page slug selected by the user.
+- `training_collection`: Training collection page slug viewed by the user.
 - `filter_param`: Search filter query parameter used by the user.
 - `filter_value`: Numeric search filter value entered by the user.
 - `selected`: Whether the filter was selected or removed.
 - `source`: Where the event was triggered.
+- `locale`: Page locale where the event was triggered.
 
 ---
 
@@ -837,8 +916,10 @@ Descriptions are optional in GA4, but useful examples are:
 - [ ] Filter-driven browsing does not emit misleading `search` events.
 - [ ] `search_result_click` event fires when a user clicks a gym from a result list.
 - [ ] Result click tracking includes source and position where the caller can provide them.
+- [ ] Client-side navigation emits one `page_view` event without duplicating the initial load page view.
 - [ ] `view_gym` event fires once when a gym detail page is viewed.
 - [ ] `view_equipment` event fires once when an equipment page is viewed.
+- [ ] `view_training_collection` event fires once when a training collection page is viewed.
 - [ ] `submit_gym_success` event fires only after a successful submission and uses current submission types such as `add_gym` and `edit_equipment`.
 - [ ] No personally identifiable information is sent to GA4.
 - [ ] Event names and parameter names use consistent snake_case naming.
@@ -858,8 +939,10 @@ Descriptions are optional in GA4, but useful examples are:
    - Apply a district filter such as Wan Chai
    - Apply a numeric filter such as minimum rack count
    - Click a gym result
+   - Navigate from `/search` to a training collection page such as `/hyrox-official-hong-kong`
    - Open a gym detail page
    - Open an equipment page such as `/equipment/ski-erg`
+   - Open a training collection page such as `/hyrox-official-hong-kong`
    - Click a Google Maps link from a gym detail page
    - Click a website or Instagram link from a gym detail page
    - Submit a test gym update successfully

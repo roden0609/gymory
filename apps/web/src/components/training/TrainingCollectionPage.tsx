@@ -16,6 +16,7 @@ import { buildSeoMetadata } from "@/lib/seo";
 import { DistrictBrowseControls } from "@/components/search/DistrictBrowseControls";
 import { SearchFilters } from "@/components/search/SearchFilters";
 import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
+import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 
 type Locale = "en" | "zh-HK";
 
@@ -102,6 +103,14 @@ export async function TrainingCollectionPage({
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-gray-50">
+      <AnalyticsEventOnMount
+        eventName="view_training_collection"
+        params={{
+          training_collection: definition.slug,
+          district: currentDistrict?.slug,
+          locale,
+        }}
+      />
       <div className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 max-w-3xl">

@@ -1,6 +1,8 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import { RouteChangePageViewTracker } from "@/components/analytics/RouteChangePageViewTracker";
 
 import "./globals.css";
 
@@ -21,7 +23,12 @@ export default function RootLayout({
         {children}
         <Analytics />
         {shouldLoadGoogleAnalytics ? (
-          <GoogleAnalytics gaId={gaMeasurementId!} />
+          <>
+            <Suspense fallback={null}>
+              <RouteChangePageViewTracker />
+            </Suspense>
+            <GoogleAnalytics gaId={gaMeasurementId!} />
+          </>
         ) : null}
       </body>
     </html>
