@@ -71,7 +71,7 @@ export async function getGymsForBrandPage(
   }
 
   const { data, error } = await supabase
-    .from("gyms")
+    .from("gyms_normalized")
     .select(GYM_SEARCH_COLUMNS)
     .eq("is_active", true)
     .in("id", gymIds);

@@ -1,4 +1,7 @@
-// Core Gym type — mirrors the Phase 1 gyms table in Supabase
+import type { GymEquipmentInventoryItem } from "./equipment";
+
+// Core Gym type — legacy flat equipment properties remain during the normalized
+// inventory compatibility window.
 
 export type SizeCategory = "small" | "medium" | "large";
 export type DataSource = "admin" | "owner" | "user_submission" | "import";
@@ -212,6 +215,10 @@ export interface Gym {
   created_at: string;
   updated_at: string;
 }
+
+export type GymWithEquipmentInventory = Gym & {
+  equipment_inventory: GymEquipmentInventoryItem[];
+};
 
 // Lightweight version for list/search results
 export type GymSummary = Pick<

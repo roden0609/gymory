@@ -10,6 +10,7 @@
     "typecheck": "turbo typecheck",
     "dev:web": "pnpm --filter web dev",
     "build:web": "pnpm --filter web build",
+    "validate:gym-inventory-normalization": "node scripts/validate-gym-inventory-normalization.mjs",
     "import:anytime-fitness-hk": "node scripts/import-anytime-fitness-hk.mjs",
     "import:247-fitness-hk": "node scripts/import-247-fitness-hk.mjs",
     "import:efx24-hk": "node scripts/import-efx24-hk.mjs",

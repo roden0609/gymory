@@ -2,7 +2,17 @@
 
 ## Status
 
-Proposed.
+Implemented through the additive schema, backfill, normalized read, transitional
+write, and canonical admin write phases. General form/importer write cutover and
+legacy column removal remain intentionally pending until production reconciliation
+and observation exit criteria pass.
+
+Implementation entry points:
+
+- `supabase/migrations/0043_normalize_gym_equipment_inventory.sql`
+- `apps/web/src/lib/db/queries/gym-equipment-inventory.ts`
+- `apps/web/src/app/api/gyms/[id]/equipment/route.ts`
+- `scripts/validate-gym-inventory-normalization.mjs`
 
 This document defines the target product and data requirements for moving generic
 gym equipment presence and quantity data out of the wide `public.gyms` table and
@@ -894,4 +904,3 @@ The following may be considered after this normalization is stable:
 - attach catalog or gym-specific equipment images
 - add equipment-level change history instead of relying only on submission JSON
 - allow trusted owner or community inventory verification
-

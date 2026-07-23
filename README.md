@@ -76,12 +76,122 @@ pnpm dev:web
 
 ## Database setup
 
-1. Create a Supabase project at https://supabase.com
-2. Run migrations in order via the Supabase SQL Editor:
-   - `supabase/migrations/0001_create_gyms.sql`
-   - `supabase/migrations/0002_add_indexes.sql`
-   - `supabase/migrations/0003_create_submissions.sql`
-3. (Optional) seed demo data: `supabase/seeds/demo_data.sql`
+Database migrations in `supabase/migrations/` are the source of truth. Apply them
+with the Supabase CLI; do not make new schema changes directly in the SQL Editor.
+
+| Environment | Supabase project | Project ref | Validation env |
+| --- | --- | --- | --- |
+| DEV | `gymory-dev` | `yzvipswjmgcolaepqwoz` | `apps/web/.env.dev` |
+| PROD | `gymory-prod` | `qgldameylaysgfsvytjh` | `apps/web/.env.prod` |
+
+### One-time migration history bootstrap
+
+Migrations `0001`–`0042` were originally executed manually in the SQL Editor, so
+their SQL may exist in the database without corresponding migration-history
+records. Bootstrap each environment once before using `db push`.
+
+Only run `migration repair` after confirming that every migration from `0001`
+through `0042` was successfully applied to that database. Repair updates the
+migration history only; it does not execute the migration SQL.
+
+DEV:
+
+```bash
+supabase link --project-ref yzvipswjmgcolaepqwoz
+supabase migration list --linked
+supabase migration repair {0001..0042} --status applied --linked
+supabase migration list --linked
+```
+
+PROD:
+
+```bash
+supabase link --project-ref qgldameylaysgfsvytjh
+supabase migration list --linked
+supabase migration repair {0001..0042} --status applied --linked
+supabase migration list --linked
+```
+
+After repair, `0001`–`0042` should appear as applied both locally and remotely.
+Do not repeat this bootstrap for future migrations.
+
+### Deploy migration `0043`
+
+Always promote the exact same migration file to DEV first, then PROD.
+
+1. Apply and verify on DEV:
+
+   ```bash
+   supabase link --project-ref yzvipswjmgcolaepqwoz
+   supabase migration list --linked
+   supabase db push --linked --dry-run
+   supabase db push --linked
+   pnpm validate:gym-inventory-normalization -- --env apps/web/.env.dev
+   ```
+
+   Before the real push, the dry run must show only
+   `0043_normalize_gym_equipment_inventory.sql` as pending. Test the DEV app
+   after validation succeeds.
+
+2. Commit or merge the tested migration and application changes.
+
+3. Create or confirm a recoverable PROD database backup in the Supabase
+   Dashboard.
+
+4. Apply and verify on PROD:
+
+   ```bash
+   supabase link --project-ref qgldameylaysgfsvytjh
+   supabase migration list --linked
+   supabase db push --linked --dry-run
+   supabase db push --linked
+   pnpm validate:gym-inventory-normalization -- --env apps/web/.env.prod
+   ```
+
+   The PROD dry run must also show only migration `0043`. Because the updated
+   app reads the normalized database objects, deploy the PROD database migration
+   before deploying the corresponding web application version.
+
+### Normal workflow for future migrations
+
+```bash
+# Create and edit a new migration.
+supabase migration new descriptive_name
+
+# Promote to DEV.
+supabase link --project-ref yzvipswjmgcolaepqwoz
+supabase migration list --linked
+supabase db push --linked --dry-run
+supabase db push --linked
+
+# Test DEV, commit/merge, and back up PROD before promotion.
+
+# Promote the same committed migration to PROD.
+supabase link --project-ref qgldameylaysgfsvytjh
+supabase migration list --linked
+supabase db push --linked --dry-run
+supabase db push --linked
+```
+
+For each new migration, add an appropriate post-migration validation command or
+query and run it in both environments.
+
+Safety rules:
+
+- Always run `migration list` and `db push --dry-run` after switching the linked
+  project.
+- Stop if a dry run contains an unexpected migration; do not push until the
+  history mismatch is understood.
+- Never run `supabase db reset --linked` against DEV or PROD.
+- Do not use `--include-seed` for PROD.
+- Never edit a migration after it has been applied to DEV. Add a new migration
+  for corrections.
+- Coordinate pushes so only one person changes an environment's migration
+  history at a time.
+
+Optional seed:
+
+- Seed demo data from `supabase/seeds/demo_data.sql` when needed.
 
 ## Firebase admin role
 

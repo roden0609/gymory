@@ -1,7 +1,7 @@
 # Database Schema
 
 This document reflects the current schema implied by `supabase/migrations` through
-`0042_create_user_avatars_bucket.sql`.
+`0043_normalize_gym_equipment_inventory.sql`.
 
 ## Conventions
 
@@ -268,6 +268,66 @@ These appeared in earlier migrations but are not part of the current schema:
 - `has_booty_builder` → dropped; Booty Builder is represented as an equipment brand
 - `gym_audit` → dropped and folded into submission history
 
+The generic equipment `has_*` and `*_count` columns remain physically present
+during the rollback window. New public reads use `gyms_normalized`, which rebuilds
+those compatibility fields from normalized inventory.
+
+## `public.equipment_types`
+
+Canonical generic equipment taxonomy. This table represents concepts such as a
+rack or wall ball, not brand-specific product models.
+
+| Column | Type | Notes |
+| --- | --- | --- |
+| `code` | `text` | Primary key; lower-case snake case |
+| `name_en` | `text` | Required default display name |
+| `name_zh` | `text` | Optional Chinese display name |
+| `category` | `text` | Required display/search category |
+| `parent_code` | `text` | Optional self-reference for variants |
+| `supports_quantity` | `boolean` | Whether an exact count is meaningful |
+| `aliases` | `text[]` | Legacy/import/search aliases |
+| `is_active` | `boolean` | Required, default `true` |
+| `display_order` | `integer` | Optional category ordering |
+| `created_at` | `timestamptz` | Required, default `now()` |
+| `updated_at` | `timestamptz` | Required, default `now()` |
+
+Hierarchy cycles are rejected. Referenced types are deactivated rather than
+deleted.
+
+## `public.gym_equipment_inventory`
+
+One normalized presence/quantity record per gym and equipment type.
+
+| Column | Type | Notes |
+| --- | --- | --- |
+| `id` | `uuid` | Primary key, default `gen_random_uuid()` |
+| `gym_id` | `uuid` | Required FK to `gyms(id)`, cascade delete |
+| `equipment_code` | `text` | Required FK to `equipment_types(code)` |
+| `is_present` | `boolean` | Nullable explicit presence/absence |
+| `quantity` | `integer` | Nullable, constrained to `>= 0` |
+| `created_at` | `timestamptz` | Required, default `now()` |
+| `updated_at` | `timestamptz` | Required, default `now()` |
+
+`(gym_id, equipment_code)` is unique. A missing row means unknown. Both inventory
+values cannot be null, a positive quantity cannot be absent, and zero quantity
+cannot be present.
+
+Public reads are allowed only for active gyms. Direct public writes are denied.
+The service-role function `apply_gym_equipment_inventory_patch` writes normalized
+inventory and its approved audit record atomically.
+
+## Equipment migration support
+
+- `equipment_legacy_field_mappings` is the rollback-window manifest from legacy
+  gym fields to canonical codes.
+- `gym_equipment_migration_conflicts` classifies contradictory legacy evidence.
+- The gym equipment sync triggers atomically mirror transitional legacy inserts
+  and equipment-column updates into normalized inventory.
+- `gyms_normalized` is a security-invoker compatibility view that exposes the
+  legacy gym read shape using normalized inventory values.
+- `gym_matches_equipment_requirements(uuid, jsonb)` evaluates generic AND-based
+  equipment requirements and supports descendant presence roll-up.
+
 ## `public.gym_update_submissions`
 
 User-submitted gym changes pending moderation.
@@ -464,6 +524,8 @@ The migrations add indexes for common lookups:
 
 - `gyms`: district, active status, lat/lng, slug, rack/count/weight filters,
   HYROX fields, and selected equipment counts.
+- `gym_equipment_inventory`: gym lookup, equipment/gym lookup, and positive
+  presence lookup.
 - `gym_update_submissions`: status, gym, submitter, reviewer.
 - `equipment_brands`: unique slug.
 - `gym_brand_inventory`: gym and brand lookup, unique `(gym_id, brand_id)`.
@@ -475,11 +537,11 @@ The migrations add indexes for common lookups:
 
 ## Search Query Pattern
 
-Example equipment search:
+Legacy-compatible equipment search during the rollback window:
 
 ```sql
 select *
-from public.gyms
+from public.gyms_normalized
 where is_active = true
   and district_code = 'HK-WC'
   and coalesce(rack_count, 0) >= 2

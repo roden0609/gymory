@@ -1,5 +1,16 @@
 // Types
-export type { Gym, GymSummary, SizeCategory, DataSource } from "./types/gym";
+export type {
+  Gym,
+  GymSummary,
+  GymWithEquipmentInventory,
+  SizeCategory,
+  DataSource,
+} from "./types/gym";
+export type {
+  EquipmentRequirement,
+  EquipmentType,
+  GymEquipmentInventoryItem,
+} from "./types/equipment";
 export type { SearchParams } from "./types/search";
 export type { SubmissionType, Submission } from "./types/submission";
 

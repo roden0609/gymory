@@ -18,7 +18,7 @@ export async function getGymsForEquipmentPage(
   const supabase = await createClient();
 
   let query = supabase
-    .from("gyms")
+    .from("gyms_normalized")
     .select(GYM_SEARCH_COLUMNS, { count: "exact" })
     .eq("is_active", true);
 
