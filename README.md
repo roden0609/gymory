@@ -115,7 +115,7 @@ supabase migration list --linked
 After repair, `0001`–`0042` should appear as applied both locally and remotely.
 Do not repeat this bootstrap for future migrations.
 
-### Deploy migration `0043`
+### Deploy the inventory normalization migrations
 
 Always promote the exact same migration file to DEV first, then PROD.
 
@@ -129,9 +129,11 @@ Always promote the exact same migration file to DEV first, then PROD.
    pnpm validate:gym-inventory-normalization -- --env apps/web/.env.dev
    ```
 
-   Before the real push, the dry run must show only
-   `0043_normalize_gym_equipment_inventory.sql` as pending. Test the DEV app
-   after validation succeeds.
+   Before the real push, review every pending migration. DEV should apply
+   `0043_normalize_gym_equipment_inventory.sql` first and
+   `0044_cut_over_normalized_equipment_writes.sql` second. If `0043` has
+   already been applied, only `0044` should be pending. Test the DEV app after
+   validation succeeds.
 
 2. Commit or merge the tested migration and application changes.
 
@@ -148,9 +150,11 @@ Always promote the exact same migration file to DEV first, then PROD.
    pnpm validate:gym-inventory-normalization -- --env apps/web/.env.prod
    ```
 
-   The PROD dry run must also show only migration `0043`. Because the updated
-   app reads the normalized database objects, deploy the PROD database migration
-   before deploying the corresponding web application version.
+   PROD must apply the same migrations in the same order. If neither migration
+   has been applied there yet, the dry run should show `0043` followed by
+   `0044`. Because the updated app reads and writes the normalized database
+   objects, deploy both PROD database migrations before deploying the
+   corresponding web application version.
 
 ### Normal workflow for future migrations
 

@@ -7,10 +7,16 @@ export type {
   DataSource,
 } from "./types/gym";
 export type {
+  EquipmentInventoryPatchItem,
   EquipmentRequirement,
   EquipmentType,
   GymEquipmentInventoryItem,
 } from "./types/equipment";
+export {
+  buildEquipmentInventoryPatch,
+  isLegacyEquipmentField,
+  legacyEquipmentFieldToCode,
+} from "./equipment-inventory";
 export type { SearchParams } from "./types/search";
 export type { SubmissionType, Submission } from "./types/submission";
 

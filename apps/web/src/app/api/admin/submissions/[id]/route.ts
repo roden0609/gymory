@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getFirebaseSessionUser, isAdminUser } from "@/lib/auth/session";
 import {
   buildGymPatchFromPayload,
+  getEquipmentInventoryPatch,
   getMissingRequiredGymInfoFields,
   type SubmissionPayload,
 } from "@/lib/db/gym-submissions";
@@ -59,30 +60,37 @@ export async function PATCH(
 
   try {
     let approvedGymId = submission.gym_id;
+    let equipmentApprovalCommitted = false;
 
     if (parsed.data.action === "approve") {
-      approvedGymId = await applySubmission(
+      const approval = await applySubmission(
         adminSupabase,
+        submission.id,
         submission.gym_id,
         submission.submission_type,
         (submission.payload ?? {}) as SubmissionPayload,
-        user
+        adminAppUser.id,
+        parsed.data.reviewNotes ?? null
       );
+      approvedGymId = approval.gymId;
+      equipmentApprovalCommitted = approval.equipmentApprovalCommitted;
     }
 
-    const { error: reviewError } = await adminSupabase
-      .from("gym_update_submissions")
-      .update({
-        gym_id: approvedGymId,
-        status: parsed.data.action === "approve" ? "approved" : "rejected",
-        reviewed_by_user_id: adminAppUser.id,
-        reviewed_at: new Date().toISOString(),
-        review_notes: parsed.data.reviewNotes ?? null,
-      })
-      .eq("id", submission.id);
+    if (!equipmentApprovalCommitted) {
+      const { error: reviewError } = await adminSupabase
+        .from("gym_update_submissions")
+        .update({
+          gym_id: approvedGymId,
+          status: parsed.data.action === "approve" ? "approved" : "rejected",
+          reviewed_by_user_id: adminAppUser.id,
+          reviewed_at: new Date().toISOString(),
+          review_notes: parsed.data.reviewNotes ?? null,
+        })
+        .eq("id", submission.id);
 
-    if (reviewError) {
-      throw new Error(reviewError.message);
+      if (reviewError) {
+        throw new Error(reviewError.message);
+      }
     }
 
     if (parsed.data.action === "approve" && submission.submitted_by_user_id) {
@@ -111,10 +119,12 @@ export async function PATCH(
 
 async function applySubmission(
   supabase: ReturnType<typeof createAdminClient>,
+  submissionId: string,
   gymId: string | null,
   submissionType: string,
   payload: SubmissionPayload,
-  _user: NonNullable<Awaited<ReturnType<typeof getFirebaseSessionUser>>>
+  reviewedByUserId: string,
+  reviewNotes: string | null
 ) {
   const missingRequiredFields = getMissingRequiredGymInfoFields(payload);
   if (missingRequiredFields.length > 0) {
@@ -159,7 +169,16 @@ async function applySubmission(
 
     const insertedGymId = data.id as string;
     await replaceGymBrands(supabase, insertedGymId, brandSlugs);
-    return insertedGymId;
+    const equipmentPatch = getEquipmentInventoryPatch(payload);
+    const equipmentApprovalCommitted = await approveEquipmentPatch({
+      supabase,
+      submissionId,
+      gymId: insertedGymId,
+      equipmentPatch,
+      reviewedByUserId,
+      reviewNotes,
+    });
+    return { gymId: insertedGymId, equipmentApprovalCommitted };
   }
 
   if (!gymId) {
@@ -175,6 +194,7 @@ async function applySubmission(
   if (existingError || !existing) {
     throw new Error(existingError?.message ?? "Gym not found");
   }
+  const equipmentPatch = getEquipmentInventoryPatch(payload, existing);
 
   const { data: updated, error } = await supabase
     .from("gyms")
@@ -193,7 +213,51 @@ async function applySubmission(
 
   await replaceGymBrands(supabase, gymId, brandSlugs);
 
-  return gymId;
+  const equipmentApprovalCommitted = await approveEquipmentPatch({
+    supabase,
+    submissionId,
+    gymId,
+    equipmentPatch,
+    reviewedByUserId,
+    reviewNotes,
+  });
+
+  return { gymId, equipmentApprovalCommitted };
+}
+
+async function approveEquipmentPatch({
+  supabase,
+  submissionId,
+  gymId,
+  equipmentPatch,
+  reviewedByUserId,
+  reviewNotes,
+}: {
+  supabase: ReturnType<typeof createAdminClient>;
+  submissionId: string;
+  gymId: string;
+  equipmentPatch: ReturnType<typeof getEquipmentInventoryPatch>;
+  reviewedByUserId: string;
+  reviewNotes: string | null;
+}) {
+  if (equipmentPatch.length === 0) return false;
+
+  const { error } = await supabase.rpc(
+    "approve_gym_equipment_submission_patch",
+    {
+      p_submission_id: submissionId,
+      p_target_gym_id: gymId,
+      p_inventory_items: equipmentPatch,
+      p_reviewed_by_user_id: reviewedByUserId,
+      p_review_notes: reviewNotes,
+    }
+  );
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return true;
 }
 
 function getSubmittedBrandSlugs(payload: SubmissionPayload): string[] {

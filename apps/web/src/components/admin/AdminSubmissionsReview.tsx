@@ -187,13 +187,11 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
         <PayloadBlock title="Changed fields" value={submission.changed_fields} />
         <PayloadBlock
           title="Gym payload"
-          value={(submission.payload.gym as Record<string, unknown> | undefined) ?? null}
+          value={submission.payload.gym ?? null}
         />
         <PayloadBlock
           title="Equipment payload"
-          value={
-            (submission.payload.equipment as Record<string, unknown> | undefined) ?? null
-          }
+          value={submission.payload.equipment ?? null}
         />
         <PayloadBlock
           title="Brands payload"
@@ -256,7 +254,7 @@ function PayloadBlock({
   value,
 }: {
   title: string;
-  value: Record<string, unknown> | null;
+  value: unknown;
 }) {
   return (
     <div>

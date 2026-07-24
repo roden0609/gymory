@@ -29,3 +29,10 @@ export type EquipmentRequirement = {
   minQuantity?: number;
   includeDescendants?: boolean;
 };
+
+export type EquipmentInventoryPatchItem = {
+  equipmentCode: string;
+  isPresent?: boolean | null;
+  quantity?: number | null;
+  remove?: boolean;
+};

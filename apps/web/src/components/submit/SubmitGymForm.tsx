@@ -6,9 +6,11 @@ import { TransientBanner } from "@/components/common/TransientBanner";
 import { useRouter } from "@/i18n/navigation";
 import { trackSubmissionSuccess } from "@/lib/analytics";
 import {
+  buildEquipmentInventoryPatch,
   EQUIPMENT_BRANDS,
   HK_DISTRICTS,
   SIZE_CATEGORIES,
+  type EquipmentInventoryPatchItem,
   type Gym,
 } from "@gymory/shared";
 
@@ -52,8 +54,10 @@ const MACHINE_SECTION_HASHES = new Set<string>([
   SUBMIT_SECTION_HASHES.otherEquipment,
 ]);
 type SubmitPayload = {
+  schemaVersion: 2;
   gym: Record<string, FormDataEntryValue | string | number | null | Record<string, string>>;
-  equipment: Record<string, string[] | number | boolean | null>;
+  equipment: EquipmentInventoryPatchItem[];
+  amenities: Record<string, boolean | null>;
   brands: string[];
 };
 
@@ -154,6 +158,16 @@ const FEATURE_FIELD_NAMES = [
   "has_ab_crunch_machine",
 ] as const;
 
+const AMENITY_FIELD_NAMES = [
+  "has_washroom",
+  "has_bathroom",
+  "has_changing_room",
+  "has_free_water",
+  "has_dry_sauna",
+  "has_wet_sauna",
+  "has_ice_bath",
+] as const;
+
 const NUMBER_FIELD_STEPS: Partial<Record<keyof Gym, string>> = {
   dumbbell_min_weight_kg: "0.1",
   dumbbell_max_weight_kg: "0.1",
@@ -211,12 +225,10 @@ function buildOpeningHoursJson(formData: FormData) {
 
 function buildClientPatchFromPayload(payload: SubmitPayload) {
   const { notes, ...gymPatch } = payload.gym;
-  const equipmentPatch = { ...payload.equipment };
-  delete equipmentPatch.brand_slugs;
 
   return {
     ...gymPatch,
-    ...equipmentPatch,
+    ...payload.amenities,
     equipment_notes: notes ?? null,
   };
 }
@@ -239,7 +251,10 @@ function hasMeaningfulUpdateChange({
     }
   }
 
-  return !isEqualStringArray(initialBrandSlugs, payload.brands);
+  return (
+    payload.equipment.length > 0 ||
+    !isEqualStringArray(initialBrandSlugs, payload.brands)
+  );
 }
 
 function isEqualStringArray(left: string[], right: string[]) {
@@ -619,7 +634,137 @@ export function SubmitGymForm({
     setErrorMessage("");
 
     const formData = new FormData(form);
+    const legacyEquipmentValues = {
+      rack_count: toNumber(String(formData.get("rack_count") ?? "")),
+      bench_count: toNumber(String(formData.get("bench_count") ?? "")),
+      barbell_count: toNumber(String(formData.get("barbell_count") ?? "")),
+      platform_count: toNumber(String(formData.get("platform_count") ?? "")),
+      treadmill_count: toNumber(String(formData.get("treadmill_count") ?? "")),
+      assault_bike_count: toNumber(
+        String(formData.get("assault_bike_count") ?? "")
+      ),
+      exercise_bike_count: toNumber(
+        String(formData.get("exercise_bike_count") ?? "")
+      ),
+      climber_count: toNumber(String(formData.get("climber_count") ?? "")),
+      elliptical_machine_count: toNumber(
+        String(formData.get("elliptical_machine_count") ?? "")
+      ),
+      assault_runner_count: toNumber(
+        String(formData.get("assault_runner_count") ?? "")
+      ),
+      ski_erg_count: toNumber(String(formData.get("ski_erg_count") ?? "")),
+      rower_count: toNumber(String(formData.get("rower_count") ?? "")),
+      sled_count: toNumber(String(formData.get("sled_count") ?? "")),
+      wall_ball_4kg_count: toNumber(
+        String(formData.get("wall_ball_4kg_count") ?? "")
+      ),
+      wall_ball_6kg_count: toNumber(
+        String(formData.get("wall_ball_6kg_count") ?? "")
+      ),
+      wall_ball_8kg_count: toNumber(
+        String(formData.get("wall_ball_8kg_count") ?? "")
+      ),
+      wall_ball_9kg_count: toNumber(
+        String(formData.get("wall_ball_9kg_count") ?? "")
+      ),
+      wall_ball_10kg_count: toNumber(
+        String(formData.get("wall_ball_10kg_count") ?? "")
+      ),
+      wall_ball_plate_9ft_count: toNumber(
+        String(formData.get("wall_ball_plate_9ft_count") ?? "")
+      ),
+      wall_ball_plate_10ft_count: toNumber(
+        String(formData.get("wall_ball_plate_10ft_count") ?? "")
+      ),
+      sandbag_5kg_count: toNumber(
+        String(formData.get("sandbag_5kg_count") ?? "")
+      ),
+      sandbag_10kg_count: toNumber(
+        String(formData.get("sandbag_10kg_count") ?? "")
+      ),
+      sandbag_15kg_count: toNumber(
+        String(formData.get("sandbag_15kg_count") ?? "")
+      ),
+      sandbag_20kg_count: toNumber(
+        String(formData.get("sandbag_20kg_count") ?? "")
+      ),
+      sandbag_25kg_count: toNumber(
+        String(formData.get("sandbag_25kg_count") ?? "")
+      ),
+      sandbag_30kg_count: toNumber(
+        String(formData.get("sandbag_30kg_count") ?? "")
+      ),
+      kettlebell_4kg_count: toNumber(
+        String(formData.get("kettlebell_4kg_count") ?? "")
+      ),
+      kettlebell_6kg_count: toNumber(
+        String(formData.get("kettlebell_6kg_count") ?? "")
+      ),
+      kettlebell_8kg_count: toNumber(
+        String(formData.get("kettlebell_8kg_count") ?? "")
+      ),
+      kettlebell_10kg_count: toNumber(
+        String(formData.get("kettlebell_10kg_count") ?? "")
+      ),
+      kettlebell_12kg_count: toNumber(
+        String(formData.get("kettlebell_12kg_count") ?? "")
+      ),
+      kettlebell_14kg_count: toNumber(
+        String(formData.get("kettlebell_14kg_count") ?? "")
+      ),
+      kettlebell_16kg_count: toNumber(
+        String(formData.get("kettlebell_16kg_count") ?? "")
+      ),
+      kettlebell_18kg_count: toNumber(
+        String(formData.get("kettlebell_18kg_count") ?? "")
+      ),
+      kettlebell_20kg_count: toNumber(
+        String(formData.get("kettlebell_20kg_count") ?? "")
+      ),
+      kettlebell_24kg_count: toNumber(
+        String(formData.get("kettlebell_24kg_count") ?? "")
+      ),
+      kettlebell_32kg_count: toNumber(
+        String(formData.get("kettlebell_32kg_count") ?? "")
+      ),
+      cable_machine_count: toNumber(
+        String(formData.get("cable_machine_count") ?? "")
+      ),
+      smith_machine_count: toNumber(
+        String(formData.get("smith_machine_count") ?? "")
+      ),
+      ...Object.fromEntries(
+        featureNames
+          .filter(
+            (name) =>
+              !AMENITY_FIELD_NAMES.includes(
+                name as (typeof AMENITY_FIELD_NAMES)[number]
+              )
+          )
+          .map((name) => [
+            name,
+            featureStates[name as FeatureFieldName] ?? null,
+          ])
+      ),
+    };
+    const previousEquipmentValues = initialGym
+      ? Object.fromEntries(
+          Object.keys(legacyEquipmentValues).map((field) => [
+            field,
+            initialGym[field as keyof Gym] as boolean | number | null,
+          ])
+        )
+      : null;
+    const amenities = Object.fromEntries(
+      AMENITY_FIELD_NAMES.map((name) => [
+        name,
+        featureStates[name] ?? null,
+      ])
+    ) as Record<string, boolean | null>;
+
     const payload: SubmitPayload = {
+      schemaVersion: 2,
       gym: {
         name: formData.get("name"),
         name_zh: formData.get("name_zh") || null,
@@ -636,13 +781,6 @@ export function SubmitGymForm({
           String(formData.get("estimated_size_sqft") ?? "")
         ),
         day_pass_price: toNumber(String(formData.get("day_pass_price") ?? "")),
-        notes: formData.get("notes") || null,
-      },
-      equipment: {
-        rack_count: toNumber(String(formData.get("rack_count") ?? "")),
-        bench_count: toNumber(String(formData.get("bench_count") ?? "")),
-        barbell_count: toNumber(String(formData.get("barbell_count") ?? "")),
-        platform_count: toNumber(String(formData.get("platform_count") ?? "")),
         dumbbell_min_weight_kg: toNumber(
           String(formData.get("dumbbell_min_weight_kg") ?? "")
         ),
@@ -655,109 +793,13 @@ export function SubmitGymForm({
         plate_max_weight_kg: toNumber(
           String(formData.get("plate_max_weight_kg") ?? "")
         ),
-        treadmill_count: toNumber(String(formData.get("treadmill_count") ?? "")),
-        assault_bike_count: toNumber(
-          String(formData.get("assault_bike_count") ?? "")
-        ),
-        exercise_bike_count: toNumber(
-          String(formData.get("exercise_bike_count") ?? "")
-        ),
-        climber_count: toNumber(String(formData.get("climber_count") ?? "")),
-        elliptical_machine_count: toNumber(
-          String(formData.get("elliptical_machine_count") ?? "")
-        ),
-        assault_runner_count: toNumber(
-          String(formData.get("assault_runner_count") ?? "")
-        ),
-        ski_erg_count: toNumber(String(formData.get("ski_erg_count") ?? "")),
-        rower_count: toNumber(String(formData.get("rower_count") ?? "")),
-        sled_count: toNumber(String(formData.get("sled_count") ?? "")),
-        wall_ball_4kg_count: toNumber(
-          String(formData.get("wall_ball_4kg_count") ?? "")
-        ),
-        wall_ball_6kg_count: toNumber(
-          String(formData.get("wall_ball_6kg_count") ?? "")
-        ),
-        wall_ball_8kg_count: toNumber(
-          String(formData.get("wall_ball_8kg_count") ?? "")
-        ),
-        wall_ball_9kg_count: toNumber(
-          String(formData.get("wall_ball_9kg_count") ?? "")
-        ),
-        wall_ball_10kg_count: toNumber(
-          String(formData.get("wall_ball_10kg_count") ?? "")
-        ),
-        wall_ball_plate_9ft_count: toNumber(
-          String(formData.get("wall_ball_plate_9ft_count") ?? "")
-        ),
-        wall_ball_plate_10ft_count: toNumber(
-          String(formData.get("wall_ball_plate_10ft_count") ?? "")
-        ),
-        sandbag_5kg_count: toNumber(
-          String(formData.get("sandbag_5kg_count") ?? "")
-        ),
-        sandbag_10kg_count: toNumber(
-          String(formData.get("sandbag_10kg_count") ?? "")
-        ),
-        sandbag_15kg_count: toNumber(
-          String(formData.get("sandbag_15kg_count") ?? "")
-        ),
-        sandbag_20kg_count: toNumber(
-          String(formData.get("sandbag_20kg_count") ?? "")
-        ),
-        sandbag_25kg_count: toNumber(
-          String(formData.get("sandbag_25kg_count") ?? "")
-        ),
-        sandbag_30kg_count: toNumber(
-          String(formData.get("sandbag_30kg_count") ?? "")
-        ),
-        kettlebell_4kg_count: toNumber(
-          String(formData.get("kettlebell_4kg_count") ?? "")
-        ),
-        kettlebell_6kg_count: toNumber(
-          String(formData.get("kettlebell_6kg_count") ?? "")
-        ),
-        kettlebell_8kg_count: toNumber(
-          String(formData.get("kettlebell_8kg_count") ?? "")
-        ),
-        kettlebell_10kg_count: toNumber(
-          String(formData.get("kettlebell_10kg_count") ?? "")
-        ),
-        kettlebell_12kg_count: toNumber(
-          String(formData.get("kettlebell_12kg_count") ?? "")
-        ),
-        kettlebell_14kg_count: toNumber(
-          String(formData.get("kettlebell_14kg_count") ?? "")
-        ),
-        kettlebell_16kg_count: toNumber(
-          String(formData.get("kettlebell_16kg_count") ?? "")
-        ),
-        kettlebell_18kg_count: toNumber(
-          String(formData.get("kettlebell_18kg_count") ?? "")
-        ),
-        kettlebell_20kg_count: toNumber(
-          String(formData.get("kettlebell_20kg_count") ?? "")
-        ),
-        kettlebell_24kg_count: toNumber(
-          String(formData.get("kettlebell_24kg_count") ?? "")
-        ),
-        kettlebell_32kg_count: toNumber(
-          String(formData.get("kettlebell_32kg_count") ?? "")
-        ),
-        cable_machine_count: toNumber(
-          String(formData.get("cable_machine_count") ?? "")
-        ),
-        smith_machine_count: toNumber(
-          String(formData.get("smith_machine_count") ?? "")
-        ),
-        ...Object.fromEntries(
-          featureNames.map((name) => [
-            name,
-            featureStates[name as FeatureFieldName] ?? null,
-          ])
-        ),
-        brand_slugs: selectedBrandSlugs,
+        notes: formData.get("notes") || null,
       },
+      equipment: buildEquipmentInventoryPatch(
+        legacyEquipmentValues,
+        previousEquipmentValues
+      ),
+      amenities,
       brands: selectedBrandSlugs,
     };
 

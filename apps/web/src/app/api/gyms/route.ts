@@ -7,6 +7,7 @@ import {
 } from "@/lib/db/gym-submissions";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { ensureAppUser } from "@/lib/db/users";
+import { isLegacyEquipmentField } from "@gymory/shared";
 
 // GET /api/gyms — list all active gyms (admin use)
 export async function GET() {
@@ -39,6 +40,18 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
+  const legacyEquipmentFields = Object.keys(body ?? {}).filter(
+    isLegacyEquipmentField
+  );
+  if (legacyEquipmentFields.length > 0 || Array.isArray(body?.equipment)) {
+    return NextResponse.json(
+      {
+        error:
+          "Use the normalized gym equipment endpoint after creating the gym.",
+      },
+      { status: 400 }
+    );
+  }
   const supabase = createAdminClient();
   const appUser = await ensureAppUser(user, supabase);
 

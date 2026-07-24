@@ -1,11 +1,17 @@
 import "server-only";
 
-import type { Gym } from "@gymory/shared";
+import {
+  buildEquipmentInventoryPatch,
+  type EquipmentInventoryPatchItem,
+  type Gym,
+} from "@gymory/shared";
 import { createAdminClient } from "./supabase-admin";
 
 export type SubmissionPayload = {
+  schemaVersion?: number;
   gym?: Record<string, unknown>;
-  equipment?: Record<string, unknown>;
+  equipment?: Record<string, unknown> | EquipmentInventoryPatchItem[];
+  amenities?: Record<string, unknown>;
   [key: string]: unknown;
 };
 
@@ -29,6 +35,10 @@ export const GYM_FIELDS: Array<keyof Gym> = [
   "estimated_size_sqft",
   "opening_hours_json",
   "day_pass_price",
+  "dumbbell_min_weight_kg",
+  "dumbbell_max_weight_kg",
+  "plate_min_weight_kg",
+  "plate_max_weight_kg",
 ];
 
 export const REQUIRED_GYM_INFO_FIELDS = [
@@ -36,6 +46,24 @@ export const REQUIRED_GYM_INFO_FIELDS = [
   "address",
   "district_code",
 ] as const;
+
+export const AMENITY_FIELDS: Array<keyof Gym> = [
+  "has_washroom",
+  "has_bathroom",
+  "has_changing_room",
+  "has_free_water",
+  "has_dry_sauna",
+  "has_wet_sauna",
+  "has_ice_bath",
+];
+
+const EQUIPMENT_METADATA_FIELDS: Array<keyof Gym> = [
+  "dumbbell_min_weight_kg",
+  "dumbbell_max_weight_kg",
+  "plate_min_weight_kg",
+  "plate_max_weight_kg",
+  "equipment_notes",
+];
 
 export const EQUIPMENT_FIELDS: Array<keyof Gym> = [
   "rack_count",
@@ -187,16 +215,69 @@ export function pickFields(
 
 export function buildGymPatchFromPayload(payload: SubmissionPayload) {
   const gymPatch = pickFields(payload.gym, GYM_FIELDS);
-  const equipmentPatch = pickFields(payload.equipment, EQUIPMENT_FIELDS);
+  const legacyEquipment = isPlainRecord(payload.equipment)
+    ? payload.equipment
+    : undefined;
+  const amenityPatch = pickFields(
+    payload.amenities ?? legacyEquipment,
+    AMENITY_FIELDS
+  );
+  const metadataPatch = pickFields(
+    legacyEquipment,
+    EQUIPMENT_METADATA_FIELDS
+  );
 
   if ("notes" in (payload.gym ?? {})) {
-    equipmentPatch.equipment_notes = payload.gym?.notes ?? null;
+    metadataPatch.equipment_notes = payload.gym?.notes ?? null;
   }
 
   return {
     ...gymPatch,
-    ...equipmentPatch,
+    ...amenityPatch,
+    ...metadataPatch,
   };
+}
+
+export function getEquipmentInventoryPatch(
+  payload: SubmissionPayload,
+  previousValues?: Record<string, unknown> | null
+): EquipmentInventoryPatchItem[] {
+  if (Array.isArray(payload.equipment)) {
+    return payload.equipment.filter(isEquipmentInventoryPatchItem);
+  }
+
+  if (!isPlainRecord(payload.equipment)) return [];
+
+  const legacyEquipment = pickFields(payload.equipment, EQUIPMENT_FIELDS);
+  return buildEquipmentInventoryPatch(
+    legacyEquipment as Record<
+      string,
+      boolean | number | null | undefined
+    >,
+    previousValues as
+      | Record<string, boolean | number | null | undefined>
+      | null
+      | undefined
+  );
+}
+
+function isEquipmentInventoryPatchItem(
+  value: unknown
+): value is EquipmentInventoryPatchItem {
+  if (!isPlainRecord(value)) return false;
+  if (
+    typeof value.equipmentCode !== "string" ||
+    !/^[a-z][a-z0-9_]*$/.test(value.equipmentCode)
+  ) {
+    return false;
+  }
+  if (value.remove === true) return true;
+  const hasPresence = typeof value.isPresent === "boolean";
+  const hasQuantity =
+    typeof value.quantity === "number" &&
+    Number.isInteger(value.quantity) &&
+    value.quantity >= 0;
+  return hasPresence || hasQuantity;
 }
 
 export function getMissingRequiredGymInfoFields(payload: SubmissionPayload) {
@@ -255,14 +336,18 @@ function isPlainRecord(value: unknown): value is JsonRecord {
 }
 
 export function buildSubmissionPayloadFromGymSnapshot(snapshot: JsonRecord) {
-  const gym = pickFields(snapshot, GYM_FIELDS);
-  const equipment = pickFields(snapshot, EQUIPMENT_FIELDS);
+  const gym = {
+    ...pickFields(snapshot, GYM_FIELDS),
+    ...pickFields(snapshot, EQUIPMENT_METADATA_FIELDS),
+  };
+  const amenities = pickFields(snapshot, AMENITY_FIELDS);
 
-  if ("equipment_notes" in equipment) {
-    gym.notes = equipment.equipment_notes ?? null;
+  if ("equipment_notes" in gym) {
+    gym.notes = gym.equipment_notes ?? null;
+    delete gym.equipment_notes;
   }
 
-  return { gym, equipment };
+  return { schemaVersion: 2, gym, equipment: [], amenities };
 }
 
 export async function insertSubmissionRecord({

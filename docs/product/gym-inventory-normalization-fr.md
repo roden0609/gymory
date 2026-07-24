@@ -2,16 +2,18 @@
 
 ## Status
 
-Implemented through the additive schema, backfill, normalized read, transitional
-write, and canonical admin write phases. General form/importer write cutover and
-legacy column removal remain intentionally pending until production reconciliation
-and observation exit criteria pass.
+Implemented through the additive schema, backfill, normalized read, form,
+importer, submission approval, and canonical admin write phases. Legacy column
+removal remains intentionally pending until production reconciliation and
+observation exit criteria pass.
 
 Implementation entry points:
 
 - `supabase/migrations/0043_normalize_gym_equipment_inventory.sql`
+- `supabase/migrations/0044_cut_over_normalized_equipment_writes.sql`
 - `apps/web/src/lib/db/queries/gym-equipment-inventory.ts`
 - `apps/web/src/app/api/gyms/[id]/equipment/route.ts`
+- `scripts/lib/upsert-gyms-with-submissions.mjs`
 - `scripts/validate-gym-inventory-normalization.mjs`
 
 This document defines the target product and data requirements for moving generic

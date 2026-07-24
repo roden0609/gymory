@@ -49,3 +49,11 @@ If at least one field changed, the helper:
 1. PATCHes the existing `gyms` row.
 2. Inserts an approved `edit_gym_info` record into `gym_update_submissions`.
 3. Stores `changed_fields` with only the fields that changed.
+
+Separately, the helper converts mapped equipment `has_*` and `*_count` fields
+through `equipment_legacy_field_mappings`, removes them from the `gyms` write,
+and applies changed values through the normalized inventory import RPC.
+Importers preserve omitted or `null` equipment values as no change. Explicit
+presence, absence, zero, and positive quantities are written to
+`gym_equipment_inventory` and logged as approved `edit_equipment` import
+submissions.

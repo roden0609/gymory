@@ -3,6 +3,7 @@ import { getFirebaseSessionUser } from "@/lib/auth/session";
 import {
   buildChangedFields,
   buildGymPatchFromPayload,
+  getEquipmentInventoryPatch,
   getMissingRequiredGymInfoFields,
   insertSubmissionRecord,
   type SubmissionPayload,
@@ -26,6 +27,21 @@ export async function POST(request: NextRequest) {
   }
 
   const payload = parsed.data.payload as SubmissionPayload;
+  if (payload.schemaVersion === 2) {
+    const normalizedItems = getEquipmentInventoryPatch(payload);
+    const submittedItems = payload.equipment;
+    const equipmentCodes = normalizedItems.map((item) => item.equipmentCode);
+    if (
+      !Array.isArray(submittedItems) ||
+      normalizedItems.length !== submittedItems.length ||
+      new Set(equipmentCodes).size !== equipmentCodes.length
+    ) {
+      return NextResponse.json(
+        { error: "Invalid normalized equipment payload." },
+        { status: 400 }
+      );
+    }
+  }
   const missingRequiredFields = getMissingRequiredGymInfoFields(payload);
   if (missingRequiredFields.length > 0) {
     return NextResponse.json(
@@ -43,13 +59,26 @@ export async function POST(request: NextRequest) {
     const existingGym = parsed.data.gymId
       ? await fetchGymById(supabase, parsed.data.gymId)
       : null;
+    const existingInventory = parsed.data.gymId
+      ? await fetchGymInventory(supabase, parsed.data.gymId)
+      : [];
+    const equipmentPatch = filterUnchangedEquipmentItems(
+      getEquipmentInventoryPatch(payload, existingGym),
+      existingInventory
+    );
     const existingBrandSlugs = parsed.data.gymId
       ? await fetchGymBrandSlugs(supabase, parsed.data.gymId)
       : [];
     const submittedBrandSlugs = normalizeBrandSlugs(payload.brands);
     const actionType = parsed.data.submissionType === "add_gym" ? "I" : "U";
-    const baseChangedFields =
+    let baseChangedFields =
       actionType === "I" ? patch : buildChangedFields(existingGym, patch);
+    if (equipmentPatch.length > 0) {
+      baseChangedFields = {
+        ...(baseChangedFields ?? {}),
+        equipment: equipmentPatch,
+      };
+    }
     const changedFields = mergeBrandChanges({
       baseChangedFields,
       actionType,
@@ -83,6 +112,45 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json({ status: "ok" }, { status: 201 });
+}
+
+async function fetchGymInventory(
+  supabase: ReturnType<typeof createAdminClient>,
+  gymId: string
+) {
+  const { data, error } = await supabase
+    .from("gym_equipment_inventory")
+    .select("equipment_code,is_present,quantity")
+    .eq("gym_id", gymId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data ?? [];
+}
+
+function filterUnchangedEquipmentItems(
+  items: ReturnType<typeof getEquipmentInventoryPatch>,
+  existingItems: Array<{
+    equipment_code: string;
+    is_present: boolean | null;
+    quantity: number | null;
+  }>
+) {
+  const existingByCode = new Map(
+    existingItems.map((item) => [item.equipment_code, item])
+  );
+
+  return items.filter((item) => {
+    const existing = existingByCode.get(item.equipmentCode);
+    if (item.remove) return Boolean(existing);
+    return (
+      !existing ||
+      existing.is_present !== (item.isPresent ?? null) ||
+      existing.quantity !== (item.quantity ?? null)
+    );
+  });
 }
 
 async function fetchGymById(
