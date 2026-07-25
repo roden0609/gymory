@@ -10,6 +10,11 @@ import {
 } from "@/lib/db/gym-submissions";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { ensureAppUser } from "@/lib/db/users";
+import {
+  buildChangeComparison,
+  mergeChangeComparisons,
+  type ChangeComparison,
+} from "@/lib/submission-change-comparison";
 import { submissionSchema } from "@gymory/shared";
 
 // POST /api/submissions — authenticated user submits a gym or equipment update
@@ -85,6 +90,11 @@ export async function POST(request: NextRequest) {
       existingBrandSlugs,
       submittedBrandSlugs,
     });
+    const changeComparison = mergeChangeComparisons(
+      buildChangeComparison(existingGym, patch),
+      buildEquipmentChangeComparison(equipmentPatch, existingInventory),
+      buildBrandChangeComparison(existingBrandSlugs, submittedBrandSlugs)
+    );
 
     if (actionType === "U" && !changedFields) {
       return NextResponse.json(
@@ -101,7 +111,7 @@ export async function POST(request: NextRequest) {
       status: "pending",
       actorType: "user_submission",
       actionType,
-      payload,
+      payload: { ...payload, changeComparison },
       changedFields,
     });
   } catch (error) {
@@ -112,6 +122,61 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json({ status: "ok" }, { status: 201 });
+}
+
+function buildEquipmentChangeComparison(
+  items: ReturnType<typeof getEquipmentInventoryPatch>,
+  existingItems: Array<{
+    equipment_code: string;
+    is_present: boolean | null;
+    quantity: number | null;
+  }>
+): ChangeComparison {
+  const existingByCode = new Map(
+    existingItems.map((item) => [item.equipment_code, item])
+  );
+
+  return Object.fromEntries(
+    items.map((item) => {
+      const existing = existingByCode.get(item.equipmentCode);
+      const before = existing
+        ? {
+            isPresent: existing.is_present,
+            quantity: existing.quantity,
+          }
+        : null;
+      const quantity = item.quantity ?? null;
+      const after = item.remove
+        ? null
+        : {
+            isPresent:
+              quantity === null ? (item.isPresent ?? null) : quantity > 0,
+            quantity,
+          };
+      return [
+        `equipment.${item.equipmentCode}`,
+        { before, after, beforeCaptured: true },
+      ];
+    })
+  );
+}
+
+function buildBrandChangeComparison(
+  before: string[],
+  after: string[]
+): ChangeComparison {
+  const normalizedBefore = [...before].sort();
+  const normalizedAfter = [...after].sort();
+  if (JSON.stringify(normalizedBefore) === JSON.stringify(normalizedAfter)) {
+    return {};
+  }
+  return {
+    brands: {
+      before: normalizedBefore,
+      after: normalizedAfter,
+      beforeCaptured: true,
+    },
+  };
 }
 
 async function fetchGymInventory(

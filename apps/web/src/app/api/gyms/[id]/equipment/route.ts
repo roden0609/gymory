@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getFirebaseSessionUser, isAdminUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { ensureAppUser } from "@/lib/db/users";
+import type { ChangeComparison } from "@/lib/submission-change-comparison";
 
 const inventoryItemSchema = z
   .object({
@@ -76,6 +77,23 @@ export async function PUT(
 
   const supabase = createAdminClient();
   const appUser = await ensureAppUser(user, supabase);
+  const { data: existingItems, error: existingError } = await supabase
+    .from("gym_equipment_inventory")
+    .select("equipment_code,is_present,quantity")
+    .eq("gym_id", params.id)
+    .in(
+      "equipment_code",
+      parsed.data.equipment.map((item) => item.equipmentCode)
+    );
+
+  if (existingError) {
+    return NextResponse.json({ error: existingError.message }, { status: 500 });
+  }
+
+  const changeComparison = buildEquipmentChangeComparison(
+    parsed.data.equipment,
+    existingItems ?? []
+  );
   const { data: auditId, error } = await supabase.rpc(
     "apply_gym_equipment_inventory_patch",
     {
@@ -83,7 +101,7 @@ export async function PUT(
       p_inventory_items: parsed.data.equipment,
       p_submitted_by_user_id: appUser.id,
       p_reviewed_by_user_id: appUser.id,
-      p_source_payload: parsed.data,
+      p_source_payload: { ...parsed.data, changeComparison },
     }
   );
 
@@ -93,4 +111,43 @@ export async function PUT(
   }
 
   return NextResponse.json({ status: "ok", auditId });
+}
+
+function buildEquipmentChangeComparison(
+  items: Array<z.infer<typeof inventoryItemSchema>>,
+  existingItems: Array<{
+    equipment_code: string;
+    is_present: boolean | null;
+    quantity: number | null;
+  }>
+): ChangeComparison {
+  const existingByCode = new Map(
+    existingItems.map((item) => [item.equipment_code, item])
+  );
+
+  return Object.fromEntries(
+    items.map((item) => {
+      const existing = existingByCode.get(item.equipmentCode);
+      const quantity = item.quantity ?? null;
+      return [
+        `equipment.${item.equipmentCode}`,
+        {
+          before: existing
+            ? {
+                isPresent: existing.is_present,
+                quantity: existing.quantity,
+              }
+            : null,
+          after: item.remove
+            ? null
+            : {
+                isPresent:
+                  quantity === null ? (item.isPresent ?? null) : quantity > 0,
+                quantity,
+              },
+          beforeCaptured: true,
+        },
+      ];
+    })
+  );
 }

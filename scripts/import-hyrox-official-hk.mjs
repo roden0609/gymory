@@ -236,14 +236,18 @@ async function upsertRows(rows) {
     if (!existing) {
       const insertedGym = await insertGym({ supabaseUrl, apiKey, row });
       existingGyms.push(insertedGym);
+      const changedFields = buildChangedFields(null, insertedGym);
       await insertSubmission({
         supabaseUrl,
         apiKey,
         gymId: insertedGym.id,
         submissionType: "add_gym",
         actionType: "I",
-        payload: { snapshot: insertedGym },
-        changedFields: buildChangedFields(null, insertedGym),
+        payload: {
+          snapshot: insertedGym,
+          changeComparison: buildChangeComparison(null, changedFields),
+        },
+        changedFields,
       });
       inserted += 1;
       continue;
@@ -262,6 +266,7 @@ async function upsertRows(rows) {
       gymId: existing.id,
       row: updateRow,
     });
+    const changeComparison = buildChangeComparison(existing, changedFields);
     Object.assign(existing, updatedGym);
     await insertSubmission({
       supabaseUrl,
@@ -269,7 +274,10 @@ async function upsertRows(rows) {
       gymId: existing.id,
       submissionType: "edit_gym_info",
       actionType: "U",
-      payload: { snapshot: updatedGym },
+      payload: {
+        snapshot: updatedGym,
+        changeComparison,
+      },
       changedFields,
     });
     updated += 1;
@@ -460,14 +468,18 @@ async function repairStaleHyroxFlags(sourceRows) {
       row: updateRow,
     });
 
+    const changedFields = buildChangedFields(gym, updateRow);
     await insertSubmission({
       supabaseUrl,
       apiKey,
       gymId: gym.id,
       submissionType: "edit_gym_info",
       actionType: "U",
-      payload: { snapshot: updatedGym },
-      changedFields: buildChangedFields(gym, updateRow),
+      payload: {
+        snapshot: updatedGym,
+        changeComparison: buildChangeComparison(gym, changedFields),
+      },
+      changedFields,
       reviewNotes: "Cleared stale HYROX partner metadata after stricter source matching",
     });
     cleared += 1;
@@ -534,6 +546,21 @@ function buildChangedFields(existing, nextRow) {
   }
 
   return Object.keys(changed).length > 0 ? changed : null;
+}
+
+function buildChangeComparison(existing, changedFields) {
+  if (!changedFields) return {};
+
+  return Object.fromEntries(
+    Object.entries(changedFields).map(([field, after]) => [
+      field,
+      {
+        before: existing?.[field] ?? null,
+        after,
+        beforeCaptured: true,
+      },
+    ])
+  );
 }
 
 function isLikelySamePartnerGym(existing, row) {

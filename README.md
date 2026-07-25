@@ -70,6 +70,10 @@ Admins can review pending submissions and browse the paginated audit history at:
 ```
 
 The History tab supports gym, status, actor, submission type, and date filters.
+New submissions also store a per-field `changeComparison` in their JSON payload,
+so both pending review and history show the value before and after each change.
+Older records remain readable; because they only stored the new value, the
+Before column is labelled as not captured.
 Apply `0045_add_submission_history_support.sql` before deploying this page. The
 migration adds the history query indexes and changes the submission-to-gym
 foreign key to `on delete set null`, preserving audit records after a hard gym

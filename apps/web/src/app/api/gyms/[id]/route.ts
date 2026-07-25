@@ -8,6 +8,7 @@ import {
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { ensureAppUser } from "@/lib/db/users";
 import { isLegacyEquipmentField } from "@gymory/shared";
+import { buildChangeComparison } from "@/lib/submission-change-comparison";
 
 // GET /api/gyms/[id]
 export async function GET(
@@ -107,7 +108,7 @@ export async function PATCH(
       status: "approved",
       actorType: "admin",
       actionType: "U",
-      payload: buildSubmissionPayloadFromGymSnapshot(data),
+      payload: buildSubmissionPayloadFromGymSnapshot(data, existing),
       changedFields: buildChangedFields(existing, data),
       reviewedAt: new Date().toISOString(),
     });
@@ -169,6 +170,7 @@ export async function DELETE(
   }
 
   try {
+    const changedFields = buildChangedFields(existing, data);
     await insertSubmissionRecord({
       supabase,
       gymId: params.id,
@@ -182,8 +184,9 @@ export async function DELETE(
         softDelete: true,
         before: existing,
         after: data,
+        changeComparison: buildChangeComparison(existing, changedFields ?? {}),
       },
-      changedFields: buildChangedFields(existing, data),
+      changedFields,
       reviewedAt: new Date().toISOString(),
     });
   } catch (submissionError) {

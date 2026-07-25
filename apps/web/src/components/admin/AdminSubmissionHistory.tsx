@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import { AdminChangeComparison } from "@/components/admin/AdminChangeComparison";
 import type {
   SubmissionPage,
   SubmissionReviewRow,
@@ -121,11 +122,20 @@ function HistoryCard({
       ) : null}
 
       <div className="mt-4 space-y-2">
-        <JsonDetails
-          title="Changed fields"
-          value={submission.changed_fields}
-          initiallyOpen
-        />
+        <details
+          open
+          className="min-w-0 overflow-hidden rounded-md border border-gray-200"
+        >
+          <summary className="cursor-pointer select-none px-3 py-2 text-sm font-medium text-gray-700">
+            Changed fields
+          </summary>
+          <div className="min-w-0 border-t border-gray-200 bg-gray-50 p-3">
+            <AdminChangeComparison
+              payload={submission.payload}
+              changedFields={submission.changed_fields}
+            />
+          </div>
+        </details>
         <JsonDetails title="Full payload" value={submission.payload} />
       </div>
     </article>
@@ -146,15 +156,12 @@ function HistoryMeta({ label, value }: { label: string; value: string }) {
 function JsonDetails({
   title,
   value,
-  initiallyOpen = false,
 }: {
   title: string;
   value: unknown;
-  initiallyOpen?: boolean;
 }) {
   return (
     <details
-      open={initiallyOpen}
       className="min-w-0 overflow-hidden rounded-md border border-gray-200"
     >
       <summary className="cursor-pointer select-none px-3 py-2 text-sm font-medium text-gray-700">

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 import { useLocale } from "next-intl";
+import { AdminChangeComparison } from "@/components/admin/AdminChangeComparison";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import type { SubmissionReviewRow } from "@/lib/db/queries/submissions";
 
@@ -184,7 +185,15 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
       ) : null}
 
       <div className="mt-4 space-y-3">
-        <PayloadBlock title="Changed fields" value={submission.changed_fields} />
+        <div className="min-w-0 rounded-lg border border-gray-200 bg-gray-50 p-3">
+          <h3 className="mb-3 text-sm font-semibold text-gray-900">
+            Changed fields
+          </h3>
+          <AdminChangeComparison
+            payload={submission.payload}
+            changedFields={submission.changed_fields}
+          />
+        </div>
         <PayloadBlock
           title="Gym payload"
           value={submission.payload.gym ?? null}

@@ -19,6 +19,7 @@ export async function upsertGymsWithSubmissions({
 
     if (!existing) {
       const inserted = await insertGym({ supabaseUrl, apiKey, row: gymRow });
+      const changedFields = buildChangedFields(null, inserted);
       await insertSubmission({
         supabaseUrl,
         apiKey,
@@ -26,8 +27,11 @@ export async function upsertGymsWithSubmissions({
         submissionType: "add_gym",
         actionType: "I",
         actorType,
-        payload: { snapshot: inserted },
-        changedFields: buildChangedFields(null, inserted),
+        payload: {
+          snapshot: inserted,
+          changeComparison: buildChangeComparison(null, changedFields),
+        },
+        changedFields,
       });
       if (inventoryItems.length > 0) {
         await applyEquipmentImportPatch({
@@ -35,6 +39,10 @@ export async function upsertGymsWithSubmissions({
           apiKey,
           gymId: inserted.id,
           inventoryItems,
+          changeComparison: buildEquipmentChangeComparison(
+            new Map(),
+            inventoryItems
+          ),
           slug: gymRow.slug,
         });
       }
@@ -43,7 +51,7 @@ export async function upsertGymsWithSubmissions({
 
     const nextRow = buildUpsertRow(existing, gymRow, actorType);
     const changedFields = buildChangedFields(existing, nextRow);
-    const changedInventoryItems =
+    const changedInventory =
       inventoryItems.length > 0
         ? await filterChangedInventoryItems({
             supabaseUrl,
@@ -51,7 +59,7 @@ export async function upsertGymsWithSubmissions({
             gymId: existing.id,
             inventoryItems,
           })
-        : [];
+        : { inventoryItems: [], changeComparison: {} };
 
     if (changedFields) {
       const updated = await updateGym({
@@ -68,17 +76,21 @@ export async function upsertGymsWithSubmissions({
         submissionType: "edit_gym_info",
         actionType: "U",
         actorType,
-        payload: { snapshot: updated },
+        payload: {
+          snapshot: updated,
+          changeComparison: buildChangeComparison(existing, changedFields),
+        },
         changedFields,
       });
     }
 
-    if (changedInventoryItems.length > 0) {
+    if (changedInventory.inventoryItems.length > 0) {
       await applyEquipmentImportPatch({
         supabaseUrl,
         apiKey,
         gymId: existing.id,
-        inventoryItems: changedInventoryItems,
+        inventoryItems: changedInventory.inventoryItems,
+        changeComparison: changedInventory.changeComparison,
         slug: gymRow.slug,
       });
     }
@@ -223,7 +235,7 @@ async function filterChangedInventoryItems({
     ])
   );
 
-  return inventoryItems.filter((item) => {
+  const changedInventoryItems = inventoryItems.filter((item) => {
     const existing = existingByCode.get(item.equipmentCode);
     return (
       !existing ||
@@ -231,6 +243,14 @@ async function filterChangedInventoryItems({
       existing.quantity !== (item.quantity ?? null)
     );
   });
+
+  return {
+    inventoryItems: changedInventoryItems,
+    changeComparison: buildEquipmentChangeComparison(
+      existingByCode,
+      changedInventoryItems
+    ),
+  };
 }
 
 async function applyEquipmentImportPatch({
@@ -238,6 +258,7 @@ async function applyEquipmentImportPatch({
   apiKey,
   gymId,
   inventoryItems,
+  changeComparison,
   slug,
 }) {
   const response = await fetch(
@@ -255,6 +276,7 @@ async function applyEquipmentImportPatch({
         p_source_payload: {
           schemaVersion: 2,
           equipment: inventoryItems,
+          changeComparison,
           source: { type: "import", slug },
         },
       }),
@@ -408,4 +430,43 @@ function buildChangedFields(existing, nextRow) {
   }
 
   return Object.keys(changed).length > 0 ? changed : null;
+}
+
+function buildChangeComparison(existing, changedFields) {
+  if (!changedFields) return {};
+
+  return Object.fromEntries(
+    Object.entries(changedFields).map(([field, after]) => [
+      field,
+      {
+        before: existing?.[field] ?? null,
+        after,
+        beforeCaptured: true,
+      },
+    ])
+  );
+}
+
+function buildEquipmentChangeComparison(existingByCode, inventoryItems) {
+  return Object.fromEntries(
+    inventoryItems.map((item) => {
+      const existing = existingByCode.get(item.equipmentCode);
+      return [
+        `equipment.${item.equipmentCode}`,
+        {
+          before: existing
+            ? {
+                isPresent: existing.is_present,
+                quantity: existing.quantity,
+              }
+            : null,
+          after: {
+            isPresent: item.isPresent,
+            quantity: item.quantity ?? null,
+          },
+          beforeCaptured: true,
+        },
+      ];
+    })
+  );
 }

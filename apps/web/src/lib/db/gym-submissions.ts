@@ -5,6 +5,10 @@ import {
   type EquipmentInventoryPatchItem,
   type Gym,
 } from "@gymory/shared";
+import {
+  buildChangeComparison,
+  type ChangeComparison,
+} from "../submission-change-comparison";
 import { createAdminClient } from "./supabase-admin";
 
 export type SubmissionPayload = {
@@ -12,6 +16,7 @@ export type SubmissionPayload = {
   gym?: Record<string, unknown>;
   equipment?: Record<string, unknown> | EquipmentInventoryPatchItem[];
   amenities?: Record<string, unknown>;
+  changeComparison?: ChangeComparison;
   [key: string]: unknown;
 };
 
@@ -335,19 +340,33 @@ function isPlainRecord(value: unknown): value is JsonRecord {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
-export function buildSubmissionPayloadFromGymSnapshot(snapshot: JsonRecord) {
+export function buildSubmissionPayloadFromGymSnapshot(
+  snapshot: JsonRecord,
+  before?: JsonRecord | null
+) {
   const gym = {
     ...pickFields(snapshot, GYM_FIELDS),
     ...pickFields(snapshot, EQUIPMENT_METADATA_FIELDS),
   };
   const amenities = pickFields(snapshot, AMENITY_FIELDS);
+  const comparisonAfter = {
+    ...pickFields(snapshot, GYM_FIELDS),
+    ...pickFields(snapshot, EQUIPMENT_METADATA_FIELDS),
+    ...amenities,
+  };
 
   if ("equipment_notes" in gym) {
     gym.notes = gym.equipment_notes ?? null;
     delete gym.equipment_notes;
   }
 
-  return { schemaVersion: 2, gym, equipment: [], amenities };
+  return {
+    schemaVersion: 2,
+    gym,
+    equipment: [],
+    amenities,
+    changeComparison: buildChangeComparison(before, comparisonAfter),
+  };
 }
 
 export async function insertSubmissionRecord({
