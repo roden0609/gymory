@@ -24,7 +24,7 @@ export function AdminSubmissionsReview({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="min-w-0 space-y-4">
       {submissions.map((submission) => (
         <SubmissionCard key={submission.id} submission={submission} />
       ))}
@@ -101,7 +101,7 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
   }
 
   return (
-    <section className="rounded-lg border border-gray-200 bg-white p-5">
+    <section className="min-w-0 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 sm:p-5">
       <div
         ref={feedbackRef}
         className={
@@ -120,11 +120,11 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div>
+        <div className="min-w-0">
           <h2 className="text-lg font-semibold text-gray-900">
             {submission.submission_type}
           </h2>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 break-words text-sm text-gray-500">
             {displayName}
             {submission.gyms?.slug ? ` · /gyms/${submission.gyms.slug}` : ""}
           </p>
@@ -259,9 +259,11 @@ function PayloadBlock({
   return (
     <div>
       <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
-      <pre className="mt-2 overflow-x-auto rounded-lg bg-gray-50 p-3 text-xs text-gray-700">
-        {JSON.stringify(value, null, 2)}
-      </pre>
+      <div className="mt-2 max-w-full overflow-x-auto rounded-lg bg-gray-50">
+        <pre className="w-max min-w-full p-3 text-xs text-gray-700">
+          {JSON.stringify(value, null, 2)}
+        </pre>
+      </div>
     </div>
   );
 }

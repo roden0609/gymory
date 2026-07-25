@@ -61,6 +61,20 @@ https://www.gymory.io/?no_ga=0
 Local development only sends GA4 traffic if `NEXT_PUBLIC_GA_MEASUREMENT_ID` is
 set locally.
 
+## Admin submission history
+
+Admins can review pending submissions and browse the paginated audit history at:
+
+```text
+/{locale}/admin/submissions
+```
+
+The History tab supports gym, status, actor, submission type, and date filters.
+Apply `0045_add_submission_history_support.sql` before deploying this page. The
+migration adds the history query indexes and changes the submission-to-gym
+foreign key to `on delete set null`, preserving audit records after a hard gym
+deletion.
+
 ## Getting started
 
 ```bash
