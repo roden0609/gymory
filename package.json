@@ -23,7 +23,8 @@
   },
   "devDependencies": {
     "turbo": "^2.0.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "vitest": "^4.1.10"
   },
   "dependencies": {
     "opencc-js": "^1.0.5"

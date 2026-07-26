@@ -28,6 +28,12 @@ If a third-party component, such as Leaflet, positions internal elements outside
 
 ## Verification
 
+After every feature change, run the unit test suite before finishing:
+
+```bash
+pnpm test
+```
+
 For frontend changes, run the relevant checks before finishing:
 
 ```bash
