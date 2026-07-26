@@ -21,99 +21,185 @@ const headers = {
   Accept: "application/json",
 };
 
-const mappings = await fetchAll("equipment_legacy_field_mappings", {
-  select: "legacy_field,equipment_code,value_kind,is_alias",
-  order: "legacy_field",
-});
-
-if (mappings.length === 0) {
-  throw new Error("No legacy equipment mappings found. Has migration 0043 run?");
-}
-
-const legacyFields = mappings.map((mapping) => mapping.legacy_field);
-const select = ["id", "slug", ...legacyFields].join(",");
-
-const [legacyGyms, normalizedGyms, conflicts] = await Promise.all([
-  fetchAll("gyms", { select, order: "id" }),
-  fetchAll("gyms_normalized", { select, order: "id" }),
-  fetchAll("gym_equipment_migration_conflicts", {
-    select: "gym_id,equipment_code,conflict_type",
+const [gyms, normalizedGyms, inventoryItems, equipmentTypes] = await Promise.all([
+  fetchAll("gyms", { select: "id,slug,is_active", order: "id" }),
+  fetchAll("gyms_normalized", {
+    select: "id,slug,is_active",
+    order: "id",
+  }),
+  fetchAll("gym_equipment_inventory", {
+    select: "gym_id,equipment_code,is_present,quantity",
+    order: "gym_id,equipment_code",
+  }),
+  fetchAll("equipment_types", {
+    select: "code",
+    order: "code",
   }),
 ]);
 
-const normalizedById = new Map(normalizedGyms.map((gym) => [gym.id, gym]));
-const conflictsByGymAndCode = new Map(
-  conflicts.map((conflict) => [
-    `${conflict.gym_id}:${conflict.equipment_code}`,
-    conflict.conflict_type,
-  ])
+const gymsById = new Map(gyms.map((gym) => [gym.id, gym]));
+const normalizedIds = new Set(normalizedGyms.map((gym) => gym.id));
+const equipmentTypesByCode = new Map(
+  equipmentTypes.map((equipmentType) => [equipmentType.code, equipmentType])
 );
-const mappingByField = new Map(
-  mappings.map((mapping) => [mapping.legacy_field, mapping])
-);
+const inventoryKeys = new Set();
+const issues = [];
 
-const classifiedDifferences = [];
-const unclassifiedDifferences = [];
-
-for (const legacyGym of legacyGyms) {
-  const normalizedGym = normalizedById.get(legacyGym.id);
-  if (!normalizedGym) {
-    unclassifiedDifferences.push({
-      gymId: legacyGym.id,
-      slug: legacyGym.slug,
-      field: "<row>",
-      legacy: "present",
-      normalized: "missing",
+for (const gym of gyms) {
+  if (!normalizedIds.has(gym.id)) {
+    issues.push({
+      type: "missing_normalized_gym",
+      gymId: gym.id,
+      slug: gym.slug,
     });
-    continue;
+  }
+}
+
+for (const normalizedGym of normalizedGyms) {
+  if (!gymsById.has(normalizedGym.id)) {
+    issues.push({
+      type: "orphan_normalized_gym",
+      gymId: normalizedGym.id,
+      slug: normalizedGym.slug,
+    });
+  }
+}
+
+for (const item of inventoryItems) {
+  const key = `${item.gym_id}:${item.equipment_code}`;
+  if (inventoryKeys.has(key)) {
+    issues.push({ type: "duplicate_inventory", key });
+  }
+  inventoryKeys.add(key);
+
+  if (!gymsById.has(item.gym_id)) {
+    issues.push({
+      type: "orphan_inventory_gym",
+      gymId: item.gym_id,
+      equipmentCode: item.equipment_code,
+    });
   }
 
-  for (const field of legacyFields) {
-    if (Object.is(legacyGym[field], normalizedGym[field])) continue;
+  const equipmentType = equipmentTypesByCode.get(item.equipment_code);
+  if (!equipmentType) {
+    issues.push({
+      type: "unknown_equipment_code",
+      gymId: item.gym_id,
+      equipmentCode: item.equipment_code,
+    });
+  }
 
-    const mapping = mappingByField.get(field);
-    const conflictType = conflictsByGymAndCode.get(
-      `${legacyGym.id}:${mapping.equipment_code}`
-    );
-    const difference = {
-      gymId: legacyGym.id,
-      slug: legacyGym.slug,
-      field,
-      equipmentCode: mapping.equipment_code,
-      legacy: legacyGym[field],
-      normalized: normalizedGym[field],
-      ...(conflictType ? { conflictType } : {}),
-    };
+  if (item.is_present === null && item.quantity === null) {
+    issues.push({ type: "inventory_without_value", key });
+  }
+  if (
+    item.quantity !== null &&
+    (!Number.isInteger(item.quantity) || item.quantity < 0)
+  ) {
+    issues.push({ type: "invalid_quantity", key, quantity: item.quantity });
+  }
+  if (item.quantity === 0 && item.is_present === true) {
+    issues.push({ type: "zero_quantity_marked_present", key });
+  }
+  if (item.quantity > 0 && item.is_present === false) {
+    issues.push({ type: "positive_quantity_marked_absent", key });
+  }
+}
 
-    if (conflictType || mapping.is_alias) {
-      classifiedDifferences.push(difference);
-    } else {
-      unclassifiedDifferences.push(difference);
+const legacyMappings = await fetchAll(
+  "equipment_legacy_field_mappings",
+  {
+    select: "legacy_field,equipment_code,is_alias",
+    order: "legacy_field",
+  },
+  { allowMissing: true }
+);
+const classifiedLegacyDifferences = [];
+
+if (legacyMappings) {
+  const legacyFields = legacyMappings.map((mapping) => mapping.legacy_field);
+  const legacySelect = ["id", "slug", ...legacyFields].join(",");
+  const [legacyGyms, compatibilityGyms, conflicts] = await Promise.all([
+    fetchAll("gyms", { select: legacySelect, order: "id" }),
+    fetchAll("gyms_normalized", { select: legacySelect, order: "id" }),
+    fetchAll("gym_equipment_migration_conflicts", {
+      select: "gym_id,equipment_code,conflict_type",
+    }),
+  ]);
+  const compatibilityById = new Map(
+    compatibilityGyms.map((gym) => [gym.id, gym])
+  );
+  const mappingByField = new Map(
+    legacyMappings.map((mapping) => [mapping.legacy_field, mapping])
+  );
+  const conflictsByGymAndCode = new Map(
+    conflicts.map((conflict) => [
+      `${conflict.gym_id}:${conflict.equipment_code}`,
+      conflict.conflict_type,
+    ])
+  );
+
+  for (const legacyGym of legacyGyms) {
+    const compatibilityGym = compatibilityById.get(legacyGym.id);
+    if (!compatibilityGym) continue;
+
+    for (const field of legacyFields) {
+      if (Object.is(legacyGym[field], compatibilityGym[field])) continue;
+
+      const mapping = mappingByField.get(field);
+      const conflictType = conflictsByGymAndCode.get(
+        `${legacyGym.id}:${mapping.equipment_code}`
+      );
+      const difference = {
+        gymId: legacyGym.id,
+        slug: legacyGym.slug,
+        field,
+        equipmentCode: mapping.equipment_code,
+        legacy: legacyGym[field],
+        normalized: compatibilityGym[field],
+        ...(conflictType ? { conflictType } : {}),
+      };
+
+      if (mapping.is_alias || conflictType) {
+        classifiedLegacyDifferences.push(difference);
+      } else {
+        issues.push({ type: "unclassified_legacy_difference", ...difference });
+      }
     }
   }
 }
 
-console.log(`Mappings: ${mappings.length}`);
-console.log(`Legacy gyms: ${legacyGyms.length}`);
+console.log(`Gyms: ${gyms.length}`);
 console.log(`Normalized gyms: ${normalizedGyms.length}`);
-console.log(`Migration conflicts: ${conflicts.length}`);
-console.log(`Classified differences: ${classifiedDifferences.length}`);
-console.log(`Unclassified differences: ${unclassifiedDifferences.length}`);
+console.log(`Equipment types: ${equipmentTypes.length}`);
+console.log(`Inventory rows: ${inventoryItems.length}`);
+console.log(
+  legacyMappings
+    ? `Legacy reconciliation: ${classifiedLegacyDifferences.length} classified differences`
+    : "Legacy reconciliation: not applicable after schema cleanup"
+);
+console.log(`Integrity issues: ${issues.length}`);
 
-if (classifiedDifferences.length > 0) {
-  console.log("\nClassified difference examples:");
-  console.log(JSON.stringify(classifiedDifferences.slice(0, 20), null, 2));
+if (classifiedLegacyDifferences.length > 0) {
+  console.log("\nClassified legacy difference examples:");
+  console.log(
+    JSON.stringify(classifiedLegacyDifferences.slice(0, 20), null, 2)
+  );
 }
 
-if (unclassifiedDifferences.length > 0) {
-  console.error("\nUnclassified difference examples:");
-  console.error(JSON.stringify(unclassifiedDifferences.slice(0, 50), null, 2));
+if (issues.length > 0) {
+  console.error("\nIntegrity issue examples:");
+  console.error(JSON.stringify(issues.slice(0, 50), null, 2));
   process.exitCode = 1;
 } else {
-  console.log("\nValidation passed with no unclassified differences.");
+  console.log("\nNormalized inventory validation passed.");
 }
 
-async function fetchAll(table, searchParams) {
+async function fetchAll(
+  table,
+  searchParams,
+  { allowMissing = false } = {}
+) {
   const pageSize = 500;
   const rows = [];
 
@@ -129,6 +215,10 @@ async function fetchAll(table, searchParams) {
         Range: `${offset}-${offset + pageSize - 1}`,
       },
     });
+
+    if (allowMissing && response.status === 404 && offset === 0) {
+      return null;
+    }
 
     if (!response.ok) {
       throw new Error(

@@ -198,6 +198,49 @@ supabase db push --linked
 For each new migration, add an appropriate post-migration validation command or
 query and run it in both environments.
 
+### Remove the legacy gym equipment schema
+
+Migration `0046_remove_legacy_gym_equipment_schema.sql` completes the normalized
+inventory cutover. It:
+
+- blocks if a pending submission still contains a legacy equipment object;
+- stores the final flat values, mapping manifest, and migration conflicts in the
+  private `gym_equipment_legacy_cleanup_backup_0046` recovery table;
+- removes the legacy sync triggers and functions;
+- drops physical equipment `has_*` and `*_count` columns from `gyms`;
+- drops `equipment_legacy_field_mappings` and
+  `gym_equipment_migration_conflicts`; and
+- preserves `gyms_normalized` as the compatibility read view.
+
+Promote the cleanup to DEV first:
+
+```bash
+supabase link --project-ref yzvipswjmgcolaepqwoz
+supabase migration list --linked
+pnpm validate:gym-inventory-normalization -- --env apps/web/.env.dev
+supabase db push --linked --dry-run
+supabase db push --linked
+pnpm validate:gym-inventory-normalization -- --env apps/web/.env.dev
+```
+
+Test search, gym detail, submission approval, admin equipment writes, and at
+least one importer in DEV. Then commit/merge the exact tested migration and
+application changes. Before PROD, confirm a recoverable Supabase backup and
+promote the same migration:
+
+```bash
+supabase link --project-ref qgldameylaysgfsvytjh
+supabase migration list --linked
+pnpm validate:gym-inventory-normalization -- --env apps/web/.env.prod
+supabase db push --linked --dry-run
+supabase db push --linked
+pnpm validate:gym-inventory-normalization -- --env apps/web/.env.prod
+```
+
+Keep `gym_equipment_legacy_cleanup_backup_0046` through the agreed observation
+period. Remove it only in a later migration after PROD recovery has been
+reviewed; it is not used by runtime reads or writes.
+
 Safety rules:
 
 - Always run `migration list` and `db push --dry-run` after switching the linked

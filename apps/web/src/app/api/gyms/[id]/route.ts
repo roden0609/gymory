@@ -25,7 +25,7 @@ export async function GET(
 
   const supabase = createAdminClient();
   const { data, error } = await supabase
-    .from("gyms")
+    .from("gyms_normalized")
     .select("*")
     .eq("id", params.id)
     .single();

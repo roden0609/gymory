@@ -4,13 +4,8 @@ export async function upsertGymsWithSubmissions({
   supabaseUrl,
   apiKey,
 }) {
-  const equipmentMappings = await fetchEquipmentMappings({ supabaseUrl, apiKey });
-
   for (const row of rows) {
-    const { gymRow, inventoryItems } = splitNormalizedEquipment(
-      row,
-      equipmentMappings
-    );
+    const { gymRow, inventoryItems } = splitNormalizedEquipment(row);
     const existing = await fetchGymBySlug({
       supabaseUrl,
       apiKey,
@@ -107,74 +102,51 @@ const AMENITY_FIELDS = new Set([
   "has_ice_bath",
 ]);
 
-async function fetchEquipmentMappings({ supabaseUrl, apiKey }) {
-  const url = new URL(`${supabaseUrl}/rest/v1/equipment_legacy_field_mappings`);
-  url.searchParams.set(
-    "select",
-    "legacy_field,equipment_code,value_kind,precedence"
-  );
-  url.searchParams.set("order", "precedence.asc,legacy_field.asc");
+const EQUIPMENT_CODE_OVERRIDES = {
+  has_battle_rope: "battle_rope",
+  has_battle_ropes: "battle_rope",
+  has_farmer_handles: "farmer_handles",
+  has_farmers_handles: "farmer_handles",
+  lat_pulldown_count: "lat_pulldown_machine",
+  chest_press_count: "chest_press_machine",
+  leg_press_count: "leg_press_machine",
+};
 
-  const response = await fetch(url, {
-    headers: buildHeaders(apiKey),
-  });
-
-  if (!response.ok) {
-    throw new Error(
-      `Supabase equipment mapping fetch failed: ${response.status} ${await response.text()}`
-    );
-  }
-
-  const mappings = await response.json();
-  if (!Array.isArray(mappings) || mappings.length === 0) {
-    throw new Error(
-      "No normalized equipment mappings found. Apply migration 0043 before importing."
-    );
-  }
-
-  return mappings;
-}
-
-export function splitNormalizedEquipment(row, mappings) {
+export function splitNormalizedEquipment(row) {
   const gymRow = { ...row };
   const valuesByCode = new Map();
 
-  for (const mapping of mappings) {
-    delete gymRow[mapping.legacy_field];
-    const value = row[mapping.legacy_field];
+  for (const [field, value] of Object.entries(row)) {
+    if (!isEquipmentCompatibilityField(field)) continue;
+
+    delete gymRow[field];
     if (value === null || value === undefined) continue;
 
-    const values = valuesByCode.get(mapping.equipment_code) ?? {
+    const equipmentCode =
+      EQUIPMENT_CODE_OVERRIDES[field] ??
+      (field.startsWith("has_")
+        ? field.slice(4)
+        : field.replace(/_count$/, ""));
+    const values = valuesByCode.get(equipmentCode) ?? {
       presenceSeen: false,
       presenceTrue: false,
       presenceFalse: false,
       quantity: null,
     };
 
-    if (mapping.value_kind === "presence" && typeof value === "boolean") {
+    if (field.startsWith("has_") && typeof value === "boolean") {
       values.presenceSeen = true;
       values.presenceTrue ||= value;
       values.presenceFalse ||= !value;
     } else if (
-      mapping.value_kind === "quantity" &&
+      field.endsWith("_count") &&
       Number.isInteger(value) &&
       value >= 0
     ) {
       values.quantity = Math.max(values.quantity ?? 0, value);
     }
 
-    valuesByCode.set(mapping.equipment_code, values);
-  }
-
-  const unmappedEquipmentFields = Object.keys(gymRow).filter(
-    (field) =>
-      !AMENITY_FIELDS.has(field) &&
-      (field.startsWith("has_") || field.endsWith("_count"))
-  );
-  if (unmappedEquipmentFields.length > 0) {
-    throw new Error(
-      `Importer contains equipment fields missing from the DB mapping manifest: ${unmappedEquipmentFields.join(", ")}`
-    );
+    valuesByCode.set(equipmentCode, values);
   }
 
   const inventoryItems = [];
@@ -205,6 +177,11 @@ export function splitNormalizedEquipment(row, mappings) {
   }
 
   return { gymRow, inventoryItems };
+}
+
+function isEquipmentCompatibilityField(field) {
+  if (AMENITY_FIELDS.has(field)) return false;
+  return field.startsWith("has_") || field.endsWith("_count");
 }
 
 async function filterChangedInventoryItems({

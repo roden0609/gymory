@@ -1,7 +1,7 @@
 import type { GymEquipmentInventoryItem } from "./equipment";
 
-// Core Gym type — legacy flat equipment properties remain during the normalized
-// inventory compatibility window.
+// Core read-model type. Flat equipment properties are compatibility fields
+// derived by gyms_normalized; they are not physical columns on public.gyms.
 
 export type SizeCategory = "small" | "medium" | "large";
 export type DataSource = "admin" | "owner" | "user_submission" | "import";

@@ -92,6 +92,13 @@ HK-KTQ, HK-TW, HK-TM, HK-YL, HK-N, HK-TP, HK-ST, HK-SK, HK-IS
 | `hyrox_source_url` | `text` | Source URL for HYROX import |
 | `hyrox_source_synced_at` | `timestamptz` | Last HYROX source sync time |
 
+### `gyms_normalized` Equipment Compatibility Properties
+
+The equipment properties in the following sections are columns of the
+`gyms_normalized` view, derived from `gym_equipment_inventory`. They are not
+physical `gyms` columns after migration `0046`. Weight-range metadata and the
+amenity fields called out below remain physical `gyms` columns.
+
 ### Free Weights and Racks
 
 | Column | Type |
@@ -232,6 +239,11 @@ HK-KTQ, HK-TW, HK-TM, HK-YL, HK-N, HK-TP, HK-ST, HK-SK, HK-IS
 
 ### Other Accessories and Amenities
 
+The seven amenity fields (`has_washroom`, `has_bathroom`,
+`has_changing_room`, `has_free_water`, `has_dry_sauna`, `has_wet_sauna`, and
+`has_ice_bath`) remain physical `gyms` columns. Other fields in this table are
+equipment compatibility properties from `gyms_normalized`.
+
 | Column | Type |
 | --- | --- |
 | `has_foam_roller` | `boolean` |
@@ -268,9 +280,9 @@ These appeared in earlier migrations but are not part of the current schema:
 - `has_booty_builder` → dropped; Booty Builder is represented as an equipment brand
 - `gym_audit` → dropped and folded into submission history
 
-The generic equipment `has_*` and `*_count` columns remain physically present
-during the rollback window. New public reads use `gyms_normalized`, which rebuilds
-those compatibility fields from normalized inventory.
+Generic equipment `has_*` and `*_count` properties are not physically stored on
+this table after migration `0046`. Compatibility reads use `gyms_normalized`,
+which rebuilds those flat properties from normalized inventory.
 
 ## `public.equipment_types`
 
@@ -316,17 +328,20 @@ Public reads are allowed only for active gyms. Direct public writes are denied.
 The service-role function `apply_gym_equipment_inventory_patch` writes normalized
 inventory and its approved audit record atomically.
 
-## Equipment migration support
+## Equipment compatibility and cleanup
 
-- `equipment_legacy_field_mappings` is the rollback-window manifest from legacy
-  gym fields to canonical codes.
-- `gym_equipment_migration_conflicts` classifies contradictory legacy evidence.
-- The gym equipment sync triggers atomically mirror transitional legacy inserts
-  and equipment-column updates into normalized inventory.
 - `gyms_normalized` is a security-invoker compatibility view that exposes the
-  legacy gym read shape using normalized inventory values.
+  flat gym read shape using normalized inventory values.
 - `gym_matches_equipment_requirements(uuid, jsonb)` evaluates generic AND-based
   equipment requirements and supports descendant presence roll-up.
+- `gym_equipment_legacy_cleanup_backup_0046` is a private recovery snapshot of
+  the final legacy flat values, mapping manifest, and migration conflicts. It is
+  not used by runtime reads or writes and should be removed only after the
+  post-PROD observation period.
+
+The transitional `equipment_legacy_field_mappings`,
+`gym_equipment_migration_conflicts`, and legacy gym equipment sync triggers and
+functions are removed by migration `0046`.
 
 ## `public.gym_update_submissions`
 
@@ -522,8 +537,8 @@ Supabase Storage bucket for user avatar uploads.
 
 The migrations add indexes for common lookups:
 
-- `gyms`: district, active status, lat/lng, slug, rack/count/weight filters,
-  HYROX fields, and selected equipment counts.
+- `gyms`: district, active status, lat/lng, slug, weight metadata, and HYROX
+  fields.
 - `gym_equipment_inventory`: gym lookup, equipment/gym lookup, and positive
   presence lookup.
 - `gym_update_submissions`: status, gym, submitter, reviewer.
@@ -537,7 +552,7 @@ The migrations add indexes for common lookups:
 
 ## Search Query Pattern
 
-Legacy-compatible equipment search during the rollback window:
+Compatibility equipment search backed by normalized inventory:
 
 ```sql
 select *

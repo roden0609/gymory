@@ -878,6 +878,20 @@ The project may schedule legacy column removal only when:
 - rollback and recovery steps have been tested or reviewed
 - the observation period has completed without unresolved data drift
 
+### Implemented cleanup
+
+Migration `0046_remove_legacy_gym_equipment_schema.sql` implements the physical
+legacy-schema removal. The public application continues to receive flat
+equipment compatibility properties from `gyms_normalized`, but `public.gyms`
+no longer stores those equipment columns. Importers derive canonical codes
+without querying the legacy mapping table, and the validation script checks the
+normalized view and inventory integrity directly.
+
+The migration preserves the final legacy values, mapping manifest, and recorded
+conflicts in the private
+`gym_equipment_legacy_cleanup_backup_0046` recovery table. That recovery table
+is intentionally retained through the post-PROD observation period.
+
 ---
 
 ## Risks and Mitigations
