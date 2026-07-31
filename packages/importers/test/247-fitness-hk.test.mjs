@@ -2,9 +2,14 @@ import { readFile } from "node:fs/promises";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
+  buildStoreDetailBundles,
   buildRowsFromDetails,
   mapStoreToGymRow,
   parseArgs,
+  parseJsonText,
+  parseStoreListPayload,
+  runImporter,
+  upsertRows,
 } from "../../../scripts/import-247-fitness-hk.mjs";
 
 const fixedNow = new Date("2026-07-31T12:00:00.000Z");
@@ -13,6 +18,15 @@ async function loadFixture() {
   return JSON.parse(
     await readFile(
       new URL("./fixtures/247-fitness-hk/details.json", import.meta.url),
+      "utf8"
+    )
+  );
+}
+
+async function loadJsonFixture(name) {
+  return JSON.parse(
+    await readFile(
+      new URL(`./fixtures/247-fitness-hk/${name}`, import.meta.url),
       "utf8"
     )
   );
@@ -125,6 +139,25 @@ describe("24/7 Fitness fixture dry run", () => {
     expect(row.lng).toBeNull();
   });
 
+  it("normalizes invalid coordinate strings to null", () => {
+    const row = mapStoreToGymRow(
+      {
+        detailEn: {
+          storeId: "999",
+          storeName: "Test Club",
+          address: "Sha Tin",
+          latitude: "not-a-number",
+          longitude: "Infinity",
+        },
+      },
+      {},
+      fixedNow
+    );
+
+    expect(row.lat).toBeNull();
+    expect(row.lng).toBeNull();
+  });
+
   it("fails loudly for an empty or structurally changed fixture", () => {
     expect(() => buildRowsFromDetails([], {}, fixedNow)).toThrow(
       "did not contain any stores"
@@ -164,5 +197,111 @@ describe("24/7 Fitness fixture dry run", () => {
         fixedNow
       )
     ).toThrow("Could not infer district_code for 1 gyms");
+  });
+});
+
+describe("24/7 Fitness raw API parsing", () => {
+  it("selects only Hong Kong stores from the raw list response", async () => {
+    const payload = await loadJsonFixture("list-en.json");
+    expect(parseStoreListPayload(payload).map(({ storeId }) => storeId)).toEqual([
+      "200",
+      "100",
+    ]);
+  });
+
+  it.each([
+    [{}, "countryNodes"],
+    [{ data: { countryNodes: [] } }, "Hong Kong areaNodeList"],
+    [
+      {
+        data: {
+          countryNodes: [{ countryCode: "HK", areaNodeList: [] }],
+        },
+      },
+      "store array",
+    ],
+  ])("fails loudly when list structure changes", (payload, message) => {
+    expect(() => parseStoreListPayload(payload)).toThrow(message);
+  });
+
+  it("reports malformed JSON with its source name", () => {
+    expect(() => parseJsonText("<html>error</html>", "list endpoint")).toThrow(
+      "Expected JSON from list endpoint"
+    );
+  });
+
+  it("correlates bilingual lists and detail responses by store ID", async () => {
+    const storesEn = parseStoreListPayload(
+      await loadJsonFixture("list-en.json")
+    );
+    const storesZh = parseStoreListPayload(
+      await loadJsonFixture("list-zh.json")
+    );
+    const details = await loadFixture();
+    const detailsById = new Map(details.map((detail) => [detail.storeId, detail]));
+    const fetchDetail = vi.fn(async (storeId, lang) =>
+      lang === "en"
+        ? detailsById.get(storeId)?.detailEn
+        : detailsById.get(storeId)?.detailZh
+    );
+
+    const bundles = await buildStoreDetailBundles(
+      storesZh,
+      storesEn,
+      fetchDetail,
+      "1"
+    );
+
+    expect(bundles).toHaveLength(1);
+    expect(bundles[0]).toMatchObject({
+      storeId: "200",
+      listEn: { storeName: "Central" },
+      listZh: { storeName: "中環" },
+      detailEn: { address: "1 Queen's Road Central, Central" },
+      detailZh: { address: "中環皇后大道中1號" },
+    });
+    expect(fetchDetail).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("24/7 Fitness injected runner", () => {
+  it("uses fixture input without fetching or upserting during a dry run", async () => {
+    const details = await loadFixture();
+    const writeRows = vi.fn();
+    const fetchDetails = vi.fn(() => {
+      throw new Error("fixture mode must not fetch");
+    });
+    const persistRows = vi.fn();
+    const log = vi.fn();
+
+    const result = await runImporter(
+      { "details-file": "fixture.json", out: "rows.json" },
+      {
+        loadDetailsFile: vi.fn().mockResolvedValue(details),
+        fetchStoreDetailsFromApi: fetchDetails,
+        writeRows,
+        upsertRows: persistRows,
+        now: () => fixedNow,
+        cwd: () => "/tmp/gymory-importer-test",
+        log,
+      }
+    );
+
+    expect(fetchDetails).not.toHaveBeenCalled();
+    expect(persistRows).not.toHaveBeenCalled();
+    expect(writeRows).toHaveBeenCalledOnce();
+    expect(writeRows.mock.calls[0][0]).toBe(
+      "/tmp/gymory-importer-test/rows.json"
+    );
+    expect(result).toMatchObject({ upserted: false, rows: { length: 2 } });
+    expect(log).toHaveBeenLastCalledWith(
+      "Dry run only. Pass --upsert to write to Supabase."
+    );
+  });
+
+  it("requires credentials before a real upsert", async () => {
+    await expect(upsertRows([], {})).rejects.toThrow(
+      "Missing NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY"
+    );
   });
 });

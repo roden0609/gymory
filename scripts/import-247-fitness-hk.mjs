@@ -35,31 +35,47 @@ const ALLOWED_ARGS = new Set([
 ]);
 
 export async function main(args = parseArgs(process.argv.slice(2))) {
+  return runImporter(args);
+}
+
+export async function runImporter(args, dependencies = {}) {
+  const loadOverrides =
+    dependencies.loadDistrictOverrides ?? loadDistrictOverrides;
+  const loadDetails = dependencies.loadDetailsFile ?? loadDetailsFile;
+  const fetchDetails =
+    dependencies.fetchStoreDetailsFromApi ?? fetchStoreDetailsFromApi;
+  const writeRows = dependencies.writeRows ?? writeRowsToFile;
+  const persistRows = dependencies.upsertRows ?? upsertRows;
+  const now = dependencies.now?.() ?? new Date();
+  const cwd = dependencies.cwd?.() ?? process.cwd();
+  const log = dependencies.log ?? console.log;
+
   const districtOverrides = args["district-overrides"]
-    ? await loadDistrictOverrides(args["district-overrides"])
+    ? await loadOverrides(args["district-overrides"])
     : {};
 
   const details = args["details-file"]
-    ? await loadDetailsFile(args["details-file"], args.limit)
-    : await fetchStoreDetailsFromApi(args.limit);
+    ? await loadDetails(args["details-file"], args.limit)
+    : await fetchDetails(args.limit);
 
-  const rows = buildRowsFromDetails(details, districtOverrides, new Date());
+  const rows = buildRowsFromDetails(details, districtOverrides, now);
 
   const outPath = path.resolve(
-    process.cwd(),
+    cwd,
     args.out ?? "data/imports/247-fitness-hk-baseline.json"
   );
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(outPath, `${JSON.stringify(rows, null, 2)}\n`);
+  await writeRows(outPath, rows);
 
-  console.log(`Wrote ${rows.length} 24/7 Fitness HK baseline rows to ${outPath}`);
+  log(`Wrote ${rows.length} 24/7 Fitness HK baseline rows to ${outPath}`);
 
   if (args.upsert) {
-    await upsertRows(rows);
-    console.log(`Upserted ${rows.length} rows into Supabase gyms on slug`);
+    await persistRows(rows);
+    log(`Upserted ${rows.length} rows into Supabase gyms on slug`);
   } else {
-    console.log("Dry run only. Pass --upsert to write to Supabase.");
+    log("Dry run only. Pass --upsert to write to Supabase.");
   }
+
+  return { rows, outPath, upserted: Boolean(args.upsert) };
 }
 
 export function parseArgs(argv) {
@@ -184,15 +200,23 @@ async function fetchJson(url) {
     throw new Error(`Failed ${url}: ${response.status} ${text.slice(0, 300)}`);
   }
 
-  try {
-    return JSON.parse(text);
-  } catch {
-    throw new Error(`Expected JSON from ${url}, got: ${text.slice(0, 300)}`);
-  }
+  return parseJsonText(text, url);
 }
 
 async function fetchStoreList(url) {
   const payload = await fetchJson(url);
+  return parseStoreListPayload(payload);
+}
+
+export function parseJsonText(text, source = "24/7 Fitness response") {
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`Expected JSON from ${source}, got: ${text.slice(0, 300)}`);
+  }
+}
+
+export function parseStoreListPayload(payload) {
   const countryNodes = payload?.data?.countryNodes;
   if (!Array.isArray(countryNodes)) {
     throw new Error("Could not find countryNodes in 24/7 Fitness list response");
@@ -415,6 +439,15 @@ async function fetchStoreDetailsFromApi(limit) {
     fetchStoreList(LIST_URL_ZH),
     fetchStoreList(LIST_URL_EN),
   ]);
+  return buildStoreDetailBundles(storesZh, storesEn, fetchStoreDetailByLang, limit);
+}
+
+export async function buildStoreDetailBundles(
+  storesZh,
+  storesEn,
+  fetchDetail,
+  limit
+) {
   const storesByIdZh = new Map(storesZh.map((store) => [getStoreId(store), store]));
   const storesByIdEn = new Map(storesEn.map((store) => [getStoreId(store), store]));
   const storeIds = Array.from(new Set([...storesByIdZh.keys(), ...storesByIdEn.keys()])).filter(Boolean);
@@ -424,8 +457,8 @@ async function fetchStoreDetailsFromApi(limit) {
   for (const storeId of limitedStoreIds) {
     if (!storeId) continue;
     const [detailZh, detailEn] = await Promise.all([
-      fetchStoreDetailByLang(storeId, "zh-hk"),
-      fetchStoreDetailByLang(storeId, "en"),
+      fetchDetail(storeId, "zh-hk"),
+      fetchDetail(storeId, "en"),
     ]);
     details.push({
       storeId,
@@ -645,9 +678,14 @@ async function loadDetailsFile(filePath, limit) {
   return limit ? details.slice(0, Number(limit)) : details;
 }
 
-async function upsertRows(rows) {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const apiKey = process.env.SUPABASE_SECRET_KEY;
+async function writeRowsToFile(outPath, rows) {
+  await mkdir(path.dirname(outPath), { recursive: true });
+  await writeFile(outPath, `${JSON.stringify(rows, null, 2)}\n`);
+}
+
+export async function upsertRows(rows, env = process.env) {
+  const supabaseUrl = env.NEXT_PUBLIC_SUPABASE_URL;
+  const apiKey = env.SUPABASE_SECRET_KEY;
 
   if (!supabaseUrl || !apiKey) {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY for --upsert");

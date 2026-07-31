@@ -1,0 +1,19 @@
+{
+  "data": {
+    "countryNodes": [
+      {
+        "countryCode": "HK",
+        "areaNodeList": [
+          {
+            "areaName": "香港島",
+            "stores": [{ "storeId": "200", "storeName": "中環" }]
+          },
+          {
+            "areaName": "九龍",
+            "stores": [{ "storeId": "100", "storeName": "旺角" }]
+          }
+        ]
+      }
+    ]
+  }
+}

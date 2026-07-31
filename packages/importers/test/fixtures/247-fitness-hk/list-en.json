@@ -1,0 +1,23 @@
+{
+  "data": {
+    "countryNodes": [
+      {
+        "countryCode": "SG",
+        "areaNodeList": [{ "stores": [{ "storeId": "sg-1" }] }]
+      },
+      {
+        "countryCode": "HK",
+        "areaNodeList": [
+          {
+            "areaName": "Hong Kong Island",
+            "stores": [{ "storeId": "200", "storeName": "Central" }]
+          },
+          {
+            "areaName": "Kowloon",
+            "stores": [{ "storeId": "100", "storeName": "Mong Kok" }]
+          }
+        ]
+      }
+    ]
+  }
+}
