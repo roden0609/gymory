@@ -60,6 +60,17 @@ describe("localized metadata", () => {
     });
   });
 
+  it("builds root alternates without a trailing path slash", () => {
+    expect(getLocalizedAlternates("en")).toEqual({
+      canonical: "/en",
+      languages: {
+        en: "/en",
+        "zh-HK": "/zh-HK",
+        "x-default": "/en",
+      },
+    });
+  });
+
   it("preserves SEO fields and maps zh-HK Open Graph locales", () => {
     const metadata = buildSeoMetadata({
       locale: "zh-HK",
@@ -99,5 +110,19 @@ describe("localized metadata", () => {
     });
 
     expect(metadata.openGraph).toMatchObject({ locale: "en_US" });
+  });
+
+  it("maps English metadata and Traditional Chinese as its alternate locale", () => {
+    const metadata = buildSeoMetadata({
+      locale: "en",
+      title: "Hong Kong gyms",
+      description: "Find a gym",
+    });
+
+    expect(metadata.openGraph).toMatchObject({
+      locale: "en_US",
+      alternateLocale: ["zh_HK"],
+      url: "/en",
+    });
   });
 });

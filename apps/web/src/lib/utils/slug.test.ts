@@ -7,6 +7,8 @@ describe("toSlug", () => {
     ["  My New Gym  ", "my-new-gym"],
     ["Power---Rack", "power-rack"],
     ["Gym! @ Central", "gym-central"],
+    ["  Power \t Rack   Hong Kong  ", "power-rack-hong-kong"],
+    ["--Power--Rack--", "-power-rack-"],
     ["already-valid", "already-valid"],
     ["", ""],
     ["!!!", ""],

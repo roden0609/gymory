@@ -85,6 +85,23 @@ describe("buildEquipmentInventoryPatch", () => {
     expect(buildEquipmentInventoryPatch({ rack_count: quantity })).toEqual([]);
   });
 
+  it("ignores runtime values with unsupported types", () => {
+    const invalidValues = {
+      has_sled: "true",
+      rack_count: "2",
+      bench_count: Number.NaN,
+      barbell_count: Number.POSITIVE_INFINITY,
+    } as unknown as Parameters<typeof buildEquipmentInventoryPatch>[0];
+
+    expect(buildEquipmentInventoryPatch(invalidValues)).toEqual([]);
+  });
+
+  it("represents a zero quantity as known absence", () => {
+    expect(buildEquipmentInventoryPatch({ rack_count: 0 })).toEqual([
+      { equipmentCode: "rack", isPresent: false, quantity: 0 },
+    ]);
+  });
+
   it("treats a positive quantity as present even when a legacy flag is false", () => {
     expect(
       buildEquipmentInventoryPatch({
@@ -154,6 +171,21 @@ describe("buildEquipmentInventoryPatch", () => {
     ).toEqual([
       { equipmentCode: "rack", isPresent: true, quantity: 3 },
     ]);
+  });
+
+  it("emits an update when presence changes from true to false", () => {
+    expect(
+      buildEquipmentInventoryPatch(
+        { has_trap_bar: false },
+        { has_trap_bar: true }
+      )
+    ).toEqual([{ equipmentCode: "trap_bar", isPresent: false }]);
+  });
+
+  it("preserves previous equipment when the current field is omitted", () => {
+    expect(
+      buildEquipmentInventoryPatch({}, { rack_count: 2, has_trap_bar: true })
+    ).toEqual([]);
   });
 
   it("emits a removal when a previously known value becomes unknown", () => {

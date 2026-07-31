@@ -16,6 +16,16 @@ describe("isEqualJsonValue", () => {
     [[1, { nested: true }], [1, { nested: true }], true],
     [[1, 2], [2, 1], false],
     [{ a: 1, b: 2 }, { b: 2, a: 1 }, true],
+    [
+      { outer: { items: [{ a: 1, b: 2 }] } },
+      { outer: { items: [{ b: 2, a: 1 }] } },
+      true,
+    ],
+    [
+      { outer: { items: [{ value: 1 }] } },
+      { outer: { items: [{ value: 2 }] } },
+      false,
+    ],
     [{ a: 1 }, { a: 1, b: 2 }, false],
     [[], {}, false],
   ])("compares %j and %j as %s", (left, right, expected) => {
@@ -43,6 +53,15 @@ describe("buildChangeComparison", () => {
 
   it("returns an empty comparison without an after record", () => {
     expect(buildChangeComparison({ name: "Old" }, null)).toEqual({});
+  });
+
+  it("captures all after fields when no before record exists", () => {
+    expect(buildChangeComparison(null, { name: "New", active: false })).toEqual(
+      {
+        name: { before: null, after: "New", beforeCaptured: true },
+        active: { before: null, after: false, beforeCaptured: true },
+      }
+    );
   });
 });
 
@@ -94,6 +113,12 @@ describe("resolveChangeComparison", () => {
 
   it("returns an empty comparison when no source is valid", () => {
     expect(resolveChangeComparison({}, null)).toEqual({});
+  });
+
+  it("does not treat array before and after values as record payloads", () => {
+    expect(
+      resolveChangeComparison({ before: ["old"], after: ["new"] }, null)
+    ).toEqual({});
   });
 });
 

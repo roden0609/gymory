@@ -8,7 +8,7 @@ import {
 } from "./training-pages";
 
 function buildGym(overrides: Partial<GymSummary> = {}): GymSummary {
-  return {
+  const gym = {
     id: "gym-id",
     name: "Test Gym",
     name_zh: null,
@@ -21,6 +21,17 @@ function buildGym(overrides: Partial<GymSummary> = {}): GymSummary {
     size_category: null,
     ...overrides,
   } as GymSummary;
+
+  // GymSummary compatibility fields are nullable in the database read model.
+  // Return null for an omitted fixture field so tests cannot accidentally treat
+  // a partial fixture's undefined value as known data.
+  return new Proxy(gym, {
+    get(target, property, receiver) {
+      return Reflect.has(target, property)
+        ? Reflect.get(target, property, receiver)
+        : null;
+    },
+  });
 }
 
 function definition(slug: string) {
@@ -108,6 +119,25 @@ describe("HYROX collection rules", () => {
       )
     ).toEqual([{ labelKey: "skiErg", count: 2 }]);
   });
+
+  it("emits the official marker and only available official-page equipment", () => {
+    const official = definition("hyrox-official-hong-kong");
+    expect(
+      official.getSignals(
+        buildGym({
+          is_hyrox_official: true,
+          assault_runner_count: 1,
+          ski_erg_count: 0,
+          sled_count: null,
+          rower_count: 3,
+        })
+      )
+    ).toEqual([
+      { labelKey: "hyroxOfficial" },
+      { labelKey: "assaultRunner", count: 1 },
+      { labelKey: "rower", count: 3 },
+    ]);
+  });
 });
 
 describe("strength collection rules", () => {
@@ -158,6 +188,48 @@ describe("strength collection rules", () => {
         buildGym({ ...base, rack_count: 0, plate_max_weight_kg: 25 })
       )
     ).toBe(false);
+  });
+
+  it("emits Olympic lifting signals for counts and known plate boundaries", () => {
+    const olympic = definition("olympic-lifting-hong-kong");
+    expect(
+      olympic.getSignals(
+        buildGym({
+          platform_count: 2,
+          barbell_count: 4,
+          plate_min_weight_kg: 1.25,
+          plate_max_weight_kg: null,
+        })
+      )
+    ).toEqual([
+      { labelKey: "platforms", count: 2 },
+      { labelKey: "barbells", count: 4 },
+      { labelKey: "smallestPlate" },
+    ]);
+  });
+
+  it("emits powerlifting count and boolean signals without false values", () => {
+    const powerlifting = definition("powerlifting-hong-kong");
+    expect(
+      powerlifting.getSignals(
+        buildGym({
+          rack_count: 2,
+          barbell_count: 3,
+          plate_max_weight_kg: 25,
+          platform_count: 0,
+          bench_count: null,
+          has_deadlift_platform: true,
+          has_safety_squat_bar: false,
+          has_trap_bar: true,
+        })
+      )
+    ).toEqual([
+      { labelKey: "racks", count: 2 },
+      { labelKey: "barbells", count: 3 },
+      { labelKey: "heaviestPlate" },
+      { labelKey: "deadliftPlatform" },
+      { labelKey: "trapBar" },
+    ]);
   });
 });
 
@@ -224,6 +296,24 @@ describe("bodybuilding collection rules", () => {
       ).toBe(true);
     }
   );
+
+  it("emits only present bodybuilding equipment signals", () => {
+    expect(
+      definition("bodybuilding-hong-kong").getSignals(
+        buildGym({
+          has_hack_squat: true,
+          has_leg_press_machine: false,
+          has_chest_press_machine: true,
+          has_lat_pulldown_machine: null,
+          has_hip_abductor_machine: true,
+        })
+      )
+    ).toEqual([
+      { labelKey: "hackSquat" },
+      { labelKey: "chestPress" },
+      { labelKey: "hipAbductor" },
+    ]);
+  });
 });
 
 describe("hybrid training collection rules", () => {
