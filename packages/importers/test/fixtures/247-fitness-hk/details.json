@@ -1,0 +1,64 @@
+[
+  {
+    "storeId": "200",
+    "listZh": {
+      "storeId": "200",
+      "storeName": "中環",
+      "status": 1
+    },
+    "listEn": {
+      "storeId": "200",
+      "storeName": "Central",
+      "status": 1
+    },
+    "detailZh": {
+      "storeId": "200",
+      "storeName": "中環",
+      "address": "中環皇后大道中1號",
+      "latitude": "22.2819",
+      "longitude": "114.1585",
+      "mobile": "2123 4567",
+      "status": 1
+    },
+    "detailEn": {
+      "storeId": "200",
+      "storeName": "Central",
+      "address": "1 Queen's Road Central, Central",
+      "latitude": "22.2819",
+      "longitude": "114.1585",
+      "mobile": "2123 4567",
+      "status": 1
+    }
+  },
+  {
+    "storeId": "100",
+    "listZh": {
+      "storeId": "100",
+      "storeName": "旺角",
+      "status": 0
+    },
+    "listEn": {
+      "storeId": "100",
+      "storeName": "Mong Kok",
+      "status": 0
+    },
+    "detailZh": {
+      "storeId": "100",
+      "storeName": "旺角",
+      "address": "旺角彌敦道700號",
+      "latitude": "22.3193",
+      "longitude": "114.1694",
+      "phone": "2399 0000",
+      "status": 0
+    },
+    "detailEn": {
+      "storeId": "100",
+      "storeName": "Mong Kok",
+      "address": "700 Nathan Road, Mong Kok",
+      "latitude": "22.3193",
+      "longitude": "114.1694",
+      "phone": "2399 0000",
+      "status": 0
+    }
+  }
+]

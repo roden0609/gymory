@@ -16,10 +16,8 @@
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const LIST_URL_ZH = "https://247.fitness/app-api/cms/store/?lang=zh-HK";
 const LIST_URL_EN = "https://247.fitness/app-api/cms/store/?lang=en";
@@ -28,41 +26,24 @@ const DETAIL_URL_ZH =
 const DETAIL_URL_EN =
   "https://247.fitness/app-api/cms/store/global/detail?lang=en&countryCode=HK&storeId=";
 const SOURCE_URL = "https://247.fitness/zh-hk/contact_us/stores";
+const ALLOWED_ARGS = new Set([
+  "details-file",
+  "district-overrides",
+  "limit",
+  "out",
+  "upsert",
+]);
 
-const args = parseArgs(process.argv.slice(2));
-
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
-
-async function main() {
+export async function main(args = parseArgs(process.argv.slice(2))) {
   const districtOverrides = args["district-overrides"]
     ? await loadDistrictOverrides(args["district-overrides"])
     : {};
 
   const details = args["details-file"]
-    ? await loadDetailsFile(args["details-file"])
-    : await fetchStoreDetailsFromApi();
+    ? await loadDetailsFile(args["details-file"], args.limit)
+    : await fetchStoreDetailsFromApi(args.limit);
 
-  const rows = details
-    .map((detail) => mapStoreToGymRow(detail, districtOverrides))
-    .sort((a, b) => a.slug.localeCompare(b.slug));
-
-  const unknownDistricts = rows.filter((row) => !row.district_code);
-  if (unknownDistricts.length > 0) {
-    const examples = unknownDistricts
-      .slice(0, 10)
-      .map((row) => `- ${row.slug}: ${row.address_zh ?? row.address ?? "no address"}`)
-      .join("\n");
-    throw new Error(
-      [
-        `Could not infer district_code for ${unknownDistricts.length} gyms.`,
-        "Add overrides with --district-overrides <json>. Keys can be store IDs or slugs.",
-        examples,
-      ].join("\n")
-    );
-  }
+  const rows = buildRowsFromDetails(details, districtOverrides, new Date());
 
   const outPath = path.resolve(
     process.cwd(),
@@ -81,21 +62,77 @@ async function main() {
   }
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const parsed = {};
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
-    if (!arg.startsWith("--")) continue;
+    if (!arg.startsWith("--")) {
+      throw new Error(`Unexpected positional argument: ${arg}`);
+    }
     const key = arg.slice(2);
+    if (!ALLOWED_ARGS.has(key)) {
+      throw new Error(`Unknown argument: --${key}`);
+    }
+    if (key === "upsert") {
+      parsed.upsert = true;
+      continue;
+    }
     const next = argv[index + 1];
     if (!next || next.startsWith("--")) {
-      parsed[key] = true;
-    } else {
-      parsed[key] = next;
-      index += 1;
+      throw new Error(`Missing value for --${key}`);
     }
+    parsed[key] = next;
+    index += 1;
   }
   return parsed;
+}
+
+export function buildRowsFromDetails(details, districtOverrides = {}, now = new Date()) {
+  if (!Array.isArray(details) || details.length === 0) {
+    throw new Error("24/7 Fitness details fixture did not contain any stores");
+  }
+
+  const storeIds = details.map((detail) =>
+    getStoreId(
+      detail?.detailZh ??
+        detail?.detailEn ??
+        detail?.listZh ??
+        detail?.listEn ??
+        detail
+    )
+  );
+  if (storeIds.some((storeId) => storeId === null)) {
+    throw new Error("24/7 Fitness detail is missing a required store ID");
+  }
+  if (new Set(storeIds).size !== storeIds.length) {
+    throw new Error("24/7 Fitness details contain duplicate store IDs");
+  }
+
+  const rows = details
+    .map((detail) => mapStoreToGymRow(detail, districtOverrides, now))
+    .sort((a, b) => a.slug.localeCompare(b.slug));
+
+  const unknownDistricts = rows.filter((row) => !row.district_code);
+  if (unknownDistricts.length > 0) {
+    const examples = unknownDistricts
+      .slice(0, 10)
+      .map((row) => `- ${row.slug}: ${row.address_zh ?? row.address ?? "no address"}`)
+      .join("\n");
+    throw new Error(
+      [
+        `Could not infer district_code for ${unknownDistricts.length} gyms.`,
+        "Add overrides with --district-overrides <json>. Keys can be store IDs or slugs.",
+        examples,
+      ].join("\n")
+    );
+  }
+
+  const slugs = rows.map(({ slug }) => slug);
+  if (new Set(slugs).size !== slugs.length) {
+    throw new Error("24/7 Fitness details produced duplicate gym slugs");
+  }
+
+  return rows;
 }
 
 async function loadEnvFiles(filePaths) {
@@ -182,7 +219,7 @@ async function fetchStoreDetailByLang(storeId, lang) {
   return findObject(payload, (item) => getStoreId(item) === storeId) ?? payload?.data ?? payload;
 }
 
-function mapStoreToGymRow(detailBundle, districtOverrides) {
+export function mapStoreToGymRow(detailBundle, districtOverrides, now = new Date()) {
   const { detailZh, detailEn, listZh, listEn } = detailBundle;
   const storeId = getStoreId(detailZh ?? detailEn ?? listZh ?? listEn);
   const names = resolveLocalizedText(detailZh ?? detailEn ?? {}, [
@@ -265,7 +302,7 @@ function mapStoreToGymRow(detailBundle, districtOverrides) {
     lng,
     is_active: status === null ? true : status === 1,
     data_source: "import",
-    last_reported_at: new Date().toISOString(),
+    last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
   };
 }
@@ -373,7 +410,7 @@ function buildNullEquipmentFields() {
   };
 }
 
-async function fetchStoreDetailsFromApi() {
+async function fetchStoreDetailsFromApi(limit) {
   const [storesZh, storesEn] = await Promise.all([
     fetchStoreList(LIST_URL_ZH),
     fetchStoreList(LIST_URL_EN),
@@ -381,7 +418,7 @@ async function fetchStoreDetailsFromApi() {
   const storesByIdZh = new Map(storesZh.map((store) => [getStoreId(store), store]));
   const storesByIdEn = new Map(storesEn.map((store) => [getStoreId(store), store]));
   const storeIds = Array.from(new Set([...storesByIdZh.keys(), ...storesByIdEn.keys()])).filter(Boolean);
-  const limitedStoreIds = args.limit ? storeIds.slice(0, Number(args.limit)) : storeIds;
+  const limitedStoreIds = limit ? storeIds.slice(0, Number(limit)) : storeIds;
   const details = [];
 
   for (const storeId of limitedStoreIds) {
@@ -598,14 +635,14 @@ async function loadDistrictOverrides(filePath) {
   return overrides;
 }
 
-async function loadDetailsFile(filePath) {
+async function loadDetailsFile(filePath, limit) {
   const raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
   const payload = JSON.parse(raw);
   const details = findArray(payload, (item) => getStoreId(item) !== null);
   if (!details) {
     throw new Error(`Could not find detail objects with storeId in ${filePath}`);
   }
-  return args.limit ? details.slice(0, Number(args.limit)) : details;
+  return limit ? details.slice(0, Number(limit)) : details;
 }
 
 async function upsertRows(rows) {
@@ -621,5 +658,19 @@ async function upsertRows(rows) {
     actorType: "import",
     supabaseUrl,
     apiKey,
+  });
+}
+
+const isDirectExecution =
+  Boolean(process.argv[1]) &&
+  pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
+
+if (isDirectExecution) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
   });
 }

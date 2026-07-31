@@ -267,7 +267,7 @@ async function applyEquipmentImportPatch({
   }
 }
 
-function buildUpsertRow(existing, row, actorType) {
+export function buildUpsertRow(existing, row, actorType) {
   if (!existing || actorType !== "import") return row;
 
   const nextRow = { ...row };
@@ -389,7 +389,7 @@ async function insertSubmission({
   }
 }
 
-function buildChangedFields(existing, nextRow) {
+export function buildChangedFields(existing, nextRow) {
   const changed = {};
 
   for (const [key, value] of Object.entries(nextRow)) {
@@ -409,7 +409,7 @@ function buildChangedFields(existing, nextRow) {
   return Object.keys(changed).length > 0 ? changed : null;
 }
 
-function buildChangeComparison(existing, changedFields) {
+export function buildChangeComparison(existing, changedFields) {
   if (!changedFields) return {};
 
   return Object.fromEntries(
@@ -424,7 +424,7 @@ function buildChangeComparison(existing, changedFields) {
   );
 }
 
-function buildEquipmentChangeComparison(existingByCode, inventoryItems) {
+export function buildEquipmentChangeComparison(existingByCode, inventoryItems) {
   return Object.fromEntries(
     inventoryItems.map((item) => {
       const existing = existingByCode.get(item.equipmentCode);
