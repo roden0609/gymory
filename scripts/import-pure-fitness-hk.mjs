@@ -18,43 +18,56 @@
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const LIST_URL_EN = "https://www.pure-360.com.hk/en/clubs/";
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const DETAIL_FETCH_CONCURRENCY = 4;
+const ALLOWED_ARGS = new Set([
+  "details-file",
+  "details-out",
+  "district-overrides",
+  "limit",
+  "out",
+  "skip-geocode",
+  "upsert",
+]);
 
-const args = parseArgs(process.argv.slice(2));
+export async function main(args = parseArgs(process.argv.slice(2))) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+  return runImporter(args);
+}
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+export async function runImporter(args, dependencies = {}) {
+  const loadOverrides = dependencies.loadDistrictOverrides ?? loadDistrictOverrides;
+  const loadDetails = dependencies.loadDetailsFile ?? loadDetailsFile;
+  const fetchDetails = dependencies.fetchClubDetailsFromSite ?? fetchClubDetailsFromSite;
+  const makeGeocoder = dependencies.createMapboxGeocoder ?? createMapboxGeocoder;
+  const writeDetails = dependencies.writeDetails ?? writeJsonFile;
+  const writeRows = dependencies.writeRows ?? writeJsonFile;
+  const persistRows = dependencies.upsertRows ?? upsertRows;
+  const now = dependencies.now?.() ?? new Date();
+  const cwd = dependencies.cwd?.() ?? process.cwd();
+  const log = dependencies.log ?? console.log;
 
-async function main() {
   const districtOverrides = args["district-overrides"]
-    ? await loadDistrictOverrides(args["district-overrides"])
+    ? await loadOverrides(args["district-overrides"])
     : {};
-  const geocoder = createMapboxGeocoder(args);
+  const geocoder = makeGeocoder(args);
 
   const details = args["details-file"]
-    ? await loadDetailsFile(args["details-file"])
-    : await fetchClubDetailsFromSite();
+    ? await loadDetails(args["details-file"], args.limit)
+    : await fetchDetails(args.limit);
 
   if (args["details-out"]) {
-    const detailsOutPath = path.resolve(process.cwd(), args["details-out"]);
-    await mkdir(path.dirname(detailsOutPath), { recursive: true });
-    await writeFile(detailsOutPath, `${JSON.stringify(details, null, 2)}\n`);
-    console.log(`Wrote ${details.length} PURE Fitness detail snapshots to ${detailsOutPath}`);
+    const detailsOutPath = path.resolve(cwd, args["details-out"]);
+    await writeDetails(detailsOutPath, details);
+    log(`Wrote ${details.length} PURE Fitness detail snapshots to ${detailsOutPath}`);
   }
 
-  const rows = details
-    .filter((detail) => detail.is_fitness)
-    .map((detail) => mapClubToGymRow(detail, districtOverrides))
-    .sort((a, b) => a.slug.localeCompare(b.slug));
+  const rows = buildRowsFromDetails(details, districtOverrides, now);
 
   if (geocoder) {
     for (const row of rows) {
@@ -64,6 +77,71 @@ async function main() {
       row.lng = row.lng ?? coordinates?.lng ?? null;
     }
   }
+
+  const outPath = path.resolve(
+    cwd,
+    args.out ?? "data/imports/pure-fitness-hk-baseline.json"
+  );
+  await writeRows(outPath, rows);
+
+  log(`Wrote ${rows.length} PURE Fitness HK baseline rows to ${outPath}`);
+
+  if (args.upsert) {
+    await persistRows(rows);
+    log(`Upserted ${rows.length} rows into Supabase gyms on slug`);
+  } else {
+    log("Dry run only. Pass --upsert to write to Supabase.");
+  }
+
+  return { rows, outPath, upserted: Boolean(args.upsert) };
+}
+
+export function parseArgs(argv) {
+  const parsed = {};
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (!arg.startsWith("--")) {
+      throw new Error(`Unexpected positional argument: ${arg}`);
+    }
+    const key = arg.slice(2);
+    if (!ALLOWED_ARGS.has(key)) {
+      throw new Error(`Unknown argument: --${key}`);
+    }
+    if (key === "upsert" || key === "skip-geocode") {
+      parsed[key] = true;
+      continue;
+    }
+    const next = argv[index + 1];
+    if (!next || next.startsWith("--")) {
+      throw new Error(`Missing value for --${key}`);
+    }
+    parsed[key] = next;
+    index += 1;
+  }
+  return parsed;
+}
+
+export function buildRowsFromDetails(details, districtOverrides = {}, now = new Date()) {
+  if (!Array.isArray(details) || details.length === 0) {
+    throw new Error("PURE Fitness details fixture did not contain any clubs");
+  }
+
+  const fitnessDetails = details.filter((detail) => detail?.is_fitness);
+  if (fitnessDetails.length === 0) {
+    throw new Error("PURE Fitness details fixture did not contain any fitness clubs");
+  }
+
+  const sourceUrls = fitnessDetails.map((detail) => getString(detail.url));
+  if (sourceUrls.some((url) => url === null)) {
+    throw new Error("PURE Fitness detail is missing a required source URL");
+  }
+  if (new Set(sourceUrls).size !== sourceUrls.length) {
+    throw new Error("PURE Fitness details contain duplicate source URLs");
+  }
+
+  const rows = fitnessDetails
+    .map((detail) => mapClubToGymRow(detail, districtOverrides, now))
+    .sort((a, b) => a.slug.localeCompare(b.slug));
 
   const unknownDistricts = rows.filter((row) => !row.district_code);
   if (unknownDistricts.length > 0) {
@@ -80,38 +158,12 @@ async function main() {
     );
   }
 
-  const outPath = path.resolve(
-    process.cwd(),
-    args.out ?? "data/imports/pure-fitness-hk-baseline.json"
-  );
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(outPath, `${JSON.stringify(rows, null, 2)}\n`);
-
-  console.log(`Wrote ${rows.length} PURE Fitness HK baseline rows to ${outPath}`);
-
-  if (args.upsert) {
-    await upsertRows(rows);
-    console.log(`Upserted ${rows.length} rows into Supabase gyms on slug`);
-  } else {
-    console.log("Dry run only. Pass --upsert to write to Supabase.");
+  const slugs = rows.map(({ slug }) => slug);
+  if (new Set(slugs).size !== slugs.length) {
+    throw new Error("PURE Fitness details produced duplicate gym slugs");
   }
-}
 
-function parseArgs(argv) {
-  const parsed = {};
-  for (let index = 0; index < argv.length; index += 1) {
-    const arg = argv[index];
-    if (!arg.startsWith("--")) continue;
-    const key = arg.slice(2);
-    const next = argv[index + 1];
-    if (!next || next.startsWith("--")) {
-      parsed[key] = true;
-    } else {
-      parsed[key] = next;
-      index += 1;
-    }
-  }
-  return parsed;
+  return rows;
 }
 
 async function loadEnvFiles(filePaths) {
@@ -233,10 +285,10 @@ function buildGeocodeQuery(address) {
   return capped.trim() || null;
 }
 
-async function fetchClubDetailsFromSite() {
+async function fetchClubDetailsFromSite(limit) {
   const listHtml = await fetchHtml(LIST_URL_EN);
   const clubUrls = extractClubUrls(listHtml);
-  const limitedUrls = args.limit ? clubUrls.slice(0, Number(args.limit)) : clubUrls;
+  const limitedUrls = limit ? clubUrls.slice(0, Number(limit)) : clubUrls;
   const details = await mapWithConcurrency(
     limitedUrls,
     DETAIL_FETCH_CONCURRENCY,
@@ -304,6 +356,10 @@ async function fetchClubDetailPair(enUrl) {
 
 async function fetchClubDetail(url, locale) {
   const html = await fetchHtml(url);
+  return parseClubHtml(html, url, locale);
+}
+
+export function parseClubHtml(html, url, locale) {
   const textBlocks = htmlToTextBlocks(html);
   const text = textBlocks.join(" ");
   const title = extractTitle(html);
@@ -341,7 +397,7 @@ async function fetchHtml(url) {
   return text;
 }
 
-function extractClubUrls(html) {
+export function extractClubUrls(html) {
   const urls = extractHrefs(html)
     .map((href) => resolveUrl(LIST_URL_EN, href))
     .filter((url) => isClubDetailUrl(url))
@@ -395,7 +451,7 @@ function resolveUrl(baseUrl, href) {
   }
 }
 
-function extractPrimaryPlaceJson(html) {
+export function extractPrimaryPlaceJson(html) {
   const places = [];
   for (const match of html.matchAll(
     /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
@@ -565,7 +621,7 @@ function normalizeAddress(value) {
     .trim();
 }
 
-function mapClubToGymRow(detail, districtOverrides) {
+export function mapClubToGymRow(detail, districtOverrides = {}, now = new Date()) {
   const branchCode = getString(detail.branch_code);
   const baseName = cleanPureClubName(detail.name ?? detail.title);
   const baseNameZh = cleanPureClubName(detail.name_zh ?? detail.title_zh);
@@ -590,7 +646,7 @@ function mapClubToGymRow(detail, districtOverrides) {
     lng: toNumber(detail.lng),
     is_active: detail.is_active,
     data_source: "import",
-    last_reported_at: new Date().toISOString(),
+    last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
     has_washroom: true,
     has_bathroom: true,
@@ -782,18 +838,23 @@ async function loadDistrictOverrides(filePath) {
   return overrides;
 }
 
-async function loadDetailsFile(filePath) {
+async function loadDetailsFile(filePath, limit) {
   const raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
   const details = JSON.parse(raw);
   if (!Array.isArray(details)) {
     throw new Error(`Expected array of PURE Fitness detail objects in ${filePath}`);
   }
-  return args.limit ? details.slice(0, Number(args.limit)) : details;
+  return limit ? details.slice(0, Number(limit)) : details;
 }
 
-async function upsertRows(rows) {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const apiKey = process.env.SUPABASE_SECRET_KEY;
+async function writeJsonFile(filePath, value) {
+  await mkdir(path.dirname(filePath), { recursive: true });
+  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+export async function upsertRows(rows, env = process.env) {
+  const supabaseUrl = env.NEXT_PUBLIC_SUPABASE_URL;
+  const apiKey = env.SUPABASE_SECRET_KEY;
 
   if (!supabaseUrl || !apiKey) {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY for --upsert");
@@ -809,4 +870,11 @@ async function upsertRows(rows) {
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
 }
