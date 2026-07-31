@@ -10,7 +10,9 @@
       "outputs": [".next/**", "dist/**"]
     },
     "lint": {},
-    "test": {},
+    "test": {
+      "inputs": ["$TURBO_DEFAULT$"]
+    },
     "typecheck": {}
   }
 }
