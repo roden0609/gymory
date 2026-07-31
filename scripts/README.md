@@ -61,3 +61,66 @@ presence, absence, zero, and positive quantities are written to
 `gym_equipment_inventory` and logged as approved `edit_equipment` import
 submissions. Importers do not depend on the removed
 `equipment_legacy_field_mappings` table.
+
+## Import overrides
+
+Override files are optional and are loaded only when their corresponding CLI
+flag is supplied. A dry run and an `--upsert` run apply the same overrides.
+
+### District overrides
+
+Importers that support `--district-overrides` accept a JSON object that maps a
+source identifier or generated slug to a Gymory district code:
+
+```json
+{
+  "pure-fitness-kinwick-centre-kin": "HK-CW"
+}
+```
+
+Example:
+
+```bash
+node scripts/import-pure-fitness-hk.mjs \
+  --district-overrides path/to/district-overrides.json
+```
+
+For the PURE Fitness importer, keys may be the English club URL, source
+`branch_code`, or generated slug. They are checked in that order before the
+importer attempts to infer the district from the club name and address. Values
+must use the `HK-*` district-code format. The import fails if any resulting gym
+still has no district.
+
+### Chinese address overrides
+
+The PURE Fitness importer supports `--address-overrides` because a Traditional
+Chinese club page may publish its address in English. The JSON object maps a
+source `branch_code`, English club URL, or generated slug to an `address_zh`
+value:
+
+```json
+{
+  "pure-fitness-kinwick-centre-kin": {
+    "address_zh": "中環蘇豪荷李活道32號建業榮基中心3樓"
+  }
+}
+```
+
+Example using the committed override file:
+
+```bash
+node scripts/import-pure-fitness-hk.mjs \
+  --address-overrides data/imports/pure-fitness-hk-address-overrides.json
+```
+
+PURE address keys are checked in `branch_code`, English club URL, then slug
+order. An override must contain only a non-empty `address_zh` string. Without
+the flag, the importer retains the address parsed from the PURE source page.
+
+Both flags can be used together:
+
+```bash
+node scripts/import-pure-fitness-hk.mjs \
+  --district-overrides path/to/district-overrides.json \
+  --address-overrides data/imports/pure-fitness-hk-address-overrides.json
+```

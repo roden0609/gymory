@@ -12,6 +12,7 @@
  *   node scripts/import-pure-fitness-hk.mjs --out data/imports/pure-fitness-hk.json
  *   node scripts/import-pure-fitness-hk.mjs --details-out data/imports/raw-pure-fitness-hk-details.json
  *   node scripts/import-pure-fitness-hk.mjs --details-file data/imports/raw-pure-fitness-hk-details.json
+ *   node scripts/import-pure-fitness-hk.mjs --address-overrides data/imports/pure-fitness-hk-address-overrides.json
  *   node scripts/import-pure-fitness-hk.mjs --skip-geocode
  *   node scripts/import-pure-fitness-hk.mjs --upsert
  */
@@ -25,6 +26,7 @@ const LIST_URL_EN = "https://www.pure-360.com.hk/en/clubs/";
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const DETAIL_FETCH_CONCURRENCY = 4;
 const ALLOWED_ARGS = new Set([
+  "address-overrides",
   "details-file",
   "details-out",
   "district-overrides",
@@ -42,6 +44,7 @@ export async function main(args = parseArgs(process.argv.slice(2))) {
 
 export async function runImporter(args, dependencies = {}) {
   const loadOverrides = dependencies.loadDistrictOverrides ?? loadDistrictOverrides;
+  const loadAddresses = dependencies.loadAddressOverrides ?? loadAddressOverrides;
   const loadDetails = dependencies.loadDetailsFile ?? loadDetailsFile;
   const fetchDetails = dependencies.fetchClubDetailsFromSite ?? fetchClubDetailsFromSite;
   const makeGeocoder = dependencies.createMapboxGeocoder ?? createMapboxGeocoder;
@@ -55,6 +58,9 @@ export async function runImporter(args, dependencies = {}) {
   const districtOverrides = args["district-overrides"]
     ? await loadOverrides(args["district-overrides"])
     : {};
+  const addressOverrides = args["address-overrides"]
+    ? await loadAddresses(args["address-overrides"])
+    : {};
   const geocoder = makeGeocoder(args);
 
   const details = args["details-file"]
@@ -67,7 +73,7 @@ export async function runImporter(args, dependencies = {}) {
     log(`Wrote ${details.length} PURE Fitness detail snapshots to ${detailsOutPath}`);
   }
 
-  const rows = buildRowsFromDetails(details, districtOverrides, now);
+  const rows = buildRowsFromDetails(details, districtOverrides, now, addressOverrides);
 
   if (geocoder) {
     for (const row of rows) {
@@ -121,7 +127,12 @@ export function parseArgs(argv) {
   return parsed;
 }
 
-export function buildRowsFromDetails(details, districtOverrides = {}, now = new Date()) {
+export function buildRowsFromDetails(
+  details,
+  districtOverrides = {},
+  now = new Date(),
+  addressOverrides = {}
+) {
   if (!Array.isArray(details) || details.length === 0) {
     throw new Error("PURE Fitness details fixture did not contain any clubs");
   }
@@ -140,7 +151,7 @@ export function buildRowsFromDetails(details, districtOverrides = {}, now = new 
   }
 
   const rows = fitnessDetails
-    .map((detail) => mapClubToGymRow(detail, districtOverrides, now))
+    .map((detail) => mapClubToGymRow(detail, districtOverrides, now, addressOverrides))
     .sort((a, b) => a.slug.localeCompare(b.slug));
 
   const unknownDistricts = rows.filter((row) => !row.district_code);
@@ -621,24 +632,34 @@ function normalizeAddress(value) {
     .trim();
 }
 
-export function mapClubToGymRow(detail, districtOverrides = {}, now = new Date()) {
+export function mapClubToGymRow(
+  detail,
+  districtOverrides = {},
+  now = new Date(),
+  addressOverrides = {}
+) {
   const branchCode = getString(detail.branch_code);
   const baseName = cleanPureClubName(detail.name ?? detail.title);
   const baseNameZh = cleanPureClubName(detail.name_zh ?? detail.title_zh);
   const slug = toSlug(["pure-fitness", baseName, branchCode].filter(Boolean).join(" "));
   const amenities = detail.amenities?.length ? detail.amenities.join(", ") : null;
+  const addressOverride =
+    addressOverrides[branchCode] ??
+    addressOverrides[detail.url] ??
+    addressOverrides[slug];
+  const addressZh = addressOverride?.address_zh ?? detail.address_zh ?? null;
 
   return {
     name: `PURE Fitness ${baseName}`,
     name_zh: baseNameZh ? `PURE Fitness ${baseNameZh}` : null,
     slug,
     address: detail.address,
-    address_zh: detail.address_zh ?? null,
+    address_zh: addressZh,
     district_code:
       districtOverrides[detail.url] ??
       districtOverrides[branchCode] ??
       districtOverrides[slug] ??
-      inferDistrictCode([baseName, baseNameZh, detail.address, detail.address_zh].filter(Boolean).join(" ")),
+      inferDistrictCode([baseName, baseNameZh, detail.address, addressZh].filter(Boolean).join(" ")),
     country_code: "HK",
     website_url: detail.url ?? LIST_URL_EN,
     contact_phone: normalizePhone(detail.contact_phone),
@@ -835,6 +856,46 @@ async function loadDistrictOverrides(filePath) {
       throw new Error(`Invalid district override for ${key}: ${value}`);
     }
   }
+  return overrides;
+}
+
+async function loadAddressOverrides(filePath) {
+  const raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
+  return parseAddressOverrides(JSON.parse(raw));
+}
+
+export function parseAddressOverrides(value) {
+  if (!value || Array.isArray(value) || typeof value !== "object") {
+    throw new Error("Expected PURE Fitness address overrides to be a JSON object");
+  }
+
+  const overrides = {};
+  for (const [key, override] of Object.entries(value)) {
+    if (!key.trim()) {
+      throw new Error("PURE Fitness address override keys must not be empty");
+    }
+    if (!override || Array.isArray(override) || typeof override !== "object") {
+      throw new Error(`Invalid address override for ${key}: expected an object`);
+    }
+
+    const unknownFields = Object.keys(override).filter(
+      (field) => field !== "address_zh"
+    );
+    if (unknownFields.length > 0) {
+      throw new Error(
+        `Invalid address override for ${key}: unknown field ${unknownFields[0]}`
+      );
+    }
+
+    const addressZh = getString(override.address_zh);
+    if (!addressZh) {
+      throw new Error(
+        `Invalid address override for ${key}: address_zh must be a non-empty string`
+      );
+    }
+    overrides[key] = { address_zh: addressZh };
+  }
+
   return overrides;
 }
 

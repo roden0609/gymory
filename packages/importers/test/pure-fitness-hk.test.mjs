@@ -6,6 +6,7 @@ import {
   extractClubUrls,
   extractPrimaryPlaceJson,
   mapClubToGymRow,
+  parseAddressOverrides,
   parseArgs,
   parseClubHtml,
   runImporter,
@@ -59,6 +60,7 @@ describe("PURE Fitness argument parsing", () => {
   it("parses fixture, output, limit, geocode, and explicit upsert options", () => {
     expect(
       parseArgs([
+        "--address-overrides", "addresses.json",
         "--details-file", "details.json",
         "--details-out", "raw.json",
         "--district-overrides", "districts.json",
@@ -68,6 +70,7 @@ describe("PURE Fitness argument parsing", () => {
         "--upsert",
       ])
     ).toEqual({
+      "address-overrides": "addresses.json",
       "details-file": "details.json",
       "details-out": "raw.json",
       "district-overrides": "districts.json",
@@ -182,6 +185,46 @@ describe("PURE Fitness fixture mapping and validation", () => {
     ]);
   });
 
+  it("applies Chinese address overrides by branch code, URL, then slug", async () => {
+    const detail = await loadBilingualDetail();
+    const overrides = {
+      IFC: { address_zh: "Branch address" },
+      [enUrl]: { address_zh: "URL address" },
+      "pure-fitness-ifc-ifc": { address_zh: "Slug address" },
+    };
+
+    expect(mapClubToGymRow(detail, {}, fixedNow, overrides).address_zh).toBe(
+      "Branch address"
+    );
+
+    delete overrides.IFC;
+    expect(mapClubToGymRow(detail, {}, fixedNow, overrides).address_zh).toBe(
+      "URL address"
+    );
+
+    delete overrides[enUrl];
+    expect(mapClubToGymRow(detail, {}, fixedNow, overrides).address_zh).toBe(
+      "Slug address"
+    );
+  });
+
+  it("validates and trims Chinese address override files", () => {
+    expect(
+      parseAddressOverrides({ KIN: { address_zh: "  中文地址  " } })
+    ).toEqual({ KIN: { address_zh: "中文地址" } });
+
+    expect(() => parseAddressOverrides([])).toThrow("JSON object");
+    expect(() => parseAddressOverrides({ KIN: "中文地址" })).toThrow(
+      "expected an object"
+    );
+    expect(() =>
+      parseAddressOverrides({ KIN: { address_zh: "" } })
+    ).toThrow("non-empty string");
+    expect(() =>
+      parseAddressOverrides({ KIN: { address_zh: "中文地址", address: "English" } })
+    ).toThrow("unknown field address");
+  });
+
   it.each([
     [[], "did not contain any clubs"],
     [[{ url: "https://example.test/yoga", is_fitness: false }], "any fitness clubs"],
@@ -239,6 +282,36 @@ describe("PURE Fitness injected runner", () => {
     expect(writeRows).toHaveBeenCalledWith("/tmp/gymory-pure-test/rows.json", result.rows);
     expect(result).toMatchObject({ upserted: false, rows: { length: 1 } });
     expect(log).toHaveBeenLastCalledWith("Dry run only. Pass --upsert to write to Supabase.");
+  });
+
+  it("loads and applies an address override file", async () => {
+    const details = [await loadBilingualDetail()];
+    const loadAddressOverrides = vi.fn().mockResolvedValue({
+      IFC: { address_zh: "中環蘇豪荷李活道32號建業榮基中心3樓" },
+    });
+    const writeRows = vi.fn();
+
+    const result = await runImporter(
+      {
+        "address-overrides": "addresses.json",
+        "details-file": "fixture.json",
+        "skip-geocode": true,
+      },
+      {
+        loadAddressOverrides,
+        loadDetailsFile: vi.fn().mockResolvedValue(details),
+        createMapboxGeocoder: vi.fn(() => null),
+        writeRows,
+        now: () => fixedNow,
+        cwd: () => "/tmp/gymory-pure-test",
+        log: vi.fn(),
+      }
+    );
+
+    expect(loadAddressOverrides).toHaveBeenCalledWith("addresses.json");
+    expect(result.rows[0].address_zh).toBe(
+      "中環蘇豪荷李活道32號建業榮基中心3樓"
+    );
   });
 
   it("refuses an upsert when database credentials are missing", async () => {
