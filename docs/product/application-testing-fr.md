@@ -38,6 +38,8 @@ remain a separate layer.
 - Provide fast, deterministic tests for business-critical pure functions.
 - Prevent regressions in equipment normalization and submission comparisons.
 - Verify training, equipment, district, localization, and SEO rules.
+- Verify importer parsing, normalization, validation, and write planning against
+  deterministic source fixtures.
 - Establish conventions for tests added by future feature work.
 - Make failures easy to understand and reproduce locally.
 - Keep unit tests independent of production services and network access.
@@ -54,8 +56,9 @@ remain a separate layer.
 - Do not require 100% line or branch coverage.
 - Do not add brittle snapshot tests for large React component trees.
 - Do not test third-party library behavior unless Gymory wraps or transforms it.
-- Do not include importer scripts in the initial MVP unless their transformation
-  logic is first extracted into testable functions.
+- Do not require live importer source websites to be available for the default
+  unit test command.
+- Do not write importer test data to production Supabase projects.
 
 ---
 
@@ -64,6 +67,7 @@ remain a separate layer.
 | Layer | Purpose | Initial scope |
 | --- | --- | --- |
 | Unit | Test deterministic functions and business rules in isolation | Required |
+| Importer fixture | Test source parsing, field mapping, validation, and dry-run output without network access | Required |
 | Component | Test important user-visible React behavior | Limited, after unit MVP |
 | API integration | Test route validation, authorization, orchestration, and error mapping with controlled dependencies | Phase 2 |
 | Database integration | Test SQL constraints, migrations, RLS, and query behavior against an isolated database | Future |
@@ -88,6 +92,9 @@ The MVP must include:
   - equipment page definitions
   - district page definitions
   - slug conversion
+  - importer argument parsing, source parsing, mapping, validation, and normalized
+    output using committed fixtures
+  - shared importer upsert planning and change detection
 - Test documentation and naming conventions.
 - A passing full test command from the repository root.
 
@@ -526,7 +533,301 @@ Supporting Chinese slugs requires a separate product decision and implementation
 
 ---
 
-## FR-9: API Integration Test Requirements
+## FR-9: Importer Test Requirements
+
+Targets:
+
+```text
+scripts/import-anytime-fitness-hk.mjs
+scripts/import-247-fitness-hk.mjs
+scripts/import-efx24-hk.mjs
+scripts/import-go24-fitness-hk.mjs
+scripts/import-hyrox-official-hk.mjs
+scripts/import-lcsd-fitness-hk.mjs
+scripts/import-pure-fitness-hk.mjs
+scripts/import-snap-fitness-hk.mjs
+scripts/lib/upsert-gyms-with-submissions.mjs
+```
+
+Importer tests are part of the required application test suite. The default
+`pnpm test` command must test importer behavior without calling live websites or
+Supabase.
+
+### FR-9.1 Testable importer architecture
+
+Each importer must separate deterministic behavior from command-line side
+effects.
+
+The implementation should either:
+
+- extract importer logic into `packages/importers`, leaving `scripts/import-*.mjs`
+  as thin CLI entry points; or
+- export testable parsing and mapping functions from dedicated modules under
+  `scripts/lib/importers`.
+
+The preferred structure is:
+
+```text
+packages/importers/src/<source>/
+  parse.ts
+  map.ts
+  validate.ts
+  index.ts
+scripts/import-<source>.mjs
+```
+
+Importing a parser or mapper in a test must not:
+
+- execute `main()`
+- read local environment files
+- fetch a remote URL
+- write an output file
+- call Supabase
+- call `process.exit`
+
+CLI entry points must only execute when invoked directly.
+
+### FR-9.2 Source fixtures
+
+Each importer must have at least one committed, sanitized source fixture that
+represents the smallest useful upstream response.
+
+Recommended location:
+
+```text
+packages/importers/test/fixtures/<source>/
+```
+
+Fixture requirements:
+
+- use HTML or JSON matching the real upstream format
+- contain no credentials, session cookies, access tokens, or personal data
+- remain small enough to review in source control
+- include source-format edge cases relevant to that importer
+- record the capture date and source URL in an adjacent README or fixture note
+- avoid large full-site dumps when a minimal response is sufficient
+
+Tests must never overwrite committed fixtures.
+
+### FR-9.3 Argument parsing and safety defaults
+
+Tests must verify, where supported:
+
+- dry run is the default
+- `--upsert` is required before any database write
+- `--out` selects the requested output path
+- fixture/input-file arguments bypass live fetching
+- district override arguments are parsed correctly
+- unknown or malformed arguments fail with a meaningful error
+- missing credentials fail before an upsert request is made
+- normal dry runs do not require Supabase credentials
+
+### FR-9.4 Parsing and mapping
+
+Every importer must test:
+
+- extraction of the upstream location identifier
+- English and Traditional Chinese names where available
+- English and Traditional Chinese addresses where available
+- deterministic slug generation
+- latitude and longitude parsing
+- district inference and explicit overrides
+- website, phone, and other supported contact fields
+- chain/source metadata
+- active/inactive behavior when exposed upstream
+- equipment fields when exposed upstream
+- unknown upstream fields being ignored safely
+- missing optional values remaining `null` rather than becoming false, zero, or
+  an empty string without a product rule
+
+Expected mapped rows should be asserted exactly for the fields controlled by the
+importer.
+
+### FR-9.5 Validation and edge cases
+
+Tests must cover relevant failure and boundary cases:
+
+- empty upstream response
+- malformed JSON or HTML
+- missing required upstream identifier
+- missing name
+- invalid coordinates
+- unresolved district
+- duplicate source records
+- duplicate generated slugs
+- conflicting English and Chinese records
+- upstream records outside Hong Kong when a source contains multiple regions
+- changes in wrapper structure that result in no parsed locations
+
+An importer must fail loudly when a structural upstream change would otherwise
+produce a misleading empty or partial import.
+
+### FR-9.6 Output determinism
+
+For the same fixture and options, importer output must be deterministic.
+
+Tests must verify:
+
+- stable row ordering
+- stable slug generation
+- stable JSON-compatible output
+- no current timestamp in compared output unless time is explicitly injected
+- identical results across repeated runs
+
+Large output snapshots should not be used. Prefer exact assertions against small
+fixtures or focused field assertions for larger rows.
+
+### FR-9.7 Shared normalized upsert behavior
+
+Tests for `upsert-gyms-with-submissions.mjs` must verify:
+
+- amenity fields remain on the gym row
+- compatibility equipment fields are removed from the gym row
+- equipment aliases resolve to canonical codes
+- boolean presence and quantity conflicts follow normalization rules
+- unchanged gym fields do not produce an update
+- unchanged inventory does not produce an equipment patch
+- new gyms produce the expected add-gym submission plan
+- changed gyms produce the expected edit submission comparison
+- equipment changes preserve before/after comparison data
+- importer-owned fields and non-importer-owned fields follow the documented
+  overwrite policy
+- network failures and non-success Supabase responses produce meaningful errors
+
+#### FR-9.7.1 Null and overwrite matrix
+
+Tests must cover the complete gym-field overwrite matrix documented in
+`scripts/README.md`:
+
+| New import value | Existing database value | Expected result |
+| --- | --- | --- |
+| `null` | has a value | Preserve the database value and remove the field from the PATCH payload |
+| has a value | `null` | Include the imported value in the PATCH payload |
+| has a value | has a different value | Include the imported value in the PATCH payload |
+| has a value | has the same value | Do not treat the field as changed |
+| `null` | `null` | Do not treat the field as changed |
+| field omitted | any value | Preserve the database value and do not include the field in the PATCH payload |
+
+The tests must prove that imported `null` values never erase existing non-null
+gym data.
+
+The same matrix must be exercised with representative string, number, boolean,
+array, and JSON object fields where those shapes are supported by imported gym
+rows.
+
+#### FR-9.7.2 Ignored change-detection fields
+
+Changes to the following fields must not create a meaningful gym change by
+themselves:
+
+- `data_source`
+- `created_at`
+- `updated_at`
+- `last_reported_at`
+
+Tests must verify that when these are the only differing fields:
+
+- no gym PATCH request is made
+- no `edit_gym_info` submission is created
+- the importer reports no meaningful gym-field change
+
+If another meaningful field changes in the same row, the ignored fields must not
+appear in `changed_fields` or the change comparison.
+
+#### FR-9.7.3 Equipment no-change and explicit-value semantics
+
+Equipment tests must distinguish omitted or unknown data from explicit values:
+
+| Imported equipment value | Expected behavior |
+| --- | --- |
+| field omitted | Preserve existing inventory; no equipment patch |
+| `null` or `undefined` | Preserve existing inventory; no equipment patch |
+| explicit `false` presence | Write confirmed absence when it differs from existing inventory |
+| explicit quantity `0` | Write the normalized known-zero/absence result when it differs |
+| positive integer quantity | Write present with that quantity when it differs |
+| same resolved value through a legacy alias | No equipment patch |
+| invalid negative or fractional quantity | Reject or ignore according to the documented validation rule; never write it |
+
+When neither gym fields nor equipment inventory has a meaningful change, tests
+must verify that the importer does not:
+
+- PATCH the gym
+- call the normalized equipment inventory RPC
+- create an `edit_gym_info` submission
+- create an `edit_equipment` submission
+
+Explicit equipment changes must produce only the required inventory RPC and
+approved `edit_equipment` submission behavior, without restoring compatibility
+equipment columns to the `gyms` write.
+
+Pure change-detection and request-planning functions should be extracted and
+unit tested. HTTP behavior may be tested with an injected or mocked `fetch`.
+
+No test may use a production Supabase URL or secret.
+
+### FR-9.8 Dry-run integration tests
+
+Each importer must have a fixture-based dry-run integration test that exercises:
+
+```text
+fixture input -> parse -> map -> validate -> sort -> output rows
+```
+
+The integration test must assert:
+
+- successful exit/result
+- expected number of rows
+- expected representative rows
+- no database write calls
+- no network call when fixture input is supplied
+- a clear summary containing the importer name and row count, if the CLI summary
+  is part of the public command behavior
+
+Tests should call an exported runner with injected dependencies instead of
+spawning a child process unless CLI process behavior itself is under test.
+
+### FR-9.9 Live source smoke tests
+
+Live smoke tests are optional operational checks and must be separate from the
+default unit suite.
+
+Recommended command:
+
+```bash
+pnpm test:importers:live
+```
+
+Live smoke tests must:
+
+- be read-only and dry-run only
+- never pass `--upsert`
+- use explicit timeouts
+- perform a minimal request volume
+- verify that at least one valid Hong Kong location can be parsed
+- redact response headers, cookies, tokens, and credentials from logs
+- fail with a source-specific structural error
+- run manually or on a scheduled workflow, not on every feature change
+
+A live-source failure must not be treated automatically as an application code
+regression until upstream availability and format have been checked.
+
+### FR-9.10 Initial importer rollout order
+
+Implement importer coverage in this order:
+
+1. Shared `upsert-gyms-with-submissions` normalization and change planning.
+2. One representative JSON/API importer, preferably 24/7 Fitness.
+3. One representative HTML importer.
+4. Remaining chain importers using the established fixture pattern.
+5. LCSD and HYROX importers, including their source-specific edge cases.
+
+The initial importer testing milestone is complete only when all currently
+supported import commands have at least one fixture-based dry-run integration
+test.
+
+---
+
+## FR-10: API Integration Test Requirements
 
 This is Phase 2 and should begin after the unit-test MVP is stable.
 
@@ -544,14 +845,14 @@ apps/web/src/app/api/users/me/route.ts
 apps/web/src/app/api/users/me/avatar/route.ts
 ```
 
-### FR-9.1 Dependency isolation
+### FR-10.1 Dependency isolation
 
 API tests must not call live Firebase or Supabase services. Authentication and
 data-access boundaries should be mocked or injected at module boundaries.
 
 Avoid mocking internal implementation details deeper than necessary.
 
-### FR-9.2 Common cases
+### FR-10.2 Common cases
 
 Relevant routes must test:
 
@@ -566,7 +867,7 @@ Relevant routes must test:
 - controlled data-layer failures
 - safe error status and response body
 
-### FR-9.3 Domain-specific cases
+### FR-10.3 Domain-specific cases
 
 Tests should include:
 
@@ -583,7 +884,7 @@ identifiers in public error responses.
 
 ---
 
-## FR-10: Component Test Requirements
+## FR-11: Component Test Requirements
 
 Component tests are not required for the initial MVP. When introduced, prioritize
 observable behavior in:
@@ -610,9 +911,9 @@ repository instructions.
 
 ---
 
-## FR-11: Verification Workflow
+## FR-12: Verification Workflow
 
-### FR-11.1 Feature changes
+### FR-12.1 Feature changes
 
 After every feature change, the implementation agent must run:
 
@@ -630,12 +931,12 @@ pnpm --filter web lint
 If `apps/web/tsconfig.tsbuildinfo` changes only because of typecheck, restore it
 before finalizing unless generated-file changes are explicitly requested.
 
-### FR-11.2 Relevant tests during development
+### FR-12.2 Relevant tests during development
 
 The agent may run a focused test command while iterating, but the full root
 `pnpm test` command is still required before completion.
 
-### FR-11.3 Failure handling
+### FR-12.3 Failure handling
 
 - A feature change is not complete while relevant tests fail.
 - Do not weaken or delete a valid existing test merely to make a change pass.
@@ -644,7 +945,7 @@ The agent may run a focused test command while iterating, but the full root
 - Existing unrelated failures must be reported with the failing command and test
   names.
 
-### FR-11.4 New behavior
+### FR-12.4 New behavior
 
 Every new or changed deterministic business rule should include:
 
@@ -655,9 +956,9 @@ Every new or changed deterministic business rule should include:
 
 ---
 
-## FR-12: Coverage and Quality
+## FR-13: Coverage and Quality
 
-### FR-12.1 Initial coverage policy
+### FR-13.1 Initial coverage policy
 
 Coverage reporting may be configured during the MVP, but no global percentage
 threshold is required initially.
@@ -665,7 +966,7 @@ threshold is required initially.
 The priority is meaningful branch coverage for the target business rules, not a
 high repository-wide percentage.
 
-### FR-12.2 Future thresholds
+### FR-13.2 Future thresholds
 
 After the initial suite is stable, the project may introduce thresholds for
 high-value logic modules. Any threshold must:
@@ -675,7 +976,7 @@ high-value logic modules. Any threshold must:
 - increase gradually
 - not incentivize low-value assertions
 
-### FR-12.3 Test performance
+### FR-13.3 Test performance
 
 The initial unit suite should remain fast enough to run after every feature
 change. As a target, the pure-function suite should complete within 10 seconds on
@@ -710,6 +1011,16 @@ Implement tests for:
 2. `district-pages.ts`
 3. `slug.ts`
 
+### Phase 1D: Importer fixtures and deterministic runners
+
+- Extract importer parsing, mapping, validation, and orchestration from CLI side
+  effects.
+- Add the shared importer test package or module structure.
+- Add sanitized fixtures for every supported source.
+- Test shared equipment normalization and upsert change planning.
+- Add one fixture-based dry-run integration test for every import command.
+- Keep live-source smoke tests outside `pnpm test`.
+
 ### Phase 2: API routes
 
 - Establish route-test dependency boundaries.
@@ -731,7 +1042,9 @@ The unit-test MVP is complete when:
 - `pnpm test` runs real tests in every relevant workspace.
 - The command exits zero only when all discovered tests pass.
 - No unit test contacts a live external service.
-- The FR-3 through FR-8 behaviors are covered.
+- The FR-3 through FR-9 behaviors are covered.
+- Every supported importer has a deterministic fixture-based dry-run test.
+- Importer tests prove that fixture mode performs no network or database writes.
 - Tests pass when executed from a clean repository checkout after dependencies
   are installed.
 - Test files are type-safe and lint clean.
@@ -758,6 +1071,12 @@ apps/web/src/lib/**/*.test.ts
 packages/shared/package.json
 packages/shared/vitest.config.ts
 packages/shared/src/**/*.test.ts
+packages/importers/package.json
+packages/importers/vitest.config.ts
+packages/importers/src/**/*.{ts,test.ts}
+packages/importers/test/fixtures/**/*
+scripts/import-*.mjs
+scripts/lib/upsert-gyms-with-submissions.mjs
 ```
 
 The implementer may use a shared Vitest configuration if it reduces duplication
@@ -777,4 +1096,7 @@ The following decisions are intentionally deferred:
   a local test database for each boundary.
 - Whether browser/E2E tests should use Playwright.
 - Whether Chinese input should be supported by `toSlug`.
-
+- Whether live importer smoke tests should run manually only or in a scheduled
+  GitHub Actions workflow.
+- How long importer fixtures should be retained after an upstream source format
+  changes.
