@@ -5,6 +5,7 @@ import { useRef, useState, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { AdminChangeComparison } from "@/components/admin/AdminChangeComparison";
 import { TransientBanner } from "@/components/common/TransientBanner";
+import { formatHongKongDateTime } from "@/lib/date-time";
 import type { SubmissionReviewRow } from "@/lib/db/queries/submissions";
 
 type AdminSubmissionsReviewProps = {
@@ -47,13 +48,7 @@ function SubmissionCard({ submission }: { submission: SubmissionReviewRow }) {
       ? submission.gyms.name_zh
       : submission.gyms?.name ?? "New gym submission";
 
-  const createdAt = new Intl.DateTimeFormat(locale, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(new Date(submission.created_at));
+  const createdAt = formatHongKongDateTime(submission.created_at, locale);
 
   const actionLabel =
     submission.action_type === "I"

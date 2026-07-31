@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { AdminChangeComparison } from "@/components/admin/AdminChangeComparison";
+import { formatHongKongDateTime } from "@/lib/date-time";
 import type {
   SubmissionPage,
   SubmissionReviewRow,
@@ -98,13 +99,13 @@ function HistoryCard({
         <HistoryMeta label="Reviewed by" value={reviewer} />
         <HistoryMeta
           label="Submitted"
-          value={formatDateTime(submission.created_at, locale)}
+          value={formatHongKongDateTime(submission.created_at, locale)}
         />
         <HistoryMeta
           label="Reviewed"
           value={
             submission.reviewed_at
-              ? formatDateTime(submission.reviewed_at, locale)
+              ? formatHongKongDateTime(submission.reviewed_at, locale)
               : "—"
           }
         />
@@ -250,16 +251,6 @@ function buildPageHref(
   const params = new URLSearchParams({ ...query, tab: "history" });
   params.set("page", String(page));
   return `/${locale}/admin/submissions?${params.toString()}`;
-}
-
-function formatDateTime(value: string, locale: string) {
-  return new Intl.DateTimeFormat(locale, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(new Date(value));
 }
 
 function actorLabel(actor: SubmissionReviewRow["actor_type"]) {
