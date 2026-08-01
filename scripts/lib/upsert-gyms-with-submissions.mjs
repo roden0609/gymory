@@ -277,7 +277,30 @@ export function buildUpsertRow(existing, row, actorType) {
     delete nextRow[key];
   }
 
+  for (const field of ["address", "address_zh"]) {
+    if (isShortenedAddress(existing[field], nextRow[field])) {
+      delete nextRow[field];
+    }
+  }
+
   return nextRow;
+}
+
+function isShortenedAddress(existingValue, importedValue) {
+  if (typeof existingValue !== "string" || typeof importedValue !== "string") {
+    return false;
+  }
+
+  const existing = normalizeAddressForComparison(existingValue);
+  const imported = normalizeAddressForComparison(importedValue);
+  return imported.length > 0 && imported.length < existing.length && existing.includes(imported);
+}
+
+function normalizeAddressForComparison(value) {
+  return value
+    .normalize("NFKC")
+    .toLocaleLowerCase("en")
+    .replace(/[\s,，.。/\\\-–—'’"“”()（）]+/g, "");
 }
 
 async function fetchGymBySlug({ supabaseUrl, apiKey, slug }) {

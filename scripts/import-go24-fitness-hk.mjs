@@ -543,7 +543,7 @@ function isPhoneBlock(value) {
   return digits.length === 8 || digits.length === 11 || digits.length === 12;
 }
 
-function extractAddressFromPrimaryInfoColumn(html, title) {
+export function extractAddressFromPrimaryInfoColumn(html, title) {
   const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   if (!h1Match) return null;
 
@@ -552,7 +552,7 @@ function extractAddressFromPrimaryInfoColumn(html, title) {
 
   const afterHeading = html.slice((h1Match.index ?? 0) + h1Match[0].length);
   const infoColumnMatch = afterHeading.match(
-    /<div class="uk-width-1-2@s">([\s\S]*?)<\/div>\s*<div class="uk-width-1-2@s">/i
+    /<div\b[^>]*class=["'][^"']*\buk-width-1-2@s\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i
   );
   if (!infoColumnMatch) return null;
 

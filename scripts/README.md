@@ -25,9 +25,13 @@ For each field in the imported row:
 | has value | `null` | Updates DB to the imported value. |
 | has value | has value | Updates DB only if the value is different. |
 | `null` | `null` | No meaningful change for that field. |
+| shorter `address`/`address_zh` contained in the existing address | more detailed address | Preserves the existing address to prevent source-page truncation from degrading DB data. |
 
 In short: importers can fill missing DB data and replace changed non-null values,
 but they do not erase existing DB values with imported `null`s.
+They also preserve a more detailed existing address when the imported address is
+only a shortened subset. A genuinely different non-null address can still update
+the DB.
 
 ### Change detection
 

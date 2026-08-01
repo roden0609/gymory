@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it, vi } from "vitest";
 
 import {
+  extractAddressFromPrimaryInfoColumn,
   extractBranchUrls,
   loadLiveBranchDetails,
   mapBranchToGymRow,
@@ -58,6 +59,24 @@ describe("GO24 Fitness importer", () => {
       district_code: "HK-YTM",
       last_reported_at: "2026-08-01T04:00:00.000Z",
     });
+  });
+
+  it("extracts every address line when the primary column has extra classes", () => {
+    const html = `
+      <h1 class="uk-heading-medium">Wong Tai Sin</h1>
+      <div class="uk-width-3-5@m">
+        <div class="uk-width-1-2@s uk-first-column">
+          <p>7 &amp; 9, L2, Cheung Ying Alley,&nbsp;</p>
+          <p>110 Lung Cheung Road,&nbsp;</p>
+          <p>Wong Tai Sin</p>
+        </div>
+        <div class="uk-width-1-2@s"><p>67786300</p></div>
+      </div>
+    `;
+
+    expect(extractAddressFromPrimaryInfoColumn(html, "Wong Tai Sin")).toBe(
+      "7 & 9, L2, Cheung Ying Alley, 110 Lung Cheung Road, Wong Tai Sin"
+    );
   });
 
   it("uses and closes the injected Chrome session in browser mode", async () => {

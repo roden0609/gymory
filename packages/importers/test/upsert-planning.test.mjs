@@ -80,6 +80,34 @@ describe("import null and overwrite planning", () => {
     });
   });
 
+  it("preserves a detailed DB address when an import returns only its shorter subset", () => {
+    expect(
+      buildUpsertRow(
+        {
+          ...existing,
+          address: "7 & 9, L2, Cheung Ying Alley, 110 Lung Cheung Road, Wong Tai Sin",
+          address_zh: "黃大仙龍翔道110號翔盈里L2樓7及9號舖",
+        },
+        {
+          slug: "existing-gym",
+          address: "110 Lung Cheung Road",
+          address_zh: "龍翔道110號",
+        },
+        "import"
+      )
+    ).toEqual({ slug: "existing-gym" });
+  });
+
+  it("allows an imported address that is genuinely different", () => {
+    expect(
+      buildUpsertRow(
+        { ...existing, address: "1 Old Road, Central" },
+        { slug: "existing-gym", address: "2 New Road, Wan Chai" },
+        "import"
+      )
+    ).toEqual({ slug: "existing-gym", address: "2 New Road, Wan Chai" });
+  });
+
   it("does not apply import null-preservation rules to other actor types", () => {
     expect(buildUpsertRow(existing, { name: null }, "admin")).toEqual({
       name: null,
