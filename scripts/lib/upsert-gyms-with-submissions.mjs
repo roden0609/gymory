@@ -420,7 +420,8 @@ export function buildChangedFields(existing, nextRow) {
       key === "data_source" ||
       key === "created_at" ||
       key === "updated_at" ||
-      key === "last_reported_at"
+      key === "last_reported_at" ||
+      key === "equipment_last_verified_at"
     ) {
       continue;
     }

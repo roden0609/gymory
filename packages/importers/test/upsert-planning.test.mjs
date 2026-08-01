@@ -126,6 +126,7 @@ describe("import change detection", () => {
           created_at: "new",
           updated_at: "new",
           last_reported_at: "new",
+          equipment_last_verified_at: "new",
         }
       )
     ).toBeNull();
@@ -166,6 +167,7 @@ describe("import change detection", () => {
           slug: "existing-gym",
           data_source: "import",
           last_reported_at: "2026-07-31T12:00:00.000Z",
+          equipment_last_verified_at: "2026-08-01T18:27:36.215Z",
         },
       ],
       actorType: "import",

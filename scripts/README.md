@@ -44,9 +44,14 @@ These fields are ignored for change detection:
 - `created_at`
 - `updated_at`
 - `last_reported_at`
+- `equipment_last_verified_at`
 
 If no changed fields remain, the helper skips the row. It does not PATCH `gyms`
 and does not create a `gym_update_submissions` record.
+
+`equipment_last_verified_at` on its own is reporting metadata and therefore does
+not trigger an update. When another meaningful field changes, the full PATCH
+payload still includes the importer's latest verification timestamp.
 
 If at least one field changed, the helper:
 
