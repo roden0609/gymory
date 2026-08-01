@@ -124,3 +124,21 @@ node scripts/import-pure-fitness-hk.mjs \
   --district-overrides path/to/district-overrides.json \
   --address-overrides data/imports/pure-fitness-hk-address-overrides.json
 ```
+
+## Chrome modes
+
+If EFX24 or GO24 returns a CAPTCHA to Node `fetch()`, the importer fails before
+writing an empty baseline. Use explicit headed browser mode to render the
+source with the locally installed Google Chrome:
+
+```bash
+pnpm import:efx24-hk --browser
+pnpm import:go24-fitness-hk --browser
+```
+
+Browser mode uses an isolated persistent profile under `.cache/`: EFX24 uses
+`efx24-chrome-profile` and GO24 uses `go24-chrome-profile`. Complete browser
+verification manually if the opened window requests it. Importers do not
+automatically enable browser mode and do not use the personal default Chrome
+profile. A custom dedicated profile can be supplied with
+`--browser-profile <path>`.

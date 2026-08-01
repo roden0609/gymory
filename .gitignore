@@ -18,6 +18,7 @@ apps/web/.env.*.local
 
 # Turbo cache
 .turbo/
+.cache/
 
 # Supabase
 supabase/.branches/

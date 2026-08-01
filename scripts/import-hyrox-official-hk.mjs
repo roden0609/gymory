@@ -18,30 +18,40 @@
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
+import { pathToFileURL } from "node:url";
+import {
+  validateImporterDetails,
+  validateImporterRows,
+} from "./lib/importer-output-validation.mjs";
 
 const SOURCE_URL = "https://hyrox.com/find-a-hyrox-partner-gym/";
 const FINDER_ENDPOINT =
   "https://gyms.elbnetz.cloud/wp-admin/admin-ajax.php?action=store_search&lat=22.3193&lng=114.16936&max_results=1000&search_radius=100";
 
-const args = parseArgs(process.argv.slice(2));
+const isDirectExecution =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (isDirectExecution) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}
 
 async function main() {
   const partnerGyms = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
     : await fetchHyroxPartnerGyms();
+  validateImporterDetails(partnerGyms, {
+    label: "HYROX Official",
+    getSourceId: (detail) => detail.id,
+  });
 
-  const rows = partnerGyms
-    .filter(isHongKongPartnerGym)
-    .map(mapPartnerGymToGymRow)
-    .sort((a, b) => a.slug.localeCompare(b.slug));
+  const rows = mapPartnerGymsToRows(partnerGyms);
+  validateImporterRows(rows, "HYROX Official");
 
   const unknownDistricts = rows.filter((row) => !row.district_code);
   if (unknownDistricts.length > 0) {
@@ -84,7 +94,7 @@ async function main() {
   }
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const parsed = {};
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -163,7 +173,7 @@ async function fetchHyroxPartnerGyms() {
   return payload;
 }
 
-function isHongKongPartnerGym(item) {
+export function isHongKongPartnerGym(item) {
   const haystack = [item.store, item.address, item.address2, item.city, item.country]
     .filter(Boolean)
     .join(" ")
@@ -173,7 +183,7 @@ function isHongKongPartnerGym(item) {
   return haystack.includes("hong kong") || haystack.includes("kowloon");
 }
 
-function mapPartnerGymToGymRow(item) {
+export function mapPartnerGymToGymRow(item, now = new Date()) {
   const name = decodeHtml(getString(item.store)) ?? "HYROX Partner Gym";
   const address = decodeHtml(
     [item.address, item.address2].map(getString).filter(Boolean).join(", ")
@@ -181,7 +191,7 @@ function mapPartnerGymToGymRow(item) {
   const city = decodeHtml(getString(item.city));
   const slug = buildSlug([name, city && !name.toLowerCase().includes(city.toLowerCase()) ? city : null]);
   const districtText = [name, address, city].filter(Boolean).join(" ");
-  const syncedAt = new Date().toISOString();
+  const syncedAt = now.toISOString();
 
   return {
     name,
@@ -213,6 +223,50 @@ function mapPartnerGymToGymRow(item) {
     equipment_last_verified_at: null,
     last_reported_at: syncedAt,
   };
+}
+
+export function mapPartnerGymsToRows(partnerGyms, now = new Date()) {
+  const mappedRows = partnerGyms
+    .filter(isHongKongPartnerGym)
+    .map((item) => mapPartnerGymToGymRow(item, now))
+    .sort((a, b) => {
+      const slugOrder = a.slug.localeCompare(b.slug);
+      if (slugOrder !== 0) return slugOrder;
+      return comparePartnerIds(a.hyrox_partner_id, b.hyrox_partner_id);
+    });
+
+  const rowsBySlug = new Map();
+  for (const row of mappedRows) {
+    const existing = rowsBySlug.get(row.slug);
+    if (!existing) {
+      rowsBySlug.set(row.slug, row);
+      continue;
+    }
+    if (isExactPartnerLocationDuplicate(existing, row)) continue;
+
+    throw new Error(
+      `HYROX Official produced conflicting records for slug ${row.slug} ` +
+        `(partner IDs ${existing.hyrox_partner_id ?? "unknown"} and ` +
+        `${row.hyrox_partner_id ?? "unknown"})`
+    );
+  }
+
+  return [...rowsBySlug.values()];
+}
+
+function isExactPartnerLocationDuplicate(left, right) {
+  return (
+    normalizeText(left.name) === normalizeText(right.name) &&
+    normalizeText(left.address) === normalizeText(right.address) &&
+    left.lat === right.lat &&
+    left.lng === right.lng
+  );
+}
+
+function comparePartnerIds(left, right) {
+  return String(left ?? "").localeCompare(String(right ?? ""), "en", {
+    numeric: true,
+  });
 }
 
 async function upsertRows(rows) {
@@ -626,6 +680,7 @@ function inferDistrictCode(text) {
     ["HK-YTM", ["mong kok", "tsim sha tsui", "tst", "jordan", "austin", "nathan road", "kowloon park", "hillwood", "hollywood plaza", "k11 musea", "yue hwa"]],
     ["HK-SSP", ["sham shui po", "cheung sha wan", "lai chi kok", "tonkin", "wing hong", "king lam", "kimberland", "burlington"]],
     ["HK-KC", ["kowloon city", "hung hom", "ho man tin", "to kwa wan", "kai tak", "airside", "concorde"]],
+    ["HK-WTS", ["wong tai sin", "san po kong", "diamond hill", "tai yau street", "midas plaza", "choi hung"]],
     ["HK-KT", ["kwun tong", "kowloon bay", "ngau tau kok", "mega box", "megabox", "telford", "amoy", "hoi yuen", "how ming", "lai yip", "hung to", "westin centre", "kwun tong road"]],
     ["HK-KTQ", ["kwai chung", "kwai tsing", "container port road"]],
     ["HK-TW", ["tsuen wan", "kolour", "castle peak road"]],

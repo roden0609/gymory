@@ -36,6 +36,30 @@ the live pages again.
 pnpm import:go24-fitness-hk --details-file data/imports/raw-go24-fitness-hk-details.json
 ```
 
+## Chrome browser mode
+
+If GO24 returns a CAPTCHA or bot challenge to Node `fetch()`, the default run
+stops before overwriting the baseline. Use explicit headed Chrome mode:
+
+```bash
+pnpm import:go24-fitness-hk --browser
+```
+
+The importer uses the locally installed Google Chrome and an isolated
+persistent profile at `.cache/go24-chrome-profile`. If browser verification is
+shown, complete it manually in the opened window. To select a different
+dedicated profile:
+
+```bash
+pnpm import:go24-fitness-hk --browser \
+  --browser-profile .cache/my-go24-profile
+```
+
+Browser mode is never enabled automatically and does not use the personal
+default Chrome profile. Set `GOOGLE_CHROME_PATH` when Chrome is installed
+outside the standard macOS location. `--details-file` takes precedence and
+does not launch Chrome.
+
 ## Geocoding
 
 If `MAPBOX_PRIVATE_TOKEN` or `NEXT_PUBLIC_MAPBOX_TOKEN` is set, the importer

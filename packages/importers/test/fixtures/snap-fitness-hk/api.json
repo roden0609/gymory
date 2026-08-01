@@ -1,0 +1,26 @@
+{
+  "en": [{
+    "id": "snap-1",
+    "name": "Central HK",
+    "urlPath": "/gyms/central-hk",
+    "customProperties": {
+      "locationNum": "3001",
+      "latitude": "22.2819",
+      "longitude": "114.1585",
+      "contactDetails": {
+        "address": "1 Queen's Road Central, Central",
+        "city": "Central",
+        "phone": "+852 2123 4567"
+      }
+    }
+  }],
+  "zh": [{
+    "id": "snap-zh-1",
+    "name": "中環",
+    "urlPath": "/gyms/central-hk",
+    "customProperties": {
+      "locationNum": "3001",
+      "contactDetails": { "address": "中環皇后大道中1號" }
+    }
+  }]
+}

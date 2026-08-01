@@ -18,10 +18,12 @@
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
+import {
+  validateImporterDetails,
+  validateImporterRows,
+} from "./lib/importer-output-validation.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const ORIGIN = "https://www.snapfitness.com";
 const LIST_URL_ZH = `${ORIGIN}/hk/api/location-finder-edge`;
@@ -98,12 +100,18 @@ const BRANCH_NAME_ZH_BY_SLUG = Object.fromEntries(
   }).map(([slug, name]) => [`/gyms/${slug}`, name])
 );
 
-const args = parseArgs(process.argv.slice(2));
+const isDirectExecution =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (isDirectExecution) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}
 
 async function main() {
   const districtOverrides = args["district-overrides"]
@@ -112,7 +120,12 @@ async function main() {
 
   const details = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
-    : await fetchLocationDetailsFromApi();
+    : await fetchLocationDetailsFromApi(args.limit);
+  validateImporterDetails(details, {
+    label: "Snap Fitness",
+    getSourceId: (detail) =>
+      detail.location_num ?? detail.glofox_id ?? detail.url_path ?? detail.id,
+  });
 
   if (args["details-out"]) {
     const detailsOutPath = path.resolve(process.cwd(), args["details-out"]);
@@ -124,6 +137,7 @@ async function main() {
   const rows = details
     .map((detail) => mapLocationToGymRow(detail, districtOverrides))
     .sort((a, b) => a.slug.localeCompare(b.slug));
+  validateImporterRows(rows, "Snap Fitness");
 
   const unknownDistricts = rows.filter((row) => !row.district_code);
   if (unknownDistricts.length > 0) {
@@ -157,7 +171,7 @@ async function main() {
   }
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const parsed = {};
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -210,12 +224,12 @@ function parseEnvValue(value) {
   return trimmed;
 }
 
-async function fetchLocationDetailsFromApi() {
+async function fetchLocationDetailsFromApi(limit) {
   const [enPayload, zhPayload] = await Promise.all([
     fetchLocationPayload(LIST_URL_EN),
     fetchLocationPayload(LIST_URL_ZH),
   ]);
-  return mergeLocalizedLocations(enPayload.items, zhPayload.items);
+  return mergeLocalizedLocations(enPayload.items, zhPayload.items, limit);
 }
 
 async function fetchLocationPayload(url) {
@@ -244,7 +258,7 @@ async function fetchLocationPayload(url) {
   return payload;
 }
 
-function mergeLocalizedLocations(enItems, zhItems) {
+export function mergeLocalizedLocations(enItems, zhItems, limit) {
   const zhByKey = new Map();
   for (const item of zhItems) {
     zhByKey.set(getLocationKey(item), item);
@@ -262,7 +276,7 @@ function mergeLocalizedLocations(enItems, zhItems) {
     merged.push(normalizeLocationDetail(null, zhItem));
   }
 
-  return args.limit ? merged.slice(0, Number(args.limit)) : merged;
+  return limit ? merged.slice(0, Number(limit)) : merged;
 }
 
 function getLocationKey(item) {
@@ -274,7 +288,7 @@ function getLocationKey(item) {
   );
 }
 
-function normalizeLocationDetail(enItem, zhItem) {
+export function normalizeLocationDetail(enItem, zhItem) {
   const item = enItem ?? zhItem;
   const enContact = enItem?.customProperties?.contactDetails ?? {};
   const zhContact = zhItem?.customProperties?.contactDetails ?? {};
@@ -315,7 +329,7 @@ function splitLocalizedAddress(value) {
   return [first ?? null, containsCjk(second) ? second : containsCjk(first) ? first : null];
 }
 
-function mapLocationToGymRow(detail, districtOverrides) {
+export function mapLocationToGymRow(detail, districtOverrides = {}, now = new Date()) {
   const baseName = cleanBranchName(detail.name);
   const baseNameZh = resolveBranchNameZh(detail);
   const slug = toSlug(
@@ -355,10 +369,8 @@ function mapLocationToGymRow(detail, districtOverrides) {
     lng: toNumber(detail.longitude),
     is_active: true,
     data_source: "import",
-    last_reported_at: new Date().toISOString(),
+    last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
-    has_washroom: true,
-    has_bathroom: true,
   };
 }
 

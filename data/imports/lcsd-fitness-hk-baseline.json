@@ -14,7 +14,7 @@
     "estimated_size_sqft": 1776,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.429Z",
+    "last_reported_at": "2026-08-01T16:36:55.122Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -112,8 +112,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.424Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.131Z"
   },
   {
     "name": "LCSD Aberdeen Tennis and Squash Centre",
@@ -130,7 +134,7 @@
     "estimated_size_sqft": 1345,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.430Z",
+    "last_reported_at": "2026-08-01T16:36:55.131Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -228,8 +232,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.430Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.132Z"
   },
   {
     "name": "LCSD Ap Lei Chau Sports Centre",
@@ -246,7 +254,7 @@
     "estimated_size_sqft": 1238,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.430Z",
+    "last_reported_at": "2026-08-01T16:36:55.132Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -344,8 +352,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.430Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.133Z"
   },
   {
     "name": "LCSD Chai Wan Sports Centre",
@@ -362,7 +374,7 @@
     "estimated_size_sqft": 1561,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.432Z",
+    "last_reported_at": "2026-08-01T16:36:55.133Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -460,8 +472,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.432Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.135Z"
   },
   {
     "name": "LCSD Che Kung Temple Sports Centre",
@@ -478,7 +494,7 @@
     "estimated_size_sqft": 2691,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.442Z",
+    "last_reported_at": "2026-08-01T16:36:55.145Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -576,8 +592,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.442Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.145Z"
   },
   {
     "name": "LCSD Cheung Chau Sports Centre",
@@ -594,7 +614,7 @@
     "estimated_size_sqft": 1119,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.442Z",
+    "last_reported_at": "2026-08-01T16:36:55.145Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -692,8 +712,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.442Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.145Z"
   },
   {
     "name": "LCSD Cheung Fat Sports Centre",
@@ -710,7 +734,7 @@
     "estimated_size_sqft": 1044,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.443Z",
+    "last_reported_at": "2026-08-01T16:36:55.145Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -808,8 +832,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.443Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.146Z"
   },
   {
     "name": "LCSD Choi Hung Road Sports Centre",
@@ -826,7 +854,7 @@
     "estimated_size_sqft": 1475,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.437Z",
+    "last_reported_at": "2026-08-01T16:36:55.138Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -924,8 +952,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.437Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.139Z"
   },
   {
     "name": "LCSD Choi Wing Road Sports Centre",
@@ -942,7 +974,7 @@
     "estimated_size_sqft": 3229,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.437Z",
+    "last_reported_at": "2026-08-01T16:36:55.139Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -1040,8 +1072,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.437Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.139Z"
   },
   {
     "name": "LCSD Chuk Yuen Sports Centre",
@@ -1058,7 +1094,7 @@
     "estimated_size_sqft": 1249,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.437Z",
+    "last_reported_at": "2026-08-01T16:36:55.139Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -1156,8 +1192,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.437Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.139Z"
   },
   {
     "name": "LCSD Fa Yuen Street Sports Centre",
@@ -1174,7 +1214,7 @@
     "estimated_size_sqft": 1830,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.438Z",
+    "last_reported_at": "2026-08-01T16:36:55.139Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -1272,8 +1312,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.438Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.140Z"
   },
   {
     "name": "LCSD Fat Kwong Street Sports Centre",
@@ -1290,7 +1334,7 @@
     "estimated_size_sqft": 1163,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.438Z",
+    "last_reported_at": "2026-08-01T16:36:55.140Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -1388,8 +1432,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Ab / Low Back x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.438Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.140Z"
   },
   {
     "name": "LCSD Fu Heng Sports Centre",
@@ -1406,7 +1454,7 @@
     "estimated_size_sqft": 1163,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.443Z",
+    "last_reported_at": "2026-08-01T16:36:55.146Z",
     "rack_count": null,
     "bench_count": 6,
     "barbell_count": null,
@@ -1504,8 +1552,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.443Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.146Z"
   },
   {
     "name": "LCSD Fu Shin Sports Centre",
@@ -1522,7 +1574,7 @@
     "estimated_size_sqft": 1023,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.443Z",
+    "last_reported_at": "2026-08-01T16:36:55.146Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -1620,8 +1672,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.443Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.146Z"
   },
   {
     "name": "LCSD Fung Kam Street Sports Centre",
@@ -1638,7 +1694,7 @@
     "estimated_size_sqft": 603,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.443Z",
+    "last_reported_at": "2026-08-01T16:36:55.146Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -1736,8 +1792,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Functional Training System x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.443Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.146Z"
   },
   {
     "name": "LCSD Fung Shue Wo Sports Centre",
@@ -1754,7 +1814,7 @@
     "estimated_size_sqft": 1572,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.444Z",
+    "last_reported_at": "2026-08-01T16:36:55.146Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -1852,8 +1912,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Charm Belt x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.444Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.147Z"
   },
   {
     "name": "LCSD Hang Hau Sports Centre",
@@ -1870,7 +1934,7 @@
     "estimated_size_sqft": 3574,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.444Z",
+    "last_reported_at": "2026-08-01T16:36:55.147Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -1968,8 +2032,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.444Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.147Z"
   },
   {
     "name": "LCSD Harbour Road Sports Centre",
@@ -1986,7 +2054,7 @@
     "estimated_size_sqft": 2734,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.433Z",
+    "last_reported_at": "2026-08-01T16:36:55.135Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -2084,8 +2152,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.433Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.135Z"
   },
   {
     "name": "LCSD Heng On Sports Centre",
@@ -2102,7 +2174,7 @@
     "estimated_size_sqft": 635,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.444Z",
+    "last_reported_at": "2026-08-01T16:36:55.147Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -2200,8 +2272,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.444Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.147Z"
   },
   {
     "name": "LCSD Hin Keng Sports Centre",
@@ -2218,7 +2294,7 @@
     "estimated_size_sqft": 667,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.444Z",
+    "last_reported_at": "2026-08-01T16:36:55.147Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -2316,8 +2392,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.444Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.147Z"
   },
   {
     "name": "LCSD Hiu Kwong Street Sports Centre",
@@ -2334,7 +2414,7 @@
     "estimated_size_sqft": 667,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.438Z",
+    "last_reported_at": "2026-08-01T16:36:55.140Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -2432,8 +2512,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.438Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.140Z"
   },
   {
     "name": "LCSD Ho Man Tin Sports Centre",
@@ -2450,7 +2534,7 @@
     "estimated_size_sqft": 4392,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.438Z",
+    "last_reported_at": "2026-08-01T16:36:55.140Z",
     "rack_count": null,
     "bench_count": 5,
     "barbell_count": null,
@@ -2548,8 +2632,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.438Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.140Z"
   },
   {
     "name": "LCSD Hong Kong Park Sports Centre",
@@ -2566,7 +2654,7 @@
     "estimated_size_sqft": 1302,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.433Z",
+    "last_reported_at": "2026-08-01T16:36:55.135Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -2664,8 +2752,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.433Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.135Z"
   },
   {
     "name": "LCSD Hong Kong Velodrome",
@@ -2682,7 +2774,7 @@
     "estimated_size_sqft": 3509,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.445Z",
+    "last_reported_at": "2026-08-01T16:36:55.147Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -2780,8 +2872,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.445Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.148Z"
   },
   {
     "name": "LCSD Hung Hom Municipal Services Building Sports Centre",
@@ -2798,7 +2894,7 @@
     "estimated_size_sqft": 388,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.439Z",
+    "last_reported_at": "2026-08-01T16:36:55.140Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -2896,8 +2992,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.439Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.140Z"
   },
   {
     "name": "LCSD Island East Sports Centre",
@@ -2914,7 +3014,7 @@
     "estimated_size_sqft": 1335,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.433Z",
+    "last_reported_at": "2026-08-01T16:36:55.135Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -3012,8 +3112,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.433Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.135Z"
   },
   {
     "name": "LCSD Java Road Sports Centre",
@@ -3030,7 +3134,7 @@
     "estimated_size_sqft": 1550,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.434Z",
+    "last_reported_at": "2026-08-01T16:36:55.136Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -3128,8 +3232,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.434Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.136Z"
   },
   {
     "name": "LCSD Kowloon Park Sports Centre",
@@ -3146,7 +3254,7 @@
     "estimated_size_sqft": 1819,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.439Z",
+    "last_reported_at": "2026-08-01T16:36:55.140Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -3244,8 +3352,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.439Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.141Z"
   },
   {
     "name": "LCSD Kwun Chung Sports Centre",
@@ -3262,7 +3374,7 @@
     "estimated_size_sqft": 2583,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.439Z",
+    "last_reported_at": "2026-08-01T16:36:55.141Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -3360,8 +3472,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.439Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.141Z"
   },
   {
     "name": "LCSD Lai King Sports Centre",
@@ -3378,7 +3494,7 @@
     "estimated_size_sqft": 1292,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.445Z",
+    "last_reported_at": "2026-08-01T16:36:55.148Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -3476,8 +3592,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.445Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.148Z"
   },
   {
     "name": "LCSD Lam Tin South Sports Centre",
@@ -3494,7 +3614,7 @@
     "estimated_size_sqft": 1345,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.439Z",
+    "last_reported_at": "2026-08-01T16:36:55.141Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -3571,7 +3691,7 @@
     "has_iso_lateral_shoulder_press_machine": null,
     "has_multi_press_machine": null,
     "has_multi_hip_machine": null,
-    "has_stretching_machine": null,
+    "has_stretching_machine": true,
     "elliptical_machine_count": 1,
     "has_mobility_stick": null,
     "has_hip_abductor_machine": null,
@@ -3592,8 +3712,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.439Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.141Z"
   },
   {
     "name": "LCSD Lei Yue Mun Sports Centre",
@@ -3610,7 +3734,7 @@
     "estimated_size_sqft": 1238,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.440Z",
+    "last_reported_at": "2026-08-01T16:36:55.141Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -3708,8 +3832,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.440Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.141Z"
   },
   {
     "name": "LCSD Leung Tin Sports Centre",
@@ -3721,12 +3849,12 @@
     "country_code": "HK",
     "website_url": "https://www.lcsd.gov.hk/clpss/en/webApp/FitnessRoomDetails.do?id=1426",
     "contact_phone": "24671594",
-    "lat": 22.405601,
-    "lng": 113.9635,
+    "lat": 22.405449,
+    "lng": 113.964062,
     "estimated_size_sqft": 1152,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.445Z",
+    "last_reported_at": "2026-08-01T16:36:55.148Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -3824,8 +3952,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Dumbell Set x3",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.445Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.148Z"
   },
   {
     "name": "LCSD Lockhart Road Sports Centre",
@@ -3842,7 +3974,7 @@
     "estimated_size_sqft": 807,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.434Z",
+    "last_reported_at": "2026-08-01T16:36:55.136Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -3940,8 +4072,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.434Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.136Z"
   },
   {
     "name": "LCSD Long Ping Sports Centre",
@@ -3958,7 +4094,7 @@
     "estimated_size_sqft": 753,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.445Z",
+    "last_reported_at": "2026-08-01T16:36:55.148Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -4056,8 +4192,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.445Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.148Z"
   },
   {
     "name": "LCSD Luen Wo Hui Sports Centre",
@@ -4074,7 +4214,7 @@
     "estimated_size_sqft": 1851,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.445Z",
+    "last_reported_at": "2026-08-01T16:36:55.148Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -4172,8 +4312,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.445Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.148Z"
   },
   {
     "name": "LCSD Lung Sum Avenue Sports Centre",
@@ -4190,7 +4334,7 @@
     "estimated_size_sqft": 980,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.445Z",
+    "last_reported_at": "2026-08-01T16:36:55.148Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -4288,8 +4432,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.445Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.149Z"
   },
   {
     "name": "LCSD Ma Chai Hang Sports Centre",
@@ -4306,7 +4454,7 @@
     "estimated_size_sqft": 3003,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.440Z",
+    "last_reported_at": "2026-08-01T16:36:55.141Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -4404,8 +4552,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.440Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.142Z"
   },
   {
     "name": "LCSD Ma On Shan Sports Centre",
@@ -4422,7 +4574,7 @@
     "estimated_size_sqft": 1163,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.446Z",
+    "last_reported_at": "2026-08-01T16:36:55.149Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -4520,8 +4672,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Inner / Thigh x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.446Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.149Z"
   },
   {
     "name": "LCSD Mei Lam Sports Centre",
@@ -4538,7 +4694,7 @@
     "estimated_size_sqft": 1313,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.446Z",
+    "last_reported_at": "2026-08-01T16:36:55.149Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -4636,8 +4792,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Multi-gym x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.446Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.149Z"
   },
   {
     "name": "LCSD Mui Wo Sports Centre",
@@ -4654,7 +4814,7 @@
     "estimated_size_sqft": 1227,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.446Z",
+    "last_reported_at": "2026-08-01T16:36:55.149Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -4752,8 +4912,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.446Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.149Z"
   },
   {
     "name": "LCSD Ngau Tau Kok Road Sports Centre",
@@ -4770,7 +4934,7 @@
     "estimated_size_sqft": 1970,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.440Z",
+    "last_reported_at": "2026-08-01T16:36:55.142Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -4868,8 +5032,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.440Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.143Z"
   },
   {
     "name": "LCSD North Kwai Chung Tang Shiu Kin Sports Centre",
@@ -4886,7 +5054,7 @@
     "estimated_size_sqft": 678,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.446Z",
+    "last_reported_at": "2026-08-01T16:36:55.149Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -4936,7 +5104,7 @@
     "smith_machine_count": null,
     "has_smith_machine": null,
     "has_deadlift_platform": null,
-    "has_pull_up_bar": true,
+    "has_pull_up_bar": null,
     "has_dip_station": null,
     "has_trx": null,
     "has_resistance_band": null,
@@ -4984,8 +5152,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.446Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.149Z"
   },
   {
     "name": "LCSD Osman Ramju Sadick Memorial Sports Centre",
@@ -5002,7 +5174,7 @@
     "estimated_size_sqft": 926,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.446Z",
+    "last_reported_at": "2026-08-01T16:36:55.149Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -5100,8 +5272,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.446Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.150Z"
   },
   {
     "name": "LCSD Pei Ho Street Sports Centre",
@@ -5118,7 +5294,7 @@
     "estimated_size_sqft": 1711,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.440Z",
+    "last_reported_at": "2026-08-01T16:36:55.143Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -5216,8 +5392,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.440Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.143Z"
   },
   {
     "name": "LCSD Peng Chau Sports Centre",
@@ -5234,7 +5414,7 @@
     "estimated_size_sqft": 1087,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.446Z",
+    "last_reported_at": "2026-08-01T16:36:55.150Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -5332,8 +5512,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Combination Twister x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.446Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.150Z"
   },
   {
     "name": "LCSD Po Kong Village Road Sports Centre",
@@ -5350,7 +5534,7 @@
     "estimated_size_sqft": 1292,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.441Z",
+    "last_reported_at": "2026-08-01T16:36:55.143Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -5448,8 +5632,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.441Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.143Z"
   },
   {
     "name": "LCSD Po Lam Sports Centre",
@@ -5466,7 +5654,7 @@
     "estimated_size_sqft": 1163,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.447Z",
+    "last_reported_at": "2026-08-01T16:36:55.150Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -5564,8 +5752,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.447Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.150Z"
   },
   {
     "name": "LCSD Po On Road Sports Centre",
@@ -5577,12 +5769,12 @@
     "country_code": "HK",
     "website_url": "https://www.lcsd.gov.hk/clpss/en/webApp/FitnessRoomDetails.do?id=1392",
     "contact_phone": "27294237",
-    "lat": 22.338475,
-    "lng": 114.158147,
+    "lat": 22.338333,
+    "lng": 114.158328,
     "estimated_size_sqft": 2486,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.441Z",
+    "last_reported_at": "2026-08-01T16:36:55.143Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -5680,8 +5872,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Multi-gym(Multi-station) x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.441Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.143Z"
   },
   {
     "name": "LCSD Po Wing Road Sports Centre",
@@ -5698,7 +5894,7 @@
     "estimated_size_sqft": 3897,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.447Z",
+    "last_reported_at": "2026-08-01T16:36:55.150Z",
     "rack_count": null,
     "bench_count": 5,
     "barbell_count": null,
@@ -5796,8 +5992,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.447Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.150Z"
   },
   {
     "name": "LCSD Quarry Bay Sports Centre",
@@ -5814,7 +6014,7 @@
     "estimated_size_sqft": 2034,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.434Z",
+    "last_reported_at": "2026-08-01T16:36:55.136Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -5912,8 +6112,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Calf x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.434Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.137Z"
   },
   {
     "name": "LCSD Sham Shui Po Sports Centre",
@@ -5925,12 +6129,12 @@
     "country_code": "HK",
     "website_url": "https://www.lcsd.gov.hk/clpss/en/webApp/FitnessRoomDetails.do?id=2754",
     "contact_phone": "23602276",
-    "lat": 22.329099,
-    "lng": 114.151199,
+    "lat": 22.3309,
+    "lng": 114.148811,
     "estimated_size_sqft": 1970,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.441Z",
+    "last_reported_at": "2026-08-01T16:36:55.143Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -6028,8 +6232,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.441Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.144Z"
   },
   {
     "name": "LCSD Shek Kip Mei Park Sports Centre",
@@ -6046,7 +6254,7 @@
     "estimated_size_sqft": 1485,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.441Z",
+    "last_reported_at": "2026-08-01T16:36:55.144Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -6144,8 +6352,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.441Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.144Z"
   },
   {
     "name": "LCSD Shek Tong Tsui Sports Centre",
@@ -6162,7 +6374,7 @@
     "estimated_size_sqft": 1324,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.435Z",
+    "last_reported_at": "2026-08-01T16:36:55.137Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -6260,8 +6472,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.435Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.137Z"
   },
   {
     "name": "LCSD Sheung Wan Sports Centre",
@@ -6278,7 +6494,7 @@
     "estimated_size_sqft": 2325,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.435Z",
+    "last_reported_at": "2026-08-01T16:36:55.137Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -6376,8 +6592,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.435Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.137Z"
   },
   {
     "name": "LCSD Shun Lee Tsuen Sports Centre",
@@ -6394,7 +6614,7 @@
     "estimated_size_sqft": 1292,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.442Z",
+    "last_reported_at": "2026-08-01T16:36:55.144Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -6492,8 +6712,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.442Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.144Z"
   },
   {
     "name": "LCSD Siu Lun Sports Centre",
@@ -6510,7 +6734,7 @@
     "estimated_size_sqft": 2659,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.447Z",
+    "last_reported_at": "2026-08-01T16:36:55.150Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -6608,8 +6832,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.447Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.151Z"
   },
   {
     "name": "LCSD Smithfield Sports Centre",
@@ -6626,7 +6854,7 @@
     "estimated_size_sqft": 2519,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.436Z",
+    "last_reported_at": "2026-08-01T16:36:55.137Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -6724,8 +6952,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.436Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.138Z"
   },
   {
     "name": "LCSD Sun Yat Sen Memorial Park Sports Centre",
@@ -6742,7 +6974,7 @@
     "estimated_size_sqft": 1345,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.436Z",
+    "last_reported_at": "2026-08-01T16:36:55.138Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -6840,8 +7072,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Rotary Chest x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.436Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.138Z"
   },
   {
     "name": "LCSD Tai Hing Sports Centre",
@@ -6858,7 +7094,7 @@
     "estimated_size_sqft": 947,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.447Z",
+    "last_reported_at": "2026-08-01T16:36:55.151Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -6956,8 +7192,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.447Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.151Z"
   },
   {
     "name": "LCSD Tai Kok Tsui Sports Centre",
@@ -6974,7 +7214,7 @@
     "estimated_size_sqft": 3606,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.442Z",
+    "last_reported_at": "2026-08-01T16:36:55.144Z",
     "rack_count": null,
     "bench_count": 6,
     "barbell_count": null,
@@ -7072,8 +7312,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.442Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.145Z"
   },
   {
     "name": "LCSD Tai Po Hui Sports Centre",
@@ -7090,7 +7334,7 @@
     "estimated_size_sqft": 2314,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.447Z",
+    "last_reported_at": "2026-08-01T16:36:55.151Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -7188,8 +7432,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.447Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.151Z"
   },
   {
     "name": "LCSD Tai Po Sports Centre",
@@ -7206,7 +7454,7 @@
     "estimated_size_sqft": 1163,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.448Z",
+    "last_reported_at": "2026-08-01T16:36:55.151Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -7304,8 +7552,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.448Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.151Z"
   },
   {
     "name": "LCSD Tai Wo Hau Sports Centre",
@@ -7322,7 +7574,7 @@
     "estimated_size_sqft": 1119,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.448Z",
+    "last_reported_at": "2026-08-01T16:36:55.151Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -7420,8 +7672,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.448Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.151Z"
   },
   {
     "name": "LCSD Tai Wo Sports Centre",
@@ -7438,7 +7694,7 @@
     "estimated_size_sqft": 1119,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.448Z",
+    "last_reported_at": "2026-08-01T16:36:55.151Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -7536,8 +7792,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.448Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.152Z"
   },
   {
     "name": "LCSD The Jockey Club Tuen Mun Butterfly Beach Sports Centre",
@@ -7554,7 +7814,7 @@
     "estimated_size_sqft": 1012,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.448Z",
+    "last_reported_at": "2026-08-01T16:36:55.152Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -7652,8 +7912,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.448Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.152Z"
   },
   {
     "name": "LCSD Tin Fai Road Sports Centre",
@@ -7670,7 +7934,7 @@
     "estimated_size_sqft": 1399,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.448Z",
+    "last_reported_at": "2026-08-01T16:36:55.152Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -7768,8 +8032,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Impact Vertical Knee x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.448Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.152Z"
   },
   {
     "name": "LCSD Tin Ping Sports Centre",
@@ -7781,12 +8049,12 @@
     "country_code": "HK",
     "website_url": "https://www.lcsd.gov.hk/clpss/en/webApp/FitnessRoomDetails.do?id=1404",
     "contact_phone": "26733699",
-    "lat": 22.502956,
-    "lng": 114.132546,
+    "lat": 22.50614,
+    "lng": 114.131953,
     "estimated_size_sqft": 689,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.449Z",
+    "last_reported_at": "2026-08-01T16:36:55.152Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -7884,8 +8152,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.448Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.152Z"
   },
   {
     "name": "LCSD Tin Shui Sports Centre",
@@ -7902,7 +8174,7 @@
     "estimated_size_sqft": 1561,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.449Z",
+    "last_reported_at": "2026-08-01T16:36:55.152Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -8000,8 +8272,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.449Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.152Z"
   },
   {
     "name": "LCSD Tin Shui Wai Sports Centre",
@@ -8016,9 +8292,9 @@
     "lat": 22.454959,
     "lng": 114.006492,
     "estimated_size_sqft": 1615,
-    "is_active": false,
+    "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.449Z",
+    "last_reported_at": "2026-08-01T16:36:55.152Z",
     "rack_count": null,
     "bench_count": null,
     "barbell_count": null,
@@ -8116,8 +8392,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.449Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.152Z"
   },
   {
     "name": "LCSD Tiu Keng Leng Sports Centre",
@@ -8134,7 +8414,7 @@
     "estimated_size_sqft": 3068,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.449Z",
+    "last_reported_at": "2026-08-01T16:36:55.152Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -8232,8 +8512,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.449Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.153Z"
   },
   {
     "name": "LCSD To Kwa Wan Sports Centre",
@@ -8250,7 +8534,7 @@
     "estimated_size_sqft": 721,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.442Z",
+    "last_reported_at": "2026-08-01T16:36:55.145Z",
     "rack_count": null,
     "bench_count": null,
     "barbell_count": null,
@@ -8348,8 +8632,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.442Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.145Z"
   },
   {
     "name": "LCSD Tseung Kwan O Sports Centre",
@@ -8366,7 +8654,7 @@
     "estimated_size_sqft": 1259,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.449Z",
+    "last_reported_at": "2026-08-01T16:36:55.153Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -8464,8 +8752,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.449Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.153Z"
   },
   {
     "name": "LCSD Tsing Yi Southwest Sports Centre",
@@ -8482,7 +8774,7 @@
     "estimated_size_sqft": 1184,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.449Z",
+    "last_reported_at": "2026-08-01T16:36:55.153Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -8580,8 +8872,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
-    "equipment_notes": "Unmapped LCSD equipment: Dumb Bell (5-50LB) x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.449Z"
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
+    "equipment_notes": "Unmapped LCSD equipment: Dumb Bell (5-60LB) x1",
+    "equipment_last_verified_at": "2026-08-01T16:36:55.153Z"
   },
   {
     "name": "LCSD Tsing Yi Sports Centre",
@@ -8598,7 +8894,7 @@
     "estimated_size_sqft": 926,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.450Z",
+    "last_reported_at": "2026-08-01T16:36:55.153Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -8696,8 +8992,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Dumb Bell (5-60LB) x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.450Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.153Z"
   },
   {
     "name": "LCSD Tsuen Wan Sports Centre",
@@ -8714,7 +9014,7 @@
     "estimated_size_sqft": 3412,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.450Z",
+    "last_reported_at": "2026-08-01T16:36:55.153Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -8812,8 +9112,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.450Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.153Z"
   },
   {
     "name": "LCSD Tsuen Wan West Sports Centre",
@@ -8830,7 +9134,7 @@
     "estimated_size_sqft": 549,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.450Z",
+    "last_reported_at": "2026-08-01T16:36:55.153Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -8928,8 +9232,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.450Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.153Z"
   },
   {
     "name": "LCSD Tsui Lam Sports Centre",
@@ -8946,7 +9254,7 @@
     "estimated_size_sqft": 1302,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.450Z",
+    "last_reported_at": "2026-08-01T16:36:55.153Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -8968,7 +9276,7 @@
     "climber_count": 4,
     "assault_runner_count": null,
     "ski_erg_count": null,
-    "rower_count": 2,
+    "rower_count": 1,
     "sled_count": null,
     "has_wall_ball": null,
     "wall_ball_count": null,
@@ -9044,8 +9352,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.450Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.154Z"
   },
   {
     "name": "LCSD Tung Cheong Street Sports Centre",
@@ -9062,7 +9374,7 @@
     "estimated_size_sqft": 2260,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.450Z",
+    "last_reported_at": "2026-08-01T16:36:55.154Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -9160,8 +9472,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.450Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.154Z"
   },
   {
     "name": "LCSD Tung Chung Man Tung Road Sports Centre",
@@ -9178,7 +9494,7 @@
     "estimated_size_sqft": 2034,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.450Z",
+    "last_reported_at": "2026-08-01T16:36:55.154Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -9276,8 +9592,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.450Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.154Z"
   },
   {
     "name": "LCSD Wai Tsuen Sports Centre",
@@ -9294,7 +9614,7 @@
     "estimated_size_sqft": 1109,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.451Z",
+    "last_reported_at": "2026-08-01T16:36:55.154Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -9392,8 +9712,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.451Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.154Z"
   },
   {
     "name": "LCSD Wo Hing Sports Centre",
@@ -9410,7 +9734,7 @@
     "estimated_size_sqft": 1270,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.451Z",
+    "last_reported_at": "2026-08-01T16:36:55.154Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -9508,8 +9832,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.451Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.154Z"
   },
   {
     "name": "LCSD Yau Oi Sports Centre",
@@ -9526,7 +9854,7 @@
     "estimated_size_sqft": 1087,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.451Z",
+    "last_reported_at": "2026-08-01T16:36:55.154Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -9624,8 +9952,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": "Unmapped LCSD equipment: Massager x1",
-    "equipment_last_verified_at": "2026-05-01T19:33:40.451Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.154Z"
   },
   {
     "name": "LCSD Yeung Uk Road Sports Centre",
@@ -9642,7 +9974,7 @@
     "estimated_size_sqft": 1076,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.451Z",
+    "last_reported_at": "2026-08-01T16:36:55.154Z",
     "rack_count": null,
     "bench_count": 1,
     "barbell_count": null,
@@ -9740,8 +10072,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.451Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.155Z"
   },
   {
     "name": "LCSD Yuen Chau Kok Sports Centre",
@@ -9758,7 +10094,7 @@
     "estimated_size_sqft": 2992,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.451Z",
+    "last_reported_at": "2026-08-01T16:36:55.155Z",
     "rack_count": null,
     "bench_count": 3,
     "barbell_count": null,
@@ -9856,8 +10192,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.451Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.155Z"
   },
   {
     "name": "LCSD Yuen Long Sports Centre",
@@ -9874,7 +10214,7 @@
     "estimated_size_sqft": 1776,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.451Z",
+    "last_reported_at": "2026-08-01T16:36:55.155Z",
     "rack_count": null,
     "bench_count": null,
     "barbell_count": null,
@@ -9972,8 +10312,12 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.451Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.155Z"
   },
   {
     "name": "LCSD Yuen Wo Road Sports Centre",
@@ -9990,7 +10334,7 @@
     "estimated_size_sqft": 1001,
     "is_active": true,
     "data_source": "import",
-    "last_reported_at": "2026-05-01T19:33:40.452Z",
+    "last_reported_at": "2026-08-01T16:36:55.155Z",
     "rack_count": null,
     "bench_count": 2,
     "barbell_count": null,
@@ -10088,7 +10432,11 @@
     "has_lifting_straps": null,
     "has_plyo_box": null,
     "has_balance_ball": null,
+    "has_washroom": null,
+    "has_bathroom": null,
+    "has_yoga_block": null,
+    "has_yoga_mat": null,
     "equipment_notes": null,
-    "equipment_last_verified_at": "2026-05-01T19:33:40.452Z"
+    "equipment_last_verified_at": "2026-08-01T16:36:55.155Z"
   }
 ]

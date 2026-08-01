@@ -282,6 +282,34 @@ pnpm firebase:set-claims -- --email your@email.com --admin true
 
 After updating claims, sign out and sign in again so the new session picks them up.
 
+## Periodic gym information refresh
+
+Run all eight importers periodically (for example, monthly and whenever a
+source announces branch changes) to refresh Gymory's gym information. Start
+with these dry-run commands:
+
+```bash
+pnpm import:247-fitness-hk --district-overrides data/imports/247-fitness-hk-district-overrides.json
+pnpm import:anytime-fitness-hk
+pnpm import:efx24-hk --browser
+pnpm import:go24-fitness-hk --browser
+pnpm import:lcsd-fitness-hk
+pnpm import:pure-fitness-hk --address-overrides data/imports/pure-fitness-hk-address-overrides.json
+pnpm import:snap-fitness-hk
+pnpm import:hyrox-official-hk
+```
+
+These commands update local baseline JSON files only. Review the generated
+diffs and investigate unexpected removals, empty results, duplicate records,
+district failures, or large field changes before writing to Supabase. To apply
+an approved refresh to the database, rerun the same command with `--upsert`
+appended.
+
+EFX24 and GO24 use headed Chrome browser mode because their sites may return a
+CAPTCHA to Node `fetch()`. Complete browser verification manually if prompted;
+their isolated profiles under `.cache/` retain the site verification for later
+runs. Never use `--upsert` until the dry-run output has been reviewed.
+
 ## 24/7 Fitness HK import
 
 Generate the latest 24/7 Fitness Hong Kong baseline file:

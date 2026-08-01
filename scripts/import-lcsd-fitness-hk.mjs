@@ -18,10 +18,13 @@
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
+import {
+  assertNotChallengeHtml,
+  validateImporterDetails,
+  validateImporterRows,
+} from "./lib/importer-output-validation.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const LIST_URL_EN = "https://www.lcsd.gov.hk/clpss/en/webApp/FitnessRooms.do";
 const LIST_URL_ZH = "https://www.lcsd.gov.hk/clpss/tc/webApp/FitnessRooms.do";
@@ -29,12 +32,18 @@ const SOURCE_URL = LIST_URL_EN;
 const BASE_URL = "https://www.lcsd.gov.hk";
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 
-const args = parseArgs(process.argv.slice(2));
+const isDirectExecution =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (isDirectExecution) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}
 
 async function main() {
   const districtOverrides = args["district-overrides"]
@@ -45,6 +54,10 @@ async function main() {
   const details = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
     : await fetchFitnessRoomDetailsFromSite();
+  validateImporterDetails(details, {
+    label: "LCSD Fitness",
+    getSourceId: (detail) => detail.id,
+  });
 
   if (args["details-out"]) {
     const detailsOutPath = path.resolve(process.cwd(), args["details-out"]);
@@ -56,6 +69,7 @@ async function main() {
   const rows = details
     .map((detail) => mapFacilityToGymRow(detail, districtOverrides))
     .sort((a, b) => a.slug.localeCompare(b.slug));
+  validateImporterRows(rows, "LCSD Fitness");
 
   if (geocoder) {
     for (const row of rows) {
@@ -97,7 +111,7 @@ async function main() {
   }
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const parsed = {};
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -331,6 +345,8 @@ async function fetchHtml(url) {
         throw new Error(`Failed ${url}: ${response.status} ${text.slice(0, 300)}`);
       }
 
+      assertNotChallengeHtml(text, `LCSD response from ${url}`);
+
       return text;
     } catch (error) {
       lastError = error;
@@ -391,7 +407,7 @@ async function fetchFitnessRoomDetailsFromSite() {
   return details;
 }
 
-function extractFacilityRows(html, lang) {
+export function extractFacilityRows(html, lang) {
   const rows = [];
   const tableRegex = /<table class="table table-responsive fitness_tb">([\s\S]*?)<\/table>/g;
 
@@ -526,7 +542,7 @@ function dedupeEquipmentItems(items) {
   return Array.from(merged.values());
 }
 
-function mapFacilityToGymRow(detail, districtOverrides) {
+export function mapFacilityToGymRow(detail, districtOverrides = {}, now = new Date()) {
   const title = detail.name ?? detail.name_zh ?? `LCSD Fitness Room ${detail.id}`;
   const slug = toSlug(["lcsd", title, detail.id].filter(Boolean).join(" "));
   const prefixedName = ensurePrefix(title, "LCSD ");
@@ -567,7 +583,7 @@ function mapFacilityToGymRow(detail, districtOverrides) {
     estimated_size_sqft: estimatedSizeSqft,
     is_active: detail.is_active ?? true,
     data_source: "import",
-    last_reported_at: new Date().toISOString(),
+    last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
     ...equipment,
   };
@@ -984,8 +1000,8 @@ function buildNullEquipmentFields() {
     has_lifting_straps: null,
     has_plyo_box: null,
     has_balance_ball: null,
-    has_washroom: true,
-    has_bathroom: true,
+    has_washroom: null,
+    has_bathroom: null,
     has_yoga_block: null,
     has_yoga_mat: null,
     equipment_notes: null,

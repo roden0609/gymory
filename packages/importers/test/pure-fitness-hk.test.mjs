@@ -158,8 +158,8 @@ describe("PURE Fitness fixture mapping and validation", () => {
       data_source: "import",
       last_reported_at: "2026-08-01T04:00:00.000Z",
       rack_count: null,
-      has_washroom: true,
-      has_bathroom: true,
+      has_washroom: null,
+      has_bathroom: null,
       equipment_notes: "Amenities listed by PURE: Free Weight Equipment, Cardio Equipment",
     });
   });

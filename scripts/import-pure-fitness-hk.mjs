@@ -669,8 +669,6 @@ export function mapClubToGymRow(
     data_source: "import",
     last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
-    has_washroom: true,
-    has_bathroom: true,
     equipment_notes: amenities ? `Amenities listed by PURE: ${amenities}` : null,
   };
 }

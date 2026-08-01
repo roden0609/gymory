@@ -12,48 +12,103 @@
  *   node scripts/import-efx24-hk.mjs --out data/imports/efx24-hk.json
  *   node scripts/import-efx24-hk.mjs --details-out data/imports/raw-efx24-hk-details.json
  *   node scripts/import-efx24-hk.mjs --details-file data/imports/raw-efx24-hk-details.json
+ *   node scripts/import-efx24-hk.mjs --browser
+ *   node scripts/import-efx24-hk.mjs --browser --browser-profile path/to/profile
  *   node scripts/import-efx24-hk.mjs --skip-geocode
  *   node scripts/import-efx24-hk.mjs --upsert
  */
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
+import { createChromeHtmlFetcher as createSharedChromeHtmlFetcher } from "./lib/chrome-html-fetcher.mjs";
+import { assertNotChallengeHtml as assertNotSharedChallengeHtml } from "./lib/importer-output-validation.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const LIST_URL = "https://efx24.com/find-us/";
 const SOURCE_URL = LIST_URL;
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
+const ALLOWED_ARGS = new Set([
+  "browser",
+  "browser-profile",
+  "details-file",
+  "details-out",
+  "district-overrides",
+  "limit",
+  "out",
+  "skip-geocode",
+  "upsert",
+]);
 
-const args = parseArgs(process.argv.slice(2));
+const isDirectExecution =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (isDirectExecution) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}
 
-async function main() {
-  const districtOverrides = args["district-overrides"]
-    ? await loadDistrictOverrides(args["district-overrides"])
+export async function main(parsedArgs = args) {
+  return runImporter(parsedArgs);
+}
+
+export async function runImporter(parsedArgs, dependencies = {}) {
+  const loadOverrides = dependencies.loadDistrictOverrides ?? loadDistrictOverrides;
+  const loadDetails = dependencies.loadDetailsFile ?? loadDetailsFile;
+  const fetchDetails = dependencies.fetchBranchDetailsFromSite ?? fetchBranchDetailsFromSite;
+  const createBrowserFetcher =
+    dependencies.createChromeHtmlFetcher ?? createChromeHtmlFetcher;
+  const makeGeocoder = dependencies.createMapboxGeocoder ?? createMapboxGeocoder;
+  const writeDetails = dependencies.writeDetails ?? writeJsonFile;
+  const writeRows = dependencies.writeRows ?? writeJsonFile;
+  const persistRows = dependencies.upsertRows ?? upsertRows;
+  const now = dependencies.now?.() ?? new Date();
+  const cwd = dependencies.cwd?.() ?? process.cwd();
+  const log = dependencies.log ?? console.log;
+
+  const districtOverrides = parsedArgs["district-overrides"]
+    ? await loadOverrides(parsedArgs["district-overrides"])
     : {};
-  const geocoder = createMapboxGeocoder(args);
+  const geocoder = makeGeocoder(parsedArgs);
 
-  const details = args["details-file"]
-    ? await loadDetailsFile(args["details-file"])
-    : await fetchBranchDetailsFromSite();
+  let details;
+  if (parsedArgs["details-file"]) {
+    details = await loadDetails(parsedArgs["details-file"], parsedArgs.limit);
+  } else if (parsedArgs.browser) {
+    const browserSession = await createBrowserFetcher({
+      cwd,
+      profilePath: parsedArgs["browser-profile"],
+      log,
+    });
+    try {
+      details = await fetchDetails(parsedArgs.limit, browserSession.fetchHtml);
+    } finally {
+      await browserSession.close();
+    }
+  } else {
+    details = await fetchDetails(parsedArgs.limit);
+  }
+  validateBranchDetails(details);
 
-  if (args["details-out"]) {
-    const detailsOutPath = path.resolve(process.cwd(), args["details-out"]);
-    await mkdir(path.dirname(detailsOutPath), { recursive: true });
-    await writeFile(detailsOutPath, `${JSON.stringify(details, null, 2)}\n`);
-    console.log(`Wrote ${details.length} EFX24 detail snapshots to ${detailsOutPath}`);
+  if (parsedArgs["details-out"]) {
+    const detailsOutPath = path.resolve(cwd, parsedArgs["details-out"]);
+    await writeDetails(detailsOutPath, details);
+    log(`Wrote ${details.length} EFX24 detail snapshots to ${detailsOutPath}`);
   }
 
   const rows = details
-    .map((detail) => mapBranchToGymRow(detail, districtOverrides))
+    .map((detail) => mapBranchToGymRow(detail, districtOverrides, now))
     .sort((a, b) => a.slug.localeCompare(b.slug));
+
+  const slugs = rows.map(({ slug }) => slug);
+  if (new Set(slugs).size !== slugs.length) {
+    throw new Error("EFX24 details produced duplicate gym slugs");
+  }
 
   if (geocoder) {
     for (const row of rows) {
@@ -79,35 +134,44 @@ async function main() {
   }
 
   const outPath = path.resolve(
-    process.cwd(),
-    args.out ?? "data/imports/efx24-hk-baseline.json"
+    cwd,
+    parsedArgs.out ?? "data/imports/efx24-hk-baseline.json"
   );
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(outPath, `${JSON.stringify(rows, null, 2)}\n`);
+  await writeRows(outPath, rows);
 
-  console.log(`Wrote ${rows.length} EFX24 HK baseline rows to ${outPath}`);
+  log(`Wrote ${rows.length} EFX24 HK baseline rows to ${outPath}`);
 
-  if (args.upsert) {
-    await upsertRows(rows);
-    console.log(`Upserted ${rows.length} rows into Supabase gyms on slug`);
+  if (parsedArgs.upsert) {
+    await persistRows(rows);
+    log(`Upserted ${rows.length} rows into Supabase gyms on slug`);
   } else {
-    console.log("Dry run only. Pass --upsert to write to Supabase.");
+    log("Dry run only. Pass --upsert to write to Supabase.");
   }
+
+  return { rows, outPath, upserted: Boolean(parsedArgs.upsert) };
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const parsed = {};
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
-    if (!arg.startsWith("--")) continue;
+    if (!arg.startsWith("--")) {
+      throw new Error(`Unexpected positional argument: ${arg}`);
+    }
     const key = arg.slice(2);
+    if (!ALLOWED_ARGS.has(key)) {
+      throw new Error(`Unknown argument: --${key}`);
+    }
+    if (key === "browser" || key === "skip-geocode" || key === "upsert") {
+      parsed[key] = true;
+      continue;
+    }
     const next = argv[index + 1];
     if (!next || next.startsWith("--")) {
-      parsed[key] = true;
-    } else {
-      parsed[key] = next;
-      index += 1;
+      throw new Error(`Missing value for --${key}`);
     }
+    parsed[key] = next;
+    index += 1;
   }
   return parsed;
 }
@@ -233,26 +297,48 @@ async function fetchHtml(url) {
     throw new Error(`Failed ${url}: ${response.status} ${text.slice(0, 300)}`);
   }
 
+  assertNotChallengeHtml(text, url);
+
   return text;
 }
 
-async function fetchBranchDetailsFromSite() {
-  const listHtml = await fetchHtml(LIST_URL);
+export async function createChromeHtmlFetcher({
+  cwd = process.cwd(),
+  profilePath,
+  log = console.log,
+  env = process.env,
+} = {}) {
+  return createSharedChromeHtmlFetcher({
+    sourceLabel: "EFX24",
+    defaultProfilePath: ".cache/efx24-chrome-profile",
+    cwd,
+    profilePath,
+    log,
+    env,
+  });
+}
+
+export function assertNotChallengeHtml(html, source = "EFX24") {
+  assertNotSharedChallengeHtml(html, `EFX24 response from ${source}`);
+}
+
+async function fetchBranchDetailsFromSite(limit, htmlFetcher = fetchHtml) {
+  const listHtml = await htmlFetcher(LIST_URL);
   const branchUrls = extractBranchUrls(listHtml);
-  const limitedUrls = args.limit ? branchUrls.slice(0, Number(args.limit)) : branchUrls;
+  const limitedUrls = limit ? branchUrls.slice(0, Number(limit)) : branchUrls;
   const details = [];
 
   for (const url of limitedUrls) {
-    details.push(await fetchBranchDetail(url));
+    details.push(await fetchBranchDetail(url, htmlFetcher));
   }
 
   return details;
 }
 
-async function fetchBranchDetail(url) {
-  const html = await fetchHtml(url);
+async function fetchBranchDetail(url, htmlFetcher = fetchHtml) {
+  const html = await htmlFetcher(url);
   const zhUrl = extractLocalizedDetailUrl(html, url);
-  const zhHtml = zhUrl ? await fetchHtml(zhUrl) : null;
+  const zhHtml = zhUrl ? await htmlFetcher(zhUrl) : null;
 
   const blocks = htmlToTextBlocks(html);
   const zhBlocks = zhHtml ? htmlToTextBlocks(zhHtml) : [];
@@ -284,7 +370,8 @@ async function fetchBranchDetail(url) {
   };
 }
 
-function extractBranchUrls(html) {
+export function extractBranchUrls(html) {
+  assertNotChallengeHtml(html, LIST_URL);
   const hrefs = extractHrefs(html);
   const urls = hrefs
     .map((href) => resolveUrl(LIST_URL, href))
@@ -292,7 +379,27 @@ function extractBranchUrls(html) {
       (url) => isBranchDetailUrl(url)
     );
 
-  return [...new Set(urls)];
+  const uniqueUrls = [...new Set(urls)];
+  if (uniqueUrls.length === 0) {
+    throw new Error("Could not extract any EFX24 branch URLs from the list page");
+  }
+  return uniqueUrls;
+}
+
+export function validateBranchDetails(details) {
+  if (!Array.isArray(details) || details.length === 0) {
+    throw new Error("EFX24 details did not contain any branches");
+  }
+
+  const invalid = details.find((detail) => !getString(detail?.url) || !getString(detail?.title));
+  if (invalid) {
+    throw new Error("Each EFX24 detail must include at least url and title");
+  }
+
+  const urls = details.map(({ url }) => url);
+  if (new Set(urls).size !== urls.length) {
+    throw new Error("EFX24 details contain duplicate branch URLs");
+  }
 }
 
 function isBranchDetailUrl(url) {
@@ -587,7 +694,7 @@ function inferIsActive(blocks, titleIndex = -1) {
   return !statusPattern.test(localText);
 }
 
-function mapBranchToGymRow(detail, districtOverrides) {
+export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date()) {
   const title = detail.title ?? detail.title_zh ?? "EFX24";
   const slug = toSlug(title);
   const districtText = [
@@ -617,7 +724,7 @@ function mapBranchToGymRow(detail, districtOverrides) {
     lng: null,
     is_active: detail.is_active ?? true,
     data_source: "import",
-    last_reported_at: new Date().toISOString(),
+    last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
   };
 }
@@ -716,8 +823,8 @@ function buildNullEquipmentFields() {
     has_lifting_straps: null,
     has_plyo_box: null,
     has_balance_ball: null,
-    has_washroom: true,
-    has_bathroom: true,
+    has_washroom: null,
+    has_bathroom: null,
     has_yoga_block: null,
     has_yoga_mat: null,
     equipment_notes: null,
@@ -799,7 +906,7 @@ async function loadDistrictOverrides(filePath) {
   return overrides;
 }
 
-async function loadDetailsFile(filePath) {
+async function loadDetailsFile(filePath, limit) {
   const raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
   const payload = JSON.parse(raw);
 
@@ -824,7 +931,12 @@ async function loadDetailsFile(filePath) {
     throw new Error(`Each detail object in ${filePath} must include at least url and title`);
   }
 
-  return args.limit ? details.slice(0, Number(args.limit)) : details;
+  return limit ? details.slice(0, Number(limit)) : details;
+}
+
+async function writeJsonFile(filePath, value) {
+  await mkdir(path.dirname(filePath), { recursive: true });
+  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
 async function upsertRows(rows) {

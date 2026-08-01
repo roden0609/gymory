@@ -12,27 +12,50 @@
  *   node scripts/import-go24-fitness-hk.mjs --out data/imports/go24-fitness-hk.json
  *   node scripts/import-go24-fitness-hk.mjs --details-out data/imports/raw-go24-fitness-hk-details.json
  *   node scripts/import-go24-fitness-hk.mjs --details-file data/imports/raw-go24-fitness-hk-details.json
+ *   node scripts/import-go24-fitness-hk.mjs --browser
+ *   node scripts/import-go24-fitness-hk.mjs --browser --browser-profile path/to/profile
  *   node scripts/import-go24-fitness-hk.mjs --skip-geocode
  *   node scripts/import-go24-fitness-hk.mjs --upsert
  */
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
+import { createChromeHtmlFetcher as createSharedChromeHtmlFetcher } from "./lib/chrome-html-fetcher.mjs";
+import {
+  assertNotChallengeHtml,
+  validateImporterDetails,
+  validateImporterRows,
+} from "./lib/importer-output-validation.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const LIST_URL = "https://www.go24fitness.com/en/locations";
 const SOURCE_URL = LIST_URL;
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
+const ALLOWED_ARGS = new Set([
+  "browser",
+  "browser-profile",
+  "details-file",
+  "details-out",
+  "district-overrides",
+  "limit",
+  "out",
+  "skip-geocode",
+  "upsert",
+]);
 
-const args = parseArgs(process.argv.slice(2));
+const isDirectExecution =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (isDirectExecution) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}
 
 async function main() {
   const districtOverrides = args["district-overrides"]
@@ -42,7 +65,11 @@ async function main() {
 
   const details = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
-    : await fetchBranchDetailsFromSite();
+    : await loadLiveBranchDetails(args);
+  validateImporterDetails(details, {
+    label: "GO24 Fitness",
+    getSourceId: (detail) => detail.url,
+  });
 
   if (args["details-out"]) {
     const detailsOutPath = path.resolve(process.cwd(), args["details-out"]);
@@ -54,6 +81,7 @@ async function main() {
   const rows = details
     .map((detail) => mapBranchToGymRow(detail, districtOverrides))
     .sort((a, b) => a.slug.localeCompare(b.slug));
+  validateImporterRows(rows, "GO24 Fitness");
 
   if (geocoder) {
     for (const row of rows) {
@@ -95,19 +123,27 @@ async function main() {
   }
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const parsed = {};
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
-    if (!arg.startsWith("--")) continue;
+    if (!arg.startsWith("--")) {
+      throw new Error(`Unexpected positional argument: ${arg}`);
+    }
     const key = arg.slice(2);
+    if (!ALLOWED_ARGS.has(key)) {
+      throw new Error(`Unknown argument: --${key}`);
+    }
+    if (key === "browser" || key === "skip-geocode" || key === "upsert") {
+      parsed[key] = true;
+      continue;
+    }
     const next = argv[index + 1];
     if (!next || next.startsWith("--")) {
-      parsed[key] = true;
-    } else {
-      parsed[key] = next;
-      index += 1;
+      throw new Error(`Missing value for --${key}`);
     }
+    parsed[key] = next;
+    index += 1;
   }
   return parsed;
 }
@@ -244,30 +280,61 @@ async function fetchHtml(url) {
     throw new Error(`Failed ${url}: ${response.status} ${text.slice(0, 300)}`);
   }
 
+  assertNotChallengeHtml(text, `GO24 Fitness response from ${url}`);
+
   return text;
 }
 
-async function fetchBranchDetailsFromSite() {
-  const listHtml = await fetchHtml(LIST_URL);
+export async function createChromeHtmlFetcher(options = {}) {
+  return createSharedChromeHtmlFetcher({
+    sourceLabel: "GO24 Fitness",
+    defaultProfilePath: ".cache/go24-chrome-profile",
+    ...options,
+  });
+}
+
+export async function loadLiveBranchDetails(parsedArgs, dependencies = {}) {
+  const fetchDetails =
+    dependencies.fetchBranchDetailsFromSite ?? fetchBranchDetailsFromSite;
+  if (!parsedArgs.browser) {
+    return fetchDetails(parsedArgs.limit);
+  }
+
+  const createBrowserFetcher =
+    dependencies.createChromeHtmlFetcher ?? createChromeHtmlFetcher;
+  const browserSession = await createBrowserFetcher({
+    cwd: dependencies.cwd?.() ?? process.cwd(),
+    profilePath: parsedArgs["browser-profile"],
+    log: dependencies.log ?? console.log,
+  });
+  try {
+    return await fetchDetails(parsedArgs.limit, browserSession.fetchHtml);
+  } finally {
+    await browserSession.close();
+  }
+}
+
+async function fetchBranchDetailsFromSite(limit, htmlFetcher = fetchHtml) {
+  const listHtml = await htmlFetcher(LIST_URL);
   const branchUrls = extractBranchUrls(listHtml);
-  const limitedUrls = args.limit ? branchUrls.slice(0, Number(args.limit)) : branchUrls;
+  const limitedUrls = limit ? branchUrls.slice(0, Number(limit)) : branchUrls;
   const details = [];
 
   for (const url of limitedUrls) {
-    details.push(await fetchBranchDetailPair(url));
+    details.push(await fetchBranchDetailPair(url, htmlFetcher));
   }
 
   return details;
 }
 
-async function fetchBranchDetailPair(enUrl) {
-  const enDetail = await fetchBranchDetail(enUrl, "en");
+async function fetchBranchDetailPair(enUrl, htmlFetcher = fetchHtml) {
+  const enDetail = await fetchBranchDetail(enUrl, "en", htmlFetcher);
   const zhUrl = toLocalizedBranchDetailUrl(enUrl, "zh");
   let zhDetail = null;
 
   if (zhUrl) {
     try {
-      zhDetail = await fetchBranchDetail(zhUrl, "zh");
+      zhDetail = await fetchBranchDetail(zhUrl, "zh", htmlFetcher);
     } catch (error) {
       console.warn(
         `Failed to fetch zh detail for ${enUrl}: ${
@@ -288,8 +355,8 @@ async function fetchBranchDetailPair(enUrl) {
   };
 }
 
-async function fetchBranchDetail(url, locale = "en") {
-  const html = await fetchHtml(url);
+async function fetchBranchDetail(url, locale = "en", htmlFetcher = fetchHtml) {
+  const html = await htmlFetcher(url);
   const blocks = htmlToTextBlocks(html);
   const title = cleanTitle(extractTitle(html));
   const titleIndex = findTitleIndex(blocks, title);
@@ -308,7 +375,7 @@ async function fetchBranchDetail(url, locale = "en") {
   };
 }
 
-function extractBranchUrls(html) {
+export function extractBranchUrls(html) {
   const hrefs = extractHrefs(html);
   const urls = hrefs
     .map((href) => resolveUrl(LIST_URL, href))
@@ -627,7 +694,7 @@ function inferIsActive(text) {
   return !/permanently closed|closed down|temporarily closed/i.test(text);
 }
 
-function mapBranchToGymRow(detail, districtOverrides) {
+export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date()) {
   const slug = toSlug(["go24-fitness", detail.title].filter(Boolean).join(" "));
   const name = detail.title?.startsWith("ONYX") ? detail.title : `GO24 Fitness ${detail.title}`;
   const nameZh = detail.title_zh
@@ -653,7 +720,7 @@ function mapBranchToGymRow(detail, districtOverrides) {
     lng: null,
     is_active: detail.is_active,
     data_source: "import",
-    last_reported_at: new Date().toISOString(),
+    last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
   };
 }
@@ -752,8 +819,8 @@ function buildNullEquipmentFields() {
     has_lifting_straps: null,
     has_plyo_box: null,
     has_balance_ball: null,
-    has_washroom: true,
-    has_bathroom: true,
+    has_washroom: null,
+    has_bathroom: null,
     has_yoga_block: null,
     has_yoga_mat: null,
     equipment_notes: null,

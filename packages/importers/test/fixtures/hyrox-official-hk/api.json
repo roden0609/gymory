@@ -1,0 +1,19 @@
+[
+  {
+    "id": "hk-1",
+    "store": "Central Strength &amp; Conditioning",
+    "address": "1 Queen's Road Central",
+    "city": "Hong Kong",
+    "country": "Hong Kong",
+    "phone": "+852 2123 4567",
+    "lat": "22.2819",
+    "lng": "114.1585",
+    "url": "https://example.test/central"
+  },
+  {
+    "id": "mo-1",
+    "store": "Macau Training",
+    "city": "Macau",
+    "country": "Macao"
+  }
+]

@@ -19,10 +19,12 @@
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
+import {
+  validateImporterDetails,
+  validateImporterRows,
+} from "./lib/importer-output-validation.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
-
-await loadEnvFiles(["apps/web/.env.dev"]);
-// await loadEnvFiles(["apps/web/.env.prod"]);
 
 const API_URL = "https://www.anytimefitness.hk/wp-json/anytime/v1/map-locations";
 const SOURCE_URL = "https://www.anytimefitness.hk/locations/hk/hong%20kong%20island/";
@@ -37,12 +39,18 @@ const ANYTIME_OPENING_HOURS = {
   public_holidays: "00:00-24:00",
 };
 
-const args = parseArgs(process.argv.slice(2));
+const isDirectExecution =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (isDirectExecution) {
+  await loadEnvFiles(["apps/web/.env.dev"]);
+  // await loadEnvFiles(["apps/web/.env.prod"]);
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}
 
 async function main() {
   const districtOverrides = args["district-overrides"]
@@ -51,7 +59,11 @@ async function main() {
 
   const details = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
-    : await fetchLocationDetailsFromApi();
+    : await fetchLocationDetailsFromApi(args.limit);
+  validateImporterDetails(details, {
+    label: "Anytime Fitness",
+    getSourceId: (detail) => detail.club_number ?? detail.website_url,
+  });
 
   if (args["details-out"]) {
     const detailsOutPath = path.resolve(process.cwd(), args["details-out"]);
@@ -63,6 +75,7 @@ async function main() {
   const rows = details
     .map((detail) => mapLocationToGymRow(detail, districtOverrides))
     .sort((a, b) => a.slug.localeCompare(b.slug));
+  validateImporterRows(rows, "Anytime Fitness");
 
   const unknownDistricts = rows.filter((row) => !row.district_code);
   if (unknownDistricts.length > 0) {
@@ -96,7 +109,7 @@ async function main() {
   }
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const parsed = {};
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -150,7 +163,7 @@ function parseEnvValue(value) {
   return trimmed;
 }
 
-async function fetchLocationDetailsFromApi() {
+async function fetchLocationDetailsFromApi(limit) {
   const response = await fetch(API_URL, {
     headers: {
       "User-Agent": "gymory-importer/1.0 (+https://gymory.io)",
@@ -175,10 +188,10 @@ async function fetchLocationDetailsFromApi() {
   }
 
   const details = payload.map(normalizeApiLocation).filter((detail) => detail.country_code === "HK");
-  return args.limit ? details.slice(0, Number(args.limit)) : details;
+  return limit ? details.slice(0, Number(limit)) : details;
 }
 
-function normalizeApiLocation(item) {
+export function normalizeApiLocation(item) {
   const content = item?.content ?? {};
   const clubNumber = getString(content.number);
   const title = resolveBranchNameEn(clubNumber, cleanBranchName(content.title));
@@ -236,7 +249,7 @@ function stripCjkSuffix(value) {
   return splitMixedAddress(address).en;
 }
 
-function mapLocationToGymRow(detail, districtOverrides) {
+export function mapLocationToGymRow(detail, districtOverrides = {}, now = new Date()) {
   const slug = toSlug(
     ["anytime-fitness", detail.title, detail.club_number].filter(Boolean).join(" ")
   );
@@ -270,11 +283,9 @@ function mapLocationToGymRow(detail, districtOverrides) {
     lng: detail.lng,
     is_active: detail.status === 3,
     data_source: "import",
-    last_reported_at: new Date().toISOString(),
+    last_reported_at: now.toISOString(),
     opening_hours_json: { ...ANYTIME_OPENING_HOURS },
     ...buildNullEquipmentFields(),
-    has_washroom: true,
-    has_bathroom: true,
   };
 }
 

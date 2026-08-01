@@ -50,6 +50,35 @@ that saved snapshot back in:
 pnpm import:efx24-hk --details-file data/imports/raw-efx24-hk-details.json
 ```
 
+### Chrome browser mode
+
+EFX24 may return an HTTP 200 SiteGround CAPTCHA page to Node `fetch()` even
+when the page opens normally in Chrome. In that case the default run stops
+before overwriting any output. Re-run with an explicit headed Chrome session:
+
+```bash
+pnpm import:efx24-hk --browser
+```
+
+The importer launches the locally installed Google Chrome through
+`playwright-core`, renders the list and localized detail pages, then passes the
+resulting HTML through the normal parser and validation pipeline. Browser mode
+is never enabled automatically.
+
+The default persistent profile is `.cache/efx24-chrome-profile`, which is
+ignored by Git. If Chrome asks for browser verification, complete it in the
+opened window; the dedicated profile retains the resulting site cookie for
+later runs. Do not point this option at a personal Chrome profile. To choose a
+different dedicated profile:
+
+```bash
+pnpm import:efx24-hk --browser \
+  --browser-profile .cache/my-efx24-profile
+```
+
+Set `GOOGLE_CHROME_PATH` if Chrome is installed outside the standard macOS
+location. `--details-file` takes precedence and does not launch Chrome.
+
 Rows are mapped to `gyms` listing fields:
 
 | EFX24 branch field | Gymory field |
