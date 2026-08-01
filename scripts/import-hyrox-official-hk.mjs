@@ -582,7 +582,7 @@ async function insertSubmission({
   }
 }
 
-function buildChangedFields(existing, nextRow) {
+export function buildChangedFields(existing, nextRow) {
   const changed = {};
 
   for (const [key, value] of Object.entries(nextRow)) {
@@ -590,7 +590,8 @@ function buildChangedFields(existing, nextRow) {
       key === "data_source" ||
       key === "created_at" ||
       key === "updated_at" ||
-      key === "last_reported_at"
+      key === "last_reported_at" ||
+      key === "hyrox_source_synced_at"
     ) {
       continue;
     }

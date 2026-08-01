@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
 import {
+  buildChangedFields,
   isHongKongPartnerGym,
   mapPartnerGymToGymRow,
   mapPartnerGymsToRows,
@@ -87,5 +88,36 @@ describe("HYROX Official importer", () => {
     );
 
     expect(row.district_code).toBe("HK-WTS");
+  });
+
+  it("does not treat a source sync timestamp on its own as a gym change", () => {
+    const existing = {
+      is_hyrox_official: true,
+      hyrox_partner_id: "32082",
+      hyrox_source_url: "https://hyrox.com/find-a-hyrox-partner-gym/",
+      hyrox_source_synced_at: "2026-05-18T07:20:05.189+00:00",
+    };
+
+    expect(
+      buildChangedFields(existing, {
+        ...existing,
+        hyrox_source_synced_at: "2026-08-01T18:54:56.658Z",
+      })
+    ).toBeNull();
+  });
+
+  it("still detects a meaningful HYROX metadata change", () => {
+    expect(
+      buildChangedFields(
+        {
+          is_hyrox_official: false,
+          hyrox_source_synced_at: "2026-05-18T07:20:05.189+00:00",
+        },
+        {
+          is_hyrox_official: true,
+          hyrox_source_synced_at: "2026-08-01T18:54:56.658Z",
+        }
+      )
+    ).toEqual({ is_hyrox_official: true });
   });
 });
