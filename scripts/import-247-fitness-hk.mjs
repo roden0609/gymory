@@ -17,6 +17,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inferDistrictFromSources } from "./lib/district-inference.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
 
 const LIST_URL_ZH = "https://247.fitness/app-api/cms/store/?lang=zh-HK";
@@ -300,18 +301,12 @@ export function mapStoreToGymRow(detailBundle, districtOverrides, now = new Date
     district_code:
       districtOverrides[String(storeId)] ??
       districtOverrides[slug] ??
-      inferDistrictCode(
-        [
-          name,
-          nameZh,
-          address,
-          addressZh,
-          detailZh?.areaName,
-          detailEn?.areaName,
-        ]
-          .filter(Boolean)
-          .join(" ")
-      ),
+      inferDistrictFromSources({
+        structured: [detailZh?.areaName, detailEn?.areaName],
+        addresses: [address, addressZh],
+        fallback: [name, nameZh],
+        districts: DISTRICT_KEYWORDS,
+      }),
     country_code: "HK",
     website_url: SOURCE_URL,
     contact_phone: normalizePhone(
@@ -564,19 +559,7 @@ function normalizeComparable(value) {
 
 
 export function inferDistrictCode(text) {
-  const haystack = text.toLowerCase();
-  const matches = DISTRICT_KEYWORDS.flatMap(({ code, keywords }, districtIndex) =>
-    keywords
-      .filter((keyword) => haystack.includes(keyword.toLowerCase()))
-      .map((keyword) => ({ code, keyword, districtIndex }))
-  );
-
-  matches.sort(
-    (left, right) =>
-      right.keyword.length - left.keyword.length ||
-      left.districtIndex - right.districtIndex
-  );
-  return matches[0]?.code ?? null;
+  return inferDistrictFromSources({ addresses: [text], districts: DISTRICT_KEYWORDS });
 }
 
 const DISTRICT_KEYWORDS = [
@@ -712,8 +695,8 @@ const isDirectExecution =
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isDirectExecution) {
-  await loadEnvFiles(["apps/web/.env.dev"]);
-  // await loadEnvFiles(["apps/web/.env.prod"]);
+  // await loadEnvFiles(["apps/web/.env.dev"]);
+  await loadEnvFiles(["apps/web/.env.prod"]);
 
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);

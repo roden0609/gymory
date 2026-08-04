@@ -6,6 +6,7 @@ import {
   extractBranchUrls,
   loadLiveBranchDetails,
   mapBranchToGymRow,
+  normalizeGo24BranchTitle,
   parseArgs,
 } from "../../../scripts/import-go24-fitness-hk.mjs";
 
@@ -77,6 +78,25 @@ describe("GO24 Fitness importer", () => {
     expect(extractAddressFromPrimaryInfoColumn(html, "Wong Tai Sin")).toBe(
       "7 & 9, L2, Cheung Ying Alley, 110 Lung Cheung Road, Wong Tai Sin"
     );
+  });
+
+  it("removes an existing GO24 brand prefix before building names and slugs", () => {
+    expect(normalizeGo24BranchTitle("GO24 Fortress Hill")).toBe("Fortress Hill");
+    expect(normalizeGo24BranchTitle("GO24 Fitness Fortress Hill")).toBe("Fortress Hill");
+    expect(normalizeGo24BranchTitle("GO24炮台山")).toBe("炮台山");
+    expect(normalizeGo24BranchTitle("ONYX - Admiralty")).toBe("ONYX - Admiralty");
+
+    expect(mapBranchToGymRow({
+      title: "GO24 Fortress Hill",
+      title_zh: "GO24 炮台山",
+      address: "Fortress Hill",
+      address_zh: "炮台山",
+      is_active: true,
+    }, {}, fixedNow)).toMatchObject({
+      name: "GO24 Fitness Fortress Hill",
+      name_zh: "GO24 Fitness 炮台山",
+      slug: "go24-fitness-fortress-hill",
+    });
   });
 
   it("uses and closes the injected Chrome session in browser mode", async () => {

@@ -20,6 +20,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inferDistrictFromSources } from "./lib/district-inference.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
 
 const LIST_URL_EN = "https://www.pure-360.com.hk/en/clubs/";
@@ -659,7 +660,11 @@ export function mapClubToGymRow(
       districtOverrides[detail.url] ??
       districtOverrides[branchCode] ??
       districtOverrides[slug] ??
-      inferDistrictCode([baseName, baseNameZh, detail.address, addressZh].filter(Boolean).join(" ")),
+      inferDistrictFromSources({
+        addresses: [detail.address, addressZh],
+        fallback: [baseName, baseNameZh],
+        districts: DISTRICT_KEYWORDS,
+      }),
     country_code: "HK",
     website_url: detail.url ?? LIST_URL_EN,
     contact_phone: normalizePhone(detail.contact_phone),
@@ -787,14 +792,6 @@ function buildNullEquipmentFields() {
   ];
 
   return Object.fromEntries(fields.map((field) => [field, null]));
-}
-
-function inferDistrictCode(text) {
-  const haystack = text.toLowerCase();
-  const match = DISTRICT_KEYWORDS.find(({ keywords }) =>
-    keywords.some((keyword) => haystack.includes(keyword.toLowerCase()))
-  );
-  return match?.code ?? null;
 }
 
 const DISTRICT_KEYWORDS = [

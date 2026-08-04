@@ -21,6 +21,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inferDistrictFromSources } from "./lib/district-inference.mjs";
 import { createChromeHtmlFetcher as createSharedChromeHtmlFetcher } from "./lib/chrome-html-fetcher.mjs";
 import {
   assertNotChallengeHtml,
@@ -695,12 +696,15 @@ function inferIsActive(text) {
 }
 
 export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date()) {
-  const slug = toSlug(["go24-fitness", detail.title].filter(Boolean).join(" "));
-  const name = detail.title?.startsWith("ONYX") ? detail.title : `GO24 Fitness ${detail.title}`;
+  const title = normalizeGo24BranchTitle(detail.title);
+  const titleZh = normalizeGo24BranchTitle(detail.title_zh);
+  const isOnyx = title?.startsWith("ONYX");
+  const slug = toSlug(["go24-fitness", title].filter(Boolean).join(" "));
+  const name = isOnyx ? title : `GO24 Fitness ${title}`;
   const nameZh = detail.title_zh
-    ? detail.title?.startsWith("ONYX")
-      ? detail.title_zh
-      : `GO24 Fitness ${detail.title_zh}`
+    ? isOnyx
+      ? titleZh
+      : `GO24 Fitness ${titleZh}`
     : null;
 
   return {
@@ -712,7 +716,11 @@ export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date
     district_code:
       districtOverrides[detail.url] ??
       districtOverrides[slug] ??
-      inferDistrictCode([detail.title, detail.address].filter(Boolean).join(" ")),
+      inferDistrictFromSources({
+        addresses: [detail.address, detail.address_zh],
+        fallback: [detail.title, detail.title_zh],
+        districts: DISTRICT_KEYWORDS,
+      }),
     country_code: "HK",
     website_url: detail.url ?? SOURCE_URL,
     contact_phone: detail.phone,
@@ -723,6 +731,12 @@ export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date
     last_reported_at: now.toISOString(),
     ...buildNullEquipmentFields(),
   };
+}
+
+export function normalizeGo24BranchTitle(value) {
+  const title = getString(value);
+  if (!title || title.startsWith("ONYX")) return title;
+  return title.replace(/^GO24(?:\s+Fitness)?\s*[-–—:]?\s*/i, "").trim();
 }
 
 function buildNullEquipmentFields() {
@@ -826,14 +840,6 @@ function buildNullEquipmentFields() {
     equipment_notes: null,
     equipment_last_verified_at: null,
   };
-}
-
-function inferDistrictCode(text) {
-  const haystack = text.toLowerCase();
-  const match = DISTRICT_KEYWORDS.find(({ keywords }) =>
-    keywords.some((keyword) => haystack.includes(keyword.toLowerCase()))
-  );
-  return match?.code ?? null;
 }
 
 const DISTRICT_KEYWORDS = [

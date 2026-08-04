@@ -19,6 +19,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inferDistrictFromSources } from "./lib/district-inference.mjs";
 import {
   validateImporterDetails,
   validateImporterRows,
@@ -338,17 +339,6 @@ export function mapLocationToGymRow(detail, districtOverrides = {}, now = new Da
       .join(" ")
   );
   const websiteUrl = detail.url_path ? `${ORIGIN}/hk_en${detail.url_path}` : SOURCE_URL;
-  const districtText = [
-    baseName,
-    detail.name_zh,
-    detail.city,
-    detail.address,
-    detail.address_zh,
-    detail.url_path,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return {
     name: `Snap Fitness ${baseName}`,
     name_zh: baseNameZh ? `Snap Fitness ${baseNameZh}` : null,
@@ -360,7 +350,12 @@ export function mapLocationToGymRow(detail, districtOverrides = {}, now = new Da
       districtOverrides[detail.glofox_id] ??
       districtOverrides[websiteUrl] ??
       districtOverrides[slug] ??
-      inferDistrictCode(districtText),
+      inferDistrictFromSources({
+        structured: [detail.city],
+        addresses: [detail.address, detail.address_zh],
+        fallback: [baseName, detail.name_zh, detail.url_path],
+        districts: DISTRICT_KEYWORDS,
+      }),
     country_code: "HK",
     website_url: websiteUrl,
     contact_phone: normalizePhone(detail.phone),
@@ -495,14 +490,6 @@ function buildNullEquipmentFields() {
   ];
 
   return Object.fromEntries(fields.map((field) => [field, null]));
-}
-
-function inferDistrictCode(text) {
-  const haystack = text.toLowerCase();
-  const match = DISTRICT_KEYWORDS.find(({ keywords }) =>
-    keywords.some((keyword) => haystack.includes(keyword.toLowerCase()))
-  );
-  return match?.code ?? null;
 }
 
 const DISTRICT_KEYWORDS = [

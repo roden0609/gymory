@@ -19,6 +19,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inferDistrictFromSources } from "./lib/district-inference.mjs";
 import {
   validateImporterDetails,
   validateImporterRows,
@@ -190,7 +191,6 @@ export function mapPartnerGymToGymRow(item, now = new Date()) {
   );
   const city = decodeHtml(getString(item.city));
   const slug = buildSlug([name, city && !name.toLowerCase().includes(city.toLowerCase()) ? city : null]);
-  const districtText = [name, address, city].filter(Boolean).join(" ");
   const syncedAt = now.toISOString();
 
   return {
@@ -199,7 +199,11 @@ export function mapPartnerGymToGymRow(item, now = new Date()) {
     slug,
     address: address || null,
     address_zh: null,
-    district_code: inferDistrictCode(districtText),
+    district_code: inferDistrictFromSources({
+      addresses: [address],
+      fallback: [name, city],
+      districts: HYROX_DISTRICT_KEYWORDS,
+    }),
     country_code: "HK",
     postal_code: null,
     website_url: normalizeUrl(getString(item.url)),
@@ -671,9 +675,7 @@ function distanceKm(originLat, originLng, targetLat, targetLng) {
   return earthRadiusKm * c;
 }
 
-function inferDistrictCode(text) {
-  const normalized = normalizeText(text);
-  const rules = [
+const HYROX_DISTRICT_KEYWORDS = [
     ["HK-CW", ["central", "sheung wan", "sai ying pun", "sai wan", "shek tong tsui", "kennedy town", "pok fu lam", "des voeux", "hollywood road", "possession st", "li yuen", "lyndhurst", "pottinger", "pedder", "belcher", "queen's road west", "south ln"]],
     ["HK-WC", ["wan chai", "wanchai", "causeway bay", "happy valley", "admiralty", "fortress hill", "lockhart", "watson road", "tang lung", "pennington", "sports road", "queen's road east"]],
     ["HK-EA", ["north point", "quarry bay", "taikoo", "taikoo shing", "taikooplace", "tak koo shing", "king's road", "westland", "eastern centre"]],
@@ -690,14 +692,7 @@ function inferDistrictCode(text) {
     ["HK-ST", ["sha tin", "shatin", "citylink", "lek yuen"]],
     ["HK-SK", ["sai kung", "hang hau", "tko", "clear water bay", "mostown", "ma on shan", "mount pavilia", "wai man", "yip wong"]],
     ["HK-YL", ["tin shui wai", "yuen long"]],
-  ];
-
-  for (const [code, keywords] of rules) {
-    if (keywords.some((keyword) => normalized.includes(keyword))) return code;
-  }
-
-  return null;
-}
+  ].map(([code, keywords]) => ({ code, keywords }));
 
 function buildSlug(parts) {
   const value = parts.filter(Boolean).join(" ");

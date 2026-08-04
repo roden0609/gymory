@@ -21,6 +21,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inferDistrictFromSources } from "./lib/district-inference.mjs";
 import { createChromeHtmlFetcher as createSharedChromeHtmlFetcher } from "./lib/chrome-html-fetcher.mjs";
 import { assertNotChallengeHtml as assertNotSharedChallengeHtml } from "./lib/importer-output-validation.mjs";
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
@@ -697,16 +698,6 @@ function inferIsActive(blocks, titleIndex = -1) {
 export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date()) {
   const title = detail.title ?? detail.title_zh ?? "EFX24";
   const slug = toSlug(title);
-  const districtText = [
-    detail.title,
-    detail.title_zh,
-    detail.address,
-    detail.address_zh,
-    detail.url,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return {
     name: title,
     name_zh: detail.title_zh ?? null,
@@ -716,7 +707,11 @@ export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date
     district_code:
       districtOverrides[detail.url] ??
       districtOverrides[slug] ??
-      inferDistrictCode(districtText),
+      inferDistrictFromSources({
+        addresses: [detail.address, detail.address_zh],
+        fallback: [detail.title, detail.title_zh, detail.url],
+        districts: DISTRICT_KEYWORDS,
+      }),
     country_code: "HK",
     website_url: detail.url ?? SOURCE_URL,
     contact_phone: normalizePhone(detail.phone),
@@ -830,14 +825,6 @@ function buildNullEquipmentFields() {
     equipment_notes: null,
     equipment_last_verified_at: null,
   };
-}
-
-function inferDistrictCode(text) {
-  const haystack = text.toLowerCase();
-  const match = DISTRICT_KEYWORDS.find(({ keywords }) =>
-    keywords.some((keyword) => haystack.includes(keyword.toLowerCase()))
-  );
-  return match?.code ?? null;
 }
 
 const DISTRICT_KEYWORDS = [

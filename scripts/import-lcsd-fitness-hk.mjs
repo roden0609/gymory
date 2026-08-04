@@ -19,6 +19,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inferDistrictFromSources } from "./lib/district-inference.mjs";
 import {
   assertNotChallengeHtml,
   validateImporterDetails,
@@ -37,8 +38,8 @@ const isDirectExecution =
 const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
 if (isDirectExecution) {
-  await loadEnvFiles(["apps/web/.env.dev"]);
-  // await loadEnvFiles(["apps/web/.env.prod"]);
+  // await loadEnvFiles(["apps/web/.env.dev"]);
+  await loadEnvFiles(["apps/web/.env.prod"]);
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;
@@ -548,17 +549,6 @@ export function mapFacilityToGymRow(detail, districtOverrides = {}, now = new Da
   const prefixedName = ensurePrefix(title, "LCSD ");
   const prefixedNameZh = detail.name_zh ? ensurePrefix(detail.name_zh, "康文署") : null;
 
-  const districtText = [
-    detail.name,
-    detail.name_zh,
-    detail.address,
-    detail.address_zh,
-    detail.district_en,
-    detail.district_zh,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   const equipment = mapEquipmentToSchema(detail.equipment_items ?? []);
   const estimatedSizeSqft =
     detail.size_sqm !== null && detail.size_sqm !== undefined
@@ -574,7 +564,12 @@ export function mapFacilityToGymRow(detail, districtOverrides = {}, now = new Da
     district_code:
       districtOverrides[String(detail.id)] ??
       districtOverrides[slug] ??
-      inferDistrictCode(districtText),
+      inferDistrictFromSources({
+        structured: [detail.district_en, detail.district_zh],
+        addresses: [detail.address, detail.address_zh],
+        fallback: [detail.name, detail.name_zh],
+        districts: DISTRICT_KEYWORDS,
+      }),
     country_code: "HK",
     website_url: detail.detail_url_en ?? detail.detail_url_zh ?? SOURCE_URL,
     contact_phone: normalizePhone(detail.phone),
@@ -1007,14 +1002,6 @@ function buildNullEquipmentFields() {
     equipment_notes: null,
     equipment_last_verified_at: null,
   };
-}
-
-function inferDistrictCode(text) {
-  const haystack = text.toLowerCase();
-  const match = DISTRICT_KEYWORDS.find(({ keywords }) =>
-    keywords.some((keyword) => haystack.includes(keyword.toLowerCase()))
-  );
-  return match?.code ?? null;
 }
 
 const DISTRICT_KEYWORDS = [

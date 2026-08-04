@@ -78,6 +78,13 @@ flag is supplied. A dry run and an `--upsert` run apply the same overrides.
 
 ### District overrides
 
+District inference uses source-provided district/area fields first. It then
+evaluates the address together with the branch name, preferring the most
+specific matching place name; this lets `Sai Wan Ho` win over `Sai Wan` while
+still using a branch name to disambiguate roads named after another district.
+Known phrase collisions such as `Lan Kwai Fong` versus `Kwai Fong` are excluded.
+Explicit overrides always take precedence over inferred values.
+
 Importers that support `--district-overrides` accept a JSON object that maps a
 source identifier or generated slug to a Gymory district code:
 
