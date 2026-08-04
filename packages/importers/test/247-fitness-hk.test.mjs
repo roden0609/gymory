@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   buildStoreDetailBundles,
   buildRowsFromDetails,
+  inferDistrictCode,
   mapStoreToGymRow,
   parseArgs,
   parseJsonText,
@@ -156,6 +157,14 @@ describe("24/7 Fitness fixture dry run", () => {
 
     expect(row.lat).toBeNull();
     expect(row.lng).toBeNull();
+  });
+
+  it("prefers a specific district over Central in a venue name", () => {
+    expect(
+      inferDistrictCode(
+        "Tseung Kwan O Third Branch Shop 2010, MCP Central II, 8 Yan King Road, Tseung Kwan O"
+      )
+    ).toBe("HK-SK");
   });
 
   it("fails loudly for an empty or structurally changed fixture", () => {

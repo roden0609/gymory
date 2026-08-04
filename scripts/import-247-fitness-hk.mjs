@@ -563,12 +563,20 @@ function normalizeComparable(value) {
 }
 
 
-function inferDistrictCode(text) {
+export function inferDistrictCode(text) {
   const haystack = text.toLowerCase();
-  const match = DISTRICT_KEYWORDS.find(({ keywords }) =>
-    keywords.some((keyword) => haystack.includes(keyword.toLowerCase()))
+  const matches = DISTRICT_KEYWORDS.flatMap(({ code, keywords }, districtIndex) =>
+    keywords
+      .filter((keyword) => haystack.includes(keyword.toLowerCase()))
+      .map((keyword) => ({ code, keyword, districtIndex }))
   );
-  return match?.code ?? null;
+
+  matches.sort(
+    (left, right) =>
+      right.keyword.length - left.keyword.length ||
+      left.districtIndex - right.districtIndex
+  );
+  return matches[0]?.code ?? null;
 }
 
 const DISTRICT_KEYWORDS = [
