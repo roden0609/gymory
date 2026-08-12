@@ -2,10 +2,14 @@
 
 ## Status
 
-Implemented through the additive schema, backfill, normalized read, form,
-importer, submission approval, and canonical admin write phases. Legacy column
-removal remains intentionally pending until production reconciliation and
-observation exit criteria pass.
+Completed. The additive schema, backfill, normalized reads and writes, form,
+importers, submission approval, canonical admin writes, and physical legacy
+column removal are deployed to DEV and PROD through migration `0046`.
+
+Final reconciliation and the post-PROD observation review completed on
+2026-08-12. The private recovery snapshot remains retained as a safety measure;
+removing that snapshot is a separate housekeeping migration and is not required
+for the normalized inventory runtime.
 
 Implementation entry points:
 
@@ -860,8 +864,8 @@ The normalization is complete when all of the following are true:
 - Public RLS allows valid reads and prevents direct public writes.
 - Normalized and legacy comparison tests have no unclassified differences.
 - Relevant web typecheck and lint checks pass.
-- Legacy columns are removed only in a later release after the observation period
-  and all exit criteria pass.
+- Legacy columns were removed by the separate `0046` release after the read and
+  write cutovers; final reconciliation and observation checks passed.
 
 ---
 
@@ -890,7 +894,30 @@ normalized view and inventory integrity directly.
 The migration preserves the final legacy values, mapping manifest, and recorded
 conflicts in the private
 `gym_equipment_legacy_cleanup_backup_0046` recovery table. That recovery table
-is intentionally retained through the post-PROD observation period.
+is intentionally retained until a separate recovery-snapshot cleanup is reviewed.
+
+### Completion evidence
+
+Verified on 2026-08-12:
+
+- DEV and PROD migration histories both contain migrations `0043` through
+  `0046` with no local/remote mismatch.
+- DEV validation passed for 432 gyms, 119 equipment types, and 2,106 inventory
+  rows with zero integrity issues.
+- PROD validation passed for 423 gyms, 119 equipment types, and 2,864 inventory
+  rows with zero integrity issues.
+- The PROD `0046` recovery snapshot was created on 2026-07-26 and contains 412
+  gym-value snapshots and 126 mapping snapshots. It contains no migration
+  conflict records.
+- PROD has no pending submissions and no pending legacy equipment payloads.
+- The post-PROD observation window covered 17 calendar days without detected
+  normalized inventory drift.
+- Production smoke checks returned HTTP 200 for the main search, district,
+  geolocation search, map, and split-view routes.
+
+All legacy-removal exit criteria are therefore closed. The recovery snapshot is
+not used by runtime reads or writes and may be removed later through an explicit,
+separately reviewed migration.
 
 ---
 

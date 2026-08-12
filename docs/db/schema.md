@@ -336,8 +336,9 @@ inventory and its approved audit record atomically.
   equipment requirements and supports descendant presence roll-up.
 - `gym_equipment_legacy_cleanup_backup_0046` is a private recovery snapshot of
   the final legacy flat values, mapping manifest, and migration conflicts. It is
-  not used by runtime reads or writes and should be removed only after the
-  post-PROD observation period.
+  not used by runtime reads or writes. The post-PROD observation review
+  completed on 2026-08-12; snapshot removal remains a separate, explicitly
+  reviewed recovery cleanup.
 
 The transitional `equipment_legacy_field_mappings`,
 `gym_equipment_migration_conflicts`, and legacy gym equipment sync triggers and

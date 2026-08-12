@@ -237,9 +237,9 @@ supabase db push --linked
 pnpm validate:gym-inventory-normalization -- --env apps/web/.env.prod
 ```
 
-Keep `gym_equipment_legacy_cleanup_backup_0046` through the agreed observation
-period. Remove it only in a later migration after PROD recovery has been
-reviewed; it is not used by runtime reads or writes.
+The post-PROD observation and reconciliation review completed on 2026-08-12.
+Keep `gym_equipment_legacy_cleanup_backup_0046` until its separate recovery
+cleanup is explicitly reviewed. It is not used by runtime reads or writes.
 
 Safety rules:
 
