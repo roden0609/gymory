@@ -83,8 +83,9 @@ The MVP may skip:
 - Owner verification.
 - Confidence score UI.
 - Muscle group and movement pattern filters.
-- Automated scraping/import jobs.
-- Machine photos.
+- Scheduled or fully automated scraping/import jobs.
+- Public machine photo galleries. The schema should still support multiple images
+  from the start so imported catalog data does not require a later migration.
 
 ---
 
@@ -175,12 +176,16 @@ Each machine should support:
 - Slug
 - Brand
 - Category
+- Series, optional
 - Model number, optional
 - Product URL, optional
-- Image URL, optional
 - Description, optional
 - Status: `active`, `discontinued`, `unknown`
-- Source: `official`, `manual`, `user_submitted`, `import`
+- Source type: `official`, `manual`, `user_submitted`
+- Import method: `crawler`, `seed`, `admin`, optional
+- Source external ID, optional
+- Imported at timestamp, optional
+- Last seen at timestamp, optional
 
 ### FR-3.2 Canonical machine naming
 Use the official product name as the canonical machine name when available.
@@ -209,6 +214,50 @@ The same brand should not have duplicate machines with the same slug or normaliz
 
 ### FR-3.5 Official source updates
 When importing from official sites, do not overwrite admin-edited fields without a review step unless the field is explicitly source-owned.
+
+Recommended field ownership:
+
+- Source-owned: product URL, source URL, source external ID, model number,
+  imported/synced timestamp, and last-seen timestamp.
+- Review-required: canonical name, category, series, description, status, and
+  primary image selection.
+- Admin-owned: aliases, localized names, taxonomy overrides, muscle mappings,
+  movement mappings, and manually added images.
+
+### FR-3.6 Machine images
+Machines may have multiple images stored as separate records.
+
+Each image should support:
+
+- Image URL
+- Source URL, optional
+- Alt text, optional
+- Sort order
+- Primary-image flag
+- Width and height, optional
+- Source type and source external key, optional
+- Last seen at timestamp, optional
+
+Each machine should have at most one primary image. Importers must not delete or
+overwrite admin-managed images when refreshing official source images.
+
+### FR-3.7 Machine specifications
+Machines may have structured specifications stored separately from the main
+machine record.
+
+Examples:
+
+- Dimensions
+- Machine weight
+- Maximum load
+- Starting resistance
+- Weight stack
+- Product code
+- Storage horns
+
+Specifications should support text and numeric values, optional units, display
+labels, ordering, source metadata, and refresh timestamps. Brand-specific
+specifications should not require adding a new column to `equipment_machines`.
 
 ---
 
@@ -446,6 +495,10 @@ Admins can review user-submitted equipment suggestions if FR-6 is implemented.
 ### FR-9.4 Import review
 If machine import scripts are added, admins should be able to review new or changed machines before public use.
 
+The review should show a diff between the current catalog record and the
+import-ready candidate. Imports must not publish or overwrite review-required
+or admin-owned fields by default.
+
 ---
 
 ## FR-10: Official Website Import
@@ -466,12 +519,76 @@ Importers should respect robots.txt, rate limits, and website terms.
 Imported machines should store:
 
 - Source URL
-- Source type
-- Imported at timestamp
+- Source type: where the information originated
+- Import method: how the information entered Gymory
+- Source external ID where available
+- Imported or synced at timestamp
 - Last seen at timestamp where practical
+
+`source_type` and `import_method` represent different concepts. For example, a
+machine crawled from a manufacturer's product page has `source_type = official`
+and `import_method = crawler`.
 
 ### FR-10.4 Do not infer gym inventory
 Official brand product data must only populate the equipment catalog. It must not imply that any gym owns the machine.
+
+### FR-10.5 Import data stages
+Importers should keep three distinct data stages:
+
+1. **Raw** — source responses or snapshots retained for reproducibility and
+   parser debugging.
+2. **Normalized** — a brand-independent representation that may preserve more
+   source detail than the current database supports.
+3. **Import-ready** — validated records mapped to the current Gymory schema and
+   ready for diff/review.
+
+Raw and normalized data must not be treated as approved public catalog data.
+
+### FR-10.6 Import execution safety
+Importer commands should default to preview or dry-run behavior. A normal import
+flow is:
+
+```text
+crawl -> raw snapshot -> normalize -> validate -> diff -> review -> upsert
+```
+
+Production upsert must be an explicit action. Scheduled refresh and unattended
+publishing should only be added after the review workflow is reliable.
+
+### FR-10.7 Reusable multi-brand architecture
+Official-site importers should use a shared framework with a separate adapter
+for each brand. Shared concerns include validation, normalization, units, image
+handling, duplicate detection, diff generation, and database upsert planning.
+
+Brand adapters should contain only source-specific fetching, pagination,
+parsing, and mappings. Brands sharing the same manufacturer website may reuse a
+site-level client or parser while remaining separate brands in the catalog.
+
+Recommended project locations:
+
+```text
+packages/importers/src/equipment-catalog/
+  core/
+  mappings/
+  brands/<brand-slug>/
+
+packages/importers/test/equipment-catalog/
+  fixtures/<brand-slug>/
+
+data/imports/equipment-catalog/<brand-slug>/
+  raw/
+  normalized/
+  import-ready.json
+```
+
+Root-level scripts should be thin CLI entry points rather than contain the
+brand-specific business logic.
+
+### FR-10.8 Brand rollout
+The importer framework may be designed for many brands, but brands should be
+enabled incrementally. Each adapter must have fixtures, parser tests,
+normalization validation, and a reviewed preview before production upsert is
+enabled.
 
 ---
 
@@ -510,20 +627,73 @@ Official brand product data must only populate the equipment catalog. It must no
 | `category_id` | uuid | foreign key to `equipment_categories.id` |
 | `name` | text | required |
 | `slug` | text | required |
+| `series` | text | nullable |
 | `model_number` | text | nullable |
 | `product_url` | text | nullable |
-| `image_url` | text | nullable |
 | `description` | text | nullable |
 | `status` | text | `active`, `discontinued`, `unknown` |
-| `source` | text | `official`, `manual`, `user_submitted`, `import` |
+| `source_type` | text | `official`, `manual`, `user_submitted` |
+| `import_method` | text | `crawler`, `seed`, `admin`; nullable |
 | `source_url` | text | nullable |
+| `source_external_id` | text | nullable |
+| `imported_at` | timestamptz | nullable |
 | `source_synced_at` | timestamptz | nullable |
+| `last_seen_at` | timestamptz | nullable |
 | `created_at` | timestamptz | |
 | `updated_at` | timestamptz | |
 
 Recommended unique constraint:
 
 - `(brand_id, slug)`
+
+An additional unique index on `(brand_id, source_external_id)` should be used
+where `source_external_id` is non-null and stable.
+
+### `equipment_machine_images` table
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid | primary key |
+| `machine_id` | uuid | foreign key to `equipment_machines.id`, cascade delete |
+| `url` | text | required |
+| `source_url` | text | nullable |
+| `alt_text` | text | nullable |
+| `sort_order` | integer | default 0 |
+| `is_primary` | boolean | default false |
+| `width` | integer | nullable |
+| `height` | integer | nullable |
+| `source_type` | text | `official`, `manual`, `user_submitted` |
+| `source_external_key` | text | nullable |
+| `last_seen_at` | timestamptz | nullable |
+| `created_at` | timestamptz | |
+| `updated_at` | timestamptz | |
+
+Recommended constraints:
+
+- Unique `(machine_id, url)`.
+- Partial unique index on `machine_id` where `is_primary = true`, ensuring at
+  most one primary image per machine.
+- Positive width and height when present.
+
+### `equipment_machine_specs` table
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid | primary key |
+| `machine_id` | uuid | foreign key to `equipment_machines.id`, cascade delete |
+| `spec_key` | text | stable normalized key |
+| `label` | text | display label from source or curated label |
+| `value_text` | text | nullable |
+| `value_number` | numeric | nullable |
+| `unit` | text | nullable |
+| `sort_order` | integer | default 0 |
+| `source_url` | text | nullable |
+| `source_synced_at` | timestamptz | nullable |
+| `created_at` | timestamptz | |
+| `updated_at` | timestamptz | |
+
+Recommended constraint:
+
+- Unique `(machine_id, spec_key)`.
+- At least one of `value_text` or `value_number` must be non-null.
 
 ### `equipment_machine_aliases` table
 | Column | Type | Notes |
@@ -653,6 +823,8 @@ where g.is_active = true
 - Add `equipment_brands`.
 - Add `equipment_categories`.
 - Add `equipment_machines`.
+- Add `equipment_machine_images` with multi-image and primary-image support.
+- Add `equipment_machine_specs` for flexible official product specifications.
 - Add `equipment_machine_aliases`.
 - Add `gym_equipment`.
 - Seed a small brand/category/machine catalog manually.
@@ -674,10 +846,16 @@ where g.is_active = true
 - Add confidence score where useful.
 
 ### Phase 4: Official Site Imports
-- Add importer scripts for selected official brand websites.
-- Store source metadata.
-- Add import review process.
+- Add reusable importer infrastructure and brand-specific adapters for selected
+  official brand websites.
+- Keep raw, normalized, and import-ready outputs separate.
+- Store source type, import method, source identity, sync, and last-seen metadata.
+- Add preview, validation, and diff-based import review.
+- Protect admin-owned and review-required fields during refresh.
 - Add periodic refresh only after review workflow is reliable.
+
+Importer framework development and non-writing preview tools may begin before
+Phase 4. Production upsert and automated refresh remain Phase 4 capabilities.
 
 ---
 
@@ -709,8 +887,8 @@ Do not send user notes, free-text private data, email, phone number, or personal
 ## Open Questions
 
 - Should unverified community inventory ever be shown publicly with a warning?
-- Should machine photos be attached to catalog machines, gym inventory records, or user submissions?
+- Should gym-specific or user-submitted photos use a separate inventory evidence
+  model in addition to catalog-level `equipment_machine_images`?
 - Should gym owners be allowed to bulk upload machine lists?
 - Should some existing `gyms` boolean/count equipment columns be migrated into `gym_equipment`, or should both systems run in parallel?
 - Should equipment search live inside `/search`, a dedicated `/equipment` page, or both?
-
