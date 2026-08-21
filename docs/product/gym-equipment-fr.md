@@ -64,6 +64,27 @@ The feature has two separate data layers:
 
 These layers must remain separate. A brand's official product catalog does not prove that any specific gym has that machine.
 
+### Relationship to the existing generic equipment inventory
+
+The brand/model catalog and the existing generic equipment inventory should run
+in parallel:
+
+- `equipment_types` and `gym_equipment_inventory` remain the canonical source
+  for generic concepts and counts, such as whether a gym has a hack squat.
+- `equipment_machines` and `gym_equipment` represent specific brand/model
+  inventory, such as a particular Hammer Strength hack squat model.
+- Each machine should map to an `equipment_types.code` where a suitable generic
+  type exists. This lets model-level inventory participate in generic search
+  without duplicating the generic taxonomy.
+- A machine assignment must not automatically replace, delete, or rewrite an
+  existing generic inventory record. Any future synchronization or roll-up must
+  be explicit, deterministic, and covered by tests.
+- Existing generic search and submission flows should continue to work while
+  the brand/model layer is introduced incrementally.
+
+The two layers answer different questions: generic inventory supports broad
+discovery, while brand/model inventory gives professional users precise detail.
+
 ---
 
 ## MVP Scope
@@ -625,6 +646,7 @@ enabled.
 | `id` | uuid | primary key |
 | `brand_id` | uuid | foreign key to `equipment_brands.id` |
 | `category_id` | uuid | foreign key to `equipment_categories.id` |
+| `equipment_type_code` | text | nullable foreign key to `equipment_types.code` |
 | `name` | text | required |
 | `slug` | text | required |
 | `series` | text | nullable |
@@ -820,13 +842,16 @@ where g.is_active = true
 ## Migration Strategy
 
 ### Phase 1: Admin-only MVP
-- Add `equipment_brands`.
+- Extend the existing `equipment_brands` table with catalog source metadata
+  where required; preserve its current rows and references.
 - Add `equipment_categories`.
 - Add `equipment_machines`.
 - Add `equipment_machine_images` with multi-image and primary-image support.
 - Add `equipment_machine_specs` for flexible official product specifications.
 - Add `equipment_machine_aliases`.
 - Add `gym_equipment`.
+- Keep `equipment_types` and `gym_equipment_inventory` as the generic inventory
+  layer and map machines to generic types where applicable.
 - Seed a small brand/category/machine catalog manually.
 - Add admin inventory editing.
 - Add public gym detail display.
@@ -890,5 +915,12 @@ Do not send user notes, free-text private data, email, phone number, or personal
 - Should gym-specific or user-submitted photos use a separate inventory evidence
   model in addition to catalog-level `equipment_machine_images`?
 - Should gym owners be allowed to bulk upload machine lists?
-- Should some existing `gyms` boolean/count equipment columns be migrated into `gym_equipment`, or should both systems run in parallel?
 - Should equipment search live inside `/search`, a dedicated `/equipment` page, or both?
+
+## Resolved Decisions
+
+- The existing generic inventory and the new brand/model inventory will run in
+  parallel. `equipment_types` plus `gym_equipment_inventory` remain responsible
+  for generic equipment discovery and counts; `equipment_machines` plus
+  `gym_equipment` add specific brand/model detail. The Phase 1 rollout will not
+  migrate or delete existing generic inventory records.
