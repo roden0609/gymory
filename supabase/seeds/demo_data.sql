@@ -142,7 +142,7 @@ insert into gyms (
 
 -- Canonical normalized equipment inventory. False and zero values are
 -- retained as confirmed absence rather than being treated as unknown.
-insert into gym_equipment_inventory (gym_id, equipment_code, is_present, quantity)
+insert into gym_equipment_type_inventory (gym_id, equipment_code, is_present, quantity)
 select
   gym.id,
   seed.equipment_code,
@@ -539,6 +539,102 @@ join equipment_brands b on b.slug in ('eleiko', 'rogue-fitness', 'hammer-strengt
 where g.slug = 'ironbase-hk-wan-chai'
 on conflict (gym_id, brand_id) do update
 set confidence = excluded.confidence,
+    updated_at = now();
+
+-- Small brand/model catalog for end-to-end public inventory and search testing.
+-- Categories are created by migration 0047; these upserts keep the seed rerunnable.
+insert into equipment (
+  brand_id,
+  category_id,
+  equipment_type_code,
+  name,
+  slug,
+  series,
+  model_number,
+  status,
+  source_type,
+  import_method
+)
+select
+  brand.id,
+  category.id,
+  seed.equipment_type_code,
+  seed.name,
+  seed.slug,
+  seed.series,
+  seed.model_number,
+  'active',
+  'manual',
+  'seed'
+from (
+  values
+    ('hammer-strength', 'plate-loaded', 'hack_squat', 'Hack Squat', 'hack-squat', 'Plate Loaded', 'PL-HSQ'),
+    ('rogue-fitness', 'plate-loaded', 'belt_squat_machine', 'Monster Rhino Belt Squat', 'monster-rhino-belt-squat', 'Monster', 'BS-RHINO'),
+    ('concept2', 'cardio', 'rower', 'RowErg', 'rowerg', null, '2712')
+) as seed(brand_slug, category_slug, equipment_type_code, name, slug, series, model_number)
+join equipment_brands brand on brand.slug = seed.brand_slug
+join equipment_categories category on category.slug = seed.category_slug
+on conflict (brand_id, slug) do update
+set category_id = excluded.category_id,
+    equipment_type_code = excluded.equipment_type_code,
+    name = excluded.name,
+    series = excluded.series,
+    model_number = excluded.model_number,
+    status = excluded.status,
+    updated_at = now();
+
+insert into equipment_aliases (equipment_id, alias, locale)
+select machine.id, seed.alias, seed.locale
+from (
+  values
+    ('hammer-strength', 'hack-squat', 'hack squat machine', 'en'),
+    ('hammer-strength', 'hack-squat', '哈克深蹲', 'zh-HK'),
+    ('rogue-fitness', 'monster-rhino-belt-squat', 'belt squat', 'en'),
+    ('rogue-fitness', 'monster-rhino-belt-squat', '腰帶深蹲', 'zh-HK'),
+    ('concept2', 'rowerg', 'rowing machine', 'en'),
+    ('concept2', 'rowerg', '划船機', 'zh-HK')
+) as seed(brand_slug, machine_slug, alias, locale)
+join equipment_brands brand on brand.slug = seed.brand_slug
+join equipment machine
+  on machine.brand_id = brand.id
+ and machine.slug = seed.machine_slug
+on conflict do nothing;
+
+insert into gym_equipment_inventory (
+  gym_id,
+  equipment_id,
+  quantity,
+  condition,
+  verified_status,
+  source,
+  verified_at
+)
+select
+  gym.id,
+  machine.id,
+  seed.quantity,
+  'good',
+  seed.verified_status,
+  seed.source,
+  now()
+from (
+  values
+    ('ironbase-hk-wan-chai', 'hammer-strength', 'hack-squat', 1, 'admin_verified', 'admin'),
+    ('ironbase-hk-wan-chai', 'rogue-fitness', 'monster-rhino-belt-squat', 1, 'owner_verified', 'owner'),
+    ('hyrox-hub-kwun-tong', 'concept2', 'rowerg', 8, 'admin_verified', 'admin'),
+    ('lift-district-mong-kok', 'hammer-strength', 'hack-squat', 1, 'unverified', 'user')
+) as seed(gym_slug, brand_slug, machine_slug, quantity, verified_status, source)
+join gyms gym on gym.slug = seed.gym_slug
+join equipment_brands brand on brand.slug = seed.brand_slug
+join equipment machine
+  on machine.brand_id = brand.id
+ and machine.slug = seed.machine_slug
+on conflict (gym_id, equipment_id) do update
+set quantity = excluded.quantity,
+    condition = excluded.condition,
+    verified_status = excluded.verified_status,
+    source = excluded.source,
+    verified_at = excluded.verified_at,
     updated_at = now();
 
 insert into gym_brand_inventory (gym_id, brand_id, confidence)

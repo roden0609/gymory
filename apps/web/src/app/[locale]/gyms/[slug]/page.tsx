@@ -11,7 +11,9 @@ import { Link } from "@/i18n/navigation";
 import { getFirebaseSessionUser } from "@/lib/auth/session";
 import { getGymAccuracySnapshot } from "@/lib/db/queries/gym-accuracy";
 import { getGymEquipmentBrands } from "@/lib/db/queries/equipment-brands";
+import { getPublicGymMachineInventory } from "@/lib/db/queries/equipment-machine-inventory";
 import { getGymBySlug } from "@/lib/db/queries/gyms";
+import { groupPublicGymMachines } from "@/lib/equipment-machine-inventory";
 import { buildSeoMetadata, getLocalizedUrl } from "@/lib/seo";
 
 type Locale = "en" | "zh-HK";
@@ -385,6 +387,62 @@ function FeaturePills({
   );
 }
 
+function VerifiedMachineInventory({
+  groups,
+  locale,
+  title,
+  quantityLabel,
+}: {
+  groups: ReturnType<typeof groupPublicGymMachines>;
+  locale: Locale;
+  title: string;
+  quantityLabel: (quantity: number) => string;
+}) {
+  if (groups.length === 0) return null;
+
+  return (
+    <section className="mt-8 min-w-0 rounded-lg border border-gray-200 bg-white p-5">
+      <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+      <div className="mt-4 grid min-w-0 gap-5 sm:grid-cols-2">
+        {groups.map(({ category, brands }) => (
+          <div key={category.id} className="min-w-0">
+            <h3 className="break-words text-sm font-semibold text-gray-900">
+              {category.name}
+            </h3>
+            <div className="mt-2 space-y-3">
+              {brands.map(({ brand, machines }) => (
+                <div key={brand.id} className="min-w-0">
+                  <p className="break-words text-xs font-medium uppercase tracking-wide text-gray-500">
+                    {locale === "zh-HK" && brand.nameZh ? brand.nameZh : brand.nameEn}
+                  </p>
+                  <ul className="mt-1 space-y-1">
+                    {machines.map((machine) => (
+                      <li
+                        key={machine.id}
+                        className="flex min-w-0 items-start justify-between gap-3 text-sm"
+                      >
+                        <span className="min-w-0 break-words text-gray-700 [overflow-wrap:anywhere]">
+                          {machine.name}
+                          {machine.modelNumber ? ` · ${machine.modelNumber}` : ""}
+                        </span>
+                        {machine.quantity !== null && (
+                          <span className="shrink-0 text-xs text-gray-500">
+                            {quantityLabel(machine.quantity)}
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const gym = await getGymBySlug(slug);
@@ -415,10 +473,12 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const gym = await getGymBySlug(slug);
   if (!gym) notFound();
   const sessionUser = await getFirebaseSessionUser();
-  const [brands, accuracySnapshot] = await Promise.all([
+  const [brands, machineInventory, accuracySnapshot] = await Promise.all([
     getGymEquipmentBrands(gym.id),
+    getPublicGymMachineInventory(gym.id),
     getGymAccuracySnapshot({ gymId: gym.id, firebaseUid: sessionUser?.uid }),
   ]);
+  const machineInventoryGroups = groupPublicGymMachines(machineInventory);
 
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
@@ -990,6 +1050,13 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
             value={formatDataSource(gym.data_source, t)}
           />
         </div>
+
+        <VerifiedMachineInventory
+          groups={machineInventoryGroups}
+          locale={locale}
+          title={t("verifiedMachineInventory")}
+          quantityLabel={(quantity) => t("machineQuantity", { quantity })}
+        />
 
         <div className="mt-8 rounded-lg border border-gray-200 bg-white px-5">
           <Section title={t("freeWeight")}>

@@ -190,7 +190,7 @@ async function filterChangedInventoryItems({
   gymId,
   inventoryItems,
 }) {
-  const url = new URL(`${supabaseUrl}/rest/v1/gym_equipment_inventory`);
+  const url = new URL(`${supabaseUrl}/rest/v1/gym_equipment_type_inventory`);
   url.searchParams.set("gym_id", `eq.${gymId}`);
   url.searchParams.set("select", "equipment_code,is_present,quantity");
 

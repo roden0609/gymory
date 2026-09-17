@@ -10,6 +10,7 @@ import type {
   PaginatedGymSearchResult,
   RawSearchParams,
 } from "@/lib/db/queries/search-gyms";
+import { getEquipmentCategoryFilterOptions } from "@/lib/db/queries/equipment-catalog-search";
 import { DistrictBrowseControls } from "./DistrictBrowseControls";
 import { SearchFilters } from "./SearchFilters";
 import { SearchResultsPanel } from "./SearchResultsPanel";
@@ -30,6 +31,7 @@ export async function SearchExperience({
   filterBasePath = "/search",
   fixedDistrict,
 }: SearchExperienceProps) {
+  const equipmentCategories = await getEquipmentCategoryFilterOptions();
   const common = await getTranslations("common");
   const search = await getTranslations("search");
   const districtPages = await getTranslations("districtPages");
@@ -98,7 +100,11 @@ export async function SearchExperience({
         ) : null}
         <div className="flex min-w-0 flex-col gap-6 md:flex-row">
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
-            <SearchFilters basePath={filterBasePath} fixedDistrict={fixedDistrict} />
+            <SearchFilters
+              basePath={filterBasePath}
+              fixedDistrict={fixedDistrict}
+              equipmentCategories={equipmentCategories}
+            />
           </Suspense>
           <SearchResultsPanel
             result={result}

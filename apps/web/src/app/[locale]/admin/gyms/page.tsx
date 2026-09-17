@@ -191,6 +191,12 @@ export default async function AdminGymsPage({
                             >
                               View
                             </Link>
+                            <Link
+                              href={`/admin/gyms/${gym.id}/equipment`}
+                              className="text-sm font-medium text-blue-700 underline-offset-2 hover:text-blue-900 hover:underline"
+                            >
+                              Equipment
+                            </Link>
                             <AdminVerifyGymButton
                               gymId={gym.id}
                               isActive={gym.is_active}

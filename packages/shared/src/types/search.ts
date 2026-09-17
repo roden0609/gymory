@@ -19,6 +19,8 @@ const commaSeparatedListSchema = z.preprocess((value) => {
 export const searchParamsSchema = z.object({
   collection: z.string().optional(),
   district: z.string().optional(),
+  machine: z.string().trim().max(200).optional(),
+  category: z.string().trim().max(120).optional(),
   userLat: z.coerce.number().min(-90).max(90).optional(),
   userLng: z.coerce.number().min(-180).max(180).optional(),
   page: z.coerce.number().int().min(1).optional(),

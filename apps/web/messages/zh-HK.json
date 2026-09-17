@@ -59,6 +59,8 @@
     "dataSourceOnline": "網上資料",
     "dataSourceUser": "用戶",
     "machines": "機械",
+    "verifiedMachineInventory": "已驗證器械",
+    "machineQuantity": "×{quantity}",
     "features": "設施",
     "freeWeight": "自由重量",
     "cardio": "帶氧",
@@ -250,9 +252,13 @@
     "smallestPlate": "最細槓片 ≤ (kg)",
     "minSize": "面積最少 ≥ (sqft)",
     "equipment": "器械",
+    "machine": "器械名稱或別名",
+    "machinePlaceholder": "例如：hack squat",
+    "equipmentCategory": "器械分類",
+    "anyEquipmentCategory": "所有器械分類",
     "gymBrands": "健身房品牌",
     "gymBrandHint": "健身房品牌篩選使用 OR：揀中任何一個品牌都會符合。",
-    "brandOrHint": "品牌篩選使用 OR：揀中任何一個品牌都會符合。",
+    "brandOrHint": "只按品牌會包括廣泛品牌記錄及已驗證型號；配合器械／分類時必須有相符嘅已驗證型號。",
     "loadMore": "載入更多",
     "loadingMore": "載入中...",
     "viewList": "清單",
@@ -732,6 +738,7 @@
   "admin": {
     "dashboard": "管理員面板",
     "manageGyms": "管理健身房",
-    "submissions": "待審提交"
+    "submissions": "待審提交",
+    "equipmentCatalog": "器械目錄"
   }
 }

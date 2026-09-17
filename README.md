@@ -148,7 +148,7 @@ Always promote the exact same migration file to DEV first, then PROD.
    ```
 
    Before the real push, review every pending migration. DEV should apply
-   `0043_normalize_gym_equipment_inventory.sql` first and
+   `0043_normalize_gym_equipment_type_inventory.sql` first and
    `0044_cut_over_normalized_equipment_writes.sql` second. If `0043` has
    already been applied, only `0044` should be pending. Test the DEV app after
    validation succeeds.

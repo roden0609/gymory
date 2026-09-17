@@ -67,7 +67,7 @@ overrides; unknown codes are rejected by the database RPC.
 
 Importers preserve omitted or `null` equipment values as no change. Explicit
 presence, absence, zero, and positive quantities are written to
-`gym_equipment_inventory` and logged as approved `edit_equipment` import
+`gym_equipment_type_inventory` and logged as approved `edit_equipment` import
 submissions. Importers do not depend on the removed
 `equipment_legacy_field_mappings` table.
 

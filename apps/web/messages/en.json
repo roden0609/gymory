@@ -59,6 +59,8 @@
     "dataSourceOnline": "Online",
     "dataSourceUser": "User",
     "machines": "Machines",
+    "verifiedMachineInventory": "Verified machines",
+    "machineQuantity": "×{quantity}",
     "features": "Features",
     "freeWeight": "Free weight",
     "cardio": "Cardio",
@@ -250,9 +252,13 @@
     "smallestPlate": "Smallest plate ≤ (kg)",
     "minSize": "Min size ≥ (sqft)",
     "equipment": "Equipment",
+    "machine": "Machine name or alias",
+    "machinePlaceholder": "e.g. hack squat",
+    "equipmentCategory": "Machine category",
+    "anyEquipmentCategory": "Any machine category",
     "gymBrands": "Gym brands",
     "gymBrandHint": "Gym brand matches use OR: any selected brand will match.",
-    "brandOrHint": "Brand matches use OR: any selected brand will match.",
+    "brandOrHint": "Brand-only search includes broad brand records and verified models. Combined machine/category searches require a matching verified model.",
     "loadMore": "Load more",
     "loadingMore": "Loading...",
     "viewList": "List",
@@ -732,6 +738,7 @@
   "admin": {
     "dashboard": "Admin Dashboard",
     "manageGyms": "Manage Gyms",
-    "submissions": "Pending Submissions"
+    "submissions": "Pending Submissions",
+    "equipmentCatalog": "Equipment Catalog"
   }
 }

@@ -34,6 +34,14 @@ export default async function AdminPage({
             <p className="text-lg font-semibold text-gray-900">{t("submissions")}</p>
             <p className="mt-1 text-sm text-gray-500">/admin/submissions</p>
           </Link>
+
+          <Link
+            href="/admin/equipment"
+            className="rounded-lg border border-gray-200 bg-white p-5 transition-colors hover:border-gray-300"
+          >
+            <p className="text-lg font-semibold text-gray-900">{t("equipmentCatalog")}</p>
+            <p className="mt-1 text-sm text-gray-500">/admin/equipment</p>
+          </Link>
         </div>
       </div>
     </main>

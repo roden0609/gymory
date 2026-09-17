@@ -12,6 +12,7 @@ import {
   trackGymBrandFilter,
 } from "@/lib/analytics";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
+import type { EquipmentCategoryFilterOption } from "@/lib/db/queries/equipment-catalog-search";
 import { EQUIPMENT_BRANDS, GYM_CHAINS } from "@gymory/shared";
 
 type CheckboxFilter = {
@@ -317,12 +318,14 @@ type SearchFiltersProps = {
   basePath?: string;
   fixedCollection?: string;
   fixedDistrict?: string;
+  equipmentCategories?: EquipmentCategoryFilterOption[];
 };
 
 export function SearchFilters({
   basePath = "/search",
   fixedCollection,
   fixedDistrict,
+  equipmentCategories = [],
 }: SearchFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -338,6 +341,8 @@ export function SearchFilters({
   const [district, setDistrict] = useState(
     fixedDistrict ?? searchParams.get("district") ?? ""
   );
+  const [machine, setMachine] = useState(searchParams.get("machine") ?? "");
+  const [category, setCategory] = useState(searchParams.get("category") ?? "");
   const currentView = searchParams.get("view");
   const [minRackCount, setMinRackCount] = useState(
     searchParams.get("minRackCount") ?? ""
@@ -392,11 +397,15 @@ export function SearchFilters({
       Number(Boolean(minPlateWeight)) +
       Number(Boolean(minSize)) +
       Number(Boolean(collection) && !fixedCollection) +
+      Number(Boolean(machine)) +
+      Number(Boolean(category)) +
       selectedFilters.size +
       selectedGymChains.length +
       selectedBrandSlugs.length,
     [
       collection,
+      machine,
+      category,
       district,
       fixedCollection,
       fixedDistrict,
@@ -498,6 +507,8 @@ export function SearchFilters({
     if (selectedBrandSlugs.length > 0) {
       params.set("brandSlugs", selectedBrandSlugs.join(","));
     }
+    if (machine.trim()) params.set("machine", machine.trim());
+    if (category) params.set("category", category);
     if (selectedGymChains.length > 0) {
       params.set("gymChains", selectedGymChains.join(","));
     }
@@ -509,6 +520,8 @@ export function SearchFilters({
     district,
     fixedCollection,
     fixedDistrict,
+    machine,
+    category,
     minBarbellCount,
     minBenchCount,
     minDumbbellWeight,
@@ -630,6 +643,8 @@ export function SearchFilters({
     setMinPlateWeight("");
     setMinSize("");
     setCollection(fixedCollection ?? "");
+    setMachine("");
+    setCategory("");
     setSelectedBrandSlugs([]);
     setSelectedGymChains([]);
     setSelectedFilters(new Set());
@@ -814,6 +829,33 @@ export function SearchFilters({
         </div>
 
         <FilterSection title={tGym("equipmentBrands")}>
+          <label className="mb-3 block min-w-0 space-y-1.5">
+            <span className="text-sm font-medium text-gray-700">{t("machine")}</span>
+            <input
+              type="search"
+              value={machine}
+              onChange={(event) => setMachine(event.target.value)}
+              placeholder={t("machinePlaceholder")}
+              className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
+            />
+          </label>
+          <label className="mb-3 block min-w-0 space-y-1.5">
+            <span className="text-sm font-medium text-gray-700">
+              {t("equipmentCategory")}
+            </span>
+            <select
+              value={category}
+              onChange={(event) => setCategory(event.target.value)}
+              className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+            >
+              <option value="">{t("anyEquipmentCategory")}</option>
+              {equipmentCategories.map((option) => (
+                <option key={option.slug} value={option.slug}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
+          </label>
           <p className="mb-2 text-xs text-gray-500">{t("brandOrHint")}</p>
           <div className="grid gap-2">
             {EQUIPMENT_BRANDS.map((brand) => {

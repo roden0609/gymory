@@ -13,7 +13,7 @@ export async function getGymEquipmentInventory(
 ): Promise<GymEquipmentInventoryItem[]> {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from("gym_equipment_inventory")
+    .from("gym_equipment_type_inventory")
     .select(
       "id, gym_id, equipment_code, is_present, quantity, created_at, updated_at, equipment_types(code, name_en, name_zh, category, parent_code, supports_quantity, aliases, is_active, display_order, created_at, updated_at)"
     )

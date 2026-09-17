@@ -1,6 +1,7 @@
 import type { GymSummary } from "@gymory/shared";
 import { getGymChainsBySlug, searchParamsSchema } from "@gymory/shared";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
+import { getCatalogSearchGymIds } from "./equipment-catalog-search";
 import { createClient } from "../supabase-server";
 
 export type RawSearchParams = Record<string, string | string[] | undefined>;
@@ -178,6 +179,8 @@ export async function searchGyms(
   const parsed = searchParamsSchema.safeParse({
     collection: rawParams.collection,
     district: rawParams.district,
+    machine: rawParams.machine,
+    category: rawParams.category,
     userLat: rawParams.userLat,
     userLng: rawParams.userLng,
     brandSlugs: rawParams.brandSlugs,
@@ -320,53 +323,14 @@ export async function searchGyms(
     .select(GYM_SEARCH_COLUMNS, { count: "exact" })
     .eq("is_active", true);
 
-  if (params.brandSlugs && params.brandSlugs.length > 0) {
-    const { data: brands, error: brandsError } = await supabase
-      .from("equipment_brands")
-      .select("id")
-      .in("slug", params.brandSlugs);
-
-    if (brandsError || !brands || brands.length === 0) {
-      return {
-        gyms: [],
-        totalCount: 0,
-        page,
-        pageSize,
-        totalPages: 0,
-        hasNextPage: false,
-      };
-    }
-
-    const brandIds = brands.map((brand) => brand.id);
-    const { data: inventoryRows, error: inventoryError } = await supabase
-      .from("gym_brand_inventory")
-      .select("gym_id")
-      .in("brand_id", brandIds);
-
-    if (inventoryError || !inventoryRows || inventoryRows.length === 0) {
-      return {
-        gyms: [],
-        totalCount: 0,
-        page,
-        pageSize,
-        totalPages: 0,
-        hasNextPage: false,
-      };
-    }
-
-    const matchedGymIds = [...new Set(inventoryRows.map((row) => row.gym_id))];
-    if (matchedGymIds.length === 0) {
-      return {
-        gyms: [],
-        totalCount: 0,
-        page,
-        pageSize,
-        totalPages: 0,
-        hasNextPage: false,
-      };
-    }
-
-    query = query.in("id", matchedGymIds);
+  const catalogGymIds = await getCatalogSearchGymIds({
+    machine: params.machine,
+    category: params.category,
+    brandSlugs: params.brandSlugs,
+  });
+  if (catalogGymIds !== null) {
+    if (catalogGymIds.size === 0) return emptySearchResult(page, pageSize);
+    query = query.in("id", [...catalogGymIds]);
   }
 
   if (params.gymChains && params.gymChains.length > 0) {
@@ -719,6 +683,10 @@ export async function searchGyms(
     totalPages,
     hasNextPage: page < totalPages,
   };
+}
+
+function emptySearchResult(page: number, pageSize: number): PaginatedGymSearchResult {
+  return { gyms: [], totalCount: 0, page, pageSize, totalPages: 0, hasNextPage: false };
 }
 
 function accuracyScore(gym: GymSummary): number {

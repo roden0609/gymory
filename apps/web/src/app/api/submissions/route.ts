@@ -184,7 +184,7 @@ async function fetchGymInventory(
   gymId: string
 ) {
   const { data, error } = await supabase
-    .from("gym_equipment_inventory")
+    .from("gym_equipment_type_inventory")
     .select("equipment_code,is_present,quantity")
     .eq("gym_id", gymId);
 

@@ -351,7 +351,7 @@ describe("Supabase upsert orchestration", () => {
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(String(fetchMock.mock.calls[1][0])).toContain(
-      "/rest/v1/gym_equipment_inventory"
+      "/rest/v1/gym_equipment_type_inventory"
     );
   });
 

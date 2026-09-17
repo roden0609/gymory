@@ -41,7 +41,7 @@ export async function GET(
 
   const supabase = createAdminClient();
   const { data, error } = await supabase
-    .from("gym_equipment_inventory")
+    .from("gym_equipment_type_inventory")
     .select(
       "id, gym_id, equipment_code, is_present, quantity, created_at, updated_at, equipment_types(code, name_en, name_zh, category, parent_code, supports_quantity, aliases, is_active, display_order)"
     )
@@ -78,7 +78,7 @@ export async function PUT(
   const supabase = createAdminClient();
   const appUser = await ensureAppUser(user, supabase);
   const { data: existingItems, error: existingError } = await supabase
-    .from("gym_equipment_inventory")
+    .from("gym_equipment_type_inventory")
     .select("equipment_code,is_present,quantity")
     .eq("gym_id", params.id)
     .in(
@@ -95,7 +95,7 @@ export async function PUT(
     existingItems ?? []
   );
   const { data: auditId, error } = await supabase.rpc(
-    "apply_gym_equipment_inventory_patch",
+    "apply_gym_equipment_type_inventory_patch",
     {
       p_target_gym_id: params.id,
       p_inventory_items: parsed.data.equipment,

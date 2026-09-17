@@ -1,7 +1,7 @@
 # Database Schema
 
 This document reflects the current schema implied by `supabase/migrations` through
-`0043_normalize_gym_equipment_inventory.sql`.
+`0043_normalize_gym_equipment_type_inventory.sql`.
 
 ## Conventions
 
@@ -95,7 +95,7 @@ HK-KTQ, HK-TW, HK-TM, HK-YL, HK-N, HK-TP, HK-ST, HK-SK, HK-IS
 ### `gyms_normalized` Equipment Compatibility Properties
 
 The equipment properties in the following sections are columns of the
-`gyms_normalized` view, derived from `gym_equipment_inventory`. They are not
+`gyms_normalized` view, derived from `gym_equipment_type_inventory`. They are not
 physical `gyms` columns after migration `0046`. Weight-range metadata and the
 amenity fields called out below remain physical `gyms` columns.
 
@@ -306,7 +306,7 @@ rack or wall ball, not brand-specific product models.
 Hierarchy cycles are rejected. Referenced types are deactivated rather than
 deleted.
 
-## `public.gym_equipment_inventory`
+## `public.gym_equipment_type_inventory`
 
 One normalized presence/quantity record per gym and equipment type.
 
@@ -325,8 +325,12 @@ values cannot be null, a positive quantity cannot be absent, and zero quantity
 cannot be present.
 
 Public reads are allowed only for active gyms. Direct public writes are denied.
-The service-role function `apply_gym_equipment_inventory_patch` writes normalized
+The service-role function `apply_gym_equipment_type_inventory_patch` writes normalized
 inventory and its approved audit record atomically.
+
+Because `gyms_normalized` is a security-invoker view, public roles also receive
+`SELECT` on its underlying `gyms` table. The existing `gyms` RLS policy still
+limits those reads to active gyms.
 
 ## Equipment compatibility and cleanup
 
@@ -372,7 +376,9 @@ upload_photo, delete_gym
 ```
 
 RLS allows public clients to insert pending submissions only when review fields
-are empty.
+are empty. Public clients have no direct select, update, or delete access. The
+backend service role can select, insert, and update submissions for authenticated
+submission and moderation workflows.
 
 ## `public.users`
 
@@ -395,6 +401,11 @@ Application user profile table keyed to Firebase identity.
 RLS is enabled. The migrations do not define public read/write policies for this
 table.
 
+Backend application routes use the service role to resolve and update Firebase
+user records. Clean database environments grant the service role the minimum
+table privileges required by gym administration, normalized equipment writes,
+submission moderation, accuracy voting, and contributor-stat refreshes.
+
 ## Equipment Brand Tables
 
 ### `public.equipment_brands`
@@ -410,6 +421,10 @@ Dictionary of equipment brands.
 | `country` | `text` | Optional |
 | `is_active` | `boolean` | Required, default `true` |
 | `aliases` | `text[]` | Required, default `{}` |
+| `website_url` | `text` | Optional official brand website |
+| `source_url` | `text` | Optional catalog source URL |
+| `source_synced_at` | `timestamptz` | Optional source refresh timestamp |
+| `notes` | `text` | Optional internal notes |
 | `created_at` | `timestamptz` | Required, default `now()` |
 | `updated_at` | `timestamptz` | Required, default `now()` |
 
@@ -438,6 +453,62 @@ Many-to-many join between gyms and equipment brands.
 Constraint: unique `(gym_id, brand_id)`.
 
 Public clients can read inventory rows for active gyms.
+
+## Equipment Machine Catalog Tables
+
+The machine catalog runs alongside the generic equipment taxonomy. Generic
+presence and counts remain in `equipment_types` and `gym_equipment_type_inventory`;
+the following tables add specific brand/model detail. No model inventory row
+replaces or rewrites a generic inventory row automatically.
+
+### `public.equipment_categories`
+
+Nested catalog categories such as Strength, Plate Loaded, Selectorized, and
+Cardio. Categories have a unique slug, optional parent, display order, and
+active status. Self-parenting and hierarchy cycles are rejected.
+
+### `public.equipment`
+
+Canonical brand/model records. Each machine belongs to one brand and category
+and may map to an existing `equipment_types.code` for generic discovery.
+Machines store official/manual source metadata, lifecycle status, product
+identity, import timestamps, and descriptive fields.
+
+Important constraints and indexes:
+
+- Unique `(brand_id, slug)`.
+- Unique `(brand_id, source_external_id)` when an external ID is present.
+- Indexed category and generic equipment type mappings.
+- Public reads require an active machine, brand, and category.
+
+### `public.equipment_aliases`
+
+Localized search aliases for catalog machines. Alias uniqueness is
+case-insensitive per machine and locale.
+
+### `public.equipment_images`
+
+Ordered machine catalog images with source metadata and optional dimensions.
+`(equipment_id, url)` is unique, dimensions must be positive when present, and a
+machine can have at most one primary image.
+
+### `public.equipment_specs`
+
+Flexible structured specifications keyed per machine. A specification must
+contain a text or numeric value, so brand-specific attributes do not require
+columns on `equipment`.
+
+### `public.gym_equipment_inventory`
+
+Specific brand/model inventory assigned to a gym. `(gym_id, equipment_id)` is
+unique. Quantity is optional but positive when known. Verification status is
+one of `unverified`, `community_verified`, `owner_verified`, or
+`admin_verified`; source is one of `admin`, `owner`, `user`, or `import`.
+
+Public clients can read only `admin_verified` and `owner_verified` rows for
+active gyms and publicly visible machines. Direct client writes to all machine
+catalog and model inventory tables are denied; trusted admin/service workflows
+manage them.
 
 ## Accuracy Voting Tables
 
@@ -540,11 +611,18 @@ The migrations add indexes for common lookups:
 
 - `gyms`: district, active status, lat/lng, slug, weight metadata, and HYROX
   fields.
-- `gym_equipment_inventory`: gym lookup, equipment/gym lookup, and positive
+- `gym_equipment_type_inventory`: gym lookup, equipment/gym lookup, and positive
   presence lookup.
 - `gym_update_submissions`: status, gym, submitter, reviewer.
 - `equipment_brands`: unique slug.
 - `gym_brand_inventory`: gym and brand lookup, unique `(gym_id, brand_id)`.
+- `equipment_categories`: unique slug and parent hierarchy.
+- `equipment`: unique brand/slug and stable source identity; category,
+  generic type, and name-search indexes.
+- `equipment_aliases`: case-insensitive alias uniqueness and text search.
+- `equipment_images`: unique URL per machine and one primary image.
+- `equipment_specs`: unique specification key per machine.
+- `gym_equipment_inventory`: unique gym/machine assignment and verified inventory lookup.
 - `gym_accuracy_votes`: `(gym_id, vote)`.
 - `gym_accuracy_vote_events`: user/time and IP/time.
 - `users`: unique handle when present, last-seen ordering.

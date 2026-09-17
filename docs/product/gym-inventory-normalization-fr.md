@@ -13,7 +13,7 @@ for the normalized inventory runtime.
 
 Implementation entry points:
 
-- `supabase/migrations/0043_normalize_gym_equipment_inventory.sql`
+- `supabase/migrations/0043_normalize_gym_equipment_type_inventory.sql`
 - `supabase/migrations/0044_cut_over_normalized_equipment_writes.sql`
 - `apps/web/src/lib/db/queries/gym-equipment-inventory.ts`
 - `apps/web/src/app/api/gyms/[id]/equipment/route.ts`
@@ -234,7 +234,7 @@ the two concepts must not be merged in this project.
 ### FR-2.1 Inventory table
 
 The system must provide a table named
-`public.gym_equipment_inventory`.
+`public.gym_equipment_type_inventory`.
 
 Required schema:
 
@@ -314,8 +314,8 @@ legacy migration do not lose information.
 At minimum, create:
 
 ```sql
-create index on public.gym_equipment_inventory (gym_id);
-create index on public.gym_equipment_inventory (equipment_code, gym_id);
+create index on public.gym_equipment_type_inventory (gym_id);
+create index on public.gym_equipment_type_inventory (equipment_code, gym_id);
 ```
 
 Additional partial or covering indexes may be added after measuring real search
@@ -727,7 +727,7 @@ Only trusted admin/service-role workflows may create or update equipment types.
 
 - Create `equipment_types`.
 - Seed the reviewed canonical equipment types.
-- Create `gym_equipment_inventory`, constraints, indexes, triggers, and RLS.
+- Create `gym_equipment_type_inventory`, constraints, indexes, triggers, and RLS.
 - Do not drop or alter legacy equipment columns.
 
 ### Phase 2: Backfill
@@ -846,7 +846,7 @@ The normalization is complete when all of the following are true:
 
 - `equipment_types` contains one reviewed canonical record for every migrated
   equipment concept.
-- `gym_equipment_inventory` enforces unique gym/equipment pairs and valid
+- `gym_equipment_type_inventory` enforces unique gym/equipment pairs and valid
   presence/quantity combinations.
 - Missing inventory rows are treated as unknown everywhere.
 - Amenities remain outside the equipment catalog and inventory.

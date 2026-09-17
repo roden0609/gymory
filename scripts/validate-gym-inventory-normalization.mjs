@@ -27,7 +27,7 @@ const [gyms, normalizedGyms, inventoryItems, equipmentTypes] = await Promise.all
     select: "id,slug,is_active",
     order: "id",
   }),
-  fetchAll("gym_equipment_inventory", {
+  fetchAll("gym_equipment_type_inventory", {
     select: "gym_id,equipment_code,is_present,quantity",
     order: "gym_id,equipment_code",
   }),

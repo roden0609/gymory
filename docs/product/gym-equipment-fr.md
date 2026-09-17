@@ -69,9 +69,9 @@ These layers must remain separate. A brand's official product catalog does not p
 The brand/model catalog and the existing generic equipment inventory should run
 in parallel:
 
-- `equipment_types` and `gym_equipment_inventory` remain the canonical source
+- `equipment_types` and `gym_equipment_type_inventory` remain the canonical source
   for generic concepts and counts, such as whether a gym has a hack squat.
-- `equipment_machines` and `gym_equipment` represent specific brand/model
+- `equipment` and `gym_equipment_inventory` represent specific brand/model
   inventory, such as a particular Hammer Strength hack squat model.
 - Each machine should map to an `equipment_types.code` where a suitable generic
   type exists. This lets model-level inventory participate in generic search
@@ -278,7 +278,7 @@ Examples:
 
 Specifications should support text and numeric values, optional units, display
 labels, ordering, source metadata, and refresh timestamps. Brand-specific
-specifications should not require adding a new column to `equipment_machines`.
+specifications should not require adding a new column to `equipment`.
 
 ---
 
@@ -640,7 +640,7 @@ enabled.
 | `created_at` | timestamptz | |
 | `updated_at` | timestamptz | |
 
-### `equipment_machines` table
+### `equipment` table
 | Column | Type | Notes |
 |---|---|---|
 | `id` | uuid | primary key |
@@ -671,11 +671,11 @@ Recommended unique constraint:
 An additional unique index on `(brand_id, source_external_id)` should be used
 where `source_external_id` is non-null and stable.
 
-### `equipment_machine_images` table
+### `equipment_images` table
 | Column | Type | Notes |
 |---|---|---|
 | `id` | uuid | primary key |
-| `machine_id` | uuid | foreign key to `equipment_machines.id`, cascade delete |
+| `equipment_id` | uuid | foreign key to `equipment.id`, cascade delete |
 | `url` | text | required |
 | `source_url` | text | nullable |
 | `alt_text` | text | nullable |
@@ -691,16 +691,16 @@ where `source_external_id` is non-null and stable.
 
 Recommended constraints:
 
-- Unique `(machine_id, url)`.
-- Partial unique index on `machine_id` where `is_primary = true`, ensuring at
+- Unique `(equipment_id, url)`.
+- Partial unique index on `equipment_id` where `is_primary = true`, ensuring at
   most one primary image per machine.
 - Positive width and height when present.
 
-### `equipment_machine_specs` table
+### `equipment_specs` table
 | Column | Type | Notes |
 |---|---|---|
 | `id` | uuid | primary key |
-| `machine_id` | uuid | foreign key to `equipment_machines.id`, cascade delete |
+| `equipment_id` | uuid | foreign key to `equipment.id`, cascade delete |
 | `spec_key` | text | stable normalized key |
 | `label` | text | display label from source or curated label |
 | `value_text` | text | nullable |
@@ -714,24 +714,24 @@ Recommended constraints:
 
 Recommended constraint:
 
-- Unique `(machine_id, spec_key)`.
+- Unique `(equipment_id, spec_key)`.
 - At least one of `value_text` or `value_number` must be non-null.
 
-### `equipment_machine_aliases` table
+### `equipment_aliases` table
 | Column | Type | Notes |
 |---|---|---|
 | `id` | uuid | primary key |
-| `machine_id` | uuid | foreign key to `equipment_machines.id` |
+| `equipment_id` | uuid | foreign key to `equipment.id` |
 | `alias` | text | required |
 | `locale` | text | nullable, e.g. `en`, `zh-HK` |
 | `created_at` | timestamptz | |
 
-### `gym_equipment` table
+### `gym_equipment_inventory` table
 | Column | Type | Notes |
 |---|---|---|
 | `id` | uuid | primary key |
 | `gym_id` | uuid | foreign key to `gyms.id` |
-| `machine_id` | uuid | foreign key to `equipment_machines.id` |
+| `equipment_id` | uuid | foreign key to `equipment.id` |
 | `quantity` | integer | nullable |
 | `condition` | text | `good`, `fair`, `poor`, `unknown`; nullable |
 | `notes` | text | nullable |
@@ -746,7 +746,7 @@ Recommended constraint:
 
 Recommended unique constraint:
 
-- `(gym_id, machine_id)`
+- `(gym_id, equipment_id)`
 
 ### `gym_equipment_submissions` table
 | Column | Type | Notes |
@@ -755,12 +755,12 @@ Recommended unique constraint:
 | `gym_id` | uuid | foreign key to `gyms.id` |
 | `submitted_by_user_id` | uuid | nullable if anonymous submissions are ever allowed |
 | `brand_text` | text | nullable |
-| `machine_text` | text | required if no `matched_machine_id` |
+| `machine_text` | text | required if no `matched_equipment_id` |
 | `category_text` | text | nullable |
 | `quantity` | integer | nullable |
 | `notes` | text | nullable |
 | `photo_url` | text | nullable, future |
-| `matched_machine_id` | uuid | nullable foreign key to `equipment_machines.id` |
+| `matched_equipment_id` | uuid | nullable foreign key to `equipment.id` |
 | `status` | text | `pending`, `accepted`, `rejected`, `merged` |
 | `admin_notes` | text | nullable |
 | `created_at` | timestamptz | |
@@ -785,14 +785,14 @@ Recommended unique constraint:
 #### `equipment_machine_muscles`
 | Column | Type | Notes |
 |---|---|---|
-| `machine_id` | uuid | foreign key to `equipment_machines.id` |
+| `equipment_id` | uuid | foreign key to `equipment.id` |
 | `muscle_group_id` | uuid | foreign key to `muscle_groups.id` |
 | `role` | text | `primary`, `secondary` |
 
 #### `equipment_machine_movements`
 | Column | Type | Notes |
 |---|---|---|
-| `machine_id` | uuid | foreign key to `equipment_machines.id` |
+| `equipment_id` | uuid | foreign key to `equipment.id` |
 | `movement_pattern_id` | uuid | foreign key to `movement_patterns.id` |
 
 ---
@@ -803,8 +803,8 @@ Recommended unique constraint:
 ```sql
 select g.*
 from gyms g
-join gym_equipment ge on ge.gym_id = g.id
-join equipment_machines em on em.id = ge.machine_id
+join gym_equipment_inventory ge on ge.gym_id = g.id
+join equipment em on em.id = ge.equipment_id
 where g.is_active = true
   and ge.verified_status in ('admin_verified', 'owner_verified')
   and em.slug = 'hack-squat';
@@ -814,8 +814,8 @@ where g.is_active = true
 ```sql
 select distinct g.*
 from gyms g
-join gym_equipment ge on ge.gym_id = g.id
-join equipment_machines em on em.id = ge.machine_id
+join gym_equipment_inventory ge on ge.gym_id = g.id
+join equipment em on em.id = ge.equipment_id
 join equipment_brands eb on eb.id = em.brand_id
 where g.is_active = true
   and ge.verified_status in ('admin_verified', 'owner_verified')
@@ -826,9 +826,9 @@ where g.is_active = true
 ```sql
 select distinct g.*
 from gyms g
-join gym_equipment ge on ge.gym_id = g.id
-join equipment_machines em on em.id = ge.machine_id
-left join equipment_machine_aliases ema on ema.machine_id = em.id
+join gym_equipment_inventory ge on ge.gym_id = g.id
+join equipment em on em.id = ge.equipment_id
+left join equipment_aliases ema on ema.equipment_id = em.id
 where g.is_active = true
   and ge.verified_status in ('admin_verified', 'owner_verified')
   and (
@@ -845,12 +845,12 @@ where g.is_active = true
 - Extend the existing `equipment_brands` table with catalog source metadata
   where required; preserve its current rows and references.
 - Add `equipment_categories`.
-- Add `equipment_machines`.
-- Add `equipment_machine_images` with multi-image and primary-image support.
-- Add `equipment_machine_specs` for flexible official product specifications.
-- Add `equipment_machine_aliases`.
-- Add `gym_equipment`.
-- Keep `equipment_types` and `gym_equipment_inventory` as the generic inventory
+- Add `equipment`.
+- Add `equipment_images` with multi-image and primary-image support.
+- Add `equipment_specs` for flexible official product specifications.
+- Add `equipment_aliases`.
+- Add `gym_equipment_inventory`.
+- Keep `equipment_types` and `gym_equipment_type_inventory` as the generic inventory
   layer and map machines to generic types where applicable.
 - Seed a small brand/category/machine catalog manually.
 - Add admin inventory editing.
@@ -913,14 +913,14 @@ Do not send user notes, free-text private data, email, phone number, or personal
 
 - Should unverified community inventory ever be shown publicly with a warning?
 - Should gym-specific or user-submitted photos use a separate inventory evidence
-  model in addition to catalog-level `equipment_machine_images`?
+  model in addition to catalog-level `equipment_images`?
 - Should gym owners be allowed to bulk upload machine lists?
 - Should equipment search live inside `/search`, a dedicated `/equipment` page, or both?
 
 ## Resolved Decisions
 
 - The existing generic inventory and the new brand/model inventory will run in
-  parallel. `equipment_types` plus `gym_equipment_inventory` remain responsible
-  for generic equipment discovery and counts; `equipment_machines` plus
-  `gym_equipment` add specific brand/model detail. The Phase 1 rollout will not
+  parallel. `equipment_types` plus `gym_equipment_type_inventory` remain responsible
+  for generic equipment discovery and counts; `equipment` plus
+  `gym_equipment_inventory` add specific brand/model detail. The Phase 1 rollout will not
   migrate or delete existing generic inventory records.
