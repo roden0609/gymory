@@ -15,13 +15,9 @@ export async function TrainingTagLinks({
   currentDistrictSlug?: string;
 }) {
   const trainingPages = await getTranslations("trainingPages");
-  const search = await getTranslations("search");
 
   return (
     <section className="mb-5">
-      <h2 className="mb-2 text-sm font-semibold text-gray-900">
-        {search("browseByCategory")}
-      </h2>
       <div className="flex flex-wrap gap-2">
         {TRAINING_TAG_SLUGS.map((slug) => (
           <Link

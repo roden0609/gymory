@@ -252,7 +252,7 @@
     "smallestPlate": "Smallest plate ≤ (kg)",
     "minSize": "Min size ≥ (sqft)",
     "equipment": "Equipment",
-    "equipmentSearch": "Search by gym equipment",
+    "equipmentSearch": "Equipment",
     "machine": "Machine name or alias",
     "machinePlaceholder": "e.g. hack squat",
     "equipmentCategory": "Machine category",
@@ -513,7 +513,7 @@
     "equipmentIntro": "Jump into common equipment searches for {district} gyms.",
     "gymListTitle": "Gyms in {district}",
     "gymListSubtitle": "Verified and recently updated gyms are surfaced first.",
-    "browseTitle": "Browse by district"
+    "browseTitle": "District"
   },
   "contributors": {
     "title": "Gymory Contributors",

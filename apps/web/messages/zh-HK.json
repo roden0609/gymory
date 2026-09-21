@@ -252,7 +252,7 @@
     "smallestPlate": "最細槓片 ≤ (kg)",
     "minSize": "面積最少 ≥ (sqft)",
     "equipment": "器械",
-    "equipmentSearch": "按健身器材搜尋",
+    "equipmentSearch": "器材",
     "machine": "器械名稱或別名",
     "machinePlaceholder": "例如：hack squat",
     "equipmentCategory": "器械分類",
@@ -513,7 +513,7 @@
     "equipmentIntro": "快速查看{district}常用器械搜尋。",
     "gymListTitle": "{district}健身房",
     "gymListSubtitle": "已驗證同最近更新嘅健身房會優先顯示。",
-    "browseTitle": "按地區瀏覽"
+    "browseTitle": "地區"
   },
   "contributors": {
     "title": "Gymory 貢獻者",

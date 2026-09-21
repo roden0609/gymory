@@ -13,6 +13,7 @@ import {
 } from "@/lib/analytics";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import type { EquipmentCategoryFilterOption } from "@/lib/db/queries/equipment-catalog-search";
+import { EquipmentSearch } from "./EquipmentSearch";
 import { EQUIPMENT_BRANDS, GYM_CHAINS } from "@gymory/shared";
 
 type CheckboxFilter = {
@@ -319,6 +320,7 @@ type SearchFiltersProps = {
   fixedCollection?: string;
   fixedDistrict?: string;
   equipmentCategories?: EquipmentCategoryFilterOption[];
+  showEquipmentSearch?: boolean;
 };
 
 export function SearchFilters({
@@ -326,6 +328,7 @@ export function SearchFilters({
   fixedCollection,
   fixedDistrict,
   equipmentCategories = [],
+  showEquipmentSearch = true,
 }: SearchFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -341,8 +344,6 @@ export function SearchFilters({
   const [district, setDistrict] = useState(
     fixedDistrict ?? searchParams.get("district") ?? ""
   );
-  const [machine, setMachine] = useState(searchParams.get("machine") ?? "");
-  const [category, setCategory] = useState(searchParams.get("category") ?? "");
   const currentView = searchParams.get("view");
   const [minRackCount, setMinRackCount] = useState(
     searchParams.get("minRackCount") ?? ""
@@ -397,15 +398,14 @@ export function SearchFilters({
       Number(Boolean(minPlateWeight)) +
       Number(Boolean(minSize)) +
       Number(Boolean(collection) && !fixedCollection) +
-      Number(Boolean(machine)) +
-      Number(Boolean(category)) +
+      Number(Boolean(searchParams.get("machine"))) +
+      Number(Boolean(searchParams.get("category"))) +
       selectedFilters.size +
       selectedGymChains.length +
       selectedBrandSlugs.length,
     [
       collection,
-      machine,
-      category,
+      searchParams,
       district,
       fixedCollection,
       fixedDistrict,
@@ -507,7 +507,9 @@ export function SearchFilters({
     if (selectedBrandSlugs.length > 0) {
       params.set("brandSlugs", selectedBrandSlugs.join(","));
     }
-    if (machine.trim()) params.set("machine", machine.trim());
+    const machine = searchParams.get("machine");
+    const category = searchParams.get("category");
+    if (machine) params.set("machine", machine);
     if (category) params.set("category", category);
     if (selectedGymChains.length > 0) {
       params.set("gymChains", selectedGymChains.join(","));
@@ -520,8 +522,6 @@ export function SearchFilters({
     district,
     fixedCollection,
     fixedDistrict,
-    machine,
-    category,
     minBarbellCount,
     minBenchCount,
     minDumbbellWeight,
@@ -643,12 +643,12 @@ export function SearchFilters({
     setMinPlateWeight("");
     setMinSize("");
     setCollection(fixedCollection ?? "");
-    setMachine("");
-    setCategory("");
     setSelectedBrandSlugs([]);
     setSelectedGymChains([]);
     setSelectedFilters(new Set());
+    replaceWithoutScroll(basePath);
   }, [
+    basePath,
     fixedCollection,
     district,
     fixedDistrict,
@@ -662,6 +662,7 @@ export function SearchFilters({
     selectedBrandSlugs,
     selectedFilters,
     selectedGymChains,
+    replaceWithoutScroll,
   ]);
 
   const activeCollection = collection
@@ -670,51 +671,11 @@ export function SearchFilters({
 
   return (
     <aside className="w-full min-w-0 max-w-full shrink-0 md:w-72">
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          applyFiltersNow();
-        }}
-        className="mb-3 min-w-0 max-w-full rounded-lg border border-gray-200 bg-white p-4"
-      >
-        <h2 className="mb-3 text-sm font-semibold text-gray-900">
-          {t("equipmentSearch")}
-        </h2>
-        <label className="mb-3 block min-w-0 space-y-1.5">
-          <span className="text-sm font-medium text-gray-700">{t("machine")}</span>
-          <input
-            type="search"
-            maxLength={200}
-            value={machine}
-            onChange={(event) => setMachine(event.target.value)}
-            placeholder={t("machinePlaceholder")}
-            className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
-          />
-        </label>
-        <label className="mb-3 block min-w-0 space-y-1.5">
-          <span className="text-sm font-medium text-gray-700">
-            {t("equipmentCategory")}
-          </span>
-          <select
-            value={category}
-            onChange={(event) => setCategory(event.target.value)}
-            className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
-          >
-            <option value="">{t("anyEquipmentCategory")}</option>
-            {equipmentCategories.map((option) => (
-              <option key={option.slug} value={option.slug}>
-                {option.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button
-          type="submit"
-          className="min-h-11 w-full min-w-0 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
-        >
-          {tCommon("search")}
-        </button>
-      </form>
+      {showEquipmentSearch ? (
+        <div className="mb-3 rounded-lg border border-gray-200 bg-white p-4">
+          <EquipmentSearch basePath={basePath} equipmentCategories={equipmentCategories} />
+        </div>
+      ) : null}
       <button
         type="button"
         onClick={() => setIsFilterPanelOpen((current) => !current)}

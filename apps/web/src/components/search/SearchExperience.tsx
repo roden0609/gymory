@@ -13,6 +13,7 @@ import type {
 import { getEquipmentCategoryFilterOptions } from "@/lib/db/queries/equipment-catalog-search";
 import { DistrictBrowseControls } from "./DistrictBrowseControls";
 import { SearchFilters } from "./SearchFilters";
+import { EquipmentSearch } from "./EquipmentSearch";
 import { SearchResultsPanel } from "./SearchResultsPanel";
 import { TrainingTagLinks } from "./TrainingTagLinks";
 
@@ -83,14 +84,17 @@ export async function SearchExperience({
           {search("communityContribution")}
         </p>
         <TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />
-        <section className="mb-5 min-w-0 max-w-full">
-          <h2 className="mb-2 text-sm font-semibold text-gray-900">
-            {districtPages("browseTitle")}
-          </h2>
-          <DistrictBrowseControls
-            currentDistrictCode={currentDistrictCode}
-          />
-        </section>
+        <div className="mb-5 grid min-w-0 gap-5 lg:grid-cols-2">
+          <section className="min-w-0 max-w-full">
+            <h2 className="mb-2 text-sm font-semibold text-gray-900">
+              {districtPages("browseTitle")}
+            </h2>
+            <DistrictBrowseControls currentDistrictCode={currentDistrictCode} />
+          </section>
+          <Suspense fallback={null}>
+            <EquipmentSearch basePath={filterBasePath} equipmentCategories={equipmentCategories} />
+          </Suspense>
+        </div>
         {currentDistrictName ? (
           <div className="mb-4 min-w-0 max-w-full">
             <h1 className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
@@ -103,7 +107,7 @@ export async function SearchExperience({
             <SearchFilters
               basePath={filterBasePath}
               fixedDistrict={fixedDistrict}
-              equipmentCategories={equipmentCategories}
+              showEquipmentSearch={false}
             />
           </Suspense>
           <SearchResultsPanel
