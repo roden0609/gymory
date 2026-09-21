@@ -143,18 +143,23 @@ export function DistrictBrowseControls({
             {t("clearLocation")}
           </button>
         ) : null}
-        <select
-          value={district}
-          onChange={(event) => goToDistrict(event.target.value)}
-          className="h-9 w-full min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900 sm:max-w-80"
-        >
-          <option value="">{t("anyDistrict")}</option>
-          {HK_DISTRICTS.map((item) => (
-            <option key={item.code} value={item.code}>
-              {getHkDistrictLabel(item.code, locale)}
-            </option>
-          ))}
-        </select>
+        <div className="relative w-full min-w-0 max-w-full sm:max-w-80">
+          <select
+            value={district}
+            onChange={(event) => goToDistrict(event.target.value)}
+            className="h-9 w-full min-w-0 max-w-full appearance-none rounded-lg border border-gray-300 bg-white py-1.5 pl-3 pr-10 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900"
+          >
+            <option value="">{t("anyDistrict")}</option>
+            {HK_DISTRICTS.map((item) => (
+              <option key={item.code} value={item.code}>
+                {getHkDistrictLabel(item.code, locale)}
+              </option>
+            ))}
+          </select>
+          <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600">
+            <path d="m5 7.5 5 5 5-5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+          </svg>
+        </div>
       </div>
       {locationError ? (
         <p className="mt-2 text-xs text-red-600">{locationError}</p>

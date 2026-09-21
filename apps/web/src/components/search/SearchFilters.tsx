@@ -12,7 +12,7 @@ import {
   trackGymBrandFilter,
 } from "@/lib/analytics";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
-import type { EquipmentCategoryFilterOption } from "@/lib/db/queries/equipment-catalog-search";
+import type { EquipmentCategoryFilterOption, EquipmentMachineSuggestion } from "@/lib/db/queries/equipment-catalog-search";
 import { EquipmentSearch } from "./EquipmentSearch";
 import { EQUIPMENT_BRANDS, GYM_CHAINS } from "@gymory/shared";
 
@@ -320,6 +320,7 @@ type SearchFiltersProps = {
   fixedCollection?: string;
   fixedDistrict?: string;
   equipmentCategories?: EquipmentCategoryFilterOption[];
+  machineSuggestions?: EquipmentMachineSuggestion[];
   showEquipmentSearch?: boolean;
 };
 
@@ -328,6 +329,7 @@ export function SearchFilters({
   fixedCollection,
   fixedDistrict,
   equipmentCategories = [],
+  machineSuggestions = [],
   showEquipmentSearch = true,
 }: SearchFiltersProps) {
   const router = useRouter();
@@ -673,7 +675,7 @@ export function SearchFilters({
     <aside className="w-full min-w-0 max-w-full shrink-0 md:w-72">
       {showEquipmentSearch ? (
         <div className="mb-3 rounded-lg border border-gray-200 bg-white p-4">
-          <EquipmentSearch basePath={basePath} equipmentCategories={equipmentCategories} />
+          <EquipmentSearch basePath={basePath} equipmentCategories={equipmentCategories} machineSuggestions={machineSuggestions} />
         </div>
       ) : null}
       <button

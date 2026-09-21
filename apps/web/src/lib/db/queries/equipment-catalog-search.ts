@@ -10,6 +10,35 @@ export type EquipmentCategoryFilterOption = {
   name: string;
 };
 
+export type EquipmentMachineSuggestion = {
+  label: string;
+  machineName: string;
+};
+
+export async function getEquipmentMachineSuggestions(): Promise<EquipmentMachineSuggestion[]> {
+  const supabase = await createClient();
+  const [equipmentResult, aliasResult] = await Promise.all([
+    supabase.from("equipment").select("id, name").order("name"),
+    supabase.from("equipment_aliases").select("equipment_id, alias").order("alias"),
+  ]);
+  if (equipmentResult.error || !equipmentResult.data) return [];
+
+  const names = new Map(equipmentResult.data.map(({ id, name }) => [id, name]));
+  const suggestions: EquipmentMachineSuggestion[] = equipmentResult.data.map(({ name }) => ({
+    label: name,
+    machineName: name,
+  }));
+  if (!aliasResult.error) {
+    for (const { equipment_id, alias } of aliasResult.data ?? []) {
+      const machineName = names.get(equipment_id);
+      if (machineName && alias.toLocaleLowerCase() !== machineName.toLocaleLowerCase()) {
+        suggestions.push({ label: alias, machineName });
+      }
+    }
+  }
+  return suggestions;
+}
+
 export async function getEquipmentCategoryFilterOptions(): Promise<
   EquipmentCategoryFilterOption[]
 > {

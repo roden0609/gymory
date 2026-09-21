@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getGymsForTrainingPage } from "@/lib/db/queries/training-pages";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
-import { getEquipmentCategoryFilterOptions } from "@/lib/db/queries/equipment-catalog-search";
+import { getEquipmentCategoryFilterOptions, getEquipmentMachineSuggestions } from "@/lib/db/queries/equipment-catalog-search";
 import {
   getDistrictPageDefinitionByCode,
   getDistrictPageLabel,
@@ -85,13 +85,14 @@ export async function TrainingCollectionPage({
     currentDistrict && (locale === "en" || locale === "zh-HK")
       ? getDistrictPageLabel(currentDistrict, locale)
       : null;
-  const [result, equipmentCategories] = await Promise.all([
+  const [result, equipmentCategories, machineSuggestions] = await Promise.all([
     searchGyms({
       ...searchParams,
       collection: definition.slug,
       ...(fixedDistrict ? { district: fixedDistrict } : {}),
     }),
     getEquipmentCategoryFilterOptions(),
+    getEquipmentMachineSuggestions(),
   ]);
   const filterBasePath =
     fixedDistrict && currentDistrict
@@ -194,6 +195,7 @@ export async function TrainingCollectionPage({
               fixedCollection={definition.slug}
               fixedDistrict={fixedDistrict}
               equipmentCategories={equipmentCategories}
+              machineSuggestions={machineSuggestions}
             />
           </Suspense>
           <SearchResultsPanel

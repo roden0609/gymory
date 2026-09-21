@@ -10,7 +10,7 @@ import type {
   PaginatedGymSearchResult,
   RawSearchParams,
 } from "@/lib/db/queries/search-gyms";
-import { getEquipmentCategoryFilterOptions } from "@/lib/db/queries/equipment-catalog-search";
+import { getEquipmentCategoryFilterOptions, getEquipmentMachineSuggestions } from "@/lib/db/queries/equipment-catalog-search";
 import { DistrictBrowseControls } from "./DistrictBrowseControls";
 import { SearchFilters } from "./SearchFilters";
 import { EquipmentSearch } from "./EquipmentSearch";
@@ -32,7 +32,10 @@ export async function SearchExperience({
   filterBasePath = "/search",
   fixedDistrict,
 }: SearchExperienceProps) {
-  const equipmentCategories = await getEquipmentCategoryFilterOptions();
+  const [equipmentCategories, machineSuggestions] = await Promise.all([
+    getEquipmentCategoryFilterOptions(),
+    getEquipmentMachineSuggestions(),
+  ]);
   const common = await getTranslations("common");
   const search = await getTranslations("search");
   const districtPages = await getTranslations("districtPages");
@@ -92,7 +95,7 @@ export async function SearchExperience({
             <DistrictBrowseControls currentDistrictCode={currentDistrictCode} />
           </section>
           <Suspense fallback={null}>
-            <EquipmentSearch basePath={filterBasePath} equipmentCategories={equipmentCategories} />
+            <EquipmentSearch basePath={filterBasePath} equipmentCategories={equipmentCategories} machineSuggestions={machineSuggestions} />
           </Suspense>
         </div>
         {currentDistrictName ? (
