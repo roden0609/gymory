@@ -121,12 +121,12 @@ export function DistrictBrowseControls({
 
   return (
     <div className="w-full min-w-0 max-w-full">
-      <div className="flex w-full min-w-0 max-w-full flex-col gap-2 sm:flex-row sm:flex-wrap">
+      <div className="flex w-full min-w-0 max-w-full flex-col gap-2 sm:flex-row sm:flex-nowrap">
         <button
           type="button"
           onClick={requestUserLocation}
           disabled={isLocating}
-          className={`inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto ${
+          className={`inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:shrink-0 ${
             hasUserLocation
               ? "border-gray-900 bg-gray-900 text-white hover:bg-gray-700"
               : "border-gray-300 bg-white text-gray-700 hover:border-gray-400 hover:bg-gray-50"
@@ -138,12 +138,12 @@ export function DistrictBrowseControls({
           <button
             type="button"
             onClick={clearLocation}
-            className="inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 sm:w-auto"
+            className="inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 sm:w-auto sm:shrink-0"
           >
             {t("clearLocation")}
           </button>
         ) : null}
-        <div className="relative w-full min-w-0 max-w-full sm:max-w-80">
+        <div className="relative w-full min-w-0 max-w-full sm:w-auto sm:flex-1 sm:max-w-80">
           <select
             value={district}
             onChange={(event) => goToDistrict(event.target.value)}
