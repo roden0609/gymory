@@ -7,6 +7,7 @@ export type PublicGymMachine = {
   category: {
     id: string;
     name: string;
+    nameZh: string | null;
     sortOrder: number;
   };
   brand: {

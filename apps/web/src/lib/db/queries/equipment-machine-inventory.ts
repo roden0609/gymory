@@ -14,6 +14,7 @@ type PublicInventoryRow = {
     equipment_categories: Relation<{
       id: string;
       name: string;
+      name_zh: string | null;
       sort_order: number;
     }>;
     equipment_brands: Relation<{
@@ -32,13 +33,25 @@ export async function getPublicGymMachineInventory(
   gymId: string
 ): Promise<PublicGymMachine[]> {
   const supabase = await createClient();
-  const { data, error } = await supabase
+  let { data, error } = await supabase
     .from("gym_equipment_inventory")
     .select(
-      "quantity, verified_status, equipment(id, name, model_number, equipment_categories(id, name, sort_order), equipment_brands(id, name_en, name_zh))"
+      "quantity, verified_status, equipment(id, name, model_number, equipment_categories(id, name, name_zh, sort_order), equipment_brands(id, name_en, name_zh))"
     )
     .eq("gym_id", gymId)
     .in("verified_status", [...PUBLIC_INVENTORY_STATUSES]);
+
+  if (error?.code === "42703") {
+    const fallback = await supabase
+      .from("gym_equipment_inventory")
+      .select(
+        "quantity, verified_status, equipment(id, name, model_number, equipment_categories(id, name, sort_order), equipment_brands(id, name_en, name_zh))"
+      )
+      .eq("gym_id", gymId)
+      .in("verified_status", [...PUBLIC_INVENTORY_STATUSES]);
+    data = fallback.data as typeof data;
+    error = fallback.error;
+  }
 
   if (error || !data) {
     if (error) {
@@ -64,6 +77,7 @@ export async function getPublicGymMachineInventory(
       category: {
         id: category.id,
         name: category.name,
+        nameZh: category.name_zh ?? null,
         sortOrder: category.sort_order,
       },
       brand: {

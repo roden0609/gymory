@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import type { EquipmentCategoryFilterOption, EquipmentMachineSuggestion } from "@/lib/db/queries/equipment-catalog-search";
 
@@ -18,6 +18,7 @@ export function EquipmentSearch({
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations("search");
+  const locale = useLocale();
   const [machine, setMachine] = useState(searchParams.get("machine") ?? "");
   const [category, setCategory] = useState(searchParams.get("category") ?? "");
   const [machineDirty, setMachineDirty] = useState(false);
@@ -83,7 +84,9 @@ export function EquipmentSearch({
           >
             <option value="">{t("anyEquipmentCategory")}</option>
             {equipmentCategories.map((option) => (
-              <option key={option.slug} value={option.slug}>{option.name}</option>
+              <option key={option.slug} value={option.slug}>
+                {locale === "zh-HK" && option.name_zh ? option.name_zh : option.name}
+              </option>
             ))}
           </select>
           <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600">

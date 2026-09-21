@@ -18,7 +18,7 @@ describe("admin equipment CRUD validation", () => {
       website_url: "https://example.com", is_active: true,
     }).name_zh).toBeNull();
     expect(equipmentCategorySchema.parse({
-      id: categoryId, name: "Plate Loaded", parent_id: "", sort_order: "10",
+      id: categoryId, name: "Plate Loaded", name_zh: "槓片式器械", parent_id: "", sort_order: "10",
       is_active: true,
     }).sort_order).toBe(10);
     expect(equipmentMachineSchema.parse({

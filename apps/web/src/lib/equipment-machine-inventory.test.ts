@@ -11,7 +11,7 @@ function machine(
     modelNumber: null,
     quantity: null,
     verifiedStatus: "admin_verified",
-    category: { id: "strength", name: "Strength", sortOrder: 10 },
+    category: { id: "strength", name: "Strength", nameZh: "力量訓練", sortOrder: 10 },
     brand: { id: "brand", nameEn: "Brand", nameZh: null },
     ...overrides,
   };
@@ -21,7 +21,7 @@ describe("groupPublicGymMachines", () => {
   it("groups and sorts machines by category, brand, and name", () => {
     const groups = groupPublicGymMachines([
       machine({ id: "2", name: "Row", brand: { id: "z", nameEn: "Zulu", nameZh: null } }),
-      machine({ id: "3", name: "Bike", category: { id: "cardio", name: "Cardio", sortOrder: 1 } }),
+      machine({ id: "3", name: "Bike", category: { id: "cardio", name: "Cardio", nameZh: "帶氧運動", sortOrder: 1 } }),
       machine({ id: "1", name: "Press", brand: { id: "a", nameEn: "Alpha", nameZh: "阿爾法" } }),
     ]);
 

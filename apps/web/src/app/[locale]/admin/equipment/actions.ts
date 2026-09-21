@@ -99,6 +99,7 @@ export async function saveCategory(formData: FormData) {
     const parsed = equipmentCategorySchema.parse({
       id: textValue(formData, "id") || undefined,
       name: textValue(formData, "name"),
+      name_zh: textValue(formData, "name_zh"),
       parent_id: textValue(formData, "parent_id"),
       sort_order: textValue(formData, "sort_order") || "0",
       is_active: checked(formData, "is_active"),
@@ -109,6 +110,7 @@ export async function saveCategory(formData: FormData) {
     const supabase = createAdminClient();
     const payload = {
       name: parsed.name,
+      name_zh: parsed.name_zh,
       slug: toSlug(parsed.name),
       parent_id: parsed.parent_id || null,
       sort_order: parsed.sort_order,

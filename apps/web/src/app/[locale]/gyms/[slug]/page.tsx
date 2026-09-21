@@ -407,7 +407,7 @@ function VerifiedMachineInventory({
         {groups.map(({ category, brands }) => (
           <div key={category.id} className="min-w-0">
             <h3 className="break-words text-sm font-semibold text-gray-900">
-              {category.name}
+              {locale === "zh-HK" && category.nameZh ? category.nameZh : category.name}
             </h3>
             <div className="mt-2 space-y-3">
               {brands.map(({ brand, machines }) => (

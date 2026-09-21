@@ -9,7 +9,7 @@ type Brand = {
   website_url: string | null; is_active: boolean;
 };
 type Category = {
-  id: string; name: string; slug: string; parent_id: string | null;
+  id: string; name: string; name_zh: string | null; slug: string; parent_id: string | null;
   sort_order: number; is_active: boolean;
 };
 type EquipmentType = { code: string; name_en: string };
@@ -30,7 +30,7 @@ async function getCatalog() {
   const supabase = createAdminClient();
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en"),
-    supabase.from("equipment_categories").select("id, name, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
+    supabase.from("equipment_categories").select("id, name, name_zh, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
     supabase.from("equipment_types").select("code, name_en").eq("is_active", true).order("name_en"),
     supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, series, model_number, product_url, description, status, source_type, equipment_aliases(alias)").order("name"),
   ]);
@@ -130,7 +130,8 @@ export default async function AdminEquipmentPage({ params, searchParams }: {
           <form action={saveCategory} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-5">
             <input type="hidden" name="locale" value={locale} />
             <label className={labelClass}>Name<input required name="name" className={inputClass} /></label>
-            <label className={labelClass}>Parent<select name="parent_id" className={inputClass}><option value="">None</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
+            <label className={labelClass}>Chinese name<input name="name_zh" className={inputClass} /></label>
+            <label className={labelClass}>Parent<select name="parent_id" className={inputClass}><option value="">None</option>{categories.map((category) => <option key={category.id} value={category.id}>{locale === "zh-HK" && category.name_zh ? category.name_zh : category.name}</option>)}</select></label>
             <label className={labelClass}>Sort order<input name="sort_order" type="number" min="0" defaultValue="0" className={inputClass} /></label>
             <ActiveField /><div className="flex items-end"><SubmitButton>Add category</SubmitButton></div>
           </form>
@@ -139,7 +140,8 @@ export default async function AdminEquipmentPage({ params, searchParams }: {
               <form key={category.id} action={saveCategory} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2">
                 <input type="hidden" name="locale" value={locale} /><input type="hidden" name="id" value={category.id} />
                 <label className={labelClass}>Name<input required name="name" defaultValue={category.name} className={inputClass} /></label>
-                <label className={labelClass}>Parent<select name="parent_id" defaultValue={category.parent_id ?? ""} className={inputClass}><option value="">None</option>{categories.filter((item) => item.id !== category.id).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+                <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={category.name_zh ?? ""} className={inputClass} /></label>
+                <label className={labelClass}>Parent<select name="parent_id" defaultValue={category.parent_id ?? ""} className={inputClass}><option value="">None</option>{categories.filter((item) => item.id !== category.id).map((item) => <option key={item.id} value={item.id}>{locale === "zh-HK" && item.name_zh ? item.name_zh : item.name}</option>)}</select></label>
                 <label className={labelClass}>Sort order<input name="sort_order" type="number" min="0" defaultValue={category.sort_order} className={inputClass} /></label>
                 <ActiveField active={category.is_active} />
                 <div className="flex justify-end sm:col-span-2"><SubmitButton>Save category</SubmitButton></div>
@@ -205,7 +207,7 @@ function MachineForm({ locale, brands, categories, equipmentTypes, machine }: {
       <input type="hidden" name="locale" value={locale} />{machine ? <input type="hidden" name="id" value={machine.id} /> : null}
       <label className={labelClass}>Machine name<input required name="name" defaultValue={machine?.name ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Brand<select required name="brand_id" defaultValue={machine?.brand_id ?? ""} className={inputClass}><option value="" disabled>Select brand</option>{brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name_en}</option>)}</select></label>
-      <label className={labelClass}>Category<select required name="category_id" defaultValue={machine?.category_id ?? ""} className={inputClass}><option value="" disabled>Select category</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
+      <label className={labelClass}>Category<select required name="category_id" defaultValue={machine?.category_id ?? ""} className={inputClass}><option value="" disabled>Select category</option>{categories.map((category) => <option key={category.id} value={category.id}>{locale === "zh-HK" && category.name_zh ? category.name_zh : category.name}</option>)}</select></label>
       <label className={labelClass}>Generic equipment type<select name="equipment_type_code" defaultValue={machine?.equipment_type_code ?? ""} className={inputClass}><option value="">None</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{type.name_en} ({type.code})</option>)}</select></label>
       <label className={labelClass}>Series<input name="series" defaultValue={machine?.series ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Model number<input name="model_number" defaultValue={machine?.model_number ?? ""} className={inputClass} /></label>

@@ -12,7 +12,7 @@ type CatalogMachine = {
   model_number: string | null;
   status: string;
   equipment_brands: { name_en: string } | null;
-  equipment_categories: { name: string } | null;
+  equipment_categories: { name: string; name_zh: string | null } | null;
 };
 
 type InventoryRow = {
@@ -35,12 +35,12 @@ async function getGymInventory(gymId: string) {
     supabase.from("gyms").select("id, name, name_zh, slug, is_active").eq("id", gymId).maybeSingle(),
     supabase
       .from("equipment")
-      .select("id, name, model_number, status, equipment_brands(name_en), equipment_categories(name)")
+      .select("id, name, model_number, status, equipment_brands(name_en), equipment_categories(name, name_zh)")
       .neq("status", "discontinued")
       .order("name"),
     supabase
       .from("gym_equipment_inventory")
-      .select("equipment_id, quantity, condition, notes, verified_status, verified_at, equipment(id, name, model_number, status, equipment_brands(name_en), equipment_categories(name))")
+      .select("equipment_id, quantity, condition, notes, verified_status, verified_at, equipment(id, name, model_number, status, equipment_brands(name_en), equipment_categories(name, name_zh))")
       .eq("gym_id", gymId)
       .order("updated_at", { ascending: false }),
   ]);
@@ -120,7 +120,7 @@ export default async function AdminGymEquipmentPage({ params, searchParams }: {
             <div key={row.equipment_id} className="min-w-0 rounded-xl border border-gray-200 bg-white p-4">
               <div className="mb-4 min-w-0">
                 <p className="break-words font-semibold text-gray-900">{machineLabel(row.equipment)}</p>
-                <p className="mt-1 text-xs text-gray-500">{row.equipment?.equipment_categories?.name ?? "Uncategorized"} · {row.verified_status}</p>
+                <p className="mt-1 text-xs text-gray-500">{(isChinese && row.equipment?.equipment_categories?.name_zh) || row.equipment?.equipment_categories?.name || "Uncategorized"} · {row.verified_status}</p>
               </div>
               <InventoryForm locale={locale} gymId={id} machines={row.equipment ? [row.equipment] : []} row={row} />
               <AdminRemoveGymMachineForm

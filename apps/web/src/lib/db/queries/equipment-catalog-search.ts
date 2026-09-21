@@ -8,6 +8,7 @@ import { createClient } from "../supabase-server";
 export type EquipmentCategoryFilterOption = {
   slug: string;
   name: string;
+  name_zh: string | null;
 };
 
 export type EquipmentMachineSuggestion = {
@@ -45,10 +46,19 @@ export async function getEquipmentCategoryFilterOptions(): Promise<
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("equipment_categories")
-    .select("slug, name")
+    .select("slug, name, name_zh")
     .eq("is_active", true)
     .order("sort_order")
     .order("name");
+  if (error?.code === "42703") {
+    const fallback = await supabase
+      .from("equipment_categories")
+      .select("slug, name")
+      .eq("is_active", true)
+      .order("sort_order")
+      .order("name");
+    return (fallback.data ?? []).map((category) => ({ ...category, name_zh: null }));
+  }
   if (error || !data) return [];
   return data;
 }
