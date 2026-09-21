@@ -252,6 +252,7 @@
     "smallestPlate": "Smallest plate ≤ (kg)",
     "minSize": "Min size ≥ (sqft)",
     "equipment": "Equipment",
+    "equipmentSearch": "Search by gym equipment",
     "machine": "Machine name or alias",
     "machinePlaceholder": "e.g. hack squat",
     "equipmentCategory": "Machine category",

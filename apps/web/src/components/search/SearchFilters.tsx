@@ -670,6 +670,51 @@ export function SearchFilters({
 
   return (
     <aside className="w-full min-w-0 max-w-full shrink-0 md:w-72">
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          applyFiltersNow();
+        }}
+        className="mb-3 min-w-0 max-w-full rounded-lg border border-gray-200 bg-white p-4"
+      >
+        <h2 className="mb-3 text-sm font-semibold text-gray-900">
+          {t("equipmentSearch")}
+        </h2>
+        <label className="mb-3 block min-w-0 space-y-1.5">
+          <span className="text-sm font-medium text-gray-700">{t("machine")}</span>
+          <input
+            type="search"
+            maxLength={200}
+            value={machine}
+            onChange={(event) => setMachine(event.target.value)}
+            placeholder={t("machinePlaceholder")}
+            className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
+          />
+        </label>
+        <label className="mb-3 block min-w-0 space-y-1.5">
+          <span className="text-sm font-medium text-gray-700">
+            {t("equipmentCategory")}
+          </span>
+          <select
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}
+            className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
+          >
+            <option value="">{t("anyEquipmentCategory")}</option>
+            {equipmentCategories.map((option) => (
+              <option key={option.slug} value={option.slug}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button
+          type="submit"
+          className="min-h-11 w-full min-w-0 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+        >
+          {tCommon("search")}
+        </button>
+      </form>
       <button
         type="button"
         onClick={() => setIsFilterPanelOpen((current) => !current)}
@@ -829,33 +874,6 @@ export function SearchFilters({
         </div>
 
         <FilterSection title={tGym("equipmentBrands")}>
-          <label className="mb-3 block min-w-0 space-y-1.5">
-            <span className="text-sm font-medium text-gray-700">{t("machine")}</span>
-            <input
-              type="search"
-              value={machine}
-              onChange={(event) => setMachine(event.target.value)}
-              placeholder={t("machinePlaceholder")}
-              className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
-            />
-          </label>
-          <label className="mb-3 block min-w-0 space-y-1.5">
-            <span className="text-sm font-medium text-gray-700">
-              {t("equipmentCategory")}
-            </span>
-            <select
-              value={category}
-              onChange={(event) => setCategory(event.target.value)}
-              className="w-full min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
-            >
-              <option value="">{t("anyEquipmentCategory")}</option>
-              {equipmentCategories.map((option) => (
-                <option key={option.slug} value={option.slug}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-          </label>
           <p className="mb-2 text-xs text-gray-500">{t("brandOrHint")}</p>
           <div className="grid gap-2">
             {EQUIPMENT_BRANDS.map((brand) => {

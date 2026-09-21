@@ -252,6 +252,7 @@
     "smallestPlate": "最細槓片 ≤ (kg)",
     "minSize": "面積最少 ≥ (sqft)",
     "equipment": "器械",
+    "equipmentSearch": "按健身器材搜尋",
     "machine": "器械名稱或別名",
     "machinePlaceholder": "例如：hack squat",
     "equipmentCategory": "器械分類",
