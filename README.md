@@ -198,6 +198,32 @@ supabase db push --linked
 For each new migration, add an appropriate post-migration validation command or
 query and run it in both environments.
 
+### Apply equipment catalog migrations `0047`–`0053`
+
+If `supabase migration list --linked` shows `0047`–`0053` in the Local column
+but blank in Remote, apply them to DEV first:
+
+```bash
+supabase link --project-ref yzvipswjmgcolaepqwoz
+supabase migration list --linked
+supabase db push --linked --include-all --dry-run
+supabase db push --linked --include-all
+supabase migration list --linked
+```
+
+Check that the dry run lists only the expected pending migrations before the
+real push. Confirm `0047`–`0053` appear in the Remote column afterward. Test
+the DEV app, then promote the same migrations to PROD after confirming a
+recoverable backup:
+
+```bash
+supabase link --project-ref qgldameylaysgfsvytjh
+supabase migration list --linked
+supabase db push --linked --include-all --dry-run
+supabase db push --linked --include-all
+supabase migration list --linked
+```
+
 ### Remove the legacy gym equipment schema
 
 Migration `0046_remove_legacy_gym_equipment_schema.sql` completes the normalized
