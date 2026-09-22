@@ -102,6 +102,28 @@ with the Supabase CLI; do not make new schema changes directly in the SQL Editor
 | DEV | `gymory-dev` | `yzvipswjmgcolaepqwoz` | `apps/web/.env.dev` |
 | PROD | `gymory-prod` | `qgldameylaysgfsvytjh` | `apps/web/.env.prod` |
 
+### Run Supabase locally
+
+Start Docker Desktop, then run these commands from the repository root:
+
+```bash
+supabase start
+supabase status
+supabase migration list --local
+supabase migration up --local
+supabase migration list --local
+```
+
+`migration up --local` applies only pending migrations to the local database.
+In the second migration list, confirm the latest migration appears in both
+columns. For the web app, set `NEXT_PUBLIC_SUPABASE_URL` in
+`apps/web/.env.local` to `http://127.0.0.1:54321`, and copy the local
+`PUBLISHABLE_KEY` and `SECRET_KEY` from `supabase status` into
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY` and `SUPABASE_SECRET_KEY`.
+Keep the other required app settings in `.env.local`, then run `pnpm dev:web`.
+The status output contains credentials; do not share it publicly. When done,
+run `supabase stop` to stop the local services.
+
 ### One-time migration history bootstrap
 
 Migrations `0001`–`0042` were originally executed manually in the SQL Editor, so
