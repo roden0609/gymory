@@ -32,3 +32,6 @@ export type { GymChainOption } from "./constants/gym-chains";
 export { SIZE_CATEGORIES, SIZE_LABELS } from "./constants/size-categories";
 export { EQUIPMENT_BRANDS } from "./constants/equipment-brands";
 export type { EquipmentBrandOption } from "./constants/equipment-brands";
+
+export { EQUIPMENT_CATEGORIES, EQUIPMENT_LABELS, getEquipmentLabel } from "./constants/equipment-categories";
+export type { EquipmentLabel } from "./constants/equipment-categories";

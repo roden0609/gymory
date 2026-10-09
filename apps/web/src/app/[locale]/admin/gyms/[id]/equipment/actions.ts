@@ -72,7 +72,7 @@ export async function saveGymMachine(formData: FormData) {
   }
 
   revalidatePath(`/${locale}/admin/gyms/${gymId}/equipment`);
-  revalidatePath(`/${locale}/gyms`);
+  revalidatePath("/[locale]/gyms/[slug]", "page");
   redirect(inventoryUrl(locale, gymId, "result=success&action=save"));
 }
 
@@ -98,6 +98,6 @@ export async function removeGymMachine(formData: FormData) {
   }
 
   revalidatePath(`/${locale}/admin/gyms/${gymId}/equipment`);
-  revalidatePath(`/${locale}/gyms`);
+  revalidatePath("/[locale]/gyms/[slug]", "page");
   redirect(inventoryUrl(locale, gymId, "result=success&action=remove"));
 }

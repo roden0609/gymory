@@ -6,6 +6,7 @@ export type EquipmentType = {
   parent_code: string | null;
   supports_quantity: boolean;
   aliases: string[];
+  labels: string[];
   is_active: boolean;
   display_order: number | null;
   created_at: string;
@@ -20,6 +21,7 @@ export type GymEquipmentInventoryItem = {
   quantity: number | null;
   created_at: string;
   updated_at: string;
+  is_directly_reported: boolean;
   equipment_type?: EquipmentType;
 };
 

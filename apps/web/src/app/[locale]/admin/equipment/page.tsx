@@ -2,7 +2,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
-import { saveBrand, saveCategory, saveMachine } from "./actions";
+import { EQUIPMENT_LABELS, getEquipmentLabel } from "@gymory/shared";
+import { saveBrand, saveMachine } from "./actions";
 
 type Brand = {
   id: string; name_en: string; name_zh: string | null; country: string | null;
@@ -12,10 +13,10 @@ type Category = {
   id: string; name: string; name_zh: string | null; slug: string; parent_id: string | null;
   sort_order: number; is_active: boolean;
 };
-type EquipmentType = { code: string; name_en: string };
+type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[] };
 type Machine = {
   id: string; brand_id: string; category_id: string; equipment_type_code: string | null;
-  name: string; series: string | null; model_number: string | null;
+  labels: string[]; name: string; series: string | null; model_number: string | null;
   product_url: string | null; description: string | null;
   status: "active" | "discontinued" | "unknown";
   source_type: "official" | "manual" | "user_submitted";
@@ -31,8 +32,8 @@ async function getCatalog() {
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en"),
     supabase.from("equipment_categories").select("id, name, name_zh, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
-    supabase.from("equipment_types").select("code, name_en").eq("is_active", true).order("name_en"),
-    supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, series, model_number, product_url, description, status, source_type, equipment_aliases(alias)").order("name"),
+    supabase.from("equipment_types").select("code, name_en, name_zh, category, labels").eq("is_active", true).order("name_en"),
+    supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias)").order("name"),
   ]);
   const error = brandsResult.error ?? categoriesResult.error ?? typesResult.error ?? machinesResult.error;
   if (error) throw new Error(error.message);
@@ -127,34 +128,33 @@ export default async function AdminEquipmentPage({ params, searchParams }: {
 
         <section className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900">Categories</h2>
-          <form action={saveCategory} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-5">
-            <input type="hidden" name="locale" value={locale} />
-            <label className={labelClass}>Name<input required name="name" className={inputClass} /></label>
-            <label className={labelClass}>Chinese name<input name="name_zh" className={inputClass} /></label>
-            <label className={labelClass}>Parent<select name="parent_id" className={inputClass}><option value="">None</option>{categories.map((category) => <option key={category.id} value={category.id}>{locale === "zh-HK" && category.name_zh ? category.name_zh : category.name}</option>)}</select></label>
-            <label className={labelClass}>Sort order<input name="sort_order" type="number" min="0" defaultValue="0" className={inputClass} /></label>
-            <ActiveField /><div className="flex items-end"><SubmitButton>Add category</SubmitButton></div>
-          </form>
-          <div className="grid min-w-0 gap-3 lg:grid-cols-2">
+          <div className="flex min-w-0 flex-wrap gap-2">
             {categories.map((category) => (
-              <form key={category.id} action={saveCategory} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2">
-                <input type="hidden" name="locale" value={locale} /><input type="hidden" name="id" value={category.id} />
-                <label className={labelClass}>Name<input required name="name" defaultValue={category.name} className={inputClass} /></label>
-                <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={category.name_zh ?? ""} className={inputClass} /></label>
-                <label className={labelClass}>Parent<select name="parent_id" defaultValue={category.parent_id ?? ""} className={inputClass}><option value="">None</option>{categories.filter((item) => item.id !== category.id).map((item) => <option key={item.id} value={item.id}>{locale === "zh-HK" && item.name_zh ? item.name_zh : item.name}</option>)}</select></label>
-                <label className={labelClass}>Sort order<input name="sort_order" type="number" min="0" defaultValue={category.sort_order} className={inputClass} /></label>
-                <ActiveField active={category.is_active} />
-                <div className="flex justify-end sm:col-span-2"><SubmitButton>Save category</SubmitButton></div>
-              </form>
+              <span key={category.id} className="max-w-full break-words rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700">
+                {locale === "zh-HK" && category.name_zh ? category.name_zh : category.name}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-900">Equipment types</h2>
+          <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {equipmentTypes.map((type) => (
+              <div key={type.code} className="min-w-0 rounded-lg border border-gray-200 bg-white p-3">
+                <p className="break-words text-sm font-medium text-gray-900">{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</p>
+                <p className="mt-1 break-words text-xs text-gray-500">{type.category.replace(/_/g, " ")}</p>
+                <p className="mt-1 break-words text-xs text-gray-600">{type.labels.map((label) => getEquipmentLabel(label, locale)).join(" · ")}</p>
+              </div>
             ))}
           </div>
         </section>
 
         <section className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900">Machines</h2>
-          <MachineForm locale={locale} brands={brands} categories={categories} equipmentTypes={equipmentTypes} />
+          <MachineForm locale={locale} brands={brands} equipmentTypes={equipmentTypes} />
           <div className="space-y-3">
-            {machines.map((machine) => <MachineForm key={machine.id} locale={locale} brands={brands} categories={categories} equipmentTypes={equipmentTypes} machine={machine} />)}
+            {machines.map((machine) => <MachineForm key={machine.id} locale={locale} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />)}
           </div>
         </section>
       </div>
@@ -199,16 +199,26 @@ function getSaveMessage(
   };
 }
 
-function MachineForm({ locale, brands, categories, equipmentTypes, machine }: {
-  locale: string; brands: Brand[]; categories: Category[]; equipmentTypes: EquipmentType[]; machine?: Machine;
+function MachineForm({ locale, brands, equipmentTypes, machine }: {
+  locale: string; brands: Brand[]; equipmentTypes: EquipmentType[]; machine?: Machine;
 }) {
   return (
     <form action={saveMachine} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
       <input type="hidden" name="locale" value={locale} />{machine ? <input type="hidden" name="id" value={machine.id} /> : null}
       <label className={labelClass}>Machine name<input required name="name" defaultValue={machine?.name ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Brand<select required name="brand_id" defaultValue={machine?.brand_id ?? ""} className={inputClass}><option value="" disabled>Select brand</option>{brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name_en}</option>)}</select></label>
-      <label className={labelClass}>Category<select required name="category_id" defaultValue={machine?.category_id ?? ""} className={inputClass}><option value="" disabled>Select category</option>{categories.map((category) => <option key={category.id} value={category.id}>{locale === "zh-HK" && category.name_zh ? category.name_zh : category.name}</option>)}</select></label>
-      <label className={labelClass}>Generic equipment type<select name="equipment_type_code" defaultValue={machine?.equipment_type_code ?? ""} className={inputClass}><option value="">None</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{type.name_en} ({type.code})</option>)}</select></label>
+      <label className={labelClass}>Equipment type<select required name="equipment_type_code" defaultValue={machine?.equipment_type_code ?? ""} className={inputClass}><option value="" disabled>Select type</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</option>)}</select></label>
+      <fieldset className="min-w-0 space-y-2 sm:col-span-2 lg:col-span-4">
+        <legend className="text-sm font-medium text-gray-700">Labels</legend>
+        <div className="flex min-w-0 flex-wrap gap-4">
+          {EQUIPMENT_LABELS.map((label) => (
+            <label key={label} className="flex min-h-10 items-center gap-2 text-sm text-gray-700">
+              <input type="checkbox" name="labels" value={label} defaultChecked={machine?.labels.includes(label)} className="h-4 w-4" />
+              {getEquipmentLabel(label, locale)}
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <label className={labelClass}>Series<input name="series" defaultValue={machine?.series ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Model number<input name="model_number" defaultValue={machine?.model_number ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Status<select name="status" defaultValue={machine?.status ?? "unknown"} className={inputClass}><option value="unknown">Unknown</option><option value="active">Active</option><option value="discontinued">Discontinued</option></select></label>

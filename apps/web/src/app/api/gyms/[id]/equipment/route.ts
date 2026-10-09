@@ -43,7 +43,7 @@ export async function GET(
   const { data, error } = await supabase
     .from("gym_equipment_type_inventory")
     .select(
-      "id, gym_id, equipment_code, is_present, quantity, created_at, updated_at, equipment_types(code, name_en, name_zh, category, parent_code, supports_quantity, aliases, is_active, display_order)"
+      "id, gym_id, equipment_code, is_present, quantity, is_directly_reported, created_at, updated_at, equipment_types(code, name_en, name_zh, category, parent_code, supports_quantity, aliases, labels, is_active, display_order)"
     )
     .eq("gym_id", params.id)
     .order("equipment_code");

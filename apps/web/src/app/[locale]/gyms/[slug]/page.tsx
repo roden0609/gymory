@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -5,6 +6,7 @@ import type { Gym } from "@gymory/shared";
 import { GYM_CHAINS, getHkDistrictLabel } from "@gymory/shared";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
+import { EquipmentTypeInventory } from "@/components/gym/EquipmentTypeInventory";
 import { GymAccuracyVoting } from "@/components/gym/GymAccuracyVoting";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
@@ -13,7 +15,7 @@ import { getGymAccuracySnapshot } from "@/lib/db/queries/gym-accuracy";
 import { getGymEquipmentBrands } from "@/lib/db/queries/equipment-brands";
 import { getPublicGymMachineInventory } from "@/lib/db/queries/equipment-machine-inventory";
 import { getGymBySlug } from "@/lib/db/queries/gyms";
-import { groupPublicGymMachines } from "@/lib/equipment-machine-inventory";
+import { getHyroxEquipmentTypes, groupGymEquipmentTypes } from "@/lib/equipment-machine-inventory";
 import { buildSeoMetadata, getLocalizedUrl } from "@/lib/seo";
 
 type Locale = "en" | "zh-HK";
@@ -192,10 +194,6 @@ function formatPrice(value: number | null, countryCode: string, locale: Locale) 
   }).format(value);
 }
 
-function formatCount(value: number | null, fallback: string) {
-  return value === null ? fallback : value;
-}
-
 function formatWeight(value: number | null, fallback: string) {
   return value === null ? fallback : `${value}kg`;
 }
@@ -216,23 +214,6 @@ function formatSizeCategory(
     default:
       return formatLabel(value);
   }
-}
-
-function formatAvailableWeightsSummary({
-  availableLabel,
-  notListedLabel,
-  weights,
-}: {
-  availableLabel: string;
-  notListedLabel: string;
-  weights: Array<{ kg: number; count: number | null }>;
-}) {
-  const availableWeights = weights
-    .filter((item) => item.count !== null && item.count > 0)
-    .map((item) => `${item.kg}kg`);
-
-  if (availableWeights.length === 0) return `${notListedLabel}`;
-  return `${availableLabel} (${availableWeights.join("/")})`;
 }
 
 function hasKnownData(values: readonly unknown[]) {
@@ -387,62 +368,6 @@ function FeaturePills({
   );
 }
 
-function VerifiedMachineInventory({
-  groups,
-  locale,
-  title,
-  quantityLabel,
-}: {
-  groups: ReturnType<typeof groupPublicGymMachines>;
-  locale: Locale;
-  title: string;
-  quantityLabel: (quantity: number) => string;
-}) {
-  if (groups.length === 0) return null;
-
-  return (
-    <section className="mt-8 min-w-0 rounded-lg border border-gray-200 bg-white p-5">
-      <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-      <div className="mt-4 grid min-w-0 gap-5 sm:grid-cols-2">
-        {groups.map(({ category, brands }) => (
-          <div key={category.id} className="min-w-0">
-            <h3 className="break-words text-sm font-semibold text-gray-900">
-              {locale === "zh-HK" && category.nameZh ? category.nameZh : category.name}
-            </h3>
-            <div className="mt-2 space-y-3">
-              {brands.map(({ brand, machines }) => (
-                <div key={brand.id} className="min-w-0">
-                  <p className="break-words text-xs font-medium uppercase tracking-wide text-gray-500">
-                    {locale === "zh-HK" && brand.nameZh ? brand.nameZh : brand.nameEn}
-                  </p>
-                  <ul className="mt-1 space-y-1">
-                    {machines.map((machine) => (
-                      <li
-                        key={machine.id}
-                        className="flex min-w-0 items-start justify-between gap-3 text-sm"
-                      >
-                        <span className="min-w-0 break-words text-gray-700 [overflow-wrap:anywhere]">
-                          {machine.name}
-                          {machine.modelNumber ? ` · ${machine.modelNumber}` : ""}
-                        </span>
-                        {machine.quantity !== null && (
-                          <span className="shrink-0 text-xs text-gray-500">
-                            {quantityLabel(machine.quantity)}
-                          </span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const gym = await getGymBySlug(slug);
@@ -478,7 +403,8 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     getPublicGymMachineInventory(gym.id),
     getGymAccuracySnapshot({ gymId: gym.id, firebaseUid: sessionUser?.uid }),
   ]);
-  const machineInventoryGroups = groupPublicGymMachines(machineInventory);
+  const equipmentGroups = groupGymEquipmentTypes(gym.equipment_inventory, machineInventory);
+  const hyroxEquipment = getHyroxEquipmentTypes(equipmentGroups);
 
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
@@ -500,151 +426,16 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
       ? `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`
       : null;
 
-  const freeWeight = [
-    { label: t("racks"), value: formatCount(gym.rack_count, t("notListed")) },
-    { label: t("benches"), value: formatCount(gym.bench_count, t("notListed")) },
-    {
-      label: t("barbells"),
-      value: formatCount(gym.barbell_count, t("notListed")),
-    },
-    {
-      label: t("platforms"),
-      value: formatCount(gym.platform_count, t("notListed")),
-    },
-    {
-      label: t("dumbbellMin"),
-      value: formatWeight(gym.dumbbell_min_weight_kg, t("notListed")),
-    },
-    {
-      label: t("dumbbellMax"),
-      value: formatWeight(gym.dumbbell_max_weight_kg, t("notListed")),
-    },
-    {
-      label: t("plateMin"),
-      value: formatWeight(gym.plate_min_weight_kg, t("notListed")),
-    },
-    {
-      label: t("plateMax"),
-      value: formatWeight(gym.plate_max_weight_kg, t("notListed")),
-    },
+  const freeWeightRanges = [
+    { label: t("dumbbellMin"), value: formatWeight(gym.dumbbell_min_weight_kg, t("notListed")) },
+    { label: t("dumbbellMax"), value: formatWeight(gym.dumbbell_max_weight_kg, t("notListed")) },
+    { label: t("plateMin"), value: formatWeight(gym.plate_min_weight_kg, t("notListed")) },
+    { label: t("plateMax"), value: formatWeight(gym.plate_max_weight_kg, t("notListed")) },
   ];
-
-  const freeWeightFeatures = [
-    [t("dipStation"), gym.has_dip_station],
-    [t("pullUpBar"), gym.has_pull_up_bar],
-    [t("reverseHyper"), gym.has_reverse_hyper],
-    [t("trapBar"), gym.has_trap_bar],
-    [t("safetySquatBar"), gym.has_safety_squat_bar],
-    [t("farmersHandles"), gym.has_farmer_handles || gym.has_farmers_handles],
-    [t("landmineAttachment"), gym.has_landmine_attachment],
-    [t("swissBar"), gym.has_swiss_bar],
-    [t("camberedBar"), gym.has_cambered_bar],
-    [t("ezBar"), gym.has_ez_bar],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
-  const cardio = [
-    { label: t("treadmill"), value: formatCount(gym.treadmill_count, t("notListed")) },
-    { label: t("assaultBike"), value: formatCount(gym.assault_bike_count, t("notListed")) },
-    { label: t("exerciseBike"), value: formatCount(gym.exercise_bike_count, t("notListed")) },
-    { label: t("climber"), value: formatCount(gym.climber_count, t("notListed")) },
-    { label: t("ellipticalMachine"), value: formatCount(gym.elliptical_machine_count, t("notListed")) },
-  ];
-
-  const hyroxRace = {
-    label: t("assaultRunner"),
-    value: formatCount(gym.assault_runner_count, t("notListed")),
-  };
-
-  const hyroxStations = [
-    { label: t("skiErg"), value: formatCount(gym.ski_erg_count, t("notListed")) },
-    { label: t("sled"), value: formatCount(gym.sled_count, t("notListed")) },
-    { label: t("rower"), value: formatCount(gym.rower_count, t("notListed")) },
-    { label: t("kettlebell16kg"), value: formatCount(gym.kettlebell_16kg_count, t("notListed")) },
-    { label: t("kettlebell24kg"), value: formatCount(gym.kettlebell_24kg_count, t("notListed")) },
-    { label: t("kettlebell32kg"), value: formatCount(gym.kettlebell_32kg_count, t("notListed")) },
-    { label: t("sandbag10kg"), value: formatCount(gym.sandbag_10kg_count, t("notListed")) },
-    { label: t("sandbag20kg"), value: formatCount(gym.sandbag_20kg_count, t("notListed")) },
-    { label: t("sandbag30kg"), value: formatCount(gym.sandbag_30kg_count, t("notListed")) },
-    { label: t("wallBall4kg"), value: formatCount(gym.wall_ball_4kg_count, t("notListed")) },
-    { label: t("wallBall6kg"), value: formatCount(gym.wall_ball_6kg_count, t("notListed")) },
-    { label: t("wallBall9kg"), value: formatCount(gym.wall_ball_9kg_count, t("notListed")) },
-    {
-      label: t("kettlebellSummary"),
-      value: formatAvailableWeightsSummary({
-        availableLabel: t("available"),
-        notListedLabel: t("notListed"),
-        weights: [
-          { kg: 4, count: gym.kettlebell_4kg_count },
-          { kg: 6, count: gym.kettlebell_6kg_count },
-          { kg: 8, count: gym.kettlebell_8kg_count },
-          { kg: 10, count: gym.kettlebell_10kg_count },
-          { kg: 12, count: gym.kettlebell_12kg_count },
-          { kg: 14, count: gym.kettlebell_14kg_count },
-          { kg: 16, count: gym.kettlebell_16kg_count },
-          { kg: 18, count: gym.kettlebell_18kg_count },
-          { kg: 20, count: gym.kettlebell_20kg_count },
-          { kg: 24, count: gym.kettlebell_24kg_count },
-          { kg: 32, count: gym.kettlebell_32kg_count },
-        ],
-      }),
-    },
-    {
-      label: t("sandbagSummary"),
-      value: formatAvailableWeightsSummary({
-        availableLabel: t("available"),
-        notListedLabel: t("notListed"),
-        weights: [
-          { kg: 5, count: gym.sandbag_5kg_count },
-          { kg: 10, count: gym.sandbag_10kg_count },
-          { kg: 15, count: gym.sandbag_15kg_count },
-          { kg: 20, count: gym.sandbag_20kg_count },
-          { kg: 25, count: gym.sandbag_25kg_count },
-          { kg: 30, count: gym.sandbag_30kg_count },
-        ],
-      }),
-    },
-    {
-      label: t("wallBallSummary"),
-      value: formatAvailableWeightsSummary({
-        availableLabel: t("available"),
-        notListedLabel: t("notListed"),
-        weights: [
-          { kg: 4, count: gym.wall_ball_4kg_count },
-          { kg: 6, count: gym.wall_ball_6kg_count },
-          { kg: 8, count: gym.wall_ball_8kg_count },
-          { kg: 9, count: gym.wall_ball_9kg_count },
-          { kg: 10, count: gym.wall_ball_10kg_count },
-        ],
-      }),
-    },
-  ];
-
-  const otherEquipment = [
-    [t("boxingSandbag"), gym.has_boxing_sandbag],
-    [t("battleRope"), gym.has_battle_rope || gym.has_battle_ropes],
-    [t("foamRoller"), gym.has_foam_roller],
-    [t("medicineBall"), gym.has_medicine_ball],
-    [t("exerciseStepper"), gym.has_exercise_stepper],
-    [t("abRoller"), gym.has_ab_roller],
-    [t("massageBall"), gym.has_massage_ball],
-    [t("dipBelt"), gym.has_dip_belt],
-    [t("weightVest"), gym.has_weight_vest],
-    [t("liftingStraps"), gym.has_lifting_straps],
-    [t("plyoBox"), gym.has_plyo_box],
-    [t("balanceBall"), gym.has_balance_ball],
-    [t("yogaBlock"), gym.has_yoga_block],
-    [t("yogaMat"), gym.has_yoga_mat],
-    [t("trx"), gym.has_trx],
-    [t("resistanceBands"), gym.has_resistance_band],
-    [t("rings"), gym.has_rings],
-    [t("gluteHamDeveloper"), gym.has_glute_ham_developer],
-    [t("stretchingMachine"), gym.has_stretching_machine],
-    [t("mobilityStick"), gym.has_mobility_stick],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
+  const hasFreeWeightRanges = hasKnownData([
+    gym.dumbbell_min_weight_kg, gym.dumbbell_max_weight_kg,
+    gym.plate_min_weight_kg, gym.plate_max_weight_kg,
+  ]);
 
   const amenities = [
     [t("washroom"), gym.has_washroom],
@@ -658,99 +449,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     .filter(([, hasFeature]) => hasFeature)
     .map(([label]) => label as string);
 
-  const cable = [
-    { label: t("cableMachine"), value: formatCount(gym.cable_machine_count, t("notListed")) },
-  ];
-
-  const cableFeatures = [
-    [t("latPulldownCable"), gym.has_lat_pulldown_cable],
-    [t("seatedRowCable"), gym.has_seated_row_cable],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
-  const fullBodyMachine = [
-    { label: t("smithMachine"), value: formatCount(gym.smith_machine_count, t("notListed")) },
-  ];
-
-  const coreMachines = [
-    [t("romanChair"), gym.has_roman_chair],
-    [t("abCrunchBench"), gym.has_ab_crunch_bench],
-    [t("torsoRotationMachine"), gym.has_torso_rotation_machine],
-    [t("abCrunchMachine"), gym.has_ab_crunch_machine],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
-  const armMachineCounts: Array<{ label: string; value: string }> = [];
-
-  const armMachines = [
-    [t("preacherCurlBench"), gym.has_preacher_curl_bench],
-    [t("bicepCurlMachine"), gym.has_bicep_curl_machine],
-    [t("tricepExtensionMachine"), gym.has_tricep_extension_machine],
-    [t("dipMachine"), gym.has_dip_machine],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
-  const chestMachines = [
-    [t("chestPressMachine"), gym.has_chest_press_machine],
-    [t("inclineChestPressMachine"), gym.has_incline_chest_press_machine],
-    [t("declineChestPressMachine"), gym.has_decline_chest_press_machine],
-    [t("benchRack"), gym.has_bench_rack],
-    [t("inclineBenchRack"), gym.has_incline_bench_rack],
-    [t("isoLateralChestPressMachine"), gym.has_iso_lateral_chest_press_machine],
-    [t("pecDeckMachine"), gym.has_pec_deck_machine],
-    [t("chestFlyMachine"), gym.has_chest_fly_machine],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
-  const backMachines = [
-    [t("latPulldownMachine"), gym.has_lat_pulldown_machine],
-    [t("seatedRowMachine"), gym.has_seated_row_machine],
-    [t("backExtensionMachine"), gym.has_back_extension_machine],
-    [t("isoLateralRowMachine"), gym.has_iso_lateral_row_machine],
-    [t("tBarRowMachine"), gym.has_t_bar_row_machine],
-    [t("pullOverMachine"), gym.has_pull_over_machine],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
-  const shoulderMachines = [
-    [t("overheadPressChair"), gym.has_overhead_chair],
-    [t("lateralRaiseMachine"), gym.has_lateral_raise_machine],
-    [t("standingLateralRaiseMachine"), gym.has_standing_lateral_raise_machine],
-    [t("reverseFlyMachine"), gym.has_reverse_fly_machine],
-    [t("shoulderPressMachine"), gym.has_shoulder_press_machine],
-    [t("isoLateralShoulderPressMachine"), gym.has_iso_lateral_shoulder_press_machine],
-    [t("multiPressMachine"), gym.has_multi_press_machine],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
-  const shoulderMachineCounts: Array<{ label: string; value: string }> = [];
-
-  const legMachines = [
-    [t("multiHipMachine"), gym.has_multi_hip_machine],
-    [t("hipAbductorMachine"), gym.has_hip_abductor_machine],
-    [t("hipAdductorMachine"), gym.has_hip_adductor_machine],
-    [t("legExtensionMachine"), gym.has_leg_extension_machine],
-    [t("legPressMachine"), gym.has_leg_press_machine],
-    [t("seatedLegPressMachine"), gym.has_seated_leg_press_machine],
-    [t("lyingLegCurlMachine"), gym.has_lying_leg_curl_machine],
-    [t("seatedLegCurlMachine"), gym.has_seated_leg_curl_machine],
-    [t("seatedCalfRaiseMachine"), gym.has_seated_calf_raise_machine],
-    [t("squatMachine"), gym.has_squat_machine],
-    [t("hackSquatMachine"), gym.has_hack_squat],
-    [t("beltSquatMachine"), gym.has_belt_squat_machine],
-    [t("standingCalfRaiseMachine"), gym.has_standing_calf_raise_machine],
-    [t("gluteExtensionMachine"), gym.has_glute_extension_machine],
-    [t("hipThrustMachine"), gym.has_hip_thrust_machine],
-  ]
-    .filter(([, hasFeature]) => hasFeature)
-    .map(([label]) => label as string);
-
   const submitHref = `/submit?gymId=${gym.id}&returnTo=/gyms/${gym.slug}`;
   const submitSectionHref = (hash: SubmitSectionHash) => `${submitHref}#${hash}`;
   const missingEquipmentCta = (hash: SubmitSectionHash) => (
@@ -760,157 +458,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
       actionLabel={t("addEquipmentDetails")}
     />
   );
-  const freeWeightHasData = hasKnownData([
-    gym.rack_count,
-    gym.bench_count,
-    gym.barbell_count,
-    gym.platform_count,
-    gym.dumbbell_min_weight_kg,
-    gym.dumbbell_max_weight_kg,
-    gym.plate_min_weight_kg,
-    gym.plate_max_weight_kg,
-    gym.has_dip_station,
-    gym.has_pull_up_bar,
-    gym.has_reverse_hyper,
-    gym.has_trap_bar,
-    gym.has_safety_squat_bar,
-    gym.has_farmer_handles,
-    gym.has_farmers_handles,
-    gym.has_landmine_attachment,
-    gym.has_swiss_bar,
-    gym.has_cambered_bar,
-    gym.has_ez_bar,
-  ]);
-  const cardioHasData = hasKnownData([
-    gym.treadmill_count,
-    gym.assault_bike_count,
-    gym.exercise_bike_count,
-    gym.climber_count,
-    gym.elliptical_machine_count,
-  ]);
-  const hyroxHasData = hasKnownData([
-    gym.assault_runner_count,
-    gym.ski_erg_count,
-    gym.sled_count,
-    gym.rower_count,
-    gym.has_kettlebell,
-    gym.kettlebell_4kg_count,
-    gym.kettlebell_6kg_count,
-    gym.kettlebell_8kg_count,
-    gym.kettlebell_10kg_count,
-    gym.kettlebell_12kg_count,
-    gym.kettlebell_14kg_count,
-    gym.kettlebell_16kg_count,
-    gym.kettlebell_18kg_count,
-    gym.kettlebell_20kg_count,
-    gym.kettlebell_24kg_count,
-    gym.kettlebell_32kg_count,
-    gym.has_workout_sandbag,
-    gym.has_boxing_sandbag,
-    gym.sandbag_5kg_count,
-    gym.sandbag_10kg_count,
-    gym.sandbag_15kg_count,
-    gym.sandbag_20kg_count,
-    gym.sandbag_25kg_count,
-    gym.sandbag_30kg_count,
-    gym.has_wall_ball,
-    gym.wall_ball_count,
-    gym.wall_ball_4kg_count,
-    gym.wall_ball_6kg_count,
-    gym.wall_ball_8kg_count,
-    gym.wall_ball_9kg_count,
-    gym.wall_ball_10kg_count,
-    gym.wall_ball_plate_9ft_count,
-    gym.wall_ball_plate_10ft_count,
-  ]);
-  const cableHasData = hasKnownData([
-    gym.cable_machine_count,
-    gym.has_lat_pulldown_cable,
-    gym.has_seated_row_cable,
-  ]);
-  const fullBodyMachineHasData = hasKnownData([
-    gym.smith_machine_count,
-    gym.has_smith_machine,
-  ]);
-  const coreMachineHasData = hasKnownData([
-    gym.has_roman_chair,
-    gym.has_ab_crunch_bench,
-    gym.has_torso_rotation_machine,
-    gym.has_ab_crunch_machine,
-  ]);
-  const armMachineHasData = hasKnownData([
-    gym.has_preacher_curl_bench,
-    gym.has_bicep_curl_machine,
-    gym.has_tricep_extension_machine,
-    gym.has_dip_machine,
-  ]);
-  const chestMachineHasData = hasKnownData([
-    gym.has_chest_press_machine,
-    gym.has_incline_chest_press_machine,
-    gym.has_decline_chest_press_machine,
-    gym.has_bench_rack,
-    gym.has_incline_bench_rack,
-    gym.has_iso_lateral_chest_press_machine,
-    gym.has_pec_deck_machine,
-    gym.has_chest_fly_machine,
-  ]);
-  const backMachineHasData = hasKnownData([
-    gym.has_lat_pulldown_machine,
-    gym.has_seated_row_machine,
-    gym.has_back_extension_machine,
-    gym.has_iso_lateral_row_machine,
-    gym.has_t_bar_row_machine,
-    gym.has_pull_over_machine,
-  ]);
-  const shoulderMachineHasData = hasKnownData([
-    gym.has_overhead_chair,
-    gym.has_lateral_raise_machine,
-    gym.has_standing_lateral_raise_machine,
-    gym.has_reverse_fly_machine,
-    gym.has_shoulder_press_machine,
-    gym.has_iso_lateral_shoulder_press_machine,
-    gym.has_multi_press_machine,
-  ]);
-  const legMachineHasData = hasKnownData([
-    gym.has_multi_hip_machine,
-    gym.has_hip_abductor_machine,
-    gym.has_hip_adductor_machine,
-    gym.has_leg_extension_machine,
-    gym.has_leg_press_machine,
-    gym.has_seated_leg_press_machine,
-    gym.has_lying_leg_curl_machine,
-    gym.has_seated_leg_curl_machine,
-    gym.has_seated_calf_raise_machine,
-    gym.has_squat_machine,
-    gym.has_hack_squat,
-    gym.has_belt_squat_machine,
-    gym.has_standing_calf_raise_machine,
-    gym.has_glute_extension_machine,
-    gym.has_hip_thrust_machine,
-  ]);
-  const otherEquipmentHasData = hasKnownData([
-    gym.has_boxing_sandbag,
-    gym.has_battle_rope,
-    gym.has_battle_ropes,
-    gym.has_foam_roller,
-    gym.has_medicine_ball,
-    gym.has_exercise_stepper,
-    gym.has_ab_roller,
-    gym.has_massage_ball,
-    gym.has_dip_belt,
-    gym.has_weight_vest,
-    gym.has_lifting_straps,
-    gym.has_plyo_box,
-    gym.has_balance_ball,
-    gym.has_yoga_block,
-    gym.has_yoga_mat,
-    gym.has_trx,
-    gym.has_resistance_band,
-    gym.has_rings,
-    gym.has_glute_ham_developer,
-    gym.has_stretching_machine,
-    gym.has_mobility_stick,
-  ]);
   const amenitiesHasData = hasKnownData([
     gym.has_washroom,
     gym.has_bathroom,
@@ -921,19 +468,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     gym.has_ice_bath,
   ]);
   const hasAnyTrainingEquipmentData =
-    freeWeightHasData ||
-    cardioHasData ||
-    hyroxHasData ||
-    cableHasData ||
-    fullBodyMachineHasData ||
-    coreMachineHasData ||
-    armMachineHasData ||
-    chestMachineHasData ||
-    backMachineHasData ||
-    shoulderMachineHasData ||
-    legMachineHasData ||
-    otherEquipmentHasData ||
-    brands.length > 0;
+    equipmentGroups.some(({ items }) => items.length > 0) || hasFreeWeightRanges || brands.length > 0;
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -1051,141 +586,44 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           />
         </div>
 
-        <VerifiedMachineInventory
-          groups={machineInventoryGroups}
-          locale={locale}
-          title={t("verifiedMachineInventory")}
-          quantityLabel={(quantity) => t("machineQuantity", { quantity })}
-        />
-
         <div className="mt-8 rounded-lg border border-gray-200 bg-white px-5">
-          <Section title={t("freeWeight")}>
-            {freeWeightHasData ? (
-              <>
-                <ValueGrid items={freeWeight} />
-                <div className="mt-4">
-                  <FeaturePills items={freeWeightFeatures} fallback={t("notListed")} />
-                </div>
-              </>
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.freeWeight)
-            )}
-          </Section>
-
-          <Section title={t("cardio")}>
-            {cardioHasData ? (
-              <ValueGrid items={cardio} />
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.cardio)
-            )}
-          </Section>
-
-          <Section title={t("hyrox")}>
-            {hyroxHasData ? (
-              <>
-                <div className="mb-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  <div className="flex items-start justify-between gap-3 rounded-lg bg-gray-50 px-3 py-2 text-sm">
-                    <span className="shrink-0 text-gray-600">{hyroxRace.label}</span>
-                    <span className="min-w-0 break-words text-right font-medium text-gray-900 [overflow-wrap:anywhere]">
-                      {hyroxRace.value}
-                    </span>
-                  </div>
-                  <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
-                  <div className="hidden rounded-lg px-3 py-2 lg:block" aria-hidden="true" />
-                </div>
-                <ValueGrid items={hyroxStations} />
-              </>
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.hyrox)
-            )}
-          </Section>
-
-          <Section title={t("cable")}>
-            {cableHasData ? (
-              <>
-                <ValueGrid items={cable} />
-                <div className="mt-4">
-                  <FeaturePills items={cableFeatures} fallback={t("notListed")} />
-                </div>
-              </>
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.cable)
-            )}
-          </Section>
-
-          <Section title={t("fullBodyMachine")}>
-            {fullBodyMachineHasData ? (
-              <ValueGrid items={fullBodyMachine} />
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.fullBodyMachine)
-            )}
-          </Section>
-
-          <Section title={t("coreMachine")}>
-            {coreMachineHasData ? (
-              <FeaturePills items={coreMachines} fallback={t("notListed")} />
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.coreMachine)
-            )}
-          </Section>
-
-          <Section title={t("armMachine")}>
-            {armMachineHasData ? (
-              <>
-                <ValueGrid items={armMachineCounts} />
-                <div className="mt-4">
-                  <FeaturePills items={armMachines} fallback={t("notListed")} />
-                </div>
-              </>
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.armMachine)
-            )}
-          </Section>
-
-          <Section title={t("chestMachine")}>
-            {chestMachineHasData ? (
-              <FeaturePills items={chestMachines} fallback={t("notListed")} />
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.chestMachine)
-            )}
-          </Section>
-
-          <Section title={t("backMachine")}>
-            {backMachineHasData ? (
-              <FeaturePills items={backMachines} fallback={t("notListed")} />
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.backMachine)
-            )}
-          </Section>
-
-          <Section title={t("shoulderMachine")}>
-            {shoulderMachineHasData ? (
-              <>
-                <ValueGrid items={shoulderMachineCounts} />
-                <div className="mt-4">
-                  <FeaturePills items={shoulderMachines} fallback={t("notListed")} />
-                </div>
-              </>
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.shoulderMachine)
-            )}
-          </Section>
-
-          <Section title={t("legMachine")}>
-            {legMachineHasData ? (
-              <FeaturePills items={legMachines} fallback={t("notListed")} />
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.legMachine)
-            )}
-          </Section>
-
-          <Section title={t("otherEquipment")}>
-            {otherEquipmentHasData ? (
-              <FeaturePills items={otherEquipment} fallback={t("notListed")} />
-            ) : (
-              missingEquipmentCta(SUBMIT_SECTION_HASHES.otherEquipment)
-            )}
-          </Section>
+          {equipmentGroups.map(({ category, items }) => (
+            <Fragment key={category.code}>
+              <Section title={locale === "zh-HK" ? category.nameZh : category.name}>
+                {items.length > 0 ? (
+                  <EquipmentTypeInventory
+                    items={items}
+                    locale={locale}
+                    availableLabel={t("available")}
+                    absentLabel={t("equipmentAbsent")}
+                    detailsLabel={t("showEquipmentDetails")}
+                    quantityLabel={(quantity) => t("machineQuantity", { quantity })}
+                  />
+                ) : category.code === "free_weight" && hasFreeWeightRanges ? null : (
+                  missingEquipmentCta(SUBMIT_SECTION_HASHES[category.section])
+                )}
+                {category.code === "free_weight" && hasFreeWeightRanges && (
+                  <div className="mt-4"><ValueGrid items={freeWeightRanges} /></div>
+                )}
+              </Section>
+              {category.code === "cardio" && (
+                <Section title={t("hyrox")}>
+                  {hyroxEquipment.length > 0 ? (
+                    <EquipmentTypeInventory
+                      items={hyroxEquipment}
+                      locale={locale}
+                      availableLabel={t("available")}
+                      absentLabel={t("equipmentAbsent")}
+                      detailsLabel={t("showEquipmentDetails")}
+                      quantityLabel={(quantity) => t("machineQuantity", { quantity })}
+                    />
+                  ) : (
+                    missingEquipmentCta(SUBMIT_SECTION_HASHES.hyrox)
+                  )}
+                </Section>
+              )}
+            </Fragment>
+          ))}
 
           <Section title={t("amenities")}>
             {amenitiesHasData ? (

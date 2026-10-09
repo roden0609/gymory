@@ -60,6 +60,8 @@
     "dataSourceUser": "User",
     "machines": "Machines",
     "verifiedMachineInventory": "Verified machines",
+    "showEquipmentDetails": "Show details",
+    "equipmentAbsent": "Not available",
     "machineQuantity": "×{quantity}",
     "features": "Features",
     "freeWeight": "Free weight",
