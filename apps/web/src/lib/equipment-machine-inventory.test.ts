@@ -56,6 +56,22 @@ describe("type summaries and model details", () => {
 });
 
 describe("HYROX display section", () => {
+  it("uses race equipment order without changing primary category order", () => {
+    const codes = [
+      "assault_runner", "ski_erg", "sled", "rower",
+      "kettlebell_16kg", "kettlebell_24kg", "kettlebell_32kg",
+      "sandbag_10kg", "sandbag_20kg", "sandbag_30kg",
+      "wall_ball_4kg", "wall_ball_6kg", "wall_ball_9kg",
+      "wall_ball_plate_9ft", "wall_ball_plate_10ft",
+    ];
+    const groups = groupGymEquipmentTypes(codes.toReversed().map((code, index) => inventory({
+      equipment_code: code,
+      equipment_type: { ...type, code, labels: ["hyrox"], display_order: index },
+    })), []);
+    const originalCodes = groups.flatMap(({ items }) => items.map(({ type }) => type.code));
+    expect(getHyroxEquipmentTypes(groups).map(({ type }) => type.code)).toEqual(codes);
+    expect(groups.flatMap(({ items }) => items.map(({ type }) => type.code))).toEqual(originalCodes);
+  });
   it("includes an available type with its shared HYROX label and all verified models", () => {
     const hyroxType = { ...type, labels: ["hyrox"] };
     const groups = groupGymEquipmentTypes(

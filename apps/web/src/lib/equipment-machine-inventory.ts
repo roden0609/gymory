@@ -60,6 +60,19 @@ export function groupGymEquipmentTypes(
   }));
 }
 
+const HYROX_DISPLAY_ORDER = [
+  "assault_runner", "ski_erg", "sled", "rower",
+  "kettlebell_16kg", "kettlebell_24kg", "kettlebell_32kg",
+  "sandbag_10kg", "sandbag_20kg", "sandbag_30kg",
+  "wall_ball_4kg", "wall_ball_6kg", "wall_ball_9kg",
+  "wall_ball_plate_9ft", "wall_ball_plate_10ft",
+];
+
+function hyroxDisplayOrder(code: string) {
+  const index = HYROX_DISPLAY_ORDER.indexOf(code);
+  return index === -1 ? HYROX_DISPLAY_ORDER.length : index;
+}
+
 // HYROX is a derived display section, not another primary category/inventory.
 export function getHyroxEquipmentTypes(
   groups: ReturnType<typeof groupGymEquipmentTypes>
@@ -72,5 +85,5 @@ export function getHyroxEquipmentTypes(
     if (machines.length === 0) return [];
     // A type's broad count may include non-HYROX models; keep counts in details.
     return [{ ...item, quantity: null, machines }];
-  }));
+  })).sort((a, b) => hyroxDisplayOrder(a.type.code) - hyroxDisplayOrder(b.type.code));
 }
