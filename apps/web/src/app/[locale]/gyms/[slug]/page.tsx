@@ -6,6 +6,7 @@ import type { Gym } from "@gymory/shared";
 import { GYM_CHAINS, getHkDistrictLabel } from "@gymory/shared";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
+import { EquipmentSection, EquipmentSections } from "@/components/gym/EquipmentSections";
 import { EquipmentTypeInventory } from "@/components/gym/EquipmentTypeInventory";
 import { GymAccuracyVoting } from "@/components/gym/GymAccuracyVoting";
 import { TransientBanner } from "@/components/common/TransientBanner";
@@ -588,43 +589,47 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
         </div>
 
         <div className="mt-8 rounded-lg border border-gray-200 bg-white px-5">
-          {equipmentGroups.map(({ category, items }) => (
-            <Fragment key={category.code}>
-              <Section title={locale === "zh-HK" ? category.nameZh : category.name}>
-                {items.length > 0 ? (
-                  <EquipmentTypeInventory
-                    items={items}
-                    locale={locale}
-                    availableLabel={t("available")}
-                    absentLabel={t("equipmentAbsent")}
-                    detailsLabel={t("showEquipmentDetails")}
-                    quantityLabel={(quantity) => t("machineQuantity", { quantity })}
-                  />
-                ) : category.code === "free_weight" && hasFreeWeightRanges ? null : (
-                  missingEquipmentCta(SUBMIT_SECTION_HASHES[category.section])
-                )}
-                {category.code === "free_weight" && hasFreeWeightRanges && (
-                  <div className="mt-4"><ValueGrid items={freeWeightRanges} /></div>
-                )}
-              </Section>
-              {category.code === "cardio" && (
-                <Section title={t("hyrox")}>
-                  {hyroxEquipment.length > 0 ? (
+          <EquipmentSections>
+            {equipmentGroups.map(({ category, items }) => (
+              <Fragment key={category.code}>
+                <EquipmentSection title={locale === "zh-HK" ? category.nameZh : category.name}
+                  count={items.filter((item) => item.isPresent).length}
+                  collapsible={items.length > 0 || (category.code === "free_weight" && hasFreeWeightRanges)}>
+                  {items.length > 0 ? (
                     <EquipmentTypeInventory
-                      items={hyroxEquipment}
+                      items={items}
                       locale={locale}
                       availableLabel={t("available")}
                       absentLabel={t("equipmentAbsent")}
                       detailsLabel={t("showEquipmentDetails")}
                       quantityLabel={(quantity) => t("machineQuantity", { quantity })}
                     />
-                  ) : (
-                    missingEquipmentCta(SUBMIT_SECTION_HASHES.hyrox)
+                  ) : category.code === "free_weight" && hasFreeWeightRanges ? null : (
+                    missingEquipmentCta(SUBMIT_SECTION_HASHES[category.section])
                   )}
-                </Section>
-              )}
-            </Fragment>
-          ))}
+                  {category.code === "free_weight" && hasFreeWeightRanges && (
+                    <div className="mt-4"><ValueGrid items={freeWeightRanges} /></div>
+                  )}
+                </EquipmentSection>
+                {category.code === "cardio" && (
+                  <EquipmentSection title={t("hyrox")} count={hyroxEquipment.length} collapsible={hyroxEquipment.length > 0}>
+                    {hyroxEquipment.length > 0 ? (
+                      <EquipmentTypeInventory
+                        items={hyroxEquipment}
+                        locale={locale}
+                        availableLabel={t("available")}
+                        absentLabel={t("equipmentAbsent")}
+                        detailsLabel={t("showEquipmentDetails")}
+                        quantityLabel={(quantity) => t("machineQuantity", { quantity })}
+                      />
+                    ) : (
+                      missingEquipmentCta(SUBMIT_SECTION_HASHES.hyrox)
+                    )}
+                  </EquipmentSection>
+                )}
+              </Fragment>
+            ))}
+          </EquipmentSections>
 
           <Section title={t("amenities")}>
             {amenitiesHasData ? (
