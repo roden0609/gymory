@@ -16,7 +16,7 @@ type Category = {
 type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[] };
 type Machine = {
   id: string; brand_id: string; category_id: string; equipment_type_code: string | null;
-  labels: string[]; name: string; series: string | null; model_number: string | null;
+  labels: string[]; name: string; name_zh: string | null; series: string | null; model_number: string | null;
   product_url: string | null; description: string | null;
   status: "active" | "discontinued" | "unknown";
   source_type: "official" | "manual" | "user_submitted";
@@ -33,7 +33,7 @@ async function getCatalog() {
     supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en"),
     supabase.from("equipment_categories").select("id, name, name_zh, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
     supabase.from("equipment_types").select("code, name_en, name_zh, category, labels").eq("is_active", true).order("name_en"),
-    supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias)").order("name"),
+    supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias)").order("name"),
   ]);
   const error = brandsResult.error ?? categoriesResult.error ?? typesResult.error ?? machinesResult.error;
   if (error) throw new Error(error.message);
@@ -206,6 +206,7 @@ function MachineForm({ locale, brands, equipmentTypes, machine }: {
     <form action={saveMachine} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
       <input type="hidden" name="locale" value={locale} />{machine ? <input type="hidden" name="id" value={machine.id} /> : null}
       <label className={labelClass}>Machine name<input required name="name" defaultValue={machine?.name ?? ""} className={inputClass} /></label>
+      <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={machine?.name_zh ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Brand<select required name="brand_id" defaultValue={machine?.brand_id ?? ""} className={inputClass}><option value="" disabled>Select brand</option>{brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name_en}</option>)}</select></label>
       <label className={labelClass}>Equipment type<select required name="equipment_type_code" defaultValue={machine?.equipment_type_code ?? ""} className={inputClass}><option value="" disabled>Select type</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</option>)}</select></label>
       <fieldset className="min-w-0 space-y-2 sm:col-span-2 lg:col-span-4">

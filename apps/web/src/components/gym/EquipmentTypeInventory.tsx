@@ -62,29 +62,30 @@ export function EquipmentTypeInventory({ items, locale, availableLabel, absentLa
       {detailedItems.length > 0 && (
         <details className="mt-4 min-w-0" data-category-equipment-details>
           <summary className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900">{detailsLabel}</summary>
-          <div className="mt-3 grid min-w-0 gap-3 sm:grid-cols-2">
+          <div className="mt-3 min-w-0 space-y-4">
             {detailedItems.map(({ type, machines }) => (
-              <div key={type.code} className="min-w-0 rounded-lg border border-gray-100 p-3" data-equipment-type-details={type.code}>
-                <h4 className="break-words text-sm font-medium text-gray-900 [overflow-wrap:anywhere]">
+              <section key={type.code} className="min-w-0" data-equipment-type-details={type.code}>
+                <h4 className="mb-2 break-words text-sm font-medium text-gray-900 [overflow-wrap:anywhere]">
                   {locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}
                 </h4>
-                <ul className="mt-3 min-w-0 space-y-3 border-t border-gray-100 pt-3">
-                  {machines.map((machine) => (
-                    <li key={machine.id} className="min-w-0">
-                      <p className="break-words text-xs text-gray-500 [overflow-wrap:anywhere]">
-                        {locale === "zh-HK" && machine.brand.nameZh ? machine.brand.nameZh : machine.brand.nameEn}
-                      </p>
-                      <div className="mt-1 flex min-w-0 flex-wrap items-start justify-between gap-2 text-sm">
-                        <span className="min-w-0 break-words text-gray-700 [overflow-wrap:anywhere]">
-                          {machine.name}{machine.modelNumber ? ` · ${machine.modelNumber}` : ""}
-                        </span>
-                        {machine.quantity !== null && <span className="text-xs text-gray-500">{quantityLabel(machine.quantity)}</span>}
-                      </div>
-                      <Labels labels={machine.labels} locale={locale} />
-                    </li>
-                  ))}
+                <ul className="grid min-w-0 gap-3 sm:grid-cols-2">
+                  {machines.map((machine) => {
+                    const brandName = locale === "zh-HK" && machine.brand.nameZh ? machine.brand.nameZh : machine.brand.nameEn;
+                    return (
+                      <li key={machine.id} className="min-w-0 rounded-lg border border-gray-100 p-3">
+                        <h5 className="break-words text-sm font-medium text-gray-900 [overflow-wrap:anywhere]">
+                          {locale === "zh-HK" && machine.nameZh ? machine.nameZh : machine.name}
+                        </h5>
+                        <div className="mt-1 flex min-w-0 flex-wrap items-start justify-between gap-2 text-xs text-gray-500">
+                          {brandName && <span className="min-w-0 max-w-full break-words [overflow-wrap:anywhere]">{brandName}</span>}
+                          {machine.quantity !== null && <span className="max-w-full break-words [overflow-wrap:anywhere]">{quantityLabel(machine.quantity)}</span>}
+                        </div>
+                        <Labels labels={machine.labels} locale={locale} />
+                      </li>
+                    );
+                  })}
                 </ul>
-              </div>
+              </section>
             ))}
           </div>
         </details>

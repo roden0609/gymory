@@ -12,7 +12,7 @@ function inventory(overrides: Partial<GymEquipmentInventoryItem> = {}): GymEquip
     is_present: true, quantity: null, is_directly_reported: true, created_at: "", updated_at: "", ...overrides };
 }
 function machine(overrides: Partial<PublicGymMachine> = {}): PublicGymMachine {
-  return { id: "1", name: "Model", modelNumber: "CP1", quantity: 2, labels: ["plate-loaded"],
+  return { id: "1", name: "Model", nameZh: null, modelNumber: "CP1", quantity: 2, labels: ["plate-loaded"],
     equipmentType: type, verifiedStatus: "admin_verified", brand: { id: "a", nameEn: "Brand", nameZh: null }, ...overrides };
 }
 function chest(items: GymEquipmentInventoryItem[], machines: PublicGymMachine[]) {

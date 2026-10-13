@@ -21,6 +21,7 @@ export const equipmentMachineSchema = z.object({
   equipment_type_code: z.string().trim().regex(/^[a-z][a-z0-9_]*$/),
   labels: z.array(z.enum(EQUIPMENT_LABELS)).default([]).transform((labels) => [...new Set(labels)]),
   name: z.string().trim().min(1).max(200),
+  name_zh: optionalText,
   series: optionalText,
   model_number: optionalText,
   product_url: z.union([z.string().url(), z.literal(""), z.null()]).optional(),

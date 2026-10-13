@@ -7,6 +7,7 @@ export type PublicEquipmentType = Pick<EquipmentType,
 export type PublicGymMachine = {
   id: string;
   name: string;
+  nameZh: string | null;
   modelNumber: string | null;
   quantity: number | null;
   labels: string[];

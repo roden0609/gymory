@@ -30,6 +30,16 @@ describe("admin equipment CRUD validation", () => {
     })).toThrow();
   });
 
+  it("trims Chinese machine names and allows clearing or omitting them", () => {
+    const model = {
+      brand_id: brandId, equipment_type_code: "chest_press_machine", name: "Chest Press",
+      status: "active", source_type: "manual", aliases: "",
+    };
+    expect(equipmentMachineSchema.parse({ ...model, name_zh: "  胸推機  " }).name_zh).toBe("胸推機");
+    expect(equipmentMachineSchema.parse({ ...model, name_zh: "   " }).name_zh).toBeNull();
+    expect(equipmentMachineSchema.parse(model).name_zh).toBeNull();
+  });
+
   it("accepts an optional quantity and trims inventory notes", () => {
     expect(gymMachineInventorySchema.parse({
       gym_id: gymId, equipment_id: machineId, quantity: "", condition: "unknown",
