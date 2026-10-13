@@ -35,10 +35,11 @@ export function EquipmentSections({ children }: { children: ReactNode }) {
   );
 }
 
-export function EquipmentSection({ title, count, collapsible, children }: {
+export function EquipmentSection({ title, count, collapsible, summary, children }: {
   title: string;
   count: number;
   collapsible: boolean;
+  summary?: ReactNode;
   children: ReactNode;
 }) {
   const t = useTranslations("gym");
@@ -61,6 +62,9 @@ export function EquipmentSection({ title, count, collapsible, children }: {
           </button>
         ) : title}
       </h2>
+      {collapsible && !expanded && summary && (
+        <div className="mt-3 min-w-0" data-equipment-summary>{summary}</div>
+      )}
       <div id={contentId} hidden={collapsible && !expanded} className="mt-4 min-w-0">{children}</div>
     </section>
   );

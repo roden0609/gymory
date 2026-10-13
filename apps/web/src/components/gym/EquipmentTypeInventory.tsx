@@ -23,6 +23,19 @@ function Labels({ labels, locale }: { labels: string[]; locale: string }) {
   );
 }
 
+export function EquipmentTypeSummary({ items, locale, absentLabel, quantityLabel }: Pick<Props, "items" | "locale" | "absentLabel" | "quantityLabel">) {
+  return (
+    <ul className="flex min-w-0 flex-wrap gap-2">
+      {items.map(({ type, isPresent, quantity }) => (
+        <li key={type.code} className="max-w-full break-words rounded-lg bg-gray-50 px-2.5 py-1.5 text-sm text-gray-700 [overflow-wrap:anywhere]">
+          {locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}
+          {!isPresent ? ` · ${absentLabel}` : quantity !== null ? ` · ${quantityLabel(quantity)}` : ""}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function EquipmentTypeInventory({ items, locale, availableLabel, absentLabel, detailsLabel, quantityLabel }: Props) {
   const detailedItems = items.filter(({ machines }) => machines.length > 0);
 

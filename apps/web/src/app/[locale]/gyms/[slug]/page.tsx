@@ -7,7 +7,7 @@ import { GYM_CHAINS, getHkDistrictLabel } from "@gymory/shared";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
 import { EquipmentSection, EquipmentSections } from "@/components/gym/EquipmentSections";
-import { EquipmentTypeInventory } from "@/components/gym/EquipmentTypeInventory";
+import { EquipmentTypeInventory, EquipmentTypeSummary } from "@/components/gym/EquipmentTypeInventory";
 import { GymAccuracyVoting } from "@/components/gym/GymAccuracyVoting";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
@@ -335,7 +335,7 @@ function ValueGrid({
           key={item.label}
           className="flex items-start justify-between gap-3 rounded-lg bg-gray-50 px-3 py-2 text-sm"
         >
-          <span className="shrink-0 text-gray-600">{item.label}</span>
+          <span className="min-w-0 break-words text-gray-600 [overflow-wrap:anywhere]">{item.label}</span>
           <span className="min-w-0 text-right font-medium text-gray-900 break-words [overflow-wrap:anywhere]">
             {item.value}
           </span>
@@ -552,13 +552,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
             clearQueryKeys={["flash"]}
           />
         )}
-        <div className="mb-6">
-          <GymAccuracyVoting
-            gymId={gym.id}
-            initialSnapshot={accuracySnapshot}
-            isLoggedIn={Boolean(sessionUser)}
-          />
-        </div>
         {!hasAnyTrainingEquipmentData && (
           <FirstContributorCta
             href={submitHref}
@@ -594,6 +587,16 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
               <Fragment key={category.code}>
                 <EquipmentSection title={locale === "zh-HK" ? category.nameZh : category.name}
                   count={items.filter((item) => item.isPresent).length}
+                  summary={
+                    <>
+                      <EquipmentTypeSummary items={items} locale={locale}
+                        absentLabel={t("equipmentAbsent")}
+                        quantityLabel={(quantity) => t("machineQuantity", { quantity })} />
+                      {category.code === "free_weight" && hasFreeWeightRanges && (
+                        <div className="mt-3"><ValueGrid items={freeWeightRanges.filter((item) => item.value !== t("notListed"))} /></div>
+                      )}
+                    </>
+                  }
                   collapsible={items.length > 0 || (category.code === "free_weight" && hasFreeWeightRanges)}>
                   {items.length > 0 ? (
                     <EquipmentTypeInventory
@@ -612,7 +615,11 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                   )}
                 </EquipmentSection>
                 {category.code === "cardio" && (
-                  <EquipmentSection title={t("hyrox")} count={hyroxEquipment.length} collapsible={hyroxEquipment.length > 0}>
+                  <EquipmentSection title={t("hyrox")} count={hyroxEquipment.length}
+                    summary={<EquipmentTypeSummary items={hyroxEquipment} locale={locale}
+                      absentLabel={t("equipmentAbsent")}
+                      quantityLabel={(quantity) => t("machineQuantity", { quantity })} />}
+                    collapsible={hyroxEquipment.length > 0}>
                     {hyroxEquipment.length > 0 ? (
                       <EquipmentTypeInventory
                         items={hyroxEquipment}
@@ -746,6 +753,13 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
               )}
             </div>
           </Section>
+        </div>
+        <div className="mt-8">
+          <GymAccuracyVoting
+            gymId={gym.id}
+            initialSnapshot={accuracySnapshot}
+            isLoggedIn={Boolean(sessionUser)}
+          />
         </div>
       </div>
     </main>
