@@ -7,7 +7,7 @@ import { GYM_CHAINS, getHkDistrictLabel } from "@gymory/shared";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
 import { EquipmentSection, EquipmentSections } from "@/components/gym/EquipmentSections";
-import { EquipmentTypeInventory, EquipmentTypeSummary } from "@/components/gym/EquipmentTypeInventory";
+import { EquipmentTypeInventory } from "@/components/gym/EquipmentTypeInventory";
 import { GymAccuracyVoting } from "@/components/gym/GymAccuracyVoting";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
@@ -587,16 +587,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
               <Fragment key={category.code}>
                 <EquipmentSection title={locale === "zh-HK" ? category.nameZh : category.name}
                   count={items.filter((item) => item.isPresent).length}
-                  summary={
-                    <>
-                      <EquipmentTypeSummary items={items} locale={locale}
-                        absentLabel={t("equipmentAbsent")}
-                        quantityLabel={(quantity) => t("machineQuantity", { quantity })} />
-                      {category.code === "free_weight" && hasFreeWeightRanges && (
-                        <div className="mt-3"><ValueGrid items={freeWeightRanges.filter((item) => item.value !== t("notListed"))} /></div>
-                      )}
-                    </>
-                  }
                   collapsible={items.length > 0 || (category.code === "free_weight" && hasFreeWeightRanges)}>
                   {items.length > 0 ? (
                     <EquipmentTypeInventory
@@ -616,9 +606,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                 </EquipmentSection>
                 {category.code === "cardio" && (
                   <EquipmentSection title={t("hyrox")} count={hyroxEquipment.length}
-                    summary={<EquipmentTypeSummary items={hyroxEquipment} locale={locale}
-                      absentLabel={t("equipmentAbsent")}
-                      quantityLabel={(quantity) => t("machineQuantity", { quantity })} />}
                     collapsible={hyroxEquipment.length > 0}>
                     {hyroxEquipment.length > 0 ? (
                       <EquipmentTypeInventory

@@ -1,23 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useId, useState, type ReactNode } from "react";
+import { createContext, useContext, useId, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 
-const ExpansionContext = createContext({ expanded: false, revision: 0 });
+const ExpansionContext = createContext({ expanded: true, revision: 0 });
 
 export function EquipmentSections({ children }: { children: ReactNode }) {
   const t = useTranslations("gym");
-  const [expansion, setExpansion] = useState({ expanded: false, revision: 0 });
-
-  useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 768px)");
-    const update = () => setExpansion((current) => ({
-      expanded: desktop.matches, revision: current.revision + 1,
-    }));
-    update();
-    desktop.addEventListener("change", update);
-    return () => desktop.removeEventListener("change", update);
-  }, []);
+  const [expansion, setExpansion] = useState({ expanded: true, revision: 0 });
 
   return (
     <ExpansionContext.Provider value={expansion}>
@@ -35,11 +25,10 @@ export function EquipmentSections({ children }: { children: ReactNode }) {
   );
 }
 
-export function EquipmentSection({ title, count, collapsible, summary, children }: {
+export function EquipmentSection({ title, count, collapsible, children }: {
   title: string;
   count: number;
   collapsible: boolean;
-  summary?: ReactNode;
   children: ReactNode;
 }) {
   const t = useTranslations("gym");
@@ -62,9 +51,6 @@ export function EquipmentSection({ title, count, collapsible, summary, children 
           </button>
         ) : title}
       </h2>
-      {collapsible && !expanded && summary && (
-        <div className="mt-3 min-w-0" data-equipment-summary>{summary}</div>
-      )}
       <div id={contentId} hidden={collapsible && !expanded} className="mt-4 min-w-0">{children}</div>
     </section>
   );

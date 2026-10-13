@@ -41,7 +41,10 @@ export function EquipmentTypeInventory({ items, locale, availableLabel, absentLa
 
   return (
     <div className="min-w-0">
-      <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="min-w-0 md:hidden" data-equipment-summary>
+        <EquipmentTypeSummary items={items} locale={locale} absentLabel={absentLabel} quantityLabel={quantityLabel} />
+      </div>
+      <div className="hidden min-w-0 gap-3 md:grid md:grid-cols-2 lg:grid-cols-3">
         {items.map(({ type, isPresent, quantity }) => (
           <div key={type.code} className="min-w-0 rounded-lg border border-gray-100 p-3" data-equipment-type={type.code}>
             <div className="flex min-w-0 flex-wrap items-start justify-between gap-2">
