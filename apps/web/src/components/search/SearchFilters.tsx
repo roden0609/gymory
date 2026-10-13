@@ -37,8 +37,6 @@ const FREE_WEIGHT_FILTERS: CheckboxFilter[] = [
   { labelKey: "swissBar", param: "hasSwissBar" },
   { labelKey: "camberedBar", param: "hasCamberedBar" },
   { labelKey: "ezBar", param: "hasEzBar" },
-  { labelKey: "gluteHamDeveloper", param: "hasGluteHamDeveloper" },
-  { labelKey: "reverseHyper", param: "hasReverseHyper" },
 ];
 
 const CHECKBOX_SECTIONS: CheckboxSection[] = [
@@ -81,7 +79,7 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
   {
     titleKey: "coreMachine",
     filters: [
-      { labelKey: "romanChair", param: "hasRomanChair" },
+      { labelKey: "abRoller", param: "hasAbRoller" },
       { labelKey: "abCrunchBench", param: "hasAbCrunchBench" },
       { labelKey: "torsoRotationMachine", param: "hasTorsoRotationMachine" },
       { labelKey: "abCrunchMachine", param: "hasAbCrunchMachine" },
@@ -121,6 +119,7 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
   {
     titleKey: "backMachine",
     filters: [
+      { labelKey: "romanChair", param: "hasRomanChair" },
       { labelKey: "latPulldownMachine", param: "hasLatPulldownMachine" },
       { labelKey: "seatedRowMachine", param: "hasSeatedRowMachine" },
       { labelKey: "backExtensionMachine", param: "hasBackExtensionMachine" },
@@ -149,6 +148,8 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
   {
     titleKey: "legMachine",
     filters: [
+      { labelKey: "reverseHyper", param: "hasReverseHyper" },
+      { labelKey: "gluteHamDeveloper", param: "hasGluteHamDeveloper" },
       { labelKey: "multiHipMachine", param: "hasMultiHipMachine" },
       { labelKey: "hipAbductorMachine", param: "hasHipAbductorMachine" },
       { labelKey: "hipAdductorMachine", param: "hasHipAdductorMachine" },
@@ -170,23 +171,31 @@ const CHECKBOX_SECTIONS: CheckboxSection[] = [
     ],
   },
   {
+    titleKey: "functionalTraining",
+    filters: [
+      { labelKey: "rings", param: "hasRings" },
+      { labelKey: "resistanceBands", param: "hasResistanceBand" },
+      { labelKey: "trx", param: "hasTrx" },
+      { labelKey: "balanceBall", param: "hasBalanceBall" },
+      { labelKey: "plyoBox", param: "hasPlyoBox" },
+      { labelKey: "exerciseStepper", param: "hasExerciseStepper" },
+      { labelKey: "medicineBall", param: "hasMedicineBall" },
+      { labelKey: "battleRope", param: "hasBattleRope" },
+      { labelKey: "sled", param: "hasSled" },
+      { labelKey: "wallBall", param: "hasWallBall" },
+      { labelKey: "wallBallPlate", param: "hasWallBallPlate" },
+      { labelKey: "sandbag", param: "hasSandbag" },
+    ],
+  },
+  {
     titleKey: "otherEquipment",
     filters: [
       { labelKey: "boxingSandbag", param: "hasBoxingSandbag" },
-      { labelKey: "battleRope", param: "hasBattleRope" },
       { labelKey: "foamRoller", param: "hasFoamRoller" },
-      { labelKey: "medicineBall", param: "hasMedicineBall" },
-      { labelKey: "exerciseStepper", param: "hasExerciseStepper" },
-      { labelKey: "abRoller", param: "hasAbRoller" },
       { labelKey: "massageBall", param: "hasMassageBall" },
       { labelKey: "dipBelt", param: "hasDipBelt" },
       { labelKey: "weightVest", param: "hasWeightVest" },
       { labelKey: "liftingStraps", param: "hasLiftingStraps" },
-      { labelKey: "plyoBox", param: "hasPlyoBox" },
-      { labelKey: "balanceBall", param: "hasBalanceBall" },
-      { labelKey: "trx", param: "hasTrx" },
-      { labelKey: "resistanceBands", param: "hasResistanceBand" },
-      { labelKey: "rings", param: "hasRings" },
       { labelKey: "yogaBlock", param: "hasYogaBlock" },
       { labelKey: "yogaMat", param: "hasYogaMat" },
       { labelKey: "stretchingMachine", param: "hasStretchingMachine" },

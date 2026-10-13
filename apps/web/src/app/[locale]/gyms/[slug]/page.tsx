@@ -313,6 +313,7 @@ const SUBMIT_SECTION_HASHES = {
   backMachine: "submit-section-back-machine",
   shoulderMachine: "submit-section-shoulder-machine",
   legMachine: "submit-section-leg-machine",
+  functionalTraining: "submit-section-functional-training",
   otherEquipment: "submit-section-other-equipment",
   amenities: "submit-section-amenities",
   equipmentBrands: "submit-section-equipment-brands",

@@ -1,4 +1,4 @@
--- Run after 0054 with psql -v ON_ERROR_STOP=1 -f this file.
+-- Run after 0056 with psql -v ON_ERROR_STOP=1 -f this file.
 -- Every fixture and mutation rolls back.
 begin;
 create function pg_temp.assert(p_condition boolean, p_message text) returns void
@@ -13,7 +13,7 @@ values
  ('00000000-0054-4000-8000-000000000003', '00000000-0054-4000-8000-000000000002', 'chest_press_machine', 'Test press', 'test-press', 'manual', 'active', array['plate-loaded']),
  ('00000000-0054-4000-8000-000000000004', '00000000-0054-4000-8000-000000000002', 'chest_press_machine', 'Second press', 'second-press', 'manual', 'active', array['selectorized']);
 select pg_temp.assert((select c.slug='chest' from public.equipment e join public.equipment_categories c on c.id=e.category_id where e.id='00000000-0054-4000-8000-000000000003'), 'Model category must follow its type');
-select pg_temp.assert((select count(*)=11 from public.equipment_categories), 'Expected eleven categories');
+select pg_temp.assert((select count(*)=12 from public.equipment_categories), 'Expected twelve categories');
 select pg_temp.assert((select labels=array['hyrox'] from public.equipment_types where code='ski_erg'), 'SkiErg must have predefined HYROX label');
 select pg_temp.assert((select labels='{}'::text[] from public.equipment_types where code='chest_press_machine'), 'Do not copy mechanism label into generic type');
 
