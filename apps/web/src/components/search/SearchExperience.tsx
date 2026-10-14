@@ -43,7 +43,6 @@ export async function SearchExperience({
     getEquipmentMachineSuggestions(),
   ]);
   const common = await getTranslations("common");
-  const search = await getTranslations("search");
   const districtPages = await getTranslations("districtPages");
   const currentDistrictCode =
     fixedDistrict ??
@@ -60,7 +59,7 @@ export async function SearchExperience({
     <main className="min-h-screen overflow-x-hidden bg-gray-50">
       <div className="bg-white border-b border-gray-200">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+          <div className="hidden sm:block">
             <p className="mt-2 max-w-2xl text-gray-500">
               {common("tagline")}
             </p>
@@ -89,9 +88,6 @@ export async function SearchExperience({
             clearQueryKeys={["flash"]}
           />
         )}
-        <p className="mb-4 max-w-3xl text-sm text-gray-500">
-          {search("communityContribution")}
-        </p>
         {introduction}
         <TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />
         <div className="mb-5 grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)]">
