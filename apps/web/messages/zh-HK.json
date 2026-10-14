@@ -240,6 +240,7 @@
   "search": {
     "title": "搵健身房",
     "placeholder": "按地區或器械搜尋...",
+    "clearFilters": "清除篩選",
     "filters": "篩選",
     "browseByCategory": "按分類瀏覽",
     "collectionFilter": "集合",

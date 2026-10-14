@@ -1,3 +1,4 @@
+import { SearchFilterLayout } from "./SearchFilterLayout";
 import { Suspense, type ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { TransientBanner } from "@/components/common/TransientBanner";
@@ -108,13 +109,9 @@ export async function SearchExperience({
           </Suspense>
         </div>
         {currentDistrictName && !introduction ? (
-          <div className="mb-4 min-w-0 max-w-full">
-            <h1 className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
-              {districtPages("h1", { district: currentDistrictName })}
-            </h1>
-          </div>
+          <h1 className="sr-only">{districtPages("h1", { district: currentDistrictName })}</h1>
         ) : null}
-        <div className="flex min-w-0 flex-col gap-6 md:flex-row">
+        <SearchFilterLayout>
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
             <SearchFilters
               basePath={filterBasePath}
@@ -133,7 +130,7 @@ export async function SearchExperience({
               ...(fixedGymChain ? { gymChains: fixedGymChain } : {}),
             }}
           />
-        </div>
+        </SearchFilterLayout>
       </div>
     </main>
   );

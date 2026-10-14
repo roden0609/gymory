@@ -240,6 +240,7 @@
   "search": {
     "title": "Find a gym",
     "placeholder": "Search by district or equipment...",
+    "clearFilters": "Clear filters",
     "filters": "Filters",
     "browseByCategory": "Browse by category",
     "collectionFilter": "Collection",

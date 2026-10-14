@@ -14,6 +14,7 @@ import {
 import { getSelectedDistricts } from "@/lib/search-navigation";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import type { EquipmentCategoryFilterOption, EquipmentMachineSuggestion } from "@/lib/db/queries/equipment-catalog-search";
+import { useSearchFilterActions } from "./SearchFilterLayout";
 import { GymBrandSearch } from "./GymBrandSearch";
 import { EquipmentSearch } from "./EquipmentSearch";
 import { EQUIPMENT_BRANDS } from "@gymory/shared";
@@ -346,6 +347,7 @@ export function SearchFilters({
   showEquipmentSearch = true,
 }: SearchFiltersProps) {
   const router = useRouter();
+  const setFilterActions = useSearchFilterActions();
   const searchParams = useSearchParams();
   const locale = useLocale();
   const t = useTranslations("search");
@@ -404,7 +406,7 @@ export function SearchFilters({
   const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
   const activeFilterCount = useMemo(
     () =>
-      (fixedDistrict ? 0 : selectedDistricts.length) +
+      selectedDistricts.length +
       Number(Boolean(minRackCount)) +
       Number(Boolean(minBenchCount)) +
       Number(Boolean(minBarbellCount)) +
@@ -415,15 +417,14 @@ export function SearchFilters({
       Number(Boolean(collection) && !fixedCollection) +
       Number(Boolean(searchParams.get("machine"))) +
       Number(Boolean(searchParams.get("category"))) +
+      Number(Boolean(searchParams.get("userLat")) && Boolean(searchParams.get("userLng"))) +
       selectedFilters.size +
-      (fixedGymChain ? 0 : selectedGymChains.length) +
+      selectedGymChains.length +
       selectedBrandSlugs.length,
     [
       collection,
       searchParams,
       fixedCollection,
-      fixedDistrict,
-      fixedGymChain,
       selectedDistricts,
       minBarbellCount,
       minBenchCount,
@@ -613,7 +614,7 @@ export function SearchFilters({
       });
     });
 
-    if (!fixedDistrict) selectedDistricts.forEach((item) => {
+    selectedDistricts.forEach((item) => {
       trackDistrictFilter({ district: item.slug, filter_param: "districts", selected: false, source: "search_page" });
     });
 
@@ -626,7 +627,7 @@ export function SearchFilters({
       });
     });
 
-    selectedGymChains.filter((slug) => slug !== fixedGymChain).forEach((slug) => {
+    selectedGymChains.forEach((slug) => {
       trackGymBrandFilter({
         gym_chain: slug,
         filter_param: "gymChains",
@@ -645,9 +646,13 @@ export function SearchFilters({
     setCollection(fixedCollection ?? "");
     setSelectedBrandSlugs([]);
     setSelectedFilters(new Set());
-    replaceWithoutScroll(basePath);
+    const params = new URLSearchParams();
+    if (currentView === "map" || currentView === "split") params.set("view", currentView);
+    const clearBasePath = fixedDistrict || fixedGymChain ? "/search" : basePath;
+    replaceWithoutScroll(params.size ? `${clearBasePath}?${params}` : clearBasePath);
   }, [
     basePath,
+    currentView,
     fixedCollection,
     fixedDistrict,
     fixedGymChain,
@@ -664,6 +669,10 @@ export function SearchFilters({
     selectedGymChains,
     replaceWithoutScroll,
   ]);
+
+  useEffect(() => {
+    setFilterActions?.({ count: activeFilterCount, clear: clearFilters });
+  }, [activeFilterCount, clearFilters, setFilterActions]);
 
   const activeCollection = collection
     ? getTrainingPageDefinition(collection)
@@ -843,12 +852,6 @@ export function SearchFilters({
             className="w-full min-w-0 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
           >
             {tCommon("search")}
-          </button>
-          <button
-            onClick={clearFilters}
-            className="w-full min-w-0 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
-          >
-            {tCommon("clear")}
           </button>
         </div>
       </div>

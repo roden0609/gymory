@@ -1,3 +1,4 @@
+import { SearchFilterLayout } from "@/components/search/SearchFilterLayout";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -130,6 +131,7 @@ export async function TrainingCollectionPage({
             </Link>
             <h1 className="mt-4 min-w-0 break-words text-2xl font-semibold text-gray-900 [overflow-wrap:anywhere] sm:text-3xl">
               {t(`items.${definition.slug}.h1`)}
+              {currentDistrictName && <span className="sr-only"> - {currentDistrictName}</span>}
             </h1>
             <p className="mt-2 max-w-3xl text-gray-500">
               {t(`items.${definition.slug}.intro`)}
@@ -183,15 +185,7 @@ export async function TrainingCollectionPage({
           />
         </section>
 
-        {currentDistrictName ? (
-          <div className="mb-4 min-w-0 max-w-full">
-            <h1 className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
-              {districtPages("h1", { district: currentDistrictName })}
-            </h1>
-          </div>
-        ) : null}
-
-        <div className="flex min-w-0 flex-col gap-6 md:flex-row">
+        <SearchFilterLayout>
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
             <SearchFilters
               basePath={filterBasePath}
@@ -211,7 +205,7 @@ export async function TrainingCollectionPage({
               ...(fixedDistrict ? { district: fixedDistrict } : {}),
             }}
           />
-        </div>
+        </SearchFilterLayout>
       </div>
     </main>
   );

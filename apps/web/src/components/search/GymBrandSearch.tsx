@@ -23,7 +23,7 @@ export function GymBrandSearch({ currentDistrictCode, currentGymChainSlug, train
   return (
     <section className="min-w-0 max-w-full">
       <h2 className="mb-2 text-sm font-semibold text-gray-900"><Link href="/gym-brands" className="hover:underline">{t("gymBrands")}</Link></h2>
-      <MultiSelectFilter filterKey="gymChains" label={t("gymBrands")} placeholder={t("anyGymBrand")} hint={t("gymBrandHint")}
+      <MultiSelectFilter filterKey="gymChains" label={t("gymBrands")} placeholder={t("anyGymBrand")}
         options={GYM_CHAINS.map((chain) => ({ value: chain.slug, label: locale === "zh-HK" && chain.name_zh ? chain.name_zh : chain.name_en }))}
         selected={selected}
         onChange={(next) => {

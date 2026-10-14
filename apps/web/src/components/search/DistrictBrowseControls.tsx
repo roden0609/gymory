@@ -121,7 +121,7 @@ export function DistrictBrowseControls({
           </button>
         ) : null}
         <div className="w-full min-w-0 max-w-full xl:flex-1">
-          <MultiSelectFilter filterKey="districts" label={t("district")} placeholder={t("anyDistrict")} hint={t("districtMultiHint")}
+          <MultiSelectFilter filterKey="districts" label={t("district")} placeholder={t("anyDistrict")}
             options={DISTRICT_PAGE_DEFINITIONS.map((item) => ({ value: item.slug, label: getDistrictPageLabel(item, locale) }))}
             selected={selected} onChange={goToDistricts} />
         </div>
