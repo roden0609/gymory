@@ -73,12 +73,12 @@ export function EquipmentTypeInventory({ items, locale, availableLabel, absentLa
                     const brandName = locale === "zh-HK" && machine.brand.nameZh ? machine.brand.nameZh : machine.brand.nameEn;
                     return (
                       <li key={machine.id} className="min-w-0 rounded-lg border border-gray-100 p-3">
-                        <h5 className="break-words text-sm font-medium text-gray-900 [overflow-wrap:anywhere]">
-                          {locale === "zh-HK" && machine.nameZh ? machine.nameZh : machine.name}
-                        </h5>
-                        <div className="mt-1 flex min-w-0 flex-wrap items-start justify-between gap-2 text-xs text-gray-500">
-                          {brandName && <span className="min-w-0 max-w-full break-words [overflow-wrap:anywhere]">{brandName}</span>}
-                          {machine.quantity !== null && <span className="max-w-full break-words [overflow-wrap:anywhere]">{quantityLabel(machine.quantity)}</span>}
+                        <div className="flex min-w-0 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                          <h5 className="min-w-0 max-w-full flex-[1_1_auto] break-words text-sm font-medium text-gray-900 [overflow-wrap:anywhere]">
+                            {locale === "zh-HK" && machine.nameZh ? machine.nameZh : machine.name}
+                            {brandName && <span className="font-normal text-gray-500"> · {brandName}</span>}
+                          </h5>
+                          {machine.quantity !== null && <span className="ml-auto max-w-full break-words text-right text-xs text-gray-500 [overflow-wrap:anywhere]">{quantityLabel(machine.quantity)}</span>}
                         </div>
                         <Labels labels={machine.labels} locale={locale} />
                       </li>
