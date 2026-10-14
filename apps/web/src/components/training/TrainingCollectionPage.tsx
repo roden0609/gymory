@@ -175,17 +175,17 @@ export async function TrainingCollectionPage({
           </section>
         ) : null}
 
-        <section className="mb-5 min-w-0 max-w-full">
-          <h2 className="mb-2 text-sm font-semibold text-gray-900">
-            {districtPages("browseTitle")}
-          </h2>
-          <DistrictBrowseControls
-            currentDistrictCode={currentDistrictCode}
-            trainingSlug={definition.slug}
-          />
-        </section>
-
-        <SearchFilterLayout>
+        <SearchFilterLayout controls={
+          <section className="mb-5 min-w-0 max-w-full">
+            <h2 className="mb-2 text-sm font-semibold text-gray-900">
+              {districtPages("browseTitle")}
+            </h2>
+            <DistrictBrowseControls
+              currentDistrictCode={currentDistrictCode}
+              trainingSlug={definition.slug}
+            />
+          </section>
+        }>
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
             <SearchFilters
               basePath={filterBasePath}

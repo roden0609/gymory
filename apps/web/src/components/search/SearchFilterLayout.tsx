@@ -10,7 +10,7 @@ export function useSearchFilterActions() {
   return useContext(FilterActionsContext);
 }
 
-export function SearchFilterLayout({ children }: { children: ReactNode }) {
+export function SearchFilterLayout({ children, controls }: { children: ReactNode; controls?: ReactNode }) {
   const t = useTranslations("search");
   const [actions, setActions] = useState<FilterActions | null>(null);
 
@@ -25,6 +25,7 @@ export function SearchFilterLayout({ children }: { children: ReactNode }) {
             </button>
           </div>
         )}
+        {controls}
         <div className="flex min-w-0 flex-col gap-6 md:flex-row">{children}</div>
       </div>
     </FilterActionsContext.Provider>
