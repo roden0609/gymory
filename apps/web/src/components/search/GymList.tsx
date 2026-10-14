@@ -68,7 +68,8 @@ export function GymList({
     const params = new URLSearchParams(apiSearchParams);
     for (const [key, value] of searchParams.entries()) {
       if (key === "collection" && apiSearchParams?.collection) continue;
-      if (key === "district" && apiSearchParams?.district) continue;
+      if ((key === "district" || key === "districts") && apiSearchParams?.district) continue;
+      if (key === "gymChains" && apiSearchParams?.gymChains) continue;
       params.set(key, value);
     }
     params.set("page", String(loadedPage + 1));

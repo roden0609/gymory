@@ -8,7 +8,7 @@ import {
   getDistrictPageDefinition,
   getDistrictPageLabel,
 } from "@/lib/district-pages";
-import { buildSeoMetadata } from "@/lib/seo";
+import { buildListingSeoMetadata } from "@/lib/listing-seo";
 
 type Locale = "en" | "zh-HK";
 
@@ -23,7 +23,7 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const district = getDistrictPageDefinition(slug);
   if (!district) return {};
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
   const districtName = getDistrictPageLabel(district, locale);
 
-  return buildSeoMetadata({
+  return buildListingSeoMetadata({
     locale,
     path: `/districts/${district.slug}`,
     title: t("title", { district: districtName }),
@@ -43,7 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       district: districtName,
       count: result.totalCount,
     }),
-    robots: result.totalCount === 0 ? { index: false, follow: true } : undefined,
+    searchParams,
+    empty: result.totalCount === 0,
   });
 }
 

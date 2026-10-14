@@ -1,74 +1,48 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { HK_DISTRICTS, getHkDistrictLabel } from "@gymory/shared";
+
 import { useRouter } from "@/i18n/navigation";
 import { trackDistrictFilter } from "@/lib/analytics";
-import { getDistrictPageDefinitionByCode } from "@/lib/district-pages";
+import { DISTRICT_PAGE_DEFINITIONS, getDistrictPageLabel } from "@/lib/district-pages";
+import { getSearchBrowseHref, getSelectedDistricts } from "@/lib/search-navigation";
+import { MultiSelectFilter } from "./MultiSelectFilter";
 
 type DistrictBrowseControlsProps = {
   currentDistrictCode?: string;
   trainingSlug?: string;
+  currentGymChainSlug?: string;
 };
 
 export function DistrictBrowseControls({
   currentDistrictCode,
   trainingSlug,
+  currentGymChainSlug,
 }: DistrictBrowseControlsProps) {
   const locale = useLocale() as "en" | "zh-HK";
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations("search");
-  const [district, setDistrict] = useState(currentDistrictCode ?? "");
+  const params = new URLSearchParams(searchParams.toString());
+  const selected = getSelectedDistricts(params, currentDistrictCode).map((item) => item.slug);
+  const gymChains = useMemo(
+    () => currentGymChainSlug ? [currentGymChainSlug] : (searchParams.get("gymChains") ?? "").split(",").filter(Boolean),
+    [currentGymChainSlug, searchParams]
+  );
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
   const hasUserLocation =
     Boolean(searchParams.get("userLat")) && Boolean(searchParams.get("userLng"));
 
-  useEffect(() => {
-    setDistrict(currentDistrictCode ?? "");
-  }, [currentDistrictCode]);
-
-  const goToDistrict = useCallback(
-    (nextDistrict: string) => {
-      setDistrict(nextDistrict);
-
-      if (!nextDistrict) {
-        if (currentDistrictCode) {
-          const currentDistrictPage =
-            getDistrictPageDefinitionByCode(currentDistrictCode);
-          trackDistrictFilter({
-            district: currentDistrictPage?.slug ?? currentDistrictCode,
-            filter_param: "district",
-            selected: false,
-            source: "search_page",
-          });
-        }
-        router.push(trainingSlug ? `/${trainingSlug}` : "/search");
-        return;
-      }
-
-      const districtPage = getDistrictPageDefinitionByCode(nextDistrict);
-      if (districtPage) {
-        trackDistrictFilter({
-          district: districtPage.slug,
-          filter_param: "district",
-          selected: true,
-          source: "search_page",
-        });
-      }
-
-      if (trainingSlug && districtPage) {
-        router.push(`/${trainingSlug}/districts/${districtPage.slug}`);
-        return;
-      }
-
-      router.push(districtPage ? `/districts/${districtPage.slug}` : "/search");
-    },
-    [currentDistrictCode, router, trainingSlug]
-  );
+  const goToDistricts = (next: string[]) => {
+    for (const district of DISTRICT_PAGE_DEFINITIONS) {
+      if (selected.includes(district.slug) === next.includes(district.slug)) continue;
+      trackDistrictFilter({ district: district.slug, filter_param: "districts", selected: next.includes(district.slug), source: "search_page" });
+    }
+    router.push(getSearchBrowseHref({ params, districtSlugs: next, gymChainSlugs: gymChains, trainingSlug }), { scroll: false });
+  };
 
   const requestUserLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -83,6 +57,9 @@ export function DistrictBrowseControls({
         setIsLocating(false);
         const params = new URLSearchParams(searchParams.toString());
         params.delete("district");
+        params.delete("districts");
+        if (currentGymChainSlug) params.set("gymChains", currentGymChainSlug);
+        if (trainingSlug) params.set("collection", trainingSlug);
         params.delete("page");
         params.delete("pageSize");
         params.set("userLat", position.coords.latitude.toFixed(6));
@@ -107,7 +84,7 @@ export function DistrictBrowseControls({
         maximumAge: 300000,
       }
     );
-  }, [router, searchParams, t]);
+  }, [currentGymChainSlug, router, searchParams, t, trainingSlug]);
 
   const clearLocation = useCallback(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -116,17 +93,17 @@ export function DistrictBrowseControls({
     params.delete("page");
     params.delete("pageSize");
     setLocationError(null);
-    router.push(params.toString() ? `/search?${params.toString()}` : "/search");
-  }, [router, searchParams]);
+    router.push(getSearchBrowseHref({ params, districtSlugs: selected, gymChainSlugs: gymChains, trainingSlug }), { scroll: false });
+  }, [gymChains, router, searchParams, selected, trainingSlug]);
 
   return (
     <div className="w-full min-w-0 max-w-full">
-      <div className="flex w-full min-w-0 max-w-full flex-col gap-2 sm:flex-row sm:flex-nowrap">
+      <div className="flex w-full min-w-0 max-w-full flex-col gap-2 xl:flex-row xl:flex-wrap">
         <button
           type="button"
           onClick={requestUserLocation}
           disabled={isLocating}
-          className={`inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:shrink-0 ${
+          className={`inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 xl:w-auto xl:shrink-0 ${
             hasUserLocation
               ? "border-gray-900 bg-gray-900 text-white hover:bg-gray-700"
               : "border-gray-300 bg-white text-gray-700 hover:border-gray-400 hover:bg-gray-50"
@@ -138,27 +115,15 @@ export function DistrictBrowseControls({
           <button
             type="button"
             onClick={clearLocation}
-            className="inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 sm:w-auto sm:shrink-0"
+            className="inline-flex min-h-9 w-full min-w-0 max-w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 xl:w-auto xl:shrink-0"
           >
             {t("clearLocation")}
           </button>
         ) : null}
-        <div className="relative w-full min-w-0 max-w-full sm:w-auto sm:flex-1 sm:max-w-80">
-          <select
-            value={district}
-            onChange={(event) => goToDistrict(event.target.value)}
-            className="h-9 w-full min-w-0 max-w-full appearance-none rounded-lg border border-gray-300 bg-white py-1.5 pl-3 pr-10 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900"
-          >
-            <option value="">{t("anyDistrict")}</option>
-            {HK_DISTRICTS.map((item) => (
-              <option key={item.code} value={item.code}>
-                {getHkDistrictLabel(item.code, locale)}
-              </option>
-            ))}
-          </select>
-          <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600">
-            <path d="m5 7.5 5 5 5-5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-          </svg>
+        <div className="w-full min-w-0 max-w-full xl:flex-1">
+          <MultiSelectFilter filterKey="districts" label={t("district")} placeholder={t("anyDistrict")} hint={t("districtMultiHint")}
+            options={DISTRICT_PAGE_DEFINITIONS.map((item) => ({ value: item.slug, label: getDistrictPageLabel(item, locale) }))}
+            selected={selected} onChange={goToDistricts} />
         </div>
       </div>
       {locationError ? (

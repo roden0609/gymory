@@ -11,10 +11,12 @@ import {
   trackFilterApply,
   trackGymBrandFilter,
 } from "@/lib/analytics";
+import { getSelectedDistricts } from "@/lib/search-navigation";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import type { EquipmentCategoryFilterOption, EquipmentMachineSuggestion } from "@/lib/db/queries/equipment-catalog-search";
+import { GymBrandSearch } from "./GymBrandSearch";
 import { EquipmentSearch } from "./EquipmentSearch";
-import { EQUIPMENT_BRANDS, GYM_CHAINS } from "@gymory/shared";
+import { EQUIPMENT_BRANDS } from "@gymory/shared";
 
 type CheckboxFilter = {
   labelKey: string;
@@ -328,6 +330,7 @@ type SearchFiltersProps = {
   basePath?: string;
   fixedCollection?: string;
   fixedDistrict?: string;
+  fixedGymChain?: string;
   equipmentCategories?: EquipmentCategoryFilterOption[];
   machineSuggestions?: EquipmentMachineSuggestion[];
   showEquipmentSearch?: boolean;
@@ -337,6 +340,7 @@ export function SearchFilters({
   basePath = "/search",
   fixedCollection,
   fixedDistrict,
+  fixedGymChain,
   equipmentCategories = [],
   machineSuggestions = [],
   showEquipmentSearch = true,
@@ -352,8 +356,11 @@ export function SearchFilters({
   const [collection, setCollection] = useState(
     fixedCollection ?? searchParams.get("collection") ?? ""
   );
-  const [district, setDistrict] = useState(
-    fixedDistrict ?? searchParams.get("district") ?? ""
+  const district = fixedDistrict ?? searchParams.get("district") ?? "";
+  const multiDistricts = searchParams.get("districts") ?? "";
+  const selectedDistricts = useMemo(
+    () => getSelectedDistricts(new URLSearchParams(searchParams.toString()), fixedDistrict),
+    [fixedDistrict, searchParams]
   );
   const currentView = searchParams.get("view");
   const [minRackCount, setMinRackCount] = useState(
@@ -390,17 +397,14 @@ export function SearchFilters({
         .map((item) => item.trim())
         .filter(Boolean)
   );
-  const [selectedGymChains, setSelectedGymChains] = useState<string[]>(
-    () =>
-      (searchParams.get("gymChains") ?? "")
-        .split(",")
-        .map((item) => item.trim())
-        .filter(Boolean)
+  const selectedGymChains = useMemo(
+    () => fixedGymChain ? [fixedGymChain] : (searchParams.get("gymChains") ?? "").split(",").map((item) => item.trim()).filter(Boolean),
+    [fixedGymChain, searchParams]
   );
   const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
   const activeFilterCount = useMemo(
     () =>
-      Number(Boolean(district) && !fixedDistrict) +
+      (fixedDistrict ? 0 : selectedDistricts.length) +
       Number(Boolean(minRackCount)) +
       Number(Boolean(minBenchCount)) +
       Number(Boolean(minBarbellCount)) +
@@ -412,14 +416,15 @@ export function SearchFilters({
       Number(Boolean(searchParams.get("machine"))) +
       Number(Boolean(searchParams.get("category"))) +
       selectedFilters.size +
-      selectedGymChains.length +
+      (fixedGymChain ? 0 : selectedGymChains.length) +
       selectedBrandSlugs.length,
     [
       collection,
       searchParams,
-      district,
       fixedCollection,
       fixedDistrict,
+      fixedGymChain,
+      selectedDistricts,
       minBarbellCount,
       minBenchCount,
       minDumbbellWeight,
@@ -471,22 +476,6 @@ export function SearchFilters({
     );
   }, [selectedBrandSlugs]);
 
-  const toggleGymChain = useCallback((slug: string, checked: boolean) => {
-    const isSelected = selectedGymChains.includes(slug);
-    if (checked === isSelected) return;
-
-    trackGymBrandFilter({
-      gym_chain: slug,
-      filter_param: "gymChains",
-      selected: checked,
-      source: "search_page",
-    });
-
-    setSelectedGymChains((current) =>
-      checked ? [...current, slug] : current.filter((value) => value !== slug)
-    );
-  }, [selectedGymChains]);
-
   const nextQueryString = useMemo(() => {
     const params = new URLSearchParams();
     const userLat = searchParams.get("userLat");
@@ -504,6 +493,7 @@ export function SearchFilters({
     }
     const nextDistrict = fixedDistrict ?? district;
     if (nextDistrict && !fixedDistrict) params.set("district", nextDistrict);
+    else if (!fixedDistrict && multiDistricts) params.set("districts", multiDistricts);
     if (minRackCount) params.set("minRackCount", minRackCount);
     if (minBenchCount) params.set("minBenchCount", minBenchCount);
     if (minBarbellCount) params.set("minBarbellCount", minBarbellCount);
@@ -522,7 +512,7 @@ export function SearchFilters({
     const category = searchParams.get("category");
     if (machine) params.set("machine", machine);
     if (category) params.set("category", category);
-    if (selectedGymChains.length > 0) {
+    if (!fixedGymChain && selectedGymChains.length > 0) {
       params.set("gymChains", selectedGymChains.join(","));
     }
     selectedFilters.forEach((param) => params.set(param, "true"));
@@ -533,6 +523,8 @@ export function SearchFilters({
     district,
     fixedCollection,
     fixedDistrict,
+    fixedGymChain,
+    multiDistricts,
     minBarbellCount,
     minBenchCount,
     minDumbbellWeight,
@@ -557,9 +549,12 @@ export function SearchFilters({
     const currentParams = new URLSearchParams(searchParams.toString());
     currentParams.delete("page");
     currentParams.delete("pageSize");
+    currentParams.sort();
+    const nextParams = new URLSearchParams(nextQueryString);
+    nextParams.sort();
     const currentFilterQuery = currentParams.toString();
 
-    if (nextQueryString === currentFilterQuery) return;
+    if (nextParams.toString() === currentFilterQuery) return;
 
     const timer = window.setTimeout(() => {
       replaceWithoutScroll(
@@ -618,14 +613,9 @@ export function SearchFilters({
       });
     });
 
-    if (district && !fixedDistrict) {
-      trackDistrictFilter({
-        district,
-        filter_param: "district",
-        selected: false,
-        source: "search_page",
-      });
-    }
+    if (!fixedDistrict) selectedDistricts.forEach((item) => {
+      trackDistrictFilter({ district: item.slug, filter_param: "districts", selected: false, source: "search_page" });
+    });
 
     selectedBrandSlugs.forEach((slug) => {
       trackEquipmentBrandFilter({
@@ -636,7 +626,7 @@ export function SearchFilters({
       });
     });
 
-    selectedGymChains.forEach((slug) => {
+    selectedGymChains.filter((slug) => slug !== fixedGymChain).forEach((slug) => {
       trackGymBrandFilter({
         gym_chain: slug,
         filter_param: "gymChains",
@@ -645,7 +635,6 @@ export function SearchFilters({
       });
     });
 
-    setDistrict(fixedDistrict ?? "");
     setMinRackCount("");
     setMinBenchCount("");
     setMinBarbellCount("");
@@ -655,14 +644,14 @@ export function SearchFilters({
     setMinSize("");
     setCollection(fixedCollection ?? "");
     setSelectedBrandSlugs([]);
-    setSelectedGymChains([]);
     setSelectedFilters(new Set());
     replaceWithoutScroll(basePath);
   }, [
     basePath,
     fixedCollection,
-    district,
     fixedDistrict,
+    fixedGymChain,
+    selectedDistricts,
     minBarbellCount,
     minBenchCount,
     minDumbbellWeight,
@@ -682,6 +671,11 @@ export function SearchFilters({
 
   return (
     <aside className="w-full min-w-0 max-w-full shrink-0 md:w-72">
+      {showEquipmentSearch && (
+        <div className="mb-3 min-w-0 max-w-full rounded-lg border border-gray-200 bg-white p-4">
+          <GymBrandSearch currentDistrictCode={fixedDistrict} currentGymChainSlug={fixedGymChain} trainingSlug={fixedCollection} />
+        </div>
+      )}
       {showEquipmentSearch ? (
         <div className="mb-3 rounded-lg border border-gray-200 bg-white p-4">
           <EquipmentSearch basePath={basePath} equipmentCategories={equipmentCategories} machineSuggestions={machineSuggestions} />
@@ -741,26 +735,6 @@ export function SearchFilters({
             </div>
           </div>
         )}
-
-        <FilterSection title={t("gymBrands")}>
-          <p className="mb-2 text-xs text-gray-500">{t("gymBrandHint")}</p>
-          <div className="grid gap-2">
-            {GYM_CHAINS.map((chain) => {
-              const label =
-                locale === "zh-HK" && chain.name_zh
-                  ? chain.name_zh
-                  : chain.name_en;
-              return (
-                <CheckboxFilter
-                  key={chain.slug}
-                  label={label}
-                  checked={selectedGymChains.includes(chain.slug)}
-                  onChange={(checked) => toggleGymChain(chain.slug, checked)}
-                />
-              );
-            })}
-          </div>
-        </FilterSection>
 
         <FilterSection title={tGym("freeWeight")}>
           <NumberFilter

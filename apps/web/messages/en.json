@@ -249,6 +249,8 @@
     "gymsFound": "{count} gym found",
     "gymsFoundPlural": "{count} gyms found",
     "district": "District",
+    "districtMultiHint": "Select one or more districts. Results can match any selected district.",
+    "applyFilters": "Apply",
     "anyDistrict": "Any district",
     "minRacks": "Min racks",
     "minBenches": "Min benches",
@@ -263,6 +265,7 @@
     "machinePlaceholder": "e.g. hack squat",
     "equipmentCategory": "Machine category",
     "anyEquipmentCategory": "Any machine category",
+    "anyGymBrand": "Any gym brand",
     "gymBrands": "Gym brands",
     "gymBrandHint": "Gym brand matches use OR: any selected brand will match.",
     "brandOrHint": "Brand-only search includes broad brand records and verified models. Combined machine/category searches require a matching verified model.",
@@ -747,5 +750,29 @@
     "manageGyms": "Manage Gyms",
     "submissions": "Pending Submissions",
     "equipmentCatalog": "Equipment Catalog"
+  },
+  "gymBrandPages": {
+    "noLocations": "No gym brand locations have been recorded yet.",
+    "directoryTitle": "Gym brands in Hong Kong",
+    "directoryIntro": "Browse recorded Hong Kong gym locations by brand and compare their districts, equipment and facilities.",
+    "allGyms": "Search all gyms",
+    "title": "{brand} Hong Kong locations and equipment",
+    "h1": "{brand} in Hong Kong",
+    "description": "Browse {count} recorded {brand} locations in Hong Kong. Compare districts, equipment and facilities on Gymory.",
+    "intro": "Compare {count} recorded {brand} locations in Hong Kong. Choose districts and equipment to find a location that fits your training.",
+    "branchCount": "{count, plural, one {# recorded location} other {# recorded locations}}",
+    "districtsTitle": "Recorded locations by district",
+    "featuresTitle": "Equipment and facilities recorded at these locations",
+    "featureCount": "{feature}: {count, plural, one {# location} other {# locations}}",
+    "dataHint": "Counts include active locations recorded on Gymory, not necessarily every branch. Equipment and facilities vary by location; missing data does not mean an item is unavailable.",
+    "features": {
+      "racks": "Racks",
+      "dumbbells": "Dumbbells",
+      "treadmills": "Treadmills",
+      "rowers": "Rowers",
+      "bathrooms": "Bathrooms",
+      "changingRooms": "Changing rooms",
+      "drinkingWater": "Drinking water"
+    }
   }
 }

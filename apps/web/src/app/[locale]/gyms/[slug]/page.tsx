@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Gym } from "@gymory/shared";
-import { GYM_CHAINS, getHkDistrictLabel } from "@gymory/shared";
+import { getHkDistrictLabel } from "@gymory/shared";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
 import { EquipmentSection, EquipmentSections } from "@/components/gym/EquipmentSections";
@@ -17,6 +17,7 @@ import { getGymEquipmentBrands } from "@/lib/db/queries/equipment-brands";
 import { getPublicGymMachineInventory } from "@/lib/db/queries/equipment-machine-inventory";
 import { getGymBySlug } from "@/lib/db/queries/gyms";
 import { getHyroxEquipmentTypes, groupGymEquipmentTypes } from "@/lib/equipment-machine-inventory";
+import { getGymBrandForGym } from "@/lib/gym-brand-pages";
 import { buildSeoMetadata, getLocalizedUrl } from "@/lib/seo";
 
 type Locale = "en" | "zh-HK";
@@ -46,13 +47,6 @@ function getLocalizedGym(gym: Gym, locale: Locale) {
   };
 }
 
-function getGymChainSlug(gymSlug: string) {
-  return (
-    GYM_CHAINS.find((chain) =>
-      chain.slugPrefixes.some((prefix) => gymSlug.startsWith(prefix))
-    )?.slug ?? undefined
-  );
-}
 
 function removeUndefinedValues(value: unknown): unknown {
   if (Array.isArray(value)) {
@@ -411,6 +405,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
   const display = getLocalizedGym(gym, locale);
+  const gymBrand = getGymBrandForGym(gym.slug);
   const metaDescription =
     [display.district, display.address].filter(Boolean).join(" · ") ||
     "Gym equipment, location, and training details on Gymory.";
@@ -480,7 +475,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           gym_slug: gym.slug,
           gym_name: display.name,
           district: gym.district_code,
-          chain: getGymChainSlug(gym.slug),
+          chain: getGymBrandForGym(gym.slug)?.slug,
           locale,
         }}
       />
@@ -523,6 +518,11 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                 {display.district}
                 {display.address ? ` · ${display.address}` : ""}
               </p>
+              {gymBrand && (
+                <Link href={`/gym-brands/${gymBrand.slug}`} className="mt-2 inline-block max-w-full break-words text-sm text-gray-600 underline underline-offset-4">
+                  {locale === "zh-HK" ? gymBrand.name_zh : gymBrand.name_en}
+                </Link>
+              )}
               {gym.is_verified && verifiedDate && (
                 <p className="mt-2 text-sm text-gray-400">
                   {t("verifiedAt", { date: verifiedDate })}

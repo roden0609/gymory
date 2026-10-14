@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { getIndexableGymBrandSlugs } from "@/lib/gym-brand-pages";
 import { EQUIPMENT_BRANDS } from "@gymory/shared";
-import { createClient } from "@/lib/db/supabase-server";
+import { getActiveGymDirectoryEntries } from "@/lib/db/queries/gym-brand-pages";
 import { routing } from "@/i18n/routing";
 import { getIndexableBrandPageSlugs } from "@/lib/db/queries/equipment-brands";
 import {
@@ -12,12 +13,7 @@ import { DISTRICT_PAGE_DEFINITIONS } from "@/lib/district-pages";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://gymory.io";
-  const supabase = await createClient();
-
-  const { data: gyms } = await supabase
-    .from("gyms")
-    .select("slug, district_code, updated_at")
-    .eq("is_active", true);
+  const gyms = await getActiveGymDirectoryEntries();
 
   const equipmentPageSlugs = await getIndexableEquipmentPageSlugs();
   const equipmentDistrictPaths = await getIndexableEquipmentDistrictPagePaths(
@@ -76,6 +72,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.75,
     }));
 
+    const gymBrandUrls = getIndexableGymBrandSlugs(gyms ?? []).map((slug) => ({
+      url: `${localeBaseUrl}/gym-brands/${slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+
     return [
       { url: localeBaseUrl, changeFrequency: "daily" as const, priority: 1 },
       {
@@ -94,6 +96,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...equipmentUrls,
       ...equipmentDistrictUrls,
       ...brandUrls,
+      ...(gymBrandUrls.length ? [{ url: `${localeBaseUrl}/gym-brands`, changeFrequency: "weekly" as const, priority: 0.8 }] : []),
+      ...gymBrandUrls,
       ...gymUrls,
     ];
   });

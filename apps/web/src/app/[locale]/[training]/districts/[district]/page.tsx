@@ -30,7 +30,7 @@ export function generateStaticParams() {
   );
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { locale, training, district: districtSlug } = await params;
   const district = getDistrictPageDefinition(districtSlug);
   if (!district) return {};
@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     training,
     district,
+    searchParams,
   });
 }
 

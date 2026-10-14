@@ -249,6 +249,8 @@
     "gymsFound": "找到 {count} 間健身房",
     "gymsFoundPlural": "找到 {count} 間健身房",
     "district": "地區",
+    "districtMultiHint": "可揀多個地區，結果包括任何一個已選地區。",
+    "applyFilters": "套用",
     "anyDistrict": "所有地區",
     "minRacks": "最少深蹲架數量",
     "minBenches": "最少臥推椅數量",
@@ -263,6 +265,7 @@
     "machinePlaceholder": "例如：hack squat",
     "equipmentCategory": "器械分類",
     "anyEquipmentCategory": "所有器械分類",
+    "anyGymBrand": "不限健身房品牌",
     "gymBrands": "健身房品牌",
     "gymBrandHint": "健身房品牌篩選使用 OR：揀中任何一個品牌都會符合。",
     "brandOrHint": "只按品牌會包括廣泛品牌記錄及已驗證型號；配合器械／分類時必須有相符嘅已驗證型號。",
@@ -747,5 +750,29 @@
     "manageGyms": "管理健身房",
     "submissions": "待審提交",
     "equipmentCatalog": "器械目錄"
+  },
+  "gymBrandPages": {
+    "noLocations": "暫時未有已記錄嘅品牌分店。",
+    "directoryTitle": "香港健身房品牌",
+    "directoryIntro": "按品牌瀏覽已記錄嘅香港健身房，比較各地區分店、器材同設施。",
+    "allGyms": "搜尋所有健身房",
+    "title": "{brand} 香港分店、器材及設施",
+    "h1": "{brand} 香港分店",
+    "description": "瀏覽 Gymory 已記錄嘅 {count} 間 {brand} 香港分店，比較地區、器材同設施。",
+    "intro": "比較已記錄嘅 {count} 間 {brand} 香港分店，按地區同器材要求搵到啱你訓練嘅地方。",
+    "branchCount": "已記錄 {count} 間",
+    "districtsTitle": "各地區已記錄分店",
+    "featuresTitle": "分店已記錄嘅器材及設施",
+    "featureCount": "{feature}：{count} 間有記錄",
+    "dataHint": "數字只涵蓋 Gymory 已記錄嘅營運中場所，未必包括所有分店。器材同設施因分店而異；未有記錄唔代表冇提供。",
+    "features": {
+      "racks": "深蹲架",
+      "dumbbells": "啞鈴",
+      "treadmills": "跑步機",
+      "rowers": "划船機",
+      "bathrooms": "浴室",
+      "changingRooms": "更衣室",
+      "drinkingWater": "飲用水"
+    }
   }
 }

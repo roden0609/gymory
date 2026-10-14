@@ -1,5 +1,6 @@
 import type { GymSummary } from "@gymory/shared";
 import { getGymChainsBySlug, searchParamsSchema } from "@gymory/shared";
+import { getSelectedDistricts } from "@/lib/search-navigation";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { getCatalogSearchGymIds } from "./equipment-catalog-search";
 import { createClient } from "../supabase-server";
@@ -179,6 +180,7 @@ export async function searchGyms(
   const parsed = searchParamsSchema.safeParse({
     collection: rawParams.collection,
     district: rawParams.district,
+    districts: rawParams.districts,
     machine: rawParams.machine,
     category: rawParams.category,
     userLat: rawParams.userLat,
@@ -353,7 +355,13 @@ export async function searchGyms(
     );
   }
 
-  if (params.district) query = query.eq("district_code", params.district);
+  if (params.district) {
+    query = query.eq("district_code", params.district);
+  } else if (params.districts?.length) {
+    const districts = getSelectedDistricts(new URLSearchParams({ districts: params.districts.join(",") }));
+    if (!districts.length) return emptySearchResult(page, pageSize);
+    query = query.in("district_code", districts.map((item) => item.code));
+  }
   if (params.minRackCount) query = query.gte("rack_count", params.minRackCount);
   if (params.minBenchCount) {
     query = query.gte("bench_count", params.minBenchCount);

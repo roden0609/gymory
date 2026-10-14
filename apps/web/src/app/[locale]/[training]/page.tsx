@@ -23,9 +23,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { locale, training } = await params;
-  return generateTrainingCollectionMetadata({ locale, training });
+  return generateTrainingCollectionMetadata({ locale, training, searchParams });
 }
 
 export default async function TrainingLandingPage({ params, searchParams }: Props) {

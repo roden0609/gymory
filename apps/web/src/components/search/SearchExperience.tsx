@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, type ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
@@ -13,6 +13,7 @@ import type {
 import { getEquipmentCategoryFilterOptions, getEquipmentMachineSuggestions } from "@/lib/db/queries/equipment-catalog-search";
 import { DistrictBrowseControls } from "./DistrictBrowseControls";
 import { SearchFilters } from "./SearchFilters";
+import { GymBrandSearch } from "./GymBrandSearch";
 import { EquipmentSearch } from "./EquipmentSearch";
 import { SearchResultsPanel } from "./SearchResultsPanel";
 import { TrainingTagLinks } from "./TrainingTagLinks";
@@ -23,6 +24,8 @@ type SearchExperienceProps = {
   searchParams: RawSearchParams & { flash?: string; view?: string };
   filterBasePath?: string;
   fixedDistrict?: string;
+  fixedGymChain?: string;
+  introduction?: ReactNode;
 };
 
 export async function SearchExperience({
@@ -31,6 +34,8 @@ export async function SearchExperience({
   searchParams,
   filterBasePath = "/search",
   fixedDistrict,
+  fixedGymChain,
+  introduction,
 }: SearchExperienceProps) {
   const [equipmentCategories, machineSuggestions] = await Promise.all([
     getEquipmentCategoryFilterOptions(),
@@ -86,19 +91,23 @@ export async function SearchExperience({
         <p className="mb-4 max-w-3xl text-sm text-gray-500">
           {search("communityContribution")}
         </p>
+        {introduction}
         <TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />
-        <div className="mb-5 grid min-w-0 gap-5 lg:grid-cols-2">
+        <div className="mb-5 grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)]">
           <section className="min-w-0 max-w-full">
             <h2 className="mb-2 text-sm font-semibold text-gray-900">
               {districtPages("browseTitle")}
             </h2>
-            <DistrictBrowseControls currentDistrictCode={currentDistrictCode} />
+            <DistrictBrowseControls currentDistrictCode={currentDistrictCode} currentGymChainSlug={fixedGymChain} />
           </section>
+          <Suspense fallback={null}>
+            <GymBrandSearch currentDistrictCode={currentDistrictCode} currentGymChainSlug={fixedGymChain} />
+          </Suspense>
           <Suspense fallback={null}>
             <EquipmentSearch basePath={filterBasePath} equipmentCategories={equipmentCategories} machineSuggestions={machineSuggestions} />
           </Suspense>
         </div>
-        {currentDistrictName ? (
+        {currentDistrictName && !introduction ? (
           <div className="mb-4 min-w-0 max-w-full">
             <h1 className="min-w-0 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
               {districtPages("h1", { district: currentDistrictName })}
@@ -110,6 +119,7 @@ export async function SearchExperience({
             <SearchFilters
               basePath={filterBasePath}
               fixedDistrict={fixedDistrict}
+              fixedGymChain={fixedGymChain}
               showEquipmentSearch={false}
             />
           </Suspense>
@@ -118,13 +128,10 @@ export async function SearchExperience({
             initialView={
               typeof searchParams.view === "string" ? searchParams.view : undefined
             }
-            apiSearchParams={
-              fixedDistrict
-                ? {
-                    district: fixedDistrict,
-                  }
-                : undefined
-            }
+            apiSearchParams={{
+              ...(fixedDistrict ? { district: fixedDistrict } : {}),
+              ...(fixedGymChain ? { gymChains: fixedGymChain } : {}),
+            }}
           />
         </div>
       </div>

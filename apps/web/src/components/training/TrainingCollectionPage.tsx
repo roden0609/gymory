@@ -13,7 +13,7 @@ import {
 } from "@/lib/district-pages";
 import { getEquipmentPageDefinition } from "@/lib/equipment-pages";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
-import { buildSeoMetadata } from "@/lib/seo";
+import { buildListingSeoMetadata } from "@/lib/listing-seo";
 import { DistrictBrowseControls } from "@/components/search/DistrictBrowseControls";
 import { SearchFilters } from "@/components/search/SearchFilters";
 import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
@@ -25,10 +25,12 @@ export async function generateTrainingCollectionMetadata({
   locale,
   training,
   district,
+  searchParams,
 }: {
   locale: Locale;
   training: string;
   district?: DistrictPageDefinition;
+  searchParams?: RawSearchParams;
 }): Promise<Metadata> {
   const definition = getTrainingPageDefinition(training);
   if (!definition) return {};
@@ -43,7 +45,7 @@ export async function generateTrainingCollectionMetadata({
     : await getGymsForTrainingPage(definition);
   const districtName = district ? getDistrictPageLabel(district, locale) : null;
 
-  return buildSeoMetadata({
+  return buildListingSeoMetadata({
     locale,
     path: district
       ? `/${definition.slug}/districts/${district.slug}`
@@ -52,7 +54,8 @@ export async function generateTrainingCollectionMetadata({
       ? `${t(`items.${definition.slug}.title`)} - ${districtName}`
       : t(`items.${definition.slug}.title`),
     description: t(`items.${definition.slug}.description`),
-    robots: result.totalCount === 0 ? { index: false, follow: true } : undefined,
+    searchParams,
+    empty: result.totalCount === 0,
   });
 }
 
