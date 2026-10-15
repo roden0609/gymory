@@ -109,23 +109,23 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
 
         {section === "brands" ? <section className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900">Brands</h2>
-          <form action={saveBrand} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-6">
+          <form action={saveBrand} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
             <input type="hidden" name="locale" value={locale} />
             <label className={labelClass}>English name<input required name="name_en" className={inputClass} /></label>
             <label className={labelClass}>Chinese name<input name="name_zh" className={inputClass} /></label>
             <label className={labelClass}>Country<input name="country" className={inputClass} /></label>
-            <label className={`${labelClass} lg:col-span-2`}>Website<input name="website_url" type="url" className={inputClass} /></label>
-            <div className="flex flex-wrap items-end gap-3"><ActiveField /><SubmitButton>Add brand</SubmitButton></div>
+            <label className={labelClass}>Website<input name="website_url" type="url" className={inputClass} /></label>
+            <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2 lg:col-span-4"><ActiveField /><SubmitButton>Add brand</SubmitButton></div>
           </form>
-          <div className="grid min-w-0 gap-3 lg:grid-cols-2">
+          <div className="grid min-w-0 gap-3">
             {brands.map((brand) => (
-              <form key={brand.id} action={saveBrand} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2">
+              <form key={brand.id} action={saveBrand} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
                 <input type="hidden" name="locale" value={locale} /><input type="hidden" name="id" value={brand.id} />
                 <label className={labelClass}>English name<input required name="name_en" defaultValue={brand.name_en} className={inputClass} /></label>
                 <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={brand.name_zh ?? ""} className={inputClass} /></label>
                 <label className={labelClass}>Country<input name="country" defaultValue={brand.country ?? ""} className={inputClass} /></label>
                 <label className={labelClass}>Website<input name="website_url" type="url" defaultValue={brand.website_url ?? ""} className={inputClass} /></label>
-                <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2"><ActiveField active={brand.is_active} /><SubmitButton>Save brand</SubmitButton></div>
+                <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2 lg:col-span-4"><ActiveField active={brand.is_active} /><SubmitButton>Save brand</SubmitButton></div>
               </form>
             ))}
           </div>
