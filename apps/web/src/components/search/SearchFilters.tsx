@@ -745,71 +745,71 @@ export function SearchFilters({
           </div>
         )}
 
-        <FilterSection title={tGym("freeWeight")}>
-          <NumberFilter
-            label={t("minRacks")}
-            value={minRackCount}
-            placeholder="e.g. 4"
-            onChange={setMinRackCount}
-            onCommit={(value) => trackNumericFilter("minRackCount", value)}
-          />
-          <NumberFilter
-            label={t("minBenches")}
-            value={minBenchCount}
-            placeholder="e.g. 6"
-            onChange={setMinBenchCount}
-            onCommit={(value) => trackNumericFilter("minBenchCount", value)}
-          />
-          <NumberFilter
-            label={t("minBarbells")}
-            value={minBarbellCount}
-            placeholder="e.g. 8"
-            onChange={setMinBarbellCount}
-            onCommit={(value) => trackNumericFilter("minBarbellCount", value)}
-          />
-          <NumberFilter
-            label={t("minPlatforms")}
-            value={minPlatformCount}
-            placeholder="e.g. 2"
-            onChange={setMinPlatformCount}
-            onCommit={(value) => trackNumericFilter("minPlatformCount", value)}
-          />
-          <NumberFilter
-            label={t("maxDumbbell")}
-            value={minDumbbellWeight}
-            placeholder="e.g. 40"
-            step="0.1"
-            onChange={setMinDumbbellWeight}
-            onCommit={(value) => trackNumericFilter("minDumbbellWeight", value)}
-          />
-          <NumberFilter
-            label={t("smallestPlate")}
-            value={minPlateWeight}
-            placeholder="e.g. 1.25"
-            step="0.25"
-            onChange={setMinPlateWeight}
-            onCommit={(value) => trackNumericFilter("minPlateWeight", value)}
-          />
-          <NumberFilter
-            label={t("minSize")}
-            value={minSize}
-            placeholder="e.g. 5000"
-            onChange={setMinSize}
-            onCommit={(value) => trackNumericFilter("minSize", value)}
-          />
-          <div className="mt-3 border-t border-gray-100 pt-3">
-            {FREE_WEIGHT_FILTERS.map((filter) => (
-              <CheckboxFilter
-                key={filter.param}
-                label={tGym(filter.labelKey)}
-                checked={selectedFilters.has(filter.param)}
-                onChange={(checked) => toggleFilter(filter.param, checked)}
-              />
-            ))}
-          </div>
-        </FilterSection>
-
         <div className="space-y-3">
+          <FilterSection title={tGym("freeWeight")}>
+            <NumberFilter
+              label={t("minRacks")}
+              value={minRackCount}
+              placeholder="e.g. 4"
+              onChange={setMinRackCount}
+              onCommit={(value) => trackNumericFilter("minRackCount", value)}
+            />
+            <NumberFilter
+              label={t("minBenches")}
+              value={minBenchCount}
+              placeholder="e.g. 6"
+              onChange={setMinBenchCount}
+              onCommit={(value) => trackNumericFilter("minBenchCount", value)}
+            />
+            <NumberFilter
+              label={t("minBarbells")}
+              value={minBarbellCount}
+              placeholder="e.g. 8"
+              onChange={setMinBarbellCount}
+              onCommit={(value) => trackNumericFilter("minBarbellCount", value)}
+            />
+            <NumberFilter
+              label={t("minPlatforms")}
+              value={minPlatformCount}
+              placeholder="e.g. 2"
+              onChange={setMinPlatformCount}
+              onCommit={(value) => trackNumericFilter("minPlatformCount", value)}
+            />
+            <NumberFilter
+              label={t("maxDumbbell")}
+              value={minDumbbellWeight}
+              placeholder="e.g. 40"
+              step="0.1"
+              onChange={setMinDumbbellWeight}
+              onCommit={(value) => trackNumericFilter("minDumbbellWeight", value)}
+            />
+            <NumberFilter
+              label={t("smallestPlate")}
+              value={minPlateWeight}
+              placeholder="e.g. 1.25"
+              step="0.25"
+              onChange={setMinPlateWeight}
+              onCommit={(value) => trackNumericFilter("minPlateWeight", value)}
+            />
+            <NumberFilter
+              label={t("minSize")}
+              value={minSize}
+              placeholder="e.g. 5000"
+              onChange={setMinSize}
+              onCommit={(value) => trackNumericFilter("minSize", value)}
+            />
+            <div className="mt-3 border-t border-gray-100 pt-3">
+              {FREE_WEIGHT_FILTERS.map((filter) => (
+                <CheckboxFilter
+                  key={filter.param}
+                  label={tGym(filter.labelKey)}
+                  checked={selectedFilters.has(filter.param)}
+                  onChange={(checked) => toggleFilter(filter.param, checked)}
+                />
+              ))}
+            </div>
+          </FilterSection>
+
           {CHECKBOX_SECTIONS.map((section) => (
             <FilterSection
               key={section.titleKey}
@@ -826,25 +826,25 @@ export function SearchFilters({
               ))}
             </FilterSection>
           ))}
-        </div>
 
-        <FilterSection title={tGym("equipmentBrands")}>
-          <p className="mb-2 text-xs text-gray-500">{t("brandOrHint")}</p>
-          <div className="grid gap-2">
-            {EQUIPMENT_BRANDS.map((brand) => {
-              const label =
-                locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en;
-              return (
-                <CheckboxFilter
-                  key={brand.slug}
-                  label={label}
-                  checked={selectedBrandSlugs.includes(brand.slug)}
-                  onChange={(checked) => toggleBrand(brand.slug, checked)}
-                />
-              );
-            })}
-          </div>
-        </FilterSection>
+          <FilterSection title={tGym("equipmentBrands")}>
+            <p className="mb-2 text-xs text-gray-500">{t("brandOrHint")}</p>
+            <div className="grid gap-2">
+              {EQUIPMENT_BRANDS.map((brand) => {
+                const label =
+                  locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en;
+                return (
+                  <CheckboxFilter
+                    key={brand.slug}
+                    label={label}
+                    checked={selectedBrandSlugs.includes(brand.slug)}
+                    onChange={(checked) => toggleBrand(brand.slug, checked)}
+                  />
+                );
+              })}
+            </div>
+          </FilterSection>
+        </div>
 
         <div className="flex flex-col gap-2 pt-1">
           <button
