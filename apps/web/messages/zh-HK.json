@@ -750,6 +750,9 @@
     "dashboard": "管理員面板",
     "manageGyms": "管理健身房",
     "submissions": "待審提交",
+    "manageBrands": "管理品牌",
+    "manageEquipmentTypes": "管理器材類型",
+    "manageEquipments": "管理器材",
     "equipmentCatalog": "器械目錄"
   },
   "gymBrandPages": {

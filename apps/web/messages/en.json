@@ -750,6 +750,9 @@
     "dashboard": "Admin Dashboard",
     "manageGyms": "Manage Gyms",
     "submissions": "Pending Submissions",
+    "manageBrands": "Manage Brands",
+    "manageEquipmentTypes": "Manage Equipment Types",
+    "manageEquipments": "Manage Equipments",
     "equipmentCatalog": "Equipment Catalog"
   },
   "gymBrandPages": {

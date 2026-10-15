@@ -27,8 +27,11 @@ async function authorize(locale: string) {
 }
 
 function refreshCatalog() {
-  revalidatePath("/en/admin/equipment");
-  revalidatePath("/zh-HK/admin/equipment");
+  for (const locale of ["en", "zh-HK"]) {
+    for (const page of ["equipment", "brands", "equipment-types"]) {
+      revalidatePath(`/${locale}/admin/${page}`);
+    }
+  }
   revalidatePath("/[locale]/gyms/[slug]", "page");
 }
 
@@ -39,17 +42,18 @@ async function runCatalogSave(
   entity: CatalogEntity,
   operation: () => Promise<void>
 ) {
+  const page = entity === "brand" ? "brands" : "equipment";
   try {
     await operation();
     refreshCatalog();
   } catch (error) {
     const reason = getFailureReason(error);
     redirect(
-      `/${locale}/admin/equipment?result=error&entity=${entity}&reason=${reason}`
+      `/${locale}/admin/${page}?result=error&entity=${entity}&reason=${reason}`
     );
   }
 
-  redirect(`/${locale}/admin/equipment?result=success&entity=${entity}`);
+  redirect(`/${locale}/admin/${page}?result=success&entity=${entity}`);
 }
 
 function getFailureReason(error: unknown) {

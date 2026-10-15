@@ -1,0 +1,8 @@
+import { EquipmentCatalogPage } from "@/components/admin/EquipmentCatalogPage";
+
+export default function Page(props: {
+  params: Promise<{ locale: string }>;
+  searchParams?: { result?: string; entity?: string; reason?: string };
+}) {
+  return <EquipmentCatalogPage {...props} section="brands" />;
+}
