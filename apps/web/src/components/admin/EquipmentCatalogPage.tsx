@@ -89,7 +89,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
         {saveMessage ? (
           <div
             role={saveMessage.kind === "success" ? "status" : "alert"}
-            className={`flex min-w-0 items-start justify-between gap-3 rounded-lg border px-4 py-3 text-sm ${
+            className={`fixed inset-x-4 top-20 z-50 mx-auto flex min-w-0 max-w-xl items-start justify-between gap-3 rounded-lg border px-4 py-3 text-sm shadow-lg ${
               saveMessage.kind === "success"
                 ? "border-green-200 bg-green-50 text-green-800"
                 : "border-red-200 bg-red-50 text-red-800"
@@ -98,6 +98,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
             <span className="min-w-0 break-words">{saveMessage.text}</span>
             <Link
               href={path}
+              scroll={false}
               aria-label={locale === "zh-HK" ? "關閉訊息" : "Dismiss message"}
               className="shrink-0 font-semibold opacity-70 hover:opacity-100"
             >
