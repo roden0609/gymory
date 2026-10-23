@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EQUIPMENT_LABELS } from "@gymory/shared";
+import { EQUIPMENT_CATEGORIES, EQUIPMENT_LABELS } from "@gymory/shared";
 
 const optionalText = z.preprocess(
   (value) => (typeof value === "string" && value.trim() ? value.trim() : null),
@@ -43,4 +43,14 @@ export const gymMachineInventorySchema = z.object({
     (value) => (typeof value === "string" && value.trim() ? value.trim() : null),
     z.string().max(1000).nullable()
   ),
+});
+
+export const equipmentTypeCodeSchema = z.string().trim().max(120).regex(/^[a-z][a-z0-9_]*$/);
+
+export const equipmentTypeSchema = z.object({
+  code: equipmentTypeCodeSchema,
+  name_en: z.string().trim().min(1).max(120),
+  name_zh: optionalText,
+  category: z.string().refine((value) => EQUIPMENT_CATEGORIES.some(({ code }) => code === value)),
+  labels: z.array(z.enum(EQUIPMENT_LABELS)).default([]).transform((labels) => [...new Set(labels)]),
 });

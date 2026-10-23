@@ -2,8 +2,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
-import { EQUIPMENT_LABELS, getEquipmentLabel } from "@gymory/shared";
-import { saveBrand, saveMachine } from "@/app/[locale]/admin/equipment/actions";
+import { EQUIPMENT_CATEGORIES, EQUIPMENT_LABELS, getEquipmentLabel } from "@gymory/shared";
+import { saveBrand, saveMachine, saveEquipmentType, deleteEquipmentType } from "@/app/[locale]/admin/equipment/actions";
 
 type Brand = {
   id: string; name_en: string; name_zh: string | null; country: string | null;
@@ -13,7 +13,7 @@ type Category = {
   id: string; name: string; name_zh: string | null; slug: string; parent_id: string | null;
   sort_order: number; is_active: boolean;
 };
-type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[] };
+type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[]; equipment: { count: number }[] };
 type Machine = {
   id: string; brand_id: string; category_id: string; equipment_type_code: string | null;
   labels: string[]; name: string; name_zh: string | null; series: string | null; model_number: string | null;
@@ -32,7 +32,7 @@ async function getCatalog() {
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en"),
     supabase.from("equipment_categories").select("id, name, name_zh, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
-    supabase.from("equipment_types").select("code, name_en, name_zh, category, labels").eq("is_active", true).order("name_en"),
+    supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment(count)").eq("is_active", true).order("name_en"),
     supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias)").order("name"),
   ]);
   const error = brandsResult.error ?? categoriesResult.error ?? typesResult.error ?? machinesResult.error;
@@ -65,7 +65,7 @@ function SubmitButton({ children }: { children: React.ReactNode }) {
 export async function EquipmentCatalogPage({ params, searchParams, section }: {
   section: "brands" | "types" | "equipment";
   params: Promise<{ locale: string }>;
-  searchParams?: { result?: string; entity?: string; reason?: string };
+  searchParams?: { result?: string; entity?: string; reason?: string; action?: string };
 }) {
   const path = section === "brands" ? "/admin/brands" : section === "types" ? "/admin/equipment-types" : "/admin/equipment";
   const { locale } = await params;
@@ -144,14 +144,9 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
 
         {section === "types" ? <section className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900">Equipment types</h2>
-          <div className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {equipmentTypes.map((type) => (
-              <div key={type.code} className="min-w-0 rounded-lg border border-gray-200 bg-white p-3">
-                <p className="break-words text-sm font-medium text-gray-900">{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</p>
-                <p className="mt-1 break-words text-xs text-gray-500">{type.category.replace(/_/g, " ")}</p>
-                <p className="mt-1 break-words text-xs text-gray-600">{type.labels.map((label) => getEquipmentLabel(label, locale)).join(" · ")}</p>
-              </div>
-            ))}
+          <EquipmentTypeForm locale={locale} />
+          <div className="space-y-3">
+            {equipmentTypes.map((type) => <EquipmentTypeForm key={type.code} locale={locale} type={type} />)}
           </div>
         </section> : null}
 
@@ -169,18 +164,20 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
 
 function getSaveMessage(
   locale: string,
-  params?: { result?: string; entity?: string; reason?: string }
+  params?: { result?: string; entity?: string; reason?: string; action?: string }
 ) {
   if (params?.result !== "success" && params?.result !== "error") return null;
   const isChinese = locale === "zh-HK";
   const entity = isChinese
-    ? { brand: "品牌", category: "分類", machine: "器械" }[params.entity ?? ""] ?? "項目"
-    : { brand: "Brand", category: "Category", machine: "Machine" }[params.entity ?? ""] ?? "Item";
+    ? { brand: "品牌", category: "分類", type: "器材類型", machine: "器械" }[params.entity ?? ""] ?? "項目"
+    : { brand: "Brand", category: "Category", type: "Equipment type", machine: "Machine" }[params.entity ?? ""] ?? "Item";
 
   if (params.result === "success") {
     return {
       kind: "success" as const,
-      text: isChinese ? `${entity}已成功儲存。` : `${entity} saved successfully.`,
+      text: params.action === "delete"
+        ? (isChinese ? `${entity}已成功刪除。` : `${entity} deleted successfully.`)
+        : (isChinese ? `${entity}已成功儲存。` : `${entity} saved successfully.`),
     };
   }
 
@@ -200,7 +197,7 @@ function getSaveMessage(
 
   return {
     kind: "error" as const,
-    text: isChinese ? `${entity}儲存失敗：${reason}` : `${entity} save failed: ${reason}`,
+    text: isChinese ? `${entity}${params.action === "delete" ? "刪除" : "儲存"}失敗：${reason}` : `${entity} ${params.action === "delete" ? "delete" : "save"} failed: ${reason}`,
   };
 }
 
@@ -234,5 +231,46 @@ function MachineForm({ locale, brands, equipmentTypes, machine }: {
       <label className={`${labelClass} sm:col-span-2 lg:col-span-4`}>Description<textarea name="description" rows={3} defaultValue={machine?.description ?? ""} className={`${inputClass} resize-y`} /></label>
       <div className="flex justify-end sm:col-span-2 lg:col-span-4"><SubmitButton>{machine ? "Save equipment" : "Add equipment"}</SubmitButton></div>
     </form>
+  );
+}
+
+async function EquipmentTypeForm({ locale, type }: { locale: string; type?: EquipmentType }) {
+  const t = await getTranslations("admin");
+  const count = type?.equipment[0]?.count ?? 0;
+  return (
+    <div className="min-w-0 space-y-3 rounded-xl border border-gray-200 bg-white p-4">
+      <form action={saveEquipmentType} className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <input type="hidden" name="locale" value={locale} />
+        <input type="hidden" name="mode" value={type ? "update" : "create"} />
+        <label className={labelClass}>Code<input required name="code" readOnly={!!type} pattern="[a-z][a-z0-9_]*" maxLength={120} defaultValue={type?.code ?? ""} className={inputClass} /></label>
+        <label className={labelClass}>English name<input required name="name_en" maxLength={120} defaultValue={type?.name_en ?? ""} className={inputClass} /></label>
+        <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={type?.name_zh ?? ""} className={inputClass} /></label>
+        <label className={labelClass}>Category<select required name="category" defaultValue={type?.category ?? ""} className={inputClass}>
+          <option value="" disabled>Select category</option>
+          {EQUIPMENT_CATEGORIES.map((category) => <option key={category.code} value={category.code}>{locale === "zh-HK" ? category.nameZh : category.name}</option>)}
+        </select></label>
+        <fieldset className="min-w-0 space-y-2 sm:col-span-2 lg:col-span-4">
+          <legend className="text-sm font-medium text-gray-700">Labels</legend>
+          <div className="flex min-w-0 flex-wrap gap-4">
+            {EQUIPMENT_LABELS.map((label) => <label key={label} className="flex min-h-10 items-center gap-2 text-sm text-gray-700">
+              <input type="checkbox" name="labels" value={label} disabled={label === "hyrox"} defaultChecked={type?.labels.includes(label)} className="h-4 w-4" />
+              {getEquipmentLabel(label, locale)}
+            </label>)}
+            {type?.labels.includes("hyrox") ? <input type="hidden" name="labels" value="hyrox" /> : null}
+          </div>
+          <p className="break-words text-xs text-gray-500">{t("typeHyroxNote")}</p>
+        </fieldset>
+        <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 sm:col-span-2 lg:col-span-4">
+          {type ? <p className="break-words text-sm text-gray-700">{t("equipmentCount", { count })}</p> : null}
+          <SubmitButton>{type ? t("saveType") : t("addType")}</SubmitButton>
+        </div>
+      </form>
+      {type ? <form action={deleteEquipmentType} className="flex min-w-0 flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
+        <input type="hidden" name="locale" value={locale} />
+        <input type="hidden" name="code" value={type.code} />
+        <p className="min-w-0 break-words text-xs text-gray-500">{t(count > 0 ? "typeDeleteBlocked" : "typeDeleteNote")}</p>
+        <button type="submit" disabled={count > 0} className="min-h-10 rounded-lg border border-red-300 px-4 py-2 text-sm font-semibold text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40">{t("deleteType")}</button>
+      </form> : null}
+    </div>
   );
 }

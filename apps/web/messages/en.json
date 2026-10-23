@@ -751,6 +751,13 @@
     "manageGyms": "Manage Gyms",
     "submissions": "Pending Submissions",
     "manageBrands": "Manage Brands",
+    "equipmentCount": "{count, plural, =0 {0 equipment items} one {# equipment item} other {# equipment items}}",
+    "addType": "Add type",
+    "saveType": "Save type",
+    "deleteType": "Delete type",
+    "typeDeleteBlocked": "Move all equipment to another type before deleting.",
+    "typeDeleteNote": "Deletion is permanent. Types linked to gym inventory or child types cannot be deleted.",
+    "typeHyroxNote": "HYROX is assigned by the predefined race equipment list.",
     "manageEquipmentTypes": "Manage Equipment Types",
     "manageEquipments": "Manage Equipments",
     "equipmentCatalog": "Equipment Catalog"

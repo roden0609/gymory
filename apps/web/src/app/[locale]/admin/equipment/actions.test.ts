@@ -1,0 +1,73 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+const mocks = vi.hoisted(() => ({
+  authorize: vi.fn(),
+  from: vi.fn(),
+  query: { select: vi.fn(), eq: vi.fn(), single: vi.fn(), insert: vi.fn(), update: vi.fn(), delete: vi.fn() },
+}));
+vi.mock("@/lib/auth/session", () => ({ requireAdminSession: mocks.authorize }));
+vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from }) }));
+vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
+vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
+import { deleteEquipmentType, saveEquipmentType } from "./actions";
+
+function form(values: Record<string, string>) {
+  const data = new FormData();
+  for (const [key, value] of Object.entries({ locale: "en", code: "custom_type", ...values })) data.set(key, value);
+  return data;
+}
+
+beforeEach(() => {
+  vi.resetAllMocks();
+  mocks.from.mockReturnValue(mocks.query);
+  for (const method of [mocks.query.select, mocks.query.eq, mocks.query.insert, mocks.query.update, mocks.query.delete]) method.mockReturnValue(mocks.query);
+  mocks.query.single.mockResolvedValue({ data: { code: "custom_type" }, error: null });
+});
+
+describe("equipment type admin actions", () => {
+  it("creates and updates types without updating the primary key", async () => {
+    const values = { name_en: " Custom type ", name_zh: "", category: "other" };
+    await expect(saveEquipmentType(form(values))).rejects.toThrow("result=success&entity=type");
+    expect(mocks.query.insert).toHaveBeenCalledWith({ code: "custom_type", name_en: "Custom type", name_zh: null, category: "other", labels: [] });
+    await expect(saveEquipmentType(form({ ...values, mode: "update" }))).rejects.toThrow("result=success&entity=type");
+    expect(mocks.query.update).toHaveBeenCalledWith({ name_en: "Custom type", name_zh: null, category: "other", labels: [] });
+    expect(mocks.query.eq).toHaveBeenCalledWith("code", "custom_type");
+  });
+
+  it("rejects invalid categories before writing", async () => {
+    await expect(saveEquipmentType(form({ name_en: "Example", category: "invented" }))).rejects.toThrow("reason=invalid");
+    expect(mocks.from).not.toHaveBeenCalled();
+  });
+
+  it("blocks deletion when equipment exists", async () => {
+    mocks.query.eq.mockResolvedValueOnce({ count: 1, error: null });
+    await expect(deleteEquipmentType(form({}))).rejects.toThrow("reason=related&action=delete");
+    expect(mocks.query.delete).not.toHaveBeenCalled();
+  });
+
+  it("deletes an empty type", async () => {
+    mocks.query.eq.mockResolvedValueOnce({ count: 0, error: null });
+    await expect(deleteEquipmentType(form({}))).rejects.toThrow("result=success&entity=type&action=delete");
+    expect(mocks.query.delete).toHaveBeenCalledOnce();
+    expect(mocks.query.eq).toHaveBeenLastCalledWith("code", "custom_type");
+  });
+
+  it("reports a concurrent equipment insert or other database dependency as blocked", async () => {
+    mocks.query.eq.mockResolvedValueOnce({ count: 0, error: null });
+    mocks.query.single.mockResolvedValueOnce({ error: { message: "foreign key constraint violation" } });
+    await expect(deleteEquipmentType(form({}))).rejects.toThrow("reason=related&action=delete");
+  });
+
+  it("does not delete if counting equipment fails", async () => {
+    mocks.query.eq.mockResolvedValueOnce({ count: null, error: { message: "offline" } });
+    await expect(deleteEquipmentType(form({}))).rejects.toThrow("reason=unknown&action=delete");
+    expect(mocks.query.delete).not.toHaveBeenCalled();
+  });
+
+  it("requires admin access before reading or writing", async () => {
+    mocks.authorize.mockRejectedValue(new Error("unauthorized"));
+    await expect(deleteEquipmentType(form({}))).rejects.toThrow("unauthorized");
+    await expect(saveEquipmentType(form({}))).rejects.toThrow("unauthorized");
+    expect(mocks.from).not.toHaveBeenCalled();
+  });
+});

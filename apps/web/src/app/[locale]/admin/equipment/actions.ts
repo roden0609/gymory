@@ -7,6 +7,8 @@ import { requireAdminSession } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { toSlug } from "@/lib/utils/slug";
 import {
+  equipmentTypeSchema,
+  equipmentTypeCodeSchema,
   equipmentBrandSchema,
   equipmentMachineSchema,
 } from "@/lib/admin-equipment-validation";
@@ -35,30 +37,32 @@ function refreshCatalog() {
   revalidatePath("/[locale]/gyms/[slug]", "page");
 }
 
-type CatalogEntity = "brand" | "machine";
+type CatalogEntity = "brand" | "machine" | "type";
 
 async function runCatalogSave(
   locale: string,
   entity: CatalogEntity,
-  operation: () => Promise<void>
+  operation: () => Promise<void>,
+  action = "save"
 ) {
-  const page = entity === "brand" ? "brands" : "equipment";
+  const page = entity === "brand" ? "brands" : entity === "type" ? "equipment-types" : "equipment";
   try {
     await operation();
     refreshCatalog();
   } catch (error) {
     const reason = getFailureReason(error);
     redirect(
-      `/${locale}/admin/${page}?result=error&entity=${entity}&reason=${reason}`
+      `/${locale}/admin/${page}?result=error&entity=${entity}&reason=${reason}&action=${action}`
     );
   }
 
-  redirect(`/${locale}/admin/${page}?result=success&entity=${entity}`);
+  redirect(`/${locale}/admin/${page}?result=success&entity=${entity}&action=${action}`);
 }
 
 function getFailureReason(error: unknown) {
   if (error instanceof z.ZodError) return "invalid";
   const message = error instanceof Error ? error.message.toLowerCase() : "";
+  if (message.includes("check constraint")) return "invalid";
   if (message.includes("duplicate key") || message.includes("unique constraint")) {
     return "duplicate";
   }
@@ -164,4 +168,41 @@ export async function saveMachine(formData: FormData) {
       if (aliasError) throw new Error(aliasError.message);
     }
   });
+}
+
+export async function saveEquipmentType(formData: FormData) {
+  const locale = textValue(formData, "locale") || "en";
+  await authorize(locale);
+  await runCatalogSave(locale, "type", async () => {
+    const parsed = equipmentTypeSchema.parse({
+      code: textValue(formData, "code"),
+      name_en: textValue(formData, "name_en"),
+      name_zh: textValue(formData, "name_zh"),
+      category: textValue(formData, "category"),
+      labels: formData.getAll("labels"),
+    });
+    const supabase = createAdminClient();
+    const { code, ...payload } = parsed;
+    // Updates never change the primary key or silently create a missing type.
+    const result = textValue(formData, "mode") === "update"
+      ? await supabase.from("equipment_types").update(payload).eq("code", code).select("code").single()
+      : await supabase.from("equipment_types").insert(parsed).select("code").single();
+    if (result.error) throw new Error(result.error.message);
+  });
+}
+
+export async function deleteEquipmentType(formData: FormData) {
+  const locale = textValue(formData, "locale") || "en";
+  await authorize(locale);
+  await runCatalogSave(locale, "type", async () => {
+    const code = equipmentTypeCodeSchema.parse(textValue(formData, "code"));
+    const supabase = createAdminClient();
+    const { count, error } = await supabase.from("equipment")
+      .select("id", { count: "exact", head: true }).eq("equipment_type_code", code);
+    if (error) throw new Error(error.message);
+    if (count !== 0) throw new Error("Type is still referenced by equipment");
+    // The existing ON DELETE RESTRICT foreign key also protects against concurrent inserts.
+    const result = await supabase.from("equipment_types").delete().eq("code", code).select("code").single();
+    if (result.error) throw new Error(result.error.message);
+  }, "delete");
 }

@@ -751,6 +751,13 @@
     "manageGyms": "管理健身房",
     "submissions": "待審提交",
     "manageBrands": "管理品牌",
+    "equipmentCount": "{count} 款器材",
+    "addType": "新增類型",
+    "saveType": "儲存類型",
+    "deleteType": "刪除類型",
+    "typeDeleteBlocked": "請先將所有器材移至其他類型，先可以刪除。",
+    "typeDeleteNote": "刪除後無法復原。仍連接健身房庫存或子類型嘅類型無法刪除。",
+    "typeHyroxNote": "HYROX 標籤按預設比賽器材清單指定。",
     "manageEquipmentTypes": "管理器材類型",
     "manageEquipments": "管理器材",
     "equipmentCatalog": "器械目錄"
