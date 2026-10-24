@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library",
+  "country_code": "HK",
+  "store_name": "Ma On Shan",
+  "store_slug": "ma-on-shan",
+  "captured_at": "2026-10-24T17:20:13.832183+00:00",
+  "status": "local_section_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "ADB 265px slow swipe / 1500ms; overlapping local OCR screenshots",
+  "scope": "Bright local-store section only; Nearest Store excluded",
+  "row_count": 36,
+  "unique_equipment_count": 36,
+  "equipment": [
+    {
+      "brand": "Arsenal",
+      "name": "Standing Lateral Raise",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000",
+      "sequence": 1
+    },
+    {
+      "brand": "Concept 2",
+      "name": "CONPII-ROW ERG STANDARD CONCEPT 2 P...",
+      "name_truncated": true,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000",
+      "sequence": 2
+    },
+    {
+      "brand": "NEWTECH",
+      "name": "ONHIM Super Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000",
+      "sequence": 3
+    },
+    {
+      "brand": "SportArt",
+      "name": "A994 VKR Chin Dip",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000",
+      "sequence": 4
+    },
+    {
+      "brand": "Life Fitness",
+      "name": "Integrity SE3 HD樓梯機",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "004",
+      "sequence": 5
+    },
+    {
+      "brand": "HAMMER STRENGTH",
+      "name": "Glute Drive",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000",
+      "sequence": 6
+    },
+    {
+      "brand": "SportArt",
+      "name": "Adjustable Bench",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "001",
+      "sequence": 7
+    },
+    {
+      "brand": "SportArt",
+      "name": "Biceps Curl/ Triceps Extention",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "003",
+      "sequence": 8
+    },
+    {
+      "brand": "SportArt",
+      "name": "Smith Machine",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "004",
+      "sequence": 9
+    },
+    {
+      "brand": "SportArt",
+      "name": "SportsArt A998 Olympic Incline Bench",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "005",
+      "sequence": 10
+    },
+    {
+      "brand": "SportArt",
+      "name": "Pectoral Fly/ Rear Deltoid",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "006",
+      "sequence": 11
+    },
+    {
+      "brand": "SportArt",
+      "name": "DS972 functional trainer",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "007",
+      "sequence": 12
+    },
+    {
+      "brand": "SportArt",
+      "name": "Leg Extention/ Leg Curl",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "008",
+      "sequence": 13
+    },
+    {
+      "brand": "SportArt",
+      "name": "EF202 Abductor/Adductor",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "009",
+      "sequence": 14
+    },
+    {
+      "brand": "SportArt",
+      "name": "Hack Squat",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "010",
+      "sequence": 15
+    },
+    {
+      "brand": "SportArt",
+      "name": "Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "011",
+      "sequence": 16
+    },
+    {
+      "brand": "SportArt",
+      "name": "LEG EXTENSION",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "012",
+      "sequence": 17
+    },
+    {
+      "brand": "SportArt",
+      "name": "PRONE LEG CURL",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "013",
+      "sequence": 18
+    },
+    {
+      "brand": "SportArt",
+      "name": "Flat Bench",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "015",
+      "sequence": 19
+    },
+    {
+      "brand": "SportArt",
+      "name": "Assisted Chin-Up/Tricep Dip DF207",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "016",
+      "sequence": 20
+    },
+    {
+      "brand": "SportArt",
+      "name": "Abdominal training machine",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "017",
+      "sequence": 21
+    },
+    {
+      "brand": "SportArt",
+      "name": "C535U Upright Cycle",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "018",
+      "sequence": 22
+    },
+    {
+      "brand": "SportArt",
+      "name": "Back Hyperextension",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "019",
+      "sequence": 23
+    },
+    {
+      "brand": "SportArt",
+      "name": "S715 Stepper",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "020",
+      "sequence": 24
+    },
+    {
+      "brand": "SportArt",
+      "name": "C535R Recumbent Cycle",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "021",
+      "sequence": 25
+    },
+    {
+      "brand": "SportArt",
+      "name": "Mid Row",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "022",
+      "sequence": 26
+    },
+    {
+      "brand": "SportArt",
+      "name": "E835 Elliptical",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "023",
+      "sequence": 27
+    },
+    {
+      "brand": "SportArt",
+      "name": "T635A Treadmill",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "024",
+      "sequence": 28
+    },
+    {
+      "brand": "HAMMER STRENGTH",
+      "name": "T-Bar Row",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "025",
+      "sequence": 29
+    },
+    {
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Wide Pull Down",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "026",
+      "sequence": 30
+    },
+    {
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Low Row",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "028",
+      "sequence": 31
+    },
+    {
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Front Lat Pulldown",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "029",
+      "sequence": 32
+    },
+    {
+      "brand": "NEWTECH",
+      "name": "Adjustable Low Pulley",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "030",
+      "sequence": 33
+    },
+    {
+      "brand": "NEWTECH",
+      "name": "Seated Incline Chest Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "031",
+      "sequence": 34
+    },
+    {
+      "brand": "NEWTECH",
+      "name": "Torture Wide Chest Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "032",
+      "sequence": 35
+    },
+    {
+      "brand": "NEWTECH",
+      "name": "Shoulder Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "033",
+      "sequence": 36
+    }
+  ],
+  "text_verification": "local_ocr_unreviewed"
+}

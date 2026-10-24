@@ -1,0 +1,604 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library public read endpoint",
+  "country_code": "HK",
+  "store_id": 429,
+  "store_name": "Lok Wah",
+  "store_slug": "lok-wah",
+  "store_name_en": "24/7 FITNESS - Lok Wah",
+  "store_name_bilingual": "24/7 Fitness - Lok Wah (樂華)",
+  "area_name": "Kowloon District",
+  "store_code": "LW",
+  "source_store_status": 1,
+  "listed_in_app_selector": true,
+  "captured_at": "2026-10-24T17:43:32.610198+00:00",
+  "status": "source_api_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "Public GET used by App; exact storeId assignment; same All ordering",
+  "scope": "Only inventory assigned to this store; Nearest Store excluded",
+  "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=429&club_id=429&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
+  "response_sha256": "7cd00ab8ed9ed9bc0c41a418c08f83888458ed8f4bce4836436263554788cc34",
+  "response_row_count": 1290,
+  "excluded_nearest_store_rows": 1264,
+  "row_count": 26,
+  "unique_equipment_count": 19,
+  "unique_inventory_count": 26,
+  "equipment": [
+    {
+      "sequence": 1,
+      "source_row_id": 2733,
+      "inventory_id": 162,
+      "inventory_code": "260162",
+      "brand": "Life Fitness",
+      "name": "Aspire SL Console Upright Bike",
+      "names": {
+        "zh-CN": "Aspire SL型控制台 直立式健身车",
+        "zh-HK": "Aspire SL型控制枱 直立式健身車",
+        "en-US": "Aspire SL Console Upright Bike"
+      },
+      "model": "ASPC-SL",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2254824,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/aa62215bc22a198b0cc0d49569a0fce70c9fd0d4602235260765130e4a173a08.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 2,
+      "source_row_id": 2732,
+      "inventory_id": 161,
+      "inventory_code": "260161",
+      "brand": "Life Fitness",
+      "name": "Aspire SL Console Recumbent Bike",
+      "names": {
+        "zh-CN": "Aspire SL型控制台 靠背式健身车",
+        "zh-HK": "Aspire SL型控制枱 靠背式健身車",
+        "en-US": "Aspire SL Console Recumbent Bike"
+      },
+      "model": "ASPR-SL",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2254755,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/cc25cad98a258dc120367c36a8c94221dd4173baa96c6fe5b9845109e671fd67.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 3,
+      "source_row_id": 2731,
+      "inventory_id": 160,
+      "inventory_code": "260160",
+      "brand": "Life Fitness",
+      "name": "Aspire SL Console Cross Trainer",
+      "names": {
+        "zh-CN": "Aspire SL型控制台 全功能训练器",
+        "zh-HK": "Aspire SL型控制枱 全功能訓練器",
+        "en-US": "Aspire SL Console Cross Trainer"
+      },
+      "model": " ASPX-SL ",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2254045,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/238027eb68897e9fa90a860d873d4a9cc44e729a63367add49fb80eac62372dc.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 4,
+      "source_row_id": 2730,
+      "inventory_id": 159,
+      "inventory_code": "260159",
+      "brand": "Life Fitness",
+      "name": "Aspire SL Console Treadmill",
+      "names": {
+        "zh-CN": "Aspire 跑步机-SL型控制台",
+        "zh-HK": "Aspire 跑步機-SL型控制枱",
+        "en-US": "Aspire SL Console Treadmill"
+      },
+      "model": "ASPT-SL",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2254895,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/5e83c6ec01790fa158a053b786bb1bbdb463c18e2bd48b023006f1001202447b.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 5,
+      "source_row_id": 2729,
+      "inventory_id": 150,
+      "inventory_code": "260150",
+      "brand": "Life Fitness",
+      "name": "Hip Adduction",
+      "names": {
+        "zh-CN": "大腿内侧肌训练器",
+        "zh-HK": "大腿內側肌訓練器",
+        "en-US": "Hip Adduction"
+      },
+      "model": " SS-HAD(SP)Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254062,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2cad83780f8ef46ac29c89467472103f9594020dba039f41aee222cbfca84447.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 6,
+      "source_row_id": 2728,
+      "inventory_id": 149,
+      "inventory_code": "260149",
+      "brand": "Life Fitness",
+      "name": "Hip Abduction",
+      "names": {
+        "zh-CN": "大腿外侧肌训练器",
+        "zh-HK": "大腿外側肌訓練器",
+        "en-US": "Hip Abduction"
+      },
+      "model": " SS-HAB(SP)Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254797,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6475815343e5f297284f1cd397678afbed5e9acd7b8f7f4212a9b7aebf27fcb2.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 7,
+      "source_row_id": 2727,
+      "inventory_id": 146,
+      "inventory_code": "260146",
+      "brand": "Life Fitness",
+      "name": "Seated Leg Press",
+      "names": {
+        "zh-CN": "坐式蹬腿训练器",
+        "zh-HK": "坐式蹬腿訓練器",
+        "en-US": "Seated Leg Press"
+      },
+      "model": "SS-SLP(SP)Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254419,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/fd1c745b9ec287e9c010cf7b62b51fb12470de911919bcd9c3697bd37d1d0b88.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 8,
+      "source_row_id": 2726,
+      "inventory_id": 144,
+      "inventory_code": "260144",
+      "brand": "Life Fitness",
+      "name": "Leg Curl",
+      "names": {
+        "zh-CN": "腿部弯曲训练器",
+        "zh-HK": "腿部彎曲訓練器",
+        "en-US": "Leg Curl"
+      },
+      "model": " SS-LC(SP)Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254813,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/38ef7e9c631fdf8d7aedccba0643be8f787dc761b59c0302ff3337240f01f228.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 9,
+      "source_row_id": 2725,
+      "inventory_id": 140,
+      "inventory_code": "260140",
+      "brand": "Life Fitness",
+      "name": "Shoulder Press",
+      "names": {
+        "zh-CN": "坐式推肩训练器",
+        "zh-HK": "坐式推肩訓練器",
+        "en-US": "Shoulder Press"
+      },
+      "model": "SS-SP(SP)Full",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254257,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/a32613ace3cb8c9b36578e5a8a4d9fb67783b732b77f94cb9112606d12c6fc86.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 10,
+      "source_row_id": 2724,
+      "inventory_id": 137,
+      "inventory_code": "260137",
+      "brand": "Life Fitness",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "names": {
+        "zh-CN": "蝴蝶式胸肌及背肌训练器",
+        "zh-HK": "蝴蝶式胸肌及背肌訓練器",
+        "en-US": "Pectoral Fly/Rear Deltoid"
+      },
+      "model": "SS-FLY(SP)Full",
+      "category_names": [
+        "Chest",
+        "Back",
+        "Shoulder"
+      ],
+      "cover_image_id": 2254053,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7037c23d53d8f1b6cb4d4c97c83e3d882b3d79d3a33461767ce07db6119a46d0.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 11,
+      "source_row_id": 2723,
+      "inventory_id": 136,
+      "inventory_code": "260136",
+      "brand": "Life Fitness",
+      "name": "Pectoral Fly",
+      "names": {
+        "zh-CN": "蝴蝶式胸肌训练器",
+        "zh-HK": "蝴蝶式胸肌訓練器",
+        "en-US": "Pectoral Fly"
+      },
+      "model": "SS-PEC(SP)Full",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254123,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/533014e4a48a6c71274288749296f1ee745c03aaf40722a7f44d4041af3bd2a1.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 12,
+      "source_row_id": 2722,
+      "inventory_id": 134,
+      "inventory_code": "260134",
+      "brand": "Life Fitness",
+      "name": "Chest Press",
+      "names": {
+        "zh-CN": "坐式胸肌推举训练器",
+        "zh-HK": "坐式胸肌推舉訓練器",
+        "en-US": "Chest Press"
+      },
+      "model": "SS-CP(SP)Full",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254495,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/c1908bf36a3bc927f9294cf976590480d0aee4e20c2d31e0e3845fd2afbdad19.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 13,
+      "source_row_id": 2721,
+      "inventory_id": 127,
+      "inventory_code": "260127",
+      "brand": "Life Fitness",
+      "name": "Hip Adduction",
+      "names": {
+        "zh-CN": "大腿内侧肌训练器",
+        "zh-HK": "大腿內側肌訓練器",
+        "en-US": "Hip Adduction"
+      },
+      "model": "SS-HAD（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254062,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2cad83780f8ef46ac29c89467472103f9594020dba039f41aee222cbfca84447.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 14,
+      "source_row_id": 2720,
+      "inventory_id": 126,
+      "inventory_code": "260126",
+      "brand": "Life Fitness",
+      "name": "Hip Abduction",
+      "names": {
+        "zh-CN": "大腿外侧肌训练器",
+        "zh-HK": "大腿外側肌訓練器",
+        "en-US": "Hip Abduction"
+      },
+      "model": "SS-HAB（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254797,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6475815343e5f297284f1cd397678afbed5e9acd7b8f7f4212a9b7aebf27fcb2.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 15,
+      "source_row_id": 2719,
+      "inventory_id": 122,
+      "inventory_code": "260122",
+      "brand": "Life Fitness",
+      "name": "Seated Leg Press",
+      "names": {
+        "zh-CN": "坐式蹬腿训练器",
+        "zh-HK": "坐式蹬腿訓練器",
+        "en-US": "Seated Leg Press"
+      },
+      "model": "SS-SLP（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254419,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/fd1c745b9ec287e9c010cf7b62b51fb12470de911919bcd9c3697bd37d1d0b88.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 16,
+      "source_row_id": 2718,
+      "inventory_id": 121,
+      "inventory_code": "260121",
+      "brand": "Life Fitness",
+      "name": "Leg Curl",
+      "names": {
+        "zh-CN": "腿部弯曲训练器",
+        "zh-HK": "腿部彎曲訓練器",
+        "en-US": "Leg Curl"
+      },
+      "model": "SS-LC（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254813,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/38ef7e9c631fdf8d7aedccba0643be8f787dc761b59c0302ff3337240f01f228.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 17,
+      "source_row_id": 2717,
+      "inventory_id": 120,
+      "inventory_code": "260120",
+      "brand": "Life Fitness",
+      "name": "Leg Extension",
+      "names": {
+        "zh-CN": "大腿伸展训练器",
+        "zh-HK": "大腿伸展訓練器",
+        "en-US": "Leg Extension"
+      },
+      "model": "SS-LE（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254431,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/082fb60de2e8d38a87ceb7a18491422ce08dc1e5639bc16c8f8f3582663e08e6.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 18,
+      "source_row_id": 2716,
+      "inventory_id": 115,
+      "inventory_code": "260115",
+      "brand": "Life Fitness",
+      "name": "Shoulder Press",
+      "names": {
+        "zh-CN": "坐式推肩训练器",
+        "zh-HK": "坐式推肩訓練器",
+        "en-US": "Shoulder Press"
+      },
+      "model": "SS-SP（LP）Full",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254257,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/a32613ace3cb8c9b36578e5a8a4d9fb67783b732b77f94cb9112606d12c6fc86.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 19,
+      "source_row_id": 2715,
+      "inventory_id": 111,
+      "inventory_code": "260111",
+      "brand": "Life Fitness",
+      "name": "Lateral Raise",
+      "names": {
+        "zh-CN": "肩膊提升训练器",
+        "zh-HK": "肩膊提升訓練器",
+        "en-US": "Lateral Raise"
+      },
+      "model": "SS-LR（LP）Full",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254115,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/bad140dc0bcbd53a910c1f2320d0a5b9d60610e57b11eecd86fd072c32d624a9.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 20,
+      "source_row_id": 2714,
+      "inventory_id": 110,
+      "inventory_code": "260110",
+      "brand": "Life Fitness",
+      "name": "Chest Press",
+      "names": {
+        "zh-CN": "坐式胸肌推举训练器",
+        "zh-HK": "坐式胸肌推舉訓練器",
+        "en-US": "Chest Press"
+      },
+      "model": "SS-CP（LP）Full",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254495,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/c1908bf36a3bc927f9294cf976590480d0aee4e20c2d31e0e3845fd2afbdad19.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 21,
+      "source_row_id": 2713,
+      "inventory_id": 108,
+      "inventory_code": "260108",
+      "brand": "Life Fitness",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "names": {
+        "zh-CN": "蝴蝶式胸肌及背肌训练器",
+        "zh-HK": "蝴蝶式胸肌及背肌訓練器",
+        "en-US": "Pectoral Fly/Rear Deltoid"
+      },
+      "model": "SS-FLY（LP）Full",
+      "category_names": [
+        "Chest",
+        "Shoulder"
+      ],
+      "cover_image_id": 2254053,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7037c23d53d8f1b6cb4d4c97c83e3d882b3d79d3a33461767ce07db6119a46d0.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 22,
+      "source_row_id": 2712,
+      "inventory_id": 1152,
+      "inventory_code": "260951",
+      "brand": "Life Fitness",
+      "name": "Signature Series Leg Raise",
+      "names": {
+        "zh-CN": "抬腿训练器",
+        "zh-HK": "抬腿訓練器",
+        "en-US": "Signature Series Leg Raise"
+      },
+      "model": "SLR（LBR-LR）",
+      "category_names": [
+        "ABDOMINAL"
+      ],
+      "cover_image_id": 2300163,
+      "cover_image_url": "https://oss-hk.247fitness.hk/a0d4e07ef0cd5b8655201e9ccc69d0fc8fa829c15018b1702b20153e83def95c.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 23,
+      "source_row_id": 2711,
+      "inventory_id": 1153,
+      "inventory_code": "260952",
+      "brand": "Life Fitness",
+      "name": "SYNERGY360",
+      "names": {
+        "zh-CN": "SYNERGY360",
+        "zh-HK": "SYNERGY360",
+        "en-US": "SYNERGY360"
+      },
+      "model": "SYNERGY360",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2300164,
+      "cover_image_url": "https://oss-hk.247fitness.hk/df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 24,
+      "source_row_id": 2710,
+      "inventory_id": 1166,
+      "inventory_code": "260965",
+      "brand": "Life Fitness",
+      "name": "CMS Dual Adjustable Pulley",
+      "names": {
+        "zh-CN": "小飞鸟",
+        "zh-HK": "小飛鳥",
+        "en-US": "CMS Dual Adjustable Pulley"
+      },
+      "model": "CMDAP",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2312754,
+      "cover_image_url": "https://oss-hk.247fitness.hk/b49a310fdc2296cfac186f77d23a5af857dcc3ee4ef95184ad84e1a89f8961a1.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 25,
+      "source_row_id": 2709,
+      "inventory_id": 1169,
+      "inventory_code": "260968",
+      "brand": "Life Fitness",
+      "name": "Plate Loaded Incline Press",
+      "names": {
+        "zh-CN": "挂片上斜推胸",
+        "zh-HK": "掛片上斜推胸",
+        "en-US": "Plate Loaded Incline Press"
+      },
+      "model": "SPLIP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2317795,
+      "cover_image_url": "https://oss-hk.247fitness.hk/f2b91ec5eacabb1692db83914d354af50d0689587ddb5a6c2f154aad1bc7a456.jpeg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 26,
+      "source_row_id": 2708,
+      "inventory_id": 1184,
+      "inventory_code": "260983",
+      "brand": "Life Fitness",
+      "name": "Mutil Junction-16 Stack",
+      "names": {
+        "zh-CN": "16站位",
+        "zh-HK": "16站龍門架",
+        "en-US": "Mutil Junction-16 Stack"
+      },
+      "model": "Adj-16",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2320951,
+      "cover_image_url": "https://oss-hk.247fitness.hk/92d7250ced1db0ee5b7ed2d023cedfae319a2fdcd803aaa123733c9c72af265f.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    }
+  ]
+}

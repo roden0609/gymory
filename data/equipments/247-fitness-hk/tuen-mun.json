@@ -1,0 +1,1221 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library public read endpoint",
+  "country_code": "HK",
+  "store_id": 341,
+  "store_name": "Tuen Mun",
+  "store_slug": "tuen-mun",
+  "store_name_en": "24/7 FITNESS - Tuen Mun",
+  "store_name_bilingual": "24/7 Fitness - Tuen Mun (屯門)",
+  "area_name": "New Territories District",
+  "store_code": "TM",
+  "source_store_status": 1,
+  "listed_in_app_selector": true,
+  "captured_at": "2026-10-24T17:45:20.966315+00:00",
+  "status": "source_api_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "Public GET used by App; exact storeId assignment; same All ordering",
+  "scope": "Only inventory assigned to this store; Nearest Store excluded",
+  "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=341&club_id=341&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
+  "response_sha256": "f2e939ac9e6d778427a5c9e21ce6d006edd7ebcb7d9a69bfca66cf99f3abd54c",
+  "response_row_count": 1290,
+  "excluded_nearest_store_rows": 1236,
+  "row_count": 54,
+  "unique_equipment_count": 53,
+  "unique_inventory_count": 54,
+  "equipment": [
+    {
+      "sequence": 1,
+      "source_row_id": 6303,
+      "inventory_id": 1484,
+      "inventory_code": "261283",
+      "brand": "HAMMER STRENGTH",
+      "name": "HALF-RACK",
+      "names": {
+        "zh-CN": "训练架",
+        "zh-HK": "訓練架",
+        "en-US": "HALF-RACK"
+      },
+      "model": "HDT-HR",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2740715,
+      "cover_image_url": "https://oss-hk.247fitness.hk/1d8045d5695806c09b796aa4943c9045537265ffc81dfb956cabd2c5c79cb8ac.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 2,
+      "source_row_id": 6302,
+      "inventory_id": 48,
+      "inventory_code": "260048",
+      "brand": "HAMMER STRENGTH",
+      "name": "Seated Dip",
+      "names": {
+        "zh-CN": "坐式下压三头肌训练器",
+        "zh-HK": "坐式下壓三頭肌訓練器",
+        "en-US": "Seated Dip"
+      },
+      "model": "PLDIP",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2254990,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4532092e412c075b26d053c822fcefa0bbda015e25d4095e60f2a77a0147afbd.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 3,
+      "source_row_id": 6301,
+      "inventory_id": 67,
+      "inventory_code": "260067",
+      "brand": "HAMMER STRENGTH",
+      "name": "Glute Drive",
+      "names": {
+        "zh-CN": "臀肌训练器",
+        "zh-HK": "臀肌訓練器",
+        "en-US": "Glute Drive"
+      },
+      "model": "PLGLD",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254627,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6e34c8c27c99885eb59affe61dc7667f44c7bc2d481f158c1583404a3b6a9eba.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 4,
+      "source_row_id": 6300,
+      "inventory_id": 33,
+      "inventory_code": "260033",
+      "brand": "HAMMER STRENGTH",
+      "name": "Decline Chest Press",
+      "names": {
+        "zh-CN": "分动式下斜推胸训练器",
+        "zh-HK": "分動式下斜推胸訓練器",
+        "en-US": "Decline Chest Press"
+      },
+      "model": "ILDCP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254618,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2096ebe94e292e7ff9638ebfe6a87ef18a56c70b697ce0d9e15039612b41f46a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 5,
+      "source_row_id": 6179,
+      "inventory_id": 1488,
+      "inventory_code": "261287",
+      "brand": "XMASTER",
+      "name": "Adjustable Bench 2.0",
+      "names": {
+        "zh-CN": "可调训练凳",
+        "zh-HK": "腹肌訓練凳",
+        "en-US": "Adjustable Bench 2.0"
+      },
+      "model": "Adjustable Bench 2.0",
+      "category_names": [
+        "ABDOMINAL"
+      ],
+      "cover_image_id": 2795655,
+      "cover_image_url": "https://oss-hk.247fitness.hk/0bca7f726381517faba892c351856c645d45ce24423e30cf60736387d0ac7b67.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 6,
+      "source_row_id": 6178,
+      "inventory_id": 119,
+      "inventory_code": "260119",
+      "brand": "Life Fitness",
+      "name": "Seated Leg Curl",
+      "names": {
+        "zh-CN": "坐式大腿屈伸训练器",
+        "zh-HK": "坐式大腿屈伸訓練器",
+        "en-US": "Seated Leg Curl"
+      },
+      "model": "SS-SLC（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254246,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/b0ac0735160ba3c214eefe48c770f4301a5f0e53e5c70abb30b2c8f290b6ed57.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 7,
+      "source_row_id": 6177,
+      "inventory_id": 118,
+      "inventory_code": "260118",
+      "brand": "Life Fitness",
+      "name": "Glute",
+      "names": {
+        "zh-CN": "臀部训练器",
+        "zh-HK": "臀部訓練器",
+        "en-US": "Glute"
+      },
+      "model": "SS-GL（LP）Full",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254190,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4463b9cbed60630390d14511873873f43ff6051c3c7c2e93235b5847eec1ae18.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 8,
+      "source_row_id": 6176,
+      "inventory_id": 1369,
+      "inventory_code": "261168",
+      "brand": "Life Fitness",
+      "name": "Integrity SE3 HD樓梯機",
+      "names": {
+        "zh-CN": "Integrity系列楼梯机SE3HD",
+        "zh-HK": "Integrity系列楼梯機SE3HD",
+        "en-US": "Integrity SE3 HD樓梯機"
+      },
+      "model": "Integrity SE3 HD樓梯機",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359720,
+      "cover_image_url": "https://oss-hk.247fitness.hk/22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 9,
+      "source_row_id": 6175,
+      "inventory_id": 1387,
+      "inventory_code": "261186",
+      "brand": "Life Fitness",
+      "name": "life fitness Arm Curl Bench",
+      "names": {
+        "zh-CN": "Life系列二头弯举机",
+        "zh-HK": "Life系列二頭弯舉機",
+        "en-US": "life fitness Arm Curl Bench"
+      },
+      "model": "LBRBC",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2739045,
+      "cover_image_url": "https://oss-hk.247fitness.hk/e1f74dfe0335d7bb5c2b91162aa8a9a190d1bf7ba85a520e84b3f7ad7b9f3f9c.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 10,
+      "source_row_id": 6174,
+      "inventory_id": 1501,
+      "inventory_code": "261300",
+      "brand": "Life Fitness",
+      "name": "BACK EXTENSION",
+      "names": {
+        "zh-CN": "背部伸展訓練機",
+        "zh-HK": "羅馬椅",
+        "en-US": "BACK EXTENSION"
+      },
+      "model": "LBR-BE",
+      "category_names": [
+        "Glute",
+        "Back"
+      ],
+      "cover_image_id": 2739072,
+      "cover_image_url": "https://oss-hk.247fitness.hk/98123e52b0b8e785e8ceae8d1d3aedf176a87480ba710fc9f4b3dbeef24daf4d.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 11,
+      "source_row_id": 6173,
+      "inventory_id": 1344,
+      "inventory_code": "261143",
+      "brand": "Life Fitness",
+      "name": "Integrity Series Elliptical Cross-Trainer with SL Console",
+      "names": {
+        "zh-CN": "椭圆交叉训练机(Integrity SL屏)",
+        "zh-HK": "橢圓交叉訓練機(Integrity SL屏)",
+        "en-US": "Integrity Series Elliptical Cross-Trainer with SL Console"
+      },
+      "model": "INX-SL",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359722,
+      "cover_image_url": "https://oss-hk.247fitness.hk/f7181442572f54b349fd7130f57339f9e019eeb561cc04f16cad1e1656b6330c.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 12,
+      "source_row_id": 6171,
+      "inventory_id": 1346,
+      "inventory_code": "261145",
+      "brand": "Life Fitness",
+      "name": "Heat Row",
+      "names": {
+        "zh-CN": "风阻划船机(Heat Row)",
+        "zh-HK": "風阻划船機(Heat Row)",
+        "en-US": "Heat Row"
+      },
+      "model": "",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359730,
+      "cover_image_url": "https://oss-hk.247fitness.hk/cd4705988ca6dab0632c2cff28784a7d42d4b429370f06015dd64fa701fe6894.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 13,
+      "source_row_id": 6170,
+      "inventory_id": 1334,
+      "inventory_code": "261133",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Biceps / Triceps (w/Full Shroud)",
+      "names": {
+        "zh-CN": "二头肌/三头肌训练机(全护罩)",
+        "zh-HK": "二頭肌/三頭肌訓練機(全護罩)",
+        "en-US": "Axiom Series Biceps / Triceps (w/Full Shroud)"
+      },
+      "model": "OP-BT-FS",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2359717,
+      "cover_image_url": "https://oss-hk.247fitness.hk/6a9077ce0d7d14601dbb7b5208624bda8b54d203b26e39ec6012c07ea40574ba.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 14,
+      "source_row_id": 6169,
+      "inventory_id": 97,
+      "inventory_code": "260097",
+      "brand": "HAMMER STRENGTH",
+      "name": "MTS Chest Press",
+      "names": {
+        "zh-CN": "分动插片配重式推胸训练器",
+        "zh-HK": "分動插片配重式推胸訓練器",
+        "en-US": "MTS Chest Press"
+      },
+      "model": "MTSCP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254369,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6faaac5a0b206237533493a68be5d75d27012e28c4cdac478f21193d4b20e960.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 15,
+      "source_row_id": 6168,
+      "inventory_id": 88,
+      "inventory_code": "260088",
+      "brand": "HAMMER STRENGTH",
+      "name": "Chin/Dip/Leg Raise",
+      "names": {
+        "zh-CN": "单双杠及提腿腹肌组合练习架",
+        "zh-HK": "單雙槓及提腿腹肌組合練習架",
+        "en-US": "Chin/Dip/Leg Raise"
+      },
+      "model": "BWCDL",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254806,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4cbf33746510074d63a177f2523845eed91ef9f487a396802cf0c3623e53e0be.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 16,
+      "source_row_id": 6167,
+      "inventory_id": 55,
+      "inventory_code": "260055",
+      "brand": "HAMMER STRENGTH",
+      "name": "Seated Calf Raise",
+      "names": {
+        "zh-CN": "坐式提小腿训练器",
+        "zh-HK": "坐式提小腿訓練器",
+        "en-US": "Seated Calf Raise"
+      },
+      "model": "PLCALF",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254510,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/ede3823710335e36601542a7bdca33f832e246413bcf93e08ab7529e1bf3ee16.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 17,
+      "source_row_id": 6166,
+      "inventory_id": 54,
+      "inventory_code": "260054",
+      "brand": "HAMMER STRENGTH",
+      "name": "Tibia Dorsi Flexion",
+      "names": {
+        "zh-CN": "胫骨肌训练器",
+        "zh-HK": "脛骨肌訓練器",
+        "en-US": "Tibia Dorsi Flexion"
+      },
+      "model": "PLTIB",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254915,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/20f6a878a37c0712715a1b92ec19a5ba6e1a3af18b47993000a70837f239c056.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 18,
+      "source_row_id": 3085,
+      "inventory_id": 32,
+      "inventory_code": "260032",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Super Incline Press",
+      "names": {
+        "zh-CN": "分动式超上斜推胸训练器",
+        "zh-HK": "分動式超上斜推胸訓練器",
+        "en-US": "Iso-Lateral Super Incline Press"
+      },
+      "model": "ILFMP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254288,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/9c0802ded9d3d92080e76b516c8a20cb3d74b2c6c129c30b61d33c380afbea2f.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 19,
+      "source_row_id": 3081,
+      "inventory_id": 27,
+      "inventory_code": "260027",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Horizontal Bench Press",
+      "names": {
+        "zh-CN": "分动式平卧推胸训练器",
+        "zh-HK": "分動式平卧推胸訓練器",
+        "en-US": "Iso-Lateral Horizontal Bench Press"
+      },
+      "model": "ILHBP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254563,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2212aa186640a6aedd84ab19760873bf349a9441ea26f43861e7bddba8eab40c.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 20,
+      "source_row_id": 3078,
+      "inventory_id": 137,
+      "inventory_code": "260137",
+      "brand": "Life Fitness",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "names": {
+        "zh-CN": "蝴蝶式胸肌及背肌训练器",
+        "zh-HK": "蝴蝶式胸肌及背肌訓練器",
+        "en-US": "Pectoral Fly/Rear Deltoid"
+      },
+      "model": "SS-FLY(SP)Full",
+      "category_names": [
+        "Chest",
+        "Back",
+        "Shoulder"
+      ],
+      "cover_image_id": 2254053,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7037c23d53d8f1b6cb4d4c97c83e3d882b3d79d3a33461767ce07db6119a46d0.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 21,
+      "source_row_id": 3076,
+      "inventory_id": 131,
+      "inventory_code": "260131",
+      "brand": "Life Fitness",
+      "name": "Hip Abduction/Adduction",
+      "names": {
+        "zh-CN": "大腿内外侧肌训练器",
+        "zh-HK": "大腿內外側肌訓練器",
+        "en-US": "Hip Abduction/Adduction"
+      },
+      "model": "SS-HAA（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254101,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/9cd789ac43280b086bf434ec6f6b1a62c910d94e86b6b897364e6b217f86721d.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 22,
+      "source_row_id": 3075,
+      "inventory_id": 122,
+      "inventory_code": "260122",
+      "brand": "Life Fitness",
+      "name": "Seated Leg Press",
+      "names": {
+        "zh-CN": "坐式蹬腿训练器",
+        "zh-HK": "坐式蹬腿訓練器",
+        "en-US": "Seated Leg Press"
+      },
+      "model": "SS-SLP（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254419,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/fd1c745b9ec287e9c010cf7b62b51fb12470de911919bcd9c3697bd37d1d0b88.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 23,
+      "source_row_id": 3074,
+      "inventory_id": 1145,
+      "inventory_code": "260944",
+      "brand": "XMASTER",
+      "name": "24/7 FITNESS Full Rack",
+      "names": {
+        "zh-CN": "24/7 FITNESS 全框深蹲架",
+        "zh-HK": "24/7 FITNESS 全框深蹲架",
+        "en-US": "24/7 FITNESS Full Rack"
+      },
+      "model": "",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2300156,
+      "cover_image_url": "https://oss-hk.247fitness.hk/5c3572d5992b1d0f36b15e333116e097ab119656f9fc69b1a2209e8d7aff9121.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 24,
+      "source_row_id": 3067,
+      "inventory_id": 1073,
+      "inventory_code": "260879",
+      "brand": "InBody",
+      "name": "InBody",
+      "names": {
+        "zh-CN": "InBody智能体测仪",
+        "zh-HK": "InBody智能體測儀",
+        "en-US": "InBody"
+      },
+      "model": "-",
+      "category_names": [
+        "Analyzer"
+      ],
+      "cover_image_id": 2254638,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7678ee1c29efeffec80efba29c0887a923c2a9a44ffa71c1dbbd61712730b263.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 25,
+      "source_row_id": 1429,
+      "inventory_id": 210,
+      "inventory_code": "260210",
+      "brand": "NEWTECH",
+      "name": "Torture Overhead Extension",
+      "names": {
+        "zh-CN": "三头肌屈伸训练器",
+        "zh-HK": "三頭肌屈伸訓練器",
+        "en-US": "Torture Overhead Extension"
+      },
+      "model": "NT-T-OHE",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2254616,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6b9221db35e09850bfff8a58b3c1b8ce1aa9cc1e3745b3caa4a84630654e9fa7.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 26,
+      "source_row_id": 1427,
+      "inventory_id": 20,
+      "inventory_code": "260020",
+      "brand": "HAMMER STRENGTH",
+      "name": "Seated Leg Press",
+      "names": {
+        "zh-CN": "坐式蹬腿训练器",
+        "zh-HK": "坐式蹬腿訓練器",
+        "en-US": "Seated Leg Press"
+      },
+      "model": "HS-SLP",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254717,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/1aed7be688491a0781fb59418a74c949ae85cd71b363ccb26b15b4c1c0463dba.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 27,
+      "source_row_id": 1426,
+      "inventory_id": 19,
+      "inventory_code": "260019",
+      "brand": "HAMMER STRENGTH",
+      "name": "Seated Leg Curl",
+      "names": {
+        "zh-CN": "坐式大腿屈伸训练器",
+        "zh-HK": "坐式大腿屈伸訓練器",
+        "en-US": "Seated Leg Curl"
+      },
+      "model": "HS-SLC",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254579,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2bdd0ccfd0b4e8d2a96344a936d553cace041be03256c120d77a7e69121cf09a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 28,
+      "source_row_id": 1425,
+      "inventory_id": 9,
+      "inventory_code": "260009",
+      "brand": "HAMMER STRENGTH",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "names": {
+        "zh-CN": "蝴蝶式胸肌训练器",
+        "zh-HK": "蝴蝶式胸肌訓練器",
+        "en-US": "Pectoral Fly/Rear Deltoid"
+      },
+      "model": "HS-FLY",
+      "category_names": [
+        "Chest",
+        "Back"
+      ],
+      "cover_image_id": 2300081,
+      "cover_image_url": "https://oss-hk.247fitness.hk/656cbfd7ac3b57c3ac3348c31f3fd5169d87574fb7ec0f220c7b890666192f18.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 29,
+      "source_row_id": 1424,
+      "inventory_id": 4,
+      "inventory_code": "260004",
+      "brand": "HAMMER STRENGTH",
+      "name": "Chest Press",
+      "names": {
+        "zh-CN": "坐式胸肌推举训练器",
+        "zh-HK": "坐式胸肌推舉訓練器",
+        "en-US": "Chest Press"
+      },
+      "model": "HS-CP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2255006,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/74d1e951958f973e46f22f98d51bd8bc4eb1e49430100cfe83776163db7488de.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 30,
+      "source_row_id": 1423,
+      "inventory_id": 659,
+      "inventory_code": "260524",
+      "brand": "PANATTA",
+      "name": "Standing multi flight",
+      "names": {
+        "zh-CN": "站姿多功能側平舉",
+        "zh-HK": "站姿多功能側平舉",
+        "en-US": "Standing multi flight"
+      },
+      "model": "1MTH028",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254879,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/95a94cda7a78daec23ee10bf3d8303174c900e7429a80c3c5a6ea56a2e23298e.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 31,
+      "source_row_id": 1422,
+      "inventory_id": 753,
+      "inventory_code": "260615",
+      "brand": "BOOTY BUILDER",
+      "name": "Belt Squat",
+      "names": {
+        "zh-CN": "复合式深蹲训练机 （实物不含弹力带，需另配）",
+        "zh-HK": "複合式深蹲訓練機 （實物不含彈力帶，需另配）",
+        "en-US": "Belt Squat"
+      },
+      "model": "BB-BS",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254449,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6b5446bea3cbaf31d71c5ba1225901726df72a67261062555d33592fb3df711f.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 32,
+      "source_row_id": 1421,
+      "inventory_id": 442,
+      "inventory_code": "260329",
+      "brand": "Life Fitness",
+      "name": "MULTI-JUNGLE MJ8",
+      "names": {
+        "zh-CN": "八站位",
+        "zh-HK": "力健八站位",
+        "en-US": "MULTI-JUNGLE MJ8"
+      },
+      "model": "",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254687,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2287742647628ba1cc24a59412a235bc89849dda9f45e5678129f25377a06786.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 33,
+      "source_row_id": 1420,
+      "inventory_id": 211,
+      "inventory_code": "260211",
+      "brand": "NEWTECH",
+      "name": "Torture Squat & Caf Raise(new)",
+      "names": {
+        "zh-CN": "哈克深蹲",
+        "zh-HK": "哈克深蹲",
+        "en-US": "Torture Squat & Caf Raise(new)"
+      },
+      "model": "NT-T-SCR",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254107,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/944297f06613e641db157e9b9647d8d1b967269f7bce21492e3cd946afad6b4b.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 34,
+      "source_row_id": 1419,
+      "inventory_id": 198,
+      "inventory_code": "260198",
+      "brand": "NEWTECH",
+      "name": "Torture Hack Squat (thomson) (Rotary)",
+      "names": {
+        "zh-CN": "哈克斜蹲",
+        "zh-HK": "哈克斜蹲",
+        "en-US": "Torture Hack Squat (thomson) (Rotary)"
+      },
+      "model": "NT-T-HS-(P)",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254055,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/8a9bcb5aa34f831a484f7a504e79a11019522ac24165a8457d6ae79caa5b7a21.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 35,
+      "source_row_id": 1418,
+      "inventory_id": 199,
+      "inventory_code": "260199",
+      "brand": "NEWTECH",
+      "name": "Torture Power Leg Press Premium (THOMSON )",
+      "names": {
+        "zh-CN": "倒蹬机新品",
+        "zh-HK": "倒蹬機新品",
+        "en-US": "Torture Power Leg Press Premium (THOMSON )"
+      },
+      "model": "NT-T-PLP-(P)",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254291,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/b9b85b2eab7ce6a150bc200e2e638a5ed430bcb245d839b00695688fe011194e.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 36,
+      "source_row_id": 1417,
+      "inventory_id": 142,
+      "inventory_code": "260142",
+      "brand": "Life Fitness",
+      "name": "Glute",
+      "names": {
+        "zh-CN": "臀部训练器",
+        "zh-HK": "臀部訓練器",
+        "en-US": "Glute"
+      },
+      "model": "SS-GL(SP)Full",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254190,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4463b9cbed60630390d14511873873f43ff6051c3c7c2e93235b5847eec1ae18.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 37,
+      "source_row_id": 1416,
+      "inventory_id": 103,
+      "inventory_code": "260103",
+      "brand": "HAMMER STRENGTH",
+      "name": "MTS Incline Press",
+      "names": {
+        "zh-CN": "分动插片配重式上斜推胸训练器",
+        "zh-HK": "分動插片配重式上斜推胸訓練器",
+        "en-US": "MTS Incline Press"
+      },
+      "model": "MTSIP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254854,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/3dace1a0ae284513c7fa837f7acc13918c10021baa4e916583b1095d52a3f51e.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 38,
+      "source_row_id": 1415,
+      "inventory_id": 102,
+      "inventory_code": "260102",
+      "brand": "HAMMER STRENGTH",
+      "name": "MTS Abdominal Crunch",
+      "names": {
+        "zh-CN": "分动插片配重式腹肌训练器",
+        "zh-HK": "分動插片配重式腹肌訓練器",
+        "en-US": "MTS Abdominal Crunch"
+      },
+      "model": "MTSAB",
+      "category_names": [
+        "ABDOMINAL"
+      ],
+      "cover_image_id": 2254715,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4576e0c40cc40b9062d2bc85deb371fc6892e9ea53cd1d688eea6e5a1fda4792.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 39,
+      "source_row_id": 1414,
+      "inventory_id": 61,
+      "inventory_code": "260061",
+      "brand": "HAMMER STRENGTH",
+      "name": "Smith",
+      "names": {
+        "zh-CN": "史密斯训练架",
+        "zh-HK": "史密斯訓練架",
+        "en-US": "Smith"
+      },
+      "model": "HSSM",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254117,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7cf050b805439e78d0f8f320bc00147f845c7a5bd1d9e61aec3ce189fcb33dab.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 40,
+      "source_row_id": 1413,
+      "inventory_id": 49,
+      "inventory_code": "260049",
+      "brand": "HAMMER STRENGTH",
+      "name": "Seated Biceps",
+      "names": {
+        "zh-CN": "坐式二头肌训练器",
+        "zh-HK": "坐式二頭肌訓練器",
+        "en-US": "Seated Biceps"
+      },
+      "model": "PLBI",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2254800,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/e07a549675f1c3179ee28f31565412a0ed0f83d19e7d189dfd39896e80ad1f1b.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 41,
+      "source_row_id": 1412,
+      "inventory_id": 40,
+      "inventory_code": "260040",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral DY Row",
+      "names": {
+        "zh-CN": "分动式 DY 划艇拉背训练器",
+        "zh-HK": "分動式 DY 划艇拉背訓練器",
+        "en-US": "Iso-Lateral DY Row"
+      },
+      "model": "ILDRW",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254572,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/afaa59214fc8251221dd00f5aaae1895ec97f8ab11d0dde31840b71e24294138.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 42,
+      "source_row_id": 1411,
+      "inventory_id": 39,
+      "inventory_code": "260039",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Wide Pull Down",
+      "names": {
+        "zh-CN": "分动式阔角度高拉背训练器",
+        "zh-HK": "分動式闊角度高拉背訓練器",
+        "en-US": "Iso-Lateral Wide Pull Down"
+      },
+      "model": "ILWPD",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254812,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/93ce857f468b2278ebb5e8d6747b38485d1be73fb40b4b82d9060547b47e9d02.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 43,
+      "source_row_id": 1410,
+      "inventory_id": 37,
+      "inventory_code": "260037",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral High Row",
+      "names": {
+        "zh-CN": "分动式划艇高拉背训练器",
+        "zh-HK": "分動式划艇高拉背訓練器",
+        "en-US": "Iso-Lateral High Row"
+      },
+      "model": "ILHR",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254420,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/161f1439d6bad1ee00f3abf627d96118e7af6473057c5974ca226f79464a9a18.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 44,
+      "source_row_id": 1409,
+      "inventory_id": 34,
+      "inventory_code": "260034",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Shoulder Press",
+      "names": {
+        "zh-CN": "分动式推肩训练器",
+        "zh-HK": "分動式推肩訓練器",
+        "en-US": "Iso-Lateral Shoulder Press"
+      },
+      "model": "ILSP",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254727,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/990cfcf246667c435c90d2c31a84b42e102bb83b921627976a75cd7aeb916cfa.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 45,
+      "source_row_id": 1407,
+      "inventory_id": 18,
+      "inventory_code": "260018",
+      "brand": "HAMMER STRENGTH",
+      "name": "Leg Extension",
+      "names": {
+        "zh-CN": "大腿伸展训练器",
+        "zh-HK": "大腿伸展訓練器",
+        "en-US": "Leg Extension"
+      },
+      "model": "HS-LE",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2255034,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/107709ffd13945577115fa26b36cb48adae55bfd7f0886f28f96cdd15a7c512e.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 46,
+      "source_row_id": 1406,
+      "inventory_id": 11,
+      "inventory_code": "260011",
+      "brand": "HAMMER STRENGTH",
+      "name": "Shoulder Press",
+      "names": {
+        "zh-CN": "推肩训练器",
+        "zh-HK": "推肩訓練器",
+        "en-US": "Shoulder Press"
+      },
+      "model": "HS-SP",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254372,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/b684f6d441ac666b4b44ac8002bbc402367e19efde3bd533b53153f299670f21.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 47,
+      "source_row_id": 1405,
+      "inventory_id": 1096,
+      "inventory_code": "260896",
+      "brand": "Concept 2",
+      "name": "Country Ski Trainer",
+      "names": {
+        "zh-CN": "滑雪机",
+        "zh-HK": "滑雪機",
+        "en-US": "Country Ski Trainer"
+      },
+      "model": "Skierg",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2276912,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c5b4d4c594f8100f379a9f794f32881b1b579a70e953a1c7d73837724a4cef7e.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 48,
+      "source_row_id": 1404,
+      "inventory_id": 1098,
+      "inventory_code": "260898",
+      "brand": "ASSAULT FITNESS",
+      "name": "AIR BIKE",
+      "names": {
+        "zh-CN": "风阻单车",
+        "zh-HK": "風阻單車",
+        "en-US": "AIR BIKE"
+      },
+      "model": "AS-ABPX Bike Pro X",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2276920,
+      "cover_image_url": "https://oss-hk.247fitness.hk/300ae9b284d3afdb77beeb757e81cfe635ceb29c64170cfdaf4df2eccecf0505.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 49,
+      "source_row_id": 1403,
+      "inventory_id": 1099,
+      "inventory_code": "260899",
+      "brand": "ASSAULT FITNESS",
+      "name": "AssaultRunner Pro",
+      "names": {
+        "zh-CN": "无动力跑步机",
+        "zh-HK": "無動力跑步機",
+        "en-US": "AssaultRunner Pro"
+      },
+      "model": "AssaultRunner Pro",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2276925,
+      "cover_image_url": "https://oss-hk.247fitness.hk/8d1855fdd8589261579188e76b6a127f60a53712d79508cae0415b7fe5780cec.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 50,
+      "source_row_id": 1402,
+      "inventory_id": 1008,
+      "inventory_code": "260814",
+      "brand": "NAUTILUS",
+      "name": "Nautilus HumanSport Pull Lift",
+      "names": {
+        "zh-CN": "美国诺德士高拉提举双功能训练器（Lock N Load拨片系统）",
+        "zh-HK": "美國諾德士高拉提舉雙功能訓練器（Lock N Load撥片系統）",
+        "en-US": "Nautilus HumanSport Pull Lift"
+      },
+      "model": "9-HSPL",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2285388,
+      "cover_image_url": "https://oss-hk.247fitness.hk/2606bb568d47c9559a73d309e6371951c1d1ad5f9fe12df6969edc9d97e9ca42.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 51,
+      "source_row_id": 1401,
+      "inventory_id": 1129,
+      "inventory_code": "260928",
+      "brand": "NAUTILUS",
+      "name": "Nautilus Inspiration Strength Dual Adjustable Pulley",
+      "names": {
+        "zh-CN": "美国诺德士双滑轮双向拉力训练机（Lock N Load拨片系统）",
+        "zh-HK": "美國諾德士双滑輪雙向拉力訓練機（Lock N Load撥片系統）",
+        "en-US": "Nautilus Inspiration Strength Dual Adjustable Pulley"
+      },
+      "model": "9NP-D9302",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2300140,
+      "cover_image_url": "https://oss-hk.247fitness.hk/9ebb4cc94e226a18e4ba88abfa9f046c1113724b0b2023edba205e4b033bd319.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 52,
+      "source_row_id": 1400,
+      "inventory_id": 1146,
+      "inventory_code": "260945",
+      "brand": "SKELCORE",
+      "name": "Skelcore Pro Plus Series Back Row",
+      "names": {
+        "zh-CN": "史密斯划船",
+        "zh-HK": "史密斯划船",
+        "en-US": "Skelcore Pro Plus Series Back Row"
+      },
+      "model": "SK-PROPLA-094",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2300157,
+      "cover_image_url": "https://oss-hk.247fitness.hk/6f84106dd8be3e6951dc77eb43a226be96c545a2a1d1cfae4679a347fc1012b1.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 53,
+      "source_row_id": 1399,
+      "inventory_id": 1160,
+      "inventory_code": "260959",
+      "brand": "NEWTECH",
+      "name": "Torture Standing & Seated Row Combo (New)",
+      "names": {
+        "zh-CN": "站及坐姿二合一划船",
+        "zh-HK": "站及坐姿二合一划船",
+        "en-US": "Torture Standing & Seated Row Combo (New)"
+      },
+      "model": "N. T(R)-SSRC",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2312148,
+      "cover_image_url": "https://oss-hk.247fitness.hk/12fe579d2091be4b839c7039ee402c98d7c48b99699965fe18637f2a34e701ad.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 54,
+      "source_row_id": 1398,
+      "inventory_id": 242,
+      "inventory_code": "260242",
+      "brand": "NEWTECH",
+      "name": "Multi Lateral Raise",
+      "names": {
+        "zh-CN": "弯腰侧向抬高",
+        "zh-HK": "彎腰側向抬高",
+        "en-US": "Multi Lateral Raise"
+      },
+      "model": "NT-P-BLR/MLR",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254763,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/72abff73a9c74a18defcbfdaf7253ca3fa4e38327ba68e4b8d923a22eb6652be.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    }
+  ]
+}

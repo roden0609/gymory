@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library",
+  "country_code": "HK",
+  "store_name": "Sheung Shui",
+  "store_slug": "sheung-shui",
+  "captured_at": "2026-10-24T17:31:32.140838+00:00",
+  "status": "local_section_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "ADB 265px slow swipe / 1500ms; overlapping local OCR screenshots",
+  "scope": "Bright local-store section only; Nearest Store excluded",
+  "completeness_basis": "Continuous overlapping frames from top through local/Nearest Store divider; not a backend total",
+  "row_count": 37,
+  "unique_equipment_count": 37,
+  "equipment": [
+    {
+      "sequence": 1,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Wide Pull Down",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 2,
+      "brand": "Life Fitness",
+      "name": "CMS Dual Adjustable Pulley",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 3,
+      "brand": "Life Fitness",
+      "name": "BACK EXTENSION",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 4,
+      "brand": "StairMaster",
+      "name": "8 Series Freeclimber w/LCD Console",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 5,
+      "brand": "HAMMER STRENGTH",
+      "name": "Linear Hack Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 6,
+      "brand": "HAMMER STRENGTH",
+      "name": "V-Squat",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 7,
+      "brand": "HAMMER STRENGTH",
+      "name": "Linear Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "001"
+    },
+    {
+      "sequence": 8,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Front Lat Pulldown",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "003"
+    },
+    {
+      "sequence": 9,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Rowing",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "004"
+    },
+    {
+      "sequence": 10,
+      "brand": "HAMMER STRENGTH",
+      "name": "Decline Chest Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "005"
+    },
+    {
+      "sequence": 11,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Super Incline Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "006"
+    },
+    {
+      "sequence": 12,
+      "brand": "HAMMER STRENGTH",
+      "name": "HALF-RACK",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "007"
+    },
+    {
+      "sequence": 13,
+      "brand": "HAMMER STRENGTH",
+      "name": "Assist Dip Chin",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "008"
+    },
+    {
+      "sequence": 14,
+      "brand": "SportArt",
+      "name": "Smith Machine",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "009"
+    },
+    {
+      "sequence": 15,
+      "brand": "SportArt",
+      "name": "Abdominal training machine",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "010"
+    },
+    {
+      "sequence": 16,
+      "brand": "SportArt",
+      "name": "A994 VKR Chin Dip",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "011"
+    },
+    {
+      "sequence": 17,
+      "brand": "SportArt",
+      "name": "Pectoral Fly/ Rear Deltoid",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "012"
+    },
+    {
+      "sequence": 18,
+      "brand": "SportArt",
+      "name": "PRONE LEG CURL",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "013"
+    },
+    {
+      "sequence": 19,
+      "brand": "XMASTER",
+      "name": "Multi-Angle Bench Press Rack",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "014"
+    },
+    {
+      "sequence": 20,
+      "brand": "XMASTER",
+      "name": "Adjustable Bench 2.0",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "016"
+    },
+    {
+      "sequence": 21,
+      "brand": "XMASTER",
+      "name": "Combo Rack",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "017"
+    },
+    {
+      "sequence": 22,
+      "brand": "Life Fitness",
+      "name": "Life Fitness Signature Series Barbell Rack",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "018"
+    },
+    {
+      "sequence": 23,
+      "brand": "Life Fitness",
+      "name": "Hip Abduction/Adduction",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "019"
+    },
+    {
+      "sequence": 24,
+      "brand": "Life Fitness",
+      "name": "Abdominal",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "020"
+    },
+    {
+      "sequence": 25,
+      "brand": "Life Fitness",
+      "name": "Seated Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "021"
+    },
+    {
+      "sequence": 26,
+      "brand": "Life Fitness",
+      "name": "Leg Extension",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "022"
+    },
+    {
+      "sequence": 27,
+      "brand": "Life Fitness",
+      "name": "Shoulder Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "023"
+    },
+    {
+      "sequence": 28,
+      "brand": "Life Fitness",
+      "name": "Row",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "024"
+    },
+    {
+      "sequence": 29,
+      "brand": "Life Fitness",
+      "name": "Lateral Raise",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "025"
+    },
+    {
+      "sequence": 30,
+      "brand": "Life Fitness",
+      "name": "SYNERGY360",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "026"
+    },
+    {
+      "sequence": 31,
+      "brand": "Life Fitness",
+      "name": "Chest Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "027"
+    },
+    {
+      "sequence": 32,
+      "brand": "Life Fitness",
+      "name": "life fitness Arm Curl Bench",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "029"
+    },
+    {
+      "sequence": 33,
+      "brand": "TechnoGym",
+      "name": "Excite RunProfessional treadmill",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "030"
+    },
+    {
+      "sequence": 34,
+      "brand": "TechnoGym",
+      "name": "EXCITE+ SYNCHRO",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "031"
+    },
+    {
+      "sequence": 35,
+      "brand": "TechnoGym",
+      "name": "EXCITE+ BIKE",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "032"
+    },
+    {
+      "sequence": 36,
+      "brand": "TechnoGym",
+      "name": "EXCITE+ RECLINE",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "033"
+    },
+    {
+      "sequence": 37,
+      "brand": "InBody",
+      "name": "InBody",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "034"
+    }
+  ]
+}

@@ -1,0 +1,604 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library public read endpoint",
+  "country_code": "HK",
+  "store_id": 418,
+  "store_name": "Kam Sheung Road",
+  "store_slug": "kam-sheung-road",
+  "store_name_en": "24/7 FITNESS - Kam Sheung Road",
+  "store_name_bilingual": "24/7 Fitness - Kam Sheung Road (錦上路)",
+  "area_name": "New Territories District",
+  "store_code": "KSR",
+  "source_store_status": 1,
+  "listed_in_app_selector": true,
+  "captured_at": "2026-10-24T17:43:47.939404+00:00",
+  "status": "source_api_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "Public GET used by App; exact storeId assignment; same All ordering",
+  "scope": "Only inventory assigned to this store; Nearest Store excluded",
+  "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=418&club_id=418&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
+  "response_sha256": "93413c9ed0127c29bb271cf88f9b78075fcc04ad7cb16e1c31118485dceee2a0",
+  "response_row_count": 1290,
+  "excluded_nearest_store_rows": 1264,
+  "row_count": 26,
+  "unique_equipment_count": 26,
+  "unique_inventory_count": 26,
+  "equipment": [
+    {
+      "sequence": 1,
+      "source_row_id": 5815,
+      "inventory_id": 1502,
+      "inventory_code": "261301",
+      "brand": "Life Fitness",
+      "name": "AB CRUNCH BENCH",
+      "names": {
+        "zh-CN": "卷腹训练机",
+        "zh-HK": "卷腹訓練機",
+        "en-US": "AB CRUNCH BENCH"
+      },
+      "model": "LBR-AC",
+      "category_names": [
+        "ABDOMINAL"
+      ],
+      "cover_image_id": 2739069,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c37c0535e7b43bc23f046a21be7e90b753b5c22090752a95c4767e733af934d7.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 2,
+      "source_row_id": 5814,
+      "inventory_id": 34,
+      "inventory_code": "260034",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Shoulder Press",
+      "names": {
+        "zh-CN": "分动式推肩训练器",
+        "zh-HK": "分動式推肩訓練器",
+        "en-US": "Iso-Lateral Shoulder Press"
+      },
+      "model": "ILSP",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254727,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/990cfcf246667c435c90d2c31a84b42e102bb83b921627976a75cd7aeb916cfa.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 3,
+      "source_row_id": 5813,
+      "inventory_id": 67,
+      "inventory_code": "260067",
+      "brand": "HAMMER STRENGTH",
+      "name": "Glute Drive",
+      "names": {
+        "zh-CN": "臀肌训练器",
+        "zh-HK": "臀肌訓練器",
+        "en-US": "Glute Drive"
+      },
+      "model": "PLGLD",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254627,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6e34c8c27c99885eb59affe61dc7667f44c7bc2d481f158c1583404a3b6a9eba.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 4,
+      "source_row_id": 5681,
+      "inventory_id": 88,
+      "inventory_code": "260088",
+      "brand": "HAMMER STRENGTH",
+      "name": "Chin/Dip/Leg Raise",
+      "names": {
+        "zh-CN": "单双杠及提腿腹肌组合练习架",
+        "zh-HK": "單雙槓及提腿腹肌組合練習架",
+        "en-US": "Chin/Dip/Leg Raise"
+      },
+      "model": "BWCDL",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254806,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4cbf33746510074d63a177f2523845eed91ef9f487a396802cf0c3623e53e0be.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 5,
+      "source_row_id": 5680,
+      "inventory_id": 64,
+      "inventory_code": "260064",
+      "brand": "HAMMER STRENGTH",
+      "name": "V-Squat",
+      "names": {
+        "zh-CN": "V字下蹲训练器",
+        "zh-HK": "V字下蹲訓練器",
+        "en-US": "V-Squat"
+      },
+      "model": "PLVSQ",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254557,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7ec887f425c7b9337bb05478bb5508dd03039ed33774fe8af05b330dee43fc6f.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 6,
+      "source_row_id": 5679,
+      "inventory_id": 63,
+      "inventory_code": "260063",
+      "brand": "HAMMER STRENGTH",
+      "name": "Linear Leg Press",
+      "names": {
+        "zh-CN": "45度角坐式大腿训练器",
+        "zh-HK": "45度角坐式大腿訓練器",
+        "en-US": "Linear Leg Press"
+      },
+      "model": "HSLLP",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254998,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/250c148c4334b0f7f639448946efa476a7a868c0587eb3aa3e9fbd6f68e2416f.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 7,
+      "source_row_id": 5678,
+      "inventory_id": 61,
+      "inventory_code": "260061",
+      "brand": "HAMMER STRENGTH",
+      "name": "Smith",
+      "names": {
+        "zh-CN": "史密斯训练架",
+        "zh-HK": "史密斯訓練架",
+        "en-US": "Smith"
+      },
+      "model": "HSSM",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254117,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7cf050b805439e78d0f8f320bc00147f845c7a5bd1d9e61aec3ce189fcb33dab.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 8,
+      "source_row_id": 5677,
+      "inventory_id": 50,
+      "inventory_code": "260050",
+      "brand": "HAMMER STRENGTH",
+      "name": "Lateral Raise",
+      "names": {
+        "zh-CN": "侧抬臂训练器",
+        "zh-HK": "側抬臂訓練器",
+        "en-US": "Lateral Raise"
+      },
+      "model": "PLLR",
+      "category_names": [
+        "Shoulder",
+        "Arms"
+      ],
+      "cover_image_id": 2254775,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7e2fb1c43045484dc45678ac62ab37456d7f0e31983a3d27225f92cbf3d4d2e3.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 9,
+      "source_row_id": 5676,
+      "inventory_id": 39,
+      "inventory_code": "260039",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Wide Pull Down",
+      "names": {
+        "zh-CN": "分动式阔角度高拉背训练器",
+        "zh-HK": "分動式闊角度高拉背訓練器",
+        "en-US": "Iso-Lateral Wide Pull Down"
+      },
+      "model": "ILWPD",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254812,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/93ce857f468b2278ebb5e8d6747b38485d1be73fb40b4b82d9060547b47e9d02.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 10,
+      "source_row_id": 5675,
+      "inventory_id": 35,
+      "inventory_code": "260035",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Rowing",
+      "names": {
+        "zh-CN": "分动式划艇拉背训练器 I",
+        "zh-HK": "分動式划艇拉背訓練器",
+        "en-US": "Iso-Lateral Rowing"
+      },
+      "model": "ILROW",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254713,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6154c520e6d5824899654225f9a25128fd4a5cdeb1ca9914d08e109866c5b61a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 11,
+      "source_row_id": 5674,
+      "inventory_id": 1484,
+      "inventory_code": "261283",
+      "brand": "HAMMER STRENGTH",
+      "name": "HALF-RACK",
+      "names": {
+        "zh-CN": "训练架",
+        "zh-HK": "訓練架",
+        "en-US": "HALF-RACK"
+      },
+      "model": "HDT-HR",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2740715,
+      "cover_image_url": "https://oss-hk.247fitness.hk/1d8045d5695806c09b796aa4943c9045537265ffc81dfb956cabd2c5c79cb8ac.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 12,
+      "source_row_id": 5673,
+      "inventory_id": 1345,
+      "inventory_code": "261144",
+      "brand": "HAMMER STRENGTH",
+      "name": "Multi-Adjustable Bench",
+      "names": {
+        "zh-CN": "多角度可调训练凳",
+        "zh-HK": "多角度可調訓練凳",
+        "en-US": "Multi-Adjustable Bench"
+      },
+      "model": "HDU-MAB",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2359729,
+      "cover_image_url": "https://oss-hk.247fitness.hk/950d5872ced0f61c8f84cf850468b27c6e000e5bc7557637b3bc2552d565c8fb.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 13,
+      "source_row_id": 5672,
+      "inventory_id": 1501,
+      "inventory_code": "261300",
+      "brand": "Life Fitness",
+      "name": "BACK EXTENSION",
+      "names": {
+        "zh-CN": "背部伸展訓練機",
+        "zh-HK": "羅馬椅",
+        "en-US": "BACK EXTENSION"
+      },
+      "model": "LBR-BE",
+      "category_names": [
+        "Glute",
+        "Back"
+      ],
+      "cover_image_id": 2739072,
+      "cover_image_url": "https://oss-hk.247fitness.hk/98123e52b0b8e785e8ceae8d1d3aedf176a87480ba710fc9f4b3dbeef24daf4d.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 14,
+      "source_row_id": 5671,
+      "inventory_id": 1376,
+      "inventory_code": "261175",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Dual Seated Leg Extension/Curl",
+      "names": {
+        "zh-CN": "Axiom系列双功能坐姿腿伸展/弯举机",
+        "zh-HK": "Axiom系列雙功能坐姿腿伸展/弯舉機",
+        "en-US": "Axiom Series Dual Seated Leg Extension/Curl"
+      },
+      "model": "PH-OPSLCE",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2739074,
+      "cover_image_url": "https://oss-hk.247fitness.hk/d675fe00a2454c71ef4f2ae7dec37dbb98e85f502eb6707eb5532d5a7802ca47.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 15,
+      "source_row_id": 5670,
+      "inventory_id": 1384,
+      "inventory_code": "261183",
+      "brand": "Life Fitness",
+      "name": "life fitness Utility Bench",
+      "names": {
+        "zh-CN": "Life系列训练凳",
+        "zh-HK": "Life系列訓練凳",
+        "en-US": "life fitness Utility Bench"
+      },
+      "model": "LBRUB",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2739048,
+      "cover_image_url": "https://oss-hk.247fitness.hk/58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 16,
+      "source_row_id": 5669,
+      "inventory_id": 1388,
+      "inventory_code": "261187",
+      "brand": "Life Fitness",
+      "name": "Adjustable Decline Bench",
+      "names": {
+        "zh-CN": "可调节下斜训练凳",
+        "zh-HK": "可調節下斜訓練凳",
+        "en-US": "Adjustable Decline Bench"
+      },
+      "model": "LBRDB",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2739041,
+      "cover_image_url": "https://oss-hk.247fitness.hk/16102db1205fd309773ffbbc1e60ef00f2648b4a0822d2f12667821747cbdfa5.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 17,
+      "source_row_id": 5668,
+      "inventory_id": 1346,
+      "inventory_code": "261145",
+      "brand": "Life Fitness",
+      "name": "Heat Row",
+      "names": {
+        "zh-CN": "风阻划船机(Heat Row)",
+        "zh-HK": "風阻划船機(Heat Row)",
+        "en-US": "Heat Row"
+      },
+      "model": "",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359730,
+      "cover_image_url": "https://oss-hk.247fitness.hk/cd4705988ca6dab0632c2cff28784a7d42d4b429370f06015dd64fa701fe6894.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 18,
+      "source_row_id": 5667,
+      "inventory_id": 1369,
+      "inventory_code": "261168",
+      "brand": "Life Fitness",
+      "name": "Integrity SE3 HD樓梯機",
+      "names": {
+        "zh-CN": "Integrity系列楼梯机SE3HD",
+        "zh-HK": "Integrity系列楼梯機SE3HD",
+        "en-US": "Integrity SE3 HD樓梯機"
+      },
+      "model": "Integrity SE3 HD樓梯機",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359720,
+      "cover_image_url": "https://oss-hk.247fitness.hk/22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 19,
+      "source_row_id": 5665,
+      "inventory_id": 1348,
+      "inventory_code": "261147",
+      "brand": "Cybex",
+      "name": "Cybex V Series Cross Trainer with LED Console",
+      "names": {
+        "zh-CN": "交叉训练机(V系列 LED屏)",
+        "zh-HK": "交叉訓練機(V系列 LED屏)",
+        "en-US": "Cybex V Series Cross Trainer with LED Console"
+      },
+      "model": "CVCT-LED-E",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359778,
+      "cover_image_url": "https://oss-hk.247fitness.hk/105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 20,
+      "source_row_id": 5664,
+      "inventory_id": 1350,
+      "inventory_code": "261149",
+      "brand": "Cybex",
+      "name": "Cybex V Series Upright Bike with LED Console",
+      "names": {
+        "zh-CN": "立式健身车(V系列 LED屏)",
+        "zh-HK": "立式健身車(V系列 LED屏)",
+        "en-US": "Cybex V Series Upright Bike with LED Console"
+      },
+      "model": "CVUB-LED-E",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359780,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 21,
+      "source_row_id": 5663,
+      "inventory_id": 1347,
+      "inventory_code": "261146",
+      "brand": "Cybex",
+      "name": "Cybex V Series Treadmill with LED Console",
+      "names": {
+        "zh-CN": "跑步机(V系列 LED屏)",
+        "zh-HK": "跑步機(V系列 LED屏)",
+        "en-US": "Cybex V Series Treadmill with LED Console"
+      },
+      "model": "CVTH-LED-E",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359777,
+      "cover_image_url": "https://oss-hk.247fitness.hk/e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 22,
+      "source_row_id": 1597,
+      "inventory_id": 41,
+      "inventory_code": "260041",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Chest Back",
+      "names": {
+        "zh-CN": "分动式推胸及高拉背肌训练器",
+        "zh-HK": "分動式推胸及高拉背肌訓練器",
+        "en-US": "Iso-Lateral Chest Back"
+      },
+      "model": "ILCB",
+      "category_names": [
+        "Chest",
+        "Back"
+      ],
+      "cover_image_id": 2254947,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/fc45223fbb96f7295b355a5f13127e59b1657cbf98a9389e5f35b2951739cae3.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 23,
+      "source_row_id": 1596,
+      "inventory_id": 28,
+      "inventory_code": "260028",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Bench Press (Horizontal)",
+      "names": {
+        "zh-CN": "分动式推胸训练器(水平手柄)",
+        "zh-HK": "分動式推胸訓練器(水平手柄)",
+        "en-US": "Iso-Lateral Bench Press (Horizontal)"
+      },
+      "model": "ILBPH",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254157,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/397be93d5a70d63638935dad33c7f7fb928ef4cd2d2168c6924c8e2b47b866a0.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 24,
+      "source_row_id": 1538,
+      "inventory_id": 131,
+      "inventory_code": "260131",
+      "brand": "Life Fitness",
+      "name": "Hip Abduction/Adduction",
+      "names": {
+        "zh-CN": "大腿内外侧肌训练器",
+        "zh-HK": "大腿內外側肌訓練器",
+        "en-US": "Hip Abduction/Adduction"
+      },
+      "model": "SS-HAA（LP）Full",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254101,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/9cd789ac43280b086bf434ec6f6b1a62c910d94e86b6b897364e6b217f86721d.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 25,
+      "source_row_id": 1536,
+      "inventory_id": 442,
+      "inventory_code": "260329",
+      "brand": "Life Fitness",
+      "name": "MULTI-JUNGLE MJ8",
+      "names": {
+        "zh-CN": "八站位",
+        "zh-HK": "力健八站位",
+        "en-US": "MULTI-JUNGLE MJ8"
+      },
+      "model": "",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254687,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2287742647628ba1cc24a59412a235bc89849dda9f45e5678129f25377a06786.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 26,
+      "source_row_id": 1535,
+      "inventory_id": 1166,
+      "inventory_code": "260965",
+      "brand": "Life Fitness",
+      "name": "CMS Dual Adjustable Pulley",
+      "names": {
+        "zh-CN": "小飞鸟",
+        "zh-HK": "小飛鳥",
+        "en-US": "CMS Dual Adjustable Pulley"
+      },
+      "model": "CMDAP",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2312754,
+      "cover_image_url": "https://oss-hk.247fitness.hk/b49a310fdc2296cfac186f77d23a5af857dcc3ee4ef95184ad84e1a89f8961a1.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    }
+  ]
+}

@@ -1,0 +1,830 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library public read endpoint",
+  "country_code": "HK",
+  "store_id": 371,
+  "store_name": "Ma On Shan",
+  "store_slug": "ma-on-shan",
+  "store_name_en": "24/7 FITNESS - Ma On Shan",
+  "store_name_bilingual": "24/7 Fitness - Ma On Shan (馬鞍山)",
+  "area_name": "New Territories District",
+  "store_code": "MOS",
+  "source_store_status": 1,
+  "listed_in_app_selector": true,
+  "captured_at": "2026-10-24T17:42:50.271104+00:00",
+  "status": "source_api_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "Public GET used by App; exact storeId assignment; same All ordering",
+  "scope": "Only inventory assigned to this store; Nearest Store excluded",
+  "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=371&club_id=371&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
+  "response_sha256": "1ef0349954c0ef7a2ba7b1eddba7aba105cdb7ffaf8606867dd8812c0c9b6f9d",
+  "response_row_count": 1290,
+  "excluded_nearest_store_rows": 1254,
+  "row_count": 36,
+  "unique_equipment_count": 36,
+  "unique_inventory_count": 36,
+  "equipment": [
+    {
+      "sequence": 1,
+      "source_row_id": 6615,
+      "inventory_id": 1209,
+      "inventory_code": "261008",
+      "brand": "Arsenal",
+      "name": "Standing Lateral Raise",
+      "names": {
+        "zh-CN": "站姿侧平举机",
+        "zh-HK": "站姿側平舉機",
+        "en-US": "Standing Lateral Raise"
+      },
+      "model": "M1-SLR",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2357718,
+      "cover_image_url": "https://oss-hk.247fitness.hk/83c01333448d12da926e3b2d90da71b4078210bb9f17922098be1fe8981113b9.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 2,
+      "source_row_id": 6614,
+      "inventory_id": 1365,
+      "inventory_code": "261164",
+      "brand": "Concept 2",
+      "name": "CONPII-ROW ERG STANDARD CONCEPT 2 PM 5 INDOOR POWER",
+      "names": {
+        "zh-CN": "Concept 2 Row Erg 划船训练器 PM5",
+        "zh-HK": "Concept 2 Row Erg 划船訓練器 PM5",
+        "en-US": "CONPII-ROW ERG STANDARD CONCEPT 2 PM 5 INDOOR POWER"
+      },
+      "model": "CONPII-ROW ERG STANDARD CONCEPT 2 PM 5 INDOOR POWER",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2276917,
+      "cover_image_url": "https://oss-hk.247fitness.hk/9e98f9d0c34b5b9c48367795e107ada521548d96d28adacea0eef1d0d6219f04.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 3,
+      "source_row_id": 6613,
+      "inventory_id": 1400,
+      "inventory_code": "261199",
+      "brand": "NEWTECH",
+      "name": "ONHIM Super Leg Press",
+      "names": {
+        "zh-CN": "蹬腿机",
+        "zh-HK": "蹬腿機",
+        "en-US": "ONHIM Super Leg Press"
+      },
+      "model": "NT-OH-SSP",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2742687,
+      "cover_image_url": "https://oss-hk.247fitness.hk/57879014777e3a95f36dbef20232683fb7c4c9d0f0fa66cbda39b3314257443c.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 4,
+      "source_row_id": 6575,
+      "inventory_id": 1444,
+      "inventory_code": "261243",
+      "brand": "SportArt",
+      "name": "A994 VKR Chin Dip",
+      "names": {
+        "zh-CN": "引体向上助力机",
+        "zh-HK": "引體向上助力機",
+        "en-US": "A994 VKR Chin Dip"
+      },
+      "model": "A994",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2738539,
+      "cover_image_url": "https://oss-hk.247fitness.hk/249648502b94ea93a6af3bcf27d0102a405f7e2c19f4f6f3ac62cd32d2e50e29.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 5,
+      "source_row_id": 6574,
+      "inventory_id": 1369,
+      "inventory_code": "261168",
+      "brand": "Life Fitness",
+      "name": "Integrity SE3 HD樓梯機",
+      "names": {
+        "zh-CN": "Integrity系列楼梯机SE3HD",
+        "zh-HK": "Integrity系列楼梯機SE3HD",
+        "en-US": "Integrity SE3 HD樓梯機"
+      },
+      "model": "Integrity SE3 HD樓梯機",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2359720,
+      "cover_image_url": "https://oss-hk.247fitness.hk/22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 6,
+      "source_row_id": 6573,
+      "inventory_id": 67,
+      "inventory_code": "260067",
+      "brand": "HAMMER STRENGTH",
+      "name": "Glute Drive",
+      "names": {
+        "zh-CN": "臀肌训练器",
+        "zh-HK": "臀肌訓練器",
+        "en-US": "Glute Drive"
+      },
+      "model": "PLGLD",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254627,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6e34c8c27c99885eb59affe61dc7667f44c7bc2d481f158c1583404a3b6a9eba.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 7,
+      "source_row_id": 6572,
+      "inventory_id": 1435,
+      "inventory_code": "261234",
+      "brand": "SportArt",
+      "name": "Adjustable Bench",
+      "names": {
+        "zh-CN": "腹肌训练凳",
+        "zh-HK": "腹肌訓練凳",
+        "en-US": "Adjustable Bench"
+      },
+      "model": "A991",
+      "category_names": [
+        "ABDOMINAL"
+      ],
+      "cover_image_id": 2738610,
+      "cover_image_url": "https://oss-hk.247fitness.hk/f4df21d66e3f564ee6e2b9906026d6c54566d2b7c7fc3fb1582ba5c8226303fc.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 8,
+      "source_row_id": 6571,
+      "inventory_id": 1425,
+      "inventory_code": "261224",
+      "brand": "SportArt",
+      "name": "Biceps Curl/ Triceps Extention",
+      "names": {
+        "zh-CN": "二头弯举机",
+        "zh-HK": "二頭弯舉機",
+        "en-US": "Biceps Curl/ Triceps Extention"
+      },
+      "model": "DF-205",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 3250010,
+      "cover_image_url": "https://oss-hk.247fitness.hk/565a8f23bdb1df0b6aa29263744d437da8846dd76b3d0d7267e673d042ebc039.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 9,
+      "source_row_id": 6570,
+      "inventory_id": 1431,
+      "inventory_code": "261230",
+      "brand": "SportArt",
+      "name": "Smith Machine",
+      "names": {
+        "zh-CN": "史密斯机",
+        "zh-HK": "史密斯機",
+        "en-US": "Smith Machine"
+      },
+      "model": "A983",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2738632,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c4285cd56f4f1fdd58461a645b4850a8853734a76ed483f436599efa57f88340.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 10,
+      "source_row_id": 6569,
+      "inventory_id": 1440,
+      "inventory_code": "261239",
+      "brand": "SportArt",
+      "name": "SportsArt A998 Olympic Incline Bench",
+      "names": {
+        "zh-CN": "上斜训练凳",
+        "zh-HK": "上斜訓練凳",
+        "en-US": "SportsArt A998 Olympic Incline Bench"
+      },
+      "model": "A998",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2738551,
+      "cover_image_url": "https://oss-hk.247fitness.hk/8d3a837b818bfc684effb7c25c384f2c3d67b90360de16c5748161cc1be2c536.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 11,
+      "source_row_id": 6568,
+      "inventory_id": 1416,
+      "inventory_code": "261215",
+      "brand": "SportArt",
+      "name": "Pectoral Fly/ Rear Deltoid",
+      "names": {
+        "zh-CN": "夹胸机",
+        "zh-HK": "夹胸機",
+        "en-US": "Pectoral Fly/ Rear Deltoid"
+      },
+      "model": "DF-204",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 3075394,
+      "cover_image_url": "https://oss-hk.247fitness.hk/5fab8365657b45f468b6a82a71dfc86b9b28e6184c38cbcec0505bfe6ac503cc.jpeg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 12,
+      "source_row_id": 6567,
+      "inventory_id": 1445,
+      "inventory_code": "261244",
+      "brand": "SportArt",
+      "name": "DS972 functional trainer",
+      "names": {
+        "zh-CN": "功能训练器",
+        "zh-HK": "功能訓練器",
+        "en-US": "DS972 functional trainer"
+      },
+      "model": "DS972",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2738532,
+      "cover_image_url": "https://oss-hk.247fitness.hk/1a7c93edd487e2441c603645205ff483702de61f460f2ebeca9202630393d649.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 13,
+      "source_row_id": 6566,
+      "inventory_id": 1422,
+      "inventory_code": "261221",
+      "brand": "SportArt",
+      "name": "Leg Extention/ Leg Curl",
+      "names": {
+        "zh-CN": "腿弯举机",
+        "zh-HK": "腿弯舉機",
+        "en-US": "Leg Extention/ Leg Curl"
+      },
+      "model": "DF-200",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2738679,
+      "cover_image_url": "https://oss-hk.247fitness.hk/71e8eded1f80465a0383b373e1612c79203619c6cf0d60b612196cca6e5edd7b.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 14,
+      "source_row_id": 6565,
+      "inventory_id": 1441,
+      "inventory_code": "261240",
+      "brand": "SportArt",
+      "name": "EF202 Abductor/Adductor",
+      "names": {
+        "zh-CN": "坐姿外展/内收训练器",
+        "zh-HK": "坐姿外展/內收訓練器",
+        "en-US": "EF202 Abductor/Adductor"
+      },
+      "model": "DF202",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2738546,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c60b9c6aa554a5d01f969848f7a08c96aa8bccb1c62ec13e0e4ef2a71c054ad7.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 15,
+      "source_row_id": 6564,
+      "inventory_id": 1433,
+      "inventory_code": "261232",
+      "brand": "SportArt",
+      "name": "Hack Squat",
+      "names": {
+        "zh-CN": "深蹲架",
+        "zh-HK": "深蹲架",
+        "en-US": "Hack Squat"
+      },
+      "model": "A989",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2738626,
+      "cover_image_url": "https://oss-hk.247fitness.hk/577164ed65ab036968aa5970ff8b2475f9a71835fdb7e10ffccf22d8611f675e.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 16,
+      "source_row_id": 6563,
+      "inventory_id": 1428,
+      "inventory_code": "261227",
+      "brand": "SportArt",
+      "name": "Leg Press",
+      "names": {
+        "zh-CN": "蹬腿机",
+        "zh-HK": "蹬腿機",
+        "en-US": "Leg Press"
+      },
+      "model": "A982",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2738659,
+      "cover_image_url": "https://oss-hk.247fitness.hk/4d853d7ebc3dd8abe7dfd9fa2dbbbce773fa3b0d7649e9948f0ac4bc57f6c468.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 17,
+      "source_row_id": 6562,
+      "inventory_id": 1507,
+      "inventory_code": "261305",
+      "brand": "SportArt",
+      "name": "LEG EXTENSION",
+      "names": {
+        "zh-CN": "腿部伸张机",
+        "zh-HK": "腿部伸張機",
+        "en-US": "LEG EXTENSION"
+      },
+      "model": "P757",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 3250275,
+      "cover_image_url": "https://oss-hk.247fitness.hk/66a326ac8e4774e2a4c0d5090989d44db5c356536772eea43df5309556d1b7e2.jpeg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 18,
+      "source_row_id": 6561,
+      "inventory_id": 1508,
+      "inventory_code": "261306",
+      "brand": "SportArt",
+      "name": "PRONE LEG CURL",
+      "names": {
+        "zh-CN": "卧姿腿部弯曲机",
+        "zh-HK": "臥姿腿部彎曲機",
+        "en-US": "PRONE LEG CURL"
+      },
+      "model": "P758",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 3250466,
+      "cover_image_url": "https://oss-hk.247fitness.hk/dd1e9ff5a29a4d1651e65018bf63c6465d7418d7fe9de2a1342088d82ead2cdf.jpeg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 19,
+      "source_row_id": 6560,
+      "inventory_id": 1434,
+      "inventory_code": "261233",
+      "brand": "SportArt",
+      "name": "Flat Bench",
+      "names": {
+        "zh-CN": "平凳",
+        "zh-HK": "平凳",
+        "en-US": "Flat Bench"
+      },
+      "model": "A992",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2738617,
+      "cover_image_url": "https://oss-hk.247fitness.hk/ddc2b82de926f192de925d2cca0da712eb47779a03d3c9e756380d52ec95816a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 20,
+      "source_row_id": 6559,
+      "inventory_id": 1438,
+      "inventory_code": "261237",
+      "brand": "SportArt",
+      "name": "Assisted Chin-Up/Tricep Dip DF207",
+      "names": {
+        "zh-CN": "引体向上助力机",
+        "zh-HK": "引體向上助力機",
+        "en-US": "Assisted Chin-Up/Tricep Dip DF207"
+      },
+      "model": "DF207",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2738594,
+      "cover_image_url": "https://oss-hk.247fitness.hk/31830fe0fcd5d47bb4c645ad5eef5f4ab37f89a7bf217aa5979521f38689d5bc.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 21,
+      "source_row_id": 6558,
+      "inventory_id": 1448,
+      "inventory_code": "261247",
+      "brand": "SportArt",
+      "name": "Abdominal training machine",
+      "names": {
+        "zh-CN": "腹肌训练机",
+        "zh-HK": "腹肌訓練機",
+        "en-US": "Abdominal training machine"
+      },
+      "model": "A995",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2738126,
+      "cover_image_url": "https://oss-hk.247fitness.hk/56b659ac97873d238b5fd783f83788eef0aacb0ee0f0392667852c25d950adc7.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 22,
+      "source_row_id": 6557,
+      "inventory_id": 1291,
+      "inventory_code": "261090",
+      "brand": "SportArt",
+      "name": "C535U Upright Cycle",
+      "names": {
+        "zh-CN": "立式脚踏车",
+        "zh-HK": "立式腳踏車",
+        "en-US": "C535U Upright Cycle"
+      },
+      "model": "C535U",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2357854,
+      "cover_image_url": "https://oss-hk.247fitness.hk/68e4a30a32056eb1250457317eefc8621554c40ee89d2071248a06bfd9b11889.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 23,
+      "source_row_id": 6556,
+      "inventory_id": 1430,
+      "inventory_code": "261229",
+      "brand": "SportArt",
+      "name": "Back Hyperextension",
+      "names": {
+        "zh-CN": "背部伸展机",
+        "zh-HK": "背部伸展機",
+        "en-US": "Back Hyperextension"
+      },
+      "model": "A993",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2738649,
+      "cover_image_url": "https://oss-hk.247fitness.hk/8cd9a2ce018a4864367b08adc270c4d6eeb1b55295ea70cf94561ed2d347f051.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 24,
+      "source_row_id": 6555,
+      "inventory_id": 1276,
+      "inventory_code": "261075",
+      "brand": "SportArt",
+      "name": "S715 Stepper",
+      "names": {
+        "zh-CN": "踏步机",
+        "zh-HK": "踏步機",
+        "en-US": "S715 Stepper"
+      },
+      "model": "S715",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2357837,
+      "cover_image_url": "https://oss-hk.247fitness.hk/8961cd040cc5c0b4aa61a29272d5ecaaa9ea540e4b29c7e2aa2ed2a1db3c0d9d.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 25,
+      "source_row_id": 6554,
+      "inventory_id": 1292,
+      "inventory_code": "261091",
+      "brand": "SportArt",
+      "name": "C535R Recumbent Cycle",
+      "names": {
+        "zh-CN": "卧式脚踏车",
+        "zh-HK": "臥式腳踏車",
+        "en-US": "C535R Recumbent Cycle"
+      },
+      "model": "C535R",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2357855,
+      "cover_image_url": "https://oss-hk.247fitness.hk/5158070eafa2e219110641aafceff3e41da038607ba149fe2ab90e1e99298d60.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 26,
+      "source_row_id": 6553,
+      "inventory_id": 1429,
+      "inventory_code": "261228",
+      "brand": "SportArt",
+      "name": "Mid Row",
+      "names": {
+        "zh-CN": "划船机",
+        "zh-HK": "划船機",
+        "en-US": "Mid Row"
+      },
+      "model": "A988",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2738654,
+      "cover_image_url": "https://oss-hk.247fitness.hk/e222e59f95f8678704049e5ebf459e6f5e30c009ca983904fd7d4cdca701ac84.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 27,
+      "source_row_id": 6552,
+      "inventory_id": 1290,
+      "inventory_code": "261089",
+      "brand": "SportArt",
+      "name": "E835 Elliptical",
+      "names": {
+        "zh-CN": "心肺椭圆训练机",
+        "zh-HK": "心肺橢圓訓練機",
+        "en-US": "E835 Elliptical"
+      },
+      "model": "E835",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2357853,
+      "cover_image_url": "https://oss-hk.247fitness.hk/7497237b5b4c7f5b9000bd845de68cebb52c91e827bdd5bdf62d4142fcc93df1.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 28,
+      "source_row_id": 6551,
+      "inventory_id": 1287,
+      "inventory_code": "261086",
+      "brand": "SportArt",
+      "name": "T635A Treadmill",
+      "names": {
+        "zh-CN": "跑步机",
+        "zh-HK": "跑步機",
+        "en-US": "T635A Treadmill"
+      },
+      "model": "T635A",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2357850,
+      "cover_image_url": "https://oss-hk.247fitness.hk/dd0c3fcc3f132a90bda1ba3bedfd57520d49f309126b112d0bd8521c0f5f1c60.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 29,
+      "source_row_id": 2570,
+      "inventory_id": 52,
+      "inventory_code": "260052",
+      "brand": "HAMMER STRENGTH",
+      "name": "T-Bar Row",
+      "names": {
+        "zh-CN": "T型杆划船器",
+        "zh-HK": "T型杆划船器",
+        "en-US": "T-Bar Row"
+      },
+      "model": "PLTBR",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254397,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/1bb6fc771a2d6d1ba6f3edbec62a0aaeb0bebf3bceedb263cf4e0051bf6e58cb.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 30,
+      "source_row_id": 2569,
+      "inventory_id": 39,
+      "inventory_code": "260039",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Wide Pull Down",
+      "names": {
+        "zh-CN": "分动式阔角度高拉背训练器",
+        "zh-HK": "分動式闊角度高拉背訓練器",
+        "en-US": "Iso-Lateral Wide Pull Down"
+      },
+      "model": "ILWPD",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254812,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/93ce857f468b2278ebb5e8d6747b38485d1be73fb40b4b82d9060547b47e9d02.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 31,
+      "source_row_id": 2568,
+      "inventory_id": 38,
+      "inventory_code": "260038",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Low Row",
+      "names": {
+        "zh-CN": "分动式划艇低拉背训练器",
+        "zh-HK": "分動式划艇低拉背訓練器",
+        "en-US": "Iso-Lateral Low Row"
+      },
+      "model": "ILLR",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254482,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/3e903ac3c33edb59feeadfe86de619967e9464fa9319eb6a90198f9fdab835f6.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 32,
+      "source_row_id": 2567,
+      "inventory_id": 36,
+      "inventory_code": "260036",
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Front Lat Pulldown",
+      "names": {
+        "zh-CN": "分动式前高拉背训练器",
+        "zh-HK": "分動式前高拉背訓練器",
+        "en-US": "Iso-Lateral Front Lat Pulldown"
+      },
+      "model": "ILPD",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254170,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/eb201a16565556741be598f18ff1176031d23fc50126aedadf5a9e0fcb264de6.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 33,
+      "source_row_id": 2564,
+      "inventory_id": 175,
+      "inventory_code": "260175",
+      "brand": "NEWTECH",
+      "name": "Adjustable Low Pulley",
+      "names": {
+        "zh-CN": "可调节低拉训练器（加长行 程）",
+        "zh-HK": "可調節低拉訓練器（加長行 程）",
+        "en-US": "Adjustable Low Pulley"
+      },
+      "model": "NT-OH-ALP",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254141,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/9c75ef2fbe8f3c22ecf17d56a8f99422a458bd72d9d6903f7227fc81b98f93c6.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 34,
+      "source_row_id": 2562,
+      "inventory_id": 205,
+      "inventory_code": "260205",
+      "brand": "NEWTECH",
+      "name": "Seated Incline Chest Press",
+      "names": {
+        "zh-CN": "上斜推胸",
+        "zh-HK": "上斜推胸",
+        "en-US": "Seated Incline Chest Press"
+      },
+      "model": "NT-T-SDCP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254437,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/72e2547b6e2b10e1fb49a96e8d8d6f96fa1e02fbfc82b9a76def53926bec1abb.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 35,
+      "source_row_id": 2561,
+      "inventory_id": 203,
+      "inventory_code": "260203",
+      "brand": "NEWTECH",
+      "name": "Torture Wide Chest Press",
+      "names": {
+        "zh-CN": "平板宽推胸",
+        "zh-HK": "平板寬推胸",
+        "en-US": "Torture Wide Chest Press"
+      },
+      "model": "NT-T-WCP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254213,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/3cce6c480a85e8847eb030893f4af7726cb646ad7f8b42ae249911ce32fc1a96.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 36,
+      "source_row_id": 2560,
+      "inventory_id": 177,
+      "inventory_code": "260177",
+      "brand": "NEWTECH",
+      "name": "Shoulder Press",
+      "names": {
+        "zh-CN": "坐姿肩推",
+        "zh-HK": "坐姿肩推",
+        "en-US": "Shoulder Press"
+      },
+      "model": "NT-OH-SP",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254896,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/c64f0274faaff4782a5b0296be83e3ed4a64d06efaebdc32263b07001f046f8e.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    }
+  ],
+  "ui_validation": {
+    "store_name": "Ma On Shan",
+    "store_id": 371,
+    "ui_row_count": 36,
+    "source_row_count": 36,
+    "row_counts_match": true,
+    "minimum_name_similarity": 1.0,
+    "average_name_similarity": 1.0
+  }
+}

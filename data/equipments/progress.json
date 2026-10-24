@@ -1,0 +1,16 @@
+{
+  "updated_at": "2026-10-24T17:46:31.605512+00:00",
+  "total_gyms": 159,
+  "status_counts": {
+    "source_api_complete": 151,
+    "empty_in_source": 8
+  },
+  "stored_rows": 6210,
+  "text_review_items": 0,
+  "validation": {
+    "store_identity_and_sequence_audit": "passed",
+    "ui_store_count_checks": 5,
+    "collector_unit_tests_passed": 12,
+    "pnpm_test": "passed"
+  }
+}

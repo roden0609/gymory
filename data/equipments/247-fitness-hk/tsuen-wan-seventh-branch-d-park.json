@@ -1,0 +1,1107 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library public read endpoint",
+  "country_code": "HK",
+  "store_id": 475,
+  "store_name": "Tsuen Wan seventh branch （D-Park)",
+  "store_slug": "tsuen-wan-seventh-branch-d-park",
+  "store_name_en": "Tsuen Wan seventh branch （D-Park)",
+  "store_name_bilingual": "24/7 Fitness - Tsuen Wan seventh branch (荃灣7)",
+  "area_name": "New Territories District",
+  "store_code": "TSUW7",
+  "source_store_status": 1,
+  "listed_in_app_selector": true,
+  "captured_at": "2026-10-24T17:44:06.629149+00:00",
+  "status": "source_api_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "Public GET used by App; exact storeId assignment; same All ordering",
+  "scope": "Only inventory assigned to this store; Nearest Store excluded",
+  "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=475&club_id=475&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
+  "response_sha256": "b2b0ad990fe3d1a17f83082351d0ab1e656f6848d4ef362c366b325692d41aff",
+  "response_row_count": 1290,
+  "excluded_nearest_store_rows": 1241,
+  "row_count": 49,
+  "unique_equipment_count": 49,
+  "unique_inventory_count": 49,
+  "equipment": [
+    {
+      "sequence": 1,
+      "source_row_id": 6645,
+      "inventory_id": 1072,
+      "inventory_code": "260878",
+      "brand": "HOWBODY",
+      "name": "HOWBODY",
+      "names": {
+        "zh-CN": "HOWBODY智能体测仪",
+        "zh-HK": "HOWBODY智能體測儀",
+        "en-US": "HOWBODY"
+      },
+      "model": "-",
+      "category_names": [
+        "Analyzer"
+      ],
+      "cover_image_id": 2300100,
+      "cover_image_url": "https://oss-hk.247fitness.hk/90f9216b5f71fefb760ae47411876fd78ad3b56a2d6a5c1e19354691b46a81d0.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 2,
+      "source_row_id": 6644,
+      "inventory_id": 611,
+      "inventory_code": "260479",
+      "brand": "TechnoGym",
+      "name": "PRONE LEG CURL",
+      "names": {
+        "zh-CN": "俯卧坐式大腿屈伸练习器",
+        "zh-HK": "俯卧坐式大腿屈伸練習器",
+        "en-US": "PRONE LEG CURL"
+      },
+      "model": "MNUP",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254403,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4295b984e01f027f815e35c69b3d86b600e551b438c0731351b1ea3e5e0f299d.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 3,
+      "source_row_id": 6643,
+      "inventory_id": 601,
+      "inventory_code": "260469",
+      "brand": "TechnoGym",
+      "name": "PULL DOWN",
+      "names": {
+        "zh-CN": "坐式高拉力练习器",
+        "zh-HK": "坐式高拉力練習器",
+        "en-US": "PULL DOWN"
+      },
+      "model": "MNVP",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254356,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/fe1ab2da6a92dced7b14f98b49ae4069fa1d86f51d371b0a3b092af2d754d5ba.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 4,
+      "source_row_id": 6642,
+      "inventory_id": 585,
+      "inventory_code": "260453",
+      "brand": "TechnoGym",
+      "name": "LOW ROW",
+      "names": {
+        "zh-CN": "坐式划船练习器",
+        "zh-HK": "坐式划船練習器",
+        "en-US": "LOW ROW"
+      },
+      "model": "MNHC",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254909,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4867ea554af3bf7cfdf0f7df3b66ca9363718c432c79ff3d7c95bdd7c99d0f79.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 5,
+      "source_row_id": 6641,
+      "inventory_id": 587,
+      "inventory_code": "260455",
+      "brand": "TechnoGym",
+      "name": "LEG EXTENSION",
+      "names": {
+        "zh-CN": "坐式大腿伸展练习器",
+        "zh-HK": "坐式大腿伸展練習器",
+        "en-US": "LEG EXTENSION"
+      },
+      "model": "MNJC",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254316,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/5b0d315fdbc34a73341276bfd7bf657a4e1f9463737fdfe021106d0330012228.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 6,
+      "source_row_id": 6640,
+      "inventory_id": 592,
+      "inventory_code": "260460",
+      "brand": "TechnoGym",
+      "name": "SHOULDER PRESS",
+      "names": {
+        "zh-CN": "坐式肩上推举练习器",
+        "zh-HK": "坐式肩上推舉練習器",
+        "en-US": "SHOULDER PRESS"
+      },
+      "model": "MNEC",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254179,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/2382a52b6a35403ffd3dde842dec4cd5f0b2e568b6e67d0a7fb5c5102d66f14a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 7,
+      "source_row_id": 6639,
+      "inventory_id": 593,
+      "inventory_code": "260461",
+      "brand": "TechnoGym",
+      "name": "SELECTION700",
+      "names": {
+        "zh-CN": "外展肌",
+        "zh-HK": "外展肌",
+        "en-US": "SELECTION700"
+      },
+      "model": "MNOC",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254133,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/81373d2cfd836a4e50f3fd21546623ad7a89227a4004f4648c709e387f6b5e43.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 8,
+      "source_row_id": 6638,
+      "inventory_id": 1075,
+      "inventory_code": "260880",
+      "brand": "TechnoGym",
+      "name": "Abdominal Crunch",
+      "names": {
+        "zh-CN": "插片捲腹器",
+        "zh-HK": "捲腹器",
+        "en-US": "Abdominal Crunch"
+      },
+      "model": "MNBP",
+      "category_names": [
+        "ABDOMINAL"
+      ],
+      "cover_image_id": 2300101,
+      "cover_image_url": "https://oss-hk.247fitness.hk/f0f43d9d047a67ba7b1bf1cd7eab08b332a62b931e7cc14ff11f37ae890c830f.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 9,
+      "source_row_id": 6637,
+      "inventory_id": 1457,
+      "inventory_code": "261256",
+      "brand": "TechnoGym",
+      "name": "Selection 700 Chest Press",
+      "names": {
+        "zh-CN": "推胸机",
+        "zh-HK": "推胸機",
+        "en-US": "Selection 700 Chest Press"
+      },
+      "model": "MNFCNNO",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2740552,
+      "cover_image_url": "https://oss-hk.247fitness.hk/136593fa197324597e75e3c6c2abec5315030db83a228e94989e0b2d8f5c9f17.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 10,
+      "source_row_id": 6418,
+      "inventory_id": 244,
+      "inventory_code": "260244",
+      "brand": "NEWTECH",
+      "name": "14-Pair Dumbbell Rack",
+      "names": {
+        "zh-CN": "14对哑铃架",
+        "zh-HK": "14對啞鈴架",
+        "en-US": "14-Pair Dumbbell Rack"
+      },
+      "model": "NT-F-DBR",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254302,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/13e49347b476e3944b9cd8c69fe0b72c216a3c95b3d28482af8cb561940d6f24.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 11,
+      "source_row_id": 6417,
+      "inventory_id": 240,
+      "inventory_code": "260240",
+      "brand": "NEWTECH",
+      "name": "Dip & Leg Raise",
+      "names": {
+        "zh-CN": "双杠臂屈伸&提腿腹肌训练架",
+        "zh-HK": "雙槓臂屈伸&提腿腹肌訓練架",
+        "en-US": "Dip & Leg Raise"
+      },
+      "model": "NT-F-DLR",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254740,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/d6a61d4a48b431afcb3b085f343cab553f65ff3eb527f6fa2227eaeb3dc7c159.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 12,
+      "source_row_id": 6416,
+      "inventory_id": 234,
+      "inventory_code": "260234",
+      "brand": "NEWTECH",
+      "name": "Utility Bench",
+      "names": {
+        "zh-CN": "多用途直角凳",
+        "zh-HK": "多用途直角凳",
+        "en-US": "Utility Bench"
+      },
+      "model": "NT-F-UB",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254096,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7a4cd00d065dd448d14065b2c7ea4d365d8dfd1f04f27820566a37be99f4c75c.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 13,
+      "source_row_id": 6415,
+      "inventory_id": 231,
+      "inventory_code": "260231",
+      "brand": "NEWTECH",
+      "name": "Adjust Incilne Bench",
+      "names": {
+        "zh-CN": "上斜可调训练凳",
+        "zh-HK": "上斜可調訓練凳",
+        "en-US": "Adjust Incilne Bench"
+      },
+      "model": "NT-F-AIB",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254796,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/a141d7aae411fe94f9f8dff3691449146af3f70c89814995b649dae21dfc8d03.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 14,
+      "source_row_id": 6414,
+      "inventory_id": 250,
+      "inventory_code": "260250",
+      "brand": "NEWTECH",
+      "name": "Multi Pully",
+      "names": {
+        "zh-CN": "多功能小飞鸟训练器",
+        "zh-HK": "多功能小飛鳥訓練器",
+        "en-US": "Multi Pully"
+      },
+      "model": "NT-C-DPP-2",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254067,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/21ccbd00ff01211f6ab19c309fb2d09f0e5fff77544ff51c7a567dda0e07cc40.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 15,
+      "source_row_id": 6413,
+      "inventory_id": 247,
+      "inventory_code": "260247",
+      "brand": "NEWTECH",
+      "name": "Fixed Barbell Rack",
+      "names": {
+        "zh-CN": "杠铃架",
+        "zh-HK": "槓鈴架",
+        "en-US": "Fixed Barbell Rack"
+      },
+      "model": "NT-F-FBR",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2255011,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/d40e57bf04c876ff1ccd9ea6e01d6b926421b4158928aa8499d93d1125ea1bbe.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 16,
+      "source_row_id": 6412,
+      "inventory_id": 228,
+      "inventory_code": "260228",
+      "brand": "NEWTECH",
+      "name": "Olympic Bench",
+      "names": {
+        "zh-CN": "平板卧推床",
+        "zh-HK": "平板卧推牀",
+        "en-US": "Olympic Bench"
+      },
+      "model": "NT-F-O",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254888,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/13bf9cd60f43aa4ced8dc73e1c4ef34372bdad345b0797d016194a6936aed5fa.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 17,
+      "source_row_id": 6411,
+      "inventory_id": 216,
+      "inventory_code": "260216",
+      "brand": "NEWTECH",
+      "name": "Vertical Pulldown",
+      "names": {
+        "zh-CN": "双臂式垂直下拉训练器",
+        "zh-HK": "雙臂式垂直下拉訓練器",
+        "en-US": "Vertical Pulldown"
+      },
+      "model": "NT-T-VPD",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254737,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/091bf90749a8833ef4cf5f1491d89e70b558f1bf35be35996a3d016bc3363aff.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 18,
+      "source_row_id": 6410,
+      "inventory_id": 215,
+      "inventory_code": "260215",
+      "brand": "NEWTECH",
+      "name": "High Row",
+      "names": {
+        "zh-CN": "单臂式窄握下拉训练器",
+        "zh-HK": "單臂式窄握下拉訓練器",
+        "en-US": "High Row"
+      },
+      "model": "NT-T-HR",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254084,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/8a33c887c47334b391705150d51dd303efac3330c062c2137601258becb4242f.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 19,
+      "source_row_id": 6409,
+      "inventory_id": 214,
+      "inventory_code": "260214",
+      "brand": "NEWTECH",
+      "name": "Torture Kneeling Leg Curl",
+      "names": {
+        "zh-CN": "跪姿腿弯举",
+        "zh-HK": "跪姿腿彎舉",
+        "en-US": "Torture Kneeling Leg Curl"
+      },
+      "model": "NT-T-KLC",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254047,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/d475b6fe9a5d668480f373da766be71b5e3481544f3f5d9540238971363b002c.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 20,
+      "source_row_id": 6408,
+      "inventory_id": 213,
+      "inventory_code": "260213",
+      "brand": "NEWTECH",
+      "name": "Torture Hack Press (THOMSON)",
+      "names": {
+        "zh-CN": "哈克腿举",
+        "zh-HK": "哈克腿舉",
+        "en-US": "Torture Hack Press (THOMSON)"
+      },
+      "model": "NT-T-HP",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254684,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/422eb788b8dfd4cb63b78167ae87d06b457a53eb5acb80437992b0cef5331439.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 21,
+      "source_row_id": 6407,
+      "inventory_id": 211,
+      "inventory_code": "260211",
+      "brand": "NEWTECH",
+      "name": "Torture Squat & Caf Raise(new)",
+      "names": {
+        "zh-CN": "哈克深蹲",
+        "zh-HK": "哈克深蹲",
+        "en-US": "Torture Squat & Caf Raise(new)"
+      },
+      "model": "NT-T-SCR",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254107,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/944297f06613e641db157e9b9647d8d1b967269f7bce21492e3cd946afad6b4b.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 22,
+      "source_row_id": 6406,
+      "inventory_id": 210,
+      "inventory_code": "260210",
+      "brand": "NEWTECH",
+      "name": "Torture Overhead Extension",
+      "names": {
+        "zh-CN": "三头肌屈伸训练器",
+        "zh-HK": "三頭肌屈伸訓練器",
+        "en-US": "Torture Overhead Extension"
+      },
+      "model": "NT-T-OHE",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2254616,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6b9221db35e09850bfff8a58b3c1b8ce1aa9cc1e3745b3caa4a84630654e9fa7.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 23,
+      "source_row_id": 6405,
+      "inventory_id": 209,
+      "inventory_code": "260209",
+      "brand": "NEWTECH",
+      "name": "Torture Arm Curl",
+      "names": {
+        "zh-CN": "坐姿弯举",
+        "zh-HK": "坐姿彎舉",
+        "en-US": "Torture Arm Curl"
+      },
+      "model": "NT-T-AC",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2254859,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/550484d11d98d0c53e34db25e9bd23e391b5f2fe07b6bda37ce29d1902dc76f9.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 24,
+      "source_row_id": 6404,
+      "inventory_id": 201,
+      "inventory_code": "260201",
+      "brand": "NEWTECH",
+      "name": "Torture Wide Pulldown Rear2",
+      "names": {
+        "zh-CN": "高位剪刀式下拉训练器",
+        "zh-HK": "高位剪刀式下拉訓練器",
+        "en-US": "Torture Wide Pulldown Rear2"
+      },
+      "model": "NT-T-WP(R)-2",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254573,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/9b57b5c76985ac5dd6832c4d6bd04f2bdfc1911f277d2c639c73cac2f7784511.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 25,
+      "source_row_id": 6403,
+      "inventory_id": 202,
+      "inventory_code": "260202",
+      "brand": "NEWTECH",
+      "name": "Torture Two Way Row (new)",
+      "names": {
+        "zh-CN": "海豹划船训练器",
+        "zh-HK": "海豹划船訓練器",
+        "en-US": "Torture Two Way Row (new)"
+      },
+      "model": "NT-T-2WR",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254858,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7618f52c3270366f907a8730fb51509b5811fb023a816cb70e2f8e28f7390051.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 26,
+      "source_row_id": 6402,
+      "inventory_id": 203,
+      "inventory_code": "260203",
+      "brand": "NEWTECH",
+      "name": "Torture Wide Chest Press",
+      "names": {
+        "zh-CN": "平板宽推胸",
+        "zh-HK": "平板寬推胸",
+        "en-US": "Torture Wide Chest Press"
+      },
+      "model": "NT-T-WCP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254213,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/3cce6c480a85e8847eb030893f4af7726cb646ad7f8b42ae249911ce32fc1a96.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 27,
+      "source_row_id": 6401,
+      "inventory_id": 204,
+      "inventory_code": "260204",
+      "brand": "NEWTECH",
+      "name": "Torture Incline Chest Press",
+      "names": {
+        "zh-CN": "上斜推胸",
+        "zh-HK": "上斜推胸",
+        "en-US": "Torture Incline Chest Press"
+      },
+      "model": "NT-T-ICP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254277,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/498c87cf616195d50332ee92eaef59b78cfbc776851f8268d5efbfdd1e6955ca.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 28,
+      "source_row_id": 6400,
+      "inventory_id": 205,
+      "inventory_code": "260205",
+      "brand": "NEWTECH",
+      "name": "Seated Incline Chest Press",
+      "names": {
+        "zh-CN": "上斜推胸",
+        "zh-HK": "上斜推胸",
+        "en-US": "Seated Incline Chest Press"
+      },
+      "model": "NT-T-SDCP",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254437,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/72e2547b6e2b10e1fb49a96e8d8d6f96fa1e02fbfc82b9a76def53926bec1abb.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 29,
+      "source_row_id": 6399,
+      "inventory_id": 206,
+      "inventory_code": "260206",
+      "brand": "NEWTECH",
+      "name": "Torture Peck Deck fly with reverse(new)",
+      "names": {
+        "zh-CN": "挂片式（下斜）蝴蝶夹胸",
+        "zh-HK": "掛片式（下斜）蝴蝶夾胸",
+        "en-US": "Torture Peck Deck fly with reverse(new)"
+      },
+      "model": "NT-T-PFRD",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254828,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/b83a1f6df1fee5b6bf47363e61520e3eca503663bfb1f07c62e0a0032fe9e075.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 30,
+      "source_row_id": 6398,
+      "inventory_id": 207,
+      "inventory_code": "260207",
+      "brand": "NEWTECH",
+      "name": "Torture Shoulder Press",
+      "names": {
+        "zh-CN": "臂式坐姿肩推",
+        "zh-HK": "臂式坐姿肩推",
+        "en-US": "Torture Shoulder Press"
+      },
+      "model": "NT-T-SP",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2255070,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/f491b451794ad607e12f9f0a2a2440c0b0a0626e4ce1d67f10ddb11005766641.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 31,
+      "source_row_id": 6397,
+      "inventory_id": 208,
+      "inventory_code": "260208",
+      "brand": "NEWTECH",
+      "name": "Torture Lateral Raise",
+      "names": {
+        "zh-CN": "坐姿侧平举",
+        "zh-HK": "坐姿側平舉",
+        "en-US": "Torture Lateral Raise"
+      },
+      "model": "NT-T-LTR",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2254284,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/0283c847fd93ed0dec26fec5958d6ac5b3b619342ddeb4f2fe1f4e34b3f372b5.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 32,
+      "source_row_id": 6396,
+      "inventory_id": 199,
+      "inventory_code": "260199",
+      "brand": "NEWTECH",
+      "name": "Torture Power Leg Press Premium (THOMSON )",
+      "names": {
+        "zh-CN": "倒蹬机新品",
+        "zh-HK": "倒蹬機新品",
+        "en-US": "Torture Power Leg Press Premium (THOMSON )"
+      },
+      "model": "NT-T-PLP-(P)",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254291,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/b9b85b2eab7ce6a150bc200e2e638a5ed430bcb245d839b00695688fe011194e.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 33,
+      "source_row_id": 6395,
+      "inventory_id": 198,
+      "inventory_code": "260198",
+      "brand": "NEWTECH",
+      "name": "Torture Hack Squat (thomson) (Rotary)",
+      "names": {
+        "zh-CN": "哈克斜蹲",
+        "zh-HK": "哈克斜蹲",
+        "en-US": "Torture Hack Squat (thomson) (Rotary)"
+      },
+      "model": "NT-T-HS-(P)",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254055,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/8a9bcb5aa34f831a484f7a504e79a11019522ac24165a8457d6ae79caa5b7a21.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 34,
+      "source_row_id": 6394,
+      "inventory_id": 195,
+      "inventory_code": "260195",
+      "brand": "NEWTECH",
+      "name": "Torture Low Row (Rotary)",
+      "names": {
+        "zh-CN": "低拉划船（旋转）",
+        "zh-HK": "低拉划船（旋轉）",
+        "en-US": "Torture Low Row (Rotary)"
+      },
+      "model": "NT-T-(R)-LR",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254592,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4497ad198b55e2e3a769b83da0e0875aec45679626964037707e69f1cefd1bf5.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 35,
+      "source_row_id": 6393,
+      "inventory_id": 189,
+      "inventory_code": "260189",
+      "brand": "NEWTECH",
+      "name": "Hip Abduction (Single Move) 、",
+      "names": {
+        "zh-CN": "蹲式俯身髋关节外展",
+        "zh-HK": "蹲式俯身髖關節外展",
+        "en-US": "Hip Abduction (Single Move) 、"
+      },
+      "model": "NT-OH-SMABD",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2254139,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/e0f15f85c3707e1ded59b211fbb0f11b9d57f43e31da4e26262c36b6e176dfed.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 36,
+      "source_row_id": 6392,
+      "inventory_id": 1092,
+      "inventory_code": "260892",
+      "brand": "NEWTECH",
+      "name": "Torture Leg Extension",
+      "names": {
+        "zh-CN": "腿伸展",
+        "zh-HK": "腿伸展",
+        "en-US": "Torture Leg Extension"
+      },
+      "model": "T-LE",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2300113,
+      "cover_image_url": "https://oss-hk.247fitness.hk/ceaf45033d6df374b897f35ae451d285e67dc0858f23beb21f3dfc4cf1e6a2f8.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 37,
+      "source_row_id": 6391,
+      "inventory_id": 1160,
+      "inventory_code": "260959",
+      "brand": "NEWTECH",
+      "name": "Torture Standing & Seated Row Combo (New)",
+      "names": {
+        "zh-CN": "站及坐姿二合一划船",
+        "zh-HK": "站及坐姿二合一划船",
+        "en-US": "Torture Standing & Seated Row Combo (New)"
+      },
+      "model": "N. T(R)-SSRC",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2312148,
+      "cover_image_url": "https://oss-hk.247fitness.hk/12fe579d2091be4b839c7039ee402c98d7c48b99699965fe18637f2a34e701ad.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 38,
+      "source_row_id": 6390,
+      "inventory_id": 236,
+      "inventory_code": "260236",
+      "brand": "NEWTECH",
+      "name": "Preacher Curl Bench (stand type)",
+      "names": {
+        "zh-CN": "站姿牧师凳",
+        "zh-HK": "站姿牧師凳",
+        "en-US": "Preacher Curl Bench (stand type)"
+      },
+      "model": "NT-F-PCB-S",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 2254672,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6111d96d5d2a9dbd16cb440a5d90e3b205d07a26d21ea108d3103b2d4541144a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 39,
+      "source_row_id": 6389,
+      "inventory_id": 238,
+      "inventory_code": "260238",
+      "brand": "NEWTECH",
+      "name": "Sit Up",
+      "names": {
+        "zh-CN": "腹肌凳",
+        "zh-HK": "腹肌凳",
+        "en-US": "Sit Up"
+      },
+      "model": "NT-F-SU",
+      "category_names": [
+        "ABDOMINAL"
+      ],
+      "cover_image_id": 2254211,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/ccfb0f31eccb9ff3ea4296bc8c7e204b4e3204803057a674382f8965224bde88.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 40,
+      "source_row_id": 6388,
+      "inventory_id": 1403,
+      "inventory_code": "261202",
+      "brand": "NEWTECH",
+      "name": "Dual Pulley",
+      "names": {
+        "zh-CN": "双滑轮训练站",
+        "zh-HK": "雙滑輪訓練站",
+        "en-US": "Dual Pulley"
+      },
+      "model": "NT-C-DP",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 4832226,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c9ce8cbcc02aea4f7a6386360f72e93ab2ac55fa91eaf820cad3136d81cdaa96.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 41,
+      "source_row_id": 6387,
+      "inventory_id": 175,
+      "inventory_code": "260175",
+      "brand": "NEWTECH",
+      "name": "Adjustable Low Pulley",
+      "names": {
+        "zh-CN": "可调节低拉训练器（加长行 程）",
+        "zh-HK": "可調節低拉訓練器（加長行 程）",
+        "en-US": "Adjustable Low Pulley"
+      },
+      "model": "NT-OH-ALP",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2254141,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/9c75ef2fbe8f3c22ecf17d56a8f99422a458bd72d9d6903f7227fc81b98f93c6.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 42,
+      "source_row_id": 6386,
+      "inventory_id": 186,
+      "inventory_code": "260186",
+      "brand": "NEWTECH",
+      "name": "Seated Row - Internal",
+      "names": {
+        "zh-CN": "胸部支撑划船（内旋式握把）",
+        "zh-HK": "胸部支撐划船（內旋式握把）",
+        "en-US": "Seated Row - Internal"
+      },
+      "model": "NT-OH-( R )-SR-I",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254802,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/091189ec9438258a77de1847c13506b3477c13e0931299d166f4fdc5899abfb9.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 43,
+      "source_row_id": 6385,
+      "inventory_id": 1401,
+      "inventory_code": "261200",
+      "brand": "NEWTECH",
+      "name": "Smith Machine (Vertical)(THOMSON)",
+      "names": {
+        "zh-CN": "垂直史密斯机（THOMSON版）",
+        "zh-HK": "垂直史密斯機（THOMSON版）",
+        "en-US": "Smith Machine (Vertical)(THOMSON)"
+      },
+      "model": "NT-P-SM20",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2742692,
+      "cover_image_url": "https://oss-hk.247fitness.hk/3d474d16cb2f953d86c449175ef6296ca78e4be1385fae43c3e17fbdcefe6c9a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 44,
+      "source_row_id": 6384,
+      "inventory_id": 1398,
+      "inventory_code": "261197",
+      "brand": "NEWTECH",
+      "name": "Multi Gym Pro (8Station)",
+      "names": {
+        "zh-CN": "多功能训练站（8站）",
+        "zh-HK": "多功能訓練站（8站）",
+        "en-US": "Multi Gym Pro (8Station)"
+      },
+      "model": "C-MP8ST",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254610,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/b28e8420ba9d8d28eba9afad1067fbbf85bcc2caa5970fee6e215e8cbe25b6f8.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 45,
+      "source_row_id": 400,
+      "inventory_id": 1172,
+      "inventory_code": "260971",
+      "brand": "TechnoGym",
+      "name": "Excite RunProfessional treadmill",
+      "names": {
+        "zh-CN": "Excite+ 跑步机",
+        "zh-HK": "Excite+ 跑步機",
+        "en-US": "Excite RunProfessional treadmill"
+      },
+      "model": "DFKE",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2318037,
+      "cover_image_url": "https://oss-hk.247fitness.hk/a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 46,
+      "source_row_id": 399,
+      "inventory_id": 1173,
+      "inventory_code": "260972",
+      "brand": "TechnoGym",
+      "name": "EXCITE+ SYNCHRO",
+      "names": {
+        "zh-CN": "EXCITE+ 椭圆仪",
+        "zh-HK": "EXCITE+ 橢圓機",
+        "en-US": "EXCITE+ SYNCHRO"
+      },
+      "model": "DF5E",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2318859,
+      "cover_image_url": "https://oss-hk.247fitness.hk/1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 47,
+      "source_row_id": 398,
+      "inventory_id": 1174,
+      "inventory_code": "260973",
+      "brand": "TechnoGym",
+      "name": "EXCITE+ CLIMB",
+      "names": {
+        "zh-CN": "EXCITE+ 爬楼机",
+        "zh-HK": "EXCITE+ 樓梯機",
+        "en-US": "EXCITE+ CLIMB"
+      },
+      "model": "DFEE",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2318907,
+      "cover_image_url": "https://oss-hk.247fitness.hk/55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 48,
+      "source_row_id": 397,
+      "inventory_id": 1176,
+      "inventory_code": "260975",
+      "brand": "TechnoGym",
+      "name": "EXCITE+ BIKE",
+      "names": {
+        "zh-CN": "EXCITE+ 直立单车",
+        "zh-HK": "EXCITE+ 直立單車",
+        "en-US": "EXCITE+ BIKE"
+      },
+      "model": "DFCE",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2319129,
+      "cover_image_url": "https://oss-hk.247fitness.hk/f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 49,
+      "source_row_id": 396,
+      "inventory_id": 1175,
+      "inventory_code": "260974",
+      "brand": "TechnoGym",
+      "name": "EXCITE+ RECLINE",
+      "names": {
+        "zh-CN": "EXCITE+ 靠背单车",
+        "zh-HK": "EXCITE+ 靠背單車",
+        "en-US": "EXCITE+ RECLINE"
+      },
+      "model": "DFDE",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2318925,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    }
+  ]
+}

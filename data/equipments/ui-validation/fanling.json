@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library",
+  "country_code": "HK",
+  "store_name": "Fanling",
+  "store_slug": "fanling",
+  "captured_at": "2026-10-24T17:34:35.744062+00:00",
+  "status": "local_section_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "ADB 265px slow swipe / 1500ms; overlapping local OCR screenshots",
+  "scope": "Bright local-store section only; Nearest Store excluded",
+  "completeness_basis": "Continuous overlapping frames from top through local/Nearest Store divider; not a backend total",
+  "row_count": 27,
+  "unique_equipment_count": 27,
+  "equipment": [
+    {
+      "sequence": 1,
+      "brand": "StairMaster",
+      "name": "8 Series Freeclimber w/LCD Console",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 2,
+      "brand": "HAMMER STRENGTH",
+      "name": "HD ATHLETIC",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 3,
+      "brand": "HAMMER STRENGTH",
+      "name": "Multi-Adjustable Bench",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 4,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Shoulder Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 5,
+      "brand": "HAMMER STRENGTH",
+      "name": "Lateral Raise",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 6,
+      "brand": "HAMMER STRENGTH",
+      "name": "V-Squat",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 7,
+      "brand": "HAMMER STRENGTH",
+      "name": "Linear Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "001"
+    },
+    {
+      "sequence": 8,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Kneeling Leg Curl",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "003"
+    },
+    {
+      "sequence": 9,
+      "brand": "HAMMER STRENGTH",
+      "name": "T-Bar Row",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "004"
+    },
+    {
+      "sequence": 10,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Wide Pull Down",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "005"
+    },
+    {
+      "sequence": 11,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Low Row",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "006"
+    },
+    {
+      "sequence": 12,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Front Lat Pulldown",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "007"
+    },
+    {
+      "sequence": 13,
+      "brand": "HAMMER STRENGTH",
+      "name": "Lat Pulldown",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "008"
+    },
+    {
+      "sequence": 14,
+      "brand": "PANATTA",
+      "name": "SUPER INCLINED CHEST PRESS",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "009"
+    },
+    {
+      "sequence": 15,
+      "brand": "HAMMER STRENGTH",
+      "name": "Decline Chest Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "010"
+    },
+    {
+      "sequence": 16,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Horizontal Bench Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "011"
+    },
+    {
+      "sequence": 17,
+      "brand": "HAMMER STRENGTH",
+      "name": "Seated Biceps",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "012"
+    },
+    {
+      "sequence": 18,
+      "brand": "Life Fitness",
+      "name": "Assist Dip Chin",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "013"
+    },
+    {
+      "sequence": 19,
+      "brand": "Life Fitness",
+      "name": "Seated Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "014"
+    },
+    {
+      "sequence": 20,
+      "brand": "Life Fitness",
+      "name": "Leg Extension",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "016"
+    },
+    {
+      "sequence": 21,
+      "brand": "Life Fitness",
+      "name": "Seated Leg Curl",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "017"
+    },
+    {
+      "sequence": 22,
+      "brand": "Life Fitness",
+      "name": "Row",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "018"
+    },
+    {
+      "sequence": 23,
+      "brand": "Life Fitness",
+      "name": "Shoulder Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "019"
+    },
+    {
+      "sequence": 24,
+      "brand": "Life Fitness",
+      "name": "Chest Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "020"
+    },
+    {
+      "sequence": 25,
+      "brand": "Life Fitness",
+      "name": "Plate Loaded Incline Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "021"
+    },
+    {
+      "sequence": 26,
+      "brand": "Life Fitness",
+      "name": "Axiom Series Dual Вісер/Tricep",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "022"
+    },
+    {
+      "sequence": 27,
+      "brand": "HAMMER STRENGTH",
+      "name": "Standing Calf",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "023"
+    }
+  ]
+}

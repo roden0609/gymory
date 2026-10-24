@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library public read endpoint",
+  "country_code": "HK",
+  "store_id": 381,
+  "store_name": "Tsuen Wan Second Branch",
+  "store_slug": "tsuen-wan-second-branch",
+  "store_name_en": "24/7 FITNESS - Tsuen Wan Second Branch",
+  "store_name_bilingual": "24/7 Fitness - Tsuen Wan Second Branch (荃灣2)",
+  "area_name": "New Territories District",
+  "store_code": "TSUW2",
+  "source_store_status": 1,
+  "listed_in_app_selector": true,
+  "captured_at": "2026-10-24T17:44:00.138781+00:00",
+  "status": "source_api_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "Public GET used by App; exact storeId assignment; same All ordering",
+  "scope": "Only inventory assigned to this store; Nearest Store excluded",
+  "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=381&club_id=381&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
+  "response_sha256": "be884ceccbcac62dd129d3acf30e012a9bdb8ee01aedc6804aaa92f98f7d3447",
+  "response_row_count": 1290,
+  "excluded_nearest_store_rows": 1278,
+  "row_count": 12,
+  "unique_equipment_count": 12,
+  "unique_inventory_count": 12,
+  "equipment": [
+    {
+      "sequence": 1,
+      "source_row_id": 6703,
+      "inventory_id": 88,
+      "inventory_code": "260088",
+      "brand": "HAMMER STRENGTH",
+      "name": "Chin/Dip/Leg Raise",
+      "names": {
+        "zh-CN": "单双杠及提腿腹肌组合练习架",
+        "zh-HK": "單雙槓及提腿腹肌組合練習架",
+        "en-US": "Chin/Dip/Leg Raise"
+      },
+      "model": "BWCDL",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254806,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/4cbf33746510074d63a177f2523845eed91ef9f487a396802cf0c3623e53e0be.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 2,
+      "source_row_id": 6702,
+      "inventory_id": 1485,
+      "inventory_code": "261284",
+      "brand": "HAMMER STRENGTH",
+      "name": "练习椅",
+      "names": {
+        "zh-CN": "练习椅",
+        "zh-HK": "練习椅",
+        "en-US": "练习椅"
+      },
+      "model": "SUB",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2739048,
+      "cover_image_url": "https://oss-hk.247fitness.hk/58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 3,
+      "source_row_id": 6701,
+      "inventory_id": 1345,
+      "inventory_code": "261144",
+      "brand": "HAMMER STRENGTH",
+      "name": "Multi-Adjustable Bench",
+      "names": {
+        "zh-CN": "多角度可调训练凳",
+        "zh-HK": "多角度可調訓練凳",
+        "en-US": "Multi-Adjustable Bench"
+      },
+      "model": "HDU-MAB",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2359729,
+      "cover_image_url": "https://oss-hk.247fitness.hk/950d5872ced0f61c8f84cf850468b27c6e000e5bc7557637b3bc2552d565c8fb.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 4,
+      "source_row_id": 6700,
+      "inventory_id": 1445,
+      "inventory_code": "261244",
+      "brand": "SportArt",
+      "name": "DS972 functional trainer",
+      "names": {
+        "zh-CN": "功能训练器",
+        "zh-HK": "功能訓練器",
+        "en-US": "DS972 functional trainer"
+      },
+      "model": "DS972",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2738532,
+      "cover_image_url": "https://oss-hk.247fitness.hk/1a7c93edd487e2441c603645205ff483702de61f460f2ebeca9202630393d649.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 5,
+      "source_row_id": 6699,
+      "inventory_id": 1443,
+      "inventory_code": "261242",
+      "brand": "SportArt",
+      "name": "Commercial high-back lat pullover training machine",
+      "names": {
+        "zh-CN": "高位下拉机",
+        "zh-HK": "高位下拉機",
+        "en-US": "Commercial high-back lat pullover training machine"
+      },
+      "model": "P726",
+      "category_names": [
+        "Back"
+      ],
+      "cover_image_id": 2739342,
+      "cover_image_url": "https://oss-hk.247fitness.hk/060daa460bd54ee982a0fb41d4541270b0efd3a61a6a508b2c762fdba2c79d86.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 6,
+      "source_row_id": 6698,
+      "inventory_id": 1274,
+      "inventory_code": "261073",
+      "brand": "SportArt",
+      "name": "T655L Treadmill",
+      "names": {
+        "zh-CN": "ECO-DRIVE 跑步机",
+        "zh-HK": "ECO-DRIVE 跑步機",
+        "en-US": "T655L Treadmill"
+      },
+      "model": "T655L",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2357835,
+      "cover_image_url": "https://oss-hk.247fitness.hk/80afacca595bdc4b4ad160407ceb5c4957110448af589e0572d133f076875170.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 7,
+      "source_row_id": 6697,
+      "inventory_id": 1268,
+      "inventory_code": "261067",
+      "brand": "SportArt",
+      "name": "G845 Elliptical",
+      "names": {
+        "zh-CN": "心肺椭圆训练机",
+        "zh-HK": "心肺橢圓訓練機",
+        "en-US": "G845 Elliptical"
+      },
+      "model": "G845",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2357829,
+      "cover_image_url": "https://oss-hk.247fitness.hk/6ef5074b5ba637bb86a3897a78c8e54c1def253e5f52a9f621ce8252232d4c7c.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 8,
+      "source_row_id": 6696,
+      "inventory_id": 1425,
+      "inventory_code": "261224",
+      "brand": "SportArt",
+      "name": "Biceps Curl/ Triceps Extention",
+      "names": {
+        "zh-CN": "二头弯举机",
+        "zh-HK": "二頭弯舉機",
+        "en-US": "Biceps Curl/ Triceps Extention"
+      },
+      "model": "DF-205",
+      "category_names": [
+        "Arms"
+      ],
+      "cover_image_id": 3250010,
+      "cover_image_url": "https://oss-hk.247fitness.hk/565a8f23bdb1df0b6aa29263744d437da8846dd76b3d0d7267e673d042ebc039.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 9,
+      "source_row_id": 6695,
+      "inventory_id": 1507,
+      "inventory_code": "261305",
+      "brand": "SportArt",
+      "name": "LEG EXTENSION",
+      "names": {
+        "zh-CN": "腿部伸张机",
+        "zh-HK": "腿部伸張機",
+        "en-US": "LEG EXTENSION"
+      },
+      "model": "P757",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 3250275,
+      "cover_image_url": "https://oss-hk.247fitness.hk/66a326ac8e4774e2a4c0d5090989d44db5c356536772eea43df5309556d1b7e2.jpeg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 10,
+      "source_row_id": 6694,
+      "inventory_id": 1508,
+      "inventory_code": "261306",
+      "brand": "SportArt",
+      "name": "PRONE LEG CURL",
+      "names": {
+        "zh-CN": "卧姿腿部弯曲机",
+        "zh-HK": "臥姿腿部彎曲機",
+        "en-US": "PRONE LEG CURL"
+      },
+      "model": "P758",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 3250466,
+      "cover_image_url": "https://oss-hk.247fitness.hk/dd1e9ff5a29a4d1651e65018bf63c6465d7418d7fe9de2a1342088d82ead2cdf.jpeg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 11,
+      "source_row_id": 6693,
+      "inventory_id": 158,
+      "inventory_code": "260158",
+      "brand": "HAMMER STRENGTH",
+      "name": "HD ATHLETIC",
+      "names": {
+        "zh-CN": "NX系列前开放式深蹲架",
+        "zh-HK": "NX系列前開放式深蹲架",
+        "en-US": "HD ATHLETIC"
+      },
+      "model": "HDW-HR-STRD",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2254506,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/d348560b03b1639a22b0c88fe12cef5ed58a0a8a8e0082d6fd31153104899166.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 12,
+      "source_row_id": 6692,
+      "inventory_id": 1073,
+      "inventory_code": "260879",
+      "brand": "InBody",
+      "name": "InBody",
+      "names": {
+        "zh-CN": "InBody智能体测仪",
+        "zh-HK": "InBody智能體測儀",
+        "en-US": "InBody"
+      },
+      "model": "-",
+      "category_names": [
+        "Analyzer"
+      ],
+      "cover_image_id": 2254638,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7678ee1c29efeffec80efba29c0887a923c2a9a44ffa71c1dbbd61712730b263.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    }
+  ]
+}

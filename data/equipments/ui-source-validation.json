@@ -1,0 +1,47 @@
+[
+  {
+    "store_name": "Fanling Third Branch",
+    "store_id": 441,
+    "ui_row_count": 38,
+    "source_row_count": 38,
+    "row_counts_match": true,
+    "minimum_name_similarity": 1.0,
+    "average_name_similarity": 1.0
+  },
+  {
+    "store_name": "Ma On Shan Second Branch",
+    "store_id": 426,
+    "ui_row_count": 46,
+    "source_row_count": 46,
+    "row_counts_match": true,
+    "minimum_name_similarity": 1.0,
+    "average_name_similarity": 1.0
+  },
+  {
+    "store_name": "Ma On Shan",
+    "store_id": 371,
+    "ui_row_count": 36,
+    "source_row_count": 36,
+    "row_counts_match": true,
+    "minimum_name_similarity": 1.0,
+    "average_name_similarity": 1.0
+  },
+  {
+    "store_name": "Fanling",
+    "store_id": 360,
+    "ui_row_count": 27,
+    "source_row_count": 27,
+    "row_counts_match": true,
+    "minimum_name_similarity": 0.8936170212765957,
+    "average_name_similarity": 0.9960598896769111
+  },
+  {
+    "store_name": "Sheung Shui",
+    "store_id": 372,
+    "ui_row_count": 37,
+    "source_row_count": 37,
+    "row_counts_match": true,
+    "minimum_name_similarity": 1.0,
+    "average_name_similarity": 1.0
+  }
+]

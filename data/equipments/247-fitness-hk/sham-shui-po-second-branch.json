@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library public read endpoint",
+  "country_code": "HK",
+  "store_id": 383,
+  "store_name": "Sham Shui Po Second Branch",
+  "store_slug": "sham-shui-po-second-branch",
+  "store_name_en": "24/7 FITNESS - Sham Shui Po Second Branch",
+  "store_name_bilingual": "24/7 Fitness - Sham Shui Po Second Branch (深水埗2)",
+  "area_name": "Kowloon District",
+  "store_code": "SSP2",
+  "source_store_status": 1,
+  "listed_in_app_selector": true,
+  "captured_at": "2026-10-24T17:44:16.249423+00:00",
+  "status": "source_api_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "Public GET used by App; exact storeId assignment; same All ordering",
+  "scope": "Only inventory assigned to this store; Nearest Store excluded",
+  "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=383&club_id=383&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
+  "response_sha256": "81c961f3e62871b16807fbe4a2d2609f2a626332075585423000517089959479",
+  "response_row_count": 1290,
+  "excluded_nearest_store_rows": 1275,
+  "row_count": 15,
+  "unique_equipment_count": 15,
+  "unique_inventory_count": 15,
+  "equipment": [
+    {
+      "sequence": 1,
+      "source_row_id": 3255,
+      "inventory_id": 89,
+      "inventory_code": "260089",
+      "brand": "HAMMER STRENGTH",
+      "name": "Glute/Ham Bench",
+      "names": {
+        "zh-CN": "臀部训练器",
+        "zh-HK": "臀部訓練器",
+        "en-US": "Glute/Ham Bench"
+      },
+      "model": "BWGH",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254234,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/65bb2132bd5a6d5ca77186b624b85fe2c5ed149ddd1a0f261b31a2fb72db5389.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 2,
+      "source_row_id": 3190,
+      "inventory_id": 1166,
+      "inventory_code": "260965",
+      "brand": "Life Fitness",
+      "name": "CMS Dual Adjustable Pulley",
+      "names": {
+        "zh-CN": "小飞鸟",
+        "zh-HK": "小飛鳥",
+        "en-US": "CMS Dual Adjustable Pulley"
+      },
+      "model": "CMDAP",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2312754,
+      "cover_image_url": "https://oss-hk.247fitness.hk/b49a310fdc2296cfac186f77d23a5af857dcc3ee4ef95184ad84e1a89f8961a1.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 3,
+      "source_row_id": 3088,
+      "inventory_id": 461,
+      "inventory_code": "260342",
+      "brand": "FREEMOTION",
+      "name": "Dual Cable Crossover",
+      "names": {
+        "zh-CN": "双绳索大飞鸟训练器",
+        "zh-HK": "雙繩索大飛鳥訓練器",
+        "en-US": "Dual Cable Crossover"
+      },
+      "model": "G624",
+      "category_names": [
+        "Chest"
+      ],
+      "cover_image_id": 2254280,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/7a576e8e871796fb875431c9d684f9a885771fd9751ab72b4011ee73f6c41aff.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 4,
+      "source_row_id": 3031,
+      "inventory_id": 1209,
+      "inventory_code": "261008",
+      "brand": "Arsenal",
+      "name": "Standing Lateral Raise",
+      "names": {
+        "zh-CN": "站姿侧平举机",
+        "zh-HK": "站姿側平舉機",
+        "en-US": "Standing Lateral Raise"
+      },
+      "model": "M1-SLR",
+      "category_names": [
+        "Shoulder"
+      ],
+      "cover_image_id": 2357718,
+      "cover_image_url": "https://oss-hk.247fitness.hk/83c01333448d12da926e3b2d90da71b4078210bb9f17922098be1fe8981113b9.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 5,
+      "source_row_id": 3030,
+      "inventory_id": 1190,
+      "inventory_code": "260989",
+      "brand": "Arsenal",
+      "name": "Pendulum Squat",
+      "names": {
+        "zh-CN": "摆动深蹲机",
+        "zh-HK": "擺動深蹲機",
+        "en-US": "Pendulum Squat"
+      },
+      "model": "AR-PNDLM",
+      "category_names": [
+        "Legs"
+      ],
+      "cover_image_id": 2357698,
+      "cover_image_url": "https://oss-hk.247fitness.hk/2e3603fca9cdcb6fb6a8f3e8cade499c30b9a0ddb9d9d8801e3af0324cdfcc65.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 6,
+      "source_row_id": 3029,
+      "inventory_id": 1098,
+      "inventory_code": "260898",
+      "brand": "ASSAULT FITNESS",
+      "name": "AIR BIKE",
+      "names": {
+        "zh-CN": "风阻单车",
+        "zh-HK": "風阻單車",
+        "en-US": "AIR BIKE"
+      },
+      "model": "AS-ABPX Bike Pro X",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2276920,
+      "cover_image_url": "https://oss-hk.247fitness.hk/300ae9b284d3afdb77beeb757e81cfe635ceb29c64170cfdaf4df2eccecf0505.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 7,
+      "source_row_id": 3027,
+      "inventory_id": 1096,
+      "inventory_code": "260896",
+      "brand": "Concept 2",
+      "name": "Country Ski Trainer",
+      "names": {
+        "zh-CN": "滑雪机",
+        "zh-HK": "滑雪機",
+        "en-US": "Country Ski Trainer"
+      },
+      "model": "Skierg",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2276912,
+      "cover_image_url": "https://oss-hk.247fitness.hk/c5b4d4c594f8100f379a9f794f32881b1b579a70e953a1c7d73837724a4cef7e.webp",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 8,
+      "source_row_id": 3026,
+      "inventory_id": 1097,
+      "inventory_code": "260897",
+      "brand": "Concept 2",
+      "name": "Row Machine",
+      "names": {
+        "zh-CN": "划船机",
+        "zh-HK": "划船機",
+        "en-US": "Row Machine"
+      },
+      "model": "Rowerg",
+      "category_names": [
+        "Cardio"
+      ],
+      "cover_image_id": 2276917,
+      "cover_image_url": "https://oss-hk.247fitness.hk/9e98f9d0c34b5b9c48367795e107ada521548d96d28adacea0eef1d0d6219f04.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 9,
+      "source_row_id": 3025,
+      "inventory_id": 1240,
+      "inventory_code": "261039",
+      "brand": "Arsenal",
+      "name": "DB/Row Kickback Bench",
+      "names": {
+        "zh-CN": "哑铃划船后踢凳",
+        "zh-HK": "啞鈴划船後踢凳",
+        "en-US": "DB/Row Kickback Bench"
+      },
+      "model": "ALPHA-DBROW",
+      "category_names": [
+        "Glute",
+        "Back"
+      ],
+      "cover_image_id": 2357754,
+      "cover_image_url": "https://oss-hk.247fitness.hk/d4beadaf078955cbcc31dc48e22f281fbe263ea262eb6f99f1fbda78dcdc7c90.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 10,
+      "source_row_id": 3024,
+      "inventory_id": 1294,
+      "inventory_code": "261093",
+      "brand": "Arsenal",
+      "name": "Multiflex",
+      "names": {
+        "zh-CN": "多功能训练器",
+        "zh-HK": "多功能訓練器",
+        "en-US": "Multiflex"
+      },
+      "model": "AR-MTFX",
+      "category_names": [
+        "MultiFunction"
+      ],
+      "cover_image_id": 2357857,
+      "cover_image_url": "https://oss-hk.247fitness.hk/47fa17e397f398289158abdc1302a90e5c23b8d2c71c891efa318c4b29a0a5ce.png",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 11,
+      "source_row_id": 3019,
+      "inventory_id": 756,
+      "inventory_code": "260618",
+      "brand": "BOOTY BUILDER",
+      "name": "Platinum V4 Hip Thrust",
+      "names": {
+        "zh-CN": "卧姿臀推机 （实物不含弹力带，需另配）",
+        "zh-HK": "卧姿臀推機 （實物不含彈力帶，需另配）",
+        "en-US": "Platinum V4 Hip Thrust"
+      },
+      "model": "BB-V4",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254463,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/d5aa12c95faf10e43cc91505fa1fd12321fdc5ebdc300161b20e37eed7ba1ffa.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 12,
+      "source_row_id": 3018,
+      "inventory_id": 753,
+      "inventory_code": "260615",
+      "brand": "BOOTY BUILDER",
+      "name": "Belt Squat",
+      "names": {
+        "zh-CN": "复合式深蹲训练机 （实物不含弹力带，需另配）",
+        "zh-HK": "複合式深蹲訓練機 （實物不含彈力帶，需另配）",
+        "en-US": "Belt Squat"
+      },
+      "model": "BB-BS",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254449,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6b5446bea3cbaf31d71c5ba1225901726df72a67261062555d33592fb3df711f.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 13,
+      "source_row_id": 3017,
+      "inventory_id": 751,
+      "inventory_code": "260613",
+      "brand": "BOOTY BUILDER",
+      "name": "Standing Hip Abductor",
+      "names": {
+        "zh-CN": "站姿髋外展机 （实物不含弹力带，需另配）",
+        "zh-HK": "站姿髖外展機 （實物不含彈力帶，需另配）",
+        "en-US": "Standing Hip Abductor"
+      },
+      "model": "BB-SA",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254908,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/783dd733398972fc9a551dac5a04495cbc57c9ded3d5d3238394e1983236281a.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 14,
+      "source_row_id": 3016,
+      "inventory_id": 750,
+      "inventory_code": "260612",
+      "brand": "BOOTY BUILDER",
+      "name": "Standing Hip Thrust",
+      "names": {
+        "zh-CN": "站姿臀推机 （实物不含弹力带，需另配）",
+        "zh-HK": "站姿臀推機 （實物不含彈力帶，需另配）",
+        "en-US": "Standing Hip Thrust"
+      },
+      "model": "BB-SHT",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254893,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/6a4be3c482d904d74c1218480794743ffe0bc52dcef3ff3b2c31bbb773c46fe3.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    },
+    {
+      "sequence": 15,
+      "source_row_id": 3015,
+      "inventory_id": 754,
+      "inventory_code": "260616",
+      "brand": "BOOTY BUILDER",
+      "name": "Hip Press",
+      "names": {
+        "zh-CN": "卧姿臀推框 （实物不含弹力带，需另配）",
+        "zh-HK": "卧姿臀推框 （實物不含彈力帶，需另配）",
+        "en-US": "Hip Press"
+      },
+      "model": "BB-DHP",
+      "category_names": [
+        "Glute"
+      ],
+      "cover_image_id": 2254649,
+      "cover_image_url": "https://oss-hk.247fitness.hk/equipment/408a2928d617a6d1a29cdf6ff63d974503117c10917b58aebc778577d816617d.jpg",
+      "has_courseware": false,
+      "name_truncated": false,
+      "text_verification": "source_api_text"
+    }
+  ]
+}

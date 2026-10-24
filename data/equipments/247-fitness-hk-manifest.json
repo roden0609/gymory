@@ -1,0 +1,1304 @@
+{
+  "schema_version": 1,
+  "scope": "Hong Kong gyms independently listed in App selector",
+  "discovery_complete": true,
+  "discovery_method": "ADB/OCR selector enumeration through end; store IDs matched to public tree",
+  "source_tree_url": "https://www.247fitness.hk/app-api/app-client/store/tree?langTag=en-US&lang=en-US&platform=app",
+  "source_tree_sha256": "f0284a262fd180195ee28165d770a2058986afe092d11ef881c46b6e122064d9",
+  "app_selector_gym_count": 159,
+  "source_tree_hk_store_count": 162,
+  "excluded_not_in_app_selector": [
+    {
+      "store_id": 356,
+      "store_name": "Tsuen Wan",
+      "source_store_status": 3,
+      "reason": "Not listed in App HK selector"
+    },
+    {
+      "store_id": 473,
+      "store_name": "香港VIP門店",
+      "source_store_status": 0,
+      "reason": "Not listed in App HK selector"
+    },
+    {
+      "store_id": 474,
+      "store_name": "香港市場部",
+      "source_store_status": 0,
+      "reason": "Not listed in App HK selector"
+    }
+  ],
+  "gyms": [
+    {
+      "name": "Ma On Shan",
+      "slug": "ma-on-shan",
+      "store_id": 371,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 36
+    },
+    {
+      "name": "Fanling Third Branch",
+      "slug": "fanling-third-branch",
+      "store_id": 441,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 38
+    },
+    {
+      "name": "Ma On Shan Second Branch",
+      "slug": "ma-on-shan-second-branch",
+      "store_id": 426,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 46
+    },
+    {
+      "name": "Sheung Shui",
+      "slug": "sheung-shui",
+      "store_id": 372,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 37
+    },
+    {
+      "name": "Fanling",
+      "slug": "fanling",
+      "store_id": 360,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 27
+    },
+    {
+      "name": "Sai Kung Second Branch",
+      "slug": "sai-kung-second-branch",
+      "store_id": 1600000000000015,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 46
+    },
+    {
+      "name": "Fanling Second Branch",
+      "slug": "fanling-second-branch",
+      "store_id": 433,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 40
+    },
+    {
+      "name": "Sheung Shui Third Branch",
+      "slug": "sheung-shui-third-branch",
+      "store_id": 1600000000000147,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "Sheung Shui Second Branch",
+      "slug": "sheung-shui-second-branch",
+      "store_id": 436,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 48
+    },
+    {
+      "name": "Sai Kung",
+      "slug": "sai-kung",
+      "store_id": 435,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 42
+    },
+    {
+      "name": "Tai Po Second Branch",
+      "slug": "tai-po-second-branch",
+      "store_id": 422,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 30
+    },
+    {
+      "name": "Science Park",
+      "slug": "science-park",
+      "store_id": 425,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 33
+    },
+    {
+      "name": "Ma On Shan Third Branch",
+      "slug": "ma-on-shan-third-branch",
+      "store_id": 452,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 66
+    },
+    {
+      "name": "Tai Po Third Branch",
+      "slug": "tai-po-third-branch",
+      "store_id": 437,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 15
+    },
+    {
+      "name": "Tai Po Fourth Branch",
+      "slug": "tai-po-fourth-branch",
+      "store_id": 1600000000000011,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 51
+    },
+    {
+      "name": "Tai Po Fifth Branch",
+      "slug": "tai-po-fifth-branch",
+      "store_id": 1600000000000012,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 44
+    },
+    {
+      "name": "Tai Po",
+      "slug": "tai-po",
+      "store_id": 350,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 34
+    },
+    {
+      "name": "Tai Wo",
+      "slug": "tai-wo",
+      "store_id": 1600000000000146,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "Shek Mun",
+      "slug": "shek-mun",
+      "store_id": 357,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 59
+    },
+    {
+      "name": "Fo Tan Branch",
+      "slug": "fo-tan-branch",
+      "store_id": 466,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 56
+    },
+    {
+      "name": "Sha Tin Third Branch",
+      "slug": "sha-tin-third-branch",
+      "store_id": 1600000000000139,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 34
+    },
+    {
+      "name": "Shatin",
+      "slug": "shatin",
+      "store_id": 370,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 49
+    },
+    {
+      "name": "Shatin Second Branch",
+      "slug": "shatin-second-branch",
+      "store_id": 380,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 36
+    },
+    {
+      "name": "Tseung Kwan O Third Branch",
+      "slug": "tseung-kwan-o-third-branch",
+      "store_id": 407,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 50
+    },
+    {
+      "name": "Tseung Kwan O Second Branch",
+      "slug": "tseung-kwan-o-second-branch",
+      "store_id": 388,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 42
+    },
+    {
+      "name": "Tseung Kwan O 5th Branch",
+      "slug": "tseung-kwan-o-5th-branch",
+      "store_id": 451,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 99
+    },
+    {
+      "name": "Yuen Long Fifth branch",
+      "slug": "yuen-long-fifth-branch",
+      "store_id": 504,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 39
+    },
+    {
+      "name": "Tseung Kwan O 6th Branch",
+      "slug": "tseung-kwan-o-6th-branch",
+      "store_id": 459,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 31
+    },
+    {
+      "name": "Tai Wai",
+      "slug": "tai-wai",
+      "store_id": 347,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 31
+    },
+    {
+      "name": "Tseung Kwan O 4th Branch",
+      "slug": "tseung-kwan-o-4th-branch",
+      "store_id": 413,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 41
+    },
+    {
+      "name": "Shun Lee",
+      "slug": "shun-lee",
+      "store_id": 430,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 39
+    },
+    {
+      "name": "Anderson branch",
+      "slug": "anderson-branch",
+      "store_id": 1600000000000141,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "Shun On",
+      "slug": "shun-on",
+      "store_id": 1600000000000164,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "Tseung Kwan O",
+      "slug": "tseung-kwan-o",
+      "store_id": 361,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 54
+    },
+    {
+      "name": "Po Tat",
+      "slug": "po-tat",
+      "store_id": 389,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 29
+    },
+    {
+      "name": "Tsz Wan Shan",
+      "slug": "tsz-wan-shan",
+      "store_id": 434,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 30
+    },
+    {
+      "name": "Wong Tai Sin Second Branch",
+      "slug": "wong-tai-sin-second-branch",
+      "store_id": 390,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 27
+    },
+    {
+      "name": "Lam Tin",
+      "slug": "lam-tin",
+      "store_id": 406,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 34
+    },
+    {
+      "name": "Tai Wai Second Branch",
+      "slug": "tai-wai-second-branch",
+      "store_id": 387,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 52
+    },
+    {
+      "name": "Wong Tai Sin",
+      "slug": "wong-tai-sin",
+      "store_id": 351,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 35
+    },
+    {
+      "name": "Kowloon Bay",
+      "slug": "kowloon-bay",
+      "store_id": 358,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 68
+    },
+    {
+      "name": "Lok Wah",
+      "slug": "lok-wah",
+      "store_id": 429,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 26
+    },
+    {
+      "name": "Wong Tai Sin Third Branch",
+      "slug": "wong-tai-sin-third-branch",
+      "store_id": 1600000000000006,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 22
+    },
+    {
+      "name": "Kowloon Bay2",
+      "slug": "kowloon-bay2",
+      "store_id": 1600000000000145,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 70
+    },
+    {
+      "name": "San Po Kong Second Branch",
+      "slug": "san-po-kong-second-branch",
+      "store_id": 419,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 30
+    },
+    {
+      "name": "Lam Tin Second Branch",
+      "slug": "lam-tin-second-branch",
+      "store_id": 415,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 35
+    },
+    {
+      "name": "San Po Kong",
+      "slug": "san-po-kong",
+      "store_id": 346,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 48
+    },
+    {
+      "name": "Kwun Tong Fourth Branch",
+      "slug": "kwun-tong-fourth-branch",
+      "store_id": 464,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 69
+    },
+    {
+      "name": "Kwun Tong Third Branch",
+      "slug": "kwun-tong-third-branch",
+      "store_id": 427,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 23
+    },
+    {
+      "name": "Kwun Tong",
+      "slug": "kwun-tong",
+      "store_id": 336,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 38
+    },
+    {
+      "name": "Kwun Tong Second Branch",
+      "slug": "kwun-tong-second-branch",
+      "store_id": 362,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 54
+    },
+    {
+      "name": "Laguna City",
+      "slug": "laguna-city",
+      "store_id": 460,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 35
+    },
+    {
+      "name": "The Quayside",
+      "slug": "the-quayside",
+      "store_id": 1600000000000140,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "MegaBox",
+      "slug": "megabox",
+      "store_id": 412,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 61
+    },
+    {
+      "name": "Lok Fu",
+      "slug": "lok-fu",
+      "store_id": 447,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 21
+    },
+    {
+      "name": "Kam Sheung Road",
+      "slug": "kam-sheung-road",
+      "store_id": 418,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 26
+    },
+    {
+      "name": "Yau Tong",
+      "slug": "yau-tong",
+      "store_id": 416,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 39
+    },
+    {
+      "name": "Kai Tak Mall",
+      "slug": "kai-tak-mall",
+      "store_id": 440,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 62
+    },
+    {
+      "name": "Kwai Chung Second Branch",
+      "slug": "kwai-chung-second-branch",
+      "store_id": 399,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 33
+    },
+    {
+      "name": "Kowloon City",
+      "slug": "kowloon-city",
+      "store_id": 392,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 28
+    },
+    {
+      "name": "Festival Walk",
+      "slug": "festival-walk",
+      "store_id": 423,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 47
+    },
+    {
+      "name": "Kwai Chung",
+      "slug": "kwai-chung",
+      "store_id": 355,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 31
+    },
+    {
+      "name": "Siu Sai Wan",
+      "slug": "siu-sai-wan",
+      "store_id": 414,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 15
+    },
+    {
+      "name": "To Kwa Wan",
+      "slug": "to-kwa-wan",
+      "store_id": 340,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 29
+    },
+    {
+      "name": "Lei King Wan",
+      "slug": "lei-king-wan",
+      "store_id": 404,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 29
+    },
+    {
+      "name": "To Kwa Wan Second Branch",
+      "slug": "to-kwa-wan-second-branch",
+      "store_id": 396,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 52
+    },
+    {
+      "name": "Tsuen Wan Second Branch",
+      "slug": "tsuen-wan-second-branch",
+      "store_id": 381,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 12
+    },
+    {
+      "name": "Tai Wo Hau",
+      "slug": "tai-wo-hau",
+      "store_id": 1600000000000008,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 41
+    },
+    {
+      "name": "Tsuen Wan Fifth Branch",
+      "slug": "tsuen-wan-fifth-branch",
+      "store_id": 457,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 47
+    },
+    {
+      "name": "Chai Wan Second Branch",
+      "slug": "chai-wan-second-branch",
+      "store_id": 1600000000000135,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 37
+    },
+    {
+      "name": "Yuen Long second branch",
+      "slug": "yuen-long-second-branch",
+      "store_id": 375,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 73
+    },
+    {
+      "name": "Kwai Shing",
+      "slug": "kwai-shing",
+      "store_id": 409,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 11
+    },
+    {
+      "name": "Tsuen Wan seventh branch （D-Park)",
+      "slug": "tsuen-wan-seventh-branch-d-park",
+      "store_id": 475,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 49
+    },
+    {
+      "name": "Sham Shui Po",
+      "slug": "sham-shui-po",
+      "store_id": 344,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 43
+    },
+    {
+      "name": "Yuen Long",
+      "slug": "yuen-long",
+      "store_id": 348,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 49
+    },
+    {
+      "name": "Sham Shui Po Third Branch",
+      "slug": "sham-shui-po-third-branch",
+      "store_id": 443,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 32
+    },
+    {
+      "name": "Shau Kei Wan",
+      "slug": "shau-kei-wan",
+      "store_id": 342,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 33
+    },
+    {
+      "name": "Cheung Sha Wan Second Branch",
+      "slug": "cheung-sha-wan-second-branch",
+      "store_id": 421,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 25
+    },
+    {
+      "name": "Cheung Sha Wan",
+      "slug": "cheung-sha-wan",
+      "store_id": 359,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 46
+    },
+    {
+      "name": "Tsuen Wan sixth branch",
+      "slug": "tsuen-wan-sixth-branch",
+      "store_id": 465,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 67
+    },
+    {
+      "name": "Tin Shui Wai Second Branch",
+      "slug": "tin-shui-wai-second-branch",
+      "store_id": 376,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 43
+    },
+    {
+      "name": "Sham Shui Po Second Branch",
+      "slug": "sham-shui-po-second-branch",
+      "store_id": 383,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 15
+    },
+    {
+      "name": "Yuen Long Fourth Branch",
+      "slug": "yuen-long-fourth-branch",
+      "store_id": 1600000000000002,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 61
+    },
+    {
+      "name": "Hung Hom Second Branch",
+      "slug": "hung-hom-second-branch",
+      "store_id": 393,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 37
+    },
+    {
+      "name": "Kwai Fong",
+      "slug": "kwai-fong",
+      "store_id": 373,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 77
+    },
+    {
+      "name": "Quarry bay",
+      "slug": "quarry-bay",
+      "store_id": 366,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 31
+    },
+    {
+      "name": "Tai Koo",
+      "slug": "tai-koo",
+      "store_id": 477,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 42
+    },
+    {
+      "name": "Sai Wan Ho",
+      "slug": "sai-wan-ho",
+      "store_id": 432,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 36
+    },
+    {
+      "name": "Ho Man Tin",
+      "slug": "ho-man-tin",
+      "store_id": 420,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 31
+    },
+    {
+      "name": "Prince Edward",
+      "slug": "prince-edward",
+      "store_id": 417,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 39
+    },
+    {
+      "name": "Chai Wan",
+      "slug": "chai-wan",
+      "store_id": 365,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 45
+    },
+    {
+      "name": "kwai fong second branch",
+      "slug": "kwai-fong-second-branch",
+      "store_id": 467,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 80
+    },
+    {
+      "name": "Hung Hom",
+      "slug": "hung-hom",
+      "store_id": 339,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 43
+    },
+    {
+      "name": "Tsuen Wan Fourth Branch",
+      "slug": "tsuen-wan-fourth-branch",
+      "store_id": 398,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 27
+    },
+    {
+      "name": "Mongkok",
+      "slug": "mongkok",
+      "store_id": 335,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 48
+    },
+    {
+      "name": "North Point",
+      "slug": "north-point",
+      "store_id": 345,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 35
+    },
+    {
+      "name": "Sham Shui Po Fourth Branch",
+      "slug": "sham-shui-po-fourth-branch",
+      "store_id": 1600000000000014,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 45
+    },
+    {
+      "name": "Tin Shui Wai Third Branch",
+      "slug": "tin-shui-wai-third-branch",
+      "store_id": 391,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 27
+    },
+    {
+      "name": "Lai Chi Kok",
+      "slug": "lai-chi-kok",
+      "store_id": 476,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 59
+    },
+    {
+      "name": "Mongkok Second Branch",
+      "slug": "mongkok-second-branch",
+      "store_id": 377,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 52
+    },
+    {
+      "name": "Yuen Long Third Branch",
+      "slug": "yuen-long-third-branch",
+      "store_id": 454,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 38
+    },
+    {
+      "name": "North Point Second Branch",
+      "slug": "north-point-second-branch",
+      "store_id": 401,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 69
+    },
+    {
+      "name": "Tin Shui Wai Fourth Branch",
+      "slug": "tin-shui-wai-fourth-branch",
+      "store_id": 455,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 73
+    },
+    {
+      "name": "Tai Kok Tsui",
+      "slug": "tai-kok-tsui",
+      "store_id": 363,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 24
+    },
+    {
+      "name": "Yau Ma Tei Second Branch",
+      "slug": "yau-ma-tei-second-branch",
+      "store_id": 448,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 39
+    },
+    {
+      "name": "Mei Foo",
+      "slug": "mei-foo",
+      "store_id": 368,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 48
+    },
+    {
+      "name": "Tai Kok Tsui Second Branch",
+      "slug": "tai-kok-tsui-second-branch",
+      "store_id": 438,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 40
+    },
+    {
+      "name": "Tin Shui Wai",
+      "slug": "tin-shui-wai",
+      "store_id": 353,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 26
+    },
+    {
+      "name": "Tsuen Wan Third Branch",
+      "slug": "tsuen-wan-third-branch",
+      "store_id": 385,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 41
+    },
+    {
+      "name": "Yau Ma Tei",
+      "slug": "yau-ma-tei",
+      "store_id": 394,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 20
+    },
+    {
+      "name": "Nam Cheong",
+      "slug": "nam-cheong",
+      "store_id": 439,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 35
+    },
+    {
+      "name": "Jordan Second Branch",
+      "slug": "jordan-second-branch",
+      "store_id": 400,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 33
+    },
+    {
+      "name": "Tsing Yi Third Branch",
+      "slug": "tsing-yi-third-branch",
+      "store_id": 444,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 33
+    },
+    {
+      "name": "Fortress Hill",
+      "slug": "fortress-hill",
+      "store_id": 395,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 38
+    },
+    {
+      "name": "Tsing Yi Second Branch",
+      "slug": "tsing-yi-second-branch",
+      "store_id": 428,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 47
+    },
+    {
+      "name": "Jordan Branch",
+      "slug": "jordan-branch",
+      "store_id": 379,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 33
+    },
+    {
+      "name": "Tin Hau",
+      "slug": "tin-hau",
+      "store_id": 354,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 25
+    },
+    {
+      "name": "Tsim Sha Tsui Third Branch",
+      "slug": "tsim-sha-tsui-third-branch",
+      "store_id": 449,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 33
+    },
+    {
+      "name": "K11",
+      "slug": "k11",
+      "store_id": 384,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 54
+    },
+    {
+      "name": "Tsim Sha Tsui",
+      "slug": "tsim-sha-tsui",
+      "store_id": 364,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 53
+    },
+    {
+      "name": "Tsing Yi",
+      "slug": "tsing-yi",
+      "store_id": 382,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 29
+    },
+    {
+      "name": "Causeway bay Second Branch",
+      "slug": "causeway-bay-second-branch",
+      "store_id": 397,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 37
+    },
+    {
+      "name": "Causeway Bay",
+      "slug": "causeway-bay",
+      "store_id": 337,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 64
+    },
+    {
+      "name": "Hung Shui Kiu",
+      "slug": "hung-shui-kiu",
+      "store_id": 461,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 39
+    },
+    {
+      "name": "Causeway bay Third Branch",
+      "slug": "causeway-bay-third-branch",
+      "store_id": 408,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 55
+    },
+    {
+      "name": "Happy Valley",
+      "slug": "happy-valley",
+      "store_id": 456,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 21
+    },
+    {
+      "name": "Wan Chai",
+      "slug": "wan-chai",
+      "store_id": 349,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 62
+    },
+    {
+      "name": "Sham Tseng",
+      "slug": "sham-tseng",
+      "store_id": 445,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 30
+    },
+    {
+      "name": "Admiralty",
+      "slug": "admiralty",
+      "store_id": 1600000000000128,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 21
+    },
+    {
+      "name": "Sheung Wan",
+      "slug": "sheung-wan",
+      "store_id": 352,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 38
+    },
+    {
+      "name": "Central Second Branch",
+      "slug": "central-second-branch",
+      "store_id": 403,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 42
+    },
+    {
+      "name": "Central Third Branch",
+      "slug": "central-third-branch",
+      "store_id": 450,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "Sheung Wan Second Branch",
+      "slug": "sheung-wan-second-branch",
+      "store_id": 1600000000000143,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "Central",
+      "slug": "central",
+      "store_id": 334,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 31
+    },
+    {
+      "name": "Sai Ying Pun",
+      "slug": "sai-ying-pun",
+      "store_id": 410,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 22
+    },
+    {
+      "name": "Sai Wan",
+      "slug": "sai-wan",
+      "store_id": 343,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 28
+    },
+    {
+      "name": "Park Island",
+      "slug": "park-island",
+      "store_id": 458,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 40
+    },
+    {
+      "name": "Kennedy Town",
+      "slug": "kennedy-town",
+      "store_id": 374,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 18
+    },
+    {
+      "name": "Kennedy Town Second Branch",
+      "slug": "kennedy-town-second-branch",
+      "store_id": 442,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 58
+    },
+    {
+      "name": "Wong Chuk Hang",
+      "slug": "wong-chuk-hang",
+      "store_id": 424,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 45
+    },
+    {
+      "name": "Tuen Mun",
+      "slug": "tuen-mun",
+      "store_id": 341,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 54
+    },
+    {
+      "name": "Aberdeen",
+      "slug": "aberdeen",
+      "store_id": 338,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 23
+    },
+    {
+      "name": "Aberdeen Third Branch",
+      "slug": "aberdeen-third-branch",
+      "store_id": 446,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 43
+    },
+    {
+      "name": "Aberdeen Second Branch",
+      "slug": "aberdeen-second-branch",
+      "store_id": 405,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 25
+    },
+    {
+      "name": "Tuen Mun Third Branch",
+      "slug": "tuen-mun-third-branch",
+      "store_id": 378,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 55
+    },
+    {
+      "name": "Tuen Mun Fifth branch",
+      "slug": "tuen-mun-fifth-branch",
+      "store_id": 472,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 171
+    },
+    {
+      "name": "Aberdeen Fourth Branch （Tin Wan）",
+      "slug": "aberdeen-fourth-branch-tin-wan",
+      "store_id": 1600000000000007,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 27
+    },
+    {
+      "name": "Pok fu lam",
+      "slug": "pok-fu-lam",
+      "store_id": 402,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 26
+    },
+    {
+      "name": "Ap Lei Chau",
+      "slug": "ap-lei-chau",
+      "store_id": 386,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 30
+    },
+    {
+      "name": "Ap Lei Chau Second Branch",
+      "slug": "ap-lei-chau-second-branch",
+      "store_id": 453,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 40
+    },
+    {
+      "name": "Tuen Mun second branch",
+      "slug": "tuen-mun-second-branch",
+      "store_id": 367,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 28
+    },
+    {
+      "name": "SOUTH HORIZONS",
+      "slug": "south-horizons",
+      "store_id": 1600000000000004,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 49
+    },
+    {
+      "name": "Tuen Mun 4th Branch",
+      "slug": "tuen-mun-4th-branch",
+      "store_id": 411,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 29
+    },
+    {
+      "name": "Discovery Bay",
+      "slug": "discovery-bay",
+      "store_id": 431,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 45
+    },
+    {
+      "name": "Tung Chung 4th branch",
+      "slug": "tung-chung-4th-branch",
+      "store_id": 1600000000000160,
+      "country_code": "HK",
+      "status": "empty_in_source",
+      "row_count": 0
+    },
+    {
+      "name": "Tung Chung 3rd",
+      "slug": "tung-chung-3rd",
+      "store_id": 1600000000000134,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 52
+    },
+    {
+      "name": "Tung Chung Second Branch",
+      "slug": "tung-chung-second-branch",
+      "store_id": 1600000000000009,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 27
+    },
+    {
+      "name": "Cheung Chau",
+      "slug": "cheung-chau",
+      "store_id": 1600000000000013,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 40
+    },
+    {
+      "name": "Tung Chung",
+      "slug": "tung-chung",
+      "store_id": 369,
+      "country_code": "HK",
+      "status": "source_api_complete",
+      "row_count": 35
+    }
+  ]
+}

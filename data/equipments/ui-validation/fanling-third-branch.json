@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "source": "24/7 Fitness Android Equipment Library",
+  "country_code": "HK",
+  "store_name": "Fanling Third Branch",
+  "store_slug": "fanling-third-branch",
+  "captured_at": "2026-10-24T17:25:59.315838+00:00",
+  "status": "local_section_complete",
+  "tab": "All",
+  "brand_filter": "All Brands",
+  "method": "ADB 265px slow swipe / 1500ms; overlapping local OCR screenshots",
+  "scope": "Bright local-store section only; Nearest Store excluded",
+  "completeness_basis": "Continuous overlapping frames from top through local/Nearest Store divider; not a backend total",
+  "row_count": 38,
+  "unique_equipment_count": 32,
+  "equipment": [
+    {
+      "sequence": 1,
+      "brand": "TechnoGym",
+      "name": "Technogym Storage Universal",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 2,
+      "brand": "StairMaster",
+      "name": "8 Series Freeclimber w/LCD Console",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 3,
+      "brand": "HAMMER STRENGTH",
+      "name": "Smith",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 4,
+      "brand": "HAMMER STRENGTH",
+      "name": "Plate-loaded Hack Squat",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 5,
+      "brand": "HAMMER STRENGTH",
+      "name": "Linear Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 6,
+      "brand": "Life Fitness",
+      "name": "Seated Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "000"
+    },
+    {
+      "sequence": 7,
+      "brand": "Life Fitness",
+      "name": "Leg Extension",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "001"
+    },
+    {
+      "sequence": 8,
+      "brand": "Life Fitness",
+      "name": "Leg Curl",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "003"
+    },
+    {
+      "sequence": 9,
+      "brand": "Life Fitness",
+      "name": "MULTI-JUNGLE MJ8",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "004"
+    },
+    {
+      "sequence": 10,
+      "brand": "Life Fitness",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "005"
+    },
+    {
+      "sequence": 11,
+      "brand": "Life Fitness",
+      "name": "Abdominal",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "006"
+    },
+    {
+      "sequence": 12,
+      "brand": "Life Fitness",
+      "name": "Abdominal",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "007"
+    },
+    {
+      "sequence": 13,
+      "brand": "Life Fitness",
+      "name": "Lateral Raise",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "008"
+    },
+    {
+      "sequence": 14,
+      "brand": "Life Fitness",
+      "name": "Shoulder Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "009"
+    },
+    {
+      "sequence": 15,
+      "brand": "Life Fitness",
+      "name": "Hip Abduction/Adduction",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "010"
+    },
+    {
+      "sequence": 16,
+      "brand": "Life Fitness",
+      "name": "Seated Leg Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "011"
+    },
+    {
+      "sequence": 17,
+      "brand": "Life Fitness",
+      "name": "Leg Curl",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "012"
+    },
+    {
+      "sequence": 18,
+      "brand": "Life Fitness",
+      "name": "Leg Extension",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "013"
+    },
+    {
+      "sequence": 19,
+      "brand": "HAMMER STRENGTH",
+      "name": "Ground Base Squat Lunge",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "014"
+    },
+    {
+      "sequence": 20,
+      "brand": "HAMMER STRENGTH",
+      "name": "Chin/Dip/Leg Raise",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "015"
+    },
+    {
+      "sequence": 21,
+      "brand": "HAMMER STRENGTH",
+      "name": "Iso-Lateral Kneeling Leg Curl",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "017"
+    },
+    {
+      "sequence": 22,
+      "brand": "HAMMER STRENGTH",
+      "name": "Seated Calf Raise",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "018"
+    },
+    {
+      "sequence": 23,
+      "brand": "HAMMERSTRENGTH",
+      "name": "Iso-Lateral Shoulder Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "019"
+    },
+    {
+      "sequence": 24,
+      "brand": "Life Fitness",
+      "name": "Mutil Junction-16 Stack",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "020"
+    },
+    {
+      "sequence": 25,
+      "brand": "Life Fitness",
+      "name": "CMS Dual Adjustable Pulley",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "021"
+    },
+    {
+      "sequence": 26,
+      "brand": "Life Fitness",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "022"
+    },
+    {
+      "sequence": 27,
+      "brand": "Life Fitness",
+      "name": "Chest Press",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "023"
+    },
+    {
+      "sequence": 28,
+      "brand": "Life Fitness",
+      "name": "Lateral Raise",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "024"
+    },
+    {
+      "sequence": 29,
+      "brand": "XMASTER",
+      "name": "Multi-Angle Bench Press Rack",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "025"
+    },
+    {
+      "sequence": 30,
+      "brand": "IRONWOD",
+      "name": "Bulgarian Split Squat Stand",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "026"
+    },
+    {
+      "sequence": 31,
+      "brand": "GLUTE BUILDER",
+      "name": "3D Smith Hip Thrust",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "027"
+    },
+    {
+      "sequence": 32,
+      "brand": "GLUTE BUILDER",
+      "name": "45-Degree Hip Extension",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "028"
+    },
+    {
+      "sequence": 33,
+      "brand": "InBody",
+      "name": "InBody",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "030"
+    },
+    {
+      "sequence": 34,
+      "brand": "TechnoGym",
+      "name": "EXCITE+ CLIMB",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "031"
+    },
+    {
+      "sequence": 35,
+      "brand": "TechnoGym",
+      "name": "EXCITE+ BIKE",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "032"
+    },
+    {
+      "sequence": 36,
+      "brand": "TechnoGym",
+      "name": "EXCITE+ RECLINE",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "033"
+    },
+    {
+      "sequence": 37,
+      "brand": "TechnoGym",
+      "name": "Excite RunProfessional treadmill",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "034"
+    },
+    {
+      "sequence": 38,
+      "brand": "TechnoGym",
+      "name": "EXCITE+ SYNCHRO",
+      "name_truncated": false,
+      "text_verification": "local_ocr_unreviewed",
+      "ocr_confidence": 1,
+      "evidence_frame": "035"
+    }
+  ]
+}
