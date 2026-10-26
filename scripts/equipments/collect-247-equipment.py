@@ -16,7 +16,7 @@ import shlex
 import subprocess
 import time
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'data/equipments'
 ADB = '/Users/rodenmacmini/Library/Android/sdk/platform-tools/adb'
 OCR = '/private/tmp/gymory-collector/ocr'

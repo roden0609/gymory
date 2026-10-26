@@ -10,12 +10,15 @@
  * as null.
  *
  * Usage:
- *   node scripts/import-anytime-fitness-hk.mjs
- *   node scripts/import-anytime-fitness-hk.mjs --out data/imports/anytime-fitness-hk.json
- *   node scripts/import-anytime-fitness-hk.mjs --details-out data/imports/raw-anytime-fitness-hk-details.json
- *   node scripts/import-anytime-fitness-hk.mjs --details-file data/imports/raw-anytime-fitness-hk-details.json
- *   node scripts/import-anytime-fitness-hk.mjs --upsert
+ *   node scripts/gyms/import-anytime-fitness-hk.mjs --upsert-file data/gyms/anytime-fitness-hk-baseline.json
+ *   node scripts/gyms/import-anytime-fitness-hk.mjs
+ *   node scripts/gyms/import-anytime-fitness-hk.mjs --out data/gyms/anytime-fitness-hk.json
+ *   node scripts/gyms/import-anytime-fitness-hk.mjs --details-out data/gyms/raw-anytime-fitness-hk-details.json
+ *   node scripts/gyms/import-anytime-fitness-hk.mjs --details-file data/gyms/raw-anytime-fitness-hk-details.json
+ *   node scripts/gyms/import-anytime-fitness-hk.mjs --upsert
  */
+
+import { upsertGymsFromFile } from "./lib/upsert-gyms-from-file.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -54,6 +57,10 @@ if (isDirectExecution) {
 }
 
 async function main() {
+  if (Object.hasOwn(args, "upsert-file")) {
+    return upsertGymsFromFile({ args, upsertRows });
+  }
+
   const districtOverrides = args["district-overrides"]
     ? await loadDistrictOverrides(args["district-overrides"])
     : {};
@@ -95,7 +102,7 @@ async function main() {
 
   const outPath = path.resolve(
     process.cwd(),
-    args.out ?? "data/imports/anytime-fitness-hk-baseline.json"
+    args.out ?? "data/gyms/anytime-fitness-hk-baseline.json"
   );
   await mkdir(path.dirname(outPath), { recursive: true });
   await writeFile(outPath, `${JSON.stringify(rows, null, 2)}\n`);

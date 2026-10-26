@@ -28,13 +28,13 @@ pnpm import:efx24-hk
 This writes:
 
 ```text
-data/imports/efx24-hk-baseline.json
+data/gyms/efx24-hk-baseline.json
 ```
 
 To also capture the parsed branch detail snapshots used to build the baseline:
 
 ```bash
-pnpm import:efx24-hk --details-out data/imports/raw-efx24-hk-details.json
+pnpm import:efx24-hk --details-out data/gyms/raw-efx24-hk-details.json
 ```
 
 Skip Mapbox geocoding even if a token is available:
@@ -47,7 +47,7 @@ If you want to re-run baseline generation without hitting the live site, pass
 that saved snapshot back in:
 
 ```bash
-pnpm import:efx24-hk --details-file data/imports/raw-efx24-hk-details.json
+pnpm import:efx24-hk --details-file data/gyms/raw-efx24-hk-details.json
 ```
 
 ### Chrome browser mode
@@ -134,5 +134,5 @@ Add a small JSON override file keyed by either branch URL or generated slug:
 Then run:
 
 ```bash
-pnpm import:efx24-hk --district-overrides data/imports/efx24-hk-district-overrides.json
+pnpm import:efx24-hk --district-overrides data/gyms/efx24-hk-district-overrides.json
 ```

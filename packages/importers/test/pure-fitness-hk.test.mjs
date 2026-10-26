@@ -11,7 +11,7 @@ import {
   parseClubHtml,
   runImporter,
   upsertRows,
-} from "../../../scripts/import-pure-fitness-hk.mjs";
+} from "../../../scripts/gyms/import-pure-fitness-hk.mjs";
 
 const fixedNow = new Date("2026-08-01T04:00:00.000Z");
 const enUrl = "https://www.pure-360.com.hk/en/clubs/ifc/";

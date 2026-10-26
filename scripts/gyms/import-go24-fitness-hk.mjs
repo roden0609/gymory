@@ -8,15 +8,18 @@
  * explicitly writes all Gymory equipment fields as null.
  *
  * Usage:
- *   node scripts/import-go24-fitness-hk.mjs
- *   node scripts/import-go24-fitness-hk.mjs --out data/imports/go24-fitness-hk.json
- *   node scripts/import-go24-fitness-hk.mjs --details-out data/imports/raw-go24-fitness-hk-details.json
- *   node scripts/import-go24-fitness-hk.mjs --details-file data/imports/raw-go24-fitness-hk-details.json
- *   node scripts/import-go24-fitness-hk.mjs --browser
- *   node scripts/import-go24-fitness-hk.mjs --browser --browser-profile path/to/profile
- *   node scripts/import-go24-fitness-hk.mjs --skip-geocode
- *   node scripts/import-go24-fitness-hk.mjs --upsert
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --upsert-file data/gyms/go24-fitness-hk-baseline.json
+ *   node scripts/gyms/import-go24-fitness-hk.mjs
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --out data/gyms/go24-fitness-hk.json
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --details-out data/gyms/raw-go24-fitness-hk-details.json
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --details-file data/gyms/raw-go24-fitness-hk-details.json
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --browser
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --browser --browser-profile path/to/profile
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --skip-geocode
+ *   node scripts/gyms/import-go24-fitness-hk.mjs --upsert
  */
+
+import { upsertGymsFromFile } from "./lib/upsert-gyms-from-file.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -34,6 +37,7 @@ const LIST_URL = "https://www.go24fitness.com/en/locations";
 const SOURCE_URL = LIST_URL;
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const ALLOWED_ARGS = new Set([
+  "upsert-file",
   "browser",
   "browser-profile",
   "details-file",
@@ -59,6 +63,10 @@ if (isDirectExecution) {
 }
 
 async function main() {
+  if (Object.hasOwn(args, "upsert-file")) {
+    return upsertGymsFromFile({ args, upsertRows });
+  }
+
   const districtOverrides = args["district-overrides"]
     ? await loadDistrictOverrides(args["district-overrides"])
     : {};
@@ -109,7 +117,7 @@ async function main() {
 
   const outPath = path.resolve(
     process.cwd(),
-    args.out ?? "data/imports/go24-fitness-hk-baseline.json"
+    args.out ?? "data/gyms/go24-fitness-hk-baseline.json"
   );
   await mkdir(path.dirname(outPath), { recursive: true });
   await writeFile(outPath, `${JSON.stringify(rows, null, 2)}\n`);

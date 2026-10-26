@@ -11,7 +11,7 @@ import {
   parseStoreListPayload,
   runImporter,
   upsertRows,
-} from "../../../scripts/import-247-fitness-hk.mjs";
+} from "../../../scripts/gyms/import-247-fitness-hk.mjs";
 
 const fixedNow = new Date("2026-07-31T12:00:00.000Z");
 

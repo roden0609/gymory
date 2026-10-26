@@ -7,7 +7,7 @@ import {
   buildUpsertRow,
   splitNormalizedEquipment,
   upsertGymsWithSubmissions,
-} from "../../../scripts/lib/upsert-gyms-with-submissions.mjs";
+} from "../../../scripts/gyms/lib/upsert-gyms-with-submissions.mjs";
 
 function jsonResponse(value, status = 200) {
   return new Response(JSON.stringify(value), {

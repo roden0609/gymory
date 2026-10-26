@@ -8,7 +8,7 @@ import {
   parseArgs,
   runImporter,
   validateBranchDetails,
-} from "../../../scripts/import-efx24-hk.mjs";
+} from "../../../scripts/gyms/import-efx24-hk.mjs";
 
 const fixedNow = new Date("2026-08-01T04:00:00.000Z");
 

@@ -19,12 +19,12 @@ pnpm import:go24-fitness-hk
 
 Output:
 
-- `data/imports/go24-fitness-hk-baseline.json`
+- `data/gyms/go24-fitness-hk-baseline.json`
 
 ## Save raw detail snapshots
 
 ```bash
-pnpm import:go24-fitness-hk --details-out data/imports/raw-go24-fitness-hk-details.json
+pnpm import:go24-fitness-hk --details-out data/gyms/raw-go24-fitness-hk-details.json
 ```
 
 This is handy if the site changes and you want to debug parsing without hitting
@@ -33,7 +33,7 @@ the live pages again.
 ## Rebuild from saved detail snapshots
 
 ```bash
-pnpm import:go24-fitness-hk --details-file data/imports/raw-go24-fitness-hk-details.json
+pnpm import:go24-fitness-hk --details-file data/gyms/raw-go24-fitness-hk-details.json
 ```
 
 ## Chrome browser mode
@@ -103,5 +103,5 @@ map with branch URLs or generated slugs as keys:
 Then run:
 
 ```bash
-pnpm import:go24-fitness-hk --district-overrides data/imports/go24-fitness-hk-district-overrides.json
+pnpm import:go24-fitness-hk --district-overrides data/gyms/go24-fitness-hk-district-overrides.json
 ```

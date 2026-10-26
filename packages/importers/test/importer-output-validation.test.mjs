@@ -4,7 +4,7 @@ import {
   assertNotChallengeHtml,
   validateImporterDetails,
   validateImporterRows,
-} from "../../../scripts/lib/importer-output-validation.mjs";
+} from "../../../scripts/gyms/lib/importer-output-validation.mjs";
 
 describe("shared importer output validation", () => {
   it.each([

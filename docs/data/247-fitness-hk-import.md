@@ -21,14 +21,14 @@ pnpm import:247-fitness-hk
 This writes:
 
 ```text
-data/imports/247-fitness-hk-baseline.json
+data/gyms/247-fitness-hk-baseline.json
 ```
 
 If the live API is region-blocked, export the store detail objects from a
 Hong Kong-accessible network and convert that local file instead:
 
 ```bash
-pnpm import:247-fitness-hk --details-file data/imports/raw-247-fitness-hk-details.json
+pnpm import:247-fitness-hk --details-file data/gyms/raw-247-fitness-hk-details.json
 ```
 
 Rows are mapped to `gyms` listing fields:
@@ -86,7 +86,7 @@ slug:
 Then run:
 
 ```bash
-pnpm import:247-fitness-hk --district-overrides data/imports/247-fitness-hk-district-overrides.json
+pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-district-overrides.json
 ```
 
 ## Known Caveat

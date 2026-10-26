@@ -5,7 +5,7 @@ import {
   mapLocationToGymRow,
   normalizeApiLocation,
   parseArgs,
-} from "../../../scripts/import-anytime-fitness-hk.mjs";
+} from "../../../scripts/gyms/import-anytime-fitness-hk.mjs";
 
 const fixedNow = new Date("2026-08-01T04:00:00.000Z");
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { inferDistrictFromSources } from "../../../scripts/lib/district-inference.mjs";
+import { inferDistrictFromSources } from "../../../scripts/gyms/lib/district-inference.mjs";
 
 const districts = [
   { code: "HK-CW", keywords: ["central", "sai wan", "西環"] },

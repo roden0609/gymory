@@ -7,7 +7,7 @@ import {
   mapPartnerGymToGymRow,
   mapPartnerGymsToRows,
   parseArgs,
-} from "../../../scripts/import-hyrox-official-hk.mjs";
+} from "../../../scripts/gyms/import-hyrox-official-hk.mjs";
 
 const fixedNow = new Date("2026-08-01T04:00:00.000Z");
 

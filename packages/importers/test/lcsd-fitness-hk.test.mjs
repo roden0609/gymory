@@ -5,7 +5,7 @@ import {
   extractFacilityRows,
   mapFacilityToGymRow,
   parseArgs,
-} from "../../../scripts/import-lcsd-fitness-hk.mjs";
+} from "../../../scripts/gyms/import-lcsd-fitness-hk.mjs";
 
 const fixedNow = new Date("2026-08-01T04:00:00.000Z");
 

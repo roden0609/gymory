@@ -337,12 +337,12 @@ source announces branch changes) to refresh Gymory's gym information. Start
 with these dry-run commands:
 
 ```bash
-pnpm import:247-fitness-hk --district-overrides data/imports/247-fitness-hk-district-overrides.json
+pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-district-overrides.json
 pnpm import:anytime-fitness-hk
 pnpm import:efx24-hk --browser
 pnpm import:go24-fitness-hk --browser
 pnpm import:lcsd-fitness-hk
-pnpm import:pure-fitness-hk --address-overrides data/imports/pure-fitness-hk-address-overrides.json
+pnpm import:pure-fitness-hk --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
 pnpm import:snap-fitness-hk
 pnpm import:hyrox-official-hk
 ```
@@ -369,7 +369,7 @@ pnpm import:247-fitness-hk
 Use a local detail export when the live API is region-blocked:
 
 ```bash
-pnpm import:247-fitness-hk --details-file data/imports/raw-247-fitness-hk-details.json
+pnpm import:247-fitness-hk --details-file data/gyms/raw-247-fitness-hk-details.json
 ```
 
 Upsert imported rows into Supabase:
@@ -378,7 +378,7 @@ Upsert imported rows into Supabase:
 pnpm import:247-fitness-hk --upsert
 ```
 
-This importer writes `data/imports/247-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
+This importer writes `data/gyms/247-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
 For full notes, overrides, and API caveats, see `docs/data/247-fitness-hk-import.md`.
 
 ## EFX24 HK import
@@ -395,13 +395,13 @@ will also geocode branch addresses and fill `lat` / `lng`.
 Save the parsed branch detail snapshot during the run:
 
 ```bash
-pnpm import:efx24-hk --details-out data/imports/raw-efx24-hk-details.json
+pnpm import:efx24-hk --details-out data/gyms/raw-efx24-hk-details.json
 ```
 
 Rebuild from a saved detail snapshot:
 
 ```bash
-pnpm import:efx24-hk --details-file data/imports/raw-efx24-hk-details.json
+pnpm import:efx24-hk --details-file data/gyms/raw-efx24-hk-details.json
 ```
 
 Skip geocoding even if a Mapbox token is available:
@@ -416,7 +416,7 @@ Upsert imported rows into Supabase:
 pnpm import:efx24-hk --upsert
 ```
 
-This importer writes `data/imports/efx24-hk-baseline.json` and sets unknown equipment fields to `null`.
+This importer writes `data/gyms/efx24-hk-baseline.json` and sets unknown equipment fields to `null`.
 For full notes and override handling, see `docs/data/efx24-hk-import.md`.
 
 ## GO24 Fitness HK import
@@ -433,13 +433,13 @@ will also geocode branch addresses and fill `lat` / `lng`.
 Save the parsed branch detail snapshot during the run:
 
 ```bash
-pnpm import:go24-fitness-hk --details-out data/imports/raw-go24-fitness-hk-details.json
+pnpm import:go24-fitness-hk --details-out data/gyms/raw-go24-fitness-hk-details.json
 ```
 
 Rebuild from a saved detail snapshot:
 
 ```bash
-pnpm import:go24-fitness-hk --details-file data/imports/raw-go24-fitness-hk-details.json
+pnpm import:go24-fitness-hk --details-file data/gyms/raw-go24-fitness-hk-details.json
 ```
 
 Skip geocoding even if a Mapbox token is available:
@@ -454,7 +454,7 @@ Upsert imported rows into Supabase:
 pnpm import:go24-fitness-hk --upsert
 ```
 
-This importer writes `data/imports/go24-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
+This importer writes `data/gyms/go24-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
 For full notes and override handling, see `docs/data/go24-fitness-hk-import.md`.
 
 ## LCSD Fitness Rooms HK import
@@ -468,13 +468,13 @@ pnpm import:lcsd-fitness-hk
 Save the parsed LCSD detail snapshot during the run:
 
 ```bash
-pnpm import:lcsd-fitness-hk --details-out data/imports/raw-lcsd-fitness-hk-details.json
+pnpm import:lcsd-fitness-hk --details-out data/gyms/raw-lcsd-fitness-hk-details.json
 ```
 
 Rebuild from a saved LCSD detail snapshot:
 
 ```bash
-pnpm import:lcsd-fitness-hk --details-file data/imports/raw-lcsd-fitness-hk-details.json
+pnpm import:lcsd-fitness-hk --details-file data/gyms/raw-lcsd-fitness-hk-details.json
 ```
 
 Upsert imported rows into Supabase:
@@ -483,4 +483,4 @@ Upsert imported rows into Supabase:
 pnpm import:lcsd-fitness-hk --upsert
 ```
 
-This importer writes `data/imports/lcsd-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.
+This importer writes `data/gyms/lcsd-fitness-hk-baseline.json` and sets unknown equipment fields to `null`.

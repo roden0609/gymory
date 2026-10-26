@@ -596,7 +596,7 @@ packages/importers/src/equipment-catalog/
 packages/importers/test/equipment-catalog/
   fixtures/<brand-slug>/
 
-data/imports/equipment-catalog/<brand-slug>/
+data/equipments/equipment-catalog/<brand-slug>/
   raw/
   normalized/
   import-ready.json

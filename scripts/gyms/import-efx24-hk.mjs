@@ -8,15 +8,18 @@
  * importer explicitly writes all Gymory equipment fields as null.
  *
  * Usage:
- *   node scripts/import-efx24-hk.mjs
- *   node scripts/import-efx24-hk.mjs --out data/imports/efx24-hk.json
- *   node scripts/import-efx24-hk.mjs --details-out data/imports/raw-efx24-hk-details.json
- *   node scripts/import-efx24-hk.mjs --details-file data/imports/raw-efx24-hk-details.json
- *   node scripts/import-efx24-hk.mjs --browser
- *   node scripts/import-efx24-hk.mjs --browser --browser-profile path/to/profile
- *   node scripts/import-efx24-hk.mjs --skip-geocode
- *   node scripts/import-efx24-hk.mjs --upsert
+ *   node scripts/gyms/import-efx24-hk.mjs --upsert-file data/gyms/efx24-hk-baseline.json
+ *   node scripts/gyms/import-efx24-hk.mjs
+ *   node scripts/gyms/import-efx24-hk.mjs --out data/gyms/efx24-hk.json
+ *   node scripts/gyms/import-efx24-hk.mjs --details-out data/gyms/raw-efx24-hk-details.json
+ *   node scripts/gyms/import-efx24-hk.mjs --details-file data/gyms/raw-efx24-hk-details.json
+ *   node scripts/gyms/import-efx24-hk.mjs --browser
+ *   node scripts/gyms/import-efx24-hk.mjs --browser --browser-profile path/to/profile
+ *   node scripts/gyms/import-efx24-hk.mjs --skip-geocode
+ *   node scripts/gyms/import-efx24-hk.mjs --upsert
  */
+
+import { upsertGymsFromFile } from "./lib/upsert-gyms-from-file.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -30,6 +33,7 @@ const LIST_URL = "https://efx24.com/find-us/";
 const SOURCE_URL = LIST_URL;
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const ALLOWED_ARGS = new Set([
+  "upsert-file",
   "browser",
   "browser-profile",
   "details-file",
@@ -71,6 +75,10 @@ export async function runImporter(parsedArgs, dependencies = {}) {
   const now = dependencies.now?.() ?? new Date();
   const cwd = dependencies.cwd?.() ?? process.cwd();
   const log = dependencies.log ?? console.log;
+
+  if (Object.hasOwn(parsedArgs, "upsert-file")) {
+    return upsertGymsFromFile({ args: parsedArgs, upsertRows: persistRows, cwd, log });
+  }
 
   const districtOverrides = parsedArgs["district-overrides"]
     ? await loadOverrides(parsedArgs["district-overrides"])
@@ -136,7 +144,7 @@ export async function runImporter(parsedArgs, dependencies = {}) {
 
   const outPath = path.resolve(
     cwd,
-    parsedArgs.out ?? "data/imports/efx24-hk-baseline.json"
+    parsedArgs.out ?? "data/gyms/efx24-hk-baseline.json"
   );
   await writeRows(outPath, rows);
 

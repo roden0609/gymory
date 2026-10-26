@@ -8,14 +8,17 @@
  * Traditional Chinese pages, and leaves precise equipment counts as null.
  *
  * Usage:
- *   node scripts/import-pure-fitness-hk.mjs
- *   node scripts/import-pure-fitness-hk.mjs --out data/imports/pure-fitness-hk.json
- *   node scripts/import-pure-fitness-hk.mjs --details-out data/imports/raw-pure-fitness-hk-details.json
- *   node scripts/import-pure-fitness-hk.mjs --details-file data/imports/raw-pure-fitness-hk-details.json
- *   node scripts/import-pure-fitness-hk.mjs --address-overrides data/imports/pure-fitness-hk-address-overrides.json
- *   node scripts/import-pure-fitness-hk.mjs --skip-geocode
- *   node scripts/import-pure-fitness-hk.mjs --upsert
+ *   node scripts/gyms/import-pure-fitness-hk.mjs --upsert-file data/gyms/pure-fitness-hk-baseline.json
+ *   node scripts/gyms/import-pure-fitness-hk.mjs
+ *   node scripts/gyms/import-pure-fitness-hk.mjs --out data/gyms/pure-fitness-hk.json
+ *   node scripts/gyms/import-pure-fitness-hk.mjs --details-out data/gyms/raw-pure-fitness-hk-details.json
+ *   node scripts/gyms/import-pure-fitness-hk.mjs --details-file data/gyms/raw-pure-fitness-hk-details.json
+ *   node scripts/gyms/import-pure-fitness-hk.mjs --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
+ *   node scripts/gyms/import-pure-fitness-hk.mjs --skip-geocode
+ *   node scripts/gyms/import-pure-fitness-hk.mjs --upsert
  */
+
+import { upsertGymsFromFile } from "./lib/upsert-gyms-from-file.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -27,6 +30,7 @@ const LIST_URL_EN = "https://www.pure-360.com.hk/en/clubs/";
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const DETAIL_FETCH_CONCURRENCY = 4;
 const ALLOWED_ARGS = new Set([
+  "upsert-file",
   "address-overrides",
   "details-file",
   "details-out",
@@ -55,6 +59,10 @@ export async function runImporter(args, dependencies = {}) {
   const now = dependencies.now?.() ?? new Date();
   const cwd = dependencies.cwd?.() ?? process.cwd();
   const log = dependencies.log ?? console.log;
+
+  if (Object.hasOwn(args, "upsert-file")) {
+    return upsertGymsFromFile({ args: args, upsertRows: persistRows, cwd, log });
+  }
 
   const districtOverrides = args["district-overrides"]
     ? await loadOverrides(args["district-overrides"])
@@ -87,7 +95,7 @@ export async function runImporter(args, dependencies = {}) {
 
   const outPath = path.resolve(
     cwd,
-    args.out ?? "data/imports/pure-fitness-hk-baseline.json"
+    args.out ?? "data/gyms/pure-fitness-hk-baseline.json"
   );
   await writeRows(outPath, rows);
 

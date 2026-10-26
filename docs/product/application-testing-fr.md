@@ -538,15 +538,15 @@ Supporting Chinese slugs requires a separate product decision and implementation
 Targets:
 
 ```text
-scripts/import-anytime-fitness-hk.mjs
-scripts/import-247-fitness-hk.mjs
-scripts/import-efx24-hk.mjs
-scripts/import-go24-fitness-hk.mjs
-scripts/import-hyrox-official-hk.mjs
-scripts/import-lcsd-fitness-hk.mjs
-scripts/import-pure-fitness-hk.mjs
-scripts/import-snap-fitness-hk.mjs
-scripts/lib/upsert-gyms-with-submissions.mjs
+scripts/gyms/import-anytime-fitness-hk.mjs
+scripts/gyms/import-247-fitness-hk.mjs
+scripts/gyms/import-efx24-hk.mjs
+scripts/gyms/import-go24-fitness-hk.mjs
+scripts/gyms/import-hyrox-official-hk.mjs
+scripts/gyms/import-lcsd-fitness-hk.mjs
+scripts/gyms/import-pure-fitness-hk.mjs
+scripts/gyms/import-snap-fitness-hk.mjs
+scripts/gyms/lib/upsert-gyms-with-submissions.mjs
 ```
 
 Importer tests are part of the required application test suite. The default
@@ -560,10 +560,10 @@ effects.
 
 The implementation should either:
 
-- extract importer logic into `packages/importers`, leaving `scripts/import-*.mjs`
+- extract importer logic into `packages/importers`, leaving `scripts/gyms/import-*.mjs`
   as thin CLI entry points; or
 - export testable parsing and mapping functions from dedicated modules under
-  `scripts/lib/importers`.
+  `scripts/gyms/lib/importers`.
 
 The preferred structure is:
 
@@ -573,7 +573,7 @@ packages/importers/src/<source>/
   map.ts
   validate.ts
   index.ts
-scripts/import-<source>.mjs
+scripts/gyms/import-<source>.mjs
 ```
 
 Importing a parser or mapper in a test must not:
@@ -697,7 +697,7 @@ Tests for `upsert-gyms-with-submissions.mjs` must verify:
 #### FR-9.7.1 Null and overwrite matrix
 
 Tests must cover the complete gym-field overwrite matrix documented in
-`scripts/README.md`:
+`scripts/gyms/README.md`:
 
 | New import value | Existing database value | Expected result |
 | --- | --- | --- |
@@ -1075,8 +1075,8 @@ packages/importers/package.json
 packages/importers/vitest.config.ts
 packages/importers/src/**/*.{ts,test.ts}
 packages/importers/test/fixtures/**/*
-scripts/import-*.mjs
-scripts/lib/upsert-gyms-with-submissions.mjs
+scripts/gyms/import-*.mjs
+scripts/gyms/lib/upsert-gyms-with-submissions.mjs
 ```
 
 The implementer may use a shared Vitest configuration if it reduces duplication

@@ -17,8 +17,8 @@ Implementation entry points:
 - `supabase/migrations/0044_cut_over_normalized_equipment_writes.sql`
 - `apps/web/src/lib/db/queries/gym-equipment-inventory.ts`
 - `apps/web/src/app/api/gyms/[id]/equipment/route.ts`
-- `scripts/lib/upsert-gyms-with-submissions.mjs`
-- `scripts/validate-gym-inventory-normalization.mjs`
+- `scripts/gyms/lib/upsert-gyms-with-submissions.mjs`
+- `scripts/equipments/validate-gym-inventory-normalization.mjs`
 
 This document defines the target product and data requirements for moving generic
 gym equipment presence and quantity data out of the wide `public.gyms` table and

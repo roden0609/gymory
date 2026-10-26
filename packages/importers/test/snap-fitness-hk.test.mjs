@@ -5,7 +5,7 @@ import {
   mapLocationToGymRow,
   mergeLocalizedLocations,
   parseArgs,
-} from "../../../scripts/import-snap-fitness-hk.mjs";
+} from "../../../scripts/gyms/import-snap-fitness-hk.mjs";
 
 const fixedNow = new Date("2026-08-01T04:00:00.000Z");
 

@@ -10,11 +10,14 @@
  * - never clears equipment or community-submitted fields
  *
  * Usage:
- *   node scripts/import-hyrox-official-hk.mjs
- *   node scripts/import-hyrox-official-hk.mjs --out data/imports/hyrox-official-hk.json
- *   node scripts/import-hyrox-official-hk.mjs --upsert
- *   node scripts/import-hyrox-official-hk.mjs --repair-stale
+ *   node scripts/gyms/import-hyrox-official-hk.mjs --upsert-file data/gyms/hyrox-official-hk.json
+ *   node scripts/gyms/import-hyrox-official-hk.mjs
+ *   node scripts/gyms/import-hyrox-official-hk.mjs --out data/gyms/hyrox-official-hk.json
+ *   node scripts/gyms/import-hyrox-official-hk.mjs --upsert
+ *   node scripts/gyms/import-hyrox-official-hk.mjs --repair-stale
  */
+
+import { upsertGymsFromFile } from "./lib/upsert-gyms-from-file.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -43,6 +46,10 @@ if (isDirectExecution) {
 }
 
 async function main() {
+  if (Object.hasOwn(args, "upsert-file")) {
+    return upsertGymsFromFile({ args, upsertRows, hyrox: true });
+  }
+
   const partnerGyms = args["details-file"]
     ? await loadDetailsFile(args["details-file"])
     : await fetchHyroxPartnerGyms();
@@ -71,7 +78,7 @@ async function main() {
 
   const outPath = path.resolve(
     process.cwd(),
-    args.out ?? "data/imports/hyrox-official-hk.json"
+    args.out ?? "data/gyms/hyrox-official-hk.json"
   );
   await mkdir(path.dirname(outPath), { recursive: true });
   await writeFile(outPath, `${JSON.stringify(rows, null, 2)}\n`);

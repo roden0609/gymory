@@ -8,11 +8,14 @@
  * missing upstream data does not get coerced into zero / false defaults.
  *
  * Usage:
- *   node scripts/import-247-fitness-hk.mjs
- *   node scripts/import-247-fitness-hk.mjs --out data/imports/247-fitness-hk.json
- *   node scripts/import-247-fitness-hk.mjs --details-file raw-247-details.json
- *   node scripts/import-247-fitness-hk.mjs --upsert
+ *   node scripts/gyms/import-247-fitness-hk.mjs --upsert-file data/gyms/247-fitness-hk-baseline.json
+ *   node scripts/gyms/import-247-fitness-hk.mjs
+ *   node scripts/gyms/import-247-fitness-hk.mjs --out data/gyms/247-fitness-hk.json
+ *   node scripts/gyms/import-247-fitness-hk.mjs --details-file raw-247-details.json
+ *   node scripts/gyms/import-247-fitness-hk.mjs --upsert
  */
+
+import { upsertGymsFromFile } from "./lib/upsert-gyms-from-file.mjs";
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -28,6 +31,7 @@ const DETAIL_URL_EN =
   "https://247.fitness/app-api/cms/store/global/detail?lang=en&countryCode=HK&storeId=";
 const SOURCE_URL = "https://247.fitness/zh-hk/contact_us/stores";
 const ALLOWED_ARGS = new Set([
+  "upsert-file",
   "details-file",
   "district-overrides",
   "limit",
@@ -51,6 +55,10 @@ export async function runImporter(args, dependencies = {}) {
   const cwd = dependencies.cwd?.() ?? process.cwd();
   const log = dependencies.log ?? console.log;
 
+  if (Object.hasOwn(args, "upsert-file")) {
+    return upsertGymsFromFile({ args: args, upsertRows: persistRows, cwd, log });
+  }
+
   const districtOverrides = args["district-overrides"]
     ? await loadOverrides(args["district-overrides"])
     : {};
@@ -63,7 +71,7 @@ export async function runImporter(args, dependencies = {}) {
 
   const outPath = path.resolve(
     cwd,
-    args.out ?? "data/imports/247-fitness-hk-baseline.json"
+    args.out ?? "data/gyms/247-fitness-hk-baseline.json"
   );
   await writeRows(outPath, rows);
 

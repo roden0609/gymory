@@ -42,10 +42,10 @@ App 只請求 `pageNo=1&pageSize=100`，介面返回的是完整陣列。另以�
 ## 重讀與備用 UI 收集器
 
 ```sh
-python3 scripts/collect-247-equipment-api.py --workers 3
-python3 scripts/collect-247-equipment.py status
+python3 scripts/equipments/collect-247-equipment-api.py --workers 3
+python3 scripts/equipments/collect-247-equipment.py status
 ```
 
 公開介面收集器保留 App 列舉的分店範圍，逐店重試，所有請求為 GET；錯誤會明確記錄。需要網路存取權限及 `curl`。
 
-ADB/OCR 備用流程使用 `scripts/collect-247-equipment.py`、`scripts/equipment-screen-ocr.swift`，需要已授權的 `emulator-5554` 及 macOS Vision。每次約滑動一項高度（265 px / 1500 ms），要求前後畫面重疊；遇到錯店或缺少重疊即停止。主資料與 UI 備用資料的狀態不同，不應在未確認前以備用收集器覆蓋主資料。
+ADB/OCR 備用流程使用 `scripts/equipments/collect-247-equipment.py`、`scripts/equipments/equipment-screen-ocr.swift`，需要已授權的 `emulator-5554` 及 macOS Vision。每次約滑動一項高度（265 px / 1500 ms），要求前後畫面重疊；遇到錯店或缺少重疊即停止。主資料與 UI 備用資料的狀態不同，不應在未確認前以備用收集器覆蓋主資料。

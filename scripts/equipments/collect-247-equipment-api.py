@@ -16,7 +16,7 @@ import subprocess
 import time
 from urllib.parse import urlencode
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'data/equipments'
 BASE = 'https://www.247fitness.hk'
 ENDPOINT = '/app-api/app-client/store-equipment-inventory/clentList'

@@ -1,12 +1,20 @@
-# Scripts
+# Gym import scripts
+
+CLI usage, environment settings, and output files are documented in
+[data/gyms/README.md](../../data/gyms/README.md). Run all commands from the repository root.
 
 ## Gym import upsert behavior
 
-All `scripts/import-*.mjs` importers write to Supabase only when they are run with
-`--upsert`. They all call the shared helper:
+All gym importers support `--upsert-file <path>` to write saved gym-row JSON
+directly to Supabase, without scraping, geocoding, or rewriting the file. Use it
+alone; it cannot be combined with other flags. See the usage guide linked above
+for examples and validation requirements. `--upsert` retains the usual source
+fetch, conversion, and write workflow. HYROX also supports `--repair-stale`.
+
+All importers except HYROX call the shared persistence helper:
 
 ```js
-scripts/lib/upsert-gyms-with-submissions.mjs
+scripts/gyms/lib/upsert-gyms-with-submissions.mjs
 ```
 
 Existing gyms are matched by `slug`. If no existing gym is found, the importer
@@ -97,7 +105,7 @@ source identifier or generated slug to a Gymory district code:
 Example:
 
 ```bash
-node scripts/import-pure-fitness-hk.mjs \
+node scripts/gyms/import-pure-fitness-hk.mjs \
   --district-overrides path/to/district-overrides.json
 ```
 
@@ -125,8 +133,8 @@ value:
 Example using the committed override file:
 
 ```bash
-node scripts/import-pure-fitness-hk.mjs \
-  --address-overrides data/imports/pure-fitness-hk-address-overrides.json
+node scripts/gyms/import-pure-fitness-hk.mjs \
+  --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
 ```
 
 PURE address keys are checked in `branch_code`, English club URL, then slug
@@ -136,9 +144,9 @@ the flag, the importer retains the address parsed from the PURE source page.
 Both flags can be used together:
 
 ```bash
-node scripts/import-pure-fitness-hk.mjs \
+node scripts/gyms/import-pure-fitness-hk.mjs \
   --district-overrides path/to/district-overrides.json \
-  --address-overrides data/imports/pure-fitness-hk-address-overrides.json
+  --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
 ```
 
 ## Chrome modes
