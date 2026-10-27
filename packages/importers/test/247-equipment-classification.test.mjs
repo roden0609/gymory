@@ -19,7 +19,19 @@ function database() {
 
 function adapter(data) {
   const writes = [];
+  const rpcCalls = [];
   const request = async (resource, payload, options) => {
+    if (resource.startsWith('rpc/')) {
+      rpcCalls.push({ resource, payload });
+      const model = data.equipment[0];
+      const reclassified = model.equipment_type_code === 'other_equipment' ? 1 : 0;
+      if (reclassified) {
+        model.equipment_type_code = payload.p_primary_code;
+        const type = data.equipment_types.find(t => t.code === payload.p_primary_code);
+        model.category_id = data.equipment_categories.find(c => c.slug === type.category.replaceAll('_', '-')).id;
+      }
+      return { reclassified, assignments_changed: 0 };
+    }
     const table = resource.split('?')[0];
     if (!payload) return data[table];
     writes.push({ resource, payload, options });
@@ -30,7 +42,7 @@ function adapter(data) {
     data[table].push(...payload);
     return payload;
   };
-  return { request, writes };
+  return { request, writes, rpcCalls };
 }
 
 describe('reviewed 24/7 equipment classification', () => {
@@ -96,11 +108,10 @@ describe('reviewed 24/7 equipment classification', () => {
     const originalInventory = structuredClone(data.gym_equipment_inventory);
     expect(await persistPlan(plan, request)).toMatchObject({ typesCreated: 1, reclassified: 1, inserted: 0 });
     expect(writes[0]).toEqual({ resource: 'equipment_types?on_conflict=code', payload: [reviewedEquipmentTypes.find(t => t.code === 'dumbbell_storage_rack')], options: undefined });
-    expect(writes[1].payload).toEqual({ equipment_type_code: 'dumbbell_storage_rack', category_id: 'free-weight' });
-    expect(writes[1].resource).toContain('equipment_type_code=eq.other_equipment');
+    expect(data.equipment[0]).toMatchObject({ equipment_type_code: 'dumbbell_storage_rack', category_id: 'free-weight' });
     expect(data.gym_equipment_inventory).toEqual(originalInventory);
     expect(await persistPlan(plan, request)).toMatchObject({ typesCreated: 0, reclassified: 0, inserted: 0 });
-    expect(writes).toHaveLength(2);
+    expect(writes).toHaveLength(1);
   });
 
   it.each(['missing_category', 'inactive_type', 'conflicting_category', 'unknown_type', 'missing_gym'])(
@@ -127,8 +138,33 @@ describe('reviewed 24/7 equipment classification', () => {
     data.equipment_types.push(type);
     const { request, writes } = adapter(data);
     expect((await persistPlan(planFor(), request)).typesCreated).toBe(0);
-    expect(writes).toHaveLength(1);
+    expect(writes).toHaveLength(0);
     expect(type.name_en).toBe('Custom name');
+  });
+
+  it('sends all additional capabilities with guarded source identity and verification', async () => {
+    const data = database();
+    data.equipment_types.push({ code: 'dumbbell_storage_rack', category: 'free_weight', is_active: true });
+    data.equipment_types.push({ code: 'pull_up_bar', category: 'free_weight', is_active: true });
+    data.equipment_types.push({ code: 'bench', category: 'free_weight', is_active: true });
+    const plan = planFor();
+    plan.equipment[0].classification.secondary_equipment_type_codes = ['pull_up_bar', 'bench'];
+    const { request, rpcCalls } = adapter(data);
+    await persistPlan(plan, request, { verify: true });
+    expect(rpcCalls).toEqual([{ resource: 'rpc/apply_247_equipment_classification', payload: {
+      p_equipment_id: 'model', p_source_external_id: '247-fitness:244', p_primary_code: 'dumbbell_storage_rack',
+      p_additional_codes: ['pull_up_bar', 'bench'], p_verified: true,
+    } }]);
+  });
+
+  it('validates secondary type foreign keys before creating any reviewed types', async () => {
+    const data = database();
+    const plan = planFor();
+    plan.equipment[0].classification.secondary_equipment_type_codes = ['unreviewed_missing_type'];
+    const { request, writes, rpcCalls } = adapter(data);
+    await expect(persistPlan(plan, request)).rejects.toThrow('Missing controlled type/category unreviewed_missing_type');
+    expect(writes).toEqual([]);
+    expect(rpcCalls).toEqual([]);
   });
 
   it('stops before model changes when type creation conflicts', async () => {

@@ -77,7 +77,12 @@ manual/non-Other classifications and inventory quantities.
 
 Each reviewed plan entry includes classification notes and any secondary types.
 The 19 conditional choices use the audit's recommended primary type and remain in
-`review` with their caveats. The current database stores only the primary type:
-secondary types are recorded in the plan, not written to unsupported DB columns.
+`review` with their caveats. Apply migration `0060_equipment_type_assignments.sql`
+before running this importer: the backend RPC atomically synchronizes the primary
+and all reviewed additional capabilities in `equipment_type_assignments`.
+`typeAssignmentsChanged` reports added/removed additional assignments. The RPC
+preserves administrator-owned assignments (including an admin-owned Other
+primary), checks source identity, and does not override a different non-Other
+primary. Unreviewed capabilities added by an administrator survive later imports.
 Other unreviewed models continue through conservative name rules and may remain
 `other_equipment`; the console reports `other` separately from `review`.

@@ -20,6 +20,18 @@ function chest(items: GymEquipmentInventoryItem[], machines: PublicGymMachine[])
 }
 
 describe("type summaries and model details", () => {
+  it("shows one physical model under every active capability without duplicate details or summed quantities", () => {
+    const reverse = { ...type, code: "reverse_fly_machine", category: "shoulder" };
+    const inactive = { ...type, code: "inactive", is_active: false };
+    const model = machine({ equipmentTypes: [type, reverse, reverse, inactive] });
+    const groups = groupGymEquipmentTypes([inventory({ quantity: 7 })], [model, model]);
+    const types = groups.flatMap(g => g.items);
+    expect(types.map(t => t.type.code).sort()).toEqual([type.code, reverse.code].sort());
+    expect(types.every(t => t.machines.length === 1)).toBe(true);
+    expect(types.find(t => t.type.code === type.code)?.quantity).toBe(7);
+    expect(types.find(t => t.type.code === reverse.code)?.quantity).toBeNull();
+    expect(types.find(t => t.type.code === reverse.code)?.machines[0].quantity).toBe(2);
+  });
   it("shows a type-only report with only its predefined labels", () => {
     const types = chest([inventory({ equipment_type: { ...type, labels: ["hyrox"] } })], []);
     expect(types).toHaveLength(1);

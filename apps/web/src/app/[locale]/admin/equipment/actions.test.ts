@@ -3,10 +3,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({
   authorize: vi.fn(),
   from: vi.fn(),
+  rpc: vi.fn(),
   query: { select: vi.fn(), eq: vi.fn(), single: vi.fn(), insert: vi.fn(), update: vi.fn(), delete: vi.fn() },
 }));
 vi.mock("@/lib/auth/session", () => ({ requireAdminSession: mocks.authorize }));
-vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from }) }));
+vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from, rpc: mocks.rpc }) }));
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
 import { deleteEquipmentType, saveEquipmentType, saveMachine } from "./actions";
@@ -20,6 +21,7 @@ function form(values: Record<string, string>) {
 beforeEach(() => {
   vi.resetAllMocks();
   mocks.from.mockReturnValue(mocks.query);
+  mocks.rpc.mockResolvedValue({ data: "123e4567-e89b-42d3-a456-426614174001", error: null });
   for (const method of [mocks.query.select, mocks.query.eq, mocks.query.insert, mocks.query.update, mocks.query.delete]) method.mockReturnValue(mocks.query);
   mocks.query.single.mockResolvedValue({ data: { code: "custom_type" }, error: null });
 });
@@ -90,6 +92,25 @@ describe("equipment type admin actions", () => {
       .rejects.toThrow(`action=save&page=2&brand=${brand}&equipmentType=chest_press_machine&status=active`);
   });
 
+  it("saves the machine, multiple additional capabilities and aliases with one atomic RPC", async () => {
+    const data = form({ brand_id: "123e4567-e89b-42d3-a456-426614174000", equipment_type_code: "chest_fly_machine",
+      name: "Combo fly", status: "active", source_type: "manual", aliases: "Fly\nFly" });
+    data.append("additional_type_codes", "reverse_fly_machine");
+    data.append("additional_type_codes", "bicep_curl_machine");
+    await expect(saveMachine(data)).rejects.toThrow("result=success&entity=machine");
+    expect(mocks.rpc).toHaveBeenCalledWith("save_equipment_catalog_machine", expect.objectContaining({
+      p_id: null, p_additional_codes: ["reverse_fly_machine", "bicep_curl_machine"], p_aliases: ["Fly"],
+    }));
+    expect(mocks.query.insert).not.toHaveBeenCalled();
+  });
+
+  it("rejects a primary type repeated as an additional capability before writes", async () => {
+    const data = form({ brand_id: "123e4567-e89b-42d3-a456-426614174000", equipment_type_code: "chest_fly_machine",
+      name: "Combo fly", status: "active", source_type: "manual", aliases: "" });
+    data.append("additional_type_codes", "chest_fly_machine");
+    await expect(saveMachine(data)).rejects.toThrow("reason=invalid");
+    expect(mocks.rpc).not.toHaveBeenCalled();
+  });
   it("requires admin access before reading or writing", async () => {
     mocks.authorize.mockRejectedValue(new Error("unauthorized"));
     await expect(deleteEquipmentType(form({}))).rejects.toThrow("unauthorized");

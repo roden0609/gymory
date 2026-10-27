@@ -19,6 +19,7 @@ export const equipmentMachineSchema = z.object({
   id: z.string().uuid().optional(),
   brand_id: z.string().uuid(),
   equipment_type_code: z.string().trim().regex(/^[a-z][a-z0-9_]*$/),
+  additional_type_codes: z.array(z.string().trim().max(120).regex(/^[a-z][a-z0-9_]*$/)).max(200).default([]).transform(codes => [...new Set(codes)]),
   labels: z.array(z.enum(EQUIPMENT_LABELS)).default([]).transform((labels) => [...new Set(labels)]),
   name: z.string().trim().min(1).max(200),
   name_zh: optionalText,
@@ -29,7 +30,7 @@ export const equipmentMachineSchema = z.object({
   status: z.enum(["active", "discontinued", "unknown"]),
   source_type: z.enum(["official", "manual", "user_submitted"]),
   aliases: z.string(),
-});
+}).refine(data => !data.additional_type_codes.includes(data.equipment_type_code), { message: "Primary type cannot also be additional", path: ["additional_type_codes"] });
 
 export const gymMachineInventorySchema = z.object({
   gym_id: z.string().uuid(),

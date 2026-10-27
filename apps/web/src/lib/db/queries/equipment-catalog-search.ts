@@ -98,17 +98,14 @@ export async function getCatalogSearchGymIds({
   }
 
   if (categorySlug) {
-    const { data: categories, error: categoryError } = await supabase
-      .from("equipment_categories")
-      .select("id")
-      .eq("slug", categorySlug);
-    if (categoryError || !categories?.length) return new Set();
-    const { data: machines, error: machineError } = await supabase
-      .from("equipment")
-      .select("id")
-      .in("category_id", categories.map(({ id }) => id));
-    if (machineError) return new Set();
-    equipmentIds = intersectIds(equipmentIds, (machines ?? []).map(({ id }) => id));
+    const { data: types, error: typeError } = await supabase
+      .from("equipment_types").select("code").eq("category", categorySlug.replaceAll("-", "_")).eq("is_active", true);
+    if (typeError || !types?.length) return new Set();
+    const { data: assignments, error: assignmentError } = await supabase
+      .from("equipment_type_assignments").select("equipment_id")
+      .in("equipment_type_code", types.map(({ code }) => code));
+    if (assignmentError) return new Set();
+    equipmentIds = intersectIds(equipmentIds, (assignments ?? []).map(({ equipment_id }) => equipment_id));
   }
 
   let brandIds: string[] = [];

@@ -19,6 +19,6 @@ export function parseEquipmentFilters(values: EquipmentFilters): EquipmentFilter
 
 export function equipmentFilterConditions(filters: EquipmentFilters): [string, string][] {
   return Object.entries(filters).map(([key, value]) => [
-    { brand: "brand_id", equipmentType: "equipment_type_code", status: "status" }[key as keyof EquipmentFilters], value,
+    { brand: "brand_id", equipmentType: "matching_types.equipment_type_code", status: "status" }[key as keyof EquipmentFilters], value,
   ]);
 }

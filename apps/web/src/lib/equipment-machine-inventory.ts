@@ -13,6 +13,7 @@ export type PublicGymMachine = {
   labels: string[];
   verifiedStatus: "admin_verified" | "owner_verified";
   equipmentType: PublicEquipmentType;
+  equipmentTypes?: PublicEquipmentType[];
   brand: { id: string; nameEn: string; nameZh: string | null };
 };
 
@@ -37,18 +38,19 @@ export function groupGymEquipmentTypes(
     summaries.set(type.code, { type, isPresent: present, quantity: item.quantity, machines: [] });
   }
   for (const machine of machines) {
-    if (!machine.equipmentType.is_active ||
-      !["admin_verified", "owner_verified"].includes(machine.verifiedStatus)) continue;
-    const type = machine.equipmentType;
-    let summary = summaries.get(type.code);
-    if (!summary) {
-      summary = { type, isPresent: true, quantity: null, machines: [] };
-      summaries.set(type.code, summary);
+    if (!["admin_verified", "owner_verified"].includes(machine.verifiedStatus)) continue;
+    const types = new Map((machine.equipmentTypes ?? [machine.equipmentType]).filter(t => t.is_active).map(t => [t.code, t]));
+    for (const type of types.values()) {
+      let summary = summaries.get(type.code);
+      if (!summary) {
+        summary = { type, isPresent: true, quantity: null, machines: [] };
+        summaries.set(type.code, summary);
+      }
+      // A confirmed model supplies presence but never adds to a type's count.
+      if (!summary.isPresent) summary.quantity = null;
+      summary.isPresent = true;
+      if (!summary.machines.some(existing => existing.id === machine.id)) summary.machines.push(machine);
     }
-    // A confirmed model supplies presence but never adds to a type's count.
-    if (!summary.isPresent) summary.quantity = null;
-    summary.isPresent = true;
-    summary.machines.push(machine);
   }
   return EQUIPMENT_CATEGORIES.map((category) => ({
     category,

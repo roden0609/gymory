@@ -6,7 +6,7 @@ const brand = "123e4567-e89b-42d3-a456-426614174000";
 describe("admin equipment filters", () => {
   it("combines all three filters with the correct database columns", () => {
     expect(equipmentFilterConditions(parseEquipmentFilters({ brand, equipmentType: "chest_press_machine", status: "active" }))).toEqual([
-      ["brand_id", brand], ["equipment_type_code", "chest_press_machine"], ["status", "active"],
+      ["brand_id", brand], ["matching_types.equipment_type_code", "chest_press_machine"], ["status", "active"],
     ]);
   });
 

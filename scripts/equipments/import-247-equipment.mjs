@@ -164,12 +164,16 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
   for (const gym of plan.gyms) if (!gymIds.has(gym.slug)) throw new Error(`Gym missing in database: ${gym.slug}`);
   const pendingTypes = new Map();
   for (const e of plan.equipment) {
-    const existingType = types.find(t => t.code === e.equipment_type_code);
-    const definition = reviewedEquipmentTypes.find(t => t.code === e.equipment_type_code);
-    const type = existingType ?? definition;
-    if (!type?.is_active || !categories.some(c => c.slug === type.category.replaceAll('_', '-'))) throw new Error(`Missing controlled type/category ${e.equipment_type_code}`);
-    if (existingType && definition && existingType.category !== definition.category) throw new Error(`Conflicting reviewed type category ${type.code}`);
-    if (!existingType) pendingTypes.set(type.code, definition);
+    const additionalCodes = e.classification?.secondary_equipment_type_codes ?? [];
+    if (additionalCodes.includes(e.equipment_type_code)) throw new Error(`Primary type repeated as additional for ${e.key}`);
+    for (const code of new Set([e.equipment_type_code, ...additionalCodes])) {
+      const existingType = types.find(t => t.code === code);
+      const definition = reviewedEquipmentTypes.find(t => t.code === code);
+      const type = existingType ?? definition;
+      if (!type?.is_active || !categories.some(c => c.slug === type.category.replaceAll('_', '-'))) throw new Error(`Missing controlled type/category ${code}`);
+      if (existingType && definition && existingType.category !== definition.category) throw new Error(`Conflicting reviewed type category ${type.code}`);
+      if (!existingType) pendingTypes.set(type.code, definition);
+    }
   }
   // Create only allowlisted, reviewed type definitions needed by this plan.
   // Never reactivate or rewrite existing definitions or create arbitrary types.
@@ -181,7 +185,7 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
     typesCreated = created.length;
   }
   const equipmentIds = new Map();
-  let reclassified = 0;
+  let reclassified = 0, typeAssignmentsChanged = 0;
   for (const e of plan.equipment) {
     let brand = brands.find(b => b.slug === e.brand_slug || [b.name_en, ...(b.aliases ?? [])].some(n => comparable(n) === comparable(e.brand_name)));
     if (!brand) {
@@ -199,14 +203,19 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
       const category = categories.find(c => c.slug === type.category.replaceAll('_', '-'));
       [model] = await request('equipment?on_conflict=brand_id,slug', [{ brand_id: brand.id, slug: `${slug(e.name) || 'equipment'}-247-${e.key.split(':')[1]}`, name: e.name, name_zh: e.name_zh, model_number: e.model_number, equipment_type_code: e.equipment_type_code, category_id: category.id, source_external_id: e.key, source_type: 'official', import_method: 'seed', source_url: e.source_url, imported_at: e.captured_at, status: 'active' }]);
       models.push(model);
-    } else if (model.source_external_id === e.key && model.equipment_type_code === 'other_equipment' && e.equipment_type_code !== 'other_equipment') {
-      const type = types.find(t => t.code === e.equipment_type_code);
-      const category = categories.find(c => c.slug === type.category.replaceAll('_', '-'));
-      const classification = { equipment_type_code: type.code, category_id: category.id };
-      // Guard the write as well as the read so concurrent manual classification survives.
-      const updated = await request(`equipment?id=eq.${encodeURIComponent(model.id)}&source_external_id=eq.${encodeURIComponent(e.key)}&equipment_type_code=eq.other_equipment`, classification, { method: 'PATCH' });
-      reclassified += updated.length;
-      if (updated.length) Object.assign(model, classification);
+    }
+    if (model.source_external_id === e.key && e.equipment_type_code !== 'other_equipment' &&
+      (model.equipment_type_code === 'other_equipment' || (e.classification && model.equipment_type_code === e.equipment_type_code))) {
+      const result = await request('rpc/apply_247_equipment_classification', {
+        p_equipment_id: model.id,
+        p_source_external_id: e.key,
+        p_primary_code: e.equipment_type_code,
+        p_additional_codes: e.classification?.secondary_equipment_type_codes ?? [],
+        p_verified: verify,
+      });
+      reclassified += result.reclassified;
+      typeAssignmentsChanged += result.assignments_changed;
+      if (result.reclassified) model.equipment_type_code = e.equipment_type_code;
     }
     equipmentIds.set(e.key, model.id);
   }
@@ -234,7 +243,7 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
     }
     if (rows.length) { const created = await request('gym_equipment_inventory?on_conflict=gym_id,equipment_id', rows); inserted += created.length; if (verify) verified += created.length; }
   }
-  return { inserted, verified, reclassified, typesCreated, equipment: equipmentIds.size, gyms: plan.gyms.length };
+  return { inserted, verified, reclassified, typesCreated, typeAssignmentsChanged, equipment: equipmentIds.size, gyms: plan.gyms.length };
 }
 
 export async function main(argv = process.argv.slice(2)) {

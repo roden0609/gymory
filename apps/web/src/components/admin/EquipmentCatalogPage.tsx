@@ -16,7 +16,7 @@ type Category = {
   id: string; name: string; name_zh: string | null; slug: string; parent_id: string | null;
   sort_order: number; is_active: boolean;
 };
-type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[]; equipment: { count: number }[] };
+type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[]; equipment_type_assignments: { count: number }[] };
 type Machine = {
   id: string; brand_id: string; category_id: string; equipment_type_code: string | null;
   labels: string[]; name: string; name_zh: string | null; series: string | null; model_number: string | null;
@@ -24,6 +24,7 @@ type Machine = {
   status: "active" | "discontinued" | "unknown";
   source_type: "official" | "manual" | "user_submitted";
   equipment_aliases: { alias: string }[];
+  equipment_type_assignments: { equipment_type_code: string; is_primary: boolean }[];
 };
 
 const inputClass =
@@ -39,7 +40,7 @@ export type CatalogSearchParams = {
 async function getCatalog(section: CatalogSection, requestedPage: number, category?: string, filters: EquipmentFilters = {}) {
   const supabase = createAdminClient();
   const table = section === "brands" ? "equipment_brands" : section === "types" ? "equipment_types" : "equipment";
-  let countQuery = supabase.from(table).select("*", { count: "exact", head: true });
+  let countQuery = supabase.from(table).select(section === "equipment" && filters.equipmentType ? "*, matching_types:equipment_type_assignments!inner(equipment_type_code)" : "*", { count: "exact", head: true });
   if (section === "types") {
     countQuery = countQuery.eq("is_active", true);
     if (category) countQuery = countQuery.eq("category", category);
@@ -55,9 +56,9 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   const from = (page - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
   const brandsQuery = supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en").order("id");
-  let typesQuery = supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment(count)").eq("is_active", true).order("name_en").order("code");
+  let typesQuery = supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment_type_assignments(count)").eq("is_active", true).order("name_en").order("code");
   if (section === "types" && category) typesQuery = typesQuery.eq("category", category);
-  let machinesQuery = supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias)").order("name").order("id");
+  let machinesQuery = supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
   for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     section === "brands" ? brandsQuery.range(from, to) : section === "equipment" ? brandsQuery : { data: [], error: null },
@@ -72,7 +73,7 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
     brands: (brandsResult.data ?? []) as Brand[],
     categories: (categoriesResult.data ?? []) as Category[],
     equipmentTypes: (typesResult.data ?? []) as EquipmentType[],
-    machines: (machinesResult.data ?? []) as Machine[],
+    machines: (machinesResult.data ?? []) as unknown as Machine[],
   };
 }
 
@@ -218,7 +219,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                 summary={<RecordSummary fields={[
                   [locale === "zh-HK" ? "英文名稱" : "English name", type.name_en],
                   [locale === "zh-HK" ? "分類" : "Category", category ? (locale === "zh-HK" ? category.nameZh : category.name) : type.category],
-                  [locale === "zh-HK" ? "器材數量" : "Equipment count", String(type.equipment[0]?.count ?? 0)],
+                  [locale === "zh-HK" ? "器材數量" : "Equipment count", String(type.equipment_type_assignments[0]?.count ?? 0)],
                   ["Labels", type.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
                 ]} />}>
                 <EquipmentTypeForm locale={locale} page={page} selectedCategory={selectedCategory} type={type} />
@@ -263,11 +264,16 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
             {machines.length === 0 ? <tr><td colSpan={tableHeaders.length} className="px-4 py-6 text-sm text-gray-500">{chinese ? "冇符合篩選條件嘅器材。" : "No equipment matches these filters."}</td></tr> : null}
             {machines.map((machine) => {
               const brand = brands.find((item) => item.id === machine.brand_id);
-              const type = equipmentTypes.find((item) => item.code === machine.equipment_type_code);
+              const primaryCode = machine.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code ?? machine.equipment_type_code;
+              const type = equipmentTypes.find((item) => item.code === primaryCode);
               return <CatalogRecordRow key={machine.id} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && machine.name_zh ? machine.name_zh : machine.name} subtitle={locale === "zh-HK" && machine.name_zh ? machine.name : undefined}
                 summary={<RecordSummary fields={[
                   [locale === "zh-HK" ? "品牌" : "Brand", brand ? (locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en) : machine.brand_id],
                   [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en) : machine.equipment_type_code],
+                  [locale === "zh-HK" ? "副功能" : "Additional types", machine.equipment_type_assignments.filter(a => !a.is_primary).map(a => {
+                    const assigned = equipmentTypes.find(t => t.code === a.equipment_type_code);
+                    return assigned ? (locale === "zh-HK" && assigned.name_zh ? assigned.name_zh : assigned.name_en) : a.equipment_type_code;
+                  }).join(", ")],
                   [locale === "zh-HK" ? "系列 / 型號" : "Series / model", [machine.series, machine.model_number].filter(Boolean).join(" / ")],
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
                   ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
@@ -392,7 +398,23 @@ function MachineForm({ locale, brands, equipmentTypes, machine, page, filters }:
       <label className={labelClass}>Equipment name<input required name="name" defaultValue={machine?.name ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={machine?.name_zh ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Brand<select required name="brand_id" defaultValue={machine?.brand_id ?? ""} className={inputClass}><option value="" disabled>Select brand</option>{brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name_en}</option>)}</select></label>
-      <label className={labelClass}>Equipment type<select required name="equipment_type_code" defaultValue={machine?.equipment_type_code ?? ""} className={inputClass}><option value="" disabled>Select type</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</option>)}</select></label>
+      <label className={labelClass}>{locale === "zh-HK" ? "主要器材類型" : "Primary equipment type"}<select required name="equipment_type_code" defaultValue={machine?.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code ?? machine?.equipment_type_code ?? ""} className={inputClass}><option value="" disabled>Select type</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</option>)}</select></label>
+      <fieldset className="min-w-0 max-w-full space-y-2 sm:col-span-2 lg:col-span-4">
+        <legend className="text-sm font-medium text-gray-700">{locale === "zh-HK" ? "其他器材功能（可多選）" : "Additional equipment types (multiple)"}</legend>
+        <details className="min-w-0 max-w-full rounded-lg border border-gray-200 p-3">
+          <summary className="cursor-pointer break-words text-sm">{locale === "zh-HK" ? "選擇副功能；主要類型無需重複勾選" : "Choose additional capabilities; do not repeat the primary type"}</summary>
+          <div className="mt-2 grid max-h-64 min-w-0 grid-cols-1 gap-2 overflow-x-hidden overflow-y-auto sm:grid-cols-2 lg:grid-cols-3">
+            {equipmentTypes.map(type => (
+              <label key={type.code} className="flex min-h-10 min-w-0 items-start gap-2 text-sm">
+                <input type="checkbox" name="additional_type_codes" value={type.code}
+                  defaultChecked={machine?.equipment_type_assignments.some(a => !a.is_primary && a.equipment_type_code === type.code)}
+                  className="mt-1 h-4 w-4 shrink-0" />
+                <span className="min-w-0 break-words [overflow-wrap:anywhere]">{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</span>
+              </label>
+            ))}
+          </div>
+        </details>
+      </fieldset>
       <fieldset className="min-w-0 space-y-2 sm:col-span-2 lg:col-span-4">
         <legend className="text-sm font-medium text-gray-700">Labels</legend>
         <div className="flex min-w-0 flex-wrap gap-4">
@@ -418,7 +440,7 @@ function MachineForm({ locale, brands, equipmentTypes, machine, page, filters }:
 
 async function EquipmentTypeForm({ locale, type, defaultCategory, page, selectedCategory }: { page: number; selectedCategory?: string; locale: string; type?: EquipmentType; defaultCategory?: string }) {
   const t = await getTranslations("admin");
-  const count = type?.equipment[0]?.count ?? 0;
+  const count = type?.equipment_type_assignments[0]?.count ?? 0;
   return (
     <div className="min-w-0 space-y-3 rounded-xl border border-gray-200 bg-white p-4">
       <form action={saveEquipmentType} className="grid min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-4">

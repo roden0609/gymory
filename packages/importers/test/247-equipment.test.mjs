@@ -212,15 +212,15 @@ describe('24/7 equipment import', () => {
       const request = async (resource, payload, options) => {
         if (!payload) return data[resource.split('?')[0]];
         writes.push({ resource, payload, options });
-        expect(options).toEqual({ method: 'PATCH' });
-        expect(resource).toBe('equipment?id=eq.e&source_external_id=eq.247-fitness%3A12&equipment_type_code=eq.other_equipment');
-        expect(payload).toEqual({ equipment_type_code: 'treadmill', category_id: 'cardio-category' });
+        expect(options).toBeUndefined();
+        expect(resource).toBe('rpc/apply_247_equipment_classification');
+        expect(payload).toEqual({ p_equipment_id: 'e', p_source_external_id: '247-fitness:12', p_primary_code: 'treadmill', p_additional_codes: [], p_verified: false });
         if (scenario === 'concurrent_edit') {
           model.equipment_type_code = 'exercise_bike';
-          return [];
+          return { reclassified: 0, assignments_changed: 0 };
         }
-        Object.assign(model, payload);
-        return [model];
+        Object.assign(model, { equipment_type_code: payload.p_primary_code, category_id: 'cardio-category' });
+        return { reclassified: 1, assignments_changed: 0 };
       };
       const result = await persistPlan(plan, request);
       expect(result.reclassified).toBe(scenario === 'imported' ? 1 : 0);

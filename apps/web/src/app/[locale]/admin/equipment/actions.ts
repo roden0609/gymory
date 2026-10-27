@@ -120,6 +120,7 @@ export async function saveMachine(formData: FormData) {
       id: textValue(formData, "id") || undefined,
       brand_id: textValue(formData, "brand_id"),
       equipment_type_code: textValue(formData, "equipment_type_code"),
+      additional_type_codes: formData.getAll("additional_type_codes"),
       labels: formData.getAll("labels"),
       name: textValue(formData, "name"),
       name_zh: textValue(formData, "name_zh"),
@@ -148,37 +149,14 @@ export async function saveMachine(formData: FormData) {
       import_method: "admin",
     };
 
-    let machineId = parsed.id;
-    if (machineId) {
-      const { error } = await supabase
-        .from("equipment")
-        .update(payload)
-        .eq("id", machineId);
-      if (error) throw new Error(error.message);
-    } else {
-      const { data, error } = await supabase
-        .from("equipment")
-        .insert(payload)
-        .select("id")
-        .single();
-      if (error || !data) throw new Error(error?.message ?? "Failed to create machine");
-      machineId = data.id as string;
-    }
-
-    const aliases = [...new Set(
-      parsed.aliases.split("\n").map((alias) => alias.trim()).filter(Boolean)
-    )];
-    const { error: deleteError } = await supabase
-      .from("equipment_aliases")
-      .delete()
-      .eq("equipment_id", machineId);
-    if (deleteError) throw new Error(deleteError.message);
-    if (aliases.length > 0) {
-      const { error: aliasError } = await supabase
-        .from("equipment_aliases")
-        .insert(aliases.map((alias) => ({ equipment_id: machineId, alias })));
-      if (aliasError) throw new Error(aliasError.message);
-    }
+    const aliases = [...new Set(parsed.aliases.split("\n").map(alias => alias.trim()).filter(Boolean))];
+    const { error } = await supabase.rpc("save_equipment_catalog_machine", {
+      p_id: parsed.id ?? null,
+      p_machine: payload,
+      p_additional_codes: parsed.additional_type_codes,
+      p_aliases: aliases,
+    });
+    if (error) throw new Error(error.message);
   }, formData);
 }
 
@@ -209,8 +187,8 @@ export async function deleteEquipmentType(formData: FormData) {
   await runCatalogSave(locale, "type", async () => {
     const code = equipmentTypeCodeSchema.parse(textValue(formData, "code"));
     const supabase = createAdminClient();
-    const { count, error } = await supabase.from("equipment")
-      .select("id", { count: "exact", head: true }).eq("equipment_type_code", code);
+    const { count, error } = await supabase.from("equipment_type_assignments")
+      .select("equipment_id", { count: "exact", head: true }).eq("equipment_type_code", code);
     if (error) throw new Error(error.message);
     if (count !== 0) throw new Error("Type is still referenced by equipment");
     // The existing ON DELETE RESTRICT foreign key also protects against concurrent inserts.
