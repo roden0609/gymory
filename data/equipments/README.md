@@ -77,7 +77,7 @@ manual/non-Other classifications and inventory quantities.
 
 Each reviewed plan entry includes classification notes and any secondary types.
 The 19 conditional choices use the audit's recommended primary type and remain in
-`review` with their caveats. Apply migration `0060_equipment_type_assignments.sql`
+`review` with their caveats. Apply migrations through `0061_remove_equipment_classification_columns.sql`
 before running this importer: the backend RPC atomically synchronizes the primary
 and all reviewed additional capabilities in `equipment_type_assignments`.
 `typeAssignmentsChanged` reports added/removed additional assignments. The RPC
@@ -86,3 +86,9 @@ primary), checks source identity, and does not override a different non-Other
 primary. Unreviewed capabilities added by an administrator survive later imports.
 Other unreviewed models continue through conservative name rules and may remain
 `other_equipment`; the console reports `other` separately from `review`.
+
+After migration 0061, the equipment table has neither `equipment_type_code` nor
+`category_id`. The importer reads the primary from `equipment_type_assignments`
+and creates new models plus their capabilities in one backend RPC transaction.
+The plan's `equipment_type_code` is a classification recommendation, not a column
+written to the equipment table. Categories derive from each assigned type.

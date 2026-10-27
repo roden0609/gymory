@@ -99,7 +99,7 @@ describe("equipment type admin actions", () => {
     data.append("additional_type_codes", "bicep_curl_machine");
     await expect(saveMachine(data)).rejects.toThrow("result=success&entity=machine");
     expect(mocks.rpc).toHaveBeenCalledWith("save_equipment_catalog_machine", expect.objectContaining({
-      p_id: null, p_additional_codes: ["reverse_fly_machine", "bicep_curl_machine"], p_aliases: ["Fly"],
+      p_id: null, p_machine: expect.objectContaining({ primary_type_code: "chest_fly_machine" }), p_additional_codes: ["reverse_fly_machine", "bicep_curl_machine"], p_aliases: ["Fly"],
     }));
     expect(mocks.query.insert).not.toHaveBeenCalled();
   });

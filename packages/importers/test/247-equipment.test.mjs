@@ -190,12 +190,11 @@ describe('24/7 equipment import', () => {
       if (scenario === 'still_other') plan.equipment[0].equipment_type_code = 'other_equipment';
       const original = {
         id: 'e', brand_id: 'b', name: item.name, model_number: item.model,
-        source_external_id: '247-fitness:12', equipment_type_code: 'other_equipment',
-        category_id: 'old', name_zh: 'existing translation', description: 'manual notes',
+        source_external_id: '247-fitness:12', equipment_type_assignments: [{ equipment_type_code: 'other_equipment', is_primary: true }], name_zh: 'existing translation', description: 'manual notes',
       };
       if (scenario === 'manual') original.source_external_id = null;
       if (scenario === 'other_importer') original.source_external_id = 'another:12';
-      if (scenario === 'classified') original.equipment_type_code = 'exercise_bike';
+      if (scenario === 'classified') original.equipment_type_assignments[0].equipment_type_code = 'exercise_bike';
       const model = structuredClone(original);
       const data = {
         gyms: [{ id: 'g', slug: baseline[0].slug }],
@@ -216,10 +215,10 @@ describe('24/7 equipment import', () => {
         expect(resource).toBe('rpc/apply_247_equipment_classification');
         expect(payload).toEqual({ p_equipment_id: 'e', p_source_external_id: '247-fitness:12', p_primary_code: 'treadmill', p_additional_codes: [], p_verified: false });
         if (scenario === 'concurrent_edit') {
-          model.equipment_type_code = 'exercise_bike';
+          model.equipment_type_assignments[0].equipment_type_code = 'exercise_bike';
           return { reclassified: 0, assignments_changed: 0 };
         }
-        Object.assign(model, { equipment_type_code: payload.p_primary_code, category_id: 'cardio-category' });
+        model.equipment_type_assignments[0].equipment_type_code = payload.p_primary_code;
         return { reclassified: 1, assignments_changed: 0 };
       };
       const result = await persistPlan(plan, request);
@@ -227,8 +226,8 @@ describe('24/7 equipment import', () => {
       expect(result.inserted).toBe(0);
       expect(writes).toHaveLength(['imported', 'concurrent_edit'].includes(scenario) ? 1 : 0);
       expect(model).toEqual({ ...original, ...(scenario === 'imported'
-        ? { equipment_type_code: 'treadmill', category_id: 'cardio-category' }
-        : scenario === 'concurrent_edit' ? { equipment_type_code: 'exercise_bike' } : {}) });
+        ? { equipment_type_assignments: [{ equipment_type_code: 'treadmill', is_primary: true }] }
+        : scenario === 'concurrent_edit' ? { equipment_type_assignments: [{ equipment_type_code: 'exercise_bike', is_primary: true }] } : {}) });
       expect(data.gym_equipment_inventory[0].quantity).toBe(7);
       const previousWrites = writes.length;
       expect((await persistPlan(plan, request)).reclassified).toBe(0);

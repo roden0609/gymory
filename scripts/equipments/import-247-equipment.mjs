@@ -157,7 +157,7 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
   const [gyms, brands, types, categories, models, inventory] = await Promise.all([
     request('gyms?select=id,slug'), request('equipment_brands?select=id,slug,name_en,aliases'),
     request('equipment_types?select=code,category,is_active'), request('equipment_categories?select=id,slug'),
-    request('equipment?select=id,brand_id,slug,model_number,name,source_external_id,equipment_type_code'),
+    request('equipment?select=id,brand_id,slug,model_number,name,source_external_id,equipment_type_assignments(equipment_type_code,is_primary)'),
     request('gym_equipment_inventory?select=gym_id,equipment_id,source,notes,verified_status'),
   ]);
   const gymIds = new Map(gyms.map(g => [g.slug, g.id]));
@@ -199,13 +199,17 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
       model = candidates[0];
     }
     if (!model) {
-      const type = types.find(t => t.code === e.equipment_type_code);
-      const category = categories.find(c => c.slug === type.category.replaceAll('_', '-'));
-      [model] = await request('equipment?on_conflict=brand_id,slug', [{ brand_id: brand.id, slug: `${slug(e.name) || 'equipment'}-247-${e.key.split(':')[1]}`, name: e.name, name_zh: e.name_zh, model_number: e.model_number, equipment_type_code: e.equipment_type_code, category_id: category.id, source_external_id: e.key, source_type: 'official', import_method: 'seed', source_url: e.source_url, imported_at: e.captured_at, status: 'active' }]);
+      model = await request('rpc/create_247_equipment_model', {
+        p_machine: { brand_id: brand.id, slug: `${slug(e.name) || 'equipment'}-247-${e.key.split(':')[1]}`, name: e.name, name_zh: e.name_zh, model_number: e.model_number, source_external_id: e.key, source_url: e.source_url, imported_at: e.captured_at },
+        p_primary_code: e.equipment_type_code,
+        p_additional_codes: e.classification?.secondary_equipment_type_codes ?? [],
+        p_verified: verify,
+      });
       models.push(model);
     }
+    const primary = model.equipment_type_assignments?.find(a => a.is_primary);
     if (model.source_external_id === e.key && e.equipment_type_code !== 'other_equipment' &&
-      (model.equipment_type_code === 'other_equipment' || (e.classification && model.equipment_type_code === e.equipment_type_code))) {
+      (primary?.equipment_type_code === 'other_equipment' || (e.classification && primary?.equipment_type_code === e.equipment_type_code))) {
       const result = await request('rpc/apply_247_equipment_classification', {
         p_equipment_id: model.id,
         p_source_external_id: e.key,
@@ -215,7 +219,7 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
       });
       reclassified += result.reclassified;
       typeAssignmentsChanged += result.assignments_changed;
-      if (result.reclassified) model.equipment_type_code = e.equipment_type_code;
+      if (result.reclassified) primary.equipment_type_code = e.equipment_type_code;
     }
     equipmentIds.set(e.key, model.id);
   }

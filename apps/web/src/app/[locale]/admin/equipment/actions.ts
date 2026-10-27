@@ -135,7 +135,7 @@ export async function saveMachine(formData: FormData) {
     const supabase = createAdminClient();
     const payload = {
       brand_id: parsed.brand_id,
-      equipment_type_code: parsed.equipment_type_code,
+      primary_type_code: parsed.equipment_type_code,
       labels: parsed.labels,
       name: parsed.name,
       name_zh: parsed.name_zh,

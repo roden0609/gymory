@@ -12,7 +12,7 @@ function database() {
     equipment_brands: [{ id: 'brand', slug: 'newtech', name_en: 'NEWTECH' }],
     equipment_categories: [{ id: 'free-weight', slug: 'free-weight' }],
     equipment_types: [],
-    equipment: [{ id: 'model', brand_id: 'brand', source_external_id: '247-fitness:244', equipment_type_code: 'other_equipment', name: sourceItem.name, model_number: sourceItem.model }],
+    equipment: [{ id: 'model', brand_id: 'brand', source_external_id: '247-fitness:244', equipment_type_assignments: [{ equipment_type_code: 'other_equipment', is_primary: true }], name: sourceItem.name, model_number: sourceItem.model }],
     gym_equipment_inventory: [{ gym_id: 'gym', equipment_id: 'model', quantity: 4, source: 'admin', notes: 'Keep manual inventory' }],
   };
 }
@@ -23,12 +23,19 @@ function adapter(data) {
   const request = async (resource, payload, options) => {
     if (resource.startsWith('rpc/')) {
       rpcCalls.push({ resource, payload });
+      if (resource === 'rpc/create_247_equipment_model') {
+        const model = { id: 'model', ...payload.p_machine, equipment_type_assignments: [
+          { equipment_type_code: payload.p_primary_code, is_primary: true },
+          ...payload.p_additional_codes.map(code => ({ equipment_type_code: code, is_primary: false })),
+        ] };
+        data.equipment.push(model);
+        return model;
+      }
       const model = data.equipment[0];
-      const reclassified = model.equipment_type_code === 'other_equipment' ? 1 : 0;
+      const primary = model.equipment_type_assignments.find(a => a.is_primary);
+      const reclassified = primary.equipment_type_code === 'other_equipment' ? 1 : 0;
       if (reclassified) {
-        model.equipment_type_code = payload.p_primary_code;
-        const type = data.equipment_types.find(t => t.code === payload.p_primary_code);
-        model.category_id = data.equipment_categories.find(c => c.slug === type.category.replaceAll('_', '-')).id;
+        primary.equipment_type_code = payload.p_primary_code;
       }
       return { reclassified, assignments_changed: 0 };
     }
@@ -108,7 +115,9 @@ describe('reviewed 24/7 equipment classification', () => {
     const originalInventory = structuredClone(data.gym_equipment_inventory);
     expect(await persistPlan(plan, request)).toMatchObject({ typesCreated: 1, reclassified: 1, inserted: 0 });
     expect(writes[0]).toEqual({ resource: 'equipment_types?on_conflict=code', payload: [reviewedEquipmentTypes.find(t => t.code === 'dumbbell_storage_rack')], options: undefined });
-    expect(data.equipment[0]).toMatchObject({ equipment_type_code: 'dumbbell_storage_rack', category_id: 'free-weight' });
+    expect(data.equipment[0].equipment_type_assignments).toEqual([{ equipment_type_code: 'dumbbell_storage_rack', is_primary: true }]);
+    expect(data.equipment[0]).not.toHaveProperty('category_id');
+    expect(data.equipment[0]).not.toHaveProperty('equipment_type_code');
     expect(data.gym_equipment_inventory).toEqual(originalInventory);
     expect(await persistPlan(plan, request)).toMatchObject({ typesCreated: 0, reclassified: 0, inserted: 0 });
     expect(writes).toHaveLength(1);
@@ -165,6 +174,22 @@ describe('reviewed 24/7 equipment classification', () => {
     await expect(persistPlan(plan, request)).rejects.toThrow('Missing controlled type/category unreviewed_missing_type');
     expect(writes).toEqual([]);
     expect(rpcCalls).toEqual([]);
+  });
+
+  it('creates a new model and its assignments atomically without removed table columns', async () => {
+    const data = database();
+    data.equipment = [];
+    data.gym_equipment_inventory = [];
+    const { request, rpcCalls } = adapter(data);
+    const plan = planFor();
+    expect((await persistPlan(plan, request)).inserted).toBe(1);
+    const creation = rpcCalls.find(c => c.resource === 'rpc/create_247_equipment_model');
+    expect(creation.payload.p_primary_code).toBe('dumbbell_storage_rack');
+    expect(creation.payload.p_machine).not.toHaveProperty('equipment_type_code');
+    expect(creation.payload.p_machine).not.toHaveProperty('category_id');
+    expect(data.equipment[0].equipment_type_assignments).toEqual([{ equipment_type_code: 'dumbbell_storage_rack', is_primary: true }]);
+    expect((await persistPlan(plan, request)).inserted).toBe(0);
+    expect(rpcCalls.filter(c => c.resource === 'rpc/create_247_equipment_model')).toHaveLength(1);
   });
 
   it('stops before model changes when type creation conflicts', async () => {

@@ -7,12 +7,13 @@ machine; a partial unique index prevents multiple primaries. A deferred constrai
 rejects removal of the last primary. Assignment edits lock the machine row to
 serialize concurrent changes.
 
-`equipment.equipment_type_code` and `category_id` remain compatibility columns.
-Triggers synchronize the primary assignment and category in the same transaction.
-Legacy writers are supported through a compatibility trigger: changing the legacy
-primary replaces its old primary assignment while retaining unrelated additional
-capabilities. New code should use the assignment RPCs. Directly editing the mirror
-and assignment relation independently is unnecessary.
+Migration 0061 removes `equipment.equipment_type_code` and `category_id`.
+Assignments are now the only stored machine classification. Display/grouping uses
+the primary assignment's type and its `equipment_types.category`; category filters
+match all primary and additional assignments. No category value is duplicated on
+an equipment row, so changing a type's category takes effect without synchronizing
+machines. A deferred constraint on new equipment also prevents committing a model
+without its primary assignment.
 
 All assignments share source and verification metadata. The migrated primaries
 start with source `legacy`; this does not invent a new verification event. Public
@@ -22,6 +23,9 @@ classification provenance; it does not replace the inventory publication policy.
 
 Backend-only RPCs:
 
+- `create_247_equipment_model`: atomically creates an imported machine and its
+  primary/additional assignments. Direct REST INSERT followed by separate assignment
+  writes is invalid because every machine needs a primary at commit.
 - `save_equipment_catalog_machine`: atomically saves a machine, its full primary /
   additional assignment set, and aliases. Admin edits mark the assignments as
   administrator-owned, preventing the importer from replacing those choices.
@@ -46,10 +50,15 @@ category filters and admin type filters likewise match every assignment.
 Apply locally with `supabase migration up --local`, then run the 24/7 importer with
 `--upsert` to fill its reviewed capabilities. Applying the migration backfills
 existing primary assignments only; it does not guess extra functions for other
-models. Remote deployments must apply migration 0060 before deploying the new
-application/importer.
+models. Remote deployments must apply migrations through 0061 together with this
+application/importer release. Older clients that still read or write the removed
+columns cannot run after the cutover. The admin RPC payload uses `primary_type_code`;
+that field is input for an assignment, not a column on equipment.
 
-Validation: `supabase/tests/equipment_type_assignments.sql` exercises constraints,
+Validation: `supabase/tests/equipment_classification_cutover.sql` exercises the current schema,
+including column absence, deferred primary checks, derived categories and RLS,
+atomic admin/importer creation and update rollback. The migration-0060 fixture
+`supabase/tests/equipment_type_assignments.sql` targets the pre-cutover schema and exercises constraints,
 search visibility, ownership, idempotency, transactional rollback and cleanup. All
 fixtures roll back. Application/importer unit tests also cover multi-capability
 reads, grouping, category filters, validation and RPC payloads.

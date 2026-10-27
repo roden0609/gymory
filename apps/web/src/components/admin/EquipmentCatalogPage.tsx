@@ -18,7 +18,7 @@ type Category = {
 };
 type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[]; equipment_type_assignments: { count: number }[] };
 type Machine = {
-  id: string; brand_id: string; category_id: string; equipment_type_code: string | null;
+  id: string; brand_id: string;
   labels: string[]; name: string; name_zh: string | null; series: string | null; model_number: string | null;
   product_url: string | null; description: string | null;
   status: "active" | "discontinued" | "unknown";
@@ -58,7 +58,7 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   const brandsQuery = supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en").order("id");
   let typesQuery = supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment_type_assignments(count)").eq("is_active", true).order("name_en").order("code");
   if (section === "types" && category) typesQuery = typesQuery.eq("category", category);
-  let machinesQuery = supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
+  let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
   for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     section === "brands" ? brandsQuery.range(from, to) : section === "equipment" ? brandsQuery : { data: [], error: null },
@@ -264,12 +264,12 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
             {machines.length === 0 ? <tr><td colSpan={tableHeaders.length} className="px-4 py-6 text-sm text-gray-500">{chinese ? "冇符合篩選條件嘅器材。" : "No equipment matches these filters."}</td></tr> : null}
             {machines.map((machine) => {
               const brand = brands.find((item) => item.id === machine.brand_id);
-              const primaryCode = machine.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code ?? machine.equipment_type_code;
+              const primaryCode = machine.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code;
               const type = equipmentTypes.find((item) => item.code === primaryCode);
               return <CatalogRecordRow key={machine.id} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && machine.name_zh ? machine.name_zh : machine.name} subtitle={locale === "zh-HK" && machine.name_zh ? machine.name : undefined}
                 summary={<RecordSummary fields={[
                   [locale === "zh-HK" ? "品牌" : "Brand", brand ? (locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en) : machine.brand_id],
-                  [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en) : machine.equipment_type_code],
+                  [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en) : primaryCode ?? null],
                   [locale === "zh-HK" ? "副功能" : "Additional types", machine.equipment_type_assignments.filter(a => !a.is_primary).map(a => {
                     const assigned = equipmentTypes.find(t => t.code === a.equipment_type_code);
                     return assigned ? (locale === "zh-HK" && assigned.name_zh ? assigned.name_zh : assigned.name_en) : a.equipment_type_code;
@@ -398,7 +398,7 @@ function MachineForm({ locale, brands, equipmentTypes, machine, page, filters }:
       <label className={labelClass}>Equipment name<input required name="name" defaultValue={machine?.name ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={machine?.name_zh ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Brand<select required name="brand_id" defaultValue={machine?.brand_id ?? ""} className={inputClass}><option value="" disabled>Select brand</option>{brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name_en}</option>)}</select></label>
-      <label className={labelClass}>{locale === "zh-HK" ? "主要器材類型" : "Primary equipment type"}<select required name="equipment_type_code" defaultValue={machine?.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code ?? machine?.equipment_type_code ?? ""} className={inputClass}><option value="" disabled>Select type</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</option>)}</select></label>
+      <label className={labelClass}>{locale === "zh-HK" ? "主要器材類型" : "Primary equipment type"}<select required name="equipment_type_code" defaultValue={machine?.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code ?? ""} className={inputClass}><option value="" disabled>Select type</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</option>)}</select></label>
       <fieldset className="min-w-0 max-w-full space-y-2 sm:col-span-2 lg:col-span-4">
         <legend className="text-sm font-medium text-gray-700">{locale === "zh-HK" ? "其他器材功能（可多選）" : "Additional equipment types (multiple)"}</legend>
         <details className="min-w-0 max-w-full rounded-lg border border-gray-200 p-3">
