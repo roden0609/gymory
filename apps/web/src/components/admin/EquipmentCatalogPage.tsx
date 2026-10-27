@@ -65,7 +65,7 @@ function SubmitButton({ children }: { children: React.ReactNode }) {
 export async function EquipmentCatalogPage({ params, searchParams, section }: {
   section: "brands" | "types" | "equipment";
   params: Promise<{ locale: string }>;
-  searchParams?: { result?: string; entity?: string; reason?: string; action?: string };
+  searchParams?: { result?: string; entity?: string; reason?: string; action?: string; category?: string };
 }) {
   const path = section === "brands" ? "/admin/brands" : section === "types" ? "/admin/equipment-types" : "/admin/equipment";
   const { locale } = await params;
@@ -76,6 +76,12 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
   const title = t(section === "brands" ? "manageBrands" : section === "types" ? "manageEquipmentTypes" : "manageEquipments");
   const { brands, categories, equipmentTypes, machines } = await getCatalog();
   const saveMessage = getSaveMessage(locale, searchParams);
+  const selectedCategory = section === "types"
+    ? EQUIPMENT_CATEGORIES.find((category) => category.code === searchParams?.category)?.code
+    : undefined;
+  const visibleTypes = selectedCategory
+    ? equipmentTypes.filter((type) => type.category === selectedCategory)
+    : equipmentTypes;
 
   return (
     <main className="min-h-screen overflow-x-clip bg-gray-50 px-4 py-8">
@@ -133,20 +139,31 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
 
         {section === "types" ? <section className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900">Categories</h2>
-          <div className="flex min-w-0 flex-wrap gap-2">
-            {categories.map((category) => (
-              <span key={category.id} className="max-w-full break-words rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700">
-                {locale === "zh-HK" && category.name_zh ? category.name_zh : category.name}
-              </span>
-            ))}
-          </div>
+          <nav aria-label={locale === "zh-HK" ? "篩選器材分類" : "Filter equipment categories"} className="flex min-w-0 flex-wrap gap-2">
+            <Link href={path} scroll={false} aria-current={!selectedCategory ? "page" : undefined}
+              className={`min-h-10 max-w-full break-words rounded-lg border px-3 py-2 text-sm ${!selectedCategory ? "border-gray-900 bg-gray-900 text-white" : "border-gray-200 bg-white text-gray-700 hover:bg-gray-100"}`}>
+              {locale === "zh-HK" ? "全部" : "All"}
+            </Link>
+            {categories.map((category) => {
+              const code = category.slug.replaceAll("-", "_");
+              const selected = selectedCategory === code;
+              return (
+                <Link key={category.id} href={{ pathname: path, query: { category: code } }} scroll={false}
+                  aria-current={selected ? "page" : undefined}
+                  className={`min-h-10 max-w-full break-words rounded-lg border px-3 py-2 text-sm ${selected ? "border-gray-900 bg-gray-900 text-white" : "border-gray-200 bg-white text-gray-700 hover:bg-gray-100"}`}>
+                  {locale === "zh-HK" && category.name_zh ? category.name_zh : category.name}
+                </Link>
+              );
+            })}
+          </nav>
         </section> : null}
 
-        {section === "types" ? <section className="space-y-4">
+        {section === "types" ? <section key={selectedCategory ?? "all"} className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900">Equipment types</h2>
-          <EquipmentTypeForm locale={locale} />
+          <EquipmentTypeForm key={selectedCategory ?? "all"} locale={locale} defaultCategory={selectedCategory} />
           <div className="space-y-3">
-            {equipmentTypes.map((type) => <EquipmentTypeForm key={type.code} locale={locale} type={type} />)}
+            {visibleTypes.map((type) => <EquipmentTypeForm key={type.code} locale={locale} type={type} />)}
+            {visibleTypes.length === 0 ? <p className="break-words text-sm text-gray-500">{locale === "zh-HK" ? "呢個分類暫時未有器材類型。" : "No equipment types in this category yet."}</p> : null}
           </div>
         </section> : null}
 
@@ -234,7 +251,7 @@ function MachineForm({ locale, brands, equipmentTypes, machine }: {
   );
 }
 
-async function EquipmentTypeForm({ locale, type }: { locale: string; type?: EquipmentType }) {
+async function EquipmentTypeForm({ locale, type, defaultCategory }: { locale: string; type?: EquipmentType; defaultCategory?: string }) {
   const t = await getTranslations("admin");
   const count = type?.equipment[0]?.count ?? 0;
   return (
@@ -245,7 +262,7 @@ async function EquipmentTypeForm({ locale, type }: { locale: string; type?: Equi
         <label className={labelClass}>Code<input required name="code" readOnly={!!type} pattern="[a-z][a-z0-9_]*" maxLength={120} defaultValue={type?.code ?? ""} className={inputClass} /></label>
         <label className={labelClass}>English name<input required name="name_en" maxLength={120} defaultValue={type?.name_en ?? ""} className={inputClass} /></label>
         <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={type?.name_zh ?? ""} className={inputClass} /></label>
-        <label className={labelClass}>Category<select required name="category" defaultValue={type?.category ?? ""} className={inputClass}>
+        <label className={labelClass}>Category<select required name="category" defaultValue={type?.category ?? defaultCategory ?? ""} className={inputClass}>
           <option value="" disabled>Select category</option>
           {EQUIPMENT_CATEGORIES.map((category) => <option key={category.code} value={category.code}>{locale === "zh-HK" ? category.nameZh : category.name}</option>)}
         </select></label>

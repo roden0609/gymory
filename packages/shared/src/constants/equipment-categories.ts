@@ -9,6 +9,8 @@ export const EQUIPMENT_CATEGORIES = [
   { code: "back", slug: "back", name: "Back", nameZh: "背部", section: "backMachine" },
   { code: "shoulder", slug: "shoulder", name: "Shoulder", nameZh: "肩部", section: "shoulderMachine" },
   { code: "leg", slug: "leg", name: "Leg", nameZh: "腿部", section: "legMachine" },
+  // Glute reports use the existing lower-body submission section.
+  { code: "glute", slug: "glute", name: "Glute", nameZh: "臀部", section: "legMachine" },
   { code: "functional_training", slug: "functional-training", name: "Functional training", nameZh: "功能性訓練", section: "functionalTraining" },
   { code: "other", slug: "other", name: "Other", nameZh: "其他器材", section: "otherEquipment" },
 ] as const;

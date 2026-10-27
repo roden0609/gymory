@@ -47,10 +47,10 @@ describe("type summaries and model details", () => {
     const inactive = { ...type, is_active: false };
     expect(chest([inventory({ equipment_type: inactive })], [machine({ equipmentType: inactive })])).toEqual([]);
   });
-  it("uses twelve ordered categories, with HYROX as a label", () => {
+  it("uses thirteen ordered categories, with HYROX as a label", () => {
     const groups = groupGymEquipmentTypes([], []);
     expect(groups.map(({ category }) => category.code)).toEqual([
-      "free_weight", "cardio", "cable", "full_body", "core", "arm", "chest", "back", "shoulder", "leg", "functional_training", "other",
+      "free_weight", "cardio", "cable", "full_body", "core", "arm", "chest", "back", "shoulder", "leg", "glute", "functional_training", "other",
     ]);
   });
 });

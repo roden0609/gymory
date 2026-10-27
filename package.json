@@ -12,6 +12,7 @@
     "build:web": "pnpm --filter web build",
     "validate:gym-inventory-normalization": "node scripts/equipments/validate-gym-inventory-normalization.mjs",
     "import:anytime-fitness-hk": "node scripts/gyms/import-anytime-fitness-hk.mjs",
+    "import:247-equipment": "node scripts/equipments/import-247-equipment.mjs",
     "import:247-fitness-hk": "node scripts/gyms/import-247-fitness-hk.mjs",
     "import:efx24-hk": "node scripts/gyms/import-efx24-hk.mjs",
     "import:go24-fitness-hk": "node scripts/gyms/import-go24-fitness-hk.mjs",

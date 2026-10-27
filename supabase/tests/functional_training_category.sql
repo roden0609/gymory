@@ -2,8 +2,8 @@
 begin;
 do $$
 begin
-  if (select count(*) from public.equipment_categories) <> 12 then
-    raise exception 'Expected twelve equipment categories';
+  if (select count(*) from public.equipment_categories) <> 13 then
+    raise exception 'Expected thirteen equipment categories';
   end if;
   if not exists (
     select 1 from public.equipment_categories f

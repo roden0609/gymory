@@ -94,6 +94,8 @@ pnpm dev:web
 
 ## Database setup
 
+Local / DEV / PROD migration command guide: [supabase/README.md](supabase/README.md).
+
 Database migrations in `supabase/migrations/` are the source of truth. Apply them
 with the Supabase CLI; do not make new schema changes directly in the SQL Editor.
 

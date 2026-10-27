@@ -94,3 +94,79 @@ pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-distric
 The 24/7 Fitness API may return `451` from some regions. In that case, run the
 importer from a Hong Kong-accessible network or use a previously exported JSON
 file as the review artifact before upserting.
+
+## Import the separate app equipment inventory
+
+The Android app inventory in `data/equipments/247-fitness-hk/` is a separate
+source from the listing API above. Prepare its mapping without network access:
+
+```bash
+pnpm import:247-equipment
+```
+
+This generates `data/equipments/247-fitness-hk-import-plan.json`, joining
+`store_id` to the numeric ID at the end of each baseline slug. It contains
+159 matched gyms, 833 distinct source inventory IDs, and 6,210 gym/model
+links in the current snapshot. Eight empty source inventories produce no
+writes or absence claims. The listing baseline itself is unchanged.
+
+Review `equipment` and `review` in the plan before importing. Explicit movement
+names map to existing controlled equipment types. Unclear, combined, and
+unsupported movements use `other_equipment`; the current snapshot has 319
+such entries. These entries need manual classification if more specific types
+are desired. Source inventory IDs identify catalog entries, not physical unit
+counts; all newly imported quantities remain unknown (`null`). Multiple source
+IDs can resolve to one existing database model, so final link counts may differ.
+
+When ready, explicitly select an environment and enable database writes:
+
+```bash
+# Development
+pnpm import:247-equipment --env-file apps/web/.env.dev --upsert
+
+# Production
+pnpm import:247-equipment --env-file apps/web/.env.prod --upsert
+```
+
+The env file must define `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SECRET_KEY`.
+Exported environment variables take precedence over the file. Node 22+ is
+required for `process.loadEnvFile`. Without `--upsert` no database is accessed.
+The plan is regenerated from source files on each run; editing the generated
+plan does not change the importer rules.
+
+All target gyms and required types/categories must already exist. The importer
+paginates database reads, reuses brands and unambiguous existing models by
+brand plus source ID, normalized name, or model number, and inserts missing
+catalog models and inventory relationships. Existing model metadata, quantities,
+verification status, and gym listings are preserved. It never deletes inventory.
+Writes are incremental rather than one transaction; after resolving a failure,
+rerun the same command to continue without duplicating existing relationships.
+
+The database model-inventory trigger derives `gym_equipment_type_inventory`
+rows; this importer does not overwrite directly reported type quantities.
+New model relationships use `source=import` and `verified_status=unverified`.
+They require the normal review/verification process before appearing on public
+pages that require owner/admin verification. The app source alone is not
+physical verification.
+
+### Verify trusted official imports
+
+To approve the official app inventory for public display during import:
+
+```bash
+pnpm import:247-equipment --env-file apps/web/.env.local --upsert --verify
+```
+
+`--verify` sets new relationships to `admin_verified` and records `verified_at`,
+while retaining `source=import` and source notes. It also promotes existing
+`unverified` relationships with `source=import` and this importer's
+`24/7 app inventory; 247-fitness:` note prefix. Existing quantities, condition,
+notes, and user attribution are preserved. Already verified, community-verified,
+manual, and unrelated import relationships are unchanged. Automated verification
+does not fabricate an admin user ID. The command reports both newly inserted
+relationships and the total number verified in this run.
+
+Without `--verify`, imports retain the original unverified behavior. Without
+`--upsert`, even `--verify` only regenerates the local plan and does not access
+the database. Verification approves source-reported presence; it does not
+confirm physical counts or resolve items in the classification review list.

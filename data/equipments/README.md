@@ -1,51 +1,51 @@
-# 24/7 Fitness 香港分店器械
+# 24/7 Fitness Hong Kong branch equipment
 
-範圍：Android App「Equipment Library」分店選單 **HK / All regions / ALL** 中，逐頁列舉並覆核的 **159 間香港分店**。只收錄 **All / All Brands / 搜尋空白** 時屬於所選分店的器械；灰色 **Nearest Store** 項目不收錄。
+Scope: **159 Hong Kong branches** enumerated and reviewed page by page in the Android app's Equipment Library branch selector under **HK / All regions / ALL**. Only equipment assigned to the selected branch under **All / All Brands / an empty search** is included. Gray **Nearest Store** entries are excluded.
 
-## 資料來源與驗證
+## Sources and validation
 
-先用 ADB 慢速逐項滑動及本機 OCR 列舉全部分店，並完整讀取馬鞍山、粉嶺第三分店、馬鞍山第二分店、上水及粉嶺的本店清單。其後在 App 公開安裝資源找到同一頁使用的公開、毋須登入的只讀介面：
+The initial collection used slow, incremental ADB scrolling and local OCR to enumerate all branches. Complete branch inventories were also read for Ma On Shan, Fanling Third Branch, Ma On Shan Second Branch, Sheung Shui, and Fanling. Public app installation assets subsequently revealed the unauthenticated, read-only endpoints used by the same page:
 
 - `https://www.247fitness.hk/app-api/app-client/store/tree`
 - `https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList`
 
-主資料由上述 GET 介面讀取，未使用使用者帳戶憑證。每間分店同時傳入 `storeId` 及 `club_id`，只保留 `storeId` 正好等於所選分店的列項；其他非空分店 ID 會報錯，不會混入別店器械。`storeId` 為空的 Nearest Store 項目全部排除。
+The primary dataset comes from GET requests to these endpoints without user account credentials. Both `storeId` and `club_id` are sent for each branch. Only entries whose `storeId` exactly matches the selected branch are retained. Any other nonempty branch ID causes an error rather than mixing equipment from another branch. Nearest Store entries with an empty `storeId` are excluded.
 
-器械按 App 相同規則排序：有 courseware 優先、`sortOrder` 升序、`createTime` 降序。保留同名但不同來源 ID 的列項。直接來源提供未經 UI 截短、亦不經 OCR 的完整名稱及多語名稱。五間已讀取的 UI 清單另外逐序比對名稱及列項數，結果見 `ui-source-validation.json`。
+Equipment follows the app's ordering: entries with courseware first, then ascending `sortOrder`, then descending `createTime`. Entries with the same name but different source IDs are retained. The direct source provides full names and multilingual names without UI truncation or OCR. Names and row counts from the five independently collected UI inventories were also compared in order; results are in `ui-source-validation.json`.
 
-App 只請求 `pageNo=1&pageSize=100`，介面返回的是完整陣列。另以粉嶺第三分店 `pageNo=2&pageSize=1` 探測，返回相同 1,290 個 inventory/store 列項身份，並非每頁只取 100 項。該店其中 38 個本店列項，與連續滑動結果完全吻合。
+The app requests only `pageNo=1&pageSize=100`, but the endpoint returns the complete array. A separate probe for Fanling Third Branch using `pageNo=2&pageSize=1` returned the same 1,290 inventory/store row identities, rather than limiting the response to 100 entries per page. Of these, 38 entries belonged to that branch, matching the continuous scrolling results exactly.
 
-公開 tree 有 162 個香港 store 記錄；其中 159 個與 App 分店選單一一對應。其餘三個未列於 App 選單，包括「香港VIP門店」、「香港市場部」及「Tsuen Wan」，列在 manifest 的 `excluded_not_in_app_selector`，不冒充 App 可選分店。
+The public tree contains 162 Hong Kong store records, of which 159 correspond directly to the app's branch selector. The remaining three records—Hong Kong VIP Store, Hong Kong Marketing Department, and Tsuen Wan—are listed under `excluded_not_in_app_selector` in the manifest and are excluded from the selectable app branches.
 
-## 檔案
+## Files
 
-- `247-fitness-hk-manifest.json`：159 間分店的來源 ID、完整名稱、進度，以及未列於 App 的 store 記錄。
-- `247-fitness-hk/<store-slug>.json`：各店器械，按 App All 順序保存完整名稱、多語名稱、品牌、型號、分類、封面圖片 URL、inventory ID 及來源列項 ID。
-- `progress.json`：各狀態數量及總列項數。
-- `collection-errors.json`：讀取失敗或未通過 UI 比對的分店；空陣列代表無此類錯誤。
-- `ui-source-validation.json`：五間分店的 UI／直接來源核對結果。
-- `ui-validation/`：五間分店先前用 ADB/OCR 完成的獨立讀取紀錄。
-- `captures/`：上述 UI 讀取每一步的 OCR 原文、亮色卡片及截圖 SHA-256；截圖暫存在 `/private/tmp/gymory-collector`。
+- `247-fitness-hk-manifest.json`: source IDs, full names, and progress for the 159 branches, plus store records absent from the app selector.
+- `247-fitness-hk/<store-slug>.json`: each branch's equipment in the app's All ordering, including full names, multilingual names, brands, models, categories, cover image URLs, inventory IDs, and source row IDs.
+- `progress.json`: counts by status and total row count.
+- `collection-errors.json`: branches with collection failures or failed UI comparisons; an empty array indicates no such errors.
+- `ui-source-validation.json`: comparisons between the UI and direct source for five branches.
+- `ui-validation/`: independent inventories previously collected for those five branches using ADB/OCR.
+- `captures/`: original OCR text, bright cards, and screenshot SHA-256 hashes for each UI collection step. Screenshots were temporarily stored in `/private/tmp/gymory-collector`.
 
-完整 API 回應可能含其他欄位；輸出僅保留器械相關白名單欄位，不保存來源資產金額等無關資料。每店記錄請求 URL、UTC `captured_at` 及回應 SHA-256。
+Full API responses may contain additional fields. Outputs retain only an allowlist of equipment-related fields and omit unrelated data such as source asset values. Each branch records the request URL, UTC `captured_at`, and response SHA-256 hash.
 
-## 完成狀態與限制
+## Completion statuses and limitations
 
-- `source_api_complete`：該店的公開來源清單成功讀取，並完成分店身份檢查。
-- `empty_in_source`：介面未返回該店已指派器械；**不代表實際沒有器械**。
-- `pending`／`needs_review`：尚未完成，或遇到錯誤，不能當成完整資料。
+- `source_api_complete`: the branch's public source inventory was retrieved successfully and passed branch identity checks.
+- `empty_in_source`: the endpoint returned no equipment assigned to the branch; **this does not establish that the branch has no physical equipment**.
+- `pending` / `needs_review`: collection is incomplete or encountered an error; do not treat it as complete data.
 
-`row_count` 為來源列項數；`unique_equipment_count` 為品牌與名稱正規化後的不同組合數；`unique_inventory_count` 為不同 inventory ID 數。均不可直接當成實體器械部數，未根據列項推算實體數量。資料反映本次 App 來源狀態，未作現場查核，亦未自動寫入資料庫。
+`row_count` counts source entries. `unique_equipment_count` counts distinct normalized brand/name combinations. `unique_inventory_count` counts distinct inventory IDs. None of these counts directly represents physical equipment quantities, and physical counts are not inferred from source rows. The dataset reflects the app source at collection time, has not been checked on site, and is not automatically written to the database.
 
-主資料 `text_verification: source_api_text` 表示直接來源文字。`ui-validation/` 的 `local_ocr_unreviewed` 與 `name_truncated` 僅描述先前 UI/OCR 讀取，不表示主資料有相同文字限制。
+In the primary dataset, `text_verification: source_api_text` indicates direct source text. The `local_ocr_unreviewed` and `name_truncated` fields in `ui-validation/` describe the earlier UI/OCR collection only; they do not imply the same text limitations in the primary dataset.
 
-## 重讀與備用 UI 收集器
+## Refreshing data and the fallback UI collector
 
 ```sh
 python3 scripts/equipments/collect-247-equipment-api.py --workers 3
 python3 scripts/equipments/collect-247-equipment.py status
 ```
 
-公開介面收集器保留 App 列舉的分店範圍，逐店重試，所有請求為 GET；錯誤會明確記錄。需要網路存取權限及 `curl`。
+The public endpoint collector preserves the branch scope enumerated from the app, retries each branch, and uses GET requests only. Errors are recorded explicitly. Network access and `curl` are required.
 
-ADB/OCR 備用流程使用 `scripts/equipments/collect-247-equipment.py`、`scripts/equipments/equipment-screen-ocr.swift`，需要已授權的 `emulator-5554` 及 macOS Vision。每次約滑動一項高度（265 px / 1500 ms），要求前後畫面重疊；遇到錯店或缺少重疊即停止。主資料與 UI 備用資料的狀態不同，不應在未確認前以備用收集器覆蓋主資料。
+The fallback ADB/OCR workflow uses `scripts/equipments/collect-247-equipment.py` and `scripts/equipments/equipment-screen-ocr.swift`. It requires an authorized `emulator-5554` and macOS Vision. Each scroll moves approximately one item height (265 px / 1500 ms), with overlapping views required. Collection stops if the wrong branch is detected or overlap is missing. The primary dataset and fallback UI dataset have separate statuses; review them before using the fallback collector to overwrite primary data.
