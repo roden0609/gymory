@@ -1,8 +1,8 @@
-import { EquipmentCatalogPage } from "@/components/admin/EquipmentCatalogPage";
+import { EquipmentCatalogPage, type CatalogSearchParams } from "@/components/admin/EquipmentCatalogPage";
 
 export default function Page(props: {
   params: Promise<{ locale: string }>;
-  searchParams?: { result?: string; entity?: string; reason?: string; action?: string };
+  searchParams?: CatalogSearchParams;
 }) {
   return <EquipmentCatalogPage {...props} section="equipment" />;
 }

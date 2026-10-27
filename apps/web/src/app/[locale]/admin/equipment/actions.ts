@@ -43,20 +43,27 @@ async function runCatalogSave(
   locale: string,
   entity: CatalogEntity,
   operation: () => Promise<void>,
+  formData: FormData,
   action = "save"
 ) {
   const page = entity === "brand" ? "brands" : entity === "type" ? "equipment-types" : "equipment";
+  const context = new URLSearchParams();
+  const requestedPage = Number(textValue(formData, "catalog_page"));
+  if (Number.isSafeInteger(requestedPage) && requestedPage > 1) context.set("page", String(requestedPage));
+  const category = textValue(formData, "catalog_category");
+  if (entity === "type" && equipmentTypeSchema.shape.category.safeParse(category).success) context.set("category", category);
+  const contextQuery = context.size ? `&${context}` : "";
   try {
     await operation();
     refreshCatalog();
   } catch (error) {
     const reason = getFailureReason(error);
     redirect(
-      `/${locale}/admin/${page}?result=error&entity=${entity}&reason=${reason}&action=${action}`
+      `/${locale}/admin/${page}?result=error&entity=${entity}&reason=${reason}&action=${action}${contextQuery}`
     );
   }
 
-  redirect(`/${locale}/admin/${page}?result=success&entity=${entity}&action=${action}`);
+  redirect(`/${locale}/admin/${page}?result=success&entity=${entity}&action=${action}${contextQuery}`);
 }
 
 function getFailureReason(error: unknown) {
@@ -97,7 +104,7 @@ export async function saveBrand(formData: FormData) {
       ? await supabase.from("equipment_brands").update(payload).eq("id", parsed.id)
       : await supabase.from("equipment_brands").insert(payload);
     if (result.error) throw new Error(result.error.message);
-  });
+  }, formData);
 }
 
 export async function saveMachine(formData: FormData) {
@@ -167,7 +174,7 @@ export async function saveMachine(formData: FormData) {
         .insert(aliases.map((alias) => ({ equipment_id: machineId, alias })));
       if (aliasError) throw new Error(aliasError.message);
     }
-  });
+  }, formData);
 }
 
 export async function saveEquipmentType(formData: FormData) {
@@ -188,7 +195,7 @@ export async function saveEquipmentType(formData: FormData) {
       ? await supabase.from("equipment_types").update(payload).eq("code", code).select("code").single()
       : await supabase.from("equipment_types").insert(parsed).select("code").single();
     if (result.error) throw new Error(result.error.message);
-  });
+  }, formData);
 }
 
 export async function deleteEquipmentType(formData: FormData) {
@@ -204,5 +211,5 @@ export async function deleteEquipmentType(formData: FormData) {
     // The existing ON DELETE RESTRICT foreign key also protects against concurrent inserts.
     const result = await supabase.from("equipment_types").delete().eq("code", code).select("code").single();
     if (result.error) throw new Error(result.error.message);
-  }, "delete");
+  }, formData, "delete");
 }

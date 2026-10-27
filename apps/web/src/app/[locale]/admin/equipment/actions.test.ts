@@ -64,6 +64,26 @@ describe("equipment type admin actions", () => {
     expect(mocks.query.delete).not.toHaveBeenCalled();
   });
 
+  it("preserves the current page and category after saving", async () => {
+    await expect(saveEquipmentType(form({
+      name_en: "Example", category: "other", catalog_page: "3", catalog_category: "other",
+    }))).rejects.toThrow("result=success&entity=type&action=save&page=3&category=other");
+  });
+
+  it("preserves pagination after a failed save or deletion", async () => {
+    await expect(saveEquipmentType(form({ catalog_page: "2", catalog_category: "other" })))
+      .rejects.toThrow("reason=invalid&action=save&page=2&category=other");
+    mocks.query.eq.mockResolvedValueOnce({ count: 0, error: null });
+    await expect(deleteEquipmentType(form({ catalog_page: "2", catalog_category: "other" })))
+      .rejects.toThrow("action=delete&page=2&category=other");
+  });
+
+  it("discards invalid pagination context in redirects", async () => {
+    await expect(saveEquipmentType(form({
+      name_en: "Example", category: "other", catalog_page: "-2", catalog_category: "invented",
+    }))).rejects.toThrow(/action=save$/);
+  });
+
   it("requires admin access before reading or writing", async () => {
     mocks.authorize.mockRejectedValue(new Error("unauthorized"));
     await expect(deleteEquipmentType(form({}))).rejects.toThrow("unauthorized");
