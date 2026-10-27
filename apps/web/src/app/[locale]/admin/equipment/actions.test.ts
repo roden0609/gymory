@@ -9,7 +9,7 @@ vi.mock("@/lib/auth/session", () => ({ requireAdminSession: mocks.authorize }));
 vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from }) }));
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
-import { deleteEquipmentType, saveEquipmentType } from "./actions";
+import { deleteEquipmentType, saveEquipmentType, saveMachine } from "./actions";
 
 function form(values: Record<string, string>) {
   const data = new FormData();
@@ -82,6 +82,12 @@ describe("equipment type admin actions", () => {
     await expect(saveEquipmentType(form({
       name_en: "Example", category: "other", catalog_page: "-2", catalog_category: "invented",
     }))).rejects.toThrow(/action=save$/);
+  });
+
+  it("preserves equipment filters after a failed save", async () => {
+    const brand = "123e4567-e89b-42d3-a456-426614174000";
+    await expect(saveMachine(form({ catalog_page: "2", catalog_brand: brand, catalog_equipmentType: "chest_press_machine", catalog_status: "active" })))
+      .rejects.toThrow(`action=save&page=2&brand=${brand}&equipmentType=chest_press_machine&status=active`);
   });
 
   it("requires admin access before reading or writing", async () => {

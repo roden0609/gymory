@@ -1,5 +1,6 @@
 "use server";
 
+import { parseEquipmentFilters } from "@/lib/admin-equipment-filters";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -52,6 +53,10 @@ async function runCatalogSave(
   if (Number.isSafeInteger(requestedPage) && requestedPage > 1) context.set("page", String(requestedPage));
   const category = textValue(formData, "catalog_category");
   if (entity === "type" && equipmentTypeSchema.shape.category.safeParse(category).success) context.set("category", category);
+  if (entity === "machine") {
+    const filters = parseEquipmentFilters({ brand: textValue(formData, "catalog_brand"), equipmentType: textValue(formData, "catalog_equipmentType"), status: textValue(formData, "catalog_status") });
+    for (const [key, value] of Object.entries(filters)) context.set(key, value);
+  }
   const contextQuery = context.size ? `&${context}` : "";
   try {
     await operation();

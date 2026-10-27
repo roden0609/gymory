@@ -1,4 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { parseEquipmentFilters, equipmentFilterConditions, type EquipmentFilters } from "@/lib/admin-equipment-filters";
+import { EquipmentFilterForm } from "./EquipmentFilterForm";
 import { CatalogRecordRow } from "./CatalogRecordRow";
 import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
@@ -31,16 +33,19 @@ const labelClass = "min-w-0 space-y-1 text-sm font-medium text-gray-700";
 const PAGE_SIZE = 20;
 type CatalogSection = "brands" | "types" | "equipment";
 export type CatalogSearchParams = {
-  result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string;
+  result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string; brand?: string; equipmentType?: string; status?: string;
 };
 
-async function getCatalog(section: CatalogSection, requestedPage: number, category?: string) {
+async function getCatalog(section: CatalogSection, requestedPage: number, category?: string, filters: EquipmentFilters = {}) {
   const supabase = createAdminClient();
   const table = section === "brands" ? "equipment_brands" : section === "types" ? "equipment_types" : "equipment";
   let countQuery = supabase.from(table).select("*", { count: "exact", head: true });
   if (section === "types") {
     countQuery = countQuery.eq("is_active", true);
     if (category) countQuery = countQuery.eq("category", category);
+  }
+  if (section === "equipment") {
+    for (const [column, value] of equipmentFilterConditions(filters)) countQuery = countQuery.eq(column, value);
   }
   const countResult = await countQuery;
   if (countResult.error) throw new Error(countResult.error.message);
@@ -52,11 +57,13 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   const brandsQuery = supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en").order("id");
   let typesQuery = supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment(count)").eq("is_active", true).order("name_en").order("code");
   if (section === "types" && category) typesQuery = typesQuery.eq("category", category);
+  let machinesQuery = supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias)").order("name").order("id");
+  for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     section === "brands" ? brandsQuery.range(from, to) : section === "equipment" ? brandsQuery : { data: [], error: null },
     supabase.from("equipment_categories").select("id, name, name_zh, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
     section === "types" ? typesQuery.range(from, to) : section === "equipment" ? typesQuery : { data: [], error: null },
-    section === "equipment" ? supabase.from("equipment").select("id, brand_id, category_id, equipment_type_code, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias)").order("name").order("id").range(from, to) : { data: [], error: null },
+    section === "equipment" ? machinesQuery.range(from, to) : { data: [], error: null },
   ]);
   const error = brandsResult.error ?? categoriesResult.error ?? typesResult.error ?? machinesResult.error;
   if (error) throw new Error(error.message);
@@ -102,16 +109,17 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
   const selectedCategory = section === "types"
     ? EQUIPMENT_CATEGORIES.find((category) => category.code === searchParams?.category)?.code
     : undefined;
+  const filters = section === "equipment" ? parseEquipmentFilters(searchParams ?? {}) : {};
   const pageParam = Number(searchParams?.page ?? 1);
   const requestedPage = Number.isSafeInteger(pageParam) && pageParam > 0 ? pageParam : 1;
-  const { brands, categories, equipmentTypes, machines, page, totalPages, totalCount } = await getCatalog(section, requestedPage, selectedCategory);
+  const { brands, categories, equipmentTypes, machines, page, totalPages, totalCount } = await getCatalog(section, requestedPage, selectedCategory, filters);
   const chinese = locale === "zh-HK";
   const tableHeaders = section === "brands"
     ? (chinese ? ["品牌", "國家", "網站", "狀態", "操作"] : ["Brand", "Country", "Website", "Status", "Actions"])
     : section === "types"
       ? (chinese ? ["器材類型", "英文名稱", "分類", "器材數量", "Labels", "操作"] : ["Equipment type", "English name", "Category", "Equipment count", "Labels", "Actions"])
       : (chinese ? ["器材", "品牌", "器材類型", "系列 / 型號", "狀態", "Labels", "操作"] : ["Equipment", "Brand", "Equipment type", "Series / model", "Status", "Labels", "Actions"]);
-  const pagination = <CatalogPagination locale={locale} path={path} page={page} totalPages={totalPages} totalCount={totalCount} category={selectedCategory} />;
+  const pagination = <CatalogPagination locale={locale} path={path} page={page} totalPages={totalPages} totalCount={totalCount} category={selectedCategory} filters={filters} />;
 
   return (
     <main className="min-h-screen overflow-x-clip bg-gray-50 px-4 py-8">
@@ -133,7 +141,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
           >
             <span className="min-w-0 break-words">{saveMessage.text}</span>
             <Link
-              href={{ pathname: path, query: { page: String(page), ...(selectedCategory ? { category: selectedCategory } : {}) } }}
+              href={{ pathname: path, query: { ...filters, page: String(page), ...(selectedCategory ? { category: selectedCategory } : {}) } }}
               scroll={false}
               aria-label={locale === "zh-HK" ? "關閉訊息" : "Dismiss message"}
               className="shrink-0 font-semibold opacity-70 hover:opacity-100"
@@ -224,9 +232,35 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
         {section === "equipment" ? <section className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
           <CatalogRecordRow title={locale === "zh-HK" ? "新增器材" : "Add equipment"} locale={locale} create>
-            <MachineForm locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} />
+            <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} />
           </CatalogRecordRow>
+          <EquipmentFilterForm key={JSON.stringify(filters)} locale={locale}>
+            <label className={labelClass}>{chinese ? "品牌" : "Brand"}
+              <select name="brand" defaultValue={filters.brand ?? ""} className={inputClass}>
+                <option value="">{chinese ? "全部品牌" : "All brands"}</option>
+                {brands.map((brand) => <option key={brand.id} value={brand.id}>{chinese && brand.name_zh ? brand.name_zh : brand.name_en}</option>)}
+              </select>
+            </label>
+            <label className={labelClass}>{chinese ? "器材類型" : "Equipment type"}
+              <select name="equipmentType" defaultValue={filters.equipmentType ?? ""} className={inputClass}>
+                <option value="">{chinese ? "全部器材類型" : "All equipment types"}</option>
+                {equipmentTypes.map((type) => <option key={type.code} value={type.code}>{chinese && type.name_zh ? type.name_zh : type.name_en}</option>)}
+              </select>
+            </label>
+            <label className={labelClass}>{chinese ? "狀態" : "Status"}
+              <select name="status" defaultValue={filters.status ?? ""} className={inputClass}>
+                <option value="">{chinese ? "全部狀態" : "All statuses"}</option>
+                <option value="active">{chinese ? "現役" : "Active"}</option>
+                <option value="discontinued">{chinese ? "已停產" : "Discontinued"}</option>
+                <option value="unknown">{chinese ? "未知" : "Unknown"}</option>
+              </select>
+            </label>
+            <div className="-mt-2 flex min-w-0 items-center justify-end sm:col-span-3 md:col-span-1 md:mt-0 md:self-end">
+              <Link href={path} scroll={false} className="inline-flex min-h-10 items-center text-sm text-gray-600 hover:underline">{chinese ? "清除篩選" : "Clear filters"}</Link>
+            </div>
+          </EquipmentFilterForm>
           <CatalogTable headers={tableHeaders}>
+            {machines.length === 0 ? <tr><td colSpan={tableHeaders.length} className="px-4 py-6 text-sm text-gray-500">{chinese ? "冇符合篩選條件嘅器材。" : "No equipment matches these filters."}</td></tr> : null}
             {machines.map((machine) => {
               const brand = brands.find((item) => item.id === machine.brand_id);
               const type = equipmentTypes.find((item) => item.code === machine.equipment_type_code);
@@ -238,7 +272,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
                   ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
                 ]} />}>
-                <MachineForm locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
+                <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
               </CatalogRecordRow>;
             })}
           </CatalogTable>
@@ -271,15 +305,15 @@ function RecordSummary({ fields }: { fields: [string, string | null][] }) {
   })}</>;
 }
 
-function CatalogContext({ page, category }: { page: number; category?: string }) {
-  return <><input type="hidden" name="catalog_page" value={page} />{category ? <input type="hidden" name="catalog_category" value={category} /> : null}</>;
+function CatalogContext({ page, category, filters = {} }: { page: number; category?: string; filters?: EquipmentFilters }) {
+  return <>{Object.entries(filters).map(([key, value]) => <input key={key} type="hidden" name={`catalog_${key}`} value={value} />)}<input type="hidden" name="catalog_page" value={page} />{category ? <input type="hidden" name="catalog_category" value={category} /> : null}</>;
 }
 
-function CatalogPagination({ locale, path, page, totalPages, totalCount, category }: {
-  locale: string; path: string; page: number; totalPages: number; totalCount: number; category?: string;
+function CatalogPagination({ locale, path, page, totalPages, totalCount, category, filters = {} }: {
+  locale: string; path: string; page: number; totalPages: number; totalCount: number; category?: string; filters?: EquipmentFilters;
 }) {
   const chinese = locale === "zh-HK";
-  const href = (target: number) => ({ pathname: path, query: { ...(category ? { category } : {}), ...(target > 1 ? { page: String(target) } : {}) } });
+  const href = (target: number) => ({ pathname: path, query: { ...filters, ...(category ? { category } : {}), ...(target > 1 ? { page: String(target) } : {}) } });
   const items: Array<number | "ellipsis"> = [];
   if (totalPages <= 7) {
     for (let item = 1; item <= totalPages; item++) items.push(item);
@@ -349,12 +383,12 @@ function getSaveMessage(
   };
 }
 
-function MachineForm({ locale, brands, equipmentTypes, machine, page }: {
-  page: number; locale: string; brands: Brand[]; equipmentTypes: EquipmentType[]; machine?: Machine;
+function MachineForm({ locale, brands, equipmentTypes, machine, page, filters }: {
+  filters?: EquipmentFilters; page: number; locale: string; brands: Brand[]; equipmentTypes: EquipmentType[]; machine?: Machine;
 }) {
   return (
     <form action={saveMachine} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
-      <input type="hidden" name="locale" value={locale} /><CatalogContext page={page} />{machine ? <input type="hidden" name="id" value={machine.id} /> : null}
+      <input type="hidden" name="locale" value={locale} /><CatalogContext page={page} filters={filters} />{machine ? <input type="hidden" name="id" value={machine.id} /> : null}
       <label className={labelClass}>Equipment name<input required name="name" defaultValue={machine?.name ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Chinese name<input name="name_zh" defaultValue={machine?.name_zh ?? ""} className={inputClass} /></label>
       <label className={labelClass}>Brand<select required name="brand_id" defaultValue={machine?.brand_id ?? ""} className={inputClass}><option value="" disabled>Select brand</option>{brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name_en}</option>)}</select></label>
