@@ -49,3 +49,35 @@ python3 scripts/equipments/collect-247-equipment.py status
 The public endpoint collector preserves the branch scope enumerated from the app, retries each branch, and uses GET requests only. Errors are recorded explicitly. Network access and `curl` are required.
 
 The fallback ADB/OCR workflow uses `scripts/equipments/collect-247-equipment.py` and `scripts/equipments/equipment-screen-ocr.swift`. It requires an authorized `emulator-5554` and macOS Vision. Each scroll moves approximately one item height (265 px / 1500 ms), with overlapping views required. Collection stops if the wrong branch is detected or overlap is missing. The primary dataset and fallback UI dataset have separate statuses; review them before using the fallback collector to overwrite primary data.
+
+## Importing reviewed equipment classifications
+
+```sh
+# Rebuild the plan without database writes.
+pnpm import:247-equipment
+
+# Create missing reviewed equipment types and update importer-owned Other models.
+pnpm import:247-equipment --env-file apps/web/.env.local --upsert
+```
+
+`scripts/equipments/247-equipment-classifications.json` contains the reviewed
+brand/name/model/source-ID mappings and 26 explicit new type definitions from the
+180-model audit. Source-ID matches require the expected brand, name and model;
+changed identities go to review. A unique brand/model match can also identify the
+same reviewed model under a different source ID. Blank model placeholders never
+match another model.
+
+With `--upsert`, only missing reviewed type definitions actually used by the plan
+are inserted. All required parent categories and existing active types are checked
+before writes; existing inactive types, conflicting categories, and unknown type
+codes fail validation. Existing type names and metadata are preserved. The result
+includes `typesCreated` and `reclassified`. Reclassification only updates the type
+and category of this importer's existing `other_equipment` models; it preserves
+manual/non-Other classifications and inventory quantities.
+
+Each reviewed plan entry includes classification notes and any secondary types.
+The 19 conditional choices use the audit's recommended primary type and remain in
+`review` with their caveats. The current database stores only the primary type:
+secondary types are recorded in the plan, not written to unsupported DB columns.
+Other unreviewed models continue through conservative name rules and may remain
+`other_equipment`; the console reports `other` separately from `review`.

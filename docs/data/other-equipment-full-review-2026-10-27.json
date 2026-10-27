@@ -1,0 +1,4685 @@
+{
+  "date": "2026-10-27",
+  "environment": "local",
+  "database_mutated": false,
+  "summary": {
+    "total": 180,
+    "existing_type": 118,
+    "new_type": 62,
+    "new_type_definitions": 26,
+    "existing_with_secondary": 47,
+    "high_confidence": 161,
+    "medium_confidence": 19,
+    "images_reviewed": 76,
+    "recommended_other": 0
+  },
+  "proposed_types": [
+    {
+      "code": "dumbbell_storage_rack",
+      "name_zh": "啞鈴收納架",
+      "category": "free_weight"
+    },
+    {
+      "code": "barbell_storage_rack",
+      "name_zh": "槓鈴收納架",
+      "category": "free_weight"
+    },
+    {
+      "code": "weight_plate_storage",
+      "name_zh": "槓片收納架",
+      "category": "free_weight"
+    },
+    {
+      "code": "accessory_storage_rack",
+      "name_zh": "把手／附件收納架",
+      "category": "functional_training"
+    },
+    {
+      "code": "neck_machine",
+      "name_zh": "頸部訓練機",
+      "category": "shoulder"
+    },
+    {
+      "code": "grip_strength_machine",
+      "name_zh": "握力訓練機",
+      "category": "arm"
+    },
+    {
+      "code": "split_squat_stand",
+      "name_zh": "分腿蹲支撐架",
+      "category": "leg"
+    },
+    {
+      "code": "assisted_pull_up_dip_machine",
+      "name_zh": "輔助引體／雙槓機",
+      "category": "full_body"
+    },
+    {
+      "code": "standing_leg_curl_machine",
+      "name_zh": "站姿腿彎舉機",
+      "category": "leg"
+    },
+    {
+      "code": "kneeling_leg_curl_machine",
+      "name_zh": "跪姿腿彎舉機",
+      "category": "leg"
+    },
+    {
+      "code": "leg_raise_station",
+      "name_zh": "抬腿訓練站",
+      "category": "core"
+    },
+    {
+      "code": "deadlift_machine",
+      "name_zh": "硬拉訓練機",
+      "category": "leg"
+    },
+    {
+      "code": "multi_function_strength_machine",
+      "name_zh": "多功能槓桿訓練機",
+      "category": "full_body"
+    },
+    {
+      "code": "paddle_ergometer",
+      "name_zh": "划槳測功機",
+      "category": "cardio"
+    },
+    {
+      "code": "nordic_curl_machine",
+      "name_zh": "北歐腿彎舉機",
+      "category": "leg"
+    },
+    {
+      "code": "lunge_machine",
+      "name_zh": "弓步訓練機",
+      "category": "leg"
+    },
+    {
+      "code": "shrug_machine",
+      "name_zh": "聳肩訓練機",
+      "category": "shoulder"
+    },
+    {
+      "code": "pilates_reformer",
+      "name_zh": "普拉提床",
+      "category": "functional_training"
+    },
+    {
+      "code": "pilates_spine_corrector",
+      "name_zh": "普拉提脊柱矯正器",
+      "category": "functional_training"
+    },
+    {
+      "code": "pilates_chair",
+      "name_zh": "普拉提椅",
+      "category": "functional_training"
+    },
+    {
+      "code": "tibialis_raise_machine",
+      "name_zh": "脛前肌訓練機",
+      "category": "leg"
+    },
+    {
+      "code": "tire_flip_machine",
+      "name_zh": "翻輪胎訓練機",
+      "category": "functional_training"
+    },
+    {
+      "code": "body_composition_analyzer",
+      "name_zh": "身體組成分析儀",
+      "category": "other"
+    },
+    {
+      "code": "modular_station_frame",
+      "name_zh": "模組化訓練站框架",
+      "category": "full_body"
+    },
+    {
+      "code": "ab_rebounder",
+      "name_zh": "腹肌藥球回彈訓練機",
+      "category": "core"
+    },
+    {
+      "code": "ground_base_combo_machine",
+      "name_zh": "站地式旋轉推拉機",
+      "category": "full_body"
+    }
+  ],
+  "equipment": [
+    {
+      "index": 1,
+      "id": "82985eca-746b-434d-9cad-e83cabd7b0a0",
+      "source_external_id": "247-fitness:1478",
+      "brand": "StairMaster",
+      "name": "10 Series 10G w/LCD",
+      "model_number": "H-9-5295-10G-LCD",
+      "source_name_zh": "10系列10G楼梯機（含LCD屏）",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "climber",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "10G 為樓梯機；Series/LCD 不是器材類型。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/0d3dbbe3a19ee9bc842511efd8e263b0fc02ee53d3e2e3515a04652e1ad3deef.webp",
+      "evidence_urls": [
+        "https://shop.corehandf.com/products/stairmaster-10g/"
+      ],
+      "source_inventory_id": 1478
+    },
+    {
+      "index": 2,
+      "id": "2a5e8ba4-21ae-47eb-8601-f9bbcda962b0",
+      "source_external_id": "247-fitness:244",
+      "brand": "NEWTECH",
+      "name": "14-Pair Dumbbell Rack",
+      "model_number": "NT-F-DBR",
+      "source_name_zh": "14對啞鈴架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dumbbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "明確為啞鈴收納架，不能配入供深蹲用的 rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/13e49347b476e3944b9cd8c69fe0b72c216a3c95b3d28482af8cb561940d6f24.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 244
+    },
+    {
+      "index": 3,
+      "id": "948d07b2-fca4-46d6-9c2d-cf12485a91c1",
+      "source_external_id": "247-fitness:515",
+      "brand": "FREEMOTION",
+      "name": "14ft / 4.2m Premium 4.5",
+      "model_number": "FMDY14XRG",
+      "source_name_zh": "14英尺/4.2m PREMIUM 4.5 訓練架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "rack",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [
+        "pull_up_bar"
+      ],
+      "confidence": "高",
+      "reason": "型號 FMDY14XRG 為 FitRig 訓練架，可用現有廣義 rack 主分類；保留單槓／綜合訓練特性。",
+      "note": "來源圖片標示 4.0、文字及型號指向 4.5；不影響訓練架主分類，但名稱／圖片需清理。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/db89149b2376d5693b654439e03894a9665888a3e17ef01d383c8e949f163ecd.jpg",
+      "evidence_urls": [
+        "https://www.freemotionfitness.com/strength-machine/14-premium-4-5-rig/"
+      ],
+      "source_inventory_id": 515
+    },
+    {
+      "index": 4,
+      "id": "6eec122d-24cb-4f5d-82ea-37507580749d",
+      "source_external_id": "247-fitness:1182",
+      "brand": "Nautilus",
+      "name": "16 Stack Multi Stations",
+      "model_number": "9NP-M96",
+      "source_name_zh": "16站位龍門架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/42c43c7c21cacb63efeca80adf246470f2b329eefc5ec9811abbae5b6ef438d6.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1182
+    },
+    {
+      "index": 5,
+      "id": "441ae1eb-d356-4b69-8bab-266bebb439c3",
+      "source_external_id": "247-fitness:1183",
+      "brand": "Nautilus",
+      "name": "32 Stack Multi-Stations",
+      "model_number": null,
+      "source_name_zh": "32站位大龍門",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/d96fa62dd45cd05621763a33ce7fb0e67ddfde42f1bfbf41b684409fcc34b967.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1183
+    },
+    {
+      "index": 6,
+      "id": "776e1ab9-e9e1-4a39-bfa2-e9b2593ca483",
+      "source_external_id": "247-fitness:56",
+      "brand": "Hammer Strength",
+      "name": "4-Way Neck",
+      "model_number": "PL4W",
+      "source_name_zh": "頸部訓練器",
+      "source_categories": [
+        "csfl"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "neck_machine",
+      "target_exists": false,
+      "recommended_category": "shoulder",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "4-Way Neck 為四向頸部訓練，現有類型沒有頸部機。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/5d99cdac1cde8d51865128dc86a950db6d1ec3021ef7637bc9619917fdd5ac5f.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 56
+    },
+    {
+      "index": 7,
+      "id": "af6daf1f-9f02-47f9-bd90-c4f2e4b24e73",
+      "source_external_id": "247-fitness:789",
+      "brand": "GLUTE BUILDER",
+      "name": "45-Degree Hip Extension",
+      "model_number": "GPL0724",
+      "source_name_zh": "45度髖伸展訓練器",
+      "source_categories": [
+        "Glute"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "glute_extension_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "GPL0724 為負重髖伸展，可用臀部伸展機作主分類，保留 45° 髖鉸鏈變式。",
+      "note": "不是單純後踢腿；若產品搜尋要區分髖鉸鏈與 kickback，之後可新增 hip_extension_machine 子類。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/687aea1be513d6a5b9bf196881eb2f732737f408585b4efc859c2d5d2a47486c.png",
+      "evidence_urls": [
+        "https://static.precor.com/sell-sheet/all/GPL/GPL0724-Dual-45-Hip-Extension-ENG.pdf"
+      ],
+      "source_inventory_id": 789
+    },
+    {
+      "index": 8,
+      "id": "f7ddb9a5-08a9-4c94-9e24-a962a79d15e9",
+      "source_external_id": "247-fitness:1472",
+      "brand": "Life Fitness",
+      "name": "4合1MJ",
+      "model_number": "4合1MJ",
+      "source_name_zh": "4合1MJ",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1472
+    },
+    {
+      "index": 9,
+      "id": "dfffa54c-5964-4d62-911c-570d6761bea0",
+      "source_external_id": "247-fitness:1208",
+      "brand": "Arsenal",
+      "name": "8 Station Basic Trainer",
+      "model_number": "M1-8BT",
+      "source_name_zh": "八站位基礎訓練器",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/e51be106bedabd438a3a6a647b59a8e90da53620b41bcbafe5ecf739bfb019ac.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1208
+    },
+    {
+      "index": 10,
+      "id": "a22329ed-0d0a-44f5-8ee3-57b87bf2dfd9",
+      "source_external_id": "247-fitness:1444",
+      "brand": "SportsArt",
+      "name": "A994 VKR Chin Dip",
+      "model_number": "A994",
+      "source_name_zh": "引體向上助力機",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_station",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [
+        "pull_up_bar"
+      ],
+      "confidence": "高",
+      "reason": "自重雙槓／引體／抬腿架，以現有 dip_station 主分類；附加動作保留在名稱及功能資料。",
+      "note": "逐款原始名稱有不同組合；#10 圖片是無助力自重架，不能因來源中文寫助力而配入輔助機。#39/#122 不應憑組別推斷另有引體，副功能須逐款使用。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/249648502b94ea93a6af3bcf27d0102a405f7e2c19f4f6f3ac62cd32d2e50e29.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1444
+    },
+    {
+      "index": 11,
+      "id": "317f15b9-0a98-4205-93c4-dfd1bc8ad18d",
+      "source_external_id": "247-fitness:1140",
+      "brand": "ABS",
+      "name": "AB COASTER® CS3000",
+      "model_number": "ABS1003B - CS3000",
+      "source_name_zh": "AB COASTER® CS3000",
+      "source_categories": [
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "ab_crunch_machine",
+      "target_exists": true,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "Ab Coaster 屬腹部屈曲機；主分類可沿用腹肌機，變式註明 bottom-up／跪姿滑軌。",
+      "note": "若 ab_crunch_machine 在產品定義只包含坐姿上體前屈，應新增 ab_coaster 子類；不要錯當一般訓練凳。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/24b06216aa93430286245847beb8672c62b76dfc945da37aa12ae063284b132a.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1140
+    },
+    {
+      "index": 12,
+      "id": "1bd1e9c3-5a4e-4d95-9b7f-034529084750",
+      "source_external_id": "247-fitness:51",
+      "brand": "Hammer Strength",
+      "name": "Abdominal / Oblique Crunch",
+      "model_number": "PLAB",
+      "source_name_zh": "斜腹肌捲曲訓練器",
+      "source_categories": [
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "ab_crunch_machine",
+      "target_exists": true,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "PLAB 是可轉動座位以訓練斜腹肌的 crunch，斜線不代表必須 Other。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/0d56f78c66fa50473317e67a8a23bbf898a3daa54f6a994855f41003e4f71be0.jpg",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-abdominal-oblique-crunch"
+      ],
+      "source_inventory_id": 51
+    },
+    {
+      "index": 13,
+      "id": "9543b72d-04f0-4f5a-a078-6d2a4c45b262",
+      "source_external_id": "247-fitness:1419",
+      "brand": "SportsArt",
+      "name": "Abdominal Crunch/ Back Extention",
+      "model_number": "DF206",
+      "source_name_zh": "腹肌訓練凳",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "ab_crunch_machine",
+      "target_exists": true,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [
+        "back_extension_machine"
+      ],
+      "confidence": "高",
+      "reason": "腹部屈曲／下背伸展組合，以腹肌機作主類型並保留下背副功能。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/a11bb0cc8619dacb4e3463c67105f266169d04bb8d2b7dcd962a1eba81178cca.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1419
+    },
+    {
+      "index": 14,
+      "id": "f8cbfe02-b6fd-4ca7-bad1-d47a833b560c",
+      "source_external_id": "247-fitness:1141",
+      "brand": "ABS",
+      "name": "ABSOLO®",
+      "model_number": "ABS1008-01B",
+      "source_name_zh": "ABSOLO®",
+      "source_categories": [
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "ab_rebounder",
+      "target_exists": false,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "AbSolo 是腹肌動作結合藥球回彈裝置，不是單一 medicine_ball 或一般腹肌配重機。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/de79ddd6ff43fa00915a81091ad275e763953e618536be594f994565b9fbbb09.jpg",
+      "evidence_urls": [
+        "https://theabscompany.com/products/ab-solo/"
+      ],
+      "source_inventory_id": 1141
+    },
+    {
+      "index": 15,
+      "id": "7a927181-7d0e-427d-9e3b-8fd5f52f0d8f",
+      "source_external_id": "247-fitness:1083",
+      "brand": "Precor",
+      "name": "Adaptive Motion Trainer®",
+      "model_number": "AMT835",
+      "source_name_zh": "AMT 多功能體適一體機",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "elliptical_machine",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "AMT835 是可調步幅的 Adaptive Motion Trainer；以廣義橢圓／交叉訓練機歸類，保留 adaptive-stride 變式。",
+      "note": "與固定橢圓軌跡不同；若現有 elliptical_machine 定義排除 AMT，應新增 adaptive_motion_trainer 子類。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/a3401220f667b2c8823b26a20e2128e9c185c3ca7a3341afb8dd162379744dc6.png",
+      "evidence_urls": [
+        "https://static.precor.com/precor-at-home/Precor-Home-AMTs.pdf"
+      ],
+      "source_inventory_id": 1083
+    },
+    {
+      "index": 16,
+      "id": "52b6dcc5-fb2c-493a-91cc-4383462d1a2e",
+      "source_external_id": "247-fitness:405",
+      "brand": "Panatta",
+      "name": "ADDUCTOR/ ABDUCTOR MACHINE",
+      "model_number": "1FE093",
+      "source_name_zh": "ADDUCTOR/ ABDUCTOR MACHINE",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/2db24d7ab840bc1229e96dcf75246a9df2ede5e1e257e0dd4a39046501ef051f.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 405
+    },
+    {
+      "index": 17,
+      "id": "047d50a3-9315-4b3f-9697-4a3a1b4d33b0",
+      "source_external_id": "247-fitness:175",
+      "brand": "NEWTECH",
+      "name": "Adjustable Low Pulley",
+      "model_number": "NT-OH-ALP",
+      "source_name_zh": "可調節低拉訓練器（加長行 程）",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_row_cable",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "NT-OH-ALP 低位拉力器有坐姿划船平台及踏板，按主要用途歸滑輪坐姿划船。",
+      "note": "握把高度可調；若按全機多角度用途索引，可改用更廣義 cable_machine，而不是 Other。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/9c75ef2fbe8f3c22ecf17d56a8f99422a458bd72d9d6903f7227fc81b98f93c6.jpg",
+      "evidence_urls": [
+        "https://newtechworldwide.com/products/adjustable-low-pulley"
+      ],
+      "source_inventory_id": 175
+    },
+    {
+      "index": 18,
+      "id": "bcf483ec-a2dc-446b-8cad-fb80f910770a",
+      "source_external_id": "247-fitness:853",
+      "brand": "Panatta",
+      "name": "ALTERNATE LEG CURLING",
+      "model_number": "1FW082",
+      "source_name_zh": "交替腿彎舉訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lying_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "1FW082 原廠資料明確為 prone lying 腿彎舉，並非站姿。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/f08925e6581bd6b9be6a786bca7cd711c7cd6154c26a8adbdf47c7e3c9bbe07c.png",
+      "evidence_urls": [
+        "https://www.panattagymequipment.com.au/product/alternate-leg-curling-1fw082"
+      ],
+      "source_inventory_id": 853
+    },
+    {
+      "index": 19,
+      "id": "5b780632-620e-4c4f-b9ba-aab80071976d",
+      "source_external_id": "247-fitness:581",
+      "brand": "Technogym",
+      "name": "Artis Synchro",
+      "model_number": "DBH0",
+      "source_name_zh": "Artis Synchro橢圓機",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "elliptical_machine",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "來源中文明確寫橢圓機；Synchro/Vario 為系列／變步幅名稱。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/c957fae04818613e62be3228da0c78f3d30630d3fbb2a8fed4205fa8ec82687a.jpg",
+      "evidence_urls": [
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 581
+    },
+    {
+      "index": 20,
+      "id": "11bae45d-2e13-4813-a595-b494760fa39f",
+      "source_external_id": "247-fitness:112",
+      "brand": "Life Fitness",
+      "name": "Assist Dip Chin",
+      "model_number": "SS-ADC（LP）Full",
+      "source_name_zh": "引體上升訓練器",
+      "source_categories": [
+        "Chest",
+        "Back",
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/955dfd372e5295f62eb6c652b0d095518974d9ed21c3edfe9417a8fd5f09561c.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 112
+    },
+    {
+      "index": 21,
+      "id": "9b64be04-3178-4f3e-844c-d1b0e684fe72",
+      "source_external_id": "247-fitness:2",
+      "brand": "Hammer Strength",
+      "name": "Assist Dip Chin",
+      "model_number": "HS-ADC",
+      "source_name_zh": "引體上升訓練器",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/244c8fda787b5de1a320dbfacbe09c91ed90c198a114fe899b31a2f83cf9976e.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 2
+    },
+    {
+      "index": 22,
+      "id": "1a1fa4ba-ba0c-4ec9-a31b-f486a31937b7",
+      "source_external_id": "247-fitness:1424",
+      "brand": "SportsArt",
+      "name": "Assisted Chin/ Dip",
+      "model_number": "DF-207",
+      "source_name_zh": "引體向上助力機",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/31830fe0fcd5d47bb4c645ad5eef5f4ab37f89a7bf217aa5979521f38689d5bc.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1424
+    },
+    {
+      "index": 23,
+      "id": "fa5054c9-ca58-422b-9bed-6415d87a6d38",
+      "source_external_id": "247-fitness:1334",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Biceps / Triceps (w/Full Shroud)",
+      "model_number": "OP-BT-FS",
+      "source_name_zh": "二頭肌/三頭肌訓練機(全護罩)",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "bicep_curl_machine",
+      "target_exists": true,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [
+        "tricep_extension_machine"
+      ],
+      "confidence": "高",
+      "reason": "二頭／三頭雙功能，二頭彎舉為主分類，三頭伸展列副功能。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/6a9077ce0d7d14601dbb7b5208624bda8b54d203b26e39ec6012c07ea40574ba.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1334
+    },
+    {
+      "index": 24,
+      "id": "54902419-5de6-460d-9fcf-a09c221a5ee1",
+      "source_external_id": "247-fitness:1335",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Dual Bicep/Tricep",
+      "model_number": "PH-OPBT",
+      "source_name_zh": "雙功能二頭/三頭肌訓練機",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "bicep_curl_machine",
+      "target_exists": true,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [
+        "tricep_extension_machine"
+      ],
+      "confidence": "高",
+      "reason": "二頭／三頭雙功能，二頭彎舉為主分類，三頭伸展列副功能。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/6a9077ce0d7d14601dbb7b5208624bda8b54d203b26e39ec6012c07ea40574ba.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1335
+    },
+    {
+      "index": 25,
+      "id": "56ed707c-c3c5-4efb-b5d8-152563845efa",
+      "source_external_id": "247-fitness:1375",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Dual Leg Extension/Curl",
+      "model_number": "PH-OPLCE",
+      "source_name_zh": "Axiom系列雙功能腿伸展/弯舉機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_extension_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "seated_leg_curl_machine"
+      ],
+      "confidence": "中",
+      "reason": "伸腿／屈腿組合，主分類用伸腿機，保留屈腿功能；不用 Other。",
+      "note": "主分類已明確；DF-200 及沒有坐姿字樣的型號，屈腿姿勢仍應核對後才存副類型。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1375
+    },
+    {
+      "index": 26,
+      "id": "171ddc96-df3f-4dc5-b97d-78c06fabccfd",
+      "source_external_id": "247-fitness:1376",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Dual Seated Leg Extension/Curl",
+      "model_number": "PH-OPSLCE",
+      "source_name_zh": "Axiom系列雙功能坐姿腿伸展/弯舉機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_extension_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "seated_leg_curl_machine"
+      ],
+      "confidence": "中",
+      "reason": "伸腿／屈腿組合，主分類用伸腿機，保留屈腿功能；不用 Other。",
+      "note": "主分類已明確；DF-200 及沒有坐姿字樣的型號，屈腿姿勢仍應核對後才存副類型。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/d675fe00a2454c71ef4f2ae7dec37dbb98e85f502eb6707eb5532d5a7802ca47.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1376
+    },
+    {
+      "index": 27,
+      "id": "1101a5d5-6182-49ff-8d4b-0a6edc9decf8",
+      "source_external_id": "247-fitness:1343",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Pec Fly and Rear Delt (w/Full Shroud)",
+      "model_number": "OP-FLY-FS",
+      "source_name_zh": "蝴蝶機/後三角肌訓練機(全護罩)",
+      "source_categories": [
+        "Chest"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/99a2bc28dfeae7c238cb27c3c7b6643ee56f96acc0047a0c57444636e899f616.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1343
+    },
+    {
+      "index": 28,
+      "id": "2d0d87d6-d7dd-4a52-a744-1887b206340f",
+      "source_external_id": "247-fitness:1374",
+      "brand": "Life Fitness",
+      "name": "Axiom Series Seated Leg Curl/Extension (w/Full Shroud)",
+      "model_number": "OP-SLCE-FS",
+      "source_name_zh": "Axiom系列坐姿腿弯舉/伸展機（全罩版）",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_extension_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "seated_leg_curl_machine"
+      ],
+      "confidence": "中",
+      "reason": "伸腿／屈腿組合，主分類用伸腿機，保留屈腿功能；不用 Other。",
+      "note": "主分類已明確；DF-200 及沒有坐姿字樣的型號，屈腿姿勢仍應核對後才存副類型。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/d675fe00a2454c71ef4f2ae7dec37dbb98e85f502eb6707eb5532d5a7802ca47.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1374
+    },
+    {
+      "index": 29,
+      "id": "566ff1a0-9f3a-4f2e-a0ff-e1c6ea288954",
+      "source_external_id": "247-fitness:831",
+      "brand": "Panatta",
+      "name": "BACK DELTOIDS",
+      "model_number": "1FW026",
+      "source_name_zh": "後三角肌訓練器",
+      "source_categories": [
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "reverse_fly_machine",
+      "target_exists": true,
+      "recommended_category": "shoulder",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "1FW026 為後三角訓練機。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/2540678214f1f7b5a38ebd43de469f908999d8c7b591c1280d0d30a46affc6aa.png",
+      "evidence_urls": [
+        "https://www.panattagymequipment.com.au/product/back-deltoids-1fw026/"
+      ],
+      "source_inventory_id": 831
+    },
+    {
+      "index": 30,
+      "id": "cf4cdc72-17b0-4774-b164-a2feb35fea93",
+      "source_external_id": "247-fitness:1318",
+      "brand": "Panatta",
+      "name": "BARBELL RACK DOUBLE SIDED",
+      "model_number": "1FE254",
+      "source_name_zh": "雙面槓鈴架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "barbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "放置固定／活動槓鈴的收納架，不是 squat rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/52e4c3194a19084c13c9f9a697faee57664745bc6bf074a23b90def378d5a490.webp",
+      "evidence_urls": [],
+      "source_inventory_id": 1318
+    },
+    {
+      "index": 31,
+      "id": "0b6063ea-cafc-4edf-8c7c-1cb436d36288",
+      "source_external_id": "247-fitness:1425",
+      "brand": "SportsArt",
+      "name": "Biceps Curl/ Triceps Extention",
+      "model_number": "DF-205",
+      "source_name_zh": "二頭弯舉機",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "bicep_curl_machine",
+      "target_exists": true,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [
+        "tricep_extension_machine"
+      ],
+      "confidence": "高",
+      "reason": "二頭／三頭雙功能，二頭彎舉為主分類，三頭伸展列副功能。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/565a8f23bdb1df0b6aa29263744d437da8846dd76b3d0d7267e673d042ebc039.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1425
+    },
+    {
+      "index": 32,
+      "id": "ddf91ca6-b6d9-4989-8bc7-2b4e7cbfcb67",
+      "source_external_id": "247-fitness:1154",
+      "brand": "IRONWOD",
+      "name": "Bulgarian Split Squat Stand",
+      "model_number": null,
+      "source_name_zh": "保加利亞深蹲架",
+      "source_categories": [
+        "Glute",
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "split_squat_stand",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "實物是後腳支撐滾筒架，負重來自使用者手持自由重量；不是負重 squat_machine。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/d6bacc560971faeeaa6956a010d4e9b41f4a2e9b9b6b4f9058feb9be63d0c053.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1154
+    },
+    {
+      "index": 33,
+      "id": "9a82d919-e975-41f2-a5b7-6086c8ebf5b2",
+      "source_external_id": "247-fitness:409",
+      "brand": "Panatta",
+      "name": "Calf machine",
+      "model_number": "1FE089",
+      "source_name_zh": "Calf machine",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "standing_calf_raise_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "1FE089 有可調肩墊及站立踏板，是站姿提踵機。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/019c0ded6137c06c9dc417181e72f4c294eadd5f968e4e5c8c55473d1d66dd70.jpg",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/fit-evo/calf-machine/"
+      ],
+      "source_inventory_id": 409
+    },
+    {
+      "index": 34,
+      "id": "dfadbb2a-9d5b-482f-ae8b-5e7f5212f9b5",
+      "source_external_id": "247-fitness:435",
+      "brand": "Panatta",
+      "name": "Chin and dip",
+      "model_number": "1FE211",
+      "source_name_zh": "Chin and dip",
+      "source_categories": [
+        "Back",
+        "ABDOMINAL",
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_station",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [
+        "pull_up_bar"
+      ],
+      "confidence": "高",
+      "reason": "自重雙槓／引體／抬腿架，以現有 dip_station 主分類；附加動作保留在名稱及功能資料。",
+      "note": "逐款原始名稱有不同組合；#10 圖片是無助力自重架，不能因來源中文寫助力而配入輔助機。#39/#122 不應憑組別推斷另有引體，副功能須逐款使用。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/7fd3c773041d5c1ddcadb4be8c1f4791febc3dca0b8026088e97755f301552f6.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 435
+    },
+    {
+      "index": 35,
+      "id": "ef21c207-4d20-48e4-b212-50a2bb1ca33d",
+      "source_external_id": "247-fitness:704",
+      "brand": "Panatta",
+      "name": "CHIN AND DIP (CHIN OPTIONAL)",
+      "model_number": "1SC211",
+      "source_name_zh": "引體向上及下壓",
+      "source_categories": [
+        "Chest",
+        "Back",
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_station",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "自重雙槓／引體／抬腿架，以現有 dip_station 主分類；附加動作保留在名稱及功能資料。",
+      "note": "逐款原始名稱有不同組合；#10 圖片是無助力自重架，不能因來源中文寫助力而配入輔助機。#39/#122 不應憑組別推斷另有引體，副功能須逐款使用。 CHIN OPTIONAL 不代表該店實際已裝引體附件，暫不登記 pull_up_bar 副類型。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/7307469802cf987307a3fc30205f611cf0d0db524e3bf9b0a63e23f31805b3c2.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 704
+    },
+    {
+      "index": 36,
+      "id": "a7ec6085-631d-4cf0-ad8d-a54816cd294c",
+      "source_external_id": "247-fitness:418",
+      "brand": "Panatta",
+      "name": "CHIN AND DIP COUNTERBALANCED",
+      "model_number": "1FE121",
+      "source_name_zh": "CHIN AND DIP COUNTERBALANCED",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/654425d3516efb1f6636e00d83391e73504f1d338e7cf258ced9d9876e206ae2.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 418
+    },
+    {
+      "index": 37,
+      "id": "4b71c1b6-ce08-4cf4-93a5-1525e0f27bb0",
+      "source_external_id": "247-fitness:176",
+      "brand": "NEWTECH",
+      "name": "Chin-Up, Dip Assist (THOMSON)",
+      "model_number": "5 NT-OH-CDA",
+      "source_name_zh": "輔助引體向上/雙 槓臂屈伸",
+      "source_categories": [
+        "Chest",
+        "Back",
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/9dd0d9d908dff21dfc49e4001381e675072c4839d16e400ae9cf7a361ef2fab4.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 176
+    },
+    {
+      "index": 38,
+      "id": "33c617f2-3f62-443e-b7a8-0c3a77f34ef9",
+      "source_external_id": "247-fitness:88",
+      "brand": "Hammer Strength",
+      "name": "Chin/Dip/Leg Raise",
+      "model_number": "BWCDL",
+      "source_name_zh": "單雙槓及提腿腹肌組合練習架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_station",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [
+        "pull_up_bar"
+      ],
+      "confidence": "高",
+      "reason": "自重雙槓／引體／抬腿架，以現有 dip_station 主分類；附加動作保留在名稱及功能資料。",
+      "note": "逐款原始名稱有不同組合；#10 圖片是無助力自重架，不能因來源中文寫助力而配入輔助機。#39/#122 不應憑組別推斷另有引體，副功能須逐款使用。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/4cbf33746510074d63a177f2523845eed91ef9f487a396802cf0c3623e53e0be.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 88
+    },
+    {
+      "index": 39,
+      "id": "c7831038-1edb-4671-95e5-27fc8edfefb7",
+      "source_external_id": "247-fitness:240",
+      "brand": "NEWTECH",
+      "name": "Dip & Leg Raise",
+      "model_number": "NT-F-DLR",
+      "source_name_zh": "雙槓臂屈伸&提腿腹肌訓練架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_station",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "自重雙槓／引體／抬腿架，以現有 dip_station 主分類；附加動作保留在名稱及功能資料。",
+      "note": "逐款原始名稱有不同組合；#10 圖片是無助力自重架，不能因來源中文寫助力而配入輔助機。#39/#122 不應憑組別推斷另有引體，副功能須逐款使用。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/d6a61d4a48b431afcb3b085f343cab553f65ff3eb527f6fa2227eaeb3dc7c159.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 240
+    },
+    {
+      "index": 40,
+      "id": "800a1414-acfc-471b-ae57-616ee610e6bf",
+      "source_external_id": "247-fitness:246",
+      "brand": "NEWTECH",
+      "name": "Discus Rack",
+      "model_number": "NT-F-DR",
+      "source_name_zh": "鈴片架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "weight_plate_storage",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓片／weight tree 收納；#127 是推舉凳附件掛片架，不是 bench_rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/0241ae0a1aa918da2cdc4b05a378507867d65bccd7a14f28ae002fde314dac68.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 246
+    },
+    {
+      "index": 41,
+      "id": "0f83b7d7-be68-49c7-ad8b-f6f118e6a16f",
+      "source_external_id": "247-fitness:1317",
+      "brand": "Panatta",
+      "name": "DISK RACK",
+      "model_number": "1FE252",
+      "source_name_zh": "槓鈴片架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "weight_plate_storage",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓片／weight tree 收納；#127 是推舉凳附件掛片架，不是 bench_rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/d949c97d1e66d9dab98eb8c685be1c0e3e33ffa2f31a8dd1ae3f66480f076d94.webp",
+      "evidence_urls": [],
+      "source_inventory_id": 1317
+    },
+    {
+      "index": 42,
+      "id": "ce46bc2d-81f4-4351-8b10-73e931bb6579",
+      "source_external_id": "247-fitness:1407",
+      "brand": "Panatta",
+      "name": "DORSY BAR",
+      "model_number": "1HP505",
+      "source_name_zh": "背肌訓練杆",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "t_bar_row_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "1HP505 Dorsy Bar 為站姿 T-bar 類划船。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/def37c63c4e7d81cf21974af88c557cb26b7fc5466035e3b46220ba46c285fee.webp",
+      "evidence_urls": [
+        "https://www.panattagymequipment.com.au/product/dorsy-bar-1hp505/"
+      ],
+      "source_inventory_id": 1407
+    },
+    {
+      "index": 43,
+      "id": "2e4c13ff-2d15-4545-80d4-65260de8ad7f",
+      "source_external_id": "247-fitness:1447",
+      "brand": "SportsArt",
+      "name": "Double-layer professional dumbbell rack",
+      "model_number": "A901",
+      "source_name_zh": "啞鈴架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dumbbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "明確為啞鈴收納架，不能配入供深蹲用的 rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/a7aa2628fa946339355f8862d8edff6a981ed2dcbebe82a023f7ef597e7cb1eb.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1447
+    },
+    {
+      "index": 44,
+      "id": "479cc748-3418-441e-be11-d2594e292ca7",
+      "source_external_id": "247-fitness:711",
+      "brand": "Panatta",
+      "name": "DUAL ABDOMINAL | LOWER BACK",
+      "model_number": "1SCD060",
+      "source_name_zh": "雙向 腹肌 | 下背部",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "ab_crunch_machine",
+      "target_exists": true,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [
+        "back_extension_machine"
+      ],
+      "confidence": "高",
+      "reason": "腹部屈曲／下背伸展組合，以腹肌機作主類型並保留下背副功能。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/798b1990c97f16b2c86aacad361a65c5da7e9aeaade9dc28454124e0ee78ca30.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 711
+    },
+    {
+      "index": 45,
+      "id": "7f01ff8c-78a0-48ba-9776-4379f05d1d6c",
+      "source_external_id": "247-fitness:709",
+      "brand": "Panatta",
+      "name": "DUAL CURLING | TRICEPS MACHINE",
+      "model_number": "1SCD050",
+      "source_name_zh": "雙向彎舉 | 三頭肌",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "bicep_curl_machine",
+      "target_exists": true,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [
+        "tricep_extension_machine"
+      ],
+      "confidence": "高",
+      "reason": "二頭／三頭雙功能，二頭彎舉為主分類，三頭伸展列副功能。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/e990da92610e5d49b8f023f2f34a1af876b22b6a58b0a2c283b7e5e4f7ea284a.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 709
+    },
+    {
+      "index": 46,
+      "id": "c3d1f8d2-6c23-4f89-9434-3afc47259020",
+      "source_external_id": "247-fitness:712",
+      "brand": "Panatta",
+      "name": "DUAL LEG EXTENSION | SEATED  LEG CURLING",
+      "model_number": "1SCD080",
+      "source_name_zh": "雙向腿伸展 | 坐姿腿彎舉",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_extension_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "seated_leg_curl_machine"
+      ],
+      "confidence": "中",
+      "reason": "伸腿／屈腿組合，主分類用伸腿機，保留屈腿功能；不用 Other。",
+      "note": "主分類已明確；DF-200 及沒有坐姿字樣的型號，屈腿姿勢仍應核對後才存副類型。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/f22357dc6671105b74764f92d353d1e66e475a5625b30bff37a4cc4c4dd5bc97.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 712
+    },
+    {
+      "index": 47,
+      "id": "9a1f0e03-8688-4308-8305-46a0b2e4ea82",
+      "source_external_id": "247-fitness:1040",
+      "brand": "FORWARD",
+      "name": "DUMBBELL RACK",
+      "model_number": "FWF-013-1",
+      "source_name_zh": "啞鈴架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dumbbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "明確為啞鈴收納架，不能配入供深蹲用的 rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/a6fe926fe20047b243490f2c4c2088ab5c9a05c47b9f7d1fcc9e001f628bceea.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1040
+    },
+    {
+      "index": 48,
+      "id": "3edb5151-2d4d-4842-b5c9-2ce31f762b93",
+      "source_external_id": "247-fitness:1441",
+      "brand": "SportsArt",
+      "name": "EF202 Abductor/Adductor",
+      "model_number": "DF202",
+      "source_name_zh": "坐姿外展/內收訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/c60b9c6aa554a5d01f969848f7a08c96aa8bccb1c62ec13e0e4ef2a71c054ad7.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1441
+    },
+    {
+      "index": 49,
+      "id": "26924289-8e5d-4fd8-94d6-1ccfd079cf3f",
+      "source_external_id": "247-fitness:1175",
+      "brand": "Technogym",
+      "name": "EXCITE+ RECLINE",
+      "model_number": "DFDE",
+      "source_name_zh": "EXCITE+ 靠背單車",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "exercise_bike",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "EXCITE+ RECLINE 為靠背／臥式健身單車。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b.jpg",
+      "evidence_urls": [
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 1175
+    },
+    {
+      "index": 50,
+      "id": "5c358e12-b1de-41e4-bdb2-84fe1cab6ca3",
+      "source_external_id": "247-fitness:1173",
+      "brand": "Technogym",
+      "name": "EXCITE+ SYNCHRO",
+      "model_number": "DF5E",
+      "source_name_zh": "EXCITE+ 橢圓機",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "elliptical_machine",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "來源中文明確寫橢圓機；Synchro/Vario 為系列／變步幅名稱。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487.webp",
+      "evidence_urls": [
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 1173
+    },
+    {
+      "index": 51,
+      "id": "6c6c7b9c-8b50-4868-af9a-85442676083a",
+      "source_external_id": "247-fitness:1327",
+      "brand": "Technogym",
+      "name": "Excite+ Vario",
+      "model_number": "DFFG",
+      "source_name_zh": "多姿態橢圓機(Excite+ Vario)",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "elliptical_machine",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "來源中文明確寫橢圓機；Synchro/Vario 為系列／變步幅名稱。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5.jpg",
+      "evidence_urls": [
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 1327
+    },
+    {
+      "index": 52,
+      "id": "26d9ac87-10ce-4690-af78-cd23f47f7c1c",
+      "source_external_id": "247-fitness:81",
+      "brand": "Hammer Strength",
+      "name": "Fixed Barbell Rack",
+      "model_number": "FWBAR",
+      "source_name_zh": "槓鈴架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "barbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "放置固定／活動槓鈴的收納架，不是 squat rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/f6c18c4d6ea5fdf5b85200d66cc4b8613685faef8da2ab832f99ccd9e0f7ddb4.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 81
+    },
+    {
+      "index": 53,
+      "id": "664003fc-4cf6-4c1d-ab22-3b7ef00ea7f0",
+      "source_external_id": "247-fitness:247",
+      "brand": "NEWTECH",
+      "name": "Fixed Barbell Rack",
+      "model_number": "NT-F-FBR",
+      "source_name_zh": "槓鈴架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "barbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "放置固定／活動槓鈴的收納架，不是 squat rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/d40e57bf04c876ff1ccd9ea6e01d6b926421b4158928aa8499d93d1125ea1bbe.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 247
+    },
+    {
+      "index": 54,
+      "id": "33d838c2-a473-47c7-a77a-5ef2ebbb5b03",
+      "source_external_id": "247-fitness:827",
+      "brand": "Panatta",
+      "name": "FRONT DORSY BAR",
+      "model_number": "1FW105",
+      "source_name_zh": "前置背肌下拉訓練器",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "t_bar_row_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "Front Dorsy Bar 以站姿槓桿划船為主，可兼做硬拉，並非中文名稱所暗示的高位下拉。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/cd94ceb25f920ba4a7af0d12ed46e117136c99f4db8cb976bc020f3c8805f228.png",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/free-weight-special/front-dorsy-bar/"
+      ],
+      "source_inventory_id": 827
+    },
+    {
+      "index": 55,
+      "id": "7993ac15-3651-4ba4-9e5f-a9d8789b43af",
+      "source_external_id": "247-fitness:70",
+      "brand": "Hammer Strength",
+      "name": "Glute Ham / Reverse Hyper Combo",
+      "model_number": "PL-GHRH",
+      "source_name_zh": "山羊挺身和俯身後伸腿訓練器",
+      "source_categories": [
+        "Glute",
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "glute_ham_developer",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "reverse_hyper"
+      ],
+      "confidence": "高",
+      "reason": "GHD／Reverse Hyper 組合，以 GHD 為主分類並保留反向挺身功能。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/fba1df98b60fd3f00dd5c15be70e0c8b088e2b0ae0b2638e4bde5fc6d89eab20.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 70
+    },
+    {
+      "index": 56,
+      "id": "c57271ad-85d0-4272-b084-f7a073a2c818",
+      "source_external_id": "247-fitness:46",
+      "brand": "Hammer Strength",
+      "name": "Grip Strength Trainer",
+      "model_number": "PLGRIP",
+      "source_name_zh": "握手力量訓練器",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "grip_strength_machine",
+      "target_exists": false,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "PLGRIP 是握力訓練設備，不適合套入二頭／三頭器材。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/0093bb031f6f762c19ac88443a6f2631e5300a8a7b6118ed1977c3b2014badb9.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 46
+    },
+    {
+      "index": 57,
+      "id": "ad5190bf-7dd2-418a-9e35-9823f86df1ac",
+      "source_external_id": "247-fitness:72",
+      "brand": "Hammer Strength",
+      "name": "Ground Base Combo Incline",
+      "model_number": "GBCI",
+      "source_name_zh": "站地式上推拉組合訓練器",
+      "source_categories": [
+        "Chest",
+        "Back",
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "ground_base_combo_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "Ground Base Combo Incline/Twist 是站地式旋轉推拉設計，不應因 Incline 字樣就當坐姿上斜推胸。",
+      "note": "此新類型需明確定義為站地式旋轉推拉；不是一般所有 Ground Base 機器的統稱。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/2b86f86c4cd8a285b414443e78a228d42d869a04b60432c9a57ad82582ac1340.jpg",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/ground-base-combo-incline"
+      ],
+      "source_inventory_id": 72
+    },
+    {
+      "index": 58,
+      "id": "9ab096a0-f03d-4e20-9415-af9d10c5344a",
+      "source_external_id": "247-fitness:73",
+      "brand": "Hammer Strength",
+      "name": "Ground Base Combo Twist",
+      "model_number": "GBCT",
+      "source_name_zh": "站地式扭轉組合訓練器",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "ground_base_combo_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "Ground Base Combo Incline/Twist 是站地式旋轉推拉設計，不應因 Incline 字樣就當坐姿上斜推胸。",
+      "note": "此新類型需明確定義為站地式旋轉推拉；不是一般所有 Ground Base 機器的統稱。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/435e6da5f85a9efaec68b74c86654214e2c9b620a8c58923aa2fb73509dca66a.jpg",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/ground-base-combo-incline"
+      ],
+      "source_inventory_id": 73
+    },
+    {
+      "index": 59,
+      "id": "82389a89-99e6-42d1-8a9d-641d5ad009bf",
+      "source_external_id": "247-fitness:74",
+      "brand": "Hammer Strength",
+      "name": "Ground Base Jammer",
+      "model_number": "GBJ",
+      "source_name_zh": "站地式推舉訓練器",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "multi_press_machine",
+      "target_exists": true,
+      "recommended_category": "shoulder",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "Jammer 以站姿多方向推舉為主，可用廣義 multi_press_machine。",
+      "note": "保留 standing／jammer 變式；若 multi_press_machine 只定義為可調凳坐姿多角度機，應新增 jammer_machine。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/915cc63a37847eb43f1cd41ad7c139f480e47f607c3cdbe2e11549e16a105f19.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 74
+    },
+    {
+      "index": 60,
+      "id": "b1f38551-b653-40bc-9872-72c0834bc85c",
+      "source_external_id": "247-fitness:1301",
+      "brand": "Hammer Strength",
+      "name": "Ground Base Multi Squat",
+      "model_number": "GB-MSQ",
+      "source_name_zh": "掛片式站地式多重深蹲訓練機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "squat_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓桿式下蹲／弓步設備，主動作屬 squat；弓步、聳肩等變化不應令整機 Other。",
+      "note": "Panatta #155 按自身原始名稱、圖片及 Panatta Squat Lunge 產品資料判斷，並非套用 Hammer Strength 型號。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/be9e2f20b7dfcfa61f302bf5c28fd27f01dba2115220b069a05f5d5c41f62277.png",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/ground-base-multi-squat"
+      ],
+      "source_inventory_id": 1301
+    },
+    {
+      "index": 61,
+      "id": "76d19884-40fb-4f84-a811-a0e7927d1f6a",
+      "source_external_id": "247-fitness:75",
+      "brand": "Hammer Strength",
+      "name": "Ground Base Squat Lunge",
+      "model_number": "GBSL",
+      "source_name_zh": "站地式跨步下蹲訓練器",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "squat_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓桿式下蹲／弓步設備，主動作屬 squat；弓步、聳肩等變化不應令整機 Other。",
+      "note": "Panatta #155 按自身原始名稱、圖片及 Panatta Squat Lunge 產品資料判斷，並非套用 Hammer Strength 型號。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/8fb3d147ddcdc0e0c409cc11bfc42026e5936e9ea8bedf3f72a72f5a3a1f1fa9.jpg",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/ground-base-multi-squat"
+      ],
+      "source_inventory_id": 75
+    },
+    {
+      "index": 62,
+      "id": "c1cd7023-2a12-443e-86e5-2f2871243644",
+      "source_external_id": "247-fitness:248",
+      "brand": "NEWTECH",
+      "name": "Handle Rack Pro",
+      "model_number": "NT-F-HDR-P",
+      "source_name_zh": "塔式把手置物架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "accessory_storage_rack",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "把手／通用附件收納架，不是假設存在 pulley 的訓練站。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/8e4df3cdb2d1fce2f489fdc49cc847c7da2fc404d00d277f6b14dfae8db38963.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 248
+    },
+    {
+      "index": 63,
+      "id": "4cab8914-71e7-4e52-9697-0f912bbb39c3",
+      "source_external_id": "247-fitness:158",
+      "brand": "Hammer Strength",
+      "name": "HD ATHLETIC",
+      "model_number": "HDW-HR-STRD",
+      "source_name_zh": "NX系列前開放式深蹲架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "rack",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "來源中文為前開放式深蹲架，圖片是 half rack；HD ATHLETIC 是系列名。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/d348560b03b1639a22b0c88fe12cef5ed58a0a8a8e0082d6fd31153104899166.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 158
+    },
+    {
+      "index": 64,
+      "id": "dabcd578-520f-4eb2-8f83-8e692182c124",
+      "source_external_id": "247-fitness:24",
+      "brand": "Hammer Strength",
+      "name": "HD Tread",
+      "model_number": "PT-ST-01",
+      "source_name_zh": "自驅動板條式曲面跑步機",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "treadmill",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "HD Tread、HIITMill X、Skillmill 均為自驅動跑步帶設備，以 treadmill 歸類並保留自驅／阻力推行變式。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/9e2e295f3bc5bd3acbeeaed4ef3e8d92a36eaf61d56f2f664265a83698800820.jpg",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-us/treadmills",
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 24
+    },
+    {
+      "index": 65,
+      "id": "61bbb97c-11fd-4332-aa6a-c8d7ae84c208",
+      "source_external_id": "247-fitness:1164",
+      "brand": "THROWDOWN",
+      "name": "Hiitmill X",
+      "model_number": "9-4880",
+      "source_name_zh": "Hiitmill X",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "treadmill",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "HD Tread、HIITMill X、Skillmill 均為自驅動跑步帶設備，以 treadmill 歸類並保留自驅／阻力推行變式。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/87a9eb3ef7a19be0a5ff7f604e54e8d2a169dc3310958a7365819ab5b765c922.webp",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-us/treadmills",
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 1164
+    },
+    {
+      "index": 66,
+      "id": "c9c8063b-7303-4442-bfbd-a4bc20fed5a6",
+      "source_external_id": "247-fitness:1491",
+      "brand": "StairMaster",
+      "name": "HIITMill X",
+      "model_number": "9-4880-KINTP0",
+      "source_name_zh": "HIITMill X無動力跑步機",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "treadmill",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "HD Tread、HIITMill X、Skillmill 均為自驅動跑步帶設備，以 treadmill 歸類並保留自驅／阻力推行變式。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/87a9eb3ef7a19be0a5ff7f604e54e8d2a169dc3310958a7365819ab5b765c922.webp",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-us/treadmills",
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 1491
+    },
+    {
+      "index": 67,
+      "id": "b275f341-44e5-4446-ac1b-952ff305a162",
+      "source_external_id": "247-fitness:131",
+      "brand": "Life Fitness",
+      "name": "Hip Abduction/Adduction",
+      "model_number": "SS-HAA（LP）Full",
+      "source_name_zh": "大腿內外側肌訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/9cd789ac43280b086bf434ec6f6b1a62c910d94e86b6b897364e6b217f86721d.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 131
+    },
+    {
+      "index": 68,
+      "id": "41d60a60-3535-4a2e-9dec-c52663229ad6",
+      "source_external_id": "247-fitness:184",
+      "brand": "NEWTECH",
+      "name": "Hip Add/Abd Combo",
+      "model_number": "NT-OH-ADDABD",
+      "source_name_zh": "大腿內外側訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/6d4694b99af100803961143789cf325ceb6c08b2409ee22f5d929b8c866bf45b.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 184
+    },
+    {
+      "index": 69,
+      "id": "a7106b3f-3e0e-4d15-8afb-2a53527b3ed1",
+      "source_external_id": "247-fitness:15",
+      "brand": "Hammer Strength",
+      "name": "Hip and Glute",
+      "model_number": "HS-HG",
+      "source_name_zh": "臀部轉體訓練器",
+      "source_categories": [
+        "Glute"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "multi_hip_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "HS-HG 有站立平台與可轉動單側髖部槓桿；屬多方向髖訓練機。",
+      "note": "具體可用旋轉角度以機身動作牌為準；若該實例僅提供伸髖，可細分 glute_extension_machine。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/9512c60a9dbb766850435be7623bd6758f7f416e196116181200b59d42ed6372.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 15
+    },
+    {
+      "index": 70,
+      "id": "f9a1a58a-2cfd-4027-b988-7b3db2bdca11",
+      "source_external_id": "247-fitness:1072",
+      "brand": "HOWBODY",
+      "name": "HOWBODY",
+      "model_number": "-",
+      "source_name_zh": "HOWBODY智能體測儀",
+      "source_categories": [
+        "Analyzer"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "body_composition_analyzer",
+      "target_exists": false,
+      "recommended_category": "other",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "來源中英名稱／Analyzer 類別已確認是體測儀；應有專用 type，而不是其他訓練器材。",
+      "note": "父 category 暫用 other 不代表 equipment_type_code 仍用 other_equipment；兩者必須區分。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/90f9216b5f71fefb760ae47411876fd78ad3b56a2d6a5c1e19354691b46a81d0.png",
+      "evidence_urls": [
+        "https://www.howbodytech.com/aboutus/"
+      ],
+      "source_inventory_id": 1072
+    },
+    {
+      "index": 71,
+      "id": "bac5a3eb-422b-4824-9c42-1dfaffa6d4ad",
+      "source_external_id": "247-fitness:1073",
+      "brand": "InBody",
+      "name": "InBody",
+      "model_number": "-",
+      "source_name_zh": "InBody智能體測儀",
+      "source_categories": [
+        "Analyzer"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "body_composition_analyzer",
+      "target_exists": false,
+      "recommended_category": "other",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "來源中英名稱／Analyzer 類別已確認是體測儀；應有專用 type，而不是其他訓練器材。",
+      "note": "父 category 暫用 other 不代表 equipment_type_code 仍用 other_equipment；兩者必須區分。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/7678ee1c29efeffec80efba29c0887a923c2a9a44ffa71c1dbbd61712730b263.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1073
+    },
+    {
+      "index": 72,
+      "id": "92a7893c-8d42-4a11-a0ba-188247f26038",
+      "source_external_id": "247-fitness:523",
+      "brand": "FREEMOTION",
+      "name": "Inner / Outer Thigh",
+      "model_number": "ES809",
+      "source_name_zh": "腿部內收/外展訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/f8a69cea9905a39cd27f23d329efb0caae0bc3e4a6a5c1fc631a57e8aedc531c.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 523
+    },
+    {
+      "index": 73,
+      "id": "d110fb9f-6730-4a50-8fc1-ac82cd20fee4",
+      "source_external_id": "247-fitness:1219",
+      "brand": "Arsenal",
+      "name": "Inner Outer Thigh",
+      "model_number": "M1-IOT",
+      "source_name_zh": "腿部內收外展機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/6515ac01018d7b5ef227cc772860a836ef95b9047f8ec86a56c8c75b1e1a3840.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1219
+    },
+    {
+      "index": 74,
+      "id": "71d5368e-4544-4793-8e51-64b83722a9ea",
+      "source_external_id": "247-fitness:1170",
+      "brand": "Nautilus",
+      "name": "INSTINCT® DUAL INNER/OUTER THIGH",
+      "model_number": "9NL-d1015",
+      "source_name_zh": "大腿內收/外展",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/095ec89de813271f7346e6c7c3a19cb11868eb698780045285aa2772ce330257.jpeg",
+      "evidence_urls": [],
+      "source_inventory_id": 1170
+    },
+    {
+      "index": 75,
+      "id": "291edeed-115b-436f-818c-98a0450301e0",
+      "source_external_id": "247-fitness:41",
+      "brand": "Hammer Strength",
+      "name": "Iso-Lateral Chest Back",
+      "model_number": "ILCB",
+      "source_name_zh": "分動式推胸及高拉背肌訓練器",
+      "source_categories": [
+        "Chest",
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "iso_lateral_chest_press_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "lat_pulldown_machine"
+      ],
+      "confidence": "高",
+      "reason": "ILCB 包含分動推胸及高拉背；主類型用分動推胸，背部下拉保留為副功能。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/fc45223fbb96f7295b355a5f13127e59b1657cbf98a9389e5f35b2951739cae3.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 41
+    },
+    {
+      "index": 76,
+      "id": "7615738e-8549-4826-8df6-e78dda9f2c48",
+      "source_external_id": "247-fitness:43",
+      "brand": "Hammer Strength",
+      "name": "Iso-Lateral Kneeling Leg Curl",
+      "model_number": "ILKLC",
+      "source_name_zh": "分動式直立式大腿肌訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "kneeling_leg_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "圖示及型號表明跪姿單腿屈膝，與站姿、坐姿、臥式不同。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/67cbad49e1e377622cee6ee05deb8d58353a43e69f7ab4274fe4a56dd7ef73d8.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 43
+    },
+    {
+      "index": 77,
+      "id": "6e39428b-042b-4159-b6b7-2cbfa0701029",
+      "source_external_id": "247-fitness:44",
+      "brand": "Hammer Strength",
+      "name": "Iso-Lateral Leg Curl",
+      "model_number": "ILLC",
+      "source_name_zh": "分動式腿後屈訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lying_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "按原始圖片／中文臥式標示核對為俯臥腿彎舉，不需因英文只有 Leg Curl 留 Other。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/6ba376f5e6fa3fb4b28d5ed33f6e6bcd7f23909a2170d8b5ea7c16c37e525942.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 44
+    },
+    {
+      "index": 78,
+      "id": "63c3efad-f4c1-4749-8089-fb0f1bc4c80f",
+      "source_external_id": "247-fitness:1180",
+      "brand": "StairMaster",
+      "name": "JACOB'S-LADDER 2",
+      "model_number": "JACOB'S-LADDER 2",
+      "source_name_zh": "JACOB'S-LADDER 2",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "climber",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "Jacobs Ladder 是梯式攀爬帶氧機；可用廣義 climber，保留 ladder 變式。",
+      "note": "若專案 climber 只容許樓梯 stepmill，應另設 ladder_climber，避免搜尋結果混淆。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/7f3311118e4aa28f1277db68352b63cbc3d319d9a73a378c49a22abd16ef4213.jpeg",
+      "evidence_urls": [],
+      "source_inventory_id": 1180
+    },
+    {
+      "index": 79,
+      "id": "15fb5d53-daa9-4d41-9e34-abc67cf4033f",
+      "source_external_id": "247-fitness:690",
+      "brand": "Panatta",
+      "name": "JUNGLE MACHINE",
+      "model_number": "1SC115",
+      "source_name_zh": "組合訓練 MACHINE",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/7179c7e8ccf7edb2a50bf01414e70a26e86ca86a117c9f5d3be2033b9243e5b4.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 690
+    },
+    {
+      "index": 80,
+      "id": "492cf802-2d4d-4a68-b8b5-47b0b6bb75d5",
+      "source_external_id": "247-fitness:1405",
+      "brand": "Panatta",
+      "name": "JUNGLE MACHINE HLP",
+      "model_number": "1FE120",
+      "source_name_zh": "多功能訓練架",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/bfa15b1160c16e274bfa31635fce4dae08fd499f7b4830cfede4141c0f621830.webp",
+      "evidence_urls": [],
+      "source_inventory_id": 1405
+    },
+    {
+      "index": 81,
+      "id": "f8ec8880-9195-4a3d-a1cf-2fa25888dce9",
+      "source_external_id": "247-fitness:1331",
+      "brand": "Technogym",
+      "name": "Kneeling Easy Chin Dip",
+      "model_number": null,
+      "source_name_zh": "跪姿輔助引體/雙槓訓練機",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1331
+    },
+    {
+      "index": 82,
+      "id": "66faeb9b-0aa7-4949-8a18-20c5f3283aab",
+      "source_external_id": "247-fitness:191",
+      "brand": "NEWTECH",
+      "name": "Kneeling Hip Raises、",
+      "model_number": "NT-OH-SHR",
+      "source_name_zh": "跪姿臀腿綜合訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "glute_extension_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "NT-OH-SHR 原廠定義為跪姿臀腿後踢／伸髖系統。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/43e4ad5f55f88286cdbb10c74e1f547f24484c785a5cdd0b0490ccaef9f809a9.jpg",
+      "evidence_urls": [
+        "https://newtechworldwide.com/products/onhim-kneeling-hip-raise"
+      ],
+      "source_inventory_id": 191
+    },
+    {
+      "index": 83,
+      "id": "eea295bc-e0a3-4eae-b2f6-8bcefbcb0b02",
+      "source_external_id": "247-fitness:856",
+      "brand": "Panatta",
+      "name": "KNEELING LEG CURLING",
+      "model_number": "1FW094",
+      "source_name_zh": "跪姿腿彎舉訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "kneeling_leg_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "圖示及型號表明跪姿單腿屈膝，與站姿、坐姿、臥式不同。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/c4ddafc771f588e1061183d0975fd8e42b779541f573dcb6edd2a527f1ccf052.png",
+      "evidence_urls": [],
+      "source_inventory_id": 856
+    },
+    {
+      "index": 84,
+      "id": "d2e0e515-3751-4895-8279-42f3a719b347",
+      "source_external_id": "247-fitness:1417",
+      "brand": "SportsArt",
+      "name": "Lat Pull Down/ Mid Row/ Chest Press",
+      "model_number": "DF-203",
+      "source_name_zh": "Lat Pull Down/ Mid Row/ Chest Press",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lat_pulldown_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [
+        "seated_row_machine",
+        "chest_press_machine"
+      ],
+      "confidence": "高",
+      "reason": "DF-203 的下拉／划船／推胸三合一，以高位下拉作主索引，其餘保留副類型。",
+      "note": "來源 category_names 錯放 Cardio；不可照抄到新分類。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/8d18621b5a04afa090c7459a0c9cad00e39fffaf7a4e1627e1e9361b2e3f1810.jpeg",
+      "evidence_urls": [],
+      "source_inventory_id": 1417
+    },
+    {
+      "index": 85,
+      "id": "e6fd1b44-dda2-4fbf-ac15-672653c55ddc",
+      "source_external_id": "247-fitness:183",
+      "brand": "NEWTECH",
+      "name": "Leg Curl",
+      "model_number": "2 NT-OH-LC",
+      "source_name_zh": "腿部後彎曲訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lying_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "按原始圖片／中文臥式標示核對為俯臥腿彎舉，不需因英文只有 Leg Curl 留 Other。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/f2efbaef1d12e8556562a954a6b021b8d0d4b30be7ead3dc68fd4548c419e66a.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 183
+    },
+    {
+      "index": 86,
+      "id": "08c699e7-b63d-4fc1-a7c1-7658d806b2b2",
+      "source_external_id": "247-fitness:144",
+      "brand": "Life Fitness",
+      "name": "Leg Curl",
+      "model_number": " SS-LC(SP)Full",
+      "source_name_zh": "腿部彎曲訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lying_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "按原始圖片／中文臥式標示核對為俯臥腿彎舉，不需因英文只有 Leg Curl 留 Other。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/38ef7e9c631fdf8d7aedccba0643be8f787dc761b59c0302ff3337240f01f228.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 144
+    },
+    {
+      "index": 87,
+      "id": "5d08a72c-89db-440e-8b97-d372430a6088",
+      "source_external_id": "247-fitness:17",
+      "brand": "Hammer Strength",
+      "name": "Leg Curl",
+      "model_number": "HS-LC",
+      "source_name_zh": "腿部彎曲訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lying_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "按原始圖片／中文臥式標示核對為俯臥腿彎舉，不需因英文只有 Leg Curl 留 Other。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/b5a14e2586373d9fcb4a491d4de2d4d0d60bab1d7b3ceda2378fad9b52fdaefa.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 17
+    },
+    {
+      "index": 88,
+      "id": "c9937b04-fb1f-4a02-a286-10f6d598e2d0",
+      "source_external_id": "247-fitness:854",
+      "brand": "Panatta",
+      "name": "LEG CURLING",
+      "model_number": "1FW182",
+      "source_name_zh": "腿彎舉訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lying_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "按原始圖片／中文臥式標示核對為俯臥腿彎舉，不需因英文只有 Leg Curl 留 Other。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/434ffbf761c7739f4c304a42ac15c80918f58477c38c2f1791970dbc59d9e83c.png",
+      "evidence_urls": [
+        "https://www.panattagymequipment.com.au/product/lying-leg-curling-machine-1fw182/"
+      ],
+      "source_inventory_id": 854
+    },
+    {
+      "index": 89,
+      "id": "2b25af17-267e-460b-90a3-251a5091d91d",
+      "source_external_id": "247-fitness:1422",
+      "brand": "SportsArt",
+      "name": "Leg Extention/ Leg Curl",
+      "model_number": "DF-200",
+      "source_name_zh": "腿弯舉機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_extension_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "seated_leg_curl_machine"
+      ],
+      "confidence": "中",
+      "reason": "伸腿／屈腿組合，主分類用伸腿機，保留屈腿功能；不用 Other。",
+      "note": "主分類已明確；DF-200 及沒有坐姿字樣的型號，屈腿姿勢仍應核對後才存副類型。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/71e8eded1f80465a0383b373e1612c79203619c6cf0d60b612196cca6e5edd7b.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1422
+    },
+    {
+      "index": 90,
+      "id": "fa503058-9807-415d-a9ca-4d932dd6d42a",
+      "source_external_id": "247-fitness:586",
+      "brand": "Technogym",
+      "name": "LEGCURL",
+      "model_number": "MNIC",
+      "source_name_zh": "坐式大腿屈伸練習器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "中文／圖片明確為坐姿腿彎舉；LEGCURL、IPLC 英文簡稱不足以否定此資訊。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/1bd08b8d257b212e4b7bb8658183722b3c6d19b72340c28818d64915b5b36efd.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 586
+    },
+    {
+      "index": 91,
+      "id": "aa43053e-9e99-4934-a55c-dac4cff901cc",
+      "source_external_id": "247-fitness:1517",
+      "brand": "Life Fitness",
+      "name": "LF PWR PLAY ASSIST DIP CHIN",
+      "model_number": "LPP-DC",
+      "source_name_zh": "Life Fitness PWR Play引體向上／雙槓助力訓練站",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/050a01326c5fa3893a311b9e43f8b776c5b9397221eb31f8772be971b839bd4f.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1517
+    },
+    {
+      "index": 92,
+      "id": "bc674a0f-e4d8-4eb7-92b9-eeac17aa77b2",
+      "source_external_id": "247-fitness:1518",
+      "brand": "Life Fitness",
+      "name": "LF PWR PLAY CABLE STATION HANDLE STORAGE",
+      "model_number": "LPP-HR",
+      "source_name_zh": "Life Fitness PWR Play手柄／附件儲存架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "accessory_storage_rack",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "把手／通用附件收納架，不是假設存在 pulley 的訓練站。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/1783e03d5bcd1c9f196e4dd85c44ab5fddaa9f1bba5c0ad0937be36c87a44e09.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1518
+    },
+    {
+      "index": 93,
+      "id": "29268d78-85d2-4dd7-aff6-25acba6faa63",
+      "source_external_id": "247-fitness:1510",
+      "brand": "Life Fitness",
+      "name": "LF PWR PLAY CORE",
+      "model_number": "LPP-CORE",
+      "source_name_zh": "Life Fitness PWR Play核心框架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "modular_station_frame",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "LPP-CORE 圖片是裸核心框架；不能當腹肌機，亦不能只憑 PWR PLAY 系列推定有完整滑輪站。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/c345f0dc230fe6e833745fa26a14a2c42f31e331882b8c8614c3a8849292e282.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1510
+    },
+    {
+      "index": 94,
+      "id": "bd80aa93-817a-46dc-8de7-52610b5e6670",
+      "source_external_id": "247-fitness:1381",
+      "brand": "Life Fitness",
+      "name": "Life Fitness Signature Series Barbell Rack",
+      "model_number": "SBR",
+      "source_name_zh": "Signature系列槓鈴架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "barbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "放置固定／活動槓鈴的收納架，不是 squat rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/fbe62cf7161922ad4aebf31e1290ae1f00a1b85c55f90abcf099b46fd1e29498.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1381
+    },
+    {
+      "index": 95,
+      "id": "506ed7dc-7448-47da-a059-ac5e017a6a7c",
+      "source_external_id": "247-fitness:1500",
+      "brand": "Life Fitness",
+      "name": "Life Fitness Signature Series MJ Core",
+      "model_number": "MJSCOR22510592",
+      "source_name_zh": "Life系列MJ核心框架",
+      "source_categories": [
+        "MultiFunction",
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "MJ Core 原始圖片顯示完整多站滑輪組，按當前目錄所示整機用 cable_machine。",
+      "note": "名稱／型號有 Core/frame 暗示；批量更新前應確認本記錄描述完整組合還是單售框架。若為裸框架，改 modular_station_frame。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1500
+    },
+    {
+      "index": 96,
+      "id": "aceb201a-8c55-40f1-89f1-81572ba7241d",
+      "source_external_id": "247-fitness:1396",
+      "brand": "Life Fitness",
+      "name": "Life Fitness Signature Series MJ Handle / Accessory Rack",
+      "model_number": "MJHAR",
+      "source_name_zh": "Life系列手柄／附件架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "accessory_storage_rack",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "把手／通用附件收納架，不是假設存在 pulley 的訓練站。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1396
+    },
+    {
+      "index": 97,
+      "id": "fa3a990a-43a4-44f0-92e2-b6f62c560988",
+      "source_external_id": "247-fitness:1395",
+      "brand": "Life Fitness",
+      "name": "Life Fitness Signature Series MJ Station-Assist Dip Chin",
+      "model_number": "MJADC",
+      "source_name_zh": "Life系列引體向上助力機",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1395
+    },
+    {
+      "index": 98,
+      "id": "8e930211-8124-4d26-93ce-490d85f0c2e9",
+      "source_external_id": "247-fitness:1505",
+      "brand": "Life Fitness",
+      "name": "Life Fitness Signature Series MJ Station-Dual Pulley...",
+      "model_number": "MJLPD",
+      "source_name_zh": "Life系列雙滑輪高位下拉機",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lat_pulldown_cable",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "MJLPD 原廠手冊及來源中文均指 Dual Pulley Pulldown，英文截斷仍可按型號準確分類。",
+      "note": "來源圖片是通用 MJ 整組，不能用該共用圖片推翻明確型號。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "evidence_urls": [
+        "https://www.lifefitness.com.au/wp-content/uploads/2015/02/Cable_Motion_Manual_11_08a_1_56.pdf"
+      ],
+      "source_inventory_id": 1505
+    },
+    {
+      "index": 99,
+      "id": "07ca93be-2b84-4e27-bb93-c1ee793cd8ce",
+      "source_external_id": "247-fitness:65",
+      "brand": "Hammer Strength",
+      "name": "Linear Hack Press",
+      "model_number": "PLLHS",
+      "source_name_zh": "哈克深蹲機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hack_squat",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "原始圖片有肩墊、滑軌及足踏板，中文也明確哈克深蹲；Hack Press 在此不是坐姿 leg press。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/e84e731c4158814242f02dcca51858b2dd823ea56a0a907d3fee1ea5675845ee.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 65
+    },
+    {
+      "index": 100,
+      "id": "f7a9c2f8-a5d0-4796-94a8-3519262c87a7",
+      "source_external_id": "247-fitness:239",
+      "brand": "NEWTECH",
+      "name": "Moving Leg Raise",
+      "model_number": "1 NT-F-MLR",
+      "source_name_zh": "活動式提腿腹肌訓練架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_raise_station",
+      "target_exists": false,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "獨立抬腿架；沒有明確證據表示兼具雙槓，應設抬腿站類型。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/b97eda31ab4fa0b562d3ae76a6bd9047aea5688689f4d8fa265e9259562c57d2.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 239
+    },
+    {
+      "index": 101,
+      "id": "1777a433-10b9-43db-9983-68b4a25eb6da",
+      "source_external_id": "247-fitness:96",
+      "brand": "Hammer Strength",
+      "name": "MTS Kneeling Leg Curl",
+      "model_number": "MTSKC",
+      "source_name_zh": "分動插片配重式直立式大腿肌訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "kneeling_leg_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "圖示及型號表明跪姿單腿屈膝，與站姿、坐姿、臥式不同。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/6e26663a9da630ebd702bf16d30299fc13215039a28b12aa96c57b2cf5a409f6.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 96
+    },
+    {
+      "index": 102,
+      "id": "c3631ebf-bd34-41c1-a92a-bcbf6caac4fe",
+      "source_external_id": "247-fitness:249",
+      "brand": "NEWTECH",
+      "name": "Multi Gym Pro (8Station)",
+      "model_number": "NT-C-MP8ST",
+      "source_name_zh": "8人站綜合訓練器",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/b28e8420ba9d8d28eba9afad1067fbbf85bcc2caa5970fee6e215e8cbe25b6f8.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 249
+    },
+    {
+      "index": 103,
+      "id": "ee481f42-e605-4008-8e6c-e889af20fae0",
+      "source_external_id": "247-fitness:780",
+      "brand": "GLUTE BUILDER",
+      "name": "Multi-Function Deadlift Trainer",
+      "model_number": "GPL0551",
+      "source_name_zh": "多功能硬拉訓練器",
+      "source_categories": [
+        "Glute"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "deadlift_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "GPL0551／MG87 為有槓桿負重的硬拉機，不是 deadlift_platform 或普通槓鈴。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/699378d1cfe278f654941edac1138052e8b1026cf1c7206decd7829d83d7360e.png",
+      "evidence_urls": [],
+      "source_inventory_id": 780
+    },
+    {
+      "index": 104,
+      "id": "618ce86a-77fb-4d25-b2bb-7f85173fea11",
+      "source_external_id": "247-fitness:442",
+      "brand": "Life Fitness",
+      "name": "MULTI-JUNGLE MJ8",
+      "model_number": null,
+      "source_name_zh": "力健八站位",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/2287742647628ba1cc24a59412a235bc89849dda9f45e5678129f25377a06786.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 442
+    },
+    {
+      "index": 105,
+      "id": "0ee9a1f4-a893-4e9d-94d7-26dce11fc343",
+      "source_external_id": "247-fitness:1294",
+      "brand": "Arsenal",
+      "name": "Multiflex",
+      "model_number": "AR-MTFX",
+      "source_name_zh": "多功能訓練器",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "multi_function_strength_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "MultiFlex 用多方向槓桿支援全身訓練，不是滑輪機，也不只用作腿部訓練。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/47fa17e397f398289158abdc1302a90e5c23b8d2c71c891efa318c4b29a0a5ce.png",
+      "evidence_urls": [
+        "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-multi-flex/"
+      ],
+      "source_inventory_id": 1294
+    },
+    {
+      "index": 106,
+      "id": "6b8f0492-0062-4dcc-ba1a-df2cb3fff070",
+      "source_external_id": "247-fitness:1102",
+      "brand": "KAYAKPRO",
+      "name": "Multistroke Ergometer 龍舟",
+      "model_number": "D1X",
+      "source_name_zh": "Multistroke Ergometer 龍舟",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "paddle_ergometer",
+      "target_exists": false,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "D1X 原始圖示是龍舟／划槳測功設備，不等同傳統雙手划船機 rower。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/e8fc4566ecab5d05d6a86f9e38d92184ac5e91ac395b0759a1e87f34993d61b1.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1102
+    },
+    {
+      "index": 107,
+      "id": "8d6a75e1-3166-4b07-aed1-b026af9fc4d1",
+      "source_external_id": "247-fitness:1184",
+      "brand": "Life Fitness",
+      "name": "Mutil Junction-16 Stack",
+      "model_number": "Adj-16",
+      "source_name_zh": "16站龍門架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/92d7250ced1db0ee5b7ed2d023cedfae319a2fdcd803aaa123733c9c72af265f.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1184
+    },
+    {
+      "index": 108,
+      "id": "b1224db2-c4f6-4eb6-8707-f72bfce39885",
+      "source_external_id": "247-fitness:1032",
+      "brand": "Nautilus",
+      "name": "Nautilus 14 Station",
+      "model_number": "9NP-M9620",
+      "source_name_zh": "美國諾德士14站訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/0ebe123153bcbca2e2bf303d16b7751ba4907d3c33e29a521dcfa1b6eaf5ac46.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1032
+    },
+    {
+      "index": 109,
+      "id": "8bd0abb8-2318-4b46-9bc4-2ced28601d9c",
+      "source_external_id": "247-fitness:1131",
+      "brand": "Nautilus",
+      "name": "Nautilus 2 Sided Olympic Weight Tree",
+      "model_number": "9NP-R7512",
+      "source_name_zh": "美國諾德士槓鈴片架 2面",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "weight_plate_storage",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓片／weight tree 收納；#127 是推舉凳附件掛片架，不是 bench_rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/05d4638e6fa97f9486a0efed4d6a64ce32892ecd3374bb017bf750e91c4ad939.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1131
+    },
+    {
+      "index": 110,
+      "id": "64f67a8e-18f1-4389-b7e9-a58ce179f98e",
+      "source_external_id": "247-fitness:1029",
+      "brand": "Nautilus",
+      "name": "Nautilus 4 Station",
+      "model_number": "9NP-M9601",
+      "source_name_zh": "美國諾德士4站訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/6cc2817dc389d72e652eef2c6e71ac66fcf98c41c55bc04b9cb22eb5a205d211.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1029
+    },
+    {
+      "index": 111,
+      "id": "76e73932-e7b9-4652-951f-600fd68409ec",
+      "source_external_id": "247-fitness:1030",
+      "brand": "Nautilus",
+      "name": "Nautilus 5 Station with Adj Pulley",
+      "model_number": "9NP-M9605",
+      "source_name_zh": "美國諾德士5站訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多站龍門／Jungle 以配重滑輪站為主；站數和多功能不是留在 Other 的理由。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/d3655656b2b1bba1ecaa99e8d52f61b7bdaa04dc0cddb76094558bd22977a1b8.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1030
+    },
+    {
+      "index": 112,
+      "id": "7c80d804-2065-4d7b-99d9-90de4134f9a0",
+      "source_external_id": "247-fitness:1136",
+      "brand": "Nautilus",
+      "name": "Nautilus Barbell Rack",
+      "model_number": "9NP-R8012",
+      "source_name_zh": "美國諾德士槓鈴桿架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "barbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "放置固定／活動槓鈴的收納架，不是 squat rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/702b818a598ae3c864f91616fa5352f8f67cf49f70335be57b5dedebc3d296a5.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1136
+    },
+    {
+      "index": 113,
+      "id": "f36e37e6-0709-4ec0-bad7-3addcb15e3f4",
+      "source_external_id": "247-fitness:1026",
+      "brand": "Nautilus",
+      "name": "Nautilus Freedom Rack",
+      "model_number": "9NP-L8507",
+      "source_name_zh": "美國諾德士三維史密斯機（含奧杆）",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "smith_machine",
+      "target_exists": true,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [
+        "pull_up_bar"
+      ],
+      "confidence": "高",
+      "reason": "L8507 Freedom Rack 有受引導槓鈴及雙方向滑軌，可用廣義 Smith 主分類。",
+      "note": "記錄為 3D／雙方向 Smith 變式，不是自由槓 squat rack。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/0f2358f5ad9578e130e33f2d24c731db58a226f9ac9aee336c002362ea33f071.png",
+      "evidence_urls": [
+        "https://www.corehandf.com/products/nautilus-plate-loaded-freedom-rack"
+      ],
+      "source_inventory_id": 1026
+    },
+    {
+      "index": 114,
+      "id": "7f0c6411-5d21-4d80-910d-0e7972d828c4",
+      "source_external_id": "247-fitness:1009",
+      "brand": "Nautilus",
+      "name": "Nautilus HumanSport Freedom Trainer",
+      "model_number": "9-HSFT",
+      "source_name_zh": "美國諾德士可調節雙滑輪綜合功能訓練器（Lock N Load撥片系統）",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "HumanSport Freedom Trainer／Pull Lift 皆為雙配重滑輪全身訓練系統，可用現有 cable_machine。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/e115e6f8536adc48640b05ff83c30873985c2480f7527c0b2e973496cc3f580d.png",
+      "evidence_urls": [
+        "https://www.corehandf.com/products/nautilus-humansport-freedom-trainer",
+        "https://www.corehandf.com/products/nautilus-humansport-pull-lift"
+      ],
+      "source_inventory_id": 1009
+    },
+    {
+      "index": 115,
+      "id": "6757bac6-7fdb-4314-8292-cc4b8dbea407",
+      "source_external_id": "247-fitness:1008",
+      "brand": "Nautilus",
+      "name": "Nautilus HumanSport Pull Lift",
+      "model_number": "9-HSPL",
+      "source_name_zh": "美國諾德士高拉提舉雙功能訓練器（Lock N Load撥片系統）",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "HumanSport Freedom Trainer／Pull Lift 皆為雙配重滑輪全身訓練系統，可用現有 cable_machine。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/2606bb568d47c9559a73d309e6371951c1d1ad5f9fe12df6969edc9d97e9ca42.png",
+      "evidence_urls": [
+        "https://www.corehandf.com/products/nautilus-humansport-freedom-trainer",
+        "https://www.corehandf.com/products/nautilus-humansport-pull-lift"
+      ],
+      "source_inventory_id": 1008
+    },
+    {
+      "index": 116,
+      "id": "28332dd8-8857-43a7-adfa-e2891d8c2ca7",
+      "source_external_id": "247-fitness:984",
+      "brand": "Nautilus",
+      "name": "Nautilus Impact Chin Dip Assist",
+      "model_number": "9NA-S6334",
+      "source_name_zh": "美國諾德士助力式引體向上訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "assisted_pull_up_dip_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "配重助力引體／雙槓設備，應設明確輔助訓練類型；不宜當一般 seated dip 或單槓架。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/308ffa195ca03702a065d2cd0241884aca15ac70afc93e64a82709776250f0a8.png",
+      "evidence_urls": [],
+      "source_inventory_id": 984
+    },
+    {
+      "index": 117,
+      "id": "05023ba0-ca86-452e-98d4-e0d0afc0f05d",
+      "source_external_id": "247-fitness:964",
+      "brand": "Nautilus",
+      "name": "Nautilus Impact Leg Curl",
+      "model_number": "9NA-S1301",
+      "source_name_zh": "美國諾德士卧式腿肌彎曲訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lying_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "按原始圖片／中文臥式標示核對為俯臥腿彎舉，不需因英文只有 Leg Curl 留 Other。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/71e69bf06ecae6bbbb66e27fadb94efae314a33e0f05cdf9bad5af05653598d6.png",
+      "evidence_urls": [],
+      "source_inventory_id": 964
+    },
+    {
+      "index": 118,
+      "id": "3b5580a0-6ffb-4b5e-b2bc-f717719ace89",
+      "source_external_id": "247-fitness:987",
+      "brand": "Nautilus",
+      "name": "Nautilus Inspiration Strength Abduction / Adduction",
+      "model_number": "9-IPAA",
+      "source_name_zh": "美國諾德士大腿內收 外展訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "內收／外展雙功能，以現有外展機作主分類，內收列為明確副功能。",
+      "note": "主類型屬索引選擇，不能因此刪除內收功能。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/e125a6a3c3f8acb90f5afb8b0ed27a54bc316d0970ec378c760b17d668608259.png",
+      "evidence_urls": [],
+      "source_inventory_id": 987
+    },
+    {
+      "index": 119,
+      "id": "ac4bf5e5-c1db-407a-bab5-866185f41164",
+      "source_external_id": "247-fitness:993",
+      "brand": "Nautilus",
+      "name": "Nautilus Inspiration Strength Leg Curl",
+      "model_number": "9-IPLC",
+      "source_name_zh": "美國諾德士坐式腿部彎曲訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_leg_curl_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "中文／圖片明確為坐姿腿彎舉；LEGCURL、IPLC 英文簡稱不足以否定此資訊。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/41140cee60e42ab36f80b4c652064a7d821f9ed4ba928ace542a41d5da6fc309.png",
+      "evidence_urls": [],
+      "source_inventory_id": 993
+    },
+    {
+      "index": 120,
+      "id": "095c2d34-a352-466c-a10a-43a52a06466f",
+      "source_external_id": "247-fitness:997",
+      "brand": "Nautilus",
+      "name": "Nautilus Inspiration Strength Pec Fly / Rear Deltoid",
+      "model_number": "9-IPPF",
+      "source_name_zh": "美國諾德士蝴蝶後三角肌訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "Chest",
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/c00df1094aacd46082e5253411b274aafcea9078d88f534ee9bbd4659727e3c0.png",
+      "evidence_urls": [],
+      "source_inventory_id": 997
+    },
+    {
+      "index": 121,
+      "id": "43023a45-3546-4532-8eb0-2b3259fd693b",
+      "source_external_id": "247-fitness:1000",
+      "brand": "Nautilus",
+      "name": "Nautilus Inspiration Strength Tricep Press",
+      "model_number": "9-IPTD",
+      "source_name_zh": "美國諾德士三頭肌下壓訓練機（Lock N Load撥片系統）",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_machine",
+      "target_exists": true,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "原始產品圖是坐姿向下推壓臂屈伸，與 seated dip 機構相符；不是因 Triceps Press 就機械式套入 extension。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/33602285ee1e674451c73a38201ab9742de0ad8b19a37a8df236a2a25e2c0833.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1000
+    },
+    {
+      "index": 122,
+      "id": "a7f73b91-5c04-46a9-be86-2ceb22b913fc",
+      "source_external_id": "247-fitness:1125",
+      "brand": "Nautilus",
+      "name": "Nautilus Leg Raise / Dip",
+      "model_number": "9NP-B7517",
+      "source_name_zh": "美國諾德士曲膝收腹訓練架",
+      "source_categories": [
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_station",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "自重雙槓／引體／抬腿架，以現有 dip_station 主分類；附加動作保留在名稱及功能資料。",
+      "note": "逐款原始名稱有不同組合；#10 圖片是無助力自重架，不能因來源中文寫助力而配入輔助機。#39/#122 不應憑組別推斷另有引體，副功能須逐款使用。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/d64147b7f613121b1dc2652836fdf4e1a931f4c03d2857d4de15d583691d876b.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1125
+    },
+    {
+      "index": 123,
+      "id": "69213cbe-0340-4d46-ac60-4eea0425c836",
+      "source_external_id": "247-fitness:1020",
+      "brand": "Nautilus",
+      "name": "Nautilus Plate Loaded Tilt Seat Calf",
+      "model_number": "9NP-L1110",
+      "source_name_zh": "美國諾德士坐式提踵訓練機（鈴片需另配）",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_calf_raise_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "Tilt Seat Calf 圖片有座椅、膝墊及前掌踏板；屬坐姿提踵。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/4304c08c4481798d34100d51e70ec6cd3cd8763c586001ab7ad9f18c35129125.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1020
+    },
+    {
+      "index": 124,
+      "id": "f7780b66-026a-4099-a1a7-f843345e32ec",
+      "source_external_id": "247-fitness:1121",
+      "brand": "Nautilus",
+      "name": "Nautilus Pull-up / Dip / Leg Raise",
+      "model_number": "9NP-B7511",
+      "source_name_zh": "美國諾德士引體向上 曲膝收腹訓練架",
+      "source_categories": [
+        "Chest",
+        "Back",
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_station",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [
+        "pull_up_bar"
+      ],
+      "confidence": "高",
+      "reason": "自重雙槓／引體／抬腿架，以現有 dip_station 主分類；附加動作保留在名稱及功能資料。",
+      "note": "逐款原始名稱有不同組合；#10 圖片是無助力自重架，不能因來源中文寫助力而配入輔助機。#39/#122 不應憑組別推斷另有引體，副功能須逐款使用。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/84e1e76aba14a669148650332daf36adb5a9a87eeeecb33b66e663cdb193b716.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1121
+    },
+    {
+      "index": 125,
+      "id": "e3409d14-e075-4b3e-a44f-a65910d08928",
+      "source_external_id": "247-fitness:1135",
+      "brand": "Nautilus",
+      "name": "Nautilus Single Dumbbell Rack",
+      "model_number": "9NP-R8009",
+      "source_name_zh": "美國諾德士單層啞鈴架 可存放5對",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dumbbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "明確為啞鈴收納架，不能配入供深蹲用的 rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/aa2890e9640eb531b1f78bf816aa04d37a624300b7719ba7faa8b1290d4647c7.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1135
+    },
+    {
+      "index": 126,
+      "id": "2801f198-67b8-4c37-8c9d-25af8b96df39",
+      "source_external_id": "247-fitness:1139",
+      "brand": "Nautilus",
+      "name": "Nautilus Triple Dumbbell Rack",
+      "model_number": "9NP-R8023",
+      "source_name_zh": "美國諾德士三層啞鈴架 可收納15對",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dumbbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "明確為啞鈴收納架，不能配入供深蹲用的 rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/432a91bc70f184badd14c46a474029a1106b7f8cef3b93805ebf0fa2b2467257.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1139
+    },
+    {
+      "index": 127,
+      "id": "558be24b-5c7c-4b45-8c01-60c1eeaf84e9",
+      "source_external_id": "247-fitness:79",
+      "brand": "Hammer Strength",
+      "name": "Olympic Bench Weight Storage",
+      "model_number": "OBWS",
+      "source_name_zh": "奧林匹克推舉椅槓鈴片掛架",
+      "source_categories": [
+        "Chest"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "weight_plate_storage",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓片／weight tree 收納；#127 是推舉凳附件掛片架，不是 bench_rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/f701845d8b4bf795853aef763bc7c46fb7c742a46299d7f97fe0a30986e36b29.png",
+      "evidence_urls": [],
+      "source_inventory_id": 79
+    },
+    {
+      "index": 128,
+      "id": "789487c2-75cc-4e5b-ba8d-96476b94c42f",
+      "source_external_id": "247-fitness:1468",
+      "brand": "Life Fitness",
+      "name": "Olympic Weight Tree",
+      "model_number": "Olympic Weight Tree",
+      "source_name_zh": "奧林匹克配重樹架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "weight_plate_storage",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓片／weight tree 收納；#127 是推舉凳附件掛片架，不是 bench_rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/fe1fe598c70c9702aeedf62eee08e09815e184af9f74b8d94f59e8c624cf4cf9.webp",
+      "evidence_urls": [],
+      "source_inventory_id": 1468
+    },
+    {
+      "index": 129,
+      "id": "70a6c33c-c81c-4f0c-90ff-5fae671f5233",
+      "source_external_id": "247-fitness:1383",
+      "brand": "Life Fitness",
+      "name": "OP-DB3SS Optima 3 Tier Dumbbell Rack (10prs/rack)",
+      "model_number": "OP-DB3SS",
+      "source_name_zh": "Optima系列三层啞鈴架",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dumbbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "明確為啞鈴收納架，不能配入供深蹲用的 rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/09afd0f2700cc40c414f15bbdd040f1ea37215a5eaa1d89a03b69ad2bac755c2.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1383
+    },
+    {
+      "index": 130,
+      "id": "e6a74fc5-a316-416e-8236-cb6e289d5f45",
+      "source_external_id": "247-fitness:172",
+      "brand": "NEWTECH",
+      "name": "Pec Dec Fly with Reverse",
+      "model_number": "NT-OH-APFRD",
+      "source_name_zh": "蝴蝶式夾胸訓練器",
+      "source_categories": [
+        "Chest",
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/2fbe65c23421dbcd87d553a643f25ad362004bc87e999afe047392e82959d304.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 172
+    },
+    {
+      "index": 131,
+      "id": "ecd11cba-f146-46b6-9da7-6a79d35280a8",
+      "source_external_id": "247-fitness:417",
+      "brand": "Panatta",
+      "name": "Peck back",
+      "model_number": "1FE117",
+      "source_name_zh": "Peck back",
+      "source_categories": [
+        "Chest"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/3ef63afde7c4f3a9f00eefa7fabea352844ff5f53b180dc306ea8115f69a1200.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 417
+    },
+    {
+      "index": 132,
+      "id": "c82a6381-c0d9-4acc-9fda-d1c9f92327c4",
+      "source_external_id": "247-fitness:1416",
+      "brand": "SportsArt",
+      "name": "Pectoral Fly/ Rear Deltoid",
+      "model_number": "DF-204",
+      "source_name_zh": "夹胸機",
+      "source_categories": [
+        "Chest"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/5fab8365657b45f468b6a82a71dfc86b9b28e6184c38cbcec0505bfe6ac503cc.jpeg",
+      "evidence_urls": [],
+      "source_inventory_id": 1416
+    },
+    {
+      "index": 133,
+      "id": "a85e7c54-c93a-4bb5-a154-249fb03f1ea0",
+      "source_external_id": "247-fitness:108",
+      "brand": "Life Fitness",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "model_number": "SS-FLY（LP）Full",
+      "source_name_zh": "蝴蝶式胸肌及背肌訓練器",
+      "source_categories": [
+        "Chest",
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/7037c23d53d8f1b6cb4d4c97c83e3d882b3d79d3a33461767ce07db6119a46d0.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 108
+    },
+    {
+      "index": 134,
+      "id": "d49fd8d5-3ead-497a-978c-9bf7b32e08c0",
+      "source_external_id": "247-fitness:9",
+      "brand": "Hammer Strength",
+      "name": "Pectoral Fly/Rear Deltoid",
+      "model_number": "HS-FLY",
+      "source_name_zh": "蝴蝶式胸肌訓練器",
+      "source_categories": [
+        "Chest",
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/656cbfd7ac3b57c3ac3348c31f3fd5169d87574fb7ec0f220c7b890666192f18.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 9
+    },
+    {
+      "index": 135,
+      "id": "eca32084-0455-4a00-88fa-2ab469792cf8",
+      "source_external_id": "247-fitness:1356",
+      "brand": "ROGERS",
+      "name": "Pendulum Performance 3-Way Row",
+      "model_number": null,
+      "source_name_zh": "擺動式三向划船機",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_row_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多握位／站坐二合一仍屬槓桿划船，以 seated_row_machine 為主類型並保留站姿變式。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/60476b0cba55a2fa338ae3f462abd6dc1bb9f95194b5952bacbb46ffa7537c98.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1356
+    },
+    {
+      "index": 136,
+      "id": "331236a1-a47b-4015-9eba-bec970903b3b",
+      "source_external_id": "247-fitness:1312",
+      "brand": "Matrix Fitness",
+      "name": "Performance Ascent Trainer with LED Premium Console",
+      "model_number": "A-PS-PLED",
+      "source_name_zh": "登山機(高級LED屏)",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "elliptical_machine",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "Matrix Ascent 圖示為可調升幅橢圓踏步交叉訓練機；不是單純旋轉樓梯。",
+      "note": "如需要區分機械軌跡，可新增 adaptive_motion_trainer／ascent 子類；不需用 Other。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/99bb2b5aa38b0392c0fc68624ca9b6df4a4502ff5cc201b5702b4a8eb26f50bf.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1312
+    },
+    {
+      "index": 137,
+      "id": "45fcbc08-7e70-4ac9-961e-b6f6b80d767a",
+      "source_external_id": "247-fitness:1100",
+      "brand": "Hammer Strength",
+      "name": "PLATE LOADED ASSISTED NORDIC HAM",
+      "model_number": "PL-ANH",
+      "source_name_zh": "掛片式北歐挺",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "nordic_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "PL-ANH 為帶助力的北歐挺／屈膝訓練機，不是標準 GHD 或臥式腿彎舉。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/2c7dd0c2477eb222a56e9dcaf7529b103a5409213730798cab23fc503eabd732.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1100
+    },
+    {
+      "index": 138,
+      "id": "9b3c7116-7a44-4975-8209-6212d60f25fd",
+      "source_external_id": "247-fitness:1158",
+      "brand": "Hammer Strength",
+      "name": "PLATE LOADED SUPER SQUAT PRESS",
+      "model_number": "PL-SSP",
+      "source_name_zh": "超級分動式倒蹬",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_press_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "PL-SSP 腳踏板由使用者坐臥推開，是 squat press／倒蹬，不應只看 squat 字樣分成 squat_machine。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/30f8e8041e8e03e2f52450ad1447d70a777aaa3125c2393c27d1a30c1a4050e9.jpeg",
+      "evidence_urls": [
+        "https://shop.lifefitness.com/products/hammer-strength-plate-loaded-squat-press"
+      ],
+      "source_inventory_id": 1158
+    },
+    {
+      "index": 139,
+      "id": "1038d14b-ad76-49de-8d80-da7014f2973d",
+      "source_external_id": "247-fitness:802",
+      "brand": "Panatta",
+      "name": "POWER SMITH DUAL SYSTEM UPPER",
+      "model_number": "1FW122",
+      "source_name_zh": "雙系統上胸史密斯訓練器",
+      "source_categories": [
+        "Chest"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "multi_press_machine",
+      "target_exists": true,
+      "recommended_category": "shoulder",
+      "secondary_equipment_type_codes": [
+        "incline_chest_press_machine",
+        "shoulder_press_machine"
+      ],
+      "confidence": "高",
+      "reason": "1FW122 上胸 Smith Upper 為可由上斜推胸調至肩推的多角度推舉機，比全身 Smith 更貼切。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/9cea954c5f984ac7dd3f0299575da892c21568801fca7eb1fa4c23e2661f4ff5.png",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/free-weight-special/power-smith-dual-system-upper/"
+      ],
+      "source_inventory_id": 802
+    },
+    {
+      "index": 140,
+      "id": "b5927856-a845-49c6-b7db-eb12857d7652",
+      "source_external_id": "247-fitness:602",
+      "brand": "Technogym",
+      "name": "PULLEY",
+      "model_number": "MNWP",
+      "source_name_zh": "坐式背肌伸展練習器",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_row_cable",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "MNWP 原始圖有前伸踏板、坐墊及低位拉手，為滑輪坐姿划船。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/e51fe53fbd588f9382ebf6d19b6e3d0596d0da792c4577bbaa00a2403c6890cd.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 602
+    },
+    {
+      "index": 141,
+      "id": "a9dc72b9-640c-4e5b-a4be-e7297df0bcf8",
+      "source_external_id": "247-fitness:568",
+      "brand": "Technogym",
+      "name": "Pure Deadlift",
+      "model_number": "MG87",
+      "source_name_zh": "硬拉練習器",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "deadlift_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "GPL0551／MG87 為有槓桿負重的硬拉機，不是 deadlift_platform 或普通槓鈴。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/793a370993be683f8d935c836bdb1f08254f53312195db6d171f30ef99498e97.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 568
+    },
+    {
+      "index": 142,
+      "id": "4629cd6f-e0a1-493b-856f-c0aa1adcbb49",
+      "source_external_id": "247-fitness:565",
+      "brand": "Technogym",
+      "name": "Pure Standing Leg Curl",
+      "model_number": "MG7000-NBGJV0",
+      "source_name_zh": "站姿腿部彎舉練習器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "standing_leg_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "名稱明確站姿腿彎舉，不應混入現有 lying 或 seated 類型。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/0e7b6cc93d0233920e4191538e84990c737bda21d27a8d2be4747ea4fced09bb.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 565
+    },
+    {
+      "index": 143,
+      "id": "ab75c050-0ca8-4b74-bd9f-73aec2a4ef23",
+      "source_external_id": "247-fitness:190",
+      "brand": "NEWTECH",
+      "name": "R Low Cable",
+      "model_number": "NT-OH-VR",
+      "source_name_zh": "多功能低位拉力訓練器",
+      "source_categories": [
+        "Back",
+        "Legs",
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "NT-OH-VR 是多功能低位滑輪，保留多方向用途，不硬塞成固定坐姿划船。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/6f27204b0e1b8a2e0b6f13c28de34e849aa52446259573a6f5b758fd2bc0a2ca.jpg",
+      "evidence_urls": [
+        "https://newtechworldwide.com/products/low-cable-new"
+      ],
+      "source_inventory_id": 190
+    },
+    {
+      "index": 144,
+      "id": "91cdb576-ab3f-4c1d-8930-b01f9ad6d2ff",
+      "source_external_id": "247-fitness:1360",
+      "brand": "Arsenal",
+      "name": "RELOADED MULTI FLEX",
+      "model_number": "AR-FLEX",
+      "source_name_zh": "RELOADED MULTI FLEX",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "multi_function_strength_machine",
+      "target_exists": false,
+      "recommended_category": "full_body",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "MultiFlex 用多方向槓桿支援全身訓練，不是滑輪機，也不只用作腿部訓練。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/47fa17e397f398289158abdc1302a90e5c23b8d2c71c891efa318c4b29a0a5ce.png",
+      "evidence_urls": [
+        "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-multi-flex/"
+      ],
+      "source_inventory_id": 1360
+    },
+    {
+      "index": 145,
+      "id": "e20f311f-c5ef-4108-b31a-d266f5d2d440",
+      "source_external_id": "247-fitness:755",
+      "brand": "Booty Builder",
+      "name": "Reverse Lunge",
+      "model_number": "BB-RSL",
+      "source_name_zh": "反向弓箭步訓練機 （實物不含彈力帶，需另配）",
+      "source_categories": [
+        "Glute"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lunge_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "Booty Builder Reverse Lunge 是負重弓步槓桿設備，不是普通支撐凳。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/980b2b79a895d861131cd7e7599fd389b2c204787db8f618fc4e094c191fa5f7.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 755
+    },
+    {
+      "index": 146,
+      "id": "247772c3-060d-4fd2-b953-80274a52b96c",
+      "source_external_id": "247-fitness:1372",
+      "brand": "Life Fitness",
+      "name": "Saddle Dumbbell Rack",
+      "model_number": "LBR-DS",
+      "source_name_zh": "馬鞍型啞鈴架",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dumbbell_storage_rack",
+      "target_exists": false,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "明確為啞鈴收納架，不能配入供深蹲用的 rack。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/62023845ee143447d1576bf62fa6017fae3206ca9366daaec535daca77bfd621.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1372
+    },
+    {
+      "index": 147,
+      "id": "f3689c37-96e2-4ec8-b2f4-9006951ba26a",
+      "source_external_id": "247-fitness:47",
+      "brand": "Hammer Strength",
+      "name": "Seated/Standing Shrug",
+      "model_number": "PLSH",
+      "source_name_zh": "坐式及站式聳肩訓練器",
+      "source_categories": [
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "shrug_machine",
+      "target_exists": false,
+      "recommended_category": "shoulder",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "PLSH 是可站坐式聳肩機，不應當划船或肩推。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/7887776e50b97ea9a11c6675e6ea450968238058ceb2cde9d53318a224a35192.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 47
+    },
+    {
+      "index": 148,
+      "id": "9f8be57c-c925-48ec-9e11-f92094ca0c96",
+      "source_external_id": "247-fitness:593",
+      "brand": "Technogym",
+      "name": "SELECTION700",
+      "model_number": "MNOC",
+      "source_name_zh": "外展肌",
+      "source_categories": [
+        "Glute"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hip_abductor_machine",
+      "target_exists": true,
+      "recommended_category": "glute",
+      "secondary_equipment_type_codes": [
+        "hip_adductor_machine"
+      ],
+      "confidence": "高",
+      "reason": "MNOC 型號對應內收／外展雙功能；主分類用外展，保留內收副功能。",
+      "note": "來源中文只寫外展肌，少寫內收功能，SELECTION700 又只是系列名，須以型號及圖為準。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/81373d2cfd836a4e50f3fd21546623ad7a89227a4004f4648c709e387f6b5e43.jpg",
+      "evidence_urls": [
+        "https://technogymkr.com/web/catalog/17_catalog_selection.pdf"
+      ],
+      "source_inventory_id": 593
+    },
+    {
+      "index": 149,
+      "id": "27b13f06-21f0-463c-9fae-c3e463978ff4",
+      "source_external_id": "247-fitness:1152",
+      "brand": "Life Fitness",
+      "name": "Signature Series Leg Raise",
+      "model_number": "SLR（LBR-LR）",
+      "source_name_zh": "抬腿訓練器",
+      "source_categories": [
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "leg_raise_station",
+      "target_exists": false,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "獨立抬腿架；沒有明確證據表示兼具雙槓，應設抬腿站類型。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/a0d4e07ef0cd5b8655201e9ccc69d0fc8fa829c15018b1702b20153e83def95c.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1152
+    },
+    {
+      "index": 150,
+      "id": "5adf2d6d-d2a8-47a9-bac9-0afc0ea50062",
+      "source_external_id": "247-fitness:1147",
+      "brand": "SKELCORE",
+      "name": "SK-GHDM001",
+      "model_number": "SK-GHDM001",
+      "source_name_zh": "山羊挺身",
+      "source_categories": [
+        "Glute",
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "glute_ham_developer",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "SK-GHDM001 圖片有 GHD 髖墊、腳踝固定及前端支架；不是單純 roman_chair。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/e49d05a1e73fea5377dddebfd16cbf7ed820a10d4e3d0ebc4e21d2bf643243d9.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1147
+    },
+    {
+      "index": 151,
+      "id": "95f50482-03be-4713-a068-498c2d1cb134",
+      "source_external_id": "247-fitness:1149",
+      "brand": "SKELCORE",
+      "name": "Skelcore Classic Reformer - Oak",
+      "model_number": "SK-PL-CC1",
+      "source_name_zh": "普拉提多功能床",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "pilates_reformer",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "Classic Reformer 是普拉提滑床，沒有現成類型可準確代替。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/0fd6272423a394002f2d22ad7d50ecdc8e66745df9cf51cb4282dabf3cf96117.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1149
+    },
+    {
+      "index": 152,
+      "id": "d659096e-192c-4cb4-a477-bedeaf93d3dc",
+      "source_external_id": "247-fitness:576",
+      "brand": "Technogym",
+      "name": "Skillmill",
+      "model_number": "DJK0",
+      "source_name_zh": "Skillmill跑步機",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "treadmill",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "HD Tread、HIITMill X、Skillmill 均為自驅動跑步帶設備，以 treadmill 歸類並保留自驅／阻力推行變式。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/e3527fd414b924decd7d527b299f0650e48d2fa7555fd2e9fc8774d1f64442e8.jpg",
+      "evidence_urls": [
+        "https://www.lifefitness.com/en-us/treadmills",
+        "https://corporate.technogym.com/~/media/Files/T/Technogym-Corporate/reports-and-presentation/2024/annual-report-2024-en.pdf"
+      ],
+      "source_inventory_id": 576
+    },
+    {
+      "index": 153,
+      "id": "fbfcd8a6-1550-4914-9e26-bb51039e7683",
+      "source_external_id": "247-fitness:1151",
+      "brand": "SKELCORE",
+      "name": "Spine Corrector",
+      "model_number": "SK-PL-SC1",
+      "source_name_zh": "脊柱矫正器",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "pilates_spine_corrector",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "Spine Corrector 為普拉提弧形脊柱輔助器，不是負重 back_extension_machine。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/12276324b7cc09aeb0c7f9c9e5f16d4cb61c0dd8ee32f163cca12195ee20a9e0.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1151
+    },
+    {
+      "index": 154,
+      "id": "ee5d09f0-7f83-4582-bee9-665cb9d6f039",
+      "source_external_id": "247-fitness:749",
+      "brand": "Booty Builder",
+      "name": "Split Squat",
+      "model_number": "BB-SSS",
+      "source_name_zh": "分腿蹲站立",
+      "source_categories": [
+        "Glute"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "split_squat_stand",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "實物是後腳支撐滾筒架，負重來自使用者手持自由重量；不是負重 squat_machine。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/d08b7ff77a040547741226ccfd6663353bd0e8bbfd5c5bf82b5238cb3db78f7b.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 749
+    },
+    {
+      "index": 155,
+      "id": "76898878-dde8-46c4-8d34-ed2ee00987d3",
+      "source_external_id": "247-fitness:1322",
+      "brand": "Panatta",
+      "name": "SQUAT LUNGE",
+      "model_number": "1HP590",
+      "source_name_zh": "深蹲弓步訓練機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "squat_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "槓桿式下蹲／弓步設備，主動作屬 squat；弓步、聳肩等變化不應令整機 Other。",
+      "note": "Panatta #155 按自身原始名稱、圖片及 Panatta Squat Lunge 產品資料判斷，並非套用 Hammer Strength 型號。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/395ff7cdc7ac72d21ce99b654bb72e4ddf291b35ad80f3ed6a6a43a670e82e63.webp",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/freeweight-hp/squat-lunge"
+      ],
+      "source_inventory_id": 1322
+    },
+    {
+      "index": 156,
+      "id": "c03c05c3-78a4-477e-b62a-01c3f82315eb",
+      "source_external_id": "247-fitness:717",
+      "brand": "Panatta",
+      "name": "SQUAT MACHINE AND CALF",
+      "model_number": "1FO091",
+      "source_name_zh": "深蹲小腿",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "squat_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "standing_calf_raise_machine"
+      ],
+      "confidence": "高",
+      "reason": "深蹲／提踵組合，以 squat_machine 作主分類，保留站姿提踵副功能。",
+      "note": "#171 中文簡寫哈克，但型號及原廠產品是槓桿 Squat & Calf，應避免直接套 hack_squat。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/d28a8df9a0337aa75dd44711a6b301c101e5ea8f5ec16b5accdb052d74e7532d.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 717
+    },
+    {
+      "index": 157,
+      "id": "e8993e55-4fcc-4eee-b19e-e4622987c7de",
+      "source_external_id": "247-fitness:173",
+      "brand": "NEWTECH",
+      "name": "Standing Fly Chest & Back",
+      "model_number": "NT-OH-SBF",
+      "source_name_zh": "站姿胸背訓練器",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/b799005cef360bc38ee283bf78685f466a5dd89b9f22b53576ac3255813e8c9e.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 173
+    },
+    {
+      "index": 158,
+      "id": "282cc254-f0b8-4a24-9699-c25ec793b36b",
+      "source_external_id": "247-fitness:1211",
+      "brand": "Arsenal",
+      "name": "Standing Leg Curl",
+      "model_number": "M1-SLC",
+      "source_name_zh": "站姿腿彎舉機",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "standing_leg_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "名稱明確站姿腿彎舉，不應混入現有 lying 或 seated 類型。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/1b964d6f436b7135708fe00f5694ac03f5f3a98c2364506d5e24906cec39f123.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1211
+    },
+    {
+      "index": 159,
+      "id": "e82aaa3d-a22f-4c9c-99ae-c4d5461bbf1d",
+      "source_external_id": "247-fitness:400",
+      "brand": "Panatta",
+      "name": "STANDING LEG CURLING",
+      "model_number": "1FE084",
+      "source_name_zh": "STANDING LEG CURLING",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "standing_leg_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "名稱明確站姿腿彎舉，不應混入現有 lying 或 seated 類型。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/77819d57209f6d02cb0c44f1d0e3798e143761dd501f8c9e6ac20826c83a34ca.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 400
+    },
+    {
+      "index": 160,
+      "id": "d6a4a5c8-51ad-43e5-883e-855e316f64f3",
+      "source_external_id": "247-fitness:1263",
+      "brand": "Panatta",
+      "name": "Standing Multi Flight",
+      "model_number": "1FE028",
+      "source_name_zh": "站姿多方位飛鳥機",
+      "source_categories": [
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "standing_lateral_raise_machine",
+      "target_exists": true,
+      "recommended_category": "shoulder",
+      "secondary_equipment_type_codes": [
+        "chest_fly_machine",
+        "reverse_fly_machine"
+      ],
+      "confidence": "中",
+      "reason": "1FE028 站姿多方位飛鳥可做三角肌訓練，按側平舉作主索引，同時保留胸／反向飛鳥。",
+      "note": "這是多功能飛鳥機，選側平舉作主類型屬編目政策；若要完整單值類型，新增 multi_fly_machine 更精確。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/0010bd81e2aebc5fca8502406d6341015850cad978118a8a32a226cdc9bbf6b0.png",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/fit-evo/standing-multi-flight/"
+      ],
+      "source_inventory_id": 1263
+    },
+    {
+      "index": 161,
+      "id": "ccded809-44e6-4b2b-b192-b2285bf371d8",
+      "source_external_id": "247-fitness:414",
+      "brand": "Panatta",
+      "name": "Standing Total Arms",
+      "model_number": "1FE055A",
+      "source_name_zh": "Standing Total Arms",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "bicep_curl_machine",
+      "target_exists": true,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [
+        "tricep_extension_machine"
+      ],
+      "confidence": "高",
+      "reason": "Standing Total Arms 是二頭彎舉＋三頭下壓組合，可用二頭主分類並記錄三頭副功能。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/68dbd5d92afe43e0bffd9ac45bf76e0e285fd70f53eccef690b363ccd5e7a67d.jpg",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/monolith/standing-total-arms-2/"
+      ],
+      "source_inventory_id": 414
+    },
+    {
+      "index": 162,
+      "id": "e3668be0-832c-40a9-a3ca-ab5562736cca",
+      "source_external_id": "247-fitness:860",
+      "brand": "Panatta",
+      "name": "SUPER PECK BACK",
+      "model_number": "1FW117",
+      "source_name_zh": "超級蝴蝶機",
+      "source_categories": [
+        "Chest",
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/a1d3406f724cddfd58641e652a9671d907c1e31e8511f477074881679df3bea3.png",
+      "evidence_urls": [],
+      "source_inventory_id": 860
+    },
+    {
+      "index": 163,
+      "id": "7aac7398-b09e-4a9c-9f79-8bf105f3eb03",
+      "source_external_id": "247-fitness:1153",
+      "brand": "Life Fitness",
+      "name": "SYNERGY360",
+      "model_number": "SYNERGY360",
+      "source_name_zh": "SYNERGY360",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "cable_machine",
+      "target_exists": true,
+      "recommended_category": "cable",
+      "secondary_equipment_type_codes": [
+        "pull_up_bar"
+      ],
+      "confidence": "中",
+      "reason": "SYNERGY360 原始圖片有滑輪站及功能架，主分類可用 cable_machine；保留綜合功能架特性。",
+      "note": "SYNERGY360 配置可變；此判斷針對來源圖片的有滑輪版本，不能套用所有同系列空架。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1153
+    },
+    {
+      "index": 164,
+      "id": "4786d556-ac06-438d-a7c2-7011f2dfcf02",
+      "source_external_id": "247-fitness:1332",
+      "brand": "Technogym",
+      "name": "Technogym Storage Universal",
+      "model_number": "A0001014",
+      "source_name_zh": "通用儲物架",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "accessory_storage_rack",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "把手／通用附件收納架，不是假設存在 pulley 的訓練站。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/413b3efede4a09dee7b235f5b42801818ceda4129969c1d8b5d4fadaf07a202c.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1332
+    },
+    {
+      "index": 165,
+      "id": "c93fc2f4-35d2-488b-9749-90508698aba3",
+      "source_external_id": "247-fitness:54",
+      "brand": "Hammer Strength",
+      "name": "Tibia Dorsi Flexion",
+      "model_number": "PLTIB",
+      "source_name_zh": "脛骨肌訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "tibialis_raise_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "PLTIB 為踝背屈／脛前肌機，動作與小腿提踵相反。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/20f6a878a37c0712715a1b92ec19a5ba6e1a3af18b47993000a70837f239c056.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 54
+    },
+    {
+      "index": 166,
+      "id": "2885b3ae-275f-4c1a-98a4-d2ed8e068767",
+      "source_external_id": "247-fitness:1142",
+      "brand": "ABS",
+      "name": "TIREFLIP 180® SYSTEM",
+      "model_number": "ABS4005-02",
+      "source_name_zh": "TIREFLIP 180® SYSTEM",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "tire_flip_machine",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "TireFlip 180 是翻輪胎阻力設備，與 sled 或普通負重槓桿機不同。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/fa88ea8e231d8438b52db88c0a2b4ac93c40c844a6033535f6f7bc26e2ccc37b.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1142
+    },
+    {
+      "index": 167,
+      "id": "18bb347f-c96b-415e-94a6-0e648c3d5530",
+      "source_external_id": "247-fitness:396",
+      "brand": "Panatta",
+      "name": "Torsion machine",
+      "model_number": "1FE066",
+      "source_name_zh": "Torsion machine",
+      "source_categories": [
+        "ABDOMINAL"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "torso_rotation_machine",
+      "target_exists": true,
+      "recommended_category": "core",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "1FE066 原廠定義明確為軀幹旋轉機。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/4eaeba7455312dc073a7d0f20faa732000557d00593e13a01c1c2e90c7891252.jpg",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/fit-evo/torsion-machine/"
+      ],
+      "source_inventory_id": 396
+    },
+    {
+      "index": 168,
+      "id": "e05951dd-9ce5-4497-a082-740e41f82aed",
+      "source_external_id": "247-fitness:213",
+      "brand": "NEWTECH",
+      "name": "Torture Hack Press (THOMSON)",
+      "model_number": "NT-T-HP",
+      "source_name_zh": "哈克腿舉",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "hack_squat",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "原始圖片有肩墊、滑軌及足踏板，中文也明確哈克深蹲；Hack Press 在此不是坐姿 leg press。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/422eb788b8dfd4cb63b78167ae87d06b457a53eb5acb80437992b0cef5331439.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 213
+    },
+    {
+      "index": 169,
+      "id": "72603589-9abb-494e-9ac1-920223c6858d",
+      "source_external_id": "247-fitness:214",
+      "brand": "NEWTECH",
+      "name": "Torture Kneeling Leg Curl",
+      "model_number": "NT-T-KLC",
+      "source_name_zh": "跪姿腿彎舉",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "kneeling_leg_curl_machine",
+      "target_exists": false,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "圖示及型號表明跪姿單腿屈膝，與站姿、坐姿、臥式不同。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/d475b6fe9a5d668480f373da766be71b5e3481544f3f5d9540238971363b002c.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 214
+    },
+    {
+      "index": 170,
+      "id": "718c267f-5978-4ab7-8831-b9c6f729a0f7",
+      "source_external_id": "247-fitness:206",
+      "brand": "NEWTECH",
+      "name": "Torture Peck Deck fly with reverse(new)",
+      "model_number": "NT-T-PFRD",
+      "source_name_zh": "掛片式（下斜）蝴蝶夾胸",
+      "source_categories": [
+        "Chest"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "chest_fly_machine",
+      "target_exists": true,
+      "recommended_category": "chest",
+      "secondary_equipment_type_codes": [
+        "reverse_fly_machine"
+      ],
+      "confidence": "高",
+      "reason": "胸飛鳥／後三角組合，以胸飛鳥主分類並保留反向飛鳥。",
+      "note": "NEWTECH #170 中文只寫夾胸，但英文 with reverse 指出反向功能；若要公開副功能，需沿用型號規格，不可只看中文簡稱。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/b83a1f6df1fee5b6bf47363e61520e3eca503663bfb1f07c62e0a0032fe9e075.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 206
+    },
+    {
+      "index": 171,
+      "id": "29d852d5-aefc-43c8-b392-e077a9659e48",
+      "source_external_id": "247-fitness:211",
+      "brand": "NEWTECH",
+      "name": "Torture Squat & Caf Raise(new)",
+      "model_number": "NT-T-SCR",
+      "source_name_zh": "哈克深蹲",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "squat_machine",
+      "target_exists": true,
+      "recommended_category": "leg",
+      "secondary_equipment_type_codes": [
+        "standing_calf_raise_machine"
+      ],
+      "confidence": "高",
+      "reason": "深蹲／提踵組合，以 squat_machine 作主分類，保留站姿提踵副功能。",
+      "note": "#171 中文簡寫哈克，但型號及原廠產品是槓桿 Squat & Calf，應避免直接套 hack_squat。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/944297f06613e641db157e9b9647d8d1b967269f7bce21492e3cd946afad6b4b.jpg",
+      "evidence_urls": [
+        "https://newtechworldwide.com/products/squat-calf-raise"
+      ],
+      "source_inventory_id": 211
+    },
+    {
+      "index": 172,
+      "id": "4a5c24b2-0a8e-4580-b582-0d1693961a53",
+      "source_external_id": "247-fitness:1160",
+      "brand": "NEWTECH",
+      "name": "Torture Standing & Seated Row Combo (New)",
+      "model_number": "N. T(R)-SSRC",
+      "source_name_zh": "站及坐姿二合一划船",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_row_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "多握位／站坐二合一仍屬槓桿划船，以 seated_row_machine 為主類型並保留站姿變式。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/12fe579d2091be4b839c7039ee402c98d7c48b99699965fe18637f2a34e701ad.webp",
+      "evidence_urls": [],
+      "source_inventory_id": 1160
+    },
+    {
+      "index": 173,
+      "id": "697d0faf-d2fd-46e9-9b13-0bc3c80e2aac",
+      "source_external_id": "247-fitness:366",
+      "brand": "Panatta",
+      "name": "Total Back",
+      "model_number": "1FE008",
+      "source_name_zh": "Total Back",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_row_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [
+        "lat_pulldown_machine"
+      ],
+      "confidence": "高",
+      "reason": "1FE008 Total Back 有可調拉力平面，可用划船主分類並保留高位下拉。",
+      "note": "原廠是四角度背部多功能機；主分類不是聲稱只可做坐姿划船。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/d31a17cb9167392df3af1f82585eaa20c1bf84a3ff959bfa62c306227c84ff80.jpg",
+      "evidence_urls": [
+        "https://www.panattasport.com/en/fit-evo/total-back/"
+      ],
+      "source_inventory_id": 366
+    },
+    {
+      "index": 174,
+      "id": "e65500bd-53ec-4310-9688-518218f77ae4",
+      "source_external_id": "247-fitness:116",
+      "brand": "Life Fitness",
+      "name": "Triceps Press",
+      "model_number": "SS-TP（LP）Full",
+      "source_name_zh": "三頭肌訓練器",
+      "source_categories": [
+        "Arms"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "dip_machine",
+      "target_exists": true,
+      "recommended_category": "arm",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "原始產品圖是坐姿向下推壓臂屈伸，與 seated dip 機構相符；不是因 Triceps Press 就機械式套入 extension。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/feb0cb32b1a1840fcbcda9364a07edb1ab622112e1796ccc845c00502afc5d6a.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 116
+    },
+    {
+      "index": 175,
+      "id": "e7e09514-475a-4b25-a4fe-e465801f2712",
+      "source_external_id": "247-fitness:608",
+      "brand": "Technogym",
+      "name": "UPPER BACK",
+      "model_number": "MN1P",
+      "source_name_zh": "坐式肩後展練習器",
+      "source_categories": [
+        "Shoulder"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "seated_row_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "MN1P 原始圖為胸前支撐、手柄後拉的上背划船，並非中文簡稱就必定 reverse fly。",
+      "note": "主類型按圖片機構判斷；需區分訓練後三角與機械上是否反向飛鳥。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/50d8452f51fa1c857c1b4602826913c2d7d2b956692e545a015a213b4a778522.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 608
+    },
+    {
+      "index": 176,
+      "id": "e5cf18d9-3e2c-49dc-8a60-d5430d581d8e",
+      "source_external_id": "247-fitness:584",
+      "brand": "Technogym",
+      "name": "VERTICAL TRACTION",
+      "model_number": "MNGC",
+      "source_name_zh": "坐式下拉練習器",
+      "source_categories": [
+        "Back"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "lat_pulldown_machine",
+      "target_exists": true,
+      "recommended_category": "back",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "MNGC 圖片及中文均為固定槓桿式坐姿下拉，不是單靠滑輪存在就用 cable_machine。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/bb8a7558e973f7ee4f2a68dae66aa796519801295a8d9b0547b165492f4a1893.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 584
+    },
+    {
+      "index": 177,
+      "id": "8e92a317-3c05-4417-9b53-48a7f5bc5bbd",
+      "source_external_id": "247-fitness:861",
+      "brand": "Panatta",
+      "name": "VIKING PRESS AND CALF",
+      "model_number": "1FW029",
+      "source_name_zh": "維京推舉小腿訓練器",
+      "source_categories": [
+        "Legs"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "shoulder_press_machine",
+      "target_exists": true,
+      "recommended_category": "shoulder",
+      "secondary_equipment_type_codes": [
+        "standing_calf_raise_machine"
+      ],
+      "confidence": "高",
+      "reason": "Viking Press & Calf 以站姿肩推作主分類，保留提踵副功能。",
+      "note": "",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/equipment/999515bba7dd8a5344e2902f361a87f668c0e4fa8629fba6526cf8613a30af03.png",
+      "evidence_urls": [],
+      "source_inventory_id": 861
+    },
+    {
+      "index": 178,
+      "id": "aadec459-4e6c-4d1c-b44e-81746576fb2a",
+      "source_external_id": "247-fitness:1150",
+      "brand": "SKELCORE",
+      "name": "Wunda Chair",
+      "model_number": "SK-PL-FX1",
+      "source_name_zh": "普拉提椅",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "pilates_chair",
+      "target_exists": false,
+      "recommended_category": "functional_training",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "Wunda Chair 為普拉提彈簧踏板椅，不是 overhead_chair 或 bench。",
+      "note": "",
+      "catalogue_image_reviewed": false,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/ce4c55323e6da7633bff32c841daf94a124707d92b2b68958afe424fe742cdfb.jpg",
+      "evidence_urls": [],
+      "source_inventory_id": 1150
+    },
+    {
+      "index": 179,
+      "id": "c92810cf-a562-4d6d-aacf-25fa58ed9e30",
+      "source_external_id": "247-fitness:1498",
+      "brand": "Cybex",
+      "name": "太空漫步",
+      "model_number": "CVX600537",
+      "source_name_zh": "太空漫步",
+      "source_categories": [
+        "Cardio"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "elliptical_machine",
+      "target_exists": true,
+      "recommended_category": "cardio",
+      "secondary_equipment_type_codes": [],
+      "confidence": "中",
+      "reason": "原始圖片顯示 Cybex Arc Trainer 弧線交叉訓練機，可用廣義 elliptical_machine。",
+      "note": "Arc 軌跡非固定橢圓；如產品 taxonomy 要分開，新增 arc_trainer 子類更精確，不能把 CVX600537 當作已核實的製造商 SKU。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a.png",
+      "evidence_urls": [],
+      "source_inventory_id": 1498
+    },
+    {
+      "index": 180,
+      "id": "7256f006-e389-4505-a2bf-d83962950590",
+      "source_external_id": "247-fitness:1485",
+      "brand": "Hammer Strength",
+      "name": "练习椅",
+      "model_number": "SUB",
+      "source_name_zh": "練习椅",
+      "source_categories": [
+        "MultiFunction"
+      ],
+      "current_equipment_type_code": "other_equipment",
+      "recommended_equipment_type_code": "bench",
+      "target_exists": true,
+      "recommended_category": "free_weight",
+      "secondary_equipment_type_codes": [],
+      "confidence": "高",
+      "reason": "SUB 為 Utility Bench，來源圖片和原廠型號文件一致。",
+      "note": "原始品牌寫 Hammer Strength，而 SUB 文件屬 Life Fitness Signature；可修正品牌歸屬，主類型仍是 bench。",
+      "catalogue_image_reviewed": true,
+      "catalogue_image_url": "https://oss-hk.247fitness.hk/58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a.png",
+      "evidence_urls": [
+        "https://www.lifefitness.com.au/wp-content/uploads/2015/02/CB_Signature_Benches__Racks_GM_004_07_1_68.pdf"
+      ],
+      "source_inventory_id": 1485
+    }
+  ]
+}
