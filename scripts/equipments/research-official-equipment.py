@@ -11,9 +11,12 @@ import hashlib
 import html
 from html.parser import HTMLParser
 import json
+import os
 from pathlib import Path
 import re
+import shutil
 import ssl
+import subprocess
 import tempfile
 import urllib.parse
 import urllib.request
@@ -132,7 +135,11 @@ def main():
     ap.add_argument('--workers', type=int, default=6)
     ap.add_argument('--check-images', action='store_true', help='Check that official image URLs return an image content type')
     ap.add_argument('--evidence-file', default='data/equipments/247-fitness-hk-official-evidence.json')
+    ap.add_argument('--report-only', action='store_true', help='Regenerate Markdown and Excel from the existing catalog without fetching websites')
     args = ap.parse_args()
+    if args.report_only:
+        write_reports(json.loads((ROOT / args.output).read_text()))
+        return
     cache = Path(args.cache_dir)
     cache.mkdir(parents=True, exist_ok=True)
     ctx = ssl.create_default_context(cafile='/etc/ssl/cert.pem') if Path('/etc/ssl/cert.pem').exists() else ssl.create_default_context()
@@ -406,6 +413,14 @@ def main():
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     (cache / 'parsed-products.json').write_text(json.dumps(products, ensure_ascii=False))
     print(json.dumps(result['summary']), flush=True)
+    write_reports(result)
+
+
+def write_reports(result):
+    """Always publish matching Markdown and Excel reports from the same tables."""
+    from collections import Counter
+    entries = result['equipment']
+    products = result['catalog_product_counts']
     report = ROOT / 'docs/data/247-fitness-hk-official-equipment-research-2026-10-28.md'
     def cell(value):
         return str(value or '—').replace('|', '\\|').replace('\n', ' ')
@@ -435,20 +450,33 @@ def main():
               '- A model mention in a kit description does not prove the kit image depicts the standalone component. Such ambiguity is retained.',
               '- Missing models, generic brand-only entries (such as InBody) and custom 24/7 racks cannot be assigned an exact manufacturer image from their names alone.', '',
               '## Full inventory cross-reference', '',
-              '| Inventory ID | Brand | Source model | Source name | Official name | Status | Official source | Official image | First candidate |',
-              '| ---: | --- | --- | --- | --- | --- | --- | --- | --- |']
-    for e in entries:
+              '| # | Inventory ID | Brand | Source model | Source name | Official name | Status | Official source | Official image | 24/7 image | First candidate |',
+              '| ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+    for row_number, e in enumerate(entries, start=1):
         source = e['official_product_url'] or (e['evidence'] or {}).get('evidence_url')
         candidate = e['candidates'][0] if e['candidates'] else None
-        lines.append('| ' + ' | '.join([str(e['inventory_id']), cell(e['brand']), cell(e['source_model']), cell(e['source_name']),
+        lines.append('| ' + ' | '.join([str(row_number), str(e['inventory_id']), cell(e['brand']), cell(e['source_model']), cell(e['source_name']),
                                       cell(e['official_name']), e['status'], link('source', source),
                                       link('image', e['official_image_url']),
+                                      link('image', e['source_image_url']),
                                       link(cell(candidate['name']), candidate['product_url']) if candidate else '—']) + ' |')
     lines += ['', '## Reproduce and continue', '',
               '```bash', 'python3 scripts/equipments/research-official-equipment.py --check-images', 'pnpm test', '```', '',
+              'Every report generation also writes the matching `.xlsx` beside this Markdown file. Each Markdown table has its own Excel sheet, with image/source hyperlinks and filterable headers. To regenerate both reports from the existing catalog without fetching websites, run `python3 scripts/equipments/research-official-equipment.py --report-only`.', '',
+              'Excel export uses Node.js and `@oai/artifact-tool` from the Codex runtime. The runtime is detected automatically; for another installation, set `ARTIFACT_TOOL_NODE_MODULES` to its `node_modules` directory and optionally `ARTIFACT_TOOL_NODE` to its Node executable. Export failures cause the command to fail instead of silently skipping Excel.', '',
               'The public catalogs and product pages are cached under `/tmp/gymory-official-equipment/cache` by default. Use `--cache-dir` to select a different cache or a fresh directory. Network access is required for uncached URLs. Python uses the system certificate store and adds certifi certificates when that optional package is installed.', '',
               'The evidence sidecar retains search queries, official-domain search results and supplemental product URLs. Search results are collected in batches; candidates in those batches are leads, not individual match confirmations. The catalog includes retrieval timestamps, source hashes, exact matching methods and branch slugs. Original branch files remain the source of truth.']
-    report.write_text('\n'.join(lines) + '\n')
+    runtime_node = Path.home() / '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node'
+    node = os.environ.get('ARTIFACT_TOOL_NODE') or (str(runtime_node) if runtime_node.is_file() else shutil.which('node'))
+    if not node:
+        raise RuntimeError('Excel export requires Node.js. Install Node.js or set ARTIFACT_TOOL_NODE.')
+    # Publish only after both formats have been generated successfully.
+    with tempfile.TemporaryDirectory(prefix='.equipment-report-', dir=report.parent) as staging:
+        staged_report = Path(staging) / report.name
+        staged_report.write_text('\n'.join(lines) + '\n')
+        subprocess.run([node, str(ROOT / 'scripts/equipments/export-equipment-research-excel.mjs'), str(staged_report)], check=True)
+        staged_report.with_suffix('.xlsx').replace(report.with_suffix('.xlsx'))
+        staged_report.replace(report)
 
 
 if __name__ == '__main__':
