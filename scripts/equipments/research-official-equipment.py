@@ -90,6 +90,61 @@ def tokens(value):
     return set(re.findall('[a-z0-9]+', (value or '').lower())) - {'machine', 'fitness', 'series', 'the', 'and'}
 
 
+def apply_browser_evidence(result, supplemental):
+    """Apply exact, standalone model cards actually displayed in a browser.
+
+    Run after HTTP image checks: an HTTP 403 must not erase successful browser
+    verification. This imports captured DOM evidence, never browser sessions.
+    """
+    from collections import Counter
+    records = {}
+    for record in supplemental.get('browser_models', []):
+        if (record.get('retrieval_method') != 'browser_dom' or
+                record.get('image_loaded') is not True or record.get('image_width', 0) <= 0 or
+                record.get('displayed_models') != [record.get('model')]):
+            continue
+        brand = record['brand']
+        origin = CATALOGS.get(brand) or SITEMAPS.get(brand)
+        host = urllib.parse.urlparse(origin or '').hostname
+        if not host:
+            raise ValueError(f'No manufacturer origin configured for browser evidence: {brand}')
+        for key in ('product_url', 'image_url', 'evidence_url'):
+            parsed = urllib.parse.urlparse(record.get(key, ''))
+            if parsed.scheme != 'https' or not parsed.hostname or parsed.hostname.removeprefix('www.') != host.removeprefix('www.'):
+                raise ValueError(f'Browser evidence is outside the manufacturer origin: {key}')
+        if not record.get('name') or not record.get('retrieved_at'):
+            raise ValueError('Browser evidence requires a product name and retrieval timestamp')
+        key = (brand, record['model'])
+        if key in records and records[key]['product_url'] != record['product_url']:
+            raise ValueError(f'Ambiguous browser model: {key}')
+        records[key] = record
+    for entry in result['equipment']:
+        record = records.get((entry['brand'], entry['source_model'].strip()))
+        if not record:
+            continue
+        entry.update(
+            official_name=record['name'], official_product_url=record['product_url'],
+            official_image_url=record['image_url'], status='model_verified',
+            match_method='exact_model_in_browser_catalog', candidates=[],
+            evidence={
+                'evidence_url': record['evidence_url'], 'retrieved_at': record['retrieved_at'],
+                'retrieval_method': 'browser_dom', 'displayed_models': record['displayed_models'],
+                'browser_evidence_sha256': hashlib.sha256(json.dumps(record, sort_keys=True, ensure_ascii=False).encode()).hexdigest(),
+            },
+            image_check={
+                'checked_at': record['retrieved_at'], 'available': True,
+                'method': 'browser_image_decoded', 'image_width': record['image_width'],
+            },
+            reason='The manufacturer catalog was opened in Chrome. The standalone card displays this exact model and name, and its official image decoded successfully in the browser.',
+        )
+    result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
+    if supplemental.get('browser_followup'):
+        followup = supplemental['browser_followup']
+        result['browser_followup'] = followup
+        counts = result.setdefault('catalog_product_counts', {})
+        counts[followup['brand']] = max(counts.get(followup['brand'], 0), followup['catalog_card_count'])
+
+
 class Page(HTMLParser):
     def __init__(self, source):
         super().__init__()
@@ -136,9 +191,16 @@ def main():
     ap.add_argument('--check-images', action='store_true', help='Check that official image URLs return an image content type')
     ap.add_argument('--evidence-file', default='data/equipments/247-fitness-hk-official-evidence.json')
     ap.add_argument('--report-only', action='store_true', help='Regenerate Markdown and Excel from the existing catalog without fetching websites')
+    ap.add_argument('--apply-browser-evidence', action='store_true', help='Apply captured browser verification to the existing catalog and regenerate reports without HTTP requests')
     args = ap.parse_args()
-    if args.report_only:
-        write_reports(json.loads((ROOT / args.output).read_text()))
+    if args.report_only or args.apply_browser_evidence:
+        output = ROOT / args.output
+        result = json.loads(output.read_text())
+        if args.apply_browser_evidence:
+            supplemental = json.loads((ROOT / args.evidence_file).read_text())
+            apply_browser_evidence(result, supplemental)
+            output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+        write_reports(result)
         return
     cache = Path(args.cache_dir)
     cache.mkdir(parents=True, exist_ok=True)
@@ -409,6 +471,7 @@ def main():
               'catalog_product_counts': {b: len(v) for b, v in sorted(products.items())},
               'source_attempts': sorted({a['url']: a for a in attempts}.values(), key=lambda a: a['url']),
               'equipment': entries}
+    apply_browser_evidence(result, supplemental)
     output = ROOT / args.output
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     (cache / 'parsed-products.json').write_text(json.dumps(products, ensure_ascii=False))
@@ -430,7 +493,7 @@ def write_reports(result):
              'Research date: 2026-10-28 (Hong Kong). All 159 branch JSON files are preserved.', '',
              f'The cross-reference covers all {len(entries)} unique inventory IDs. It records manufacturer names and image URLs separately from the original 24/7 data. No database changes or image substitutions were made.', '',
              '## Interpretation', '',
-             '- `model_verified`: a manufacturer SKU, product title or relevant product description matches the source model. When image checks are enabled, the image URL returns an image content type.',
+             '- `model_verified`: a manufacturer SKU, product title, relevant product description or directly viewed catalog card matches the source model. Image checks use HTTP image content types or a successfully decoded image in the browser.',
              '- `model_verified_image_missing` / `model_verified_image_unavailable`: model evidence exists, but the official image is absent or could not be retrieved.',
              '- `name_indexed_image_missing`: exact model/name found in the search index of the manufacturer catalog; direct access and official image remain unverified.',
              '- `candidate_requires_review`: an official candidate exists, but model, generation or configuration is not established.',
@@ -444,6 +507,12 @@ def write_reports(result):
         group = [e for e in entries if e['brand'] == brand]
         c = Counter(e['status'] for e in group)
         lines.append(f"| {cell(brand)} | {len(group)} | {c['model_verified']} | {c['model_verified_image_missing'] + c['model_verified_image_unavailable']} | {c['name_indexed_image_missing']} | {c['candidate_requires_review'] + c['ambiguous_model']} | {c['unresolved']} |")
+    if result.get('browser_followup'):
+        followup = result['browser_followup']
+        lines += ['', '## Browser follow-up', '',
+                  f"On {followup['review_date']} (Hong Kong), {followup['browser']} displayed all {followup['catalog_page_count']} official {followup['brand']} catalog pages ({followup['catalog_card_count']} product cards) after direct HTTP requests returned 403. Exact standalone model cards and successfully decoded product images verified {followup['matched_model_count']} of the 176 source models.", '',
+                  'Combined-machine cards were excluded from standalone matches. The following source models were not found as exact standalone matches in the current catalog: ' + ', '.join(f'`{model}`' for model in followup['unmatched_models']) + '.', '',
+                  'The candidate page for `1SC034A` displays `1SC034`; these remain distinct. The official catalog identifies `1HP233` as Power tower, while the original 24/7 name is Military bench; the original inventory is preserved for review.']
     lines += ['', '## Known discrepancies requiring care', '',
               '- NEWTECH `NT-OH-SLC`: the source says Leg Extension; the manufacturer identifies OnHim Seated Leg Curl.',
               '- NEWTECH `NT-T-SDCP`: the source says Seated Incline Chest Press; the manufacturer catalog identifies Torture Chest & Decline Combo.',
@@ -463,6 +532,7 @@ def write_reports(result):
     lines += ['', '## Reproduce and continue', '',
               '```bash', 'python3 scripts/equipments/research-official-equipment.py --check-images', 'pnpm test', '```', '',
               'Every report generation also writes the matching `.xlsx` beside this Markdown file. Each Markdown table has its own Excel sheet, with image/source hyperlinks and filterable headers. To regenerate both reports from the existing catalog without fetching websites, run `python3 scripts/equipments/research-official-equipment.py --report-only`.', '',
+              'When HTTP requests cannot read an official site, inspect it in a normal browser. Captured exact-model cards and decoded-image evidence are stored in `247-fitness-hk-official-evidence.json` under `browser_models`. Apply those records to the existing catalog with `python3 scripts/equipments/research-official-equipment.py --apply-browser-evidence`. Full research runs also reapply these records after HTTP image checks.', '',
               'Excel export uses Node.js and `@oai/artifact-tool` from the Codex runtime. The runtime is detected automatically; for another installation, set `ARTIFACT_TOOL_NODE_MODULES` to its `node_modules` directory and optionally `ARTIFACT_TOOL_NODE` to its Node executable. Export failures cause the command to fail instead of silently skipping Excel.', '',
               'The public catalogs and product pages are cached under `/tmp/gymory-official-equipment/cache` by default. Use `--cache-dir` to select a different cache or a fresh directory. Network access is required for uncached URLs. Python uses the system certificate store and adds certifi certificates when that optional package is installed.', '',
               'The evidence sidecar retains search queries, official-domain search results and supplemental product URLs. Search results are collected in batches; candidates in those batches are leads, not individual match confirmations. The catalog includes retrieval timestamps, source hashes, exact matching methods and branch slugs. Original branch files remain the source of truth.']

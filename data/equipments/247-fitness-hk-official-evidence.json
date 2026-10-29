@@ -32496,5 +32496,2659 @@
         }
       ]
     }
-  ]
+  ],
+  "browser_models": [
+    {
+      "brand": "PANATTA",
+      "model": "1CF73",
+      "name": "Ecorow",
+      "product_url": "https://www.panattasport.com/en/ecoline/ecorow/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1cf73-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1CF73"
+      ],
+      "displayed_card_text": "1CF73\nECOROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE001",
+      "name": "Lat pulldown",
+      "product_url": "https://www.panattasport.com/en/fit-evo/lat-pulldown/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe001-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE001"
+      ],
+      "displayed_card_text": "1FE001\nLAT PULLDOWN",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE002",
+      "name": "Lat pulldown circular",
+      "product_url": "https://www.panattasport.com/en/fit-evo/lat-pulldown-circular/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe002-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE002"
+      ],
+      "displayed_card_text": "1FE002\nLAT PULLDOWN CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE003",
+      "name": "Pulley row",
+      "product_url": "https://www.panattasport.com/en/fit-evo/pulley-row/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe003-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE003"
+      ],
+      "displayed_card_text": "1FE003\nPULLEY ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE004A",
+      "name": "Rowing machine circular",
+      "product_url": "https://www.panattasport.com/en/fit-evo/rowing-machine-circular/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe004a-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE004A"
+      ],
+      "displayed_card_text": "1FE004A\nROWING MACHINE CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE008",
+      "name": "Total Back",
+      "product_url": "https://www.panattasport.com/en/fit-evo/total-back/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FE008-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/",
+      "retrieved_at": "2026-10-29T10:10:20.026Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE008"
+      ],
+      "displayed_card_text": "NEW\n1FE008\nTOTAL BACK",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE024",
+      "name": "Deltoid press circular",
+      "product_url": "https://www.panattasport.com/en/fit-evo/deltoid-press-circular/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe024-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE024"
+      ],
+      "displayed_card_text": "1FE024\nDELTOID PRESS CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE025",
+      "name": "Deltoid press",
+      "product_url": "https://www.panattasport.com/en/fit-evo/deltoid-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe025-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE025"
+      ],
+      "displayed_card_text": "1FE025\nDELTOID PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE028",
+      "name": "Standing multi flight",
+      "product_url": "https://www.panattasport.com/en/fit-evo/standing-multi-flight/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe028-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/12/#content",
+      "retrieved_at": "2026-10-29T10:10:44.837Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE028"
+      ],
+      "displayed_card_text": "1FE028\nSTANDING MULTI FLIGHT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE034",
+      "name": "Inclined chest press circular",
+      "product_url": "https://www.panattasport.com/en/fit-evo/inclined-chest-press-circular/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe034-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE034"
+      ],
+      "displayed_card_text": "1FE034\nINCLINED CHEST PRESS CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE036",
+      "name": "Vertical chest press",
+      "product_url": "https://www.panattasport.com/en/fit-evo/vertical-chest-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe036-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE036"
+      ],
+      "displayed_card_text": "1FE036\nVERTICAL CHEST PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE038",
+      "name": "Dips press",
+      "product_url": "https://www.panattasport.com/en/fit-evo/dips-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe038-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE038"
+      ],
+      "displayed_card_text": "1FE038\nDIPS PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE039",
+      "name": "Pullover machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/pullover-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe039-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE039"
+      ],
+      "displayed_card_text": "1FE039\nPULLOVER MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE051",
+      "name": "Curling machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/curling-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe051-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE051"
+      ],
+      "displayed_card_text": "1FE051\nCURLING MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE053",
+      "name": "Triceps machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/triceps-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe053-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE053"
+      ],
+      "displayed_card_text": "1FE053\nTRICEPS MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE055A",
+      "name": "Standing Total Arms",
+      "product_url": "https://www.panattasport.com/en/fit-evo/standing-total-arms/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/11/1FE055A-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/12/#content",
+      "retrieved_at": "2026-10-29T10:10:44.837Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE055A"
+      ],
+      "displayed_card_text": "1FE055A\nSTANDING TOTAL ARMS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE066",
+      "name": "Torsion machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/torsion-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe066-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE066"
+      ],
+      "displayed_card_text": "1FE066\nTORSION MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE067",
+      "name": "Abdominal crunch",
+      "product_url": "https://www.panattasport.com/en/fit-evo/abdominal-crunch/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe067-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE067"
+      ],
+      "displayed_card_text": "1FE067\nABDOMINAL CRUNCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE081",
+      "name": "Leg extension",
+      "product_url": "https://www.panattasport.com/en/fit-evo/leg-extension/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe081-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE081"
+      ],
+      "displayed_card_text": "1FE081\nLEG EXTENSION",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE082",
+      "name": "Leg curling",
+      "product_url": "https://www.panattasport.com/en/fit-evo/leg-curling/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe082-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE082"
+      ],
+      "displayed_card_text": "1FE082\nLEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE083",
+      "name": "Seated leg curling",
+      "product_url": "https://www.panattasport.com/en/fit-evo/seated-leg-curling/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe083-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE083"
+      ],
+      "displayed_card_text": "1FE083\nSEATED LEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE084",
+      "name": "Standing leg curling",
+      "product_url": "https://www.panattasport.com/en/fit-evo/standing-leg-curling/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe084-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE084"
+      ],
+      "displayed_card_text": "1FE084\nSTANDING LEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE085",
+      "name": "Horizontal leg press",
+      "product_url": "https://www.panattasport.com/en/fit-evo/horizontal-leg-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/12/0005_1FE085_1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE085"
+      ],
+      "displayed_card_text": "1FE085\nHORIZONTAL LEG PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE086",
+      "name": "Abductor machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/abductor-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe086-2-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE086"
+      ],
+      "displayed_card_text": "1FE086\nABDUCTOR MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE087",
+      "name": "Adductor machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/adductor-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe087-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE087"
+      ],
+      "displayed_card_text": "1FE087\nADDUCTOR MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE088",
+      "name": "Gluteus machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/gluteus-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe088-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE088"
+      ],
+      "displayed_card_text": "1FE088\nGLUTEUS MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE089",
+      "name": "Calf machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/calf-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe089-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE089"
+      ],
+      "displayed_card_text": "1FE089\nCALF MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE093",
+      "name": "Adductor/ abductor machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/adductor-abductor-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe093-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE093"
+      ],
+      "displayed_card_text": "1FE093\nADDUCTOR/ ABDUCTOR MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE094A",
+      "name": "Master gluteus plus",
+      "product_url": "https://www.panattasport.com/en/fit-evo/master-gluteus-plus/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe094a-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE094A"
+      ],
+      "displayed_card_text": "1FE094A\nMASTER GLUTEUS PLUS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE095",
+      "name": "Dual system horizontal leg press",
+      "product_url": "https://www.panattasport.com/en/fit-evo/dual-system-horizontal-leg-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe095-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE095"
+      ],
+      "displayed_card_text": "1FE095\nDUAL SYSTEM HORIZONTAL LEG PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE096",
+      "name": "Standing  abductor machine",
+      "product_url": "https://www.panattasport.com/en/fit-evo/standing-abductor-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/12/1FE096-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE096"
+      ],
+      "displayed_card_text": "1FE096\nSTANDING ABDUCTOR MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE097",
+      "name": "Hip thrust",
+      "product_url": "https://www.panattasport.com/en/fit-evo/hip-thrust/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe097-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/11/#content",
+      "retrieved_at": "2026-10-29T10:10:44.817Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE097"
+      ],
+      "displayed_card_text": "1FE097\nHIP THRUST",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE101",
+      "name": "Lat pulldown double Stack",
+      "product_url": "https://www.panattasport.com/en/fit-evo/lat-pulldown-double/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/01/pic_1FE101_01-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/9/#content",
+      "retrieved_at": "2026-10-29T10:10:44.765Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE101"
+      ],
+      "displayed_card_text": "1FE101\nLAT PULLDOWN DOUBLE STACK",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE117",
+      "name": "Peck back",
+      "product_url": "https://www.panattasport.com/en/fit-evo/peck-back/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe117-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/12/#content",
+      "retrieved_at": "2026-10-29T10:10:44.837Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE117"
+      ],
+      "displayed_card_text": "1FE117\nPECK BACK",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE118A",
+      "name": "Multipurpose press",
+      "product_url": "https://www.panattasport.com/en/fit-evo/multipurpose-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe118a-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/12/#content",
+      "retrieved_at": "2026-10-29T10:10:44.837Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE118A"
+      ],
+      "displayed_card_text": "1FE118A\nMULTIPURPOSE PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE120",
+      "name": "Jungle machine hlp",
+      "product_url": "https://www.panattasport.com/en/fit-evo/jungle-machine-hlp/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe120-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/12/#content",
+      "retrieved_at": "2026-10-29T10:10:44.837Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE120"
+      ],
+      "displayed_card_text": "1FE120\nJUNGLE MACHINE HLP",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE121",
+      "name": "Chin and dip counterbalanced",
+      "product_url": "https://www.panattasport.com/en/fit-evo/chin-and-dip-counterbalanced/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe121-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/12/#content",
+      "retrieved_at": "2026-10-29T10:10:44.837Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE121"
+      ],
+      "displayed_card_text": "1FE121\nCHIN AND DIP COUNTERBALANCED",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE123",
+      "name": "Dual adjustable pulley full",
+      "product_url": "https://www.panattasport.com/en/dual-adjustable-pulley/dual-adjustable-pulley-full/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe123-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/32/#content",
+      "retrieved_at": "2026-10-29T10:11:41.448Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE123"
+      ],
+      "displayed_card_text": "1FE123\nDUAL ADJUSTABLE PULLEY FULL",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE201",
+      "name": "Fully adjustable bench",
+      "product_url": "https://www.panattasport.com/en/fit-evo/fully-adjustable-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe201-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE201"
+      ],
+      "displayed_card_text": "1FE201\nFULLY ADJUSTABLE BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE202",
+      "name": "Flat bench",
+      "product_url": "https://www.panattasport.com/en/fit-evo/flat-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe202-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/12/#content",
+      "retrieved_at": "2026-10-29T10:10:44.837Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE202"
+      ],
+      "displayed_card_text": "1FE202\nFLAT BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE204",
+      "name": "Multipurpose seated bench",
+      "product_url": "https://www.panattasport.com/en/fit-evo/multipurpose-seated-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe204-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE204"
+      ],
+      "displayed_card_text": "1FE204\nMULTIPURPOSE SEATED BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE210",
+      "name": "Adjustable crunch board",
+      "product_url": "https://www.panattasport.com/en/fit-evo/adjustable-crunch-board/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe210-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE210"
+      ],
+      "displayed_card_text": "1FE210\nADJUSTABLE CRUNCH BOARD",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE211",
+      "name": "Chin and dip",
+      "product_url": "https://www.panattasport.com/en/fit-evo/chin-and-dip/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe211-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE211"
+      ],
+      "displayed_card_text": "1FE211\nCHIN AND DIP",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE221",
+      "name": "Iperextension 45° bench",
+      "product_url": "https://www.panattasport.com/en/fit-evo/iperextension-45-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe221-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE221"
+      ],
+      "displayed_card_text": "1FE221\nIPEREXTENSION 45° BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE230",
+      "name": "Squat rack",
+      "product_url": "https://www.panattasport.com/en/fit-evo/squat-rack/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe230-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE230"
+      ],
+      "displayed_card_text": "1FE230\nSQUAT RACK",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE231A",
+      "name": "Sissy squat",
+      "product_url": "https://www.panattasport.com/en/fit-evo/sissy-squat/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/10/1FE231A-01-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE231A"
+      ],
+      "displayed_card_text": "1FE231A\nSISSY SQUAT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE252",
+      "name": "Disk Rack – Fit Evo",
+      "product_url": "https://www.panattasport.com/en/accessories/disk-rack/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe252-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/22/#content",
+      "retrieved_at": "2026-10-29T10:11:41.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE252"
+      ],
+      "displayed_card_text": "1FE252\nDISK RACK – FIT EVO",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE254",
+      "name": "Barbell rack double sided",
+      "product_url": "https://www.panattasport.com/en/accessories/barbell-rack-double-sided/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe254-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/23/#content",
+      "retrieved_at": "2026-10-29T10:11:41.428Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE254"
+      ],
+      "displayed_card_text": "1FE254\nBARBELL RACK DOUBLE SIDED",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE260",
+      "name": "Stretching extensor bench",
+      "product_url": "https://www.panattasport.com/en/sec/stretching-extensor-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe260-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/33/#content",
+      "retrieved_at": "2026-10-29T10:11:55.497Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE260"
+      ],
+      "displayed_card_text": "1FE260\nSTRETCHING EXTENSOR BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE356",
+      "name": "Alternate arm curl 120",
+      "product_url": "https://www.panattasport.com/en/fit-evo/alternate-arm-curl-120/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe356-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE356"
+      ],
+      "displayed_card_text": "1FE356\nALTERNATE ARM CURL 120",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FE456",
+      "name": "Alternate arm curl -45",
+      "product_url": "https://www.panattasport.com/en/fit-evo/alternate-arm-curl-45/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe456-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/10/#content",
+      "retrieved_at": "2026-10-29T10:10:44.790Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FE456"
+      ],
+      "displayed_card_text": "1FE456\nALTERNATE ARM CURL -45",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO001",
+      "name": "Lat machine convergent",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/lat-machine-convergent/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO001-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/4/#content",
+      "retrieved_at": "2026-10-29T10:10:20.139Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO001"
+      ],
+      "displayed_card_text": "1FO001\nLAT MACHINE CONVERGENT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO002",
+      "name": "Low row",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/low-row/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1FO002-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/4/#content",
+      "retrieved_at": "2026-10-29T10:10:20.139Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO002"
+      ],
+      "displayed_card_text": "1FO002\nLOW ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO003",
+      "name": "High row",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/high-row/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1FO003-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/4/#content",
+      "retrieved_at": "2026-10-29T10:10:20.139Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO003"
+      ],
+      "displayed_card_text": "1FO003\nHIGH ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO004",
+      "name": "Rowing machine",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/rowing-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO004-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/4/#content",
+      "retrieved_at": "2026-10-29T10:10:20.139Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO004"
+      ],
+      "displayed_card_text": "1FO004\nROWING MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO025",
+      "name": "Deltoid press",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/deltoid-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO025-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/4/#content",
+      "retrieved_at": "2026-10-29T10:10:20.139Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO025"
+      ],
+      "displayed_card_text": "1FO025\nDELTOID PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO038",
+      "name": "Upper Chest Flight Machine",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/upper-chest-flight-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO038-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO038"
+      ],
+      "displayed_card_text": "1FO038\nUPPER CHEST FLIGHT MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO039",
+      "name": "Pullover machine",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/pullover-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FO039-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/2/#content",
+      "retrieved_at": "2026-10-29T10:10:20.088Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO039"
+      ],
+      "displayed_card_text": "1FO039\nPULLOVER MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO043",
+      "name": "Middle chest flight machine",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/super-middle-chest-flight-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FO043-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/2/#content",
+      "retrieved_at": "2026-10-29T10:10:20.088Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO043"
+      ],
+      "displayed_card_text": "1FO043\nMIDDLE CHEST FLIGHT MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO080",
+      "name": "Pendulum squat",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/pendulum-squat/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO080-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/4/#content",
+      "retrieved_at": "2026-10-29T10:10:20.139Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO080"
+      ],
+      "displayed_card_text": "1FO080\nPENDULUM SQUAT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO085",
+      "name": "Leg press bridge",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/leg-press-bridge/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO085-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO085"
+      ],
+      "displayed_card_text": "1FO085\nLEG PRESS BRIDGE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO086",
+      "name": "Leg press 45°",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/leg-press-45/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO086-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/4/#content",
+      "retrieved_at": "2026-10-29T10:10:20.139Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO086"
+      ],
+      "displayed_card_text": "1FO086\nLEG PRESS 45°",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO087",
+      "name": "Hack Squat",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/hack-squat/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO087-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/2/#content",
+      "retrieved_at": "2026-10-29T10:10:20.088Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO087"
+      ],
+      "displayed_card_text": "NEW\n1FO087\nHACK SQUAT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO091",
+      "name": "Squat and Calf Machine",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/squat-machine-and-calf/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO091-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/2/#content",
+      "retrieved_at": "2026-10-29T10:10:20.088Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO091"
+      ],
+      "displayed_card_text": "NEW\n1FO091\nSQUAT AND CALF MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO094",
+      "name": "Kneeling leg curling",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/kneeling-leg-curling/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FO094-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/2/#content",
+      "retrieved_at": "2026-10-29T10:10:20.088Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO094"
+      ],
+      "displayed_card_text": "1FO094\nKNEELING LEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO097",
+      "name": "Hip thrust",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/hip-thrust/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO097-1-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO097"
+      ],
+      "displayed_card_text": "1FO097\nHIP THRUST",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO101",
+      "name": "Lat pulldown circular",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/lat-pulldown-circular/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO101-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO101"
+      ],
+      "displayed_card_text": "1FO101\nLAT PULLDOWN CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO120",
+      "name": "Power Smith Machine Multi Angles",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/power-smith-machine-4-angles/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO120-4-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/2/#content",
+      "retrieved_at": "2026-10-29T10:10:20.088Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO120"
+      ],
+      "displayed_card_text": "NEW\n1FO120\nPOWER SMITH MACHINE MULTI ANGLES",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FO140",
+      "name": "Dips Press",
+      "product_url": "https://www.panattasport.com/en/freeweight-one/dips-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO140-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/2/#content",
+      "retrieved_at": "2026-10-29T10:10:20.088Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FO140"
+      ],
+      "displayed_card_text": "NEW\n1FO140\nDIPS PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW001",
+      "name": "Super lat machine convergent",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-lat-machine-convergent/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/08/1FW001-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW001"
+      ],
+      "displayed_card_text": "1FW001\nSUPER LAT MACHINE CONVERGENT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW002",
+      "name": "Super low row",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-low-row/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw002-2-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW002"
+      ],
+      "displayed_card_text": "1FW002\nSUPER LOW ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW003",
+      "name": "Super high row",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-high-row/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw003-2-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW003"
+      ],
+      "displayed_card_text": "1FW003\nSUPER HIGH ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW007",
+      "name": "T-bar row",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/t-bar-row/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/08/1FW007-1-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW007"
+      ],
+      "displayed_card_text": "1FW007\nT-BAR ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW025",
+      "name": "Super deltoid press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-deltoid-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw025-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW025"
+      ],
+      "displayed_card_text": "1FW025\nSUPER DELTOID PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW026",
+      "name": "Back deltoids",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/back-deltoids/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw026-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW026"
+      ],
+      "displayed_card_text": "1FW026\nBACK DELTOIDS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW027",
+      "name": "Lateral deltoids",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/lateral-deltoids-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw027-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW027"
+      ],
+      "displayed_card_text": "1FW027\nLATERAL DELTOIDS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW029",
+      "name": "Viking press and calf",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/viking-press-and-calf/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw029-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW029"
+      ],
+      "displayed_card_text": "1FW029\nVIKING PRESS AND CALF",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW033",
+      "name": "Super inclined bench press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-inclined-bench-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw033-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW033"
+      ],
+      "displayed_card_text": "1FW033\nSUPER INCLINED BENCH PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW035",
+      "name": "Super inclined chest press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-inclined-chest-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw035-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW035"
+      ],
+      "displayed_card_text": "1FW035\nSUPER INCLINED CHEST PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW036",
+      "name": "Super vertical chest press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-vertical-chest-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw036-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW036"
+      ],
+      "displayed_card_text": "1FW036\nSUPER VERTICAL CHEST PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW037",
+      "name": "Super Horizontal Bench Press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-horizontal-bench-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/08/pic_1FW037_02-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW037"
+      ],
+      "displayed_card_text": "1FW037\nSUPER HORIZONTAL BENCH PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW038",
+      "name": "Super upper chest flight machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-upper-chest-flight-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw038-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW038"
+      ],
+      "displayed_card_text": "1FW038\nSUPER UPPER CHEST FLIGHT MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW039",
+      "name": "Super pullover machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-pullover-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/08/1FW039-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW039"
+      ],
+      "displayed_card_text": "1FW039\nSUPER PULLOVER MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW040",
+      "name": "Dips press dual system",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/dips-press-dual-system/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw040-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW040"
+      ],
+      "displayed_card_text": "1FW040\nDIPS PRESS DUAL SYSTEM",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW041",
+      "name": "Super declined chest press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-declined-chest-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw041-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW041"
+      ],
+      "displayed_card_text": "1FW041\nSUPER DECLINED CHEST PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW042",
+      "name": "Super horizontal multi press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-horizontal-multi-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw042-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW042"
+      ],
+      "displayed_card_text": "1FW042\nSUPER HORIZONTAL MULTI PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW043",
+      "name": "Super middle chest flight machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-middle-chest-flight-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw043-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW043"
+      ],
+      "displayed_card_text": "1FW043\nSUPER MIDDLE CHEST FLIGHT MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW044",
+      "name": "Super lower chest flight machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-lower-chest-flight-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw044-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW044"
+      ],
+      "displayed_card_text": "1FW044\nSUPER LOWER CHEST FLIGHT MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW045",
+      "name": "Super vertical multi press",
+      "product_url": "https://www.panattasport.com/en/prodotto/super-vertical-multi-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW045-01-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/5/#content",
+      "retrieved_at": "2026-10-29T10:10:20.159Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW045"
+      ],
+      "displayed_card_text": "NEW\n1FW045\nSUPER VERTICAL MULTI PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW055",
+      "name": "Alternate Arm Curl 120",
+      "product_url": "https://www.panattasport.com/en/alternate-arm-curl-120/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/05/1fw055-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW055"
+      ],
+      "displayed_card_text": "NEW\n1FW055\nALTERNATE ARM CURL 120",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW065",
+      "name": "Total core crunch machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/total-core-crunch-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW065-01-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/5/#content",
+      "retrieved_at": "2026-10-29T10:10:20.159Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW065"
+      ],
+      "displayed_card_text": "NEW\n1FW065\nTOTAL CORE CRUNCH MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW080",
+      "name": "Super pendulum squat",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-pendulum-squat/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1fw080-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW080"
+      ],
+      "displayed_card_text": "1FW080\nSUPER PENDULUM SQUAT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW082",
+      "name": "Alternate leg curling",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/alternate-leg-curling/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW082-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW082"
+      ],
+      "displayed_card_text": "1FW082\nALTERNATE LEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW084",
+      "name": "Super power squat",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-power-squat/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW084-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW084"
+      ],
+      "displayed_card_text": "1FW084\nSUPER POWER SQUAT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW085",
+      "name": "Super leg press bridge",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-leg-press-bridge/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW085-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW085"
+      ],
+      "displayed_card_text": "1FW085\nSUPER LEG PRESS BRIDGE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW086",
+      "name": "Super leg press 45°",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-leg-press-45/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw086-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW086"
+      ],
+      "displayed_card_text": "1FW086\nSUPER LEG PRESS 45°",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW087",
+      "name": "Super hack squat",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-hack-squat/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw087-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW087"
+      ],
+      "displayed_card_text": "1FW087\nSUPER HACK SQUAT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW090",
+      "name": "Super leg press 45° dual system",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-leg-press-45-dual-system/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw090-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW090"
+      ],
+      "displayed_card_text": "1FW090\nSUPER LEG PRESS 45° DUAL SYSTEM",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW091",
+      "name": "Super squat machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-squat-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw091-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW091"
+      ],
+      "displayed_card_text": "1FW091\nSUPER SQUAT MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW093",
+      "name": "Super vertical leg press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-vertical-leg-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw093-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW093"
+      ],
+      "displayed_card_text": "1FW093\nSUPER VERTICAL LEG PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW094",
+      "name": "Kneeling leg curling",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/kneeling-leg-curling/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW094-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW094"
+      ],
+      "displayed_card_text": "1FW094\nKNEELING LEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW095",
+      "name": "Belt squat",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/belt-squat/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW095-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW095"
+      ],
+      "displayed_card_text": "1FW095\nBELT SQUAT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW096",
+      "name": "Reverse hyperextension",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/reverse-hyperextension/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw096-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW096"
+      ],
+      "displayed_card_text": "1FW096\nREVERSE HYPEREXTENSION",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW097",
+      "name": "Hip thrust",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/hip-thrust-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW097-01-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW097"
+      ],
+      "displayed_card_text": "1FW097\nHIP THRUST",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW098",
+      "name": "Power runner",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/power-runner-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW098-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW098"
+      ],
+      "displayed_card_text": "1FW098\nPOWER RUNNER",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW099",
+      "name": "Standing abductor",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/standing-abductor/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw099-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW099"
+      ],
+      "displayed_card_text": "1FW099\nSTANDING ABDUCTOR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW100",
+      "name": "Super Horizontal Leg Press Dual System",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-horizontal-leg-press-dual-system/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/11/1fw100-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW100"
+      ],
+      "displayed_card_text": "NEW\n1FW100\nSUPER HORIZONTAL LEG PRESS DUAL SYSTEM",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW101",
+      "name": "Super lat pulldown circular",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-lat-pulldown-circular/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw101-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW101"
+      ],
+      "displayed_card_text": "1FW101\nSUPER LAT PULLDOWN CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW102",
+      "name": "Super power row",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-power-row/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw102-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW102"
+      ],
+      "displayed_card_text": "1FW102\nSUPER POWER ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW104",
+      "name": "Super Rowing",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-rowing/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/08/pic_fw104_01-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW104"
+      ],
+      "displayed_card_text": "1FW104\nSUPER ROWING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW105",
+      "name": "Front dorsy bar",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/front-dorsy-bar/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw105-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW105"
+      ],
+      "displayed_card_text": "1FW105\nFRONT DORSY BAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW117",
+      "name": "Super Peck Back",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-peck-back/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/pic_1FW117_01-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW117"
+      ],
+      "displayed_card_text": "NEW\n1FW117\nSUPER PECK BACK",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW122",
+      "name": "Power smith dual system upper",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/power-smith-dual-system-upper/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW122-01-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/5/#content",
+      "retrieved_at": "2026-10-29T10:10:20.159Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW122"
+      ],
+      "displayed_card_text": "NEW\n1FW122\nPOWER SMITH DUAL SYSTEM UPPER",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW139",
+      "name": "Pullover machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/pullover-machine-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw139-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW139"
+      ],
+      "displayed_card_text": "1FW139\nPULLOVER MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW140",
+      "name": "Dips press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/dips-press-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw140-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW140"
+      ],
+      "displayed_card_text": "1FW140\nDIPS PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW181",
+      "name": "Leg extension",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/leg-extension-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW181-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW181"
+      ],
+      "displayed_card_text": "1FW181\nLEG EXTENSION",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW182",
+      "name": "Leg curling",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/leg-curling-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw182--450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/19/#content",
+      "retrieved_at": "2026-10-29T10:11:41.274Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW182"
+      ],
+      "displayed_card_text": "1FW182\nLEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW193",
+      "name": "Vertical leg press",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/vertical-leg-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/1fw193-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW193"
+      ],
+      "displayed_card_text": "NEW\n1FW193\nVERTICAL LEG PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW199",
+      "name": "3D Abductor",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/3d-abductor/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW199-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/5/#content",
+      "retrieved_at": "2026-10-29T10:10:20.159Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW199"
+      ],
+      "displayed_card_text": "NEW\n1FW199\n3D ABDUCTOR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW204",
+      "name": "Super rowing circular",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/super-rowing-machine-circular/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/08/pic_1FW204_01-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/17/#content",
+      "retrieved_at": "2026-10-29T10:11:11.549Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW204"
+      ],
+      "displayed_card_text": "NEW\n1FW204\nSUPER ROWING CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW251",
+      "name": "Alternate curling machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/alternate-curling-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/pic_1FW251_01-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW251"
+      ],
+      "displayed_card_text": "NEW\n1FW251\nALTERNATE CURLING MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW252",
+      "name": "Alternate triceps machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/alternate-triceps-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/07/pic_1FW252_01-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW252"
+      ],
+      "displayed_card_text": "1FW252\nALTERNATE TRICEPS MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW451",
+      "name": "Three Angles Biceps Machine",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/three-angles-bicep-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/11/1fw451-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/18/#content",
+      "retrieved_at": "2026-10-29T10:11:11.573Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW451"
+      ],
+      "displayed_card_text": "NEW\n1FW451\nTHREE ANGLES BICEPS MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW452",
+      "name": "Three Angles Triceps Machine",
+      "product_url": "https://www.panattasport.com/en/prodotto/three-angles-triceps-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2025/05/1FW452-1-450x450.avif",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW452"
+      ],
+      "displayed_card_text": "NEW\n1FW452\nTHREE ANGLES TRICEPS MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW518",
+      "name": "Seal row bench",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/seal-row-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw518-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/20/#content",
+      "retrieved_at": "2026-10-29T10:11:41.350Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW518"
+      ],
+      "displayed_card_text": "NEW\n1FW518\nSEAL ROW BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FW520",
+      "name": "Olympic smith machine counterbalanced",
+      "product_url": "https://www.panattasport.com/en/free-weight-special/olympic-smith-machine-counterbalanced/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw520-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/20/#content",
+      "retrieved_at": "2026-10-29T10:11:41.350Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FW520"
+      ],
+      "displayed_card_text": "1FW520\nOLYMPIC SMITH MACHINE COUNTERBALANCED",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FXT004",
+      "name": "Elliptical fenix touch",
+      "product_url": "https://www.panattasport.com/en/fenix-touch/elliptical-fenix-touch/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fxt004-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/5/#content",
+      "retrieved_at": "2026-10-29T10:10:20.159Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FXT004"
+      ],
+      "displayed_card_text": "1FXT004\nELLIPTICAL FENIX TOUCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1FXT006",
+      "name": "Climber fenix touch",
+      "product_url": "https://www.panattasport.com/en/fenix-touch/climber-fenix-touch/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fxt006-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/5/#content",
+      "retrieved_at": "2026-10-29T10:10:20.159Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1FXT006"
+      ],
+      "displayed_card_text": "1FXT006\nCLIMBER FENIX TOUCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1HP213",
+      "name": "Adjustable standing curl bench",
+      "product_url": "https://www.panattasport.com/en/freeweight-hp/adjustable-standing-curl-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1hp213-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/21/#content",
+      "retrieved_at": "2026-10-29T10:11:41.376Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1HP213"
+      ],
+      "displayed_card_text": "1HP213\nADJUSTABLE STANDING CURL BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1HP233",
+      "name": "Power tower",
+      "product_url": "https://www.panattasport.com/en/freeweight-hp/power-tower/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1hp233-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/20/#content",
+      "retrieved_at": "2026-10-29T10:11:41.350Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1HP233"
+      ],
+      "displayed_card_text": "1HP233\nPOWER TOWER",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1HP590",
+      "name": "Squat lunge",
+      "product_url": "https://www.panattasport.com/en/freeweight-hp/squat-lunge/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1hp590-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/20/#content",
+      "retrieved_at": "2026-10-29T10:11:41.350Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1HP590"
+      ],
+      "displayed_card_text": "1HP590\nSQUAT LUNGE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH002",
+      "name": "Lat pulldown circular",
+      "product_url": "https://www.panattasport.com/en/monolith/lat-pulldown-circular-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth002-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH002"
+      ],
+      "displayed_card_text": "1MTH002\nLAT PULLDOWN CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH004A",
+      "name": "Rowing machine circular",
+      "product_url": "https://www.panattasport.com/en/monolith/rowing-machine-circular-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth004-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH004A"
+      ],
+      "displayed_card_text": "1MTH004A\nROWING MACHINE CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH006",
+      "name": "High row convergent",
+      "product_url": "https://www.panattasport.com/en/monolith/high-row-convergent-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth006-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH006"
+      ],
+      "displayed_card_text": "1MTH006\nHIGH ROW CONVERGENT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH007",
+      "name": "Lat pulldown convergent",
+      "product_url": "https://www.panattasport.com/en/monolith/lat-pulldown-convergent-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth007-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH007"
+      ],
+      "displayed_card_text": "1MTH007\nLAT PULLDOWN CONVERGENT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH024",
+      "name": "Deltoid press circular",
+      "product_url": "https://www.panattasport.com/en/monolith/deltoid-press-circular-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth024-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH024"
+      ],
+      "displayed_card_text": "1MTH024\nDELTOID PRESS CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH028",
+      "name": "Standing multi flight",
+      "product_url": "https://www.panattasport.com/en/monolith/standing-multi-flight-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/01/pic_1MTH028_01-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/8/#content",
+      "retrieved_at": "2026-10-29T10:10:44.734Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH028"
+      ],
+      "displayed_card_text": "1MTH028\nSTANDING MULTI FLIGHT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH033",
+      "name": "Vertical chest press circular",
+      "product_url": "https://www.panattasport.com/en/monolith/vertical-chest-press-circular-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth033-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH033"
+      ],
+      "displayed_card_text": "1MTH033\nVERTICAL CHEST PRESS CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH034",
+      "name": "Inclined chest press circular",
+      "product_url": "https://www.panattasport.com/en/monolith/inclined-chest-press-circular-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth034-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/6/#content",
+      "retrieved_at": "2026-10-29T10:10:20.181Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH034"
+      ],
+      "displayed_card_text": "1MTH034\nINCLINED CHEST PRESS CIRCULAR",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH057",
+      "name": "Alternate arm extension",
+      "product_url": "https://www.panattasport.com/en/monolith/alternate-arm-extension-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth057-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/7/#content",
+      "retrieved_at": "2026-10-29T10:10:44.668Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH057"
+      ],
+      "displayed_card_text": "1MTH057\nALTERNATE ARM EXTENSION",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH067",
+      "name": "Abdominal crunch",
+      "product_url": "https://www.panattasport.com/en/monolith/abdominal-crunch-3/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth067-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/7/#content",
+      "retrieved_at": "2026-10-29T10:10:44.668Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH067"
+      ],
+      "displayed_card_text": "1MTH067\nABDOMINAL CRUNCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH085",
+      "name": "Horizontal Adjustable leg press",
+      "product_url": "https://www.panattasport.com/en/monolith/horizontal-leg-press-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth085-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/7/#content",
+      "retrieved_at": "2026-10-29T10:10:44.668Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH085"
+      ],
+      "displayed_card_text": "1MTH085\nHORIZONTAL ADJUSTABLE LEG PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH088",
+      "name": "Gluteus machine",
+      "product_url": "https://www.panattasport.com/en/monolith/gluteus-machine-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth088-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/7/#content",
+      "retrieved_at": "2026-10-29T10:10:44.668Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH088"
+      ],
+      "displayed_card_text": "1MTH088\nGLUTEUS MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH097",
+      "name": "Hip thrust",
+      "product_url": "https://www.panattasport.com/en/monolith/hip-thrust-3/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth097-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/8/#content",
+      "retrieved_at": "2026-10-29T10:10:44.734Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH097"
+      ],
+      "displayed_card_text": "1MTH097\nHIP THRUST",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1MTH115",
+      "name": "Jungle machine",
+      "product_url": "https://www.panattasport.com/en/monolith/jungle-machine-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/02/1MTH115_-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/8/#content",
+      "retrieved_at": "2026-10-29T10:10:44.734Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1MTH115"
+      ],
+      "displayed_card_text": "1MTH115\nJUNGLE MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1PWL103",
+      "name": "Powerlifting bench",
+      "product_url": "https://www.panattasport.com/en/powerlifting/powerlifting-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1pwl103-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/23/#content",
+      "retrieved_at": "2026-10-29T10:11:41.428Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1PWL103"
+      ],
+      "displayed_card_text": "1PWL103\nPOWERLIFTING BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1PWL302",
+      "name": "Olympic platform – half rack (3x3m)",
+      "product_url": "https://www.panattasport.com/en/powerlifting/olympic-platform-half-rack-3x3m/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/03/1PWL302-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/23/#content",
+      "retrieved_at": "2026-10-29T10:11:41.428Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1PWL302"
+      ],
+      "displayed_card_text": "1PWL302\nOLYMPIC PLATFORM – HALF RACK (3X3M)",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1RPT001",
+      "name": "Rossopuro Bike Touch",
+      "product_url": "https://www.panattasport.com/en/rossopuro-touch/rossopuro-bike-touch/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1RPT001-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1RPT001"
+      ],
+      "displayed_card_text": "1RPT001\nROSSOPURO BIKE TOUCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1RPT002",
+      "name": "Rossopuro Horizontal Bike Touch",
+      "product_url": "https://www.panattasport.com/en/rossopuro-touch/rossopuro-horizontal-bike-touch/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1RPT002-1-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1RPT002"
+      ],
+      "displayed_card_text": "1RPT002\nROSSOPURO HORIZONTAL BIKE TOUCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1RPT003",
+      "name": "Rossopuro Run Touch",
+      "product_url": "https://www.panattasport.com/en/rossopuro-touch/rossopuro-run-touch/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2024/07/1RPT003-1-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/3/#content",
+      "retrieved_at": "2026-10-29T10:10:20.115Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1RPT003"
+      ],
+      "displayed_card_text": "1RPT003\nROSSOPURO RUN TOUCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC001",
+      "name": "Lat pulldown",
+      "product_url": "https://www.panattasport.com/en/sec/lat-pulldown-3/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc001-2-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/13/#content",
+      "retrieved_at": "2026-10-29T10:11:11.405Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC001"
+      ],
+      "displayed_card_text": "1SC001\nLAT PULLDOWN",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC003",
+      "name": "Pulley row",
+      "product_url": "https://www.panattasport.com/en/sec/pulley-row-3/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc003-2-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/14/#content",
+      "retrieved_at": "2026-10-29T10:11:11.479Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC003"
+      ],
+      "displayed_card_text": "1SC003\nPULLEY ROW",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC024",
+      "name": "Deltoid press convergent",
+      "product_url": "https://www.panattasport.com/en/sec/deltoid-press-convergent/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc024-2-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/14/#content",
+      "retrieved_at": "2026-10-29T10:11:11.479Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC024"
+      ],
+      "displayed_card_text": "1SC024\nDELTOID PRESS CONVERGENT",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC037",
+      "name": "Inclined chest press",
+      "product_url": "https://www.panattasport.com/en/sec/inclined-chest-press-3/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc037-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/14/#content",
+      "retrieved_at": "2026-10-29T10:11:11.479Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC037"
+      ],
+      "displayed_card_text": "1SC037\nINCLINED CHEST PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC051",
+      "name": "Curling machine",
+      "product_url": "https://www.panattasport.com/en/sec/curling-machine-4/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc051-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/14/#content",
+      "retrieved_at": "2026-10-29T10:11:11.479Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC051"
+      ],
+      "displayed_card_text": "1SC051\nCURLING MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC065",
+      "name": "Upper abdominal",
+      "product_url": "https://www.panattasport.com/en/sec/upper-abdominal-2/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc065-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/14/#content",
+      "retrieved_at": "2026-10-29T10:11:11.479Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC065"
+      ],
+      "displayed_card_text": "1SC065\nUPPER ABDOMINAL",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC090",
+      "name": "Multi hip",
+      "product_url": "https://www.panattasport.com/en/sec/multi-hip-3/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc090-2-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/15/#content",
+      "retrieved_at": "2026-10-29T10:11:11.507Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC090"
+      ],
+      "displayed_card_text": "1SC090\nMULTI HIP",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC115",
+      "name": "Jungle machine",
+      "product_url": "https://www.panattasport.com/en/sec/jungle-machine-3/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc115-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/15/#content",
+      "retrieved_at": "2026-10-29T10:11:11.507Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC115"
+      ],
+      "displayed_card_text": "1SC115\nJUNGLE MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC211",
+      "name": "Chin and dip (chin optional)",
+      "product_url": "https://www.panattasport.com/en/sec/chin-and-dip-chin-optional/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2022/09/1sc211-1-2024-450x450.webp",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC211"
+      ],
+      "displayed_card_text": "1SC211\nCHIN AND DIP (CHIN OPTIONAL)",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SC297",
+      "name": "Hip thrust bench",
+      "product_url": "https://www.panattasport.com/en/sec/hip-thrust-bench/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc297-3-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SC297"
+      ],
+      "displayed_card_text": "1SC297\nHIP THRUST BENCH",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SCD030",
+      "name": "Multi press",
+      "product_url": "https://www.panattasport.com/en/sec/multi-press/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd030-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SCD030"
+      ],
+      "displayed_card_text": "1SCD030\nMULTI PRESS",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SCD050",
+      "name": "Dual curling | triceps machine",
+      "product_url": "https://www.panattasport.com/en/sec/dual-curling-triceps-machine/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd050-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SCD050"
+      ],
+      "displayed_card_text": "1SCD050\nDUAL CURLING | TRICEPS MACHINE",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SCD060",
+      "name": "Dual abdominal | lower back",
+      "product_url": "https://www.panattasport.com/en/sec/dual-abdominal-lower-back/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd060-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SCD060"
+      ],
+      "displayed_card_text": "1SCD060\nDUAL ABDOMINAL | LOWER BACK",
+      "image_loaded": true,
+      "image_width": 450
+    },
+    {
+      "brand": "PANATTA",
+      "model": "1SCD080",
+      "name": "Dual leg extension | seated leg curling",
+      "product_url": "https://www.panattasport.com/en/sec/dual-leg-extension-seated-leg-curling/",
+      "image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd080-1-450x450.jpg",
+      "evidence_url": "https://www.panattasport.com/en/catalog/page/16/#content",
+      "retrieved_at": "2026-10-29T10:11:11.529Z",
+      "retrieval_method": "browser_dom",
+      "displayed_models": [
+        "1SCD080"
+      ],
+      "displayed_card_text": "1SCD080\nDUAL LEG EXTENSION | SEATED LEG CURLING",
+      "image_loaded": true,
+      "image_width": 450
+    }
+  ],
+  "browser_followup": {
+    "review_date": "2026-10-29",
+    "browser": "Chrome",
+    "brand": "PANATTA",
+    "catalog_page_count": 36,
+    "catalog_card_count": 643,
+    "matched_model_count": 164,
+    "unmatched_models": [
+      "1FE124",
+      "1FW081",
+      "1HP121",
+      "1HP234A",
+      "1HP505",
+      "1HP525",
+      "1HP533",
+      "1HP541",
+      "1HP565",
+      "1HP584",
+      "1HP588",
+      "1SC034A"
+    ],
+    "http_result": "Direct HTTP requests to the official catalog and homepage returned 403; Chrome successfully displayed the catalog and decoded the product images.",
+    "notes": [
+      "Standalone cards only: combinations containing multiple model codes were excluded.",
+      "The official search for 1HP121 returned a not-found page.",
+      "The candidate for 1SC034A displays 1SC034, so the source model was not treated as an exact match."
+    ]
+  }
 }
