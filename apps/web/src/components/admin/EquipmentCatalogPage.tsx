@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { parseEquipmentFilters, equipmentFilterConditions, type EquipmentFilters } from "@/lib/admin-equipment-filters";
+import { parseEquipmentFilters, equipmentFilterConditions, equipmentTextFilterConditions, type EquipmentFilters } from "@/lib/admin-equipment-filters";
 import { EquipmentFilterForm } from "./EquipmentFilterForm";
 import { CatalogRecordRow } from "./CatalogRecordRow";
 import { Link } from "@/i18n/navigation";
@@ -35,7 +35,7 @@ const labelClass = "min-w-0 space-y-1 text-sm font-medium text-gray-700";
 const PAGE_SIZE = 20;
 type CatalogSection = "brands" | "types" | "equipment";
 export type CatalogSearchParams = {
-  result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string; brand?: string; equipmentType?: string; status?: string;
+  result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string; brand?: string; equipmentType?: string; status?: string; name?: string; model?: string;
 };
 
 async function getCatalog(section: CatalogSection, requestedPage: number, category?: string, filters: EquipmentFilters = {}) {
@@ -48,6 +48,7 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   }
   if (section === "equipment") {
     for (const [column, value] of equipmentFilterConditions(filters)) countQuery = countQuery.eq(column, value);
+    for (const condition of equipmentTextFilterConditions(filters)) countQuery = countQuery.or(condition);
   }
   const countResult = await countQuery;
   if (countResult.error) throw new Error(countResult.error.message);
@@ -61,6 +62,7 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   if (section === "types" && category) typesQuery = typesQuery.eq("category", category);
   let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, gym_equipment_inventory(gyms(id, name, name_zh)), equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
   for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
+  for (const condition of equipmentTextFilterConditions(filters)) machinesQuery = machinesQuery.or(condition);
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     section === "brands" ? brandsQuery.range(from, to) : section === "equipment" ? brandsQuery : { data: [], error: null },
     supabase.from("equipment_categories").select("id, name, name_zh, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
@@ -236,7 +238,13 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
           <CatalogRecordRow title={locale === "zh-HK" ? "新增器材" : "Add equipment"} locale={locale} create>
             <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} />
           </CatalogRecordRow>
-          <EquipmentFilterForm key={JSON.stringify(filters)} locale={locale}>
+          <EquipmentFilterForm locale={locale}>
+            <label className={labelClass}>{chinese ? "器材名稱" : "Equipment name"}
+              <input name="name" type="search" maxLength={200} defaultValue={filters.name ?? ""} placeholder={chinese ? "搜尋中英文名稱" : "Search English / Chinese name"} className={inputClass} />
+            </label>
+            <label className={labelClass}>{chinese ? "系列 / 型號" : "Series / model"}
+              <input name="model" type="search" maxLength={200} defaultValue={filters.model ?? ""} placeholder={chinese ? "搜尋系列或型號" : "Search series or model"} className={inputClass} />
+            </label>
             <label className={labelClass}>{chinese ? "品牌" : "Brand"}
               <select name="brand" defaultValue={filters.brand ?? ""} className={inputClass}>
                 <option value="">{chinese ? "全部品牌" : "All brands"}</option>
@@ -257,7 +265,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                 <option value="unknown">{chinese ? "未知" : "Unknown"}</option>
               </select>
             </label>
-            <div className="-mt-2 flex min-w-0 items-center justify-end sm:col-span-3 md:col-span-1 md:mt-0 md:self-end">
+            <div className="flex min-w-0 flex-wrap items-end gap-3">
               <Link href={path} scroll={false} className="inline-flex min-h-10 items-center text-sm text-gray-600 hover:underline">{chinese ? "清除篩選" : "Clear filters"}</Link>
             </div>
           </EquipmentFilterForm>

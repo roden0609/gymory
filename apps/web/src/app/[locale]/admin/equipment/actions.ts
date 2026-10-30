@@ -54,7 +54,7 @@ async function runCatalogSave(
   const category = textValue(formData, "catalog_category");
   if (entity === "type" && equipmentTypeSchema.shape.category.safeParse(category).success) context.set("category", category);
   if (entity === "machine") {
-    const filters = parseEquipmentFilters({ brand: textValue(formData, "catalog_brand"), equipmentType: textValue(formData, "catalog_equipmentType"), status: textValue(formData, "catalog_status") });
+    const filters = parseEquipmentFilters({ name: textValue(formData, "catalog_name"), model: textValue(formData, "catalog_model"), brand: textValue(formData, "catalog_brand"), equipmentType: textValue(formData, "catalog_equipmentType"), status: textValue(formData, "catalog_status") });
     for (const [key, value] of Object.entries(filters)) context.set(key, value);
   }
   const contextQuery = context.size ? `&${context}` : "";
