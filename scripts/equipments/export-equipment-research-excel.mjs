@@ -191,8 +191,9 @@ export async function exportReport(markdownPath, { previewDir } = {}) {
       if (name === 'Inventory ID') return 14;
       if (name === 'Brand') return 23;
       if (name === 'Source model') return 28;
-      if (name === 'Source name' || name === 'Official name' || name === 'First candidate') return 46;
+      if (name === 'Source name' || name === 'Official name' || name === 'Official name / candidate' || name === 'First candidate') return 46;
       if (name === 'Status') return 42;
+      if (name === 'Review result' || name === 'Review note') return 96;
       if (name.endsWith('image') || name === 'Official source') return 18;
       return Math.max(12, Math.min(28, name.length + 2));
     });

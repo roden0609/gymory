@@ -7,8 +7,8 @@ describe('official equipment Excel report tables', () => {
     const markdown = readFileSync(new URL('../../../docs/data/247-fitness-hk-official-equipment-research-2026-10-28.md', import.meta.url), 'utf8');
     const catalog = JSON.parse(readFileSync(new URL('../../../data/equipments/247-fitness-hk-official-catalog.json', import.meta.url), 'utf8'));
     const tables = parseMarkdownTables(markdown);
-    expect(tables.map((table) => table.heading)).toEqual(['Totals', 'Coverage by brand', 'Full inventory cross-reference']);
-    const inventory = tables[2];
+    expect(tables.map((table) => table.heading)).toEqual(['Totals', 'Coverage by brand', 'All-brand follow-up', 'Life Fitness item review', 'Full inventory cross-reference']);
+    const inventory = tables.find((table) => table.heading === 'Full inventory cross-reference');
     expect(inventory.rows).toHaveLength(catalog.equipment.length);
     expect(inventory.rows.map((row) => row[0].value)).toEqual(catalog.equipment.map((_, index) => index + 1));
     for (const [index, equipment] of catalog.equipment.entries()) {
@@ -20,6 +20,18 @@ describe('official equipment Excel report tables', () => {
     }
     expect(tables[0].rows.reduce((sum, row) => sum + row[1].value, 0)).toBe(catalog.equipment.length);
     expect(tables[1].rows.reduce((sum, row) => sum + row[1].value, 0)).toBe(catalog.equipment.length);
+    const reviews = tables.find((table) => table.heading === 'All-brand follow-up');
+    expect(reviews.rows).toHaveLength(35);
+    expect(reviews.rows.reduce((sum, row) => sum + row[1].value, 0)).toBe(657);
+    expect(reviews.rows.map((row) => row[0].value)).toEqual(catalog.brand_reviews.map((review) => review.brand));
+    const lifeFitness = tables.find((table) => table.heading === 'Life Fitness item review');
+    const equipment = catalog.equipment.filter((entry) => entry.brand === 'Life Fitness');
+    expect(lifeFitness.rows).toHaveLength(112);
+    expect(lifeFitness.rows.map((row) => row[0].value)).toEqual(equipment.map((entry) => String(entry.inventory_id)));
+    for (const [index, entry] of equipment.entries()) {
+      expect(lifeFitness.rows[index][6].value).toBe(entry.status);
+      expect(lifeFitness.rows[index][9].url).toBe(entry.source_image_url);
+    }
   });
 
   it('preserves escaped pipes, leading-zero IDs and parentheses in links', () => {

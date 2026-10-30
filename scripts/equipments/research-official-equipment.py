@@ -64,6 +64,39 @@ SITEMAPS = {
     'IRONWOD': 'https://ironwod.com/sitemap.xml',
 }
 
+# CDN paths actually observed on the manufacturers' public product pages.
+# Restrict shared CDNs to the manufacturer's account, not the whole CDN host.
+BROWSER_IMAGE_PREFIXES = {
+    'Life Fitness': ('https://production-gvckb4eyhna3g6c7.a03.azurefd.net/',
+                     'https://cdn.shopify.com/s/files/1/0538/8307/6805/'),
+    'FREEMOTION': ('https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/',),
+    'FORWARD': ('https://cdn-optimized.imweb.me/upload/S20221208a9a497601a979/',),
+    'XMASTER': ('https://img-va.myshopline.com/image/store/1688111732036/',),
+    'ZIVA': ('https://res.cloudinary.com/dy1ralqpm/image/fetch/',),
+    'ROGERS': ('https://cdn11.bigcommerce.com/s-jeg6lfft5f/',),
+}
+
+
+def validate_browser_urls(record):
+    brand = record['brand']
+    origin = CATALOGS.get(brand) or SITEMAPS.get(brand)
+    host = urllib.parse.urlparse(origin or '').hostname
+    if not host:
+        raise ValueError(f'No manufacturer origin configured for browser evidence: {brand}')
+    host = 'lifefitness.com' if brand == 'Life Fitness' else host.removeprefix('www.')
+    for key in ('product_url', 'evidence_url', 'image_evidence_url', 'image_url'):
+        value = record.get(key)
+        if key in ('image_url', 'image_evidence_url') and not value:
+            continue
+        parsed = urllib.parse.urlparse(value or '')
+        actual = (parsed.hostname or '').removeprefix('www.')
+        own_host = actual == host or actual.endswith('.' + host)
+        observed_cdn = (key == 'image_url' and
+                        record.get('image_observed_on') == record.get('image_evidence_url', record.get('evidence_url')) and
+                        any((value or '').startswith(prefix) for prefix in BROWSER_IMAGE_PREFIXES.get(brand, ())))
+        if parsed.scheme != 'https' or parsed.username or parsed.password or not (own_host or observed_cdn):
+            raise ValueError(f'Browser evidence is outside the manufacturer origin: {key}')
+
 
 def plain(value):
     return re.sub(r'\s+', ' ', html.unescape(re.sub('<[^>]+>', ' ', value or ''))).strip()
@@ -90,6 +123,81 @@ def tokens(value):
     return set(re.findall('[a-z0-9]+', (value or '').lower())) - {'machine', 'fitness', 'series', 'the', 'and'}
 
 
+def lifefitness_lookup_model(source_model):
+    """Separate recognized inventory annotations; never truncate real model codes."""
+    model = source_model.strip()
+    model = re.sub(r'\s*[（(](?:LP|SP)[）)]\s*Full\s*$', '', model, flags=re.I).strip()
+    if model.startswith('OP-') and model.endswith('-FS'):
+        model = model[:-3]
+    return model
+
+
+def apply_lifefitness_reviews(result, supplemental):
+    """Apply individually researched model identities separately from configurations."""
+    from collections import Counter
+    reviews = supplemental.get('lifefitness_item_reviews', [])
+    if not reviews:
+        return
+    seen = set()
+    for review in reviews:
+        inventory_id = review['inventory_id']
+        if inventory_id in seen:
+            raise ValueError(f'Duplicate Life Fitness review: {inventory_id}')
+        seen.add(inventory_id)
+        entry = next((e for e in result['equipment'] if e.get('inventory_id') == inventory_id and
+                      e['brand'] == 'Life Fitness' and e['source_model'] == review['source_model']), None)
+        if entry is None:
+            raise ValueError(f'Life Fitness review does not match original inventory: {inventory_id}')
+        if not review.get('query') or not review.get('configuration_note'):
+            raise ValueError('Life Fitness review requires an individual search and configuration note')
+        entry['lookup_model'] = lifefitness_lookup_model(entry['source_model'])
+        entry['individual_review'] = review
+        entry['match_scope'] = review['match_scope']
+        entry['configuration_status'] = review['configuration_status']
+        entry['configuration_note'] = review['configuration_note']
+        if review['outcome'] == 'model_confirmed':
+            if not review.get('model_evidence'):
+                raise ValueError('Confirmed Life Fitness models require product-specific code evidence')
+            if review['match_scope'] == 'base_model' and model_key(entry['lookup_model'], 'Life Fitness') != model_key(review['official_model'], 'Life Fitness'):
+                raise ValueError('Base-model review must match the conservatively normalized source model')
+            validate_browser_urls({'brand': 'Life Fitness', 'product_url': review['official_product_url'],
+                                   'evidence_url': review['evidence_url'], 'image_url': review.get('official_image_url'),
+                                   'image_observed_on': review.get('image_observed_on'),
+                                   'image_evidence_url': review.get('image_evidence_url', review['evidence_url'])})
+            image = review.get('official_image_url')
+            check = review.get('image_check')
+            if image and (not check or check.get('available') is not True or check.get('url') != image):
+                raise ValueError('Life Fitness official images must have a successful image check')
+            entry.update(official_name=review['official_name'], official_product_url=review['official_product_url'],
+                         official_image_url=image, official_model=review['official_model'],
+                         status='model_verified' if image else 'model_verified_image_missing',
+                         match_method='individually_verified_' + review['match_scope'],
+                         image_check=check, candidates=[],
+                         evidence={key: review.get(key) for key in ('evidence_url', 'evidence_sha256', 'retrieved_at',
+                                                                  'retrieval_method', 'model_evidence', 'image_evidence_url')},
+                         reason=review['configuration_note'])
+        elif review['outcome'] == 'candidate':
+            candidate = {'name': review['candidate_name'], 'product_url': review['candidate_product_url'],
+                         'image_url': review.get('candidate_image_url'), 'score': 0,
+                         'evidence_url': review.get('evidence_url', review['candidate_product_url']),
+                         'retrieval_method': 'individual_search_and_official_page', 'reason': review['configuration_note']}
+            validate_browser_urls({'brand': 'Life Fitness', 'product_url': candidate['product_url'],
+                                   'evidence_url': candidate['evidence_url']})
+            entry.update(official_name=None, official_product_url=None, official_image_url=None,
+                         official_model=None,
+                         status='candidate_requires_review', match_method=None, evidence=None, image_check=None,
+                         candidates=[candidate], reason=review['configuration_note'])
+        elif review['outcome'] == 'unresolved':
+            entry.update(official_name=None, official_product_url=None, official_image_url=None,
+                         official_model=None,
+                         status='unresolved', match_method=None, evidence=None, image_check=None,
+                         candidates=[], reason=review['configuration_note'])
+        else:
+            raise ValueError(f'Unsupported Life Fitness review outcome: {review["outcome"]}')
+    result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
+    result['lifefitness_review'] = supplemental.get('lifefitness_review', {})
+
+
 def apply_browser_evidence(result, supplemental):
     """Apply exact, standalone model cards actually displayed in a browser.
 
@@ -99,19 +207,15 @@ def apply_browser_evidence(result, supplemental):
     from collections import Counter
     records = {}
     for record in supplemental.get('browser_models', []):
-        if (record.get('retrieval_method') != 'browser_dom' or
+        if (not record.get('model', '').strip() or record.get('model') == '-' or
+                record.get('retrieval_method') != 'browser_dom' or
                 record.get('image_loaded') is not True or record.get('image_width', 0) <= 0 or
                 record.get('displayed_models') != [record.get('model')]):
             continue
         brand = record['brand']
-        origin = CATALOGS.get(brand) or SITEMAPS.get(brand)
-        host = urllib.parse.urlparse(origin or '').hostname
-        if not host:
-            raise ValueError(f'No manufacturer origin configured for browser evidence: {brand}')
-        for key in ('product_url', 'image_url', 'evidence_url'):
-            parsed = urllib.parse.urlparse(record.get(key, ''))
-            if parsed.scheme != 'https' or not parsed.hostname or parsed.hostname.removeprefix('www.') != host.removeprefix('www.'):
-                raise ValueError(f'Browser evidence is outside the manufacturer origin: {key}')
+        if not record.get('image_url'):
+            raise ValueError('Decoded browser evidence requires an image URL')
+        validate_browser_urls(record)
         if not record.get('name') or not record.get('retrieved_at'):
             raise ValueError('Browser evidence requires a product name and retrieval timestamp')
         key = (brand, record['model'])
@@ -130,19 +234,51 @@ def apply_browser_evidence(result, supplemental):
                 'evidence_url': record['evidence_url'], 'retrieved_at': record['retrieved_at'],
                 'retrieval_method': 'browser_dom', 'displayed_models': record['displayed_models'],
                 'browser_evidence_sha256': hashlib.sha256(json.dumps(record, sort_keys=True, ensure_ascii=False).encode()).hexdigest(),
+                **({'model_evidence': record['model_evidence']} if record.get('model_evidence') else {}),
             },
             image_check={
                 'checked_at': record['retrieved_at'], 'available': True,
                 'method': 'browser_image_decoded', 'image_width': record['image_width'],
             },
-            reason='The manufacturer catalog was opened in Chrome. The standalone card displays this exact model and name, and its official image decoded successfully in the browser.',
+            reason=record.get('model_evidence') or 'The manufacturer catalog was opened in Chrome. The standalone card displays this exact model and name, and its official image decoded successfully in the browser.',
         )
+    # Browser-confirmed names/photos with incomplete model evidence stay candidates.
+    for record in supplemental.get('browser_candidates', []):
+        if record.get('retrieval_method') != 'browser_dom':
+            continue
+        validate_browser_urls(record)
+        entry = next((e for e in result['equipment'] if
+                      e.get('inventory_id') == record['inventory_id'] and e['brand'] == record['brand'] and
+                      e['source_model'] == record['source_model']), None)
+        if entry is None or entry['status'].startswith('model_verified'):
+            continue
+        if record.get('image_url') and (record.get('image_loaded') is not True or record.get('image_width', 0) <= 0):
+            raise ValueError('Candidate browser images must have decoded successfully')
+        candidate = {key: record[key] for key in ('name', 'product_url', 'image_url', 'evidence_url',
+                                                 'retrieved_at', 'retrieval_method', 'reason')}
+        candidate['score'] = 0  # Manual lead, not a computed name-similarity score.
+        entry['candidates'] = [candidate] + [c for c in entry.get('candidates', []) if c['product_url'] != record['product_url']]
+        entry['browser_review'] = {key: record[key] for key in ('evidence_url', 'retrieved_at', 'reason')}
+        if entry['status'] == 'unresolved':
+            entry['status'] = 'candidate_requires_review'
+        entry['reason'] = record['reason']
+    for review in supplemental.get('browser_inventory_reviews', []):
+        entry = next((e for e in result['equipment'] if e.get('inventory_id') == review['inventory_id'] and
+                      e['brand'] == review['brand'] and e['source_model'] == review['source_model']), None)
+        if entry is not None:
+            entry['browser_review'] = review
+            if not entry['status'].startswith('model_verified'):
+                entry['reason'] = review['reason']
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
     if supplemental.get('browser_followup'):
         followup = supplemental['browser_followup']
         result['browser_followup'] = followup
         counts = result.setdefault('catalog_product_counts', {})
         counts[followup['brand']] = max(counts.get(followup['brand'], 0), followup['catalog_card_count'])
+    if supplemental.get('brand_reviews'):
+        result['brand_reviews'] = supplemental['brand_reviews']
+        result['last_review_date'] = max(review['review_date'] for review in result['brand_reviews'])
+    apply_lifefitness_reviews(result, supplemental)
 
 
 class Page(HTMLParser):
@@ -490,10 +626,12 @@ def write_reports(result):
     def link(label, url):
         return f'[{label}]({url})' if url else '—'
     lines = ['# 24/7 Fitness HK official equipment research', '',
-             'Research date: 2026-10-28 (Hong Kong). All 159 branch JSON files are preserved.', '',
+             'Initial research date: 2026-10-28 (Hong Kong).' +
+             (f" Latest all-brand follow-up: {result['last_review_date']} (Hong Kong)." if result.get('last_review_date') else '') +
+             ' All 159 branch JSON files are preserved.', '',
              f'The cross-reference covers all {len(entries)} unique inventory IDs. It records manufacturer names and image URLs separately from the original 24/7 data. No database changes or image substitutions were made.', '',
              '## Interpretation', '',
-             '- `model_verified`: a manufacturer SKU, product title, relevant product description or directly viewed catalog card matches the source model. Image checks use HTTP image content types or a successfully decoded image in the browser.',
+             '- `model_verified`: a manufacturer SKU, product title/URL, relevant product description or directly viewed catalog card matches the source model. Image checks use HTTP image content types or a successfully decoded image in the browser.',
              '- `model_verified_image_missing` / `model_verified_image_unavailable`: model evidence exists, but the official image is absent or could not be retrieved.',
              '- `name_indexed_image_missing`: exact model/name found in the search index of the manufacturer catalog; direct access and official image remain unverified.',
              '- `candidate_requires_review`: an official candidate exists, but model, generation or configuration is not established.',
@@ -513,7 +651,33 @@ def write_reports(result):
                   f"On {followup['review_date']} (Hong Kong), {followup['browser']} displayed all {followup['catalog_page_count']} official {followup['brand']} catalog pages ({followup['catalog_card_count']} product cards) after direct HTTP requests returned 403. Exact standalone model cards and successfully decoded product images verified {followup['matched_model_count']} of the 176 source models.", '',
                   'Combined-machine cards were excluded from standalone matches. The following source models were not found as exact standalone matches in the current catalog: ' + ', '.join(f'`{model}`' for model in followup['unmatched_models']) + '.', '',
                   'The candidate page for `1SC034A` displays `1SC034`; these remain distinct. The official catalog identifies `1HP233` as Power tower, while the original 24/7 name is Military bench; the original inventory is preserved for review.']
+    if result.get('brand_reviews'):
+        reviews = result['brand_reviews']
+        lines += ['', '## All-brand follow-up', '',
+                  f"On {result['last_review_date']} (Hong Kong), all {sum(r['inventory_count'] for r in reviews)} inventory IDs across the other {len(reviews)} brands were reprocessed using fresh HTTP catalog, product-page and image requests. Where HTTP could not supply usable catalog/product content, Chrome was used to inspect the official website. Browser pages were also used to resolve ambiguous catalog matches. The previous PANATTA browser evidence is retained.", '',
+                  'A successful website visit is not an exact equipment match. Configuration suffixes and console options remain unverified unless supported by the manufacturer. Exact base models can establish a base-model match without confirming a longer source SKU; generic or missing models require separate evidence. The subsequent Life Fitness item review records those distinctions individually. Browser image URLs are the actual decoded images, including manufacturer-selected CDNs.', '',
+                  '| Brand | Inventory IDs | HTTP catalog products | Browser pages | Review result |',
+                  '| --- | ---: | ---: | ---: | --- |']
+        for review in reviews:
+            lines.append('| ' + ' | '.join([cell(review['brand']), str(review['inventory_count']),
+                                           str(products.get(review['brand'], 0)), str(len(review['browser_pages'])),
+                                           cell(review['notes'])]) + ' |')
+    if result.get('lifefitness_review'):
+        group = [e for e in entries if e['brand'] == 'Life Fitness']
+        counts = Counter(e['status'] for e in group)
+        lines += ['', '## Life Fitness item review', '',
+                  f"On {result['lifefitness_review']['review_date']} (Hong Kong), all {len(group)} Life Fitness inventory IDs were searched individually using their equipment name and conservatively normalized model. Official product pages, support articles and manufacturer-linked manuals were inspected; Chrome supplied content where direct HTTP failed. Results: {counts['model_verified']} model + image, {counts['model_verified_image_missing']} model confirmed without a verified component image, {counts['candidate_requires_review']} candidates and {counts['unresolved']} unresolved.", '',
+                  'Recognized LP/SP Full and OP-series -FS annotations are separated from the base model. A verified base model does not verify those configuration annotations. Source codes, names and 24/7 images are preserved. Manual-only components are not assigned whole-system photos. Configuration notes describe console, generation and source-name discrepancies.', '',
+                  '| Inventory ID | Source model | Verified model | Official name / candidate | Match scope | Review note | Status | Official source | Official image | 24/7 image |',
+                  '| ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+        for e in group:
+            candidate = e['candidates'][0] if e['candidates'] else {}
+            lines.append('| ' + ' | '.join([str(e['inventory_id']), cell(e['source_model']), cell(e.get('official_model') if e['official_name'] else None),
+                          cell(e['official_name'] or candidate.get('name')), cell(e['match_scope']), cell(e['configuration_note']), e['status'],
+                          link('source', e['individual_review'].get('document_url') or e['official_product_url'] or candidate.get('product_url')), link('image', e['official_image_url'] or candidate.get('image_url')),
+                          link('image', e['source_image_url'])]) + ' |')
     lines += ['', '## Known discrepancies requiring care', '',
+              '- Life Fitness inventory ID 130: source name is Seated Leg Press, but the official manual identifies SS-GLD as Glute Bridge. Current SS-GLB photos are not substituted for SS-GLD.',
               '- NEWTECH `NT-OH-SLC`: the source says Leg Extension; the manufacturer identifies OnHim Seated Leg Curl.',
               '- NEWTECH `NT-T-SDCP`: the source says Seated Incline Chest Press; the manufacturer catalog identifies Torture Chest & Decline Combo.',
               '- A model mention in a kit description does not prove the kit image depicts the standalone component. Such ambiguity is retained.',
@@ -535,7 +699,7 @@ def write_reports(result):
               'When HTTP requests cannot read an official site, inspect it in a normal browser. Captured exact-model cards and decoded-image evidence are stored in `247-fitness-hk-official-evidence.json` under `browser_models`. Apply those records to the existing catalog with `python3 scripts/equipments/research-official-equipment.py --apply-browser-evidence`. Full research runs also reapply these records after HTTP image checks.', '',
               'Excel export uses Node.js and `@oai/artifact-tool` from the Codex runtime. The runtime is detected automatically; for another installation, set `ARTIFACT_TOOL_NODE_MODULES` to its `node_modules` directory and optionally `ARTIFACT_TOOL_NODE` to its Node executable. Export failures cause the command to fail instead of silently skipping Excel.', '',
               'The public catalogs and product pages are cached under `/tmp/gymory-official-equipment/cache` by default. Use `--cache-dir` to select a different cache or a fresh directory. Network access is required for uncached URLs. Python uses the system certificate store and adds certifi certificates when that optional package is installed.', '',
-              'The evidence sidecar retains search queries, official-domain search results and supplemental product URLs. Search results are collected in batches; candidates in those batches are leads, not individual match confirmations. The catalog includes retrieval timestamps, source hashes, exact matching methods and branch slugs. Original branch files remain the source of truth.']
+              'The evidence sidecar retains search queries, official-domain search results and supplemental product URLs. Earlier batch search results are leads, not match confirmations. The Life Fitness follow-up stores one individual search and review per inventory ID under `lifefitness_item_reviews`; full research and `--apply-browser-evidence` reapply those reviews after other evidence. The catalog includes retrieval timestamps, source hashes, exact matching methods and branch slugs. Original branch files remain the source of truth.']
     runtime_node = Path.home() / '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node'
     node = os.environ.get('ARTIFACT_TOOL_NODE') or (str(runtime_node) if runtime_node.is_file() else shutil.which('node'))
     if not node:
