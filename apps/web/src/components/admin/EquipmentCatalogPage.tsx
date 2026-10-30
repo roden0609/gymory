@@ -23,6 +23,7 @@ type Machine = {
   product_url: string | null; description: string | null;
   status: "active" | "discontinued" | "unknown";
   source_type: "official" | "manual" | "user_submitted";
+  gym_equipment_inventory: { gyms: { id: string; name: string; name_zh: string | null } | null }[];
   equipment_aliases: { alias: string }[];
   equipment_type_assignments: { equipment_type_code: string; is_primary: boolean }[];
 };
@@ -58,7 +59,7 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   const brandsQuery = supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en").order("id");
   let typesQuery = supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment_type_assignments(count)").eq("is_active", true).order("name_en").order("code");
   if (section === "types" && category) typesQuery = typesQuery.eq("category", category);
-  let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
+  let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, gym_equipment_inventory(gyms(id, name, name_zh)), equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
   for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     section === "brands" ? brandsQuery.range(from, to) : section === "equipment" ? brandsQuery : { data: [], error: null },
@@ -119,7 +120,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
     ? (chinese ? ["品牌", "國家", "網站", "狀態", "操作"] : ["Brand", "Country", "Website", "Status", "Actions"])
     : section === "types"
       ? (chinese ? ["器材類型", "英文名稱", "分類", "器材數量", "Labels", "操作"] : ["Equipment type", "English name", "Category", "Equipment count", "Labels", "Actions"])
-      : (chinese ? ["器材", "品牌", "器材類型", "系列 / 型號", "狀態", "Labels", "操作"] : ["Equipment", "Brand", "Equipment type", "Series / model", "Status", "Labels", "Actions"]);
+      : (chinese ? ["器材", "品牌", "器材類型", "副功能", "系列 / 型號", "狀態", "Labels", "所屬健身室", "操作"] : ["Equipment", "Brand", "Equipment type", "Additional types", "Series / model", "Status", "Labels", "Gyms", "Actions"]);
   const pagination = <CatalogPagination locale={locale} path={path} page={page} totalPages={totalPages} totalCount={totalCount} category={selectedCategory} filters={filters} />;
 
   return (
@@ -267,7 +268,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
               const primaryCode = machine.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code;
               const type = equipmentTypes.find((item) => item.code === primaryCode);
               return <CatalogRecordRow key={machine.id} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && machine.name_zh ? machine.name_zh : machine.name} subtitle={locale === "zh-HK" && machine.name_zh ? machine.name : undefined}
-                summary={<RecordSummary fields={[
+                summary={<><RecordSummary fields={[
                   [locale === "zh-HK" ? "品牌" : "Brand", brand ? (locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en) : machine.brand_id],
                   [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en) : primaryCode ?? null],
                   [locale === "zh-HK" ? "副功能" : "Additional types", machine.equipment_type_assignments.filter(a => !a.is_primary).map(a => {
@@ -277,7 +278,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   [locale === "zh-HK" ? "系列 / 型號" : "Series / model", [machine.series, machine.model_number].filter(Boolean).join(" / ")],
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
                   ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
-                ]} />}>
+                ]} /><MachineGyms machine={machine} locale={locale} /></>}>
                 <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
               </CatalogRecordRow>;
             })}
@@ -287,6 +288,25 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
       </div>
     </main>
   );
+}
+
+function MachineGyms({ machine, locale }: { machine: Machine; locale: string }) {
+  const chinese = locale === "zh-HK";
+  const gyms = machine.gym_equipment_inventory.flatMap(({ gyms }) => gyms ? [gyms] : [])
+    .sort((a, b) => (chinese ? a.name_zh || a.name : a.name).localeCompare(chinese ? b.name_zh || b.name : b.name, locale));
+  return <td className="min-w-0 break-words px-4 py-3 text-gray-600 [overflow-wrap:anywhere]">
+    <span className="mb-1 block text-xs text-gray-500 md:hidden">{chinese ? "所屬健身室" : "Gyms"}</span>
+    {gyms.length ? <details className="min-w-0 max-w-full">
+      <summary className="cursor-pointer">{chinese ? `${gyms.length} 間健身室` : `${gyms.length} gym${gyms.length === 1 ? "" : "s"}`}</summary>
+      <ul className="mt-2 min-w-0 space-y-2">
+        {gyms.map(gym => <li key={gym.id} className="min-w-0">
+          <Link href={`/admin/gyms/${gym.id}/equipment`} className="break-words text-blue-700 hover:underline [overflow-wrap:anywhere]">
+            {chinese ? gym.name_zh || gym.name : gym.name}
+          </Link>
+        </li>)}
+      </ul>
+    </details> : <span className="text-gray-500">{chinese ? "暫無健身室記錄" : "No gyms recorded"}</span>}
+  </td>;
 }
 
 function CatalogTable({ headers, children }: { headers: string[]; children: React.ReactNode }) {
