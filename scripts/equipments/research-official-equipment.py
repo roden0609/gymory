@@ -233,7 +233,11 @@ def apply_official_chinese_names(result, supplemental):
                 continue
         validate_browser_urls(record)
         name = record.get('official_name_zh')
-        if not isinstance(name, str) or not re.search(r'[\u3400-\u9fff]', name):
+        locale_name = (record.get('name_language') == 'manufacturer_locale_unchanged'
+                       and record.get('source_locale') == 'zh-Hant'
+                       and name == record.get('original_name') == record.get('source_heading')
+                       and '/zh-hk/' in record.get('evidence_url', ''))
+        if not isinstance(name, str) or not name.strip() or (not re.search(r'[\u3400-\u9fff]', name) and not locale_name):
             raise ValueError('Official Chinese name requires manufacturer Chinese wording')
         if record.get('source_locale') == 'zh-Hans' and (
                 not record.get('original_name') or record.get('conversion_method') != 'OpenCC cn-to-hk'):
@@ -243,7 +247,7 @@ def apply_official_chinese_names(result, supplemental):
             'product_url', 'evidence_url', 'retrieved_at', 'retrieval_method', 'original_name',
             'source_locale', 'conversion_method', 'evidence_sha256', 'localized_product_url',
             'manufacturer_model_codes', 'match_scope', 'identity_evidence', 'document_page',
-            'source_heading', 'source_label', 'note') if k in record}
+            'source_heading', 'source_label', 'name_language', 'note') if k in record}
         for candidate in candidates:
             candidate['name_zh'] = record['official_name_zh']
     reviews = supplemental.get('official_chinese_name_reviews', [])
@@ -309,6 +313,13 @@ def apply_lifefitness_reviews(result, supplemental):
         if review['outcome'] == 'model_confirmed':
             if not review.get('model_evidence'):
                 raise ValueError('Confirmed Life Fitness models require product-specific code evidence')
+            if review['match_scope'] == 'product_name_and_image':
+                visual = review.get('visual_review', {})
+                if (visual.get('source_image_url') != entry.get('source_image_url')
+                        or visual.get('official_image_url') != review.get('official_image_url')
+                        or visual.get('result') != 'product_identity_confirmed'
+                        or not visual.get('observations') or not visual.get('review_date')):
+                    raise ValueError('Visual product confirmation requires source-bound image comparison evidence')
             if review['match_scope'] == 'base_model' and model_key(entry['lookup_model'], 'Life Fitness') != model_key(review['official_model'], 'Life Fitness'):
                 raise ValueError('Base-model review must match the conservatively normalized source model')
             validate_browser_urls({'brand': 'Life Fitness', 'product_url': review['official_product_url'],
@@ -327,6 +338,11 @@ def apply_lifefitness_reviews(result, supplemental):
                          evidence={key: review.get(key) for key in ('evidence_url', 'evidence_sha256', 'retrieved_at',
                                                                   'retrieval_method', 'model_evidence', 'image_evidence_url')},
                          reason=review['configuration_note'])
+            for key in ('visual_review', 'identity_evidence'):
+                if key in review:
+                    entry['evidence'][key] = review[key]
+            if review['match_scope'] in ('product_name_and_image', 'exact_model_manual'):
+                entry['image_verification_status'] = 'manufacturer_image_checked' if image else 'image_missing'
         elif review['outcome'] == 'candidate':
             candidate = {'name': review['candidate_name'], 'product_url': review['candidate_product_url'],
                          'image_url': review.get('candidate_image_url'), 'score': 0,
@@ -338,6 +354,16 @@ def apply_lifefitness_reviews(result, supplemental):
                          official_model=None,
                          status='candidate_requires_review', match_method=None, evidence=None, image_check=None,
                          candidates=[candidate], reason=review['configuration_note'])
+            if review.get('record_candidate_official_data'):
+                validate_browser_urls({'brand': 'Life Fitness', 'product_url': candidate['product_url'],
+                                       'evidence_url': candidate['evidence_url'], 'image_url': candidate['image_url']})
+                entry.update(official_name=candidate['name'], official_product_url=candidate['product_url'],
+                             official_image_url=candidate['image_url'],
+                             match_method='manufacturer_family_candidate',
+                             image_verification_status='candidate_requires_review',
+                             evidence={'evidence_url': candidate['evidence_url'],
+                                       'retrieval_method': 'manufacturer_family_candidate',
+                                       'note': 'Manufacturer name and image recorded as candidates; inventory configuration and image match are unverified.'})
         elif review['outcome'] == 'unresolved':
             entry.update(official_name=None, official_product_url=None, official_image_url=None,
                          official_model=None,
@@ -347,6 +373,36 @@ def apply_lifefitness_reviews(result, supplemental):
             raise ValueError(f'Unsupported Life Fitness review outcome: {review["outcome"]}')
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
     result['lifefitness_review'] = supplemental.get('lifefitness_review', {})
+
+
+def apply_manual_equipment_reviews(result, supplemental):
+    """Replay explicit user decisions only while the reviewed source and official data match."""
+    from collections import Counter
+    seen = set()
+    for review in supplemental.get('manual_equipment_reviews', []):
+        inventory_id = review['inventory_id']
+        if inventory_id in seen:
+            raise ValueError('Duplicate manual equipment review')
+        seen.add(inventory_id)
+        entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
+        fields = ('brand', 'source_model', 'source_image_url', 'official_name',
+                  'official_product_url', 'official_image_url')
+        if entry is None or any(entry.get(k) != review.get(k) for k in fields):
+            raise ValueError(f'Manual review no longer matches equipment data: {inventory_id}')
+        if (review.get('status') != 'model_verified' or not entry.get('official_image_url')
+                or not review.get('review_date') or not review.get('review_source')
+                or review.get('reviewed_by') != 'user'):
+            raise ValueError('Manual model verification requires an explicit user decision and image reference')
+        entry.update(status='model_verified', match_method='manual_equipment_review',
+                     match_scope='manual_review', configuration_status='manually_reviewed',
+                     image_verification_status='manually_reviewed', manual_review=review,
+                     reason=review['note'], configuration_note=review['note'])
+    result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
+    if result.get('lifefitness_review'):
+        counts = Counter(e['status'] for e in result['equipment'] if e['brand'] == 'Life Fitness')
+        result['lifefitness_review'] = {**result['lifefitness_review'],
+            'model_with_image': counts['model_verified'], 'model_without_image': counts['model_verified_image_missing'],
+            'candidate_count': counts['candidate_requires_review'], 'unresolved_count': counts['unresolved']}
 
 
 def apply_browser_evidence(result, supplemental):
@@ -432,6 +488,7 @@ def apply_browser_evidence(result, supplemental):
     apply_lifefitness_reviews(result, supplemental)
     apply_official_english_names(result, supplemental)
     apply_official_chinese_names(result, supplemental)
+    apply_manual_equipment_reviews(result, supplemental)
 
 
 class Page(HTMLParser):
@@ -808,7 +865,7 @@ def write_reports(result):
              '- `model_verified`: a manufacturer SKU, product title/URL, relevant product description or directly viewed catalog card matches the source model. Image checks use HTTP image content types or a successfully decoded image in the browser.',
              '- `model_verified_image_missing` / `model_verified_image_unavailable`: model evidence exists, but the official image is absent or could not be retrieved.',
              '- `name_indexed_image_missing`: exact model/name found in the search index of the manufacturer catalog; direct access and official image remain unverified.',
-             '- `candidate_requires_review`: an official candidate exists, but model, generation or configuration is not established.',
+             '- `candidate_requires_review`: an official candidate exists, but model, generation or configuration is not established. Recorded official names, product links or images can describe that candidate; their presence does not verify the inventory match.',
              '- `ambiguous_model`: multiple different official products or bundles refer to the source model.',
              '- `unresolved`: no usable match found in this pass; this does not mean the product has no official source.', '',
              'Images are manufacturer catalog images, not visual confirmation of the physical machine installed in a branch. Colors, upholstery, console configuration and revisions may differ. Image URLs are supplied as research references; no local photo library was downloaded.', '',
@@ -821,7 +878,7 @@ def write_reports(result):
         lines.append(f"| {cell(brand)} | {len(group)} | {c['model_verified']} | {c['model_verified_image_missing'] + c['model_verified_image_unavailable']} | {c['name_indexed_image_missing']} | {c['candidate_requires_review'] + c['ambiguous_model']} | {c['unresolved']} | {sum(bool(e.get('official_name_zh')) for e in group)} |")
     coverage = name_coverage_by_brand(entries)
     lines += ['', '## Name coverage by brand', '',
-              f"Across {len(entries)} inventory IDs: {sum(r['english_missing'] for r in coverage)} official English names and {sum(r['chinese_missing'] for r in coverage)} Chinese names are still missing or unconfirmed. Counts use `official_name` and `official_name_zh`, independently of image availability. Captured names are not substituted. English candidates are a subset of the missing/unconfirmed English names. Recorded Chinese wording can name a candidate or an exact-model component; its evidence scope does not by itself confirm the English match, configuration or image. Missing does not mean that no official name exists.", '',
+              f"Across {len(entries)} inventory IDs: {sum(r['english_missing'] for r in coverage)} official English name fields and {sum(r['chinese_missing'] for r in coverage)} Chinese-locale name fields are blank. Counts use `official_name` and `official_name_zh`, independently of verification status and image availability. Recorded names may describe a candidate; check status and evidence scope for inventory identity. Captured names are not substituted. English candidates only counts blank English fields with a named candidate. Chinese-locale names include trademarks the manufacturer leaves unchanged, such as SYNRGY360. Missing does not mean that no official name exists.", '',
               '| Brand | Total | Official English names | English names missing | Chinese names recorded | Chinese names missing | English candidates only |',
               '| --- | ---: | ---: | ---: | ---: | ---: | ---: |']
     for row in coverage:
@@ -848,9 +905,16 @@ def write_reports(result):
         group = [e for e in entries if e['brand'] == 'Life Fitness']
         counts = Counter(e['status'] for e in group)
         lines += ['', '## Life Fitness item review', '',
-                  f"On {result['lifefitness_review']['review_date']} (Hong Kong), all {len(group)} Life Fitness inventory IDs were searched individually using their equipment name and conservatively normalized model. Official product pages, support articles and manufacturer-linked manuals were inspected; Chrome supplied content where direct HTTP failed. Results: {counts['model_verified']} model + image, {counts['model_verified_image_missing']} model confirmed without a verified component image, {counts['candidate_requires_review']} candidates and {counts['unresolved']} unresolved.", '',
+                  f"Initial individual review: {result['lifefitness_review']['review_date']} (Hong Kong), covering all {len(group)} Life Fitness inventory IDs using their equipment name and conservatively normalized model. Official product pages, support articles and manufacturer-linked manuals were inspected; Chrome supplied content where direct HTTP failed. Current results after follow-ups: {counts['model_verified']} model + image, {counts['model_verified_image_missing']} model confirmed without a verified product image, {counts['candidate_requires_review']} candidates and {counts['unresolved']} unresolved.", '',
                   'Recognized LP/SP Full and OP-series -FS annotations are separated from the base model. A verified base model does not verify those configuration annotations. Source codes, names and 24/7 images are preserved. Manual-only components are not assigned whole-system photos. Configuration notes describe console, generation and source-name discrepancies.', '',
-                  '| Inventory ID | Source model | Verified model | Official name / candidate | Official Chinese name | Match scope | Review note | Status | Official source | Official image | 24/7 image |',
+                  ]
+        if result['lifefitness_review'].get('candidate_followup'):
+            followup = result['lifefitness_review']['candidate_followup']
+            lines += [f"Candidate follow-up on {followup['review_date']}: all {followup['inventory_count']} prior candidates rechecked. {followup['model_verified_count']} now have verified product identity and manufacturer images; {followup['model_verified_image_missing_count']} has an exact manufacturer model but no verified image; {followup['candidate_requires_review_count']} remained candidates at that stage because source configuration text conflicts with its shared SE4 photo. Product-image comparisons do not certify branch installation, full SKU prefixes or production revisions. Per-item evidence: `lifefitness_candidate_followup` and `lifefitness_item_reviews` in the evidence JSON.", '']
+        manual = [e for e in group if e.get('manual_review')]
+        if manual:
+            lines += [f"User manual review applied for Inventory IDs {', '.join(str(e['inventory_id']) for e in manual)}: Status is `model_verified`, based on the user's `Manual Review Comment` in the Reviewing workbook and explicit instruction to apply it. These decisions override earlier automated candidate outcomes. Original console/photo discrepancies and reviewed source/image references remain in `manual_equipment_reviews` in the evidence JSON; these are user decisions, not new manufacturer SKU evidence.", '']
+        lines += ['| Inventory ID | Source model | Verified model | Official name / candidate | Official Chinese name | Match scope | Review note | Status | Official source | Official image | 24/7 image |',
                   '| ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
         for e in group:
             candidate = e['candidates'][0] if e['candidates'] else {}
@@ -869,7 +933,7 @@ def write_reports(result):
             lines += [f"Name-based follow-up on {search['review_date']}: all {search['inventory_count']} previously blank records were searched independently of their stored URLs ({search['unique_name_queries']} unique equipment-name groups, {search['search_query_count']} queries across general name and manufacturer-domain Chinese searches). Official shop/catalog identity review, normal-browser pages and model-specific Chinese manufacturer PDFs supplied {search['new_name_count']} additional names. Search queries and official result links are retained in the evidence JSON under `official_chinese_name_search_followup`. Search results are leads, not automatic matches.", '']
         if result['official_chinese_name_followup'].get('specification_followup'):
             review = result['official_chinese_name_followup']['specification_followup']
-            lines += [f"Life Fitness specification/body follow-up on {review['review_date']}: {review['new_name_count']} additional Chinese names recorded from exact-model specification rows, parallel-language component cards backed by manufacturer manuals, and product body wording. Of {review['inventory_count']} Life Fitness inventory records, {review['remaining_unverified_count']} Chinese names remain unconfirmed. Component wording does not verify a whole-system image. Full audit: `lifefitness_specification_name_followup` in the evidence JSON.", '']
+            lines += [f"Life Fitness specification/body follow-up on {review['review_date']}: {review['new_name_count']} additional Chinese names recorded from exact-model specification rows, parallel-language component cards backed by manufacturer manuals, and product body wording. At that stage, {review['remaining_unverified_count']} of {review['inventory_count']} Life Fitness Chinese names remained unconfirmed. Current counts are in Name coverage by brand. Component wording does not verify a whole-system image. Full audit: `lifefitness_specification_name_followup` in the evidence JSON.", '']
         lines += ['| Inventory ID | Brand | Official Chinese name | Original manufacturer wording | Source locale | Conversion | Chinese source | Match status | Chinese name scope |',
                   '| ---: | --- | --- | --- | --- | --- | --- | --- | --- |']
         for e in names:

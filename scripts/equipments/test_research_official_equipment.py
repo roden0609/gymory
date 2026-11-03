@@ -327,6 +327,59 @@ class LifeFitnessReviewTests(unittest.TestCase):
 
 
 class SpecificationNameTests(unittest.TestCase):
+    def test_manual_review_replays_and_rejects_changed_reviewed_data(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['manual_equipment_reviews']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {1339, 1369})
+        result = {'equipment': copy.deepcopy(catalog['equipment'])}
+        research.apply_browser_evidence(result, evidence)
+        first = copy.deepcopy(result)
+        research.apply_browser_evidence(result, evidence)
+        self.assertEqual(result, first)
+        for review in reviews:
+            entry = next(e for e in result['equipment'] if e['inventory_id'] == review['inventory_id'])
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['match_method'], 'manual_equipment_review')
+            self.assertEqual(entry['manual_review']['previous_status'], 'candidate_requires_review')
+        for field in ('source_model', 'source_image_url', 'official_image_url'):
+            stale = copy.deepcopy(first)
+            entry = next(e for e in stale['equipment'] if e['inventory_id'] == 1339)
+            entry[field] = 'changed'
+            with self.assertRaises(ValueError):
+                research.apply_manual_equipment_reviews(stale, evidence)
+
+    def test_candidate_followup_requires_bound_visual_evidence_and_preserves_conflicts(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        entries = {e['inventory_id']: e for e in catalog['equipment']}
+        audit = evidence['lifefitness_candidate_followup']['reviews']
+        self.assertEqual({r['inventory_id'] for r in audit}, {1153, 1339, 1346, 1369, 1375, 1383, 1470, 1472})
+        for row in audit:
+            entry = entries[row['inventory_id']]
+            self.assertEqual(entry['status'], entry.get('manual_review', {}).get('status', row['result']))
+            self.assertTrue(entry['official_name'])
+            if entry.get('manual_review'):
+                self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+                self.assertEqual(entry['manual_review']['reviewed_by'], 'user')
+            elif entry['status'] == 'model_verified':
+                self.assertEqual(entry['image_check']['url'], entry['official_image_url'])
+                self.assertTrue(entry['image_check']['available'])
+                self.assertEqual(entry['evidence']['visual_review']['source_image_url'], entry['source_image_url'])
+            elif entry['status'] == 'candidate_requires_review':
+                self.assertEqual(entry['image_verification_status'], 'candidate_requires_review')
+                self.assertIsNone(entry['image_check'])
+        self.assertIsNone(entries[1383]['official_image_url'])
+        self.assertEqual(entries[1339]['source_image_url'], entries[1369]['source_image_url'])
+        review = next(r for r in evidence['lifefitness_item_reviews'] if r['inventory_id'] == 1375)
+        entry = copy.deepcopy(entries[1375])
+        for visual in ({}, {**review['visual_review'], 'source_image_url': 'https://example.com/stale.png'}):
+            with self.assertRaises(ValueError):
+                research.apply_lifefitness_reviews({'equipment': [entry]},
+                    {'lifefitness_item_reviews': [{**review, 'visual_review': visual}]})
+
     def test_component_names_are_read_from_labels_without_system_images(self):
         source = '''<h1>Multi-Jungle MJ8</h1><table>
           <tr><td>MJ Lat Pulldown (MJLP) Weight</td><td>340 lbs</td></tr>
@@ -359,7 +412,30 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertIn('训练', mixed['official_name_zh_evidence']['original_name'])
         self.assertIn('訓練', mixed['official_name_zh'])
         life = next(r for r in research.name_coverage_by_brand(catalog['equipment']) if r['brand'] == 'Life Fitness')
-        self.assertEqual((life['total'], life['chinese_names'], life['chinese_missing']), (112, 98, 14))
+        self.assertEqual((life['total'], life['chinese_names'], life['chinese_missing']), (112, 100, 12))
+
+    def test_localized_trademark_and_candidate_image_do_not_verify_configuration(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        entry = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == 1153))
+        result = {'equipment': [entry]}
+        review = {**next(r for r in evidence['lifefitness_item_reviews'] if r['inventory_id'] == 1153),
+                  'outcome': 'candidate', 'match_scope': 'family_candidate',
+                  'configuration_status': 'unverified', 'record_candidate_official_data': True}
+        name = next(r for r in evidence['official_chinese_names'] if r['inventory_id'] == 1153)
+        research.apply_lifefitness_reviews(result, {'lifefitness_item_reviews': [review]})
+        research.apply_official_chinese_names(result, {'official_chinese_names': [name]})
+        self.assertEqual(entry['official_name'], 'SYNRGY360')
+        self.assertEqual(entry['official_name_zh'], 'SYNRGY360')
+        self.assertEqual(entry['official_image_url'], review['candidate_image_url'])
+        self.assertEqual(entry['status'], 'candidate_requires_review')
+        self.assertEqual(entry['configuration_status'], 'unverified')
+        self.assertEqual(entry['image_verification_status'], 'candidate_requires_review')
+        self.assertIsNone(entry['image_check'])
+        for change in ({'source_heading': 'Other'}, {'name_language': None}):
+            with self.assertRaises(ValueError):
+                research.apply_official_chinese_names(result, {'official_chinese_names': [{**name, **change}]})
 
 
 if __name__ == '__main__':

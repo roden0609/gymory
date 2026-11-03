@@ -4,11 +4,11 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Official image URLs only in official_image_url. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "candidate_requires_review": 173,
+    "candidate_requires_review": 165,
     "unresolved": 88,
-    "model_verified": 550,
+    "model_verified": 557,
     "ambiguous_model": 9,
-    "model_verified_image_missing": 13
+    "model_verified_image_missing": 14
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -40168,24 +40168,30 @@
         "wong-tai-sin"
       ],
       "lookup_model": "SYNERGY360",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
-      "candidates": [
-        {
-          "name": "SYNRGY360",
-          "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
-          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
-          "score": 0,
-          "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
-          "retrieval_method": "individual_search_and_official_page",
-          "reason": "Official product family is spelled SYNRGY360; source SYNERGY360 spelling and unspecified XL/XS/T configuration remain unverified."
+      "official_name": "SYNRGY360",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
+      "status": "model_verified",
+      "match_method": "individually_verified_product_name_and_image",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "evidence_sha256": "08b93ceecb0f44786a0893a03c1ea75dc172cff2286497f92f624e324f197ad4",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Manufacturer family name SYNRGY360 and matching source/product image confirm product identity. The 247 spelling SYNERGY360 is retained in source fields. Exact ordered T/XL/XM/XS SKU and optional station configuration are not independently verified; no branch installation is certified.",
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
+          "source_image_sha256": "df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244",
+          "official_image_sha256": "df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244",
+          "result": "product_identity_confirmed",
+          "observations": "Manufacturer family name SYNRGY360 and matching source/product image confirm product identity. The 247 spelling SYNERGY360 is retained in source fields. Exact ordered T/XL/XM/XS SKU and optional station configuration are not independently verified; no branch installation is certified."
         }
-      ],
-      "reason": "Official product family is spelled SYNRGY360; source SYNERGY360 spelling and unspecified XL/XS/T configuration remain unverified.",
+      },
+      "candidates": [],
+      "reason": "Manufacturer family name SYNRGY360 and matching source/product image confirm product identity. The 247 spelling SYNERGY360 is retained in source fields. Exact ordered T/XL/XM/XS SKU and optional station configuration are not independently verified; no branch installation is certified.",
       "search_evidence": {
         "inventory_id": 1153,
         "query": "Life Fitness \"SYNERGY360\"",
@@ -40241,14 +40247,21 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244",
+        "checked_at": "2026-11-04"
+      },
       "individual_review": {
         "inventory_id": 1153,
         "source_model": "SYNERGY360",
         "source_name": "SYNERGY360",
         "base_model": "SYNERGY360",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness SYNERGY360 SYNERGY360 site:lifefitness.com",
         "search_results": [
           {
@@ -40314,26 +40327,76 @@
           {
             "title": "DUAL PRODUCT APPLICATION",
             "url": "https://admin-content-staging.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Other/Brands/Dual-Product-Brand-Guidelines.pdf"
+          },
+          {
+            "title": "SYNRGY360 | Life Fitness Hong Kong",
+            "url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360"
+          },
+          {
+            "title": "SYNRGY360 | Life Fitness 香港中文",
+            "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360"
           }
         ],
-        "outcome": "candidate",
-        "match_scope": "family_candidate",
-        "configuration_status": "unverified",
-        "configuration_note": "Official product family is spelled SYNRGY360; source SYNERGY360 spelling and unspecified XL/XS/T configuration remain unverified.",
+        "outcome": "model_confirmed",
+        "match_scope": "product_name_and_image",
+        "configuration_status": "partially_verified",
+        "configuration_note": "Manufacturer family name SYNRGY360 and matching source/product image confirm product identity. The 247 spelling SYNERGY360 is retained in source fields. Exact ordered T/XL/XM/XS SKU and optional station configuration are not independently verified; no branch installation is certified.",
         "candidate_name": "SYNRGY360",
-        "candidate_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "candidate_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
         "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
-        "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/synrgy360"
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "official_name": "SYNRGY360",
+        "official_model": "SYNRGY360",
+        "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
+        "evidence_sha256": "08b93ceecb0f44786a0893a03c1ea75dc172cff2286497f92f624e324f197ad4",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Manufacturer family name SYNRGY360 and matching source/product image confirm product identity. The 247 spelling SYNERGY360 is retained in source fields. Exact ordered T/XL/XM/XS SKU and optional station configuration are not independently verified; no branch installation is certified.",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
+          "source_image_sha256": "df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244",
+          "official_image_sha256": "df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244",
+          "result": "product_identity_confirmed",
+          "observations": "Manufacturer family name SYNRGY360 and matching source/product image confirm product identity. The 247 spelling SYNERGY360 is retained in source fields. Exact ordered T/XL/XM/XS SKU and optional station configuration are not independently verified; no branch installation is certified."
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "image_observed_on": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "image_check": {
+          "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/397-481-synrgy360-t-combo-package-plat.png?h=630&w=1200",
+          "available": true,
+          "status": 200,
+          "content_type": "image/png",
+          "sha256": "df53bc35e132c8ce0dbcab3483957584012047ad8b3a3106f0d5b88b4ed52244",
+          "checked_at": "2026-11-04"
+        }
       },
-      "match_scope": "family_candidate",
-      "configuration_status": "unverified",
-      "configuration_note": "Official product family is spelled SYNRGY360; source SYNERGY360 spelling and unspecified XL/XS/T configuration remain unverified.",
-      "official_model": null,
-      "official_name_zh": null,
+      "match_scope": "product_name_and_image",
+      "configuration_status": "partially_verified",
+      "configuration_note": "Manufacturer family name SYNRGY360 and matching source/product image confirm product identity. The 247 spelling SYNERGY360 is retained in source fields. Exact ordered T/XL/XM/XS SKU and optional station configuration are not independently verified; no branch installation is certified.",
+      "official_model": "SYNRGY360",
+      "official_name_zh": "SYNRGY360",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "requires_review",
-        "reason": "Chinese page retains an English product heading; navigation text is not a name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-04",
+        "status": "manufacturer_name_recorded",
+        "reason": "The manufacturer uses the same trademark on its Hong Kong Chinese page. This records localized official wording and does not confirm the inventory configuration or candidate image."
+      },
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "manufacturer_localized_product_heading",
+        "original_name": "SYNRGY360",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/synrgy360",
+        "match_scope": "family_candidate",
+        "source_heading": "SYNRGY360",
+        "name_language": "manufacturer_locale_unchanged",
+        "note": "The manufacturer uses the same trademark on its Hong Kong Chinese page. This records localized official wording and does not confirm the inventory configuration or candidate image."
       }
     },
     {
@@ -42222,25 +42285,29 @@
         "yau-tong"
       ],
       "lookup_model": "INP-SL",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "PowerMill Climber with SL Console",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "retrieval_method": "manufacturer_family_candidate",
+        "note": "Manufacturer name and image recorded as candidates; inventory configuration and image match are unverified."
+      },
       "candidates": [
         {
           "name": "PowerMill Climber with SL Console",
-          "product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
-          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/190-528-life-fitness-integrity-series-powermill-with-24-inch-se4-in-titanium.png?h=630&w=1200",
+          "product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
           "score": 0,
-          "evidence_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+          "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
           "retrieval_method": "individual_search_and_official_page",
-          "reason": "PowerMill and SL compatibility confirmed, but official base introduction lists INPM-SLXXX-01 / 95PS codes, not source INP-SL. Source code alias remains unverified.",
+          "reason": "Source INP-SL/name specifies SL, but the shared captured photo depicts SE4. Official model codes use INPM-SL, not the unverified source abbreviation INP-SL. Record manufacturer family name, product link and SE4 candidate image for review; do not verify the conflicting source configuration.",
           "name_zh": "PowerMill 樓梯機"
         }
       ],
-      "reason": "PowerMill and SL compatibility confirmed, but official base introduction lists INPM-SLXXX-01 / 95PS codes, not source INP-SL. Source code alias remains unverified.",
+      "reason": "User manually reviewed this inventory record and approved model_verified in the Reviewing workbook, then explicitly requested applying that decision to research outputs. The prior automated console/photo discrepancy is retained in manual_review.previous_research_note; no new manufacturer SKU alias or physical branch inspection is asserted.",
       "search_evidence": {
         "inventory_id": 1339,
         "query": "Life Fitness \"INP-SL\"",
@@ -42303,7 +42370,7 @@
         "source_name": "Life Fitness Powermill with SL Console",
         "base_model": "INP-SL",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness Life Fitness Powermill with SL Console INP-SL site:lifefitness.com",
         "search_results": [
           {
@@ -42374,19 +42441,20 @@
         "outcome": "candidate",
         "match_scope": "family_candidate",
         "configuration_status": "unverified",
-        "configuration_note": "PowerMill and SL compatibility confirmed, but official base introduction lists INPM-SLXXX-01 / 95PS codes, not source INP-SL. Source code alias remains unverified.",
+        "configuration_note": "Source INP-SL/name specifies SL, but the shared captured photo depicts SE4. Official model codes use INPM-SL, not the unverified source abbreviation INP-SL. Record manufacturer family name, product link and SE4 candidate image for review; do not verify the conflicting source configuration.",
         "candidate_name": "PowerMill Climber with SL Console",
-        "candidate_product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
-        "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/190-528-life-fitness-integrity-series-powermill-with-24-inch-se4-in-titanium.png?h=630&w=1200",
-        "evidence_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber"
+        "candidate_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "record_candidate_official_data": true
       },
-      "match_scope": "family_candidate",
-      "configuration_status": "unverified",
-      "configuration_note": "PowerMill and SL compatibility confirmed, but official base introduction lists INPM-SLXXX-01 / 95PS codes, not source INP-SL. Source code alias remains unverified.",
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "configuration_note": "User manually reviewed this inventory record and approved model_verified in the Reviewing workbook, then explicitly requested applying that decision to research outputs. The prior automated console/photo discrepancy is retained in manual_review.previous_research_note; no new manufacturer SKU alias or physical branch inspection is asserted.",
       "official_model": null,
       "official_name_zh": "PowerMill 樓梯機",
       "official_name_zh_evidence": {
-        "product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
         "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/climbers/powermill-climber",
         "retrieved_at": "2026-11-03T04:12:58.447725+00:00",
         "retrieval_method": "manufacturer_hreflang",
@@ -42402,6 +42470,29 @@
         "review_date": "2026-11-03",
         "status": "manufacturer_name_recorded",
         "reason": "Official Chinese wording recorded for the existing product or candidate; inventory match status unchanged."
+      },
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1339,
+        "brand": "Life Fitness",
+        "source_model": "INP-SL",
+        "source_image_url": "https://oss-hk.247fitness.hk/22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a.png",
+        "official_name": "PowerMill Climber with SL Console",
+        "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+        "status": "model_verified",
+        "review_date": "2026-11-04",
+        "reviewed_by": "user",
+        "review_source": {
+          "file": "247-fitness-hk-official-equipment-research-2026-10-28(Reviewing).xlsx",
+          "sheet": "Full inventory cross-reference",
+          "comment_column": "Manual Review Comment",
+          "comment": "model_verified",
+          "instruction": "User explicitly requested applying the reviewed status to research data, generated reports and scripts."
+        },
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Source INP-SL/name specifies SL, but the shared captured photo depicts SE4. Official model codes use INPM-SL, not the unverified source abbreviation INP-SL. Record manufacturer family name, product link and SE4 candidate image for review; do not verify the conflicting source configuration.",
+        "note": "User manually reviewed this inventory record and approved model_verified in the Reviewing workbook, then explicitly requested applying that decision to research outputs. The prior automated console/photo discrepancy is retained in manual_review.previous_research_note; no new manufacturer SKU alias or physical branch inspection is asserted."
       }
     },
     {
@@ -43619,24 +43710,30 @@
         "yau-tong"
       ],
       "lookup_model": "",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
-      "candidates": [
-        {
-          "name": "Life Fitness Heat Row",
-          "product_url": "https://shop.lifefitness.com/products/heat-row",
-          "image_url": "http://shop.lifefitness.com/cdn/shop/products/life-fitness-heat-row-side-1000x1000_6cc4552b-66df-4b8c-a979-9262c22296f8_1200x1200.jpg?v=1748945315",
-          "score": 0,
-          "evidence_url": "https://shop.lifefitness.com/products/heat-row",
-          "retrieval_method": "individual_search_and_official_page",
-          "reason": "Source has no model/console code. Heat Row family confirmed by name; LCD versus TFT version is unverified."
+      "official_name": "Heat Row",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/149-966-life-fitness-heat-row-three-quarter.png?h=630&w=1200",
+      "status": "model_verified",
+      "match_method": "individually_verified_product_name_and_image",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "evidence_sha256": "346365dd63387d7be5e3c73be89d017b0b70f1e815458f97dcb98c1f4b900e98",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Heat Row LCD product identity is confirmed by the source name, captured LCD console/plain handle configuration and manufacturer Heat Row LCD page/image. No serial number or specific production revision is inferred.",
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/cd4705988ca6dab0632c2cff28784a7d42d4b429370f06015dd64fa701fe6894.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/149-966-life-fitness-heat-row-three-quarter.png?h=630&w=1200",
+          "source_image_sha256": "cd4705988ca6dab0632c2cff28784a7d42d4b429370f06015dd64fa701fe6894",
+          "official_image_sha256": "f514a0b0a655a0b54b1829ec5848d941770056e301e16a64ecacf61abd6fb4f6",
+          "result": "product_identity_confirmed",
+          "observations": "Heat Row LCD product identity is confirmed by the source name, captured LCD console/plain handle configuration and manufacturer Heat Row LCD page/image. No serial number or specific production revision is inferred."
         }
-      ],
-      "reason": "Source has no model/console code. Heat Row family confirmed by name; LCD versus TFT version is unverified.",
+      },
+      "candidates": [],
+      "reason": "Heat Row LCD product identity is confirmed by the source name, captured LCD console/plain handle configuration and manufacturer Heat Row LCD page/image. No serial number or specific production revision is inferred.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1346,
@@ -43693,14 +43790,21 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/149-966-life-fitness-heat-row-three-quarter.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "f514a0b0a655a0b54b1829ec5848d941770056e301e16a64ecacf61abd6fb4f6",
+        "checked_at": "2026-11-04"
+      },
       "individual_review": {
         "inventory_id": 1346,
         "source_model": "",
         "source_name": "Heat Row",
         "base_model": "",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness Heat Row  site:lifefitness.com",
         "search_results": [
           {
@@ -43776,24 +43880,66 @@
             "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LF-PDFs/service-agreements-preventative-maintenance-download-data.pdf"
           }
         ],
-        "outcome": "candidate",
-        "match_scope": "family_candidate",
-        "configuration_status": "unverified",
-        "configuration_note": "Source has no model/console code. Heat Row family confirmed by name; LCD versus TFT version is unverified.",
+        "outcome": "model_confirmed",
+        "match_scope": "product_name_and_image",
+        "configuration_status": "partially_verified",
+        "configuration_note": "Heat Row LCD product identity is confirmed by the source name, captured LCD console/plain handle configuration and manufacturer Heat Row LCD page/image. No serial number or specific production revision is inferred.",
         "candidate_name": "Life Fitness Heat Row",
         "candidate_product_url": "https://shop.lifefitness.com/products/heat-row",
         "candidate_image_url": "http://shop.lifefitness.com/cdn/shop/products/life-fitness-heat-row-side-1000x1000_6cc4552b-66df-4b8c-a979-9262c22296f8_1200x1200.jpg?v=1748945315",
-        "evidence_url": "https://shop.lifefitness.com/products/heat-row"
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "official_name": "Heat Row",
+        "official_model": "PRF-ROW-LCD",
+        "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/149-966-life-fitness-heat-row-three-quarter.png?h=630&w=1200",
+        "evidence_sha256": "346365dd63387d7be5e3c73be89d017b0b70f1e815458f97dcb98c1f4b900e98",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Heat Row LCD product identity is confirmed by the source name, captured LCD console/plain handle configuration and manufacturer Heat Row LCD page/image. No serial number or specific production revision is inferred.",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/cd4705988ca6dab0632c2cff28784a7d42d4b429370f06015dd64fa701fe6894.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/149-966-life-fitness-heat-row-three-quarter.png?h=630&w=1200",
+          "source_image_sha256": "cd4705988ca6dab0632c2cff28784a7d42d4b429370f06015dd64fa701fe6894",
+          "official_image_sha256": "f514a0b0a655a0b54b1829ec5848d941770056e301e16a64ecacf61abd6fb4f6",
+          "result": "product_identity_confirmed",
+          "observations": "Heat Row LCD product identity is confirmed by the source name, captured LCD console/plain handle configuration and manufacturer Heat Row LCD page/image. No serial number or specific production revision is inferred."
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "image_observed_on": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "image_check": {
+          "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/149-966-life-fitness-heat-row-three-quarter.png?h=630&w=1200",
+          "available": true,
+          "status": 200,
+          "content_type": "image/png",
+          "sha256": "f514a0b0a655a0b54b1829ec5848d941770056e301e16a64ecacf61abd6fb4f6",
+          "checked_at": "2026-11-04"
+        }
       },
-      "match_scope": "family_candidate",
-      "configuration_status": "unverified",
-      "configuration_note": "Source has no model/console code. Heat Row family confirmed by name; LCD versus TFT version is unverified.",
-      "official_model": null,
-      "official_name_zh": null,
+      "match_scope": "product_name_and_image",
+      "configuration_status": "partially_verified",
+      "configuration_note": "Heat Row LCD product identity is confirmed by the source name, captured LCD console/plain handle configuration and manufacturer Heat Row LCD page/image. No serial number or specific production revision is inferred.",
+      "official_model": "PRF-ROW-LCD",
+      "official_name_zh": "Heat 划船機",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_chinese_product_name_found",
-        "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-04",
+        "status": "manufacturer_name_recorded",
+        "reason": "Hong Kong Chinese product heading Heat 划船機 found during candidate product review."
+      },
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/rowers/heat-row",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "manufacturer_localized_product_heading",
+        "original_name": "Heat 划船機",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "a14910c67f48736f0d7ad4d67a6a25b0c938290992eed3c6a1ffaa8c546121b0",
+        "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/rowers/heat-row",
+        "match_scope": "product_name_and_image",
+        "source_heading": "Heat 划船機",
+        "note": "Heat Row LCD product identity confirmed by the captured image and manufacturer product page; source has no SKU."
       }
     },
     {
@@ -43818,25 +43964,29 @@
         "tuen-mun"
       ],
       "lookup_model": "Integrity SE3 HD樓梯機",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "PowerMill Climber with SE3 HD Console",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "retrieval_method": "manufacturer_family_candidate",
+        "note": "Manufacturer name and image recorded as candidates; inventory configuration and image match are unverified."
+      },
       "candidates": [
         {
           "name": "PowerMill Climber with SE3 HD Console",
-          "product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
-          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/190-528-life-fitness-integrity-series-powermill-with-24-inch-se4-in-titanium.png?h=630&w=1200",
+          "product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
           "score": 0,
-          "evidence_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+          "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
           "retrieval_method": "individual_search_and_official_page",
-          "reason": "Source provides a console description and stair-climber type, without a manufacturer base model. PowerMill is a family candidate; source identity remains unverified.",
+          "reason": "Source text specifies Integrity SE3 HD, but its captured photo is the same SE4 photo used for inventory IDs 1339 and 1470. Record manufacturer family name, product link and SE4 candidate image for review; do not verify the conflicting source configuration.",
           "name_zh": "PowerMill 樓梯機"
         }
       ],
-      "reason": "Source provides a console description and stair-climber type, without a manufacturer base model. PowerMill is a family candidate; source identity remains unverified.",
+      "reason": "User manually reviewed this inventory record and approved model_verified in the Reviewing workbook, then explicitly requested applying that decision to research outputs. The prior automated console/photo discrepancy is retained in manual_review.previous_research_note; no new manufacturer SKU alias or physical branch inspection is asserted.",
       "search_evidence": {
         "inventory_id": 1369,
         "query": "Life Fitness \"Integrity SE3 HD樓梯機\"",
@@ -43899,7 +44049,7 @@
         "source_name": "Integrity SE3 HD樓梯機",
         "base_model": "Integrity SE3 HD樓梯機",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness Integrity SE3 HD樓梯機 Integrity SE3 HD樓梯機 site:lifefitness.com",
         "search_results": [
           {
@@ -43966,19 +44116,20 @@
         "outcome": "candidate",
         "match_scope": "family_candidate",
         "configuration_status": "unverified",
-        "configuration_note": "Source provides a console description and stair-climber type, without a manufacturer base model. PowerMill is a family candidate; source identity remains unverified.",
+        "configuration_note": "Source text specifies Integrity SE3 HD, but its captured photo is the same SE4 photo used for inventory IDs 1339 and 1470. Record manufacturer family name, product link and SE4 candidate image for review; do not verify the conflicting source configuration.",
         "candidate_name": "PowerMill Climber with SE3 HD Console",
-        "candidate_product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
-        "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/190-528-life-fitness-integrity-series-powermill-with-24-inch-se4-in-titanium.png?h=630&w=1200",
-        "evidence_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber"
+        "candidate_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "record_candidate_official_data": true
       },
-      "match_scope": "family_candidate",
-      "configuration_status": "unverified",
-      "configuration_note": "Source provides a console description and stair-climber type, without a manufacturer base model. PowerMill is a family candidate; source identity remains unverified.",
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "configuration_note": "User manually reviewed this inventory record and approved model_verified in the Reviewing workbook, then explicitly requested applying that decision to research outputs. The prior automated console/photo discrepancy is retained in manual_review.previous_research_note; no new manufacturer SKU alias or physical branch inspection is asserted.",
       "official_model": null,
       "official_name_zh": "PowerMill 樓梯機",
       "official_name_zh_evidence": {
-        "product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
         "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/climbers/powermill-climber",
         "retrieved_at": "2026-11-03T04:12:58.447725+00:00",
         "retrieval_method": "manufacturer_hreflang",
@@ -43994,6 +44145,29 @@
         "review_date": "2026-11-03",
         "status": "manufacturer_name_recorded",
         "reason": "Official Chinese wording recorded for the existing product or candidate; inventory match status unchanged."
+      },
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1369,
+        "brand": "Life Fitness",
+        "source_model": "Integrity SE3 HD樓梯機",
+        "source_image_url": "https://oss-hk.247fitness.hk/22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a.png",
+        "official_name": "PowerMill Climber with SE3 HD Console",
+        "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+        "status": "model_verified",
+        "review_date": "2026-11-04",
+        "reviewed_by": "user",
+        "review_source": {
+          "file": "247-fitness-hk-official-equipment-research-2026-10-28(Reviewing).xlsx",
+          "sheet": "Full inventory cross-reference",
+          "comment_column": "Manual Review Comment",
+          "comment": "model_verified",
+          "instruction": "User explicitly requested applying the reviewed status to research data, generated reports and scripts."
+        },
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Source text specifies Integrity SE3 HD, but its captured photo is the same SE4 photo used for inventory IDs 1339 and 1470. Record manufacturer family name, product link and SE4 candidate image for review; do not verify the conflicting source configuration.",
+        "note": "User manually reviewed this inventory record and approved model_verified in the Reviewing workbook, then explicitly requested applying that decision to research outputs. The prior automated console/photo discrepancy is retained in manual_review.previous_research_note; no new manufacturer SKU alias or physical branch inspection is asserted."
       }
     },
     {
@@ -45067,25 +45241,30 @@
         "tin-shui-wai-third-branch"
       ],
       "lookup_model": "PH-OPLCE",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
-      "candidates": [
-        {
-          "name": "Axiom Series Leg Extension / Leg Curl",
-          "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
-          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
-          "score": 0,
-          "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
-          "retrieval_method": "individual_search_and_official_page",
-          "reason": "Official product code is OP-LCE; source PH-OPLCE prefix is not established. Distinct from seated OP-SLCE; no cross-substitution.",
-          "name_zh": "Axiom 系列腿部伸展訓練機/屈腿訓練器"
+      "official_name": "Axiom Series Leg Extension / Leg Curl",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
+      "status": "model_verified",
+      "match_method": "individually_verified_product_name_and_image",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+        "evidence_sha256": "cb0fa3c10d6e612abe344489ba38fb79cc8800548da02701fef6e912040837e4",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Official page identifies OP-LCE and its Leg Extension / Leg Curl product image matches the captured image, including frame, roller pads and shroud. Product identity is confirmed visually; the source PH- prefix is retained and is not asserted to be a manufacturer SKU alias.",
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
+          "source_image_sha256": "4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6",
+          "official_image_sha256": "4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6",
+          "result": "product_identity_confirmed",
+          "observations": "Official page identifies OP-LCE and its Leg Extension / Leg Curl product image matches the captured image, including frame, roller pads and shroud. Product identity is confirmed visually; the source PH- prefix is retained and is not asserted to be a manufacturer SKU alias."
         }
-      ],
-      "reason": "Official product code is OP-LCE; source PH-OPLCE prefix is not established. Distinct from seated OP-SLCE; no cross-substitution.",
+      },
+      "candidates": [],
+      "reason": "Official page identifies OP-LCE and its Leg Extension / Leg Curl product image matches the captured image, including frame, roller pads and shroud. Product identity is confirmed visually; the source PH- prefix is retained and is not asserted to be a manufacturer SKU alias.",
       "search_evidence": {
         "inventory_id": 1375,
         "query": "Life Fitness \"PH-OPLCE\"",
@@ -45145,14 +45324,21 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6",
+        "checked_at": "2026-11-04"
+      },
       "individual_review": {
         "inventory_id": 1375,
         "source_model": "PH-OPLCE",
         "source_name": "Axiom Series Dual Leg Extension/Curl",
         "base_model": "PH-OPLCE",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness Axiom Series Dual Leg Extension/Curl PH-OPLCE site:lifefitness.com",
         "search_results": [
           {
@@ -45220,22 +45406,49 @@
             "url": "https://admin-content-staging.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Other/Brands/Dual-Product-Brand-Guidelines.pdf"
           }
         ],
-        "outcome": "candidate",
-        "match_scope": "family_candidate",
-        "configuration_status": "unverified",
-        "configuration_note": "Official product code is OP-LCE; source PH-OPLCE prefix is not established. Distinct from seated OP-SLCE; no cross-substitution.",
+        "outcome": "model_confirmed",
+        "match_scope": "product_name_and_image",
+        "configuration_status": "partially_verified",
+        "configuration_note": "Official page identifies OP-LCE and its Leg Extension / Leg Curl product image matches the captured image, including frame, roller pads and shroud. Product identity is confirmed visually; the source PH- prefix is retained and is not asserted to be a manufacturer SKU alias.",
         "candidate_name": "Axiom Series Leg Extension / Leg Curl",
         "candidate_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
         "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
-        "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl"
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+        "official_name": "Axiom Series Leg Extension / Leg Curl",
+        "official_model": "OP-LCE",
+        "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
+        "evidence_sha256": "cb0fa3c10d6e612abe344489ba38fb79cc8800548da02701fef6e912040837e4",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Official page identifies OP-LCE and its Leg Extension / Leg Curl product image matches the captured image, including frame, roller pads and shroud. Product identity is confirmed visually; the source PH- prefix is retained and is not asserted to be a manufacturer SKU alias.",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
+          "source_image_sha256": "4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6",
+          "official_image_sha256": "4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6",
+          "result": "product_identity_confirmed",
+          "observations": "Official page identifies OP-LCE and its Leg Extension / Leg Curl product image matches the captured image, including frame, roller pads and shroud. Product identity is confirmed visually; the source PH- prefix is retained and is not asserted to be a manufacturer SKU alias."
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+        "image_observed_on": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+        "image_check": {
+          "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/271-699-op-lce-12-8-2020.png?h=630&w=1200",
+          "available": true,
+          "status": 200,
+          "content_type": "image/png",
+          "sha256": "4c7d7c53cd8ddb80624d636962a7fd1b88af4c39d056295945ed794f441c79c6",
+          "checked_at": "2026-11-04"
+        }
       },
-      "match_scope": "family_candidate",
-      "configuration_status": "unverified",
-      "configuration_note": "Official product code is OP-LCE; source PH-OPLCE prefix is not established. Distinct from seated OP-SLCE; no cross-substitution.",
-      "official_model": null,
+      "match_scope": "product_name_and_image",
+      "configuration_status": "partially_verified",
+      "configuration_note": "Official page identifies OP-LCE and its Leg Extension / Leg Curl product image matches the captured image, including frame, roller pads and shroud. Product identity is confirmed visually; the source PH- prefix is retained and is not asserted to be a manufacturer SKU alias.",
+      "official_model": "OP-LCE",
       "official_name_zh": "Axiom 系列腿部伸展訓練機/屈腿訓練器",
       "official_name_zh_evidence": {
-        "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
         "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/axiom-series-leg-extension-leg-curl",
         "retrieved_at": "2026-11-03T04:10:45.662895+00:00",
         "retrieval_method": "manufacturer_hreflang",
@@ -45254,7 +45467,8 @@
         "review_date": "2026-11-03",
         "status": "manufacturer_name_recorded",
         "reason": "Official Chinese wording recorded for the existing product or candidate; inventory match status unchanged."
-      }
+      },
+      "image_verification_status": "manufacturer_image_checked"
     },
     {
       "inventory_id": 1376,
@@ -46620,24 +46834,27 @@
         "yuen-long-third-branch"
       ],
       "lookup_model": "OP-DB3SS",
-      "official_name": null,
-      "official_product_url": null,
+      "official_name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
+      "official_product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
       "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
-      "candidates": [
-        {
-          "name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
-          "product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
-          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/247-696-lf-os-ttlsdr-base.png?h=630&w=1200",
-          "score": 0,
-          "evidence_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
-          "retrieval_method": "individual_search_and_official_page",
-          "reason": "Official page currently displays long-rack code OP-DB3LS. Source is short-rack OP-DB3SS; image/length configuration remains a candidate."
+      "status": "model_verified_image_missing",
+      "match_method": "individually_verified_exact_model_manual",
+      "evidence": {
+        "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360054057093-Life-Fitness-Axiom-3-Tier-Dumbbell-Rack-Assembly-Manual",
+        "evidence_sha256": "38604ea1808a100678e885fb80c377602d82f9b61283d1dd4de08e1dce5d297d",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "browser_manufacturer_manual_model_list",
+        "model_evidence": "Official Axiom 3-Tier Dumbbell Rack Assembly Manual 1011899-0001 explicitly lists OP-DB3SS. Existing Optima short/long catalog page names the product family; its displayed code/image is OP-DB3LS.",
+        "image_evidence_url": null,
+        "identity_evidence": {
+          "manual_url": "https://support.lifefitness.com/hc/en-us/articles/360054057093-Life-Fitness-Axiom-3-Tier-Dumbbell-Rack-Assembly-Manual",
+          "model_label": "Axiom OP-AR3, OP-DB3HX, OP-DB3LS, OP-DB3SS Three Tier Dumbbell Rack",
+          "catalog_model": "OP-DB3LS",
+          "rejected_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/247-696-lf-os-ttlsdr-base.png?h=630&w=1200"
         }
-      ],
-      "reason": "Official page currently displays long-rack code OP-DB3LS. Source is short-rack OP-DB3SS; image/length configuration remains a candidate.",
+      },
+      "candidates": [],
+      "reason": "Exact OP-DB3SS model is listed in the manufacturer assembly manual. Short-rack image remains unverified; the catalog long-rack OP-DB3LS photo is not substituted. Source 10prs/rack claim is not verified.",
       "search_evidence": {
         "inventory_id": 1383,
         "query": "Life Fitness \"OP-DB3SS\"",
@@ -46700,7 +46917,7 @@
         "source_name": "OP-DB3SS Optima 3 Tier Dumbbell Rack (10prs/rack)",
         "base_model": "OP-DB3SS",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness OP-DB3SS Optima 3 Tier Dumbbell Rack (10prs/rack) OP-DB3SS site:lifefitness.com",
         "search_results": [
           {
@@ -46772,25 +46989,41 @@
             "url": "https://admin.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Other/Brands/Dual-Product-Brand-Guidelines.pdf"
           }
         ],
-        "outcome": "candidate",
-        "match_scope": "family_candidate",
+        "outcome": "model_confirmed",
+        "match_scope": "exact_model_manual",
         "configuration_status": "unverified",
-        "configuration_note": "Official page currently displays long-rack code OP-DB3LS. Source is short-rack OP-DB3SS; image/length configuration remains a candidate.",
+        "configuration_note": "Exact OP-DB3SS model is listed in the manufacturer assembly manual. Short-rack image remains unverified; the catalog long-rack OP-DB3LS photo is not substituted. Source 10prs/rack claim is not verified.",
         "candidate_name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
         "candidate_product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
         "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/247-696-lf-os-ttlsdr-base.png?h=630&w=1200",
-        "evidence_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks"
+        "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360054057093-Life-Fitness-Axiom-3-Tier-Dumbbell-Rack-Assembly-Manual",
+        "official_name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
+        "official_model": "OP-DB3SS",
+        "official_product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+        "official_image_url": null,
+        "image_check": null,
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "browser_manufacturer_manual_model_list",
+        "evidence_sha256": "38604ea1808a100678e885fb80c377602d82f9b61283d1dd4de08e1dce5d297d",
+        "model_evidence": "Official Axiom 3-Tier Dumbbell Rack Assembly Manual 1011899-0001 explicitly lists OP-DB3SS. Existing Optima short/long catalog page names the product family; its displayed code/image is OP-DB3LS.",
+        "identity_evidence": {
+          "manual_url": "https://support.lifefitness.com/hc/en-us/articles/360054057093-Life-Fitness-Axiom-3-Tier-Dumbbell-Rack-Assembly-Manual",
+          "model_label": "Axiom OP-AR3, OP-DB3HX, OP-DB3LS, OP-DB3SS Three Tier Dumbbell Rack",
+          "catalog_model": "OP-DB3LS",
+          "rejected_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/247-696-lf-os-ttlsdr-base.png?h=630&w=1200"
+        }
       },
-      "match_scope": "family_candidate",
+      "match_scope": "exact_model_manual",
       "configuration_status": "unverified",
-      "configuration_note": "Official page currently displays long-rack code OP-DB3LS. Source is short-rack OP-DB3SS; image/length configuration remains a candidate.",
-      "official_model": null,
+      "configuration_note": "Exact OP-DB3SS model is listed in the manufacturer assembly manual. Short-rack image remains unverified; the catalog long-rack OP-DB3LS photo is not substituted. Source 10prs/rack claim is not verified.",
+      "official_model": "OP-DB3SS",
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-04",
         "status": "requires_review",
         "reason": "The source OP-DB3SS configuration is not tied to an exact Chinese manufacturer product/model in the reviewed sources. Similar dumbbell-rack names do not establish that configuration."
-      }
+      },
+      "image_verification_status": "image_missing"
     },
     {
       "inventory_id": 1384,
@@ -49213,25 +49446,30 @@
         "yuen-long"
       ],
       "lookup_model": "PowerMill Climber + SE4",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
-      "candidates": [
-        {
-          "name": "PowerMill Climber with SE4 Console",
-          "product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
-          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/190-528-life-fitness-integrity-series-powermill-with-24-inch-se4-in-titanium.png?h=630&w=1200",
-          "score": 0,
-          "evidence_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
-          "retrieval_method": "individual_search_and_official_page",
-          "reason": "Manufacturer specifications support PowerMill with SE4. Source is a named configuration, not a model SKU; exact pictured console/base revision is not established.",
-          "name_zh": "PowerMill 樓梯機"
+      "official_name": "PowerMill Climber",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+      "status": "model_verified",
+      "match_method": "individually_verified_product_name_and_image",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "evidence_sha256": "7224c27a4c02f239d2db63cf4a00fa37f3f488e79789d97914a79196ea2c3a19",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "The source explicitly names PowerMill + SE4; the captured machine and SE4 console match the official Black Onyx SE4 product image. Console screen size, full SKU and production revision are not independently verified.",
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+          "source_image_sha256": "22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a",
+          "official_image_sha256": "86397c9e9bb4f15a8681c9a8ace4bd584aea300d7ce36d477b9e4463cd4c50a3",
+          "result": "product_identity_confirmed",
+          "observations": "The source explicitly names PowerMill + SE4; the captured machine and SE4 console match the official Black Onyx SE4 product image. Console screen size, full SKU and production revision are not independently verified."
         }
-      ],
-      "reason": "Manufacturer specifications support PowerMill with SE4. Source is a named configuration, not a model SKU; exact pictured console/base revision is not established.",
+      },
+      "candidates": [],
+      "reason": "The source explicitly names PowerMill + SE4; the captured machine and SE4 console match the official Black Onyx SE4 product image. Console screen size, full SKU and production revision are not independently verified.",
       "search_evidence": {
         "inventory_id": 1470,
         "query": "Life Fitness \"PowerMill Climber + SE4\"",
@@ -49295,14 +49533,21 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "86397c9e9bb4f15a8681c9a8ace4bd584aea300d7ce36d477b9e4463cd4c50a3",
+        "checked_at": "2026-11-04"
+      },
       "individual_review": {
         "inventory_id": 1470,
         "source_model": "PowerMill Climber + SE4",
         "source_name": "PowerMill Climber + SE4",
         "base_model": "PowerMill Climber + SE4",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness PowerMill Climber + SE4 PowerMill Climber + SE4 site:lifefitness.com",
         "search_results": [
           {
@@ -49374,22 +49619,49 @@
             "url": "https://support.lifefitness.com/hc/article_attachments/28424231798935"
           }
         ],
-        "outcome": "candidate",
-        "match_scope": "family_candidate",
-        "configuration_status": "unverified",
-        "configuration_note": "Manufacturer specifications support PowerMill with SE4. Source is a named configuration, not a model SKU; exact pictured console/base revision is not established.",
+        "outcome": "model_confirmed",
+        "match_scope": "product_name_and_image",
+        "configuration_status": "partially_verified",
+        "configuration_note": "The source explicitly names PowerMill + SE4; the captured machine and SE4 console match the official Black Onyx SE4 product image. Console screen size, full SKU and production revision are not independently verified.",
         "candidate_name": "PowerMill Climber with SE4 Console",
         "candidate_product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
         "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/190-528-life-fitness-integrity-series-powermill-with-24-inch-se4-in-titanium.png?h=630&w=1200",
-        "evidence_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber"
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "official_name": "PowerMill Climber",
+        "official_model": "PowerMill with SE4 Console",
+        "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+        "evidence_sha256": "7224c27a4c02f239d2db63cf4a00fa37f3f488e79789d97914a79196ea2c3a19",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "The source explicitly names PowerMill + SE4; the captured machine and SE4 console match the official Black Onyx SE4 product image. Console screen size, full SKU and production revision are not independently verified.",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+          "source_image_sha256": "22a8d27e8a82c1efde046151d628a28339e4a3334160d5e584d441c49f41f02a",
+          "official_image_sha256": "86397c9e9bb4f15a8681c9a8ace4bd584aea300d7ce36d477b9e4463cd4c50a3",
+          "result": "product_identity_confirmed",
+          "observations": "The source explicitly names PowerMill + SE4; the captured machine and SE4 console match the official Black Onyx SE4 product image. Console screen size, full SKU and production revision are not independently verified."
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "image_observed_on": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "image_check": {
+          "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/186-4-life-fitness-integrity-series-powermill-with-24-inch-se4-in-black-onyx.png?h=630&w=1200",
+          "available": true,
+          "status": 200,
+          "content_type": "image/png",
+          "sha256": "86397c9e9bb4f15a8681c9a8ace4bd584aea300d7ce36d477b9e4463cd4c50a3",
+          "checked_at": "2026-11-04"
+        }
       },
-      "match_scope": "family_candidate",
-      "configuration_status": "unverified",
-      "configuration_note": "Manufacturer specifications support PowerMill with SE4. Source is a named configuration, not a model SKU; exact pictured console/base revision is not established.",
-      "official_model": null,
+      "match_scope": "product_name_and_image",
+      "configuration_status": "partially_verified",
+      "configuration_note": "The source explicitly names PowerMill + SE4; the captured machine and SE4 console match the official Black Onyx SE4 product image. Console screen size, full SKU and production revision are not independently verified.",
+      "official_model": "PowerMill with SE4 Console",
       "official_name_zh": "PowerMill 樓梯機",
       "official_name_zh_evidence": {
-        "product_url": "https://www.lifefitness.com/en-us/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cardio/stair-climbers-stepper-machines/powermill-climber",
         "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/climbers/powermill-climber",
         "retrieved_at": "2026-11-03T04:12:58.447725+00:00",
         "retrieval_method": "manufacturer_hreflang",
@@ -49405,7 +49677,8 @@
         "review_date": "2026-11-03",
         "status": "manufacturer_name_recorded",
         "reason": "Official Chinese wording recorded for the existing product or candidate; inventory match status unchanged."
-      }
+      },
+      "image_verification_status": "manufacturer_image_checked"
     },
     {
       "inventory_id": 1472,
@@ -49423,25 +49696,30 @@
         "tin-shui-wai-second-branch"
       ],
       "lookup_model": "4合1MJ",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
-      "evidence": null,
-      "candidates": [
-        {
-          "name": "Signature Series Multi-Jungle MJ4",
-          "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
-          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
-          "score": 0,
-          "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
-          "retrieval_method": "individual_search_and_official_page",
-          "reason": "Source 4合1MJ describes a four-function Multi-Jungle, but does not establish the official MJ4 station configuration.",
-          "name_zh": "SIGNATURE 系列 MJ4 多功能訓練架"
+      "official_name": "Signature Series Multi-Jungle MJ4",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
+      "status": "model_verified",
+      "match_method": "individually_verified_product_name_and_image",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "evidence_sha256": "4d273d958632c65546ec595063e643ded1e66f3963c5e563ae1851c145ba2e96",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Source 4合1MJ image matches the manufacturer MJ4 product image: same four-station tower, blue frame, seats and pulley arrangement. Product identity is confirmed; optional attachments and branch installation remain unverified.",
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
+          "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+          "official_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+          "result": "product_identity_confirmed",
+          "observations": "Source 4合1MJ image matches the manufacturer MJ4 product image: same four-station tower, blue frame, seats and pulley arrangement. Product identity is confirmed; optional attachments and branch installation remain unverified."
         }
-      ],
-      "reason": "Source 4合1MJ describes a four-function Multi-Jungle, but does not establish the official MJ4 station configuration.",
+      },
+      "candidates": [],
+      "reason": "Source 4合1MJ image matches the manufacturer MJ4 product image: same four-station tower, blue frame, seats and pulley arrangement. Product identity is confirmed; optional attachments and branch installation remain unverified.",
       "search_evidence": {
         "inventory_id": 1472,
         "query": "Life Fitness \"4合1MJ\"",
@@ -49505,14 +49783,21 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "checked_at": "2026-11-04"
+      },
       "individual_review": {
         "inventory_id": 1472,
         "source_model": "4合1MJ",
         "source_name": "4合1MJ",
         "base_model": "4合1MJ",
         "brand": "Life Fitness",
-        "review_date": "2026-10-29",
+        "review_date": "2026-11-04",
         "query": "Life Fitness 4合1MJ 4合1MJ site:lifefitness.com",
         "search_results": [
           {
@@ -49588,22 +49873,49 @@
             "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LF-PDFs/getting-started-guide-lfod-data.pdf"
           }
         ],
-        "outcome": "candidate",
-        "match_scope": "family_candidate",
-        "configuration_status": "unverified",
-        "configuration_note": "Source 4合1MJ describes a four-function Multi-Jungle, but does not establish the official MJ4 station configuration.",
+        "outcome": "model_confirmed",
+        "match_scope": "product_name_and_image",
+        "configuration_status": "partially_verified",
+        "configuration_note": "Source 4合1MJ image matches the manufacturer MJ4 product image: same four-station tower, blue frame, seats and pulley arrangement. Product identity is confirmed; optional attachments and branch installation remain unverified.",
         "candidate_name": "Signature Series Multi-Jungle MJ4",
         "candidate_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
         "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
-        "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4"
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "official_name": "Signature Series Multi-Jungle MJ4",
+        "official_model": "MJ4",
+        "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
+        "evidence_sha256": "4d273d958632c65546ec595063e643ded1e66f3963c5e563ae1851c145ba2e96",
+        "retrieved_at": "2026-11-04",
+        "retrieval_method": "official_product_page_and_captured_image_comparison",
+        "model_evidence": "Source 4合1MJ image matches the manufacturer MJ4 product image: same four-station tower, blue frame, seats and pulley arrangement. Product identity is confirmed; optional attachments and branch installation remain unverified.",
+        "visual_review": {
+          "review_date": "2026-11-04",
+          "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+          "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
+          "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+          "official_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+          "result": "product_identity_confirmed",
+          "observations": "Source 4合1MJ image matches the manufacturer MJ4 product image: same four-station tower, blue frame, seats and pulley arrangement. Product identity is confirmed; optional attachments and branch installation remain unverified."
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "image_observed_on": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "image_check": {
+          "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/320-12-signature-series-mj4.png?h=630&w=1200",
+          "available": true,
+          "status": 200,
+          "content_type": "image/png",
+          "sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+          "checked_at": "2026-11-04"
+        }
       },
-      "match_scope": "family_candidate",
-      "configuration_status": "unverified",
-      "configuration_note": "Source 4合1MJ describes a four-function Multi-Jungle, but does not establish the official MJ4 station configuration.",
-      "official_model": null,
+      "match_scope": "product_name_and_image",
+      "configuration_status": "partially_verified",
+      "configuration_note": "Source 4合1MJ image matches the manufacturer MJ4 product image: same four-station tower, blue frame, seats and pulley arrangement. Product identity is confirmed; optional attachments and branch installation remain unverified.",
+      "official_model": "MJ4",
       "official_name_zh": "SIGNATURE 系列 MJ4 多功能訓練架",
       "official_name_zh_evidence": {
-        "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
         "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
         "retrieved_at": "2026-11-03T03:57:31.332902+00:00",
         "retrieval_method": "browser_dom",
@@ -49620,7 +49932,8 @@
         "review_date": "2026-11-03",
         "status": "manufacturer_name_recorded",
         "reason": "Official Chinese wording recorded for the existing product or candidate; inventory match status unchanged."
-      }
+      },
+      "image_verification_status": "manufacturer_image_checked"
     },
     {
       "inventory_id": 1482,
@@ -94724,10 +95037,24 @@
     "inventory_count": 112,
     "individual_search_count": 112,
     "method": "Individual name + conservative base-model search; official product and support pages, manufacturer-linked manuals; Chrome fallback when HTTP content was unavailable.",
-    "model_with_image": 89,
-    "model_without_image": 13,
-    "candidate_count": 8,
-    "unresolved_count": 2
+    "model_with_image": 96,
+    "model_without_image": 14,
+    "candidate_count": 0,
+    "unresolved_count": 2,
+    "candidate_followup": {
+      "review_date": "2026-11-04",
+      "inventory_count": 8,
+      "model_verified_count": 5,
+      "model_verified_image_missing_count": 1,
+      "candidate_requires_review_count": 2,
+      "method": "Individual name/model searches, fresh manufacturer product HTML/specification checks, normal browser fallback for support pages returning HTTP 403, captured-versus-manufacturer image comparison, and successful HTTP image checks. Product identity is separate from unverified SKU prefixes, revisions and branch installation."
+    },
+    "initial_results": {
+      "model_with_image": 89,
+      "model_without_image": 13,
+      "candidate_count": 8,
+      "unresolved_count": 2
+    }
   },
   "official_chinese_name_followup": {
     "review_date": "2026-11-04",
@@ -94735,14 +95062,14 @@
     "brand_count": 36,
     "policy": "Manufacturer Chinese wording only. Simplified originals converted to Traditional with OpenCC cn-to-hk; originals and evidence retained. Candidate translations do not verify inventory identity.",
     "review_outcomes": {
-      "no_chinese_product_name_found": 426,
+      "no_chinese_product_name_found": 425,
       "no_bound_product": 67,
       "access_limited": 7,
-      "manufacturer_name_recorded": 257,
-      "requires_review": 17,
+      "manufacturer_name_recorded": 259,
+      "requires_review": 16,
       "no_product_chinese_evidence": 59
     },
-    "recorded_name_count": 257,
+    "recorded_name_count": 259,
     "converted_name_count": 29,
     "name_search_followup": {
       "review_date": "2026-11-03",
