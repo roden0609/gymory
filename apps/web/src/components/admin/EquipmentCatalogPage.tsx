@@ -289,8 +289,10 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
                   ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
                 ]} /><MachineGyms machine={machine} locale={locale} /></>}>
-                <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
-                <EquipmentImageReview machine={machine} locale={locale} page={page} filters={filters} />
+                <div className="min-w-0 space-y-4">
+                  <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
+                  <EquipmentImageReview machine={machine} locale={locale} page={page} filters={filters} />
+                </div>
               </CatalogRecordRow>;
             })}
           </CatalogTable>
