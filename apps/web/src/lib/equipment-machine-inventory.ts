@@ -9,6 +9,7 @@ export type PublicGymMachine = {
   name: string;
   nameZh: string | null;
   modelNumber: string | null;
+  imageUrl?: string | null;
   quantity: number | null;
   labels: string[];
   verifiedStatus: "admin_verified" | "owner_verified";

@@ -4,6 +4,37 @@ const item = { inventory_id: 12, brand: 'SportArt', name: 'Treadmill', category_
 const store = { store_id: 338, status: 'source_api_complete', country_code: 'HK', row_count: 1, equipment: [item] };
 const baseline = [{ slug: '24-7-fitness-aberdeen-338' }];
 describe('24/7 equipment import', () => {
+  it('uses source IDs even when names/models match, and never claims manual equipment', async () => {
+    const entries = [item, { ...item, inventory_id: 13 }, { ...item, inventory_id: 14, name: '跑步機', model: ' T2 ' }, { ...item, inventory_id: 15, name: '單車機', model: 'T3' }];
+    const plan = buildPlan(baseline, [{ ...store, row_count: entries.length, equipment: entries }]);
+    expect(plan.equipment.find(e => e.key === '247-fitness:14').model_number).toBe('T2');
+    const manual = { id: 'manual', brand_id: 'b', name: item.name, model_number: item.model, source_external_id: null };
+    const data = {
+      gyms: [{ id: 'g', slug: baseline[0].slug }], equipment_brands: [{ id: 'b', slug: 'sportsart', name_en: 'SportsArt' }],
+      equipment_types: [{ code: 'treadmill', category: 'cardio', is_active: true }, { code: 'other_equipment', category: 'other', is_active: true }],
+      equipment_categories: [{ id: 'cardio', slug: 'cardio' }, { id: 'other', slug: 'other' }],
+      equipment: [structuredClone(manual)], gym_equipment_inventory: [],
+    };
+    const created = [];
+    const request = async (resource, payload) => {
+      if (!payload) return data[resource.split('?')[0]];
+      if (resource === 'rpc/create_247_equipment_model') {
+        created.push(payload.p_machine);
+        return { ...payload.p_machine, id: payload.p_machine.source_external_id,
+          equipment_type_assignments: [{ equipment_type_code: payload.p_primary_code, is_primary: true }] };
+      }
+      if (resource === 'rpc/apply_247_equipment_classification') return { reclassified: 0, assignments_changed: 0 };
+      if (resource.startsWith('gym_equipment_inventory?')) { data.gym_equipment_inventory.push(...payload); return payload; }
+      throw new Error(`Unexpected request ${resource}`);
+    };
+    await persistPlan(plan, request);
+    expect(created.map(e => e.source_external_id)).toEqual(entries.map(e => `247-fitness:${e.inventory_id}`));
+    expect(new Set(data.gym_equipment_inventory.map(e => e.equipment_id)).size).toBe(4);
+    expect(data.equipment[0]).toEqual(manual);
+    created.length = 0;
+    await persistPlan(plan, request);
+    expect(created).toHaveLength(0);
+  });
   it('joins exact store IDs and deduplicates inventory entries without inferring quantity', () => {
     const plan = buildPlan(baseline, [{ ...store, row_count: 2, equipment: [item, item] }]);
     expect(plan.gyms[0].equipment_keys).toEqual(['247-fitness:12']);
@@ -119,7 +150,7 @@ describe('24/7 equipment import', () => {
       equipment_brands: [{ id: 'b', slug: 'sportsart', name_en: 'SportsArt' }],
       equipment_types: [{ code: 'treadmill', category: 'cardio', is_active: true }],
       equipment_categories: [{ id: 'c', slug: 'cardio' }],
-      equipment: [{ id: 'e', brand_id: 'b', name: 'Existing treadmill', model_number: 'T1' }],
+      equipment: [{ id: 'e', brand_id: 'b', source_external_id: '247-fitness:12', name: 'Existing treadmill', model_number: 'T1' }],
       gym_equipment_inventory: [],
     };
     const request = async (resource, rows) => {
@@ -151,7 +182,7 @@ describe('24/7 equipment import', () => {
         equipment_brands: [{ id: 'b', slug: 'sportsart', name_en: 'SportsArt' }],
         equipment_types: [{ code: 'treadmill', category: 'cardio', is_active: true }],
         equipment_categories: [{ id: 'c', slug: 'cardio' }],
-        equipment: [{ id: 'e', brand_id: 'b', name: item.name, model_number: 'T1' }],
+        equipment: [{ id: 'e', brand_id: 'b', source_external_id: '247-fitness:12', name: item.name, model_number: 'T1' }],
         gym_equipment_inventory: inventory,
       };
       const writes = [];
@@ -184,7 +215,7 @@ describe('24/7 equipment import', () => {
     }
   });
 
-  it.each(['imported', 'manual', 'other_importer', 'classified', 'still_other', 'concurrent_edit'])(
+  it.each(['imported', 'classified', 'still_other', 'concurrent_edit'])(
     'only reclassifies importer-owned Other models: %s', async (scenario) => {
       const plan = buildPlan(baseline, [store]);
       if (scenario === 'still_other') plan.equipment[0].equipment_type_code = 'other_equipment';
@@ -192,8 +223,6 @@ describe('24/7 equipment import', () => {
         id: 'e', brand_id: 'b', name: item.name, model_number: item.model,
         source_external_id: '247-fitness:12', equipment_type_assignments: [{ equipment_type_code: 'other_equipment', is_primary: true }], name_zh: 'existing translation', description: 'manual notes',
       };
-      if (scenario === 'manual') original.source_external_id = null;
-      if (scenario === 'other_importer') original.source_external_id = 'another:12';
       if (scenario === 'classified') original.equipment_type_assignments[0].equipment_type_code = 'exercise_bike';
       const model = structuredClone(original);
       const data = {

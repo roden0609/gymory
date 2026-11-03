@@ -1,4 +1,5 @@
 import { getEquipmentLabel } from "@gymory/shared";
+import Image from "next/image";
 import type { GymEquipmentTypeSummary } from "@/lib/equipment-machine-inventory";
 
 type Props = {
@@ -73,6 +74,9 @@ export function EquipmentTypeInventory({ items, locale, availableLabel, absentLa
                     const brandName = locale === "zh-HK" && machine.brand.nameZh ? machine.brand.nameZh : machine.brand.nameEn;
                     return (
                       <li key={machine.id} className="min-w-0 rounded-lg border border-gray-100 p-3">
+                        {machine.imageUrl ? <Image src={machine.imageUrl} unoptimized width={480} height={360}
+                          alt={locale === "zh-HK" && machine.nameZh ? machine.nameZh : machine.name}
+                          className="mb-3 aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" /> : null}
                         <div className="flex min-w-0 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                           <h5 className="min-w-0 max-w-full flex-[1_1_auto] break-words text-sm font-medium text-gray-900 [overflow-wrap:anywhere]">
                             {locale === "zh-HK" && machine.nameZh ? machine.nameZh : machine.name}

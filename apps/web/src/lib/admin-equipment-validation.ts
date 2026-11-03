@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { EQUIPMENT_CATEGORIES, EQUIPMENT_LABELS } from "@gymory/shared";
+import { OFFICIAL_STATUSES } from "./equipment-image-review";
 
 const optionalText = z.preprocess(
   (value) => (typeof value === "string" && value.trim() ? value.trim() : null),
@@ -47,6 +48,25 @@ export const gymMachineInventorySchema = z.object({
 });
 
 export const equipmentTypeCodeSchema = z.string().trim().max(120).regex(/^[a-z][a-z0-9_]*$/);
+
+const optionalHttpUrl = z.string().trim().max(4000).refine(value => {
+  if (!value) return true;
+  try { const url = new URL(value); return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password; }
+  catch { return false; }
+}, "Use an HTTP or HTTPS URL");
+export const equipmentReviewIdentitySchema = z.object({
+  id: z.string().uuid(),
+  expected_updated_at: z.string().datetime({ offset: true }),
+});
+export const equipmentOfficialReviewSchema = equipmentReviewIdentitySchema.extend({
+  official_name: z.string().trim().max(200), official_model_number: z.string().trim().max(200),
+  official_product_url: optionalHttpUrl, official_status: z.enum(OFFICIAL_STATUSES),
+  official_review_note: z.string().trim().max(5000), verify: z.boolean(),
+}).refine(value => !value.verify || value.official_name.length > 0, {message:"Official name required before verification",path:["official_name"]});
+export const equipmentReviewImageSchema = equipmentReviewIdentitySchema.extend({
+  image_id: z.string().uuid().optional(), image_role: z.enum(["captured", "official"]),
+  url: optionalHttpUrl.refine(value => value.length > 0), source_url: optionalHttpUrl,
+});
 
 export const equipmentTypeSchema = z.object({
   code: equipmentTypeCodeSchema,

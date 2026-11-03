@@ -141,7 +141,7 @@ export function buildPlan(baseline, stores) {
       if (!item.inventory_id || !item.brand || !item.name) throw new Error('Invalid equipment');
       const key = `247-fitness:${item.inventory_id}`;
       const classification = equipmentClassification(item);
-      const record = { key, brand_slug: brandSlug(item.brand), brand_name: item.brand, name: item.name, name_zh: item.names?.['zh-HK'] ?? null, model_number: item.model || null, equipment_type_code: classification.equipment_type_code, ...(classification.notes ? { classification } : {}), source_url: store.source_url, captured_at: store.captured_at };
+      const record = { key, brand_slug: brandSlug(item.brand), brand_name: item.brand, name: item.name, name_zh: item.names?.['zh-HK'] ?? null, model_number: item.model?.trim() || null, equipment_type_code: classification.equipment_type_code, ...(classification.notes ? { classification } : {}), source_url: store.source_url, captured_at: store.captured_at };
       const previous = equipment.get(key);
       if (previous && ['brand_slug', 'name', 'model_number', 'equipment_type_code'].some(field => previous[field] !== record[field])) throw new Error(`Conflicting source identity ${key}`);
       equipment.set(key, previous ?? record);
@@ -193,11 +193,8 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
       brands.push(brand);
     }
     let model = models.find(m => m.brand_id === brand.id && m.source_external_id === e.key);
-    if (!model) {
-      const candidates = models.filter(m => m.brand_id === brand.id && (comparable(m.name) === comparable(e.name) || (e.model_number && comparable(m.model_number) === comparable(e.model_number))));
-      if (candidates.length > 1) throw new Error(`Ambiguous existing model ${e.key}`);
-      model = candidates[0];
-    }
+    // Source inventory IDs are identities, not hints. Equal display names (or
+    // models) must never merge distinct source IDs or claim manual records.
     if (!model) {
       model = await request('rpc/create_247_equipment_model', {
         p_machine: { brand_id: brand.id, slug: `${slug(e.name) || 'equipment'}-247-${e.key.split(':')[1]}`, name: e.name, name_zh: e.name_zh, model_number: e.model_number, source_external_id: e.key, source_url: e.source_url, imported_at: e.captured_at },

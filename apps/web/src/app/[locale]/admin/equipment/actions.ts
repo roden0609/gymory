@@ -12,7 +12,11 @@ import {
   equipmentTypeCodeSchema,
   equipmentBrandSchema,
   equipmentMachineSchema,
+  equipmentOfficialReviewSchema,
+  equipmentReviewImageSchema,
 } from "@/lib/admin-equipment-validation";
+import { EQUIPMENT_IMAGE_BUCKET, equipmentImageFileType } from "@/lib/equipment-image-review";
+import { randomUUID } from "node:crypto";
 
 function checked(formData: FormData, name: string) {
   return formData.get(name) === "on";
@@ -23,7 +27,7 @@ function textValue(formData: FormData, name: string) {
 }
 
 async function authorize(locale: string) {
-  await requireAdminSession(
+  return await requireAdminSession(
     `/${locale}/login?next=/${locale}/admin/equipment`,
     `/${locale}`
   );
@@ -75,6 +79,7 @@ function getFailureReason(error: unknown) {
   if (error instanceof z.ZodError) return "invalid";
   const message = error instanceof Error ? error.message.toLowerCase() : "";
   if (message.includes("check constraint")) return "invalid";
+  if (message.includes("stale")) return "stale";
   if (message.includes("duplicate key") || message.includes("unique constraint")) {
     return "duplicate";
   }
@@ -158,6 +163,73 @@ export async function saveMachine(formData: FormData) {
     });
     if (error) throw new Error(error.message);
   }, formData);
+}
+
+export async function saveOfficialReview(formData: FormData) {
+  const locale = textValue(formData, "locale") || "en";
+  const actor = await authorize(locale);
+  await runCatalogSave(locale, "machine", async () => {
+    const parsed = equipmentOfficialReviewSchema.parse({
+      id: textValue(formData,"id"), expected_updated_at:textValue(formData,"expected_updated_at"),
+      official_name:textValue(formData,"official_name"), official_model_number:textValue(formData,"official_model_number"),
+      official_product_url:textValue(formData,"official_product_url"), official_status:textValue(formData,"official_status"),
+      official_review_note:textValue(formData,"official_review_note"), verify:checked(formData,"verify"),
+    });
+    const { error } = await createAdminClient().rpc("save_equipment_official_review", {
+      p_id:parsed.id, p_expected_updated_at:parsed.expected_updated_at,
+      p_name:parsed.official_name,p_model:parsed.official_model_number,p_product_url:parsed.official_product_url,
+      p_status:parsed.official_status,p_note:parsed.official_review_note,p_verify:parsed.verify,p_actor:actor.uid,
+    });
+    if(error) throw new Error(error.message);
+  }, formData);
+}
+
+export async function saveReviewImage(formData: FormData) {
+  const locale=textValue(formData,"locale") || "en";
+  await authorize(locale);
+  await runCatalogSave(locale,"machine",async()=>{
+    const parsed=equipmentReviewImageSchema.parse({id:textValue(formData,"id"),expected_updated_at:textValue(formData,"expected_updated_at"),
+      image_id:textValue(formData,"image_id") || undefined,image_role:textValue(formData,"image_role"),url:textValue(formData,"url"),source_url:textValue(formData,"source_url")});
+    const {error}=await createAdminClient().rpc("save_equipment_review_image",{p_id:parsed.id,p_expected_updated_at:parsed.expected_updated_at,
+      p_image_id:parsed.image_id ?? null,p_role:parsed.image_role,p_url:parsed.url,p_source_url:parsed.source_url});
+    if(error) throw new Error(error.message);
+  },formData);
+}
+
+export async function selectReviewImage(formData: FormData) {
+  const locale=textValue(formData,"locale") || "en";
+  await authorize(locale);
+  await runCatalogSave(locale,"machine",async()=>{
+    const id=z.string().uuid().parse(textValue(formData,"id"));
+    const imageId=z.string().uuid().parse(textValue(formData,"image_id"));
+    const expectedUrl=z.string().url().parse(textValue(formData,"expected_url"));
+    const supabase=createAdminClient();
+    const {data:image,error:readError}=await supabase.from("equipment_images").select("url, storage_path")
+      .eq("equipment_id",id).eq("id",imageId).single();
+    if(readError || !image) throw new Error(readError?.message || "Image not found");
+    if(image.url!==expectedUrl) throw new Error("Stale image URL");
+    const file=formData.get("image_file");
+    let uploadedPath:string | null=null;
+    if(file && typeof file!=="string" && file.size>0) {
+      if(file.size>5*1024*1024) throw new z.ZodError([{code:"custom",path:["image_file"],message:"Maximum image size is 5 MB"}]);
+      const bytes=new Uint8Array(await file.arrayBuffer());
+      const extension=equipmentImageFileType(bytes);
+      if(!extension) throw new z.ZodError([{code:"custom",path:["image_file"],message:"Upload JPEG, PNG or WebP"}]);
+      uploadedPath=`${id}/${imageId}/${randomUUID()}.${extension}`;
+      const {error}=await supabase.storage.from(EQUIPMENT_IMAGE_BUCKET).upload(uploadedPath,bytes,
+        {contentType:extension==="jpg"?"image/jpeg":`image/${extension}`,upsert:false});
+      if(error) throw new Error(error.message);
+    } else if(!image.storage_path) {
+      throw new z.ZodError([{code:"custom",path:["image_file"],message:"Upload an image first"}]);
+    }
+    try {
+      const {error}=await supabase.rpc("select_equipment_primary_image",{p_id:id,p_image_id:imageId,p_expected_url:expectedUrl,p_storage_path:uploadedPath});
+      if(error) throw new Error(error.message);
+    } catch(error) {
+      if(uploadedPath) await supabase.storage.from(EQUIPMENT_IMAGE_BUCKET).remove([uploadedPath]);
+      throw error;
+    }
+  },formData);
 }
 
 export async function saveEquipmentType(formData: FormData) {

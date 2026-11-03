@@ -4,13 +4,14 @@ const mocks = vi.hoisted(() => ({
   authorize: vi.fn(),
   from: vi.fn(),
   rpc: vi.fn(),
+  storage: { upload: vi.fn(), remove: vi.fn() },
   query: { select: vi.fn(), eq: vi.fn(), single: vi.fn(), insert: vi.fn(), update: vi.fn(), delete: vi.fn() },
 }));
 vi.mock("@/lib/auth/session", () => ({ requireAdminSession: mocks.authorize }));
-vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from, rpc: mocks.rpc }) }));
+vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from, rpc: mocks.rpc, storage: { from: () => mocks.storage } }) }));
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
-import { deleteEquipmentType, saveEquipmentType, saveMachine } from "./actions";
+import { deleteEquipmentType, saveEquipmentType, saveMachine, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
 
 function form(values: Record<string, string>) {
   const data = new FormData();
@@ -20,10 +21,60 @@ function form(values: Record<string, string>) {
 
 beforeEach(() => {
   vi.resetAllMocks();
+  mocks.authorize.mockResolvedValue({ uid: "trusted-firebase-admin" });
   mocks.from.mockReturnValue(mocks.query);
   mocks.rpc.mockResolvedValue({ data: "123e4567-e89b-42d3-a456-426614174001", error: null });
   for (const method of [mocks.query.select, mocks.query.eq, mocks.query.insert, mocks.query.update, mocks.query.delete]) method.mockReturnValue(mocks.query);
   mocks.query.single.mockResolvedValue({ data: { code: "custom_type" }, error: null });
+});
+
+describe("equipment official review actions", () => {
+  const id = "123e4567-e89b-42d3-a456-426614174001";
+  const imageId = "123e4567-e89b-42d3-a456-426614174002";
+  const expected_updated_at = "2026-11-02T01:00:00+00:00";
+  const review = { id, expected_updated_at, official_name:"Glute Bridge",official_model_number:"SS-GLD",
+    official_product_url:"https://example.com/glute",official_status:"candidate_requires_review",official_review_note:"GLB image accepted" };
+  it("takes the reviewing identity from the admin session and preserves catalog context", async () => {
+    await expect(saveOfficialReview(form({...review,verify:"on",official_verified_by:"forged",catalog_page:"3",catalog_model:"SS-GLD"})))
+      .rejects.toThrow("result=success&entity=machine&action=save&page=3&model=SS-GLD");
+    expect(mocks.rpc).toHaveBeenCalledWith("save_equipment_official_review",expect.objectContaining({p_actor:"trusted-firebase-admin",p_verify:true,p_status:"candidate_requires_review",p_expected_updated_at:expected_updated_at}));
+  });
+  it("blocks unauthenticated review and image mutations before DB access", async () => {
+    mocks.authorize.mockRejectedValue(new Error("login required"));
+    for (const action of [saveOfficialReview,saveReviewImage,selectReviewImage]) await expect(action(form(review))).rejects.toThrow("login required");
+    expect(mocks.rpc).not.toHaveBeenCalled();expect(mocks.from).not.toHaveBeenCalled();
+  });
+  it("reports stale reviews instead of overwriting the new data", async () => {
+    mocks.rpc.mockResolvedValue({error:{message:"Stale equipment review"}});
+    await expect(saveOfficialReview(form(review))).rejects.toThrow("reason=stale");
+  });
+  it("does not treat an image-source role as human approval",async()=>{
+    await expect(saveReviewImage(form({id,expected_updated_at,image_role:"official",url:"https://example.com/image.webp",source_url:""}))).rejects.toThrow("result=success");
+    expect(mocks.rpc).toHaveBeenCalledWith("save_equipment_review_image",expect.objectContaining({p_role:"official",p_image_id:null}));
+    expect(mocks.rpc).not.toHaveBeenCalledWith("save_equipment_official_review",expect.anything());
+  });
+  it("uses an existing Storage image without changing official approval",async()=>{
+    mocks.query.single.mockResolvedValue({data:{url:"https://example.com/image.png",storage_path:"existing/path.png"},error:null});
+    await expect(selectReviewImage(form({id,image_id:imageId,expected_url:"https://example.com/image.png"}))).rejects.toThrow("result=success");
+    expect(mocks.rpc).toHaveBeenCalledWith("select_equipment_primary_image",{p_id:id,p_image_id:imageId,p_expected_url:"https://example.com/image.png",p_storage_path:null});
+  });
+  it("uploads a bitmap before publication and cleans up when the final DB selection fails",async()=>{
+    mocks.query.single.mockResolvedValue({data:{url:"https://example.com/image.png",storage_path:null},error:null});
+    mocks.storage.upload.mockResolvedValue({error:null});mocks.storage.remove.mockResolvedValue({error:null});
+    mocks.rpc.mockResolvedValue({error:{message:"Stale image URL"}});
+    const data=form({id,image_id:imageId,expected_url:"https://example.com/image.png"});
+    data.set("image_file",new Blob([new Uint8Array([137,80,78,71,13,10,26,10,0,0,0,0])],{type:"image/png"}),"image.png");
+    await expect(selectReviewImage(data)).rejects.toThrow("reason=stale");
+    expect(mocks.storage.upload).toHaveBeenCalledWith(expect.stringMatching(new RegExp(`^${id}/${imageId}/.+\\.png$`)),expect.any(Uint8Array),{contentType:"image/png",upsert:false});
+    expect(mocks.storage.remove).toHaveBeenCalledWith([mocks.storage.upload.mock.calls[0][0]]);
+  });
+  it("rejects disguised SVG uploads and never selects them",async()=>{
+    mocks.query.single.mockResolvedValue({data:{url:"https://example.com/image.png",storage_path:null},error:null});
+    const data=form({id,image_id:imageId,expected_url:"https://example.com/image.png"});
+    data.set("image_file",new Blob(["<svg>not a bitmap</svg>"],{type:"image/png"}),"image.png");
+    await expect(selectReviewImage(data)).rejects.toThrow("reason=invalid");
+    expect(mocks.storage.upload).not.toHaveBeenCalled();expect(mocks.rpc).not.toHaveBeenCalled();
+  });
 });
 
 describe("equipment type admin actions", () => {

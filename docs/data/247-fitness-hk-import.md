@@ -115,8 +115,8 @@ names map to existing controlled equipment types. Unclear, combined, and
 unsupported movements use `other_equipment`; the current snapshot has 319
 such entries. These entries need manual classification if more specific types
 are desired. Source inventory IDs identify catalog entries, not physical unit
-counts; all newly imported quantities remain unknown (`null`). Multiple source
-IDs can resolve to one existing database model, so final link counts may differ.
+counts; all newly imported quantities remain unknown (`null`). Distinct source
+IDs remain distinct catalog entries, even when names or model numbers match.
 
 When ready, explicitly select an environment and enable database writes:
 
@@ -135,12 +135,18 @@ The plan is regenerated from source files on each run; editing the generated
 plan does not change the importer rules.
 
 All target gyms and required types/categories must already exist. The importer
-paginates database reads, reuses brands and unambiguous existing models by
-brand plus source ID, normalized name, or model number, and inserts missing
+paginates database reads, reuses brands and existing models by
+brand plus exact source ID, and inserts missing
 catalog models and inventory relationships. Existing model metadata, quantities,
 verification status, and gym listings are preserved. It never deletes inventory.
 Writes are incremental rather than one transaction; after resolving a failure,
 rerun the same command to continue without duplicating existing relationships.
+
+Older importer versions reused same-name/model equipment and could merge distinct
+source identities (including Chinese names reduced to empty strings by the old
+ASCII-only comparator). Re-running the corrected importer creates missing source
+records and links, but does not automatically remove historical wrong links.
+The local repair audit is recorded in `247-fitness-hk-identity-repair-2026-11-03.md`.
 
 The database model-inventory trigger derives `gym_equipment_type_inventory`
 rows; this importer does not overwrite directly reported type quantities.

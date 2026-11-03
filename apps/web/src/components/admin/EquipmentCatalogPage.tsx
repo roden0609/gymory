@@ -1,6 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { parseEquipmentFilters, equipmentFilterConditions, equipmentTextFilterConditions, type EquipmentFilters } from "@/lib/admin-equipment-filters";
 import { EquipmentFilterForm } from "./EquipmentFilterForm";
+import { EquipmentImageReview } from "./EquipmentImageReview";
+import type { EquipmentOfficialReview } from "@/lib/equipment-image-review";
 import { CatalogRecordRow } from "./CatalogRecordRow";
 import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
@@ -17,7 +19,7 @@ type Category = {
   sort_order: number; is_active: boolean;
 };
 type EquipmentType = { code: string; name_en: string; name_zh: string | null; category: string; labels: string[]; equipment_type_assignments: { count: number }[] };
-type Machine = {
+type Machine = EquipmentOfficialReview & {
   id: string; brand_id: string;
   labels: string[]; name: string; name_zh: string | null; series: string | null; model_number: string | null;
   product_url: string | null; description: string | null;
@@ -60,7 +62,7 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   const brandsQuery = supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en").order("id");
   let typesQuery = supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment_type_assignments(count)").eq("is_active", true).order("name_en").order("code");
   if (section === "types" && category) typesQuery = typesQuery.eq("category", category);
-  let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, gym_equipment_inventory(gyms(id, name, name_zh)), equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
+  let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, updated_at, source_external_id, official_name, official_model_number, official_product_url, official_status, official_review_note, official_verified_at, official_verified_by, equipment_images(id, image_role, url, source_url, storage_path, is_primary, sort_order), gym_equipment_inventory(gyms(id, name, name_zh)), equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
   for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
   for (const condition of equipmentTextFilterConditions(filters)) machinesQuery = machinesQuery.or(condition);
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
@@ -288,6 +290,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
                 ]} /><MachineGyms machine={machine} locale={locale} /></>}>
                 <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
+                <EquipmentImageReview machine={machine} locale={locale} page={page} filters={filters} />
               </CatalogRecordRow>;
             })}
           </CatalogTable>
@@ -402,12 +405,14 @@ function getSaveMessage(
         invalid: "請檢查必填欄位及輸入格式。",
         duplicate: "已有相同名稱或識別碼嘅項目。",
         related: "呢項資料仍然連接其他記錄。",
+        stale: "資料已被更新，請重新開啟編輯並核對最新資料。",
         unknown: "暫時未能儲存，請再試一次。",
       }[params.reason ?? ""] ?? "暫時未能儲存，請再試一次。"
     : {
         invalid: "Check the required fields and input formats.",
         duplicate: "An item with the same name or identifier already exists.",
         related: "This item is still linked to another record.",
+        stale: "This record changed. Reopen the editor and review the latest data.",
         unknown: "Could not save the item. Please try again.",
       }[params.reason ?? ""] ?? "Could not save the item. Please try again.";
 
