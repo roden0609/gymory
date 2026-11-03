@@ -7,7 +7,15 @@ describe('official equipment Excel report tables', () => {
     const markdown = readFileSync(new URL('../../../docs/data/247-fitness-hk-official-equipment-research-2026-10-28.md', import.meta.url), 'utf8');
     const catalog = JSON.parse(readFileSync(new URL('../../../data/equipments/247-fitness-hk-official-catalog.json', import.meta.url), 'utf8'));
     const tables = parseMarkdownTables(markdown);
-    expect(tables.map((table) => table.heading)).toEqual(['Totals', 'Coverage by brand', 'All-brand follow-up', 'Life Fitness item review', 'Official Chinese name evidence', 'Full inventory cross-reference']);
+    expect(tables.map((table) => table.heading)).toEqual(['Totals', 'Coverage by brand', 'Name coverage by brand', 'All-brand follow-up', 'Life Fitness item review', 'Official Chinese name evidence', 'Full inventory cross-reference']);
+    const coverage = tables.find((table) => table.heading === 'Name coverage by brand');
+    expect(coverage.rows).toHaveLength(new Set(catalog.equipment.map((e) => e.brand)).size);
+    for (const row of coverage.rows) {
+      const group = catalog.equipment.filter((e) => e.brand === row[0].value);
+      const english = group.filter((e) => e.official_name?.trim()).length;
+      const chinese = group.filter((e) => e.official_name_zh?.trim()).length;
+      expect(row.slice(1, 6).map((c) => c.value)).toEqual([group.length, english, group.length - english, chinese, group.length - chinese]);
+    }
     const inventory = tables.find((table) => table.heading === 'Full inventory cross-reference');
     expect(inventory.rows).toHaveLength(catalog.equipment.length);
     expect(inventory.rows.map((row) => row[0].value)).toEqual(catalog.equipment.map((_, index) => index + 1));
@@ -30,6 +38,7 @@ describe('official equipment Excel report tables', () => {
       expect(chinese.rows[index][2].value).toBe(entry.official_name_zh);
       expect(chinese.rows[index][3].value).toBe(entry.official_name_zh_evidence.original_name);
       expect(chinese.rows[index][6].url).toBe(entry.official_name_zh_evidence.evidence_url);
+      expect(chinese.rows[index][8].value).toBe(entry.official_name_zh_evidence.match_scope);
     }
     const reviews = tables.find((table) => table.heading === 'All-brand follow-up');
     expect(reviews.rows).toHaveLength(35);

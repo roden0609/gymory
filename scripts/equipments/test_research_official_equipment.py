@@ -129,6 +129,63 @@ class BrowserEvidenceTests(unittest.TestCase):
 
 
 class OfficialChineseNameTests(unittest.TestCase):
+    def test_shop_name_can_use_catalog_chinese_without_replacing_the_shop_identity(self):
+        shop = 'https://shop-eu.lifefitness.com/ch/axiom-series-dual-seated-leg-extension-curl-ph-opslce'
+        entry = {'inventory_id': 1376, 'brand': 'Life Fitness', 'source_model': 'PH-OPSLCE',
+                 'official_product_url': shop, 'official_name': 'Axiom Series Dual Seated Leg Extension/Curl',
+                 'official_image_url': 'https://shop-eu.lifefitness.com/media/original.jpg',
+                 'status': 'model_verified', 'candidates': []}
+        record = {**{k: entry[k] for k in ('inventory_id', 'brand', 'source_model')},
+                  'product_url': shop,
+                  'evidence_url': 'https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/axiom-series-seated-leg-curl-extension',
+                  'official_name_zh': 'Axiom 系列坐式屈腿訓練器/伸展機',
+                  'original_name': 'Axiom 系列坐式屈腿訓練器/伸展機',
+                  'retrieved_at': '2026-11-03', 'retrieval_method': 'http_product_h1_after_name_search',
+                  'manufacturer_model_codes': ['OP-SLCE'], 'match_scope': 'base_model_name_only',
+                  'identity_evidence': {'note': 'Chinese base-model name does not verify the PH prefix.'}}
+        result = {'equipment': [copy.deepcopy(entry)]}
+        research.apply_official_chinese_names(result, {'official_chinese_names': [record]})
+        actual = result['equipment'][0]
+        for key, value in entry.items():
+            self.assertEqual(actual[key], value)
+        self.assertEqual(actual['official_name_zh'], record['official_name_zh'])
+        self.assertEqual(actual['official_name_zh_evidence']['identity_evidence'], record['identity_evidence'])
+
+    def test_new_chinese_source_requires_its_own_exact_model_evidence(self):
+        entry = {'inventory_id': 1302, 'brand': 'MATRIX', 'source_model': 'C-ES-LED',
+                 'official_product_url': None, 'official_name_zh': None, 'status': 'unresolved', 'candidates': []}
+        record = {**{k: entry[k] for k in ('inventory_id', 'brand', 'source_model')},
+                  'product_url': 'https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/led',
+                  'evidence_url': 'https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/led',
+                  'official_name_zh': 'Endurance 爬梯機附 LED 儀表', 'retrieved_at': '2026-11-03',
+                  'retrieval_method': 'browser_dom', 'manufacturer_model_codes': ['C-ES-LED'],
+                  'match_scope': 'exact_source_model_chinese_name_only'}
+        result = {'equipment': [copy.deepcopy(entry)]}
+        research.apply_official_chinese_names(result, {'official_chinese_names': [record]})
+        self.assertEqual(result['equipment'][0]['official_name_zh'], record['official_name_zh'])
+        self.assertEqual(result['equipment'][0]['status'], 'unresolved')
+        self.assertIsNone(result['equipment'][0]['official_product_url'])
+        for change in ({'manufacturer_model_codes': ['C-ES-PLED']}, {'manufacturer_model_codes': ['R-ES-LED']},
+                       {'manufacturer_model_codes': []}, {'match_scope': 'base_model_name_only'}):
+            with self.subTest(change=change):
+                result = {'equipment': [copy.deepcopy(entry)]}
+                research.apply_official_chinese_names(result, {'official_chinese_names': [{**record, **change}]})
+                self.assertEqual(result['equipment'][0], entry)
+
+    def test_name_search_audit_covers_every_previously_blank_inventory(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        followup = evidence['official_chinese_name_search_followup']
+        groups = followup['search_groups']
+        self.assertEqual(sum(len(g['queries']) for g in groups), followup['summary']['search_query_count'])
+        searched = {i for g in groups for q in g['queries'] for i in q['inventory_ids']}
+        self.assertEqual(len(searched), followup['summary']['inventory_count'])
+        self.assertEqual(len(followup['new_inventory_ids']), followup['summary']['new_name_count'])
+        self.assertIn(1376, followup['new_inventory_ids'])
+        for review in evidence['official_chinese_name_reviews']:
+            if review['inventory_id'] in searched:
+                self.assertEqual(len(review['name_search']['queries']), 2)
+
     def test_simplified_original_and_conversion_evidence_are_retained(self):
         url = 'https://shop.lifefitness.com/products/hammer-strength-select-biceps-curl'
         entry = {'inventory_id': 3, 'brand': 'HAMMER STRENGTH', 'source_model': 'HS-BC',
@@ -267,6 +324,42 @@ class LifeFitnessReviewTests(unittest.TestCase):
         review.update(image_evidence_url='https://example.com/product', image_observed_on='https://example.com/product')
         with self.assertRaises(ValueError):
             self.apply(review)
+
+
+class SpecificationNameTests(unittest.TestCase):
+    def test_component_names_are_read_from_labels_without_system_images(self):
+        source = '''<h1>Multi-Jungle MJ8</h1><table>
+          <tr><td>MJ Lat Pulldown (MJLP) Weight</td><td>340 lbs</td></tr>
+          <tr><td>MJ 高拉背肌訓練器 (MJLP) 重量</td><td>340 磅</td></tr>
+          <tr><td>Related models</td><td>Fake Name (MJFAKE)</td></tr></table>
+          <p>Another Name (MJOTHER)</p><template><tr><td>Hidden (MJHIDDEN)</td></tr></template>'''
+        names = research.extract_specification_model_names(source)
+        self.assertEqual([(r['model'], r['name']) for r in names],
+                         [('MJLP', 'MJ Lat Pulldown'), ('MJLP', 'MJ 高拉背肌訓練器')])
+        products = research.specification_products({'url': 'https://www.lifefitness.com/mj8',
+                     'image_url': 'whole-system.jpg', 'specification_names': names})
+        self.assertEqual(len(products), 1)
+        self.assertEqual(products[0]['models'], ['MJLP'])
+        self.assertIsNone(products[0]['image_url'])
+
+    def test_lifefitness_followup_preserves_component_identity_and_original_wording(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        followup = evidence['lifefitness_specification_name_followup']
+        self.assertEqual(followup['new_name_count'], 16)
+        for inventory_id in followup['new_inventory_ids']:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == inventory_id)
+            self.assertEqual(entry['brand'], 'Life Fitness')
+            self.assertTrue(entry['official_name_zh'])
+            if entry['source_model'].startswith('MJ'):
+                self.assertEqual(entry['official_name_zh_evidence']['manufacturer_model_codes'], [entry['source_model']])
+                self.assertIsNone(entry['official_image_url'])
+        mixed = next(e for e in catalog['equipment'] if e['inventory_id'] == 1394)
+        self.assertIn('训练', mixed['official_name_zh_evidence']['original_name'])
+        self.assertIn('訓練', mixed['official_name_zh'])
+        life = next(r for r in research.name_coverage_by_brand(catalog['equipment']) if r['brand'] == 'Life Fitness')
+        self.assertEqual((life['total'], life['chinese_names'], life['chinese_missing']), (112, 98, 14))
 
 
 if __name__ == '__main__':

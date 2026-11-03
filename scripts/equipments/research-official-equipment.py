@@ -107,6 +107,66 @@ def plain(value):
     return re.sub(r'\s+', ' ', html.unescape(re.sub('<[^>]+>', ' ', value or ''))).strip()
 
 
+def extract_specification_model_names(source):
+    """Read named submodels in specification cells, independently of the page H1."""
+    class SpecificationRows(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.rows, self.cells, self.cell = [], None, None
+            self.skip = 0
+
+        def handle_starttag(self, tag, attrs):
+            if tag in ('script', 'style', 'template'):
+                self.skip += 1
+            if self.skip:
+                return
+            if tag == 'tr':
+                self.cells = []
+            elif tag in ('td', 'th') and self.cells is not None:
+                self.cell = []
+
+        def handle_data(self, value):
+            if not self.skip and self.cell is not None:
+                self.cell.append(value)
+
+        def handle_endtag(self, tag):
+            if tag in ('script', 'style', 'template'):
+                self.skip = max(0, self.skip - 1)
+                return
+            if self.skip:
+                return
+            if tag in ('td', 'th') and self.cell is not None:
+                self.cells.append(re.sub(r'\s+', ' ', ' '.join(self.cell)).strip())
+                self.cell = None
+            elif tag == 'tr' and self.cells is not None:
+                self.rows.append(self.cells)
+                self.cells, self.cell = None, None
+
+    parser = SpecificationRows()
+    parser.feed(source)
+    names, seen = [], set()
+    for row in parser.rows:
+        if not row:
+            continue
+        # Match the row label, never model mentions in a value or paragraph.
+        match = re.match(r'^(.{2,140}?)\s*[（(]\s*([A-Z][A-Z0-9_-]{2,35})\s*[）)]', row[0])
+        if match:
+            name, model = match.group(1).strip(), match.group(2)
+            if (model, name) not in seen:
+                names.append({'model': model, 'name': name, 'source_label': row[0]})
+                seen.add((model, name))
+    return names
+
+
+def specification_products(product):
+    """Submodels keep their own row names and never inherit a whole-system photo."""
+    return [{**product, 'name': row['name'], 'models': [row['model']],
+             'component_model': row['model'], 'image_url': None, 'text': row['source_label'],
+             'specification_names': []}
+            for row in product.get('specification_names', [])
+            if not re.search(r'[\u3400-\u9fff]', row['name'])]
+
+
 def norm(value):
     return re.sub('[^a-z0-9]', '', value.lower())
 
@@ -117,6 +177,8 @@ def model_key(value, brand):
     # Keep letter/digit separators, notably XTTM3C-101 vs XTTM3-C-101.
     if brand in ('HAMMER STRENGTH', 'Life Fitness'):
         value = re.sub(r'(?<=[a-z])-(?=[a-z])', '', value)
+    if brand == 'HAMMER STRENGTH' and value == 'pl-4w':
+        value = 'pl4w'  # Published PL-4W is written PL4W in the source inventory.
     return value
 
 
@@ -149,6 +211,11 @@ def preserve_official_chinese_names(result, previous):
 
 def apply_official_chinese_names(result, supplemental):
     """Manufacturer translations name a product; they do not verify inventory identity."""
+    def chinese_model_key(value, brand):
+        key = model_key(value, brand)
+        # SportsArt publishes DF207; the inventory also writes the DF series as DF-207.
+        return re.sub(r'^df-(?=\d{3}$)', 'df', key) if brand == 'SportArt' else key
+
     for record in supplemental.get('official_chinese_names', []):
         entry = next((e for e in result['equipment'] if e.get('inventory_id') == record['inventory_id']
                       and e['brand'] == record['brand'] and e['source_model'] == record['source_model']), None)
@@ -156,7 +223,14 @@ def apply_official_chinese_names(result, supplemental):
             continue
         candidates = [c for c in entry.get('candidates', []) if c['product_url'] == record['product_url']]
         if entry.get('official_product_url') != record['product_url'] and not candidates:
-            continue
+            # A newly discovered Chinese page can establish its own exact source
+            # model without changing the existing English match or image.
+            exact_chinese_model = (record.get('match_scope') == 'exact_source_model_chinese_name_only'
+                                   and bool(entry['source_model'].strip())
+                                   and chinese_model_key(entry['source_model'], entry['brand']) in {
+                                       chinese_model_key(code, entry['brand']) for code in record.get('manufacturer_model_codes', [])})
+            if not exact_chinese_model:
+                continue
         validate_browser_urls(record)
         name = record.get('official_name_zh')
         if not isinstance(name, str) or not re.search(r'[\u3400-\u9fff]', name):
@@ -168,7 +242,8 @@ def apply_official_chinese_names(result, supplemental):
         entry['official_name_zh_evidence'] = {k: record[k] for k in (
             'product_url', 'evidence_url', 'retrieved_at', 'retrieval_method', 'original_name',
             'source_locale', 'conversion_method', 'evidence_sha256', 'localized_product_url',
-            'manufacturer_model_codes', 'match_scope') if k in record}
+            'manufacturer_model_codes', 'match_scope', 'identity_evidence', 'document_page',
+            'source_heading', 'source_label', 'note') if k in record}
         for candidate in candidates:
             candidate['name_zh'] = record['official_name_zh']
     reviews = supplemental.get('official_chinese_name_reviews', [])
@@ -181,7 +256,31 @@ def apply_official_chinese_names(result, supplemental):
         followup = supplemental['official_chinese_name_followup']
         result['official_chinese_name_followup'] = {k: followup[k] for k in (
             'review_date', 'inventory_count', 'brand_count', 'policy', 'review_outcomes',
-            'recorded_name_count', 'converted_name_count') if k in followup}
+            'recorded_name_count', 'converted_name_count', 'name_search_followup', 'specification_followup') if k in followup}
+
+
+def apply_official_english_names(result, supplemental):
+    """Confirm exact manufacturer model names independently of image availability."""
+    from collections import Counter
+    for record in supplemental.get('official_english_names', []):
+        entry = next((e for e in result['equipment'] if all(e.get(k) == record.get(k)
+                      for k in ('inventory_id', 'brand', 'source_model'))), None)
+        if entry is None or (entry.get('official_name') and entry.get('match_method') != 'manufacturer_model_name_evidence'):
+            continue
+        if (not entry['source_model'].strip() or model_key(entry['source_model'], entry['brand']) not in {
+                model_key(code, entry['brand']) for code in record.get('manufacturer_model_codes', [])}):
+            raise ValueError('English name evidence requires the exact source model')
+        if not record.get('official_name') or re.search(r'[\u3400-\u9fff]', record['official_name']):
+            raise ValueError('English name evidence requires manufacturer English wording')
+        validate_browser_urls(record)
+        entry.update(official_name=record['official_name'], official_product_url=record['product_url'],
+                     official_model=record['manufacturer_model_codes'][0],
+                     status='model_verified' if entry.get('official_image_url') else 'model_verified_image_missing',
+                     match_method='manufacturer_model_name_evidence',
+                     evidence={k: record[k] for k in ('evidence_url', 'retrieved_at', 'retrieval_method',
+                                                     'evidence_sha256', 'manufacturer_model_codes', 'source_label') if k in record},
+                     reason='Manufacturer model code confirms the English product name. Image availability is reviewed separately.')
+    result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
 
 
 def apply_lifefitness_reviews(result, supplemental):
@@ -331,6 +430,7 @@ def apply_browser_evidence(result, supplemental):
         result['brand_reviews'] = supplemental['brand_reviews']
         result['last_review_date'] = max(review['review_date'] for review in result['brand_reviews'])
     apply_lifefitness_reviews(result, supplemental)
+    apply_official_english_names(result, supplemental)
     apply_official_chinese_names(result, supplemental)
 
 
@@ -529,11 +629,13 @@ def main():
         return brand, {'name': name, 'url': url,
                        'image_url': url_encode(urllib.parse.urljoin(url, image)) if image else None,
                        'models': [], 'language': p.language, 'text': plain(' '.join(p.texts)), 'evidence_url': url,
+                       'specification_names': extract_specification_model_names(r['body']),
                        'evidence_sha256': r['sha256'], 'retrieved_at': r['retrieved_at']}
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         for brand, p in pool.map(read_product, tasks):
             if p:
                 products[brand].append(p)
+                products[brand].extend(specification_products(p))
 
     def match(e):
         model = e['source_model'].strip()
@@ -562,7 +664,7 @@ def main():
             if len(a & b) >= 2 and score >= .4:
                 candidates.append((score, p))
         # Multiple variants/product pages can share a model: retain ambiguity.
-        exact = list({p['url']: (p, method) for p, method in exact}.values())
+        exact = list({(p['url'], p.get('component_model')): (p, method) for p, method in exact}.values())
         if exact:
             priority = {'exact_sku': 0, 'manufacturer_sku_alias': 0, 'exact_model_in_product_title': 1, 'exact_model_in_product_text': 2}
             best = min(priority[method] for _, method in exact)
@@ -670,6 +772,23 @@ def main():
     write_reports(result)
 
 
+def name_coverage_by_brand(entries):
+    """Count recorded names separately from unconfirmed English candidates."""
+    rows = []
+    for brand in sorted({entry['brand'] for entry in entries}):
+        group = [entry for entry in entries if entry['brand'] == brand]
+        present = lambda entry, field: isinstance(entry.get(field), str) and bool(entry[field].strip())
+        english = sum(present(entry, 'official_name') for entry in group)
+        chinese = sum(present(entry, 'official_name_zh') for entry in group)
+        candidates = sum(not present(entry, 'official_name') and any(
+            re.search(r'[A-Za-z]', candidate.get('name', '')) for candidate in entry.get('candidates', []))
+            for entry in group)
+        rows.append({'brand': brand, 'total': len(group), 'english_names': english,
+                     'english_missing': len(group) - english, 'chinese_names': chinese,
+                     'chinese_missing': len(group) - chinese, 'english_candidates_only': candidates})
+    return rows
+
+
 def write_reports(result):
     """Always publish matching Markdown and Excel reports from the same tables."""
     from collections import Counter
@@ -700,6 +819,14 @@ def write_reports(result):
         group = [e for e in entries if e['brand'] == brand]
         c = Counter(e['status'] for e in group)
         lines.append(f"| {cell(brand)} | {len(group)} | {c['model_verified']} | {c['model_verified_image_missing'] + c['model_verified_image_unavailable']} | {c['name_indexed_image_missing']} | {c['candidate_requires_review'] + c['ambiguous_model']} | {c['unresolved']} | {sum(bool(e.get('official_name_zh')) for e in group)} |")
+    coverage = name_coverage_by_brand(entries)
+    lines += ['', '## Name coverage by brand', '',
+              f"Across {len(entries)} inventory IDs: {sum(r['english_missing'] for r in coverage)} official English names and {sum(r['chinese_missing'] for r in coverage)} Chinese names are still missing or unconfirmed. Counts use `official_name` and `official_name_zh`, independently of image availability. Captured names are not substituted. English candidates are a subset of the missing/unconfirmed English names. Recorded Chinese wording can name a candidate or an exact-model component; its evidence scope does not by itself confirm the English match, configuration or image. Missing does not mean that no official name exists.", '',
+              '| Brand | Total | Official English names | English names missing | Chinese names recorded | Chinese names missing | English candidates only |',
+              '| --- | ---: | ---: | ---: | ---: | ---: | ---: |']
+    for row in coverage:
+        lines.append('| ' + ' | '.join([cell(row['brand'])] + [str(row[k]) for k in (
+            'total', 'english_names', 'english_missing', 'chinese_names', 'chinese_missing', 'english_candidates_only')]) + ' |')
     if result.get('browser_followup'):
         followup = result['browser_followup']
         lines += ['', '## Browser follow-up', '',
@@ -733,17 +860,23 @@ def write_reports(result):
                           link('image', e['source_image_url'])]) + ' |')
     if result.get('official_chinese_name_followup'):
         names = [e for e in entries if e.get('official_name_zh')]
-        converted = sum(e.get('official_name_zh_evidence', {}).get('source_locale') == 'zh-Hans' for e in names)
+        converted = sum(e.get('official_name_zh_evidence', {}).get('conversion_method') == 'OpenCC cn-to-hk' for e in names)
         lines += ['', '## Official Chinese name evidence', '',
-                  f"Chinese-name follow-up: {result['official_chinese_name_followup']['review_date']}. The review covers {len(entries)} inventory records across {len({e['brand'] for e in entries})} brands: {len(names)} manufacturer Chinese names recorded, including {converted} Simplified originals converted to Traditional Chinese with OpenCC (cn-to-hk). {len(entries) - len(names)} names remain unverified; a blank does not establish that no official Chinese name exists.", '',
-                  'Original manufacturer wording and Chinese source links are retained below. Only character conversion is applied to Simplified names; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '',
-                  '| Inventory ID | Brand | Official Chinese name | Original manufacturer wording | Source locale | Conversion | Chinese source | Match status |',
-                  '| ---: | --- | --- | --- | --- | --- | --- | --- |']
+                  f"Chinese-name follow-up: {result['official_chinese_name_followup']['review_date']}. The review covers {len(entries)} inventory records across {len({e['brand'] for e in entries})} brands: {len(names)} manufacturer Chinese names recorded, including {converted} names converted to Traditional Chinese with OpenCC (cn-to-hk). {len(entries) - len(names)} names remain unverified; a blank does not establish that no official Chinese name exists.", '',
+                  'Original manufacturer wording and Chinese source links are retained below. Only character conversion is applied; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. A new Chinese source can establish an exact source-model name independently of the existing English match; this does not replace the English product/candidate, image or status. Base-model Chinese names do not verify console, full-shroud, prefix or generation variants. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '']
+        if result['official_chinese_name_followup'].get('name_search_followup'):
+            search = result['official_chinese_name_followup']['name_search_followup']
+            lines += [f"Name-based follow-up on {search['review_date']}: all {search['inventory_count']} previously blank records were searched independently of their stored URLs ({search['unique_name_queries']} unique equipment-name groups, {search['search_query_count']} queries across general name and manufacturer-domain Chinese searches). Official shop/catalog identity review, normal-browser pages and model-specific Chinese manufacturer PDFs supplied {search['new_name_count']} additional names. Search queries and official result links are retained in the evidence JSON under `official_chinese_name_search_followup`. Search results are leads, not automatic matches.", '']
+        if result['official_chinese_name_followup'].get('specification_followup'):
+            review = result['official_chinese_name_followup']['specification_followup']
+            lines += [f"Life Fitness specification/body follow-up on {review['review_date']}: {review['new_name_count']} additional Chinese names recorded from exact-model specification rows, parallel-language component cards backed by manufacturer manuals, and product body wording. Of {review['inventory_count']} Life Fitness inventory records, {review['remaining_unverified_count']} Chinese names remain unconfirmed. Component wording does not verify a whole-system image. Full audit: `lifefitness_specification_name_followup` in the evidence JSON.", '']
+        lines += ['| Inventory ID | Brand | Official Chinese name | Original manufacturer wording | Source locale | Conversion | Chinese source | Match status | Chinese name scope |',
+                  '| ---: | --- | --- | --- | --- | --- | --- | --- | --- |']
         for e in names:
             evidence = e.get('official_name_zh_evidence', {})
             lines.append('| ' + ' | '.join([str(e['inventory_id']), cell(e['brand']), cell(e['official_name_zh']),
                           cell(evidence.get('original_name')), cell(evidence.get('source_locale')), cell(evidence.get('conversion_method')),
-                          link('source', evidence.get('evidence_url')), e['status']]) + ' |')
+                          link('source', evidence.get('evidence_url')), e['status'], cell(evidence.get('match_scope'))]) + ' |')
     lines += ['', '## Known discrepancies requiring care', '',
               '- Life Fitness inventory ID 130: source name is Seated Leg Press, but the official manual identifies SS-GLD as Glute Bridge. Current SS-GLB photos are not substituted for SS-GLD.',
               '- NEWTECH `NT-OH-SLC`: the source says Leg Extension; the manufacturer identifies OnHim Seated Leg Curl.',

@@ -193,6 +193,8 @@ export async function exportReport(markdownPath, { previewDir } = {}) {
       if (name === 'Source model') return 28;
       if (name === 'Source name' || name === 'Official name' || name === 'Official Chinese name' || name === 'Original manufacturer wording' || name === 'Official name / candidate' || name === 'First candidate') return 46;
       if (name === 'Status' || name === 'Match status') return 42;
+      if (name === 'Chinese name scope') return 48;
+      if (name === 'Match scope') return 30;
       if (name === 'Conversion') return 26;
       if (name === 'Review result' || name === 'Review note') return 96;
       if (name.endsWith('image') || name === 'Official source') return 18;
