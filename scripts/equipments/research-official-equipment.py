@@ -83,7 +83,12 @@ def validate_browser_urls(record):
     host = urllib.parse.urlparse(origin or '').hostname
     if not host:
         raise ValueError(f'No manufacturer origin configured for browser evidence: {brand}')
-    host = 'lifefitness.com' if brand == 'Life Fitness' else host.removeprefix('www.')
+    if brand in ('Life Fitness', 'HAMMER STRENGTH', 'Cybex'):
+        host = 'lifefitness.com'
+    elif brand == 'MATRIX':
+        host = 'matrixfitness.com'
+    else:
+        host = host.removeprefix('www.')
     for key in ('product_url', 'evidence_url', 'image_evidence_url', 'image_url'):
         value = record.get(key)
         if key in ('image_url', 'image_evidence_url') and not value:
@@ -130,6 +135,53 @@ def lifefitness_lookup_model(source_model):
     if model.startswith('OP-') and model.endswith('-FS'):
         model = model[:-3]
     return model
+
+
+def preserve_official_chinese_names(result, previous):
+    """Retain recorded manufacturer wording only for unchanged product identities."""
+    identity = lambda e: tuple(e.get(k) for k in ('inventory_id', 'brand', 'source_model', 'official_name', 'official_product_url'))
+    names = {identity(e): e['official_name_zh'] for e in previous.get('equipment', [])
+             if isinstance(e.get('official_name_zh'), str) and e['official_name_zh'].strip()}
+    for entry in result['equipment']:
+        if not entry.get('official_name_zh'):
+            entry['official_name_zh'] = names.get(identity(entry))
+
+
+def apply_official_chinese_names(result, supplemental):
+    """Manufacturer translations name a product; they do not verify inventory identity."""
+    for record in supplemental.get('official_chinese_names', []):
+        entry = next((e for e in result['equipment'] if e.get('inventory_id') == record['inventory_id']
+                      and e['brand'] == record['brand'] and e['source_model'] == record['source_model']), None)
+        if entry is None:
+            continue
+        candidates = [c for c in entry.get('candidates', []) if c['product_url'] == record['product_url']]
+        if entry.get('official_product_url') != record['product_url'] and not candidates:
+            continue
+        validate_browser_urls(record)
+        name = record.get('official_name_zh')
+        if not isinstance(name, str) or not re.search(r'[\u3400-\u9fff]', name):
+            raise ValueError('Official Chinese name requires manufacturer Chinese wording')
+        if record.get('source_locale') == 'zh-Hans' and (
+                not record.get('original_name') or record.get('conversion_method') != 'OpenCC cn-to-hk'):
+            raise ValueError('Converted Chinese names require the original Simplified wording and conversion method')
+        entry['official_name_zh'] = record['official_name_zh']
+        entry['official_name_zh_evidence'] = {k: record[k] for k in (
+            'product_url', 'evidence_url', 'retrieved_at', 'retrieval_method', 'original_name',
+            'source_locale', 'conversion_method', 'evidence_sha256', 'localized_product_url',
+            'manufacturer_model_codes', 'match_scope') if k in record}
+        for candidate in candidates:
+            candidate['name_zh'] = record['official_name_zh']
+    reviews = supplemental.get('official_chinese_name_reviews', [])
+    for entry in result['equipment']:
+        review = next((r for r in reviews if all(r.get(k) == entry.get(k)
+                      for k in ('inventory_id', 'brand', 'source_model'))), None)
+        if review:
+            entry['official_name_zh_review'] = {k: review[k] for k in ('review_date', 'status', 'reason')}
+    if supplemental.get('official_chinese_name_followup'):
+        followup = supplemental['official_chinese_name_followup']
+        result['official_chinese_name_followup'] = {k: followup[k] for k in (
+            'review_date', 'inventory_count', 'brand_count', 'policy', 'review_outcomes',
+            'recorded_name_count', 'converted_name_count') if k in followup}
 
 
 def apply_lifefitness_reviews(result, supplemental):
@@ -279,6 +331,7 @@ def apply_browser_evidence(result, supplemental):
         result['brand_reviews'] = supplemental['brand_reviews']
         result['last_review_date'] = max(review['review_date'] for review in result['brand_reviews'])
     apply_lifefitness_reviews(result, supplemental)
+    apply_official_chinese_names(result, supplemental)
 
 
 class Page(HTMLParser):
@@ -529,7 +582,7 @@ def main():
             for p, method in sorted(exact, key=locale_priority):
                 by_name.setdefault(product_key(p), (p, method))
             exact = list(by_name.values())
-        e.update(official_name=None, official_product_url=None, official_image_url=None,
+        e.update(official_name=None, official_name_zh=None, official_product_url=None, official_image_url=None,
                  status='unresolved', match_method=None, evidence=None, candidates=[])
         if len(exact) == 1:
             p, method = exact[0]
@@ -609,6 +662,8 @@ def main():
               'equipment': entries}
     apply_browser_evidence(result, supplemental)
     output = ROOT / args.output
+    if output.exists():
+        preserve_official_chinese_names(result, json.loads(output.read_text()))
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     (cache / 'parsed-products.json').write_text(json.dumps(products, ensure_ascii=False))
     print(json.dumps(result['summary']), flush=True)
@@ -640,11 +695,11 @@ def write_reports(result):
              'Images are manufacturer catalog images, not visual confirmation of the physical machine installed in a branch. Colors, upholstery, console configuration and revisions may differ. Image URLs are supplied as research references; no local photo library was downloaded.', '',
              '## Totals', '', '| Status | Count |', '| --- | ---: |']
     lines.extend(f'| {status} | {count} |' for status, count in sorted(result['summary'].items()))
-    lines += ['', '## Coverage by brand', '', '| Brand | Total | Model + image | Model, image missing/unavailable | Indexed name only | Candidates / ambiguous | Unresolved |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: |']
+    lines += ['', '## Coverage by brand', '', '| Brand | Total | Model + image | Model, image missing/unavailable | Indexed name only | Candidates / ambiguous | Unresolved | Official Chinese names |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']
     for brand in sorted(products):
         group = [e for e in entries if e['brand'] == brand]
         c = Counter(e['status'] for e in group)
-        lines.append(f"| {cell(brand)} | {len(group)} | {c['model_verified']} | {c['model_verified_image_missing'] + c['model_verified_image_unavailable']} | {c['name_indexed_image_missing']} | {c['candidate_requires_review'] + c['ambiguous_model']} | {c['unresolved']} |")
+        lines.append(f"| {cell(brand)} | {len(group)} | {c['model_verified']} | {c['model_verified_image_missing'] + c['model_verified_image_unavailable']} | {c['name_indexed_image_missing']} | {c['candidate_requires_review'] + c['ambiguous_model']} | {c['unresolved']} | {sum(bool(e.get('official_name_zh')) for e in group)} |")
     if result.get('browser_followup'):
         followup = result['browser_followup']
         lines += ['', '## Browser follow-up', '',
@@ -668,14 +723,27 @@ def write_reports(result):
         lines += ['', '## Life Fitness item review', '',
                   f"On {result['lifefitness_review']['review_date']} (Hong Kong), all {len(group)} Life Fitness inventory IDs were searched individually using their equipment name and conservatively normalized model. Official product pages, support articles and manufacturer-linked manuals were inspected; Chrome supplied content where direct HTTP failed. Results: {counts['model_verified']} model + image, {counts['model_verified_image_missing']} model confirmed without a verified component image, {counts['candidate_requires_review']} candidates and {counts['unresolved']} unresolved.", '',
                   'Recognized LP/SP Full and OP-series -FS annotations are separated from the base model. A verified base model does not verify those configuration annotations. Source codes, names and 24/7 images are preserved. Manual-only components are not assigned whole-system photos. Configuration notes describe console, generation and source-name discrepancies.', '',
-                  '| Inventory ID | Source model | Verified model | Official name / candidate | Match scope | Review note | Status | Official source | Official image | 24/7 image |',
-                  '| ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+                  '| Inventory ID | Source model | Verified model | Official name / candidate | Official Chinese name | Match scope | Review note | Status | Official source | Official image | 24/7 image |',
+                  '| ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
         for e in group:
             candidate = e['candidates'][0] if e['candidates'] else {}
             lines.append('| ' + ' | '.join([str(e['inventory_id']), cell(e['source_model']), cell(e.get('official_model') if e['official_name'] else None),
-                          cell(e['official_name'] or candidate.get('name')), cell(e['match_scope']), cell(e['configuration_note']), e['status'],
+                          cell(e['official_name'] or candidate.get('name')), cell(e.get('official_name_zh')), cell(e['match_scope']), cell(e['configuration_note']), e['status'],
                           link('source', e['individual_review'].get('document_url') or e['official_product_url'] or candidate.get('product_url')), link('image', e['official_image_url'] or candidate.get('image_url')),
                           link('image', e['source_image_url'])]) + ' |')
+    if result.get('official_chinese_name_followup'):
+        names = [e for e in entries if e.get('official_name_zh')]
+        converted = sum(e.get('official_name_zh_evidence', {}).get('source_locale') == 'zh-Hans' for e in names)
+        lines += ['', '## Official Chinese name evidence', '',
+                  f"Chinese-name follow-up: {result['official_chinese_name_followup']['review_date']}. The review covers {len(entries)} inventory records across {len({e['brand'] for e in entries})} brands: {len(names)} manufacturer Chinese names recorded, including {converted} Simplified originals converted to Traditional Chinese with OpenCC (cn-to-hk). {len(entries) - len(names)} names remain unverified; a blank does not establish that no official Chinese name exists.", '',
+                  'Original manufacturer wording and Chinese source links are retained below. Only character conversion is applied to Simplified names; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '',
+                  '| Inventory ID | Brand | Official Chinese name | Original manufacturer wording | Source locale | Conversion | Chinese source | Match status |',
+                  '| ---: | --- | --- | --- | --- | --- | --- | --- |']
+        for e in names:
+            evidence = e.get('official_name_zh_evidence', {})
+            lines.append('| ' + ' | '.join([str(e['inventory_id']), cell(e['brand']), cell(e['official_name_zh']),
+                          cell(evidence.get('original_name')), cell(evidence.get('source_locale')), cell(evidence.get('conversion_method')),
+                          link('source', evidence.get('evidence_url')), e['status']]) + ' |')
     lines += ['', '## Known discrepancies requiring care', '',
               '- Life Fitness inventory ID 130: source name is Seated Leg Press, but the official manual identifies SS-GLD as Glute Bridge. Current SS-GLB photos are not substituted for SS-GLD.',
               '- NEWTECH `NT-OH-SLC`: the source says Leg Extension; the manufacturer identifies OnHim Seated Leg Curl.',
@@ -683,13 +751,14 @@ def write_reports(result):
               '- A model mention in a kit description does not prove the kit image depicts the standalone component. Such ambiguity is retained.',
               '- Missing models, generic brand-only entries (such as InBody) and custom 24/7 racks cannot be assigned an exact manufacturer image from their names alone.', '',
               '## Full inventory cross-reference', '',
-              '| # | Inventory ID | Brand | Source model | Source name | Official name | Status | Official source | Official image | 24/7 image | First candidate |',
-              '| ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+              'Official Chinese name (`official_name_zh`) is populated only when manufacturer-provided Chinese wording is recorded in the catalog. Missing values are shown as —; captured Chinese names and manual translations are not substituted.', '',
+              '| # | Inventory ID | Brand | Source model | Source name | Official name | Official Chinese name | Status | Official source | Official image | 24/7 image | First candidate |',
+              '| ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
     for row_number, e in enumerate(entries, start=1):
         source = e['official_product_url'] or (e['evidence'] or {}).get('evidence_url')
         candidate = e['candidates'][0] if e['candidates'] else None
         lines.append('| ' + ' | '.join([str(row_number), str(e['inventory_id']), cell(e['brand']), cell(e['source_model']), cell(e['source_name']),
-                                      cell(e['official_name']), e['status'], link('source', source),
+                                      cell(e['official_name']), cell(e.get('official_name_zh')), e['status'], link('source', source),
                                       link('image', e['official_image_url']),
                                       link('image', e['source_image_url']),
                                       link(cell(candidate['name']), candidate['product_url']) if candidate else '—']) + ' |')

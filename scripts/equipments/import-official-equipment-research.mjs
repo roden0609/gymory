@@ -29,6 +29,8 @@ export function buildOfficialResearchPlan(catalog) {
     return {
       p_external_id:key,p_source_model:entry.source_model,
       p_research:{name:entry.official_name || candidate?.name || null,
+        captured_name:entry.source_name || null,captured_name_zh:entry.source_names?.['zh-HK'] || null,
+        ...(entry.official_name_zh ? {name_zh:entry.official_name_zh} : {}),
         model:entry.official_model || null,product_url:httpUrl(entry.official_product_url || candidate?.product_url),
         status,note:entry.configuration_note || entry.reason || null},p_images:images,
     };

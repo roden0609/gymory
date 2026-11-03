@@ -29,4 +29,10 @@ describe("equipment image review",()=>{
     expect(equipmentReviewImageSchema.safeParse({...row,url:"javascript:alert(1)"}).success).toBe(false);
     expect(equipmentReviewImageSchema.safeParse({...row,image_role:"admin_verified"}).success).toBe(false);
   });
+  it("requires explicit approval to apply official display names",()=>{
+    const review={...identity,official_name:"Glute Bridge",official_name_zh:"",official_model_number:"SS-GLD",official_product_url:"",official_review_note:"",official_status:"model_verified",verify:false,apply_official_names:true};
+    expect(equipmentOfficialReviewSchema.safeParse(review).success).toBe(false);
+    expect(equipmentOfficialReviewSchema.parse({...review,verify:true}).official_name_zh).toBe("");
+    expect(equipmentOfficialReviewSchema.parse({...review,verify:true,official_name_zh:"臀橋"}).official_name_zh).toBe("臀橋");
+  });
 });

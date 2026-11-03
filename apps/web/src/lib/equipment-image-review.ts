@@ -7,7 +7,8 @@ export type EquipmentReviewImage = {
 };
 export type EquipmentOfficialReview = {
   id: string; updated_at: string; source_external_id: string | null;
-  official_name: string | null; official_model_number: string | null;
+  captured_name: string | null; captured_name_zh: string | null;
+  official_name: string | null; official_name_zh: string | null; official_model_number: string | null;
   official_product_url: string | null; official_status: OfficialStatus;
   official_review_note: string | null; official_verified_at: string | null; official_verified_by: string | null;
   equipment_images: EquipmentReviewImage[];

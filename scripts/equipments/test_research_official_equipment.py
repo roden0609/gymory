@@ -1,5 +1,6 @@
 """Regression checks for importing browser evidence without weakening matches."""
 import copy
+import json
 import importlib.util
 from pathlib import Path
 import unittest
@@ -125,6 +126,82 @@ class BrowserEvidenceTests(unittest.TestCase):
         result = {'equipment': [copy.deepcopy(entry)]}
         research.apply_browser_evidence(result, {'browser_candidates': [candidate]})
         self.assertEqual(result['equipment'], [entry])
+
+
+class OfficialChineseNameTests(unittest.TestCase):
+    def test_simplified_original_and_conversion_evidence_are_retained(self):
+        url = 'https://shop.lifefitness.com/products/hammer-strength-select-biceps-curl'
+        entry = {'inventory_id': 3, 'brand': 'HAMMER STRENGTH', 'source_model': 'HS-BC',
+                 'official_product_url': url, 'status': 'model_verified', 'candidates': []}
+        record = {'inventory_id': 3, 'brand': 'HAMMER STRENGTH', 'source_model': 'HS-BC',
+                  'product_url': url, 'evidence_url': 'https://www.lifefitness.com/zh-cn/catalog/biceps-curl',
+                  'official_name_zh': '二頭肌訓練器', 'original_name': '二头肌训练器',
+                  'source_locale': 'zh-Hans', 'conversion_method': 'OpenCC cn-to-hk',
+                  'retrieved_at': '2026-11-03', 'retrieval_method': 'http_product_h1'}
+        result = {'equipment': [copy.deepcopy(entry)]}
+        research.apply_official_chinese_names(result, {'official_chinese_names': [record]})
+        actual = result['equipment'][0]
+        self.assertEqual(actual['official_name_zh_evidence']['original_name'], '二头肌训练器')
+        self.assertEqual(actual['official_name_zh_evidence']['conversion_method'], 'OpenCC cn-to-hk')
+        self.assertEqual(actual['status'], entry['status'])
+        again = copy.deepcopy(result)
+        research.apply_official_chinese_names(result, {'official_chinese_names': [record]})
+        self.assertEqual(result, again)
+        for change in ({'original_name': ''}, {'conversion_method': 'manual_translation'}, {'official_name_zh': 'Biceps Curl'}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                research.apply_official_chinese_names({'equipment': [entry.copy()]},
+                                                      {'official_chinese_names': [{**record, **change}]})
+
+    def test_research_has_a_unique_review_for_every_inventory_and_traceable_names(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['official_chinese_name_reviews']
+        self.assertEqual(len(reviews), len(catalog['equipment']))
+        self.assertEqual({r['inventory_id'] for r in reviews}, {e['inventory_id'] for e in catalog['equipment']})
+        names = evidence['official_chinese_names']
+        self.assertEqual(len(names), len({r['inventory_id'] for r in names}))
+        for record in names:
+            research.validate_browser_urls(record)
+            self.assertTrue(record['original_name'])
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == record['inventory_id'])
+            self.assertEqual(entry['official_name_zh'], record['official_name_zh'])
+            self.assertEqual(entry['official_name_zh_evidence']['original_name'], record['original_name'])
+        # These localized pages name a different SKU or generation.
+        for inventory_id in (45, 79, 91, 92, 1422):
+            self.assertIsNone(next(e for e in catalog['equipment'] if e['inventory_id'] == inventory_id)['official_name_zh'])
+
+    def test_candidate_translation_does_not_promote_the_inventory_match(self):
+        url = 'https://www.lifefitness.com/en-us/catalog/signature-series-multi-jungle-mj4'
+        entry = {'inventory_id': 1472, 'brand': 'Life Fitness', 'source_model': '4合1MJ',
+                 'official_product_url': None, 'status': 'candidate_requires_review',
+                 'candidates': [{'product_url': url, 'name': 'Signature Series Multi-Jungle MJ4'}]}
+        record = {'inventory_id': 1472, 'brand': 'Life Fitness', 'source_model': '4合1MJ',
+                  'product_url': url, 'evidence_url': url.replace('/en-us/', '/zh-hk/'),
+                  'official_name_zh': 'SIGNATURE 系列 MJ4 多功能訓練架', 'retrieved_at': '2026-11-03', 'retrieval_method': 'browser_dom'}
+        result = {'equipment': [copy.deepcopy(entry)]}
+        research.apply_official_chinese_names(result, {'official_chinese_names': [record]})
+        self.assertEqual(result['equipment'][0]['official_name_zh'], record['official_name_zh'])
+        self.assertEqual(result['equipment'][0]['status'], 'candidate_requires_review')
+        stale = {'equipment': [{**entry, 'source_model': 'MJ8'}]}
+        research.apply_official_chinese_names(stale, {'official_chinese_names': [record]})
+        self.assertNotIn('official_name_zh', stale['equipment'][0])
+
+    def test_retains_recorded_names_only_for_the_same_official_identity(self):
+        entry = {'inventory_id': 107, 'brand': 'Life Fitness', 'source_model': 'SS-BC',
+                 'official_name': 'Insignia Series Biceps Curl', 'official_product_url': 'https://www.lifefitness.com/biceps',
+                 'source_names': {'zh-HK': '來源名稱'}}
+        previous = {'equipment': [{**entry, 'official_name_zh': '官方二頭肌訓練器'}]}
+        result = {'equipment': [copy.deepcopy(entry)]}
+        research.preserve_official_chinese_names(result, previous)
+        self.assertEqual(result['equipment'][0]['official_name_zh'], '官方二頭肌訓練器')
+        for change in ({'source_model': 'SS-BCD'}, {'official_product_url': 'https://www.lifefitness.com/other'}):
+            result = {'equipment': [{**entry, **change}]}
+            research.preserve_official_chinese_names(result, previous)
+            self.assertIsNone(result['equipment'][0]['official_name_zh'])
+        result = {'equipment': [{**entry, 'official_name_zh': '新官方名稱'}]}
+        research.preserve_official_chinese_names(result, previous)
+        self.assertEqual(result['equipment'][0]['official_name_zh'], '新官方名稱')
 
 
 class LifeFitnessReviewTests(unittest.TestCase):

@@ -26,9 +26,14 @@ export function EquipmentImageReview({ machine, locale, page, filters = {} }: {
         ? `${zh ? "已人工確認" : "Admin verified"} · ${machine.official_verified_at} · ${machine.official_verified_by || "—"}`
         : zh ? "未人工確認" : "Not admin verified"}</p>
     </div>
+    <dl className="grid min-w-0 gap-3 rounded-lg bg-gray-50 p-3 text-sm sm:grid-cols-2">
+      <div className="min-w-0"><dt className="text-gray-500">{zh ? "擷取英文名稱" : "Captured English name"}</dt><dd className="break-words [overflow-wrap:anywhere]">{machine.captured_name || "—"}</dd></div>
+      <div className="min-w-0"><dt className="text-gray-500">{zh ? "擷取中文名稱" : "Captured Chinese name"}</dt><dd className="break-words [overflow-wrap:anywhere]">{machine.captured_name_zh || "—"}</dd></div>
+    </dl>
     <form action={saveOfficialReview} className="grid min-w-0 gap-3 sm:grid-cols-2">
       {context}
       <label className="min-w-0 text-sm">{zh ? "官方名稱" : "Official name"}<input name="official_name" maxLength={200} defaultValue={machine.official_name ?? ""} className={input} /></label>
+      <label className="min-w-0 text-sm">{zh ? "官方中文名稱（官方未提供則留空）" : "Official Chinese name (leave blank if unavailable)"}<input name="official_name_zh" maxLength={200} defaultValue={machine.official_name_zh ?? ""} className={input} /></label>
       <label className="min-w-0 text-sm">{zh ? "官方型號" : "Official model"}<input name="official_model_number" maxLength={200} defaultValue={machine.official_model_number ?? ""} className={input} /></label>
       <label className="min-w-0 text-sm">{zh ? "官方來源頁" : "Official source page"}<input name="official_product_url" type="url" maxLength={4000} defaultValue={machine.official_product_url ?? ""} className={input} /></label>
       <label className="min-w-0 text-sm">{zh ? "研究結果" : "Research result"}<select name="official_status" defaultValue={machine.official_status} className={input}>
@@ -37,6 +42,7 @@ export function EquipmentImageReview({ machine, locale, page, filters = {} }: {
       <label className="min-w-0 text-sm sm:col-span-2">{zh ? "核對備註／型號差異" : "Review notes / model differences"}<textarea name="official_review_note" rows={3} maxLength={5000} defaultValue={machine.official_review_note ?? ""} className={input} /></label>
       <label className="flex min-w-0 items-start gap-2 text-sm sm:col-span-2"><input type="checkbox" name="verify" defaultChecked={Boolean(machine.official_verified_at)} className="mt-1 shrink-0" />
         <span>{zh ? "我已核對所有官方資料及官方圖片，確認正確（取消勾選可撤回確認）" : "I checked all official data and official images and confirm they are correct (uncheck to withdraw approval)."}</span></label>
+      <label className="flex min-w-0 items-start gap-2 text-sm sm:col-span-2"><input type="checkbox" name="apply_official_names" className="mt-1 shrink-0" /><span>{zh ? "確認後將官方名稱套用為展示名稱；官方中文留空時保留現有中文展示名。" : "Apply confirmed official names as display names; keep the current Chinese display name if no official Chinese name is supplied."}</span></label>
       <div className="sm:col-span-2"><button className={button}>{zh ? "儲存核對結果" : "Save review"}</button></div>
     </form>
     <p className="text-sm text-gray-500">{zh ? "兩邊圖片供對比；官方來源唔代表已確認正確。改動圖片或型號資料後須重新確認。展示圖片可獨立選擇。" : "Compare both sources below. An official source is not approval. Image or model changes require a new review. Display-image selection is independent."}</p>

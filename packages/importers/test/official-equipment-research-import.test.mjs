@@ -32,6 +32,15 @@ describe('official equipment research import', () => {
     expect(indexed.p_research.status).toBe('candidate_requires_review');
     expect(unavailable.p_research.status).toBe('model_verified_image_missing');
   });
+  it('keeps captured Chinese names separate from manufacturer-provided translations',()=>{
+    const [row]=buildOfficialResearchPlan({equipment:[{...entry,source_name:'Seated Leg Press',source_names:{'zh-HK':'坐式臀橋訓練器'}}]});
+    expect(row.p_research).toMatchObject({captured_name:'Seated Leg Press',captured_name_zh:'坐式臀橋訓練器'});
+    expect(row.p_research).not.toHaveProperty('name_zh');
+    const [missing]=buildOfficialResearchPlan({equipment:[{...entry,official_name_zh:null}]});
+    expect(missing.p_research).not.toHaveProperty('name_zh');
+    const [official]=buildOfficialResearchPlan({equipment:[{...entry,official_name_zh:'官方中文'}]});
+    expect(official.p_research.name_zh).toBe('官方中文');
+  });
   it('reports skipped admin-approved records and stops on a failed record',async()=>{
     const request=vi.fn().mockResolvedValueOnce('skipped_verified').mockResolvedValueOnce('imported');
     expect(await importOfficialResearch([{},{}],request)).toEqual({imported:1,skipped_verified:1});

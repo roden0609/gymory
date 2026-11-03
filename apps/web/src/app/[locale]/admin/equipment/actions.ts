@@ -171,7 +171,8 @@ export async function saveOfficialReview(formData: FormData) {
   await runCatalogSave(locale, "machine", async () => {
     const parsed = equipmentOfficialReviewSchema.parse({
       id: textValue(formData,"id"), expected_updated_at:textValue(formData,"expected_updated_at"),
-      official_name:textValue(formData,"official_name"), official_model_number:textValue(formData,"official_model_number"),
+      official_name:textValue(formData,"official_name"), official_name_zh:textValue(formData,"official_name_zh"),
+      apply_official_names:checked(formData,"apply_official_names"), official_model_number:textValue(formData,"official_model_number"),
       official_product_url:textValue(formData,"official_product_url"), official_status:textValue(formData,"official_status"),
       official_review_note:textValue(formData,"official_review_note"), verify:checked(formData,"verify"),
     });
@@ -179,6 +180,7 @@ export async function saveOfficialReview(formData: FormData) {
       p_id:parsed.id, p_expected_updated_at:parsed.expected_updated_at,
       p_name:parsed.official_name,p_model:parsed.official_model_number,p_product_url:parsed.official_product_url,
       p_status:parsed.official_status,p_note:parsed.official_review_note,p_verify:parsed.verify,p_actor:actor.uid,
+      p_name_zh:parsed.official_name_zh,p_apply_names:parsed.apply_official_names,
     });
     if(error) throw new Error(error.message);
   }, formData);

@@ -59,10 +59,12 @@ export const equipmentReviewIdentitySchema = z.object({
   expected_updated_at: z.string().datetime({ offset: true }),
 });
 export const equipmentOfficialReviewSchema = equipmentReviewIdentitySchema.extend({
-  official_name: z.string().trim().max(200), official_model_number: z.string().trim().max(200),
+  official_name: z.string().trim().max(200), official_name_zh: z.string().trim().max(200).default(""),
+  apply_official_names: z.boolean().default(false), official_model_number: z.string().trim().max(200),
   official_product_url: optionalHttpUrl, official_status: z.enum(OFFICIAL_STATUSES),
   official_review_note: z.string().trim().max(5000), verify: z.boolean(),
-}).refine(value => !value.verify || value.official_name.length > 0, {message:"Official name required before verification",path:["official_name"]});
+}).refine(value => !value.verify || value.official_name.length > 0, {message:"Official name required before verification",path:["official_name"]})
+  .refine(value => !value.apply_official_names || value.verify, {message:"Confirm official data before applying display names",path:["apply_official_names"]});
 export const equipmentReviewImageSchema = equipmentReviewIdentitySchema.extend({
   image_id: z.string().uuid().optional(), image_role: z.enum(["captured", "official"]),
   url: optionalHttpUrl.refine(value => value.length > 0), source_url: optionalHttpUrl,

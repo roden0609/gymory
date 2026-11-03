@@ -44,6 +44,13 @@ describe("equipment official review actions", () => {
     for (const action of [saveOfficialReview,saveReviewImage,selectReviewImage]) await expect(action(form(review))).rejects.toThrow("login required");
     expect(mocks.rpc).not.toHaveBeenCalled();expect(mocks.from).not.toHaveBeenCalled();
   });
+  it("passes the official Chinese name and explicit display-name choice to the atomic review RPC",async()=>{
+    await expect(saveOfficialReview(form({...review,verify:"on",official_name_zh:"臀橋",apply_official_names:"on"}))).rejects.toThrow("result=success");
+    expect(mocks.rpc).toHaveBeenCalledWith("save_equipment_official_review",expect.objectContaining({p_name_zh:"臀橋",p_apply_names:true,p_verify:true}));
+    mocks.rpc.mockClear();
+    await expect(saveOfficialReview(form({...review,apply_official_names:"on"}))).rejects.toThrow("reason=invalid");
+    expect(mocks.rpc).not.toHaveBeenCalled();
+  });
   it("reports stale reviews instead of overwriting the new data", async () => {
     mocks.rpc.mockResolvedValue({error:{message:"Stale equipment review"}});
     await expect(saveOfficialReview(form(review))).rejects.toThrow("reason=stale");

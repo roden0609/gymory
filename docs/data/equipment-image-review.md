@@ -4,7 +4,9 @@ Migration: `supabase/migrations/0063_equipment_image_review.sql`.
 
 ## Data ownership
 
-`equipment.name`, `name_zh` and `model_number` retain their existing values. Research is stored separately as `official_name`, `official_model_number`, `official_product_url`, `official_status` and `official_review_note`.
+`equipment.name` and `name_zh` are Gymory display names. Migration 0064 adds `captured_name` and `captured_name_zh` for original source names, and `official_name_zh` for manufacturer-provided Traditional Chinese names. Research is stored separately as `official_name`, `official_name_zh`, `official_model_number`, `official_product_url`, `official_status` and `official_review_note`. Missing official translations stay null; source translations or manually translated display names are not treated as official.
+
+Apply `0064_equipment_name_provenance.sql` before deploying the name-review changes. Existing display names are not copied into captured fields by the migration: populate them from the original source catalog using the research importer. Provenance backfill only fills missing captured fields, including on approved records; it does not modify approval or display names. New 24/7 equipment captures its source names at creation.
 
 Research statuses: `not_researched`, `ambiguous_model`, `candidate_requires_review`, `model_verified`, `model_verified_image_missing`, `unresolved`. Human approval uses `official_verified_at` and `official_verified_by` (Firebase UID), independently of research confidence and gym inventory verification.
 
@@ -33,7 +35,7 @@ Legacy research `model_verified_image_unavailable` maps to `model_verified_image
 Open `/zh-HK/admin/equipment` (or `/en/admin/equipment`), find an equipment record and click Edit. Below the existing equipment form:
 
 1. Compare captured and official/candidate images, model numbers and source links. Edit/add image URLs or correct official fields as needed.
-2. Save research notes and optionally confirm all official data. Uncheck approval and save to withdraw it. The reviewer comes from the authenticated Firebase admin session, never the form.
+2. Save research notes and optionally confirm all official data. Uncheck approval and save to withdraw it. The reviewer comes from the authenticated Firebase admin session, never the form. Captured names appear read-only alongside editable official English/Chinese names. Optionally choose “Apply confirmed official names as display names”; this requires confirmation and applies atomically with the review. A missing official Chinese name preserves the existing Chinese display name. Captured names and the equipment slug remain unchanged.
 3. Independently choose a display image. Save the desired original image locally and upload JPEG, PNG or WebP (maximum 5 MB); upload success precedes primary selection. Already-uploaded images can be selected without uploading again.
 
 Official-name/model/status/source changes, source-identity changes or image insertions/deletions/source changes invalidate human approval. Replacing an image URL also clears its previous Storage association and primary flag. Changing display selection or uploading a Storage copy does not approve or disapprove official data. Stale review forms are rejected rather than approving unseen changes.

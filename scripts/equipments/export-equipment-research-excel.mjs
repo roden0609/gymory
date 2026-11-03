@@ -191,8 +191,9 @@ export async function exportReport(markdownPath, { previewDir } = {}) {
       if (name === 'Inventory ID') return 14;
       if (name === 'Brand') return 23;
       if (name === 'Source model') return 28;
-      if (name === 'Source name' || name === 'Official name' || name === 'Official name / candidate' || name === 'First candidate') return 46;
-      if (name === 'Status') return 42;
+      if (name === 'Source name' || name === 'Official name' || name === 'Official Chinese name' || name === 'Original manufacturer wording' || name === 'Official name / candidate' || name === 'First candidate') return 46;
+      if (name === 'Status' || name === 'Match status') return 42;
+      if (name === 'Conversion') return 26;
       if (name === 'Review result' || name === 'Review note') return 96;
       if (name.endsWith('image') || name === 'Official source') return 18;
       return Math.max(12, Math.min(28, name.length + 2));
@@ -209,7 +210,10 @@ export async function exportReport(markdownPath, { previewDir } = {}) {
     if (table.rows.length) {
       sheet.getRange(`A5:${lastColumn}${lastRow}`).format.wrapText = true;
       for (const [row, cells] of table.rows.entries()) {
-        const lines = Math.max(...cells.map((cell, column) => Math.ceil(String(cell.value).length / (widths[column] - 2))));
+        const lines = Math.max(...cells.map((cell, column) => {
+          const textWidth = [...String(cell.value)].reduce((sum, char) => sum + (/[\u2e80-\u9fff\uff00-\uffef]/u.test(char) ? 2 : 1), 0);
+          return Math.ceil(textWidth / (widths[column] - 2));
+        }));
         sheet.getRangeByIndexes(row + 4, 0, 1, widths.length).format.rowHeight = Math.max(24, lines * 14 + 8);
         for (const [column, cell] of cells.entries()) {
           if (cell.url) {

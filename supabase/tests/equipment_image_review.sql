@@ -83,6 +83,6 @@ begin
     raise exception 'Expected stale source model to fail';
   exception when others then if sqlerrm not like '%source model does not match%' then raise; end if; end;
 end $$;
-select pg_temp.assert(not has_function_privilege('authenticated','public.save_equipment_official_review(uuid,timestamptz,text,text,text,text,text,boolean,text)','EXECUTE'),'Browser users cannot approve official data');
+select pg_temp.assert(not has_function_privilege('authenticated','public.save_equipment_official_review'::regproc,'EXECUTE'),'Browser users cannot approve official data');
 select pg_temp.assert(not has_function_privilege('anon','public.select_equipment_primary_image(uuid,uuid,text,text)','EXECUTE'),'Anonymous users cannot choose primary images');
 rollback;
