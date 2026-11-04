@@ -343,6 +343,13 @@ def apply_lifefitness_reviews(result, supplemental):
                     entry['evidence'][key] = review[key]
             if review['match_scope'] in ('product_name_and_image', 'exact_model_manual'):
                 entry['image_verification_status'] = 'manufacturer_image_checked' if image else 'image_missing'
+            if review.get('image_match_status') == 'candidate_requires_review':
+                if not image or not review.get('identity_evidence'):
+                    raise ValueError('Unverified image references require a candidate image and identity evidence')
+                entry.update(status='model_verified_image_missing', image_verification_status='candidate_requires_review',
+                             candidates=[{'name': review['official_name'], 'product_url': review['official_product_url'],
+                                          'image_url': image, 'evidence_url': review['image_evidence_url'],
+                                          'reason': review['configuration_note']}])
         elif review['outcome'] == 'candidate':
             candidate = {'name': review['candidate_name'], 'product_url': review['candidate_product_url'],
                          'image_url': review.get('candidate_image_url'), 'score': 0,
@@ -385,6 +392,21 @@ def apply_manual_equipment_reviews(result, supplemental):
             raise ValueError('Duplicate manual equipment review')
         seen.add(inventory_id)
         entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
+        approved = review.get('approved_candidate')
+        if approved:
+            source_fields = ('brand', 'source_model', 'source_image_url')
+            if entry is None or any(entry.get(k) != review.get(k) for k in source_fields):
+                raise ValueError(f'Manual candidate review no longer matches source: {inventory_id}')
+            selected_fields = {'official_name': 'name', 'official_product_url': 'product_url',
+                               'official_image_url': 'image_url'}
+            first = next(iter(entry.get('candidates', [])), {})
+            already_applied = all(entry.get(k) == approved.get(v) for k, v in selected_fields.items())
+            if not already_applied and any(first.get(v) != approved.get(v) for v in selected_fields.values()):
+                raise ValueError(f'First candidate changed after manual review: {inventory_id}')
+            if any(review.get(k) != approved.get(v) for k, v in selected_fields.items()):
+                raise ValueError('Manual candidate decision must use the approved candidate data')
+            entry.update({k: approved[v] for k, v in selected_fields.items()})
+            entry['candidates'] = []
         fields = ('brand', 'source_model', 'source_image_url', 'official_name',
                   'official_product_url', 'official_image_url')
         if entry is None or any(entry.get(k) != review.get(k) for k in fields):
@@ -850,6 +872,7 @@ def write_reports(result):
     """Always publish matching Markdown and Excel reports from the same tables."""
     from collections import Counter
     entries = result['equipment']
+    manual_counts = Counter(e['brand'] for e in entries if e.get('manual_review'))
     products = result['catalog_product_counts']
     report = ROOT / 'docs/data/247-fitness-hk-official-equipment-research-2026-10-28.md'
     def cell(value):
@@ -863,12 +886,13 @@ def write_reports(result):
              f'The cross-reference covers all {len(entries)} unique inventory IDs. It records manufacturer names and image URLs separately from the original 24/7 data. No database changes or image substitutions were made.', '',
              '## Interpretation', '',
              '- `model_verified`: a manufacturer SKU, product title/URL, relevant product description or directly viewed catalog card matches the source model. Image checks use HTTP image content types or a successfully decoded image in the browser.',
-             '- `model_verified_image_missing` / `model_verified_image_unavailable`: model evidence exists, but the official image is absent or could not be retrieved.',
+             '- `model_verified_image_missing` / `model_verified_image_unavailable`: model evidence exists, but a verified image is missing, unavailable or not matched to the source model. An official candidate image URL may be recorded with its unresolved scope in Review note.',
              '- `name_indexed_image_missing`: exact model/name found in the search index of the manufacturer catalog; direct access and official image remain unverified.',
              '- `candidate_requires_review`: an official candidate exists, but model, generation or configuration is not established. Recorded official names, product links or images can describe that candidate; their presence does not verify the inventory match.',
              '- `ambiguous_model`: multiple different official products or bundles refer to the source model.',
              '- `unresolved`: no usable match found in this pass; this does not mean the product has no official source.', '',
              'Images are manufacturer catalog images, not visual confirmation of the physical machine installed in a branch. Colors, upholstery, console configuration and revisions may differ. Image URLs are supplied as research references; no local photo library was downloaded.', '',
+             *(['User-confirmed manual reviews: ' + ', '.join(f'{brand}: {count}' for brand, count in sorted(manual_counts.items())) + '. These records use model_verified based on explicit user approval, with the approved names, URLs and previous candidates retained in manual review evidence.', ''] if manual_counts else []),
              '## Totals', '', '| Status | Count |', '| --- | ---: |']
     lines.extend(f'| {status} | {count} |' for status, count in sorted(result['summary'].items()))
     lines += ['', '## Coverage by brand', '', '| Brand | Total | Model + image | Model, image missing/unavailable | Indexed name only | Candidates / ambiguous | Unresolved | Official Chinese names |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']
@@ -929,7 +953,7 @@ def write_reports(result):
             lines += [f"Life Fitness specification/body follow-up on {review['review_date']}: {review['new_name_count']} additional Chinese names recorded from exact-model specification rows, parallel-language component cards backed by manufacturer manuals, and product body wording. At that stage, {review['remaining_unverified_count']} of {review['inventory_count']} Life Fitness Chinese names remained unconfirmed. Current counts are in Name coverage by brand. Component wording does not verify a whole-system image. Full audit: `lifefitness_specification_name_followup` in the evidence JSON.", '']
         lines += ['Original manufacturer wording, Source locale, Conversion and Chinese name scope are included in Full inventory cross-reference. Chinese source URLs remain in the catalog and evidence JSON.', '']
     lines += ['', '## Known discrepancies requiring care', '',
-              '- Life Fitness inventory ID 130: source name is Seated Leg Press, but the official manual identifies SS-GLD as Glute Bridge. Current SS-GLB photos are not substituted for SS-GLD.',
+              '- Life Fitness inventory IDs 130 and 155: the official manual identifies SS-GLD as Glute Bridge; ID 130 source name says Seated Leg Press. The current SS-GLB photo and Chinese name are recorded as product-family references. SS-GLD/SS-GLB equivalence and exact image match remain unverified.',
               '- NEWTECH `NT-OH-SLC`: the source says Leg Extension; the manufacturer identifies OnHim Seated Leg Curl.',
               '- NEWTECH `NT-T-SDCP`: the source says Seated Incline Chest Press; the manufacturer catalog identifies Torture Chest & Decline Combo.',
               '- A model mention in a kit description does not prove the kit image depicts the standalone component. Such ambiguity is retained.',

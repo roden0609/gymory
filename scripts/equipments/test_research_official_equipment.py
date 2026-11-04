@@ -327,12 +327,51 @@ class LifeFitnessReviewTests(unittest.TestCase):
 
 
 class SpecificationNameTests(unittest.TestCase):
+    def test_hammer_manual_decisions_promote_only_the_approved_first_candidate(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = [r for r in evidence['manual_equipment_reviews'] if r['brand'] == 'HAMMER STRENGTH']
+        self.assertEqual(len(reviews), 22)
+        for review in reviews:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['official_name'], review['approved_candidate']['name'])
+            self.assertEqual(entry['official_product_url'], review['approved_candidate']['product_url'])
+            self.assertEqual(entry['official_image_url'], review['approved_candidate']['image_url'])
+            self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
+            self.assertEqual(entry['source_model'], review['source_model'])
+            self.assertEqual(entry['source_image_url'], review['source_image_url'])
+        review = reviews[0]
+        stale = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id']))
+        stale.update(official_name=None, official_product_url=None, official_image_url=None,
+                     candidates=[{**review['approved_candidate'], 'name': 'Changed candidate'}])
+        with self.assertRaises(ValueError):
+            research.apply_manual_equipment_reviews({'equipment': [stale]}, {'manual_equipment_reviews': [review]})
+
+    def test_glute_bridge_reference_image_does_not_verify_a_different_model_code(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        for inventory_id in (130, 155):
+            entry = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == inventory_id))
+            review = next(r for r in evidence['lifefitness_item_reviews'] if r['inventory_id'] == inventory_id)
+            research.apply_lifefitness_reviews({'equipment': [entry]}, {'lifefitness_item_reviews': [review]})
+            self.assertEqual(entry['official_model'], 'SS-GLD')
+            self.assertEqual(entry['status'], 'model_verified_image_missing')
+            self.assertEqual(entry['image_verification_status'], 'candidate_requires_review')
+            self.assertTrue(entry['image_check']['available'])
+            self.assertEqual(entry['candidates'][0]['image_url'], entry['official_image_url'])
+            self.assertEqual(entry['evidence']['identity_evidence']['catalog_model'], 'SS-GLB')
+            self.assertEqual(entry['official_name_zh'], 'Insignia臀橋訓練機')
+        self.assertEqual(next(e for e in catalog['equipment'] if e['inventory_id'] == 130)['source_name'], 'Seated Leg Press')
+
     def test_manual_review_replays_and_rejects_changed_reviewed_data(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
         evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
         reviews = evidence['manual_equipment_reviews']
-        self.assertEqual({r['inventory_id'] for r in reviews}, {1339, 1369})
+        self.assertEqual({r['inventory_id'] for r in reviews if r['brand'] == 'Life Fitness'}, {1339, 1369})
         result = {'equipment': copy.deepcopy(catalog['equipment'])}
         research.apply_browser_evidence(result, evidence)
         first = copy.deepcopy(result)
@@ -412,7 +451,7 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertIn('训练', mixed['official_name_zh_evidence']['original_name'])
         self.assertIn('訓練', mixed['official_name_zh'])
         life = next(r for r in research.name_coverage_by_brand(catalog['equipment']) if r['brand'] == 'Life Fitness')
-        self.assertEqual((life['total'], life['chinese_names'], life['chinese_missing']), (112, 100, 12))
+        self.assertEqual((life['total'], life['chinese_names'], life['chinese_missing']), (112, 102, 10))
 
     def test_localized_trademark_and_candidate_image_do_not_verify_configuration(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
