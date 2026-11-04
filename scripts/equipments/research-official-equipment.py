@@ -914,33 +914,20 @@ def write_reports(result):
         manual = [e for e in group if e.get('manual_review')]
         if manual:
             lines += [f"User manual review applied for Inventory IDs {', '.join(str(e['inventory_id']) for e in manual)}: Status is `model_verified`, based on the user's `Manual Review Comment` in the Reviewing workbook and explicit instruction to apply it. These decisions override earlier automated candidate outcomes. Original console/photo discrepancies and reviewed source/image references remain in `manual_equipment_reviews` in the evidence JSON; these are user decisions, not new manufacturer SKU evidence.", '']
-        lines += ['| Inventory ID | Source model | Verified model | Official name / candidate | Official Chinese name | Match scope | Review note | Status | Official source | Official image | 24/7 image |',
-                  '| ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
-        for e in group:
-            candidate = e['candidates'][0] if e['candidates'] else {}
-            lines.append('| ' + ' | '.join([str(e['inventory_id']), cell(e['source_model']), cell(e.get('official_model') if e['official_name'] else None),
-                          cell(e['official_name'] or candidate.get('name')), cell(e.get('official_name_zh')), cell(e['match_scope']), cell(e['configuration_note']), e['status'],
-                          link('source', e['individual_review'].get('document_url') or e['official_product_url'] or candidate.get('product_url')), link('image', e['official_image_url'] or candidate.get('image_url')),
-                          link('image', e['source_image_url'])]) + ' |')
+        lines += ['Per-equipment Match scope and Review note are included in Full inventory cross-reference.', '']
     if result.get('official_chinese_name_followup'):
         names = [e for e in entries if e.get('official_name_zh')]
         converted = sum(e.get('official_name_zh_evidence', {}).get('conversion_method') == 'OpenCC cn-to-hk' for e in names)
         lines += ['', '## Official Chinese name evidence', '',
                   f"Chinese-name follow-up: {result['official_chinese_name_followup']['review_date']}. The review covers {len(entries)} inventory records across {len({e['brand'] for e in entries})} brands: {len(names)} manufacturer Chinese names recorded, including {converted} names converted to Traditional Chinese with OpenCC (cn-to-hk). {len(entries) - len(names)} names remain unverified; a blank does not establish that no official Chinese name exists.", '',
-                  'Original manufacturer wording and Chinese source links are retained below. Only character conversion is applied; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. A new Chinese source can establish an exact source-model name independently of the existing English match; this does not replace the English product/candidate, image or status. Base-model Chinese names do not verify console, full-shroud, prefix or generation variants. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '']
+                  'Original manufacturer wording is included in Full inventory cross-reference; Chinese source links remain in the catalog and evidence JSON. Only character conversion is applied; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. A new Chinese source can establish an exact source-model name independently of the existing English match; this does not replace the English product/candidate, image or status. Base-model Chinese names do not verify console, full-shroud, prefix or generation variants. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '']
         if result['official_chinese_name_followup'].get('name_search_followup'):
             search = result['official_chinese_name_followup']['name_search_followup']
             lines += [f"Name-based follow-up on {search['review_date']}: all {search['inventory_count']} previously blank records were searched independently of their stored URLs ({search['unique_name_queries']} unique equipment-name groups, {search['search_query_count']} queries across general name and manufacturer-domain Chinese searches). Official shop/catalog identity review, normal-browser pages and model-specific Chinese manufacturer PDFs supplied {search['new_name_count']} additional names. Search queries and official result links are retained in the evidence JSON under `official_chinese_name_search_followup`. Search results are leads, not automatic matches.", '']
         if result['official_chinese_name_followup'].get('specification_followup'):
             review = result['official_chinese_name_followup']['specification_followup']
             lines += [f"Life Fitness specification/body follow-up on {review['review_date']}: {review['new_name_count']} additional Chinese names recorded from exact-model specification rows, parallel-language component cards backed by manufacturer manuals, and product body wording. At that stage, {review['remaining_unverified_count']} of {review['inventory_count']} Life Fitness Chinese names remained unconfirmed. Current counts are in Name coverage by brand. Component wording does not verify a whole-system image. Full audit: `lifefitness_specification_name_followup` in the evidence JSON.", '']
-        lines += ['| Inventory ID | Brand | Official Chinese name | Original manufacturer wording | Source locale | Conversion | Chinese source | Match status | Chinese name scope |',
-                  '| ---: | --- | --- | --- | --- | --- | --- | --- | --- |']
-        for e in names:
-            evidence = e.get('official_name_zh_evidence', {})
-            lines.append('| ' + ' | '.join([str(e['inventory_id']), cell(e['brand']), cell(e['official_name_zh']),
-                          cell(evidence.get('original_name')), cell(evidence.get('source_locale')), cell(evidence.get('conversion_method')),
-                          link('source', evidence.get('evidence_url')), e['status'], cell(evidence.get('match_scope'))]) + ' |')
+        lines += ['Original manufacturer wording, Source locale, Conversion and Chinese name scope are included in Full inventory cross-reference. Chinese source URLs remain in the catalog and evidence JSON.', '']
     lines += ['', '## Known discrepancies requiring care', '',
               '- Life Fitness inventory ID 130: source name is Seated Leg Press, but the official manual identifies SS-GLD as Glute Bridge. Current SS-GLB photos are not substituted for SS-GLD.',
               '- NEWTECH `NT-OH-SLC`: the source says Leg Extension; the manufacturer identifies OnHim Seated Leg Curl.',
@@ -949,16 +936,20 @@ def write_reports(result):
               '- Missing models, generic brand-only entries (such as InBody) and custom 24/7 racks cannot be assigned an exact manufacturer image from their names alone.', '',
               '## Full inventory cross-reference', '',
               'Official Chinese name (`official_name_zh`) is populated only when manufacturer-provided Chinese wording is recorded in the catalog. Missing values are shown as —; captured Chinese names and manual translations are not substituted.', '',
-              '| # | Inventory ID | Brand | Source model | Source name | Official name | Official Chinese name | Status | Official source | Official image | 24/7 image | First candidate |',
-              '| ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
+              '| # | Inventory ID | Brand | Source model | Source name | Official name | Official Chinese name | Status | Official source | Official image | 24/7 image | First candidate | Match scope | Review note | Original manufacturer wording | Source locale | Conversion | Chinese name scope |',
+              '| ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
     for row_number, e in enumerate(entries, start=1):
         source = e['official_product_url'] or (e['evidence'] or {}).get('evidence_url')
         candidate = e['candidates'][0] if e['candidates'] else None
+        chinese_evidence = e.get('official_name_zh_evidence') or {}
         lines.append('| ' + ' | '.join([str(row_number), str(e['inventory_id']), cell(e['brand']), cell(e['source_model']), cell(e['source_name']),
                                       cell(e['official_name']), cell(e.get('official_name_zh')), e['status'], link('source', source),
                                       link('image', e['official_image_url']),
                                       link('image', e['source_image_url']),
-                                      link(cell(candidate['name']), candidate['product_url']) if candidate else '—']) + ' |')
+                                      link(cell(candidate['name']), candidate['product_url']) if candidate else '—',
+                                      cell(e.get('match_scope')), cell(e.get('configuration_note')),
+                                      cell(chinese_evidence.get('original_name')), cell(chinese_evidence.get('source_locale')),
+                                      cell(chinese_evidence.get('conversion_method')), cell(chinese_evidence.get('match_scope'))]) + ' |')
     lines += ['', '## Reproduce and continue', '',
               '```bash', 'python3 scripts/equipments/research-official-equipment.py --check-images', 'pnpm test', '```', '',
               'Every report generation also writes the matching `.xlsx` beside this Markdown file. Each Markdown table has its own Excel sheet, with image/source hyperlinks and filterable headers. To regenerate both reports from the existing catalog without fetching websites, run `python3 scripts/equipments/research-official-equipment.py --report-only`.', '',
