@@ -327,6 +327,34 @@ class LifeFitnessReviewTests(unittest.TestCase):
 
 
 class SpecificationNameTests(unittest.TestCase):
+    def test_unresolved_hammer_followup_matches_codes_without_erasing_configuration_conflicts(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['manufacturer_product_reviews']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {46, 65, 67, 68, 69, 89, 158, 1368, 1485, 1486})
+        for review in reviews:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
+            self.assertEqual(entry['status'], review['status'])
+            self.assertTrue(entry['official_name'])
+            self.assertEqual(entry['official_product_url'], review['official_product_url'])
+            self.assertEqual(entry['source_model'], review['source_model'])
+        byid = {e['inventory_id']: e for e in catalog['equipment']}
+        self.assertEqual(byid[46]['status'], 'model_verified')
+        self.assertEqual(byid[46]['official_model'], 'PL-GRIP')
+        self.assertEqual(byid[68]['status'], 'model_verified_image_missing')
+        self.assertEqual(byid[68]['image_verification_status'], 'candidate_requires_review')
+        self.assertIsNone(byid[65]['official_image_url'])
+        self.assertEqual(byid[1368]['status'], 'candidate_requires_review')
+        self.assertEqual(byid[1485]['brand'], 'HAMMER STRENGTH')
+        self.assertIn('Life Fitness', byid[1485]['configuration_note'])
+        review = next(r for r in reviews if r['inventory_id'] == 46)
+        for change in ({'manufacturer_model_codes': ['PL-OTHER']}, {'source_model': 'OTHER'},
+                       {'image_check': {'url': review['official_image_url'], 'available': False}}):
+            with self.assertRaises(ValueError):
+                research.apply_manufacturer_product_reviews({'equipment': [copy.deepcopy(byid[46])]},
+                    {'manufacturer_product_reviews': [{**review, **change}]})
+
     def test_hammer_manual_decisions_promote_only_the_approved_first_candidate(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())

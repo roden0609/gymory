@@ -96,10 +96,14 @@ def validate_browser_urls(record):
         parsed = urllib.parse.urlparse(value or '')
         actual = (parsed.hostname or '').removeprefix('www.')
         own_host = actual == host or actual.endswith('.' + host)
+        manufacturer_document = (brand in ('Life Fitness', 'HAMMER STRENGTH', 'Cybex')
+                                 and key != 'image_url' and parsed.path.lower().endswith('.pdf')
+                                 and ((actual == 'lifefitness.com.au' and parsed.path.startswith('/wp-content/uploads/'))
+                                      or (actual == 'kb.cybexintl.com' and parsed.path.startswith('/Owners_Manuals/'))))
         observed_cdn = (key == 'image_url' and
                         record.get('image_observed_on') == record.get('image_evidence_url', record.get('evidence_url')) and
                         any((value or '').startswith(prefix) for prefix in BROWSER_IMAGE_PREFIXES.get(brand, ())))
-        if parsed.scheme != 'https' or parsed.username or parsed.password or not (own_host or observed_cdn):
+        if parsed.scheme != 'https' or parsed.username or parsed.password or not (own_host or observed_cdn or manufacturer_document):
             raise ValueError(f'Browser evidence is outside the manufacturer origin: {key}')
 
 
@@ -382,6 +386,57 @@ def apply_lifefitness_reviews(result, supplemental):
     result['lifefitness_review'] = supplemental.get('lifefitness_review', {})
 
 
+def apply_manufacturer_product_reviews(result, supplemental):
+    """Apply source-bound product/model/image evidence independently of Chinese-name collection."""
+    from collections import Counter
+    for review in supplemental.get('manufacturer_product_reviews', []):
+        entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
+        if entry is None or any(entry.get(k) != review.get(k) for k in ('brand', 'source_model', 'source_image_url')):
+            raise ValueError('Manufacturer product review does not match source inventory')
+        if entry.get('manual_review'):
+            continue
+        status = review['status']
+        if status not in ('model_verified', 'model_verified_image_missing', 'candidate_requires_review'):
+            raise ValueError('Unsupported manufacturer product review status')
+        if status != 'candidate_requires_review':
+            source_key = model_key(entry['source_model'], entry['brand'])
+            codes = {model_key(c, entry['brand']) for c in review.get('manufacturer_model_codes', [])}
+            base = model_key(review.get('source_base_model', ''), entry['brand'])
+            base_match = (base and review['match_scope'] == 'documented_base_model' and source_key == base
+                          and any(code.startswith(base + '-') for code in codes))
+            config_match = (base and review['match_scope'] == 'documented_configuration'
+                            and entry['source_model'].strip().upper().endswith('-DH')
+                            and model_key(entry['source_model'].strip()[:-3], entry['brand']) == base
+                            and base in codes)
+            if not review.get('model_evidence') or not (source_key in codes or base_match or config_match):
+                raise ValueError(f'Manufacturer product review requires matching model evidence: {entry["inventory_id"]}')
+        image = review.get('official_image_url')
+        validate_browser_urls({'brand': entry['brand'], 'product_url': review['official_product_url'],
+                               'evidence_url': review['evidence_url'], 'image_url': image,
+                               'image_evidence_url': review.get('image_evidence_url')})
+        if status == 'model_verified':
+            check = review.get('image_check', {})
+            visual = review.get('visual_review', {})
+            if (not image or check.get('available') is not True or check.get('url') != image
+                    or visual.get('source_image_url') != entry['source_image_url']
+                    or visual.get('official_image_url') != image or not visual.get('observations')):
+                raise ValueError('Verified manufacturer product image requires an image check and source-bound comparison')
+        entry.update(official_name=review['official_name'], official_model=review.get('official_model'),
+                     official_product_url=review['official_product_url'], official_image_url=image,
+                     status=status, match_method='manufacturer_product_review', match_scope=review['match_scope'],
+                     configuration_note=review['note'], reason=review['note'],
+                     image_check=review.get('image_check'),
+                     image_verification_status='manufacturer_image_checked' if status == 'model_verified' else
+                                               'candidate_requires_review' if image else 'image_missing',
+                     candidates=review.get('candidates', []),
+                     evidence={k: review[k] for k in ('evidence_url', 'retrieved_at', 'retrieval_method',
+                               'evidence_sha256', 'manufacturer_model_codes', 'model_evidence', 'visual_review',
+                               'identity_evidence', 'document_page', 'image_evidence_url') if k in review})
+    result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
+    if supplemental.get('hammer_strength_unresolved_followup'):
+        result['hammer_strength_unresolved_followup'] = supplemental['hammer_strength_unresolved_followup']
+
+
 def apply_manual_equipment_reviews(result, supplemental):
     """Replay explicit user decisions only while the reviewed source and official data match."""
     from collections import Counter
@@ -509,6 +564,7 @@ def apply_browser_evidence(result, supplemental):
         result['last_review_date'] = max(review['review_date'] for review in result['brand_reviews'])
     apply_lifefitness_reviews(result, supplemental)
     apply_official_english_names(result, supplemental)
+    apply_manufacturer_product_reviews(result, supplemental)
     apply_official_chinese_names(result, supplemental)
     apply_manual_equipment_reviews(result, supplemental)
 
@@ -900,6 +956,10 @@ def write_reports(result):
         group = [e for e in entries if e['brand'] == brand]
         c = Counter(e['status'] for e in group)
         lines.append(f"| {cell(brand)} | {len(group)} | {c['model_verified']} | {c['model_verified_image_missing'] + c['model_verified_image_unavailable']} | {c['name_indexed_image_missing']} | {c['candidate_requires_review'] + c['ambiguous_model']} | {c['unresolved']} | {sum(bool(e.get('official_name_zh')) for e in group)} |")
+    if result.get('hammer_strength_unresolved_followup'):
+        followup = result['hammer_strength_unresolved_followup']
+        counts = followup['results']
+        lines += ['', f"HAMMER STRENGTH unresolved follow-up on {followup['review_date']}: all {followup['inventory_count']} previous unresolved records reviewed using official model codes, manufacturer documents and source/image comparisons. {counts.get('model_verified', 0)} now have verified model/image references, {counts.get('model_verified_image_missing', 0)} have confirmed model evidence without a verified matching image, and {counts.get('candidate_requires_review', 0)} remains a candidate because rack code, description and image conflict. Prior user-approved candidates are unchanged. See `manufacturer_product_reviews` in the evidence JSON and per-item Review note below.", '']
     coverage = name_coverage_by_brand(entries)
     lines += ['', '## Name coverage by brand', '',
               f"Across {len(entries)} inventory IDs: {sum(r['english_missing'] for r in coverage)} official English name fields and {sum(r['chinese_missing'] for r in coverage)} Chinese-locale name fields are blank. Counts use `official_name` and `official_name_zh`, independently of verification status and image availability. Recorded names may describe a candidate; check status and evidence scope for inventory identity. Captured names are not substituted. English candidates only counts blank English fields with a named candidate. Chinese-locale names include trademarks the manufacturer leaves unchanged, such as SYNRGY360. Missing does not mean that no official name exists.", '',

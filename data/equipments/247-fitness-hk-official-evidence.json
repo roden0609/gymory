@@ -49488,7 +49488,7 @@
       "inventory_id": 46,
       "brand": "HAMMER STRENGTH",
       "source_model": "PLGRIP",
-      "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/plate-loaded/plate-loaded-gripper",
+      "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-gripper",
       "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/plate-loaded-gripper",
       "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/plate-loaded-gripper",
       "official_name_zh": "掛片式握手肌訓練機",
@@ -49731,7 +49731,7 @@
       "inventory_id": 67,
       "brand": "HAMMER STRENGTH",
       "source_model": "PLGLD",
-      "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-glute-drive",
+      "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-glute-drive",
       "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-glute-drive",
       "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-glute-drive",
       "official_name_zh": "掛片式臀肌傳動訓練機",
@@ -49757,7 +49757,7 @@
       "inventory_id": 68,
       "brand": "HAMMER STRENGTH",
       "source_model": "PLBSQ",
-      "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
       "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
       "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
       "official_name_zh": "掛片式皮帶深蹲訓練機",
@@ -50019,7 +50019,7 @@
       "inventory_id": 89,
       "brand": "HAMMER STRENGTH",
       "source_model": "BWGH",
-      "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/benches/glute-ham",
+      "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/glute-ham",
       "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/benches/glute-ham",
       "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/benches/glute-ham",
       "official_name_zh": "跪姿挺身",
@@ -53379,7 +53379,7 @@
       "inventory_id": 1486,
       "brand": "HAMMER STRENGTH",
       "source_model": "SFB",
-      "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E6%B0%B4%E5%B9%B3%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E6%B0%B4%E5%B9%B3%E8%AE%AD%E7%BB%83%E6%A4%85",
       "localized_product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E6%B0%B4%E5%B9%B3%E8%AE%AD%E7%BB%83%E6%A4%85",
       "evidence_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E6%B0%B4%E5%B9%B3%E8%AE%AD%E7%BB%83%E6%A4%85",
       "official_name_zh": "Signature 卓越系列水平訓練椅",
@@ -53967,6 +53967,52 @@
       ],
       "match_scope": "product_family_name_only",
       "note": "Manufacturer manual lists SS-GLD as Glute Bridge; the current catalog page uses SS-GLB. The manufacturer Chinese name and SS-GLB photo are recorded as product-family references. Captured photos depict glute-bridge machines, but foot-support/frame details differ from the catalog photo; SS-GLD/SS-GLB equivalence, exact image match and LP/SP/Full configuration remain unverified. No different-generation relationship is asserted."
+    },
+    {
+      "inventory_id": 1485,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "SUB",
+      "official_name_zh": "Signature 卓越系列上斜訓練椅",
+      "original_name": "Signature 卓越系列上斜训练椅",
+      "source_locale": "zh-Hans",
+      "conversion_method": "OpenCC cn-to-hk",
+      "product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E4%B8%8A%E6%96%9C%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "localized_product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E4%B8%8A%E6%96%9C%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "evidence_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E4%B8%8A%E6%96%9C%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "evidence_sha256": "e5065e79b17d274d91efe61e83c2b38295e74241dcb30cfef5cd4d061041002f",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_and_heading",
+      "manufacturer_model_codes": [
+        "SUB"
+      ],
+      "match_scope": "exact_source_model_chinese_name_only"
+    },
+    {
+      "inventory_id": 69,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLBSQ-DH",
+      "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "official_name_zh": "掛片式皮帶深蹲訓練機",
+      "original_name": "掛片式皮帶深蹲訓練機",
+      "source_locale": "zh-Hant",
+      "conversion_method": "none",
+      "retrieved_at": "2026-11-03T06:39:06.978019+00:00",
+      "retrieval_method": "http_product_h1_after_name_search",
+      "evidence_sha256": "213f6088235a6118bc9176facb8f651370c2d2e1103fee20af52b377b15ae401",
+      "manufacturer_model_codes": [
+        "PL-BSQ"
+      ],
+      "match_scope": "base_model_name_only",
+      "identity_evidence": {
+        "source_english_name": "Belt Squat",
+        "source_official_url": null,
+        "discovered_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+        "name_search_inventory_id": 68,
+        "note": "Name/model correspondence establishes Chinese wording only. Existing English identity, image, matching status and console/configuration uncertainty are unchanged."
+      },
+      "note": "Manufacturer base-model Chinese wording; the optional dip attachment is recorded separately in the product review."
     }
   ],
   "official_chinese_name_reviews": [
@@ -58334,9 +58380,9 @@
       "inventory_id": 69,
       "brand": "HAMMER STRENGTH",
       "source_model": "PLBSQ-DH",
-      "review_date": "2026-11-03",
-      "status": "no_bound_product",
-      "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted.",
+      "review_date": "2026-11-05",
+      "status": "manufacturer_name_recorded",
+      "reason": "Manufacturer Chinese wording recorded during unresolved-item model review; see manufacturer_product_reviews for identity and configuration scope.",
       "checked_urls": [
         "https://shop.lifefitness.com/products/hammer-strength-plate-loaded-belt-squat",
         "https://support.lifefitness.com/hc/zh-tw/sections/5403417544855-%E5%85%A5%E9%96%80%E6%8C%87%E5%8D%97",
@@ -58358,7 +58404,8 @@
         "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hack-squat",
         "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength",
         "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/pendulum-x-squat",
-        "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/plate-loaded-squat-lunge"
+        "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/plate-loaded-squat-lunge",
+        "https://www.lifefitness.com/zh-hk/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat"
       ],
       "name_search": {
         "queries": [
@@ -59601,9 +59648,9 @@
       "inventory_id": 1485,
       "brand": "HAMMER STRENGTH",
       "source_model": "SUB",
-      "review_date": "2026-11-03",
-      "status": "no_bound_product",
-      "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted.",
+      "review_date": "2026-11-05",
+      "status": "manufacturer_name_recorded",
+      "reason": "Manufacturer Chinese wording recorded during unresolved-item model review; see manufacturer_product_reviews for identity and configuration scope.",
       "checked_urls": [
         "https://admin.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Other/Brands/Dual-Product-Brand-Guidelines.pdf",
         "https://support.lifefitness.com/hc/en-us/articles/30288253394327-Hammer-Strength-Hammer-Select-Owner-s-Manual",
@@ -59623,7 +59670,8 @@
         "https://www.lifefitness.com/zh-cn/catalog/strength-training/plate-loaded/super-squat-press",
         "https://www.lifefitness.com/zh-cn/catalog/strength-training/racks-rigs/hd-athletic-nx-power-rack",
         "https://www.lifefitness.com/zh-cn/catalog/strength-training/racks-rigs/impact-suppression-platform",
-        "https://www.lifefitness.com/zh-hk/catalog/strength-training/racks-rigs/impact-suppression-platform"
+        "https://www.lifefitness.com/zh-hk/catalog/strength-training/racks-rigs/impact-suppression-platform",
+        "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E4%B8%8A%E6%96%9C%E8%AE%AD%E7%BB%83%E6%A4%85"
       ],
       "name_search": {
         "queries": [
@@ -80248,15 +80296,15 @@
     }
   ],
   "official_chinese_name_followup": {
-    "review_date": "2026-11-04",
+    "review_date": "2026-11-05",
     "inventory_count": 833,
     "brand_count": 36,
     "policy": "Manufacturer Chinese wording only. Simplified originals converted to Traditional with OpenCC cn-to-hk; originals and evidence retained. Candidate translations do not verify inventory identity.",
     "review_outcomes": {
       "no_chinese_product_name_found": 425,
-      "no_bound_product": 67,
+      "no_bound_product": 65,
       "access_limited": 7,
-      "manufacturer_name_recorded": 261,
+      "manufacturer_name_recorded": 263,
       "requires_review": 14,
       "no_product_chinese_evidence": 59
     },
@@ -82809,8 +82857,8 @@
         "reason": "Chinese page retains an English product heading; navigation text is not a name."
       }
     ],
-    "recorded_name_count": 261,
-    "converted_name_count": 29,
+    "recorded_name_count": 263,
+    "converted_name_count": 30,
     "name_search_followup": {
       "review_date": "2026-11-03",
       "inventory_count": 639,
@@ -107004,7 +107052,7 @@
         "name": "T-Bar Row",
         "product_url": "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-t-bar-row",
         "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/T-Bar%20Row/Strength-PlateLoaded-TBarRow-Render-1.png?h=630&w=1200",
-        "score": 1.0,
+        "score": 1,
         "evidence_url": "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-t-bar-row",
         "name_zh": "掛片式T 型桿背肌訓練器"
       },
@@ -107013,7 +107061,7 @@
           "name": "T-Bar Row",
           "product_url": "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-t-bar-row",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/T-Bar%20Row/Strength-PlateLoaded-TBarRow-Render-1.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-t-bar-row",
           "name_zh": "掛片式T 型桿背肌訓練器"
         },
@@ -107284,7 +107332,7 @@
         "name": "Ground Base® Jammer",
         "product_url": "https://www.lifefitness.com/de-de/produkte/strength-training/stationen-mit-gewichtsscheiben/ground-base-jammer",
         "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Jammer/Strength-PlateLoaded-GroundBase-Jammer-9.png?h=630&w=1200",
-        "score": 1.0,
+        "score": 1,
         "evidence_url": "https://www.lifefitness.com/de-de/produkte/strength-training/stationen-mit-gewichtsscheiben/ground-base-jammer",
         "name_zh": "掛片式站地式®推舉訓練機"
       },
@@ -107293,7 +107341,7 @@
           "name": "Ground Base® Jammer",
           "product_url": "https://www.lifefitness.com/de-de/produkte/strength-training/stationen-mit-gewichtsscheiben/ground-base-jammer",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Jammer/Strength-PlateLoaded-GroundBase-Jammer-9.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/de-de/produkte/strength-training/stationen-mit-gewichtsscheiben/ground-base-jammer",
           "name_zh": "掛片式站地式®推舉訓練機"
         },
@@ -107301,14 +107349,14 @@
           "name": "Ground Base® Jammer",
           "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/ground-base-jammer",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Jammer/Strength-PlateLoaded-GroundBase-Jammer-9.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/ground-base-jammer"
         },
         {
           "name": "Ground Base® Jammer",
           "product_url": "https://www.lifefitness.com/nl-nl/producten/kracht-training/plate-loaded/ground-base-jammer",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Jammer/Strength-PlateLoaded-GroundBase-Jammer-9.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/nl-nl/producten/kracht-training/plate-loaded/ground-base-jammer"
         }
       ],
@@ -107553,7 +107601,7 @@
         "name": "Olympic Decline Bench",
         "product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/benches/life-fitness-olympic-decline-bench",
         "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/256-586-download-copy.png?h=630&w=1200",
-        "score": 1.0,
+        "score": 1,
         "evidence_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/benches/life-fitness-olympic-decline-bench",
         "name_zh": "奧林匹克下斜訓練椅"
       },
@@ -107562,7 +107610,7 @@
           "name": "Olympic Decline Bench",
           "product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/benches/life-fitness-olympic-decline-bench",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/256-586-download-copy.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/benches/life-fitness-olympic-decline-bench",
           "name_zh": "奧林匹克下斜訓練椅"
         },
@@ -107570,7 +107618,7 @@
           "name": "Olympic Decline Bench",
           "product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/benches/olympic-decline-bench",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/142-334-hs-olympic-decline-bench.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/benches/olympic-decline-bench"
         },
         {
@@ -107606,7 +107654,7 @@
         "name": "Olympic Incline Bench",
         "product_url": "https://www.lifefitness.com/de-de/produkte/strength-training/benches/olympic-incline-bench",
         "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/90-445-hs-olyincline-01co.png?h=630&w=1200",
-        "score": 1.0,
+        "score": 1,
         "evidence_url": "https://www.lifefitness.com/de-de/produkte/strength-training/benches/olympic-incline-bench",
         "name_zh": "奧林匹克上斜椅"
       },
@@ -107615,7 +107663,7 @@
           "name": "Olympic Incline Bench",
           "product_url": "https://www.lifefitness.com/de-de/produkte/strength-training/benches/olympic-incline-bench",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/90-445-hs-olyincline-01co.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/de-de/produkte/strength-training/benches/olympic-incline-bench",
           "name_zh": "奧林匹克上斜椅"
         },
@@ -107623,7 +107671,7 @@
           "name": "Olympic Incline Bench",
           "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/olympic-incline-bench",
           "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/255-84-hs-olyincline-01co.png?h=630&w=1200",
-          "score": 1.0,
+          "score": 1,
           "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/olympic-incline-bench"
         },
         {
@@ -107840,5 +107888,433 @@
     "to_status": "model_verified",
     "selection": "First candidate",
     "evidence_key": "manual_equipment_reviews"
+  },
+  "manufacturer_product_reviews": [
+    {
+      "inventory_id": 46,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLGRIP",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/0093bb031f6f762c19ac88443a6f2631e5300a8a7b6118ed1977c3b2014badb9.jpg",
+      "status": "model_verified",
+      "match_scope": "exact_model",
+      "official_name": "Plate Loaded Gripper",
+      "official_model": "PL-GRIP",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-gripper",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Gripper/Strength-PlateLoaded-Gripper-Thumbnail-1.png?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "PL-GRIP"
+      ],
+      "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-gripper",
+      "evidence_sha256": "d94fbbea9936f98b71a7f1e39055ea9487e84c9539a1e69adb47463e3060d0f5",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-gripper",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Gripper/Strength-PlateLoaded-Gripper-Thumbnail-1.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "6c7e1363f55a601deb547734c14e63142da118aaeaa9e2f96091e574b1d84362",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/0093bb031f6f762c19ac88443a6f2631e5300a8a7b6118ed1977c3b2014badb9.jpg",
+        "source_image_sha256": "0093bb031f6f762c19ac88443a6f2631e5300a8a7b6118ed1977c3b2014badb9",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Gripper/Strength-PlateLoaded-Gripper-Thumbnail-1.png?h=630&w=1200",
+        "official_image_sha256": "6c7e1363f55a601deb547734c14e63142da118aaeaa9e2f96091e574b1d84362",
+        "observations": "Official Product Code PL-GRIP matches source PLGRIP after conservative letter-hyphen normalization. Source and official photos show the same plate-loaded gripper; color and loading differ."
+      },
+      "model_evidence": "Official Product Code PL-GRIP matches source PLGRIP after conservative letter-hyphen normalization. Source and official photos show the same plate-loaded gripper; color and loading differ.",
+      "note": "Official Product Code PL-GRIP matches source PLGRIP after conservative letter-hyphen normalization. Source and official photos show the same plate-loaded gripper; color and loading differ."
+    },
+    {
+      "inventory_id": 67,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLGLD",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/6e34c8c27c99885eb59affe61dc7667f44c7bc2d481f158c1583404a3b6a9eba.jpg",
+      "status": "model_verified",
+      "match_scope": "exact_model",
+      "official_name": "Plate Loaded Glute Drive",
+      "official_model": "PL-GLD",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-glute-drive",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Glute%20Drive/Strength-PlateLoaded-GluteDrive-8.png?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "PL-GLD"
+      ],
+      "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-glute-drive",
+      "evidence_sha256": "a45e768458a87da26879f3740f1fc8077cf2ef3151a82121fe74932b2d5cb1f6",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-glute-drive",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Glute%20Drive/Strength-PlateLoaded-GluteDrive-8.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "5ac76b643f60462b3affafe26903d529b87a71ba36eca710b228da3bbb48430d",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/6e34c8c27c99885eb59affe61dc7667f44c7bc2d481f158c1583404a3b6a9eba.jpg",
+        "source_image_sha256": "6e34c8c27c99885eb59affe61dc7667f44c7bc2d481f158c1583404a3b6a9eba",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Glute%20Drive/Strength-PlateLoaded-GluteDrive-8.png?h=630&w=1200",
+        "official_image_sha256": "5ac76b643f60462b3affafe26903d529b87a71ba36eca710b228da3bbb48430d",
+        "observations": "Official PL-GLD matches source PLGLD. Source and manufacturer pictures show the Glute Drive with the same seat, padded pivot arm, load horns and frame layout; color and viewing angle differ."
+      },
+      "model_evidence": "Official PL-GLD matches source PLGLD. Source and manufacturer pictures show the Glute Drive with the same seat, padded pivot arm, load horns and frame layout; color and viewing angle differ.",
+      "note": "Official PL-GLD matches source PLGLD. Source and manufacturer pictures show the Glute Drive with the same seat, padded pivot arm, load horns and frame layout; color and viewing angle differ."
+    },
+    {
+      "inventory_id": 68,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLBSQ",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/017e9fb1229f9a96750046a92f2e6e12c38f70cf96cdb60dc66622c9e87f768c.jpg",
+      "status": "model_verified_image_missing",
+      "match_scope": "exact_model",
+      "official_name": "Plate Loaded Belt Squat",
+      "official_model": "PL-BSQ",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "PL-BSQ"
+      ],
+      "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "evidence_sha256": "eadf6a681fd4dc94cc6ce870ede3cc599af14032da7f7b6177e6b6e3c6010a5f",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "44acc7a9541adcde70e8340d3105484a0daa545aecda6206b47203772cb2e89c",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/017e9fb1229f9a96750046a92f2e6e12c38f70cf96cdb60dc66622c9e87f768c.jpg",
+        "source_image_sha256": "017e9fb1229f9a96750046a92f2e6e12c38f70cf96cdb60dc66622c9e87f768c",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+        "official_image_sha256": "44acc7a9541adcde70e8340d3105484a0daa545aecda6206b47203772cb2e89c",
+        "observations": "Official PL-BSQ matches source PLBSQ. The base Belt Squat is identified; current manufacturer hero image includes the optional dip attachment, absent from the source picture. Base-model photo reference only; optional attachment is not asserted for this inventory."
+      },
+      "model_evidence": "Official PL-BSQ matches source PLBSQ. The base Belt Squat is identified; current manufacturer hero image includes the optional dip attachment, absent from the source picture. Base-model photo reference only; optional attachment is not asserted for this inventory.",
+      "note": "Official PL-BSQ matches source PLBSQ. The base Belt Squat is identified; current manufacturer hero image includes the optional dip attachment, absent from the source picture. Base-model photo reference only; optional attachment is not asserted for this inventory. Official image URL is retained as a candidate reference; image-to-source configuration is not verified.",
+      "candidates": [
+        {
+          "name": "Plate Loaded Belt Squat",
+          "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+          "reason": "Manufacturer hero image includes optional dip attachment; source capture does not."
+        }
+      ]
+    },
+    {
+      "inventory_id": 69,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLBSQ-DH",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/8ff0a908fad1c242350a0e60bfe4bbc388ec04c6b1db4c159c768096be86b2a9.jpg",
+      "status": "model_verified",
+      "match_scope": "documented_configuration",
+      "official_name": "Plate Loaded Belt Squat",
+      "official_model": "PL-BSQ",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "PL-BSQ"
+      ],
+      "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "evidence_sha256": "eadf6a681fd4dc94cc6ce870ede3cc599af14032da7f7b6177e6b6e3c6010a5f",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "44acc7a9541adcde70e8340d3105484a0daa545aecda6206b47203772cb2e89c",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/8ff0a908fad1c242350a0e60bfe4bbc388ec04c6b1db4c159c768096be86b2a9.jpg",
+        "source_image_sha256": "8ff0a908fad1c242350a0e60bfe4bbc388ec04c6b1db4c159c768096be86b2a9",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+        "official_image_sha256": "44acc7a9541adcde70e8340d3105484a0daa545aecda6206b47203772cb2e89c",
+        "observations": "Official PL-BSQ page explicitly supports the optional dip attachment; the source picture shows that attachment and matches the manufacturer picture. Source PLBSQ-DH is retained; the -DH ordering suffix is not asserted as a manufacturer SKU."
+      },
+      "model_evidence": "Official PL-BSQ page explicitly supports the optional dip attachment; the source picture shows that attachment and matches the manufacturer picture. Source PLBSQ-DH is retained; the -DH ordering suffix is not asserted as a manufacturer SKU.",
+      "note": "Official PL-BSQ page explicitly supports the optional dip attachment; the source picture shows that attachment and matches the manufacturer picture. Source PLBSQ-DH is retained; the -DH ordering suffix is not asserted as a manufacturer SKU.",
+      "source_base_model": "PL-BSQ"
+    },
+    {
+      "inventory_id": 89,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "BWGH",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/65bb2132bd5a6d5ca77186b624b85fe2c5ed149ddd1a0f261b31a2fb72db5389.jpg",
+      "status": "model_verified",
+      "match_scope": "exact_model",
+      "official_name": "Glute/Ham",
+      "official_model": "BW-GH",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/glute-ham",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/287-107-hs-bwgh-01cpr-yellow.png?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "BW-GH"
+      ],
+      "evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/glute-ham",
+      "evidence_sha256": "e40e33b2ab321edbb39f16f515418a77beaf10770400d48bc6b9bfdf712fc070",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/glute-ham",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/287-107-hs-bwgh-01cpr-yellow.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "2620212b4ebfeeb0ad4fbe77a3b2654c0dc5cd7ecec7302f955a5c773ed070b3",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/65bb2132bd5a6d5ca77186b624b85fe2c5ed149ddd1a0f261b31a2fb72db5389.jpg",
+        "source_image_sha256": "65bb2132bd5a6d5ca77186b624b85fe2c5ed149ddd1a0f261b31a2fb72db5389",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/287-107-hs-bwgh-01cpr-yellow.png?h=630&w=1200",
+        "official_image_sha256": "2620212b4ebfeeb0ad4fbe77a3b2654c0dc5cd7ecec7302f955a5c773ed070b3",
+        "observations": "Manufacturer Product Code BW-GH matches source BWGH. Adjustable Glute/Ham roller pads, frame and sliding mechanism match the source photo. Discontinued model, not the distinct fixed-pad BW-GHF."
+      },
+      "model_evidence": "Manufacturer Product Code BW-GH matches source BWGH. Adjustable Glute/Ham roller pads, frame and sliding mechanism match the source photo. Discontinued model, not the distinct fixed-pad BW-GHF.",
+      "note": "Manufacturer Product Code BW-GH matches source BWGH. Adjustable Glute/Ham roller pads, frame and sliding mechanism match the source photo. Discontinued model, not the distinct fixed-pad BW-GHF."
+    },
+    {
+      "inventory_id": 158,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "HDW-HR-STRD",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/d348560b03b1639a22b0c88fe12cef5ed58a0a8a8e0082d6fd31153104899166.jpg",
+      "status": "model_verified",
+      "match_scope": "exact_model",
+      "official_name": "HD Athletic NX Half Rack",
+      "official_model": "HDW-HR-STRD",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/racks-rigs/hd-athletic-nx-half-rack",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/66-456-hd-athletic-nx-standard-half-rack-with-accessories-iso.jpg?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "HDW-HR-STRD"
+      ],
+      "evidence_url": "https://www.lifefitness.com/en-us/legal/patents",
+      "evidence_sha256": "9a911269062b6d3e2255e0bfb226fc98496655de2096ebd61df038651c7f8bea",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/racks-rigs/hd-athletic-nx-half-rack",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/66-456-hd-athletic-nx-standard-half-rack-with-accessories-iso.jpg?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "1d8045d5695806c09b796aa4943c9045537265ffc81dfb956cabd2c5c79cb8ac",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/d348560b03b1639a22b0c88fe12cef5ed58a0a8a8e0082d6fd31153104899166.jpg",
+        "source_image_sha256": "d348560b03b1639a22b0c88fe12cef5ed58a0a8a8e0082d6fd31153104899166",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/66-456-hd-athletic-nx-standard-half-rack-with-accessories-iso.jpg?h=630&w=1200",
+        "official_image_sha256": "1d8045d5695806c09b796aa4943c9045537265ffc81dfb956cabd2c5c79cb8ac",
+        "observations": "Manufacturer patent table explicitly lists HDW-HR-STRD under Heavy Duty Athletic NX Half Rack. Its NX half-rack product image matches the source rack structure. Optional stored plates/accessories are not part of inventory verification."
+      },
+      "model_evidence": "Manufacturer patent table explicitly lists HDW-HR-STRD under Heavy Duty Athletic NX Half Rack. Its NX half-rack product image matches the source rack structure. Optional stored plates/accessories are not part of inventory verification.",
+      "note": "Manufacturer patent table explicitly lists HDW-HR-STRD under Heavy Duty Athletic NX Half Rack. Its NX half-rack product image matches the source rack structure. Optional stored plates/accessories are not part of inventory verification."
+    },
+    {
+      "inventory_id": 1485,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "SUB",
+      "source_image_url": "https://oss-hk.247fitness.hk/58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a.png",
+      "status": "model_verified",
+      "match_scope": "exact_model",
+      "official_name": "Signature Series Utility Bench",
+      "official_model": "SUB",
+      "official_product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E4%B8%8A%E6%96%9C%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/202-199-signatureseries-benches-racks-olympic-utility-bench-l.png?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "SUB"
+      ],
+      "evidence_url": "https://www.lifefitness.com.au/wp-content/uploads/2015/02/CB_Signature_Benches__Racks_GM_004_07_1_68.pdf",
+      "evidence_sha256": "89cf4dbe4db939b9253797ae3ddf1290e25fe6850655f35f9f7edd53e952ae1d",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E4%B8%8A%E6%96%9C%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/202-199-signatureseries-benches-racks-olympic-utility-bench-l.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a.png",
+        "source_image_sha256": "58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/202-199-signatureseries-benches-racks-olympic-utility-bench-l.png?h=630&w=1200",
+        "official_image_sha256": "58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a",
+        "observations": "Official Signature Series brochure page 5 binds Utility Bench to SUB; Chinese product page also prints SUB and supplies the matching image. Manufacturer identity is Life Fitness Signature Series; original HAMMER STRENGTH inventory brand is preserved."
+      },
+      "model_evidence": "Official Signature Series brochure page 5 binds Utility Bench to SUB; Chinese product page also prints SUB and supplies the matching image. Manufacturer identity is Life Fitness Signature Series; original HAMMER STRENGTH inventory brand is preserved.",
+      "note": "Official Signature Series brochure page 5 binds Utility Bench to SUB; Chinese product page also prints SUB and supplies the matching image. Manufacturer identity is Life Fitness Signature Series; original HAMMER STRENGTH inventory brand is preserved.",
+      "document_page": 5,
+      "identity_evidence": {
+        "product_page_code": "SUB",
+        "manufacturer_brand": "Life Fitness",
+        "source_brand_preserved": true
+      }
+    },
+    {
+      "inventory_id": 1486,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "SFB",
+      "source_image_url": "https://oss-hk.247fitness.hk/b709b78dfd19b605e7ec2323cb4bf5bbfc769e32380765f66b0986e2467070f5.png",
+      "status": "model_verified",
+      "match_scope": "exact_model",
+      "official_name": "Signature Series Flat Bench",
+      "official_model": "SFB",
+      "official_product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E6%B0%B4%E5%B9%B3%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/126-843-signature-series-flat-bench-1000x1000.png?h=630&w=1200",
+      "manufacturer_model_codes": [
+        "SFB"
+      ],
+      "evidence_url": "https://www.lifefitness.com.au/wp-content/uploads/2015/02/CB_Signature_Benches__Racks_GM_004_07_1_68.pdf",
+      "evidence_sha256": "89cf4dbe4db939b9253797ae3ddf1290e25fe6850655f35f9f7edd53e952ae1d",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_product_code_document_and_source_image_review",
+      "image_evidence_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/signature-%E5%8D%93%E8%B6%8A%E7%B3%BB%E5%88%97%E6%B0%B4%E5%B9%B3%E8%AE%AD%E7%BB%83%E6%A4%85",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/126-843-signature-series-flat-bench-1000x1000.png?h=630&w=1200",
+        "available": true,
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "b709b78dfd19b605e7ec2323cb4bf5bbfc769e32380765f66b0986e2467070f5",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/b709b78dfd19b605e7ec2323cb4bf5bbfc769e32380765f66b0986e2467070f5.png",
+        "source_image_sha256": "b709b78dfd19b605e7ec2323cb4bf5bbfc769e32380765f66b0986e2467070f5",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/126-843-signature-series-flat-bench-1000x1000.png?h=630&w=1200",
+        "official_image_sha256": "b709b78dfd19b605e7ec2323cb4bf5bbfc769e32380765f66b0986e2467070f5",
+        "observations": "Official Signature Series brochure page 5 binds Flat Bench to SFB; Chinese product page prints SFB and supplies the same red/silver bench image as the capture. Manufacturer identity is Life Fitness Signature Series; original HAMMER STRENGTH inventory brand is preserved."
+      },
+      "model_evidence": "Official Signature Series brochure page 5 binds Flat Bench to SFB; Chinese product page prints SFB and supplies the same red/silver bench image as the capture. Manufacturer identity is Life Fitness Signature Series; original HAMMER STRENGTH inventory brand is preserved.",
+      "note": "Official Signature Series brochure page 5 binds Flat Bench to SFB; Chinese product page prints SFB and supplies the same red/silver bench image as the capture. Manufacturer identity is Life Fitness Signature Series; original HAMMER STRENGTH inventory brand is preserved.",
+      "document_page": 5,
+      "identity_evidence": {
+        "product_page_code": "SFB",
+        "manufacturer_brand": "Life Fitness",
+        "source_brand_preserved": true
+      }
+    },
+    {
+      "inventory_id": 65,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLLHS",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/e84e731c4158814242f02dcca51858b2dd823ea56a0a907d3fee1ea5675845ee.jpg",
+      "status": "model_verified_image_missing",
+      "match_scope": "documented_base_model",
+      "source_base_model": "PL-LHS",
+      "official_model": "PL-LHS-01",
+      "manufacturer_model_codes": [
+        "PL-LHS-01"
+      ],
+      "official_name": "Linear Hack Press",
+      "official_product_url": "https://www.lifefitness.com.au/wp-content/uploads/2022/06/GM-002-20-ISBU-HammerStrengthCatalog-vf-PRINT.pdf",
+      "official_image_url": null,
+      "evidence_url": "https://www.lifefitness.com.au/wp-content/uploads/2022/06/GM-002-20-ISBU-HammerStrengthCatalog-vf-PRINT.pdf",
+      "evidence_sha256": "6ea4c5fe827d7b1036649c41055bf07234fbca457be80fb960547009590f8a25",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_catalog_model_table",
+      "document_page": 61,
+      "model_evidence": "Manufacturer 2022 catalog page 61 lists Linear Hack Press / PL-LHS-01. Source PLLHS normalizes to the PL-LHS base, with the same descriptive product name; revision -01 is not verified for the source. No standalone official image URL was established; a PDF page is not used as an image URL.",
+      "note": "Manufacturer 2022 catalog page 61 lists Linear Hack Press / PL-LHS-01. Source PLLHS normalizes to the PL-LHS base, with the same descriptive product name; revision -01 is not verified for the source. No standalone official image URL was established; a PDF page is not used as an image URL."
+    },
+    {
+      "inventory_id": 1368,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "HDT-HR-TS",
+      "source_image_url": "https://oss-hk.247fitness.hk/c9d05b73b6ef3b25996078d5d0095440364ce7828da671a84a4398ab0e671cff.png",
+      "status": "candidate_requires_review",
+      "match_scope": "family_candidate",
+      "official_name": "HD Athletic Pro Half Rack",
+      "official_model": null,
+      "manufacturer_model_codes": [
+        "HDT-HR",
+        "HDT-PR"
+      ],
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/racks-rigs/hammer-strength-hd-athletic-half-rack",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/159-517-hd-athletic-half-rack.png?h=630&w=1200",
+      "evidence_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/AI_HDT_Athletic_Racks.pdf",
+      "evidence_sha256": "a2535d0cabcdefab43d27498c48fb9266cbde238f9212a6d8821816616a0892b",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "manufacturer_manual_and_source_conflict_review",
+      "note": "Official catalog and HDT manual identify HDT-HR as Half Rack, while source says Standard Power Rack and its picture shows a full cage. The -TS configuration is not established. Half Rack is a code-based candidate only; no HDW/HDT generation equivalence or exact image match is asserted.",
+      "candidates": [
+        {
+          "name": "HD Athletic Pro Half Rack",
+          "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/racks-rigs/hammer-strength-hd-athletic-half-rack",
+          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/159-517-hd-athletic-half-rack.png?h=630&w=1200",
+          "evidence_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/AI_HDT_Athletic_Racks.pdf",
+          "reason": "Official catalog and HDT manual identify HDT-HR as Half Rack, while source says Standard Power Rack and its picture shows a full cage. The -TS configuration is not established. Half Rack is a code-based candidate only; no HDW/HDT generation equivalence or exact image match is asserted."
+        }
+      ]
+    }
+  ],
+  "hammer_strength_unresolved_followup": {
+    "review_date": "2026-11-05",
+    "inventory_count": 10,
+    "inventory_ids": [
+      46,
+      65,
+      67,
+      68,
+      69,
+      89,
+      158,
+      1368,
+      1485,
+      1486
+    ],
+    "results": {
+      "model_verified": 7,
+      "model_verified_image_missing": 2,
+      "candidate_requires_review": 1
+    },
+    "method": "Review existing manufacturer Chinese-name evidence together with English model codes, primary manufacturer manuals/catalogs, official images and source-image comparisons. Prior user-approved candidates are untouched.",
+    "evidence_key": "manufacturer_product_reviews",
+    "queries": [
+      "HAMMER STRENGTH PLGRIP Gripper",
+      "HAMMER STRENGTH PLLHS Linear Hack Press",
+      "HAMMER STRENGTH PLGLD Glute Drive",
+      "HAMMER STRENGTH PLBSQ Belt Squat",
+      "HAMMER STRENGTH PLBSQ-DH Belt Squat Dip Handles",
+      "HAMMER STRENGTH BWGH Glute Ham",
+      "HAMMER STRENGTH HDW-HR-STRD",
+      "HAMMER STRENGTH HDT-HR-TS",
+      "Life Fitness SUB Signature Utility Bench",
+      "Life Fitness SFB Signature Flat Bench"
+    ],
+    "image_gallery_review": {
+      "inventory_id": 68,
+      "result": "Official hero and gallery images inspected; the standalone hero includes optional dip attachment, so it remains a candidate reference for source 68.",
+      "observed_asset_urls": [
+        "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level1_webp/kentico13corebase/media/lfmedia/lifefitnessimages/equipment/strength/plate-loaded/belt%2520squat/strength-plateloaded-beltsquat-1.webp",
+        "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level1_webp/kentico13corebase/media/lfmedia/lifefitnessimages/equipment/strength/plate-loaded/belt%2520squat/strength-plateloaded-beltsquat-2.webp",
+        "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level1_webp/kentico13corebase/media/lfmedia/lifefitnessimages/equipment/strength/plate-loaded/belt%2520squat/strength-plateloaded-beltsquat-5.webp",
+        "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level1_webp/kentico13corebase/media/lfmedia/lifefitnessimages/equipment/strength/plate-loaded/belt%2520squat/strength-plateloaded-beltsquat-6.webp",
+        "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level1_webp/kentico13corebase/media/lfmedia/lifefitnessimages/equipment/strength/plate-loaded/belt%2520squat/strength-plateloaded-beltsquat-7.webp",
+        "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level1_webp/kentico13corebase/media/lfmedia/lifefitnessimages/equipment/strength/plate-loaded/belt%2520squat/strength-plateloaded-beltsquat-8.webp",
+        "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/equipment/strength/plate-loaded/belt%2520squat/strength-plateloaded-beltsquat-7.webp"
+      ]
+    }
   }
 }
