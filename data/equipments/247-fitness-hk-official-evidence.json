@@ -107840,6 +107840,1287 @@
         "original_status": "candidate_requires_review"
       },
       "note": "User confirmed the First candidate for this HAMMER STRENGTH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 970,
+      "brand": "NAUTILUS",
+      "source_model": "9NA-S1314",
+      "source_image_url": "https://oss-hk.247fitness.hk/c55f24b2f92881f0d61bf5ee05be3e2320064fc088ca4d7ea88899dde4e6329c.png",
+      "official_name": "Impact® Seated Leg Curl",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-impact-seated-leg-curl",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Impact-Seated-Leg-Curl-9NA-S1313-7-Product-Image-Web-e1655756265531.png?v=1731874806",
+      "approved_candidate": {
+        "name": "Impact® Seated Leg Curl",
+        "product_url": "https://www.corehandf.com/products/nautilus-impact-seated-leg-curl",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Impact-Seated-Leg-Curl-9NA-S1313-7-Product-Image-Web-e1655756265531.png?v=1731874806",
+        "score": 0.5,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Impact® Seated Leg Curl",
+          "product_url": "https://www.corehandf.com/products/nautilus-impact-seated-leg-curl",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Impact-Seated-Leg-Curl-9NA-S1313-7-Product-Image-Web-e1655756265531.png?v=1731874806",
+          "score": 0.5,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 985,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPAC",
+      "source_image_url": "https://oss-hk.247fitness.hk/a1122f5a0e0fa2cb244183299342c8a86257b0cff12525e5ec0cb3c91fde35f1.png",
+      "official_name": "Inspiration® Abdominal Crunch",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-abdominal-crunch",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Abdominal-Crunch-IPAC5-60-04.png?v=1731874383",
+      "approved_candidate": {
+        "name": "Inspiration® Abdominal Crunch",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-abdominal-crunch",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Abdominal-Crunch-IPAC5-60-04.png?v=1731874383",
+        "score": 0.6,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Abdominal Crunch",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-abdominal-crunch",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Abdominal-Crunch-IPAC5-60-04.png?v=1731874383",
+          "score": 0.6,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 986,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPRT",
+      "source_image_url": "https://oss-hk.247fitness.hk/5c924434a6b3730d21c44545bbc0e0bf6f21b47cbc9099291df9b8a77759c80f.png",
+      "official_name": "Inspiration® Rotary Torso",
+      "official_product_url": "https://www.corehandf.com/products/inspiration-rotary-torso",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Rotary-Torso-IPRT5-60-06.png?v=1731876064",
+      "approved_candidate": {
+        "name": "Inspiration® Rotary Torso",
+        "product_url": "https://www.corehandf.com/products/inspiration-rotary-torso",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Rotary-Torso-IPRT5-60-06.png?v=1731876064",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Rotary Torso",
+          "product_url": "https://www.corehandf.com/products/inspiration-rotary-torso",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Rotary-Torso-IPRT5-60-06.png?v=1731876064",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        },
+        {
+          "name": "Instinct® Rotary Torso",
+          "product_url": "https://www.corehandf.com/products/nautilus-instinct-rotary-torso",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Instinct_RotaryTorso_-60AR.png?v=1761683312",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 987,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPAA",
+      "source_image_url": "https://oss-hk.247fitness.hk/e125a6a3c3f8acb90f5afb8b0ed27a54bc316d0970ec378c760b17d668608259.png",
+      "official_name": "Inspiration® Abduction/ Adduction",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-abduction-adduction",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Abduction-Adduction-IPAA5-60-04.png?v=1731874267",
+      "approved_candidate": {
+        "name": "Inspiration® Abduction/ Adduction",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-abduction-adduction",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Abduction-Adduction-IPAA5-60-04.png?v=1731874267",
+        "score": 0.6,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Abduction/ Adduction",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-abduction-adduction",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Abduction-Adduction-IPAA5-60-04.png?v=1731874267",
+          "score": 0.6,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 988,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPBA",
+      "source_image_url": "https://oss-hk.247fitness.hk/0dcd2341d3ac328bbe27bc1a9e9abc5d86fe3b2da9a519f68931cf466f94f496.png",
+      "official_name": "Inspiration® Bilateral Arm Curl",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-bilateral-arm-curl",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Bilateral-Arm-Curl-IPBA3-60-Black-33-Product-Image-Web-e1654210066166.png?v=1731874354",
+      "approved_candidate": {
+        "name": "Inspiration® Bilateral Arm Curl",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-bilateral-arm-curl",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Bilateral-Arm-Curl-IPBA3-60-Black-33-Product-Image-Web-e1654210066166.png?v=1731874354",
+        "score": 0.667,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Bilateral Arm Curl",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-bilateral-arm-curl",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Bilateral-Arm-Curl-IPBA3-60-Black-33-Product-Image-Web-e1654210066166.png?v=1731874354",
+          "score": 0.667,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 991,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPDR",
+      "source_image_url": "https://oss-hk.247fitness.hk/fa812ddfa6b6fcbeb9298808b0faf7de83ceec04f34993dcfa7166eed17adc44.png",
+      "official_name": "Inspiration® Deltoid Raise",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-deltoid-raise",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Deltoid-Raise-IPDR5-Product-Image-1.png?v=1731874334",
+      "approved_candidate": {
+        "name": "Inspiration® Deltoid Raise",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-deltoid-raise",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Deltoid-Raise-IPDR5-Product-Image-1.png?v=1731874334",
+        "score": 0.6,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Deltoid Raise",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-deltoid-raise",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Deltoid-Raise-IPDR5-Product-Image-1.png?v=1731874334",
+          "score": 0.6,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 992,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPGM",
+      "source_image_url": "https://oss-hk.247fitness.hk/10d0afd42b9bc02d894f250062c3c1171ac26b1710bf06588c91e27042a5ade0.png",
+      "official_name": "Inspiration® Glute Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-glute-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Glute-Press-IPGM5-60-web.png?v=1731874276",
+      "approved_candidate": {
+        "name": "Inspiration® Glute Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-glute-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Glute-Press-IPGM5-60-web.png?v=1731874276",
+        "score": 0.6,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Glute Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-glute-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Glute-Press-IPGM5-60-web.png?v=1731874276",
+          "score": 0.6,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 993,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPLC",
+      "source_image_url": "https://oss-hk.247fitness.hk/41140cee60e42ab36f80b4c652064a7d821f9ed4ba928ace542a41d5da6fc309.png",
+      "official_name": "Inspiration® Leg Curl",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-leg-curl",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Leg-Curl-IPLC5-60-Black-1-Product-Image-1.png?v=1731874256",
+      "approved_candidate": {
+        "name": "Inspiration® Leg Curl",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-leg-curl",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Leg-Curl-IPLC5-60-Black-1-Product-Image-1.png?v=1731874256",
+        "score": 0.6,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Leg Curl",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-leg-curl",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Leg-Curl-IPLC5-60-Black-1-Product-Image-1.png?v=1731874256",
+          "score": 0.6,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 997,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPPF",
+      "source_image_url": "https://oss-hk.247fitness.hk/c00df1094aacd46082e5253411b274aafcea9078d88f534ee9bbd4659727e3c0.png",
+      "official_name": "Inspiration® Pec Fly/Rear Deltoid",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-pec-fly-rear-deltoid",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Pec-FlyRear-Deltoid-IPPF3-60-Black-33-Product-Image-Web-e1654544855865.png?v=1731874314",
+      "approved_candidate": {
+        "name": "Inspiration® Pec Fly/Rear Deltoid",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-pec-fly-rear-deltoid",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Pec-FlyRear-Deltoid-IPPF3-60-Black-33-Product-Image-Web-e1654544855865.png?v=1731874314",
+        "score": 0.714,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Pec Fly/Rear Deltoid",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-pec-fly-rear-deltoid",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Pec-FlyRear-Deltoid-IPPF3-60-Black-33-Product-Image-Web-e1654544855865.png?v=1731874314",
+          "score": 0.714,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 999,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPSP",
+      "source_image_url": "https://oss-hk.247fitness.hk/326faf7bae848b6e027fa6e76b45bf40ccf2d6ee5917f08cac11283b6018e400.png",
+      "official_name": "Inspiration® Shoulder Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-shoulder-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Shoulder-Press-IPSP5-60-web.png?v=1731874323",
+      "approved_candidate": {
+        "name": "Inspiration® Shoulder Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-shoulder-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Shoulder-Press-IPSP5-60-web.png?v=1731874323",
+        "score": 0.6,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Shoulder Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-shoulder-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Shoulder-Press-IPSP5-60-web.png?v=1731874323",
+          "score": 0.6,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1002,
+      "brand": "NAUTILUS",
+      "source_model": "9-IPVP",
+      "source_image_url": "https://oss-hk.247fitness.hk/2216ebbc0062844329f431f3484e52e4247de0b1a76c6587704dfdf0e3dad3d0.png",
+      "official_name": "Inspiration® Chest Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-chest-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Chest-Press-IPVP5-60-web-scaled.jpg?v=1731874286",
+      "approved_candidate": {
+        "name": "Inspiration® Chest Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-chest-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Chest-Press-IPVP5-60-web-scaled.jpg?v=1731874286",
+        "score": 0.6,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Chest Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-chest-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Chest-Press-IPVP5-60-web-scaled.jpg?v=1731874286",
+          "score": 0.6,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1006,
+      "brand": "NAUTILUS",
+      "source_model": "9-HSLP",
+      "source_image_url": "https://oss-hk.247fitness.hk/80d3599e2729ac6bb4777e3519b2ce95638852509b0bf1c6a0ff37ce18c48d46.png",
+      "official_name": "HumanSport® Lat Pulley",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-humansport-lat-pulley",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Lap_Pully_HSLP3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688355",
+      "approved_candidate": {
+        "name": "HumanSport® Lat Pulley",
+        "product_url": "https://www.corehandf.com/products/nautilus-humansport-lat-pulley",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Lap_Pully_HSLP3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688355",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "HumanSport® Lat Pulley",
+          "product_url": "https://www.corehandf.com/products/nautilus-humansport-lat-pulley",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Lap_Pully_HSLP3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688355",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "HumanSport® Lat Pulley Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-humansport-lat-pulley",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Lap_Pully_HSLP3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688355",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-humansport-lat-pulley"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1008,
+      "brand": "NAUTILUS",
+      "source_model": "9-HSPL",
+      "source_image_url": "https://oss-hk.247fitness.hk/2606bb568d47c9559a73d309e6371951c1d1ad5f9fe12df6969edc9d97e9ca42.png",
+      "official_name": "HumanSport® Pull Lift",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-humansport-pull-lift",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Pull_Lift_HSPL3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688226",
+      "approved_candidate": {
+        "name": "HumanSport® Pull Lift",
+        "product_url": "https://www.corehandf.com/products/nautilus-humansport-pull-lift",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Pull_Lift_HSPL3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688226",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "HumanSport® Pull Lift",
+          "product_url": "https://www.corehandf.com/products/nautilus-humansport-pull-lift",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Pull_Lift_HSPL3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688226",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "HumanSport® Pull Lift Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-humansport-pull-lift",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Pull_Lift_HSPL3_HumanSport_Nautilus_Product_Image_Front.jpg?v=1761688226",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-humansport-pull-lift"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1009,
+      "brand": "NAUTILUS",
+      "source_model": "9-HSFT",
+      "source_image_url": "https://oss-hk.247fitness.hk/e115e6f8536adc48640b05ff83c30873985c2480f7527c0b2e973496cc3f580d.png",
+      "official_name": "HumanSport® Freedom Trainer",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-humansport-freedom-trainer",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/HumanSport-FreedomTrainer-HSFT3-60AAE-Product-Image-Web.png?v=1761687624",
+      "approved_candidate": {
+        "name": "HumanSport® Freedom Trainer",
+        "product_url": "https://www.corehandf.com/products/nautilus-humansport-freedom-trainer",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/HumanSport-FreedomTrainer-HSFT3-60AAE-Product-Image-Web.png?v=1761687624",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "HumanSport® Freedom Trainer",
+          "product_url": "https://www.corehandf.com/products/nautilus-humansport-freedom-trainer",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/HumanSport-FreedomTrainer-HSFT3-60AAE-Product-Image-Web.png?v=1761687624",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1010,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L2002",
+      "source_image_url": "https://oss-hk.247fitness.hk/cbdfb556676a6579e077554a4d21a22621d30e5bcfb562fc58acdabf79458e2f.png",
+      "official_name": "Leverage Chest Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-chest-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Chest-Press-60-9NP-L2002-Web-Image.png?v=1768932911",
+      "approved_candidate": {
+        "name": "Leverage Chest Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-chest-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Chest-Press-60-9NP-L2002-Web-Image.png?v=1768932911",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Chest Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-chest-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Chest-Press-60-9NP-L2002-Web-Image.png?v=1768932911",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Inspiration® Chest Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-chest-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Chest-Press-IPVP5-60-web-scaled.jpg?v=1731874286",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        },
+        {
+          "name": "Instinct® Chest Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-instinct-chest-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Instinct_ChestPress_-60AR.png?v=1761681708",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1011,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L2003",
+      "source_image_url": "https://oss-hk.247fitness.hk/556bdcbbc32699c13e03c841524795f53b73fe45acbb9a9e0767695f72cf918d.png",
+      "official_name": "Leverage Incline Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-incline-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Incline-Press-60-9NP-L2003-Web-Image.png?v=1768932676",
+      "approved_candidate": {
+        "name": "Leverage Incline Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-incline-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Incline-Press-60-9NP-L2003-Web-Image.png?v=1768932676",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Incline Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-incline-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Incline-Press-60-9NP-L2003-Web-Image.png?v=1768932676",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Leverage Incline Press Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-incline-press",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Nautilus-Leverage-Incline-Press-60-9NP-L2003-Web-Image.png?v=1768932676",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-leverage-incline-press"
+        },
+        {
+          "name": "Impact® Incline Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-impact-incline-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Impact-Incline-Press-9NA-S2301-1-Product-Image-Web-e1655747666242.png?v=1731874868",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1012,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L2004",
+      "source_image_url": "https://oss-hk.247fitness.hk/f4154c01396ee5fae825e2d97aca4bc0fb1b70e6a8e32c5b33baeaa8712c416b.png",
+      "official_name": "Leverage Decline Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-decline-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Decline-Press-60-9NP-L2004-Web-Image.png?v=1768936051",
+      "approved_candidate": {
+        "name": "Leverage Decline Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-decline-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Decline-Press-60-9NP-L2004-Web-Image.png?v=1768936051",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Decline Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-decline-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Decline-Press-60-9NP-L2004-Web-Image.png?v=1768936051",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Leverage Shoulder Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-shoulder-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Shoulder-Press-60-9NP-L4002-Web-Image.png?v=1768932121",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Leverage Incline Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-incline-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Incline-Press-60-9NP-L2003-Web-Image.png?v=1768932676",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1014,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L3004",
+      "source_image_url": "https://oss-hk.247fitness.hk/88236c9630d4a584b03472477922c4bb28d0e016d798397268ca2da37395c13d.png",
+      "official_name": "Leverage Low Row",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-low-row",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Low-Row-60-9NP-L3004-Web-Image.png?v=1768928348",
+      "approved_candidate": {
+        "name": "Leverage Low Row",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-low-row",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Low-Row-60-9NP-L3004-Web-Image.png?v=1768928348",
+        "score": 0.5,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Low Row",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-low-row",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Low-Row-60-9NP-L3004-Web-Image.png?v=1768928348",
+          "score": 0.5,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Leverage High Row",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-high-row",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-High-Row-60-9NP-L3005-Web-Image.png?v=1768932483",
+          "score": 0.5,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Leverage Incline Lever Row",
+          "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-incline-lever-row",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverag_Incline_Lever_Row-60.png?v=1768936448",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1015,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L3005",
+      "source_image_url": "https://oss-hk.247fitness.hk/e374f81c414f29e022fb653915d2fd82ef763f09cf3999187949797e48ed7adb.png",
+      "official_name": "Leverage High Row",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-high-row",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-High-Row-60-9NP-L3005-Web-Image.png?v=1768932483",
+      "approved_candidate": {
+        "name": "Leverage High Row",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-high-row",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-High-Row-60-9NP-L3005-Web-Image.png?v=1768932483",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage High Row",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-high-row",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-High-Row-60-9NP-L3005-Web-Image.png?v=1768932483",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Leverage High Row Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-high-row",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Nautilus-Leverage-High-Row-60-9NP-L3005-Web-Image.png?v=1768932483",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-leverage-high-row"
+        },
+        {
+          "name": "Leverage Low Row",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-low-row",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Low-Row-60-9NP-L3004-Web-Image.png?v=1768928348",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1017,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L4002",
+      "source_image_url": "https://oss-hk.247fitness.hk/4a15ad2887deed8b4f79d1ae8e6838ce2442204f0ca7fdc2c522ae1262066d96.png",
+      "official_name": "Leverage Shoulder Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-shoulder-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Shoulder-Press-60-9NP-L4002-Web-Image.png?v=1768932121",
+      "approved_candidate": {
+        "name": "Leverage Shoulder Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-shoulder-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Shoulder-Press-60-9NP-L4002-Web-Image.png?v=1768932121",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Shoulder Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-shoulder-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Shoulder-Press-60-9NP-L4002-Web-Image.png?v=1768932121",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Leverage Shoulder Press Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-shoulder-press",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Nautilus-Leverage-Shoulder-Press-60-9NP-L4002-Web-Image.png?v=1768932121",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-leverage-shoulder-press"
+        },
+        {
+          "name": "Inspiration® Shoulder Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-shoulder-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Shoulder-Press-IPSP5-60-web.png?v=1731874323",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        },
+        {
+          "name": "Shoulder Press",
+          "product_url": "https://shop.corehandf.com/cdn/shop/files/Shoulder_Press_9NA-S4307_Nautilus_Impact_Product_Sheet.pdf",
+          "image_url": null,
+          "score": 0.5,
+          "evidence_url": "https://shop.corehandf.com/cdn/shop/files/Shoulder_Press_9NA-S4307_Nautilus_Impact_Product_Sheet.pdf",
+          "retrieval_method": "web_search_index"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1018,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L5002",
+      "source_image_url": "https://oss-hk.247fitness.hk/0cb9e2933fb91656bd6de8c3594b7caa994ad0422d3eaf59255e74c4a48a7787.png",
+      "official_name": "Leverage Biceps Curl",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-biceps-curl",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Bicep-Curl-60-9NP-L5002.png-Web-Image.png?v=1768928132",
+      "approved_candidate": {
+        "name": "Leverage Biceps Curl",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-biceps-curl",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Bicep-Curl-60-9NP-L5002.png-Web-Image.png?v=1768928132",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Biceps Curl",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-biceps-curl",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Bicep-Curl-60-9NP-L5002.png-Web-Image.png?v=1768928132",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Biceps Curl",
+          "product_url": "https://www.corehandf.com/products/biceps-curl",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/BicepCurlNP3-L5005NautilusLeverage45DegreeBackLeft2048x2048.png?v=1780512363",
+          "score": 0.5,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        },
+        {
+          "name": "Leverage Biceps Curl Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-biceps-curl",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Nautilus-Leverage-Bicep-Curl-60-9NP-L5002.png-Web-Image.png?v=1768928132",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-leverage-biceps-curl"
+        },
+        {
+          "name": "Biceps Curl",
+          "product_url": "https://shop.corehandf.com/cdn/shop/files/Biceps_Curl_9NA-S5301_Nautilus_Impact_Product_Sheet.pdf",
+          "image_url": null,
+          "score": 0.5,
+          "evidence_url": "https://shop.corehandf.com/cdn/shop/files/Biceps_Curl_9NA-S5301_Nautilus_Impact_Product_Sheet.pdf",
+          "retrieval_method": "web_search_index"
+        },
+        {
+          "name": "The Nautilus Inspiration Biceps Curl is optimally",
+          "product_url": "https://shop.corehandf.com/cdn/shop/files/Nautilus_Inspiration_Biceps_Curl_IPBC5.pdf",
+          "image_url": null,
+          "score": 0.429,
+          "evidence_url": "https://shop.corehandf.com/cdn/shop/files/Nautilus_Inspiration_Biceps_Curl_IPBC5.pdf",
+          "retrieval_method": "web_search_index"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1019,
+      "brand": "NAUTILUS",
+      "source_model": "9NP3-L5003",
+      "source_image_url": "https://oss-hk.247fitness.hk/3ce2137fba49c996d9af9cef63028d9fc0be4753ea3a10d52dd22862564f74c7.png",
+      "official_name": "Leverage Abdominal Crunch",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-leverage-abdominal-crunch",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Abdominal-Crunch-60-9NP-L5003.png-Web-Image.png?v=1768928005",
+      "approved_candidate": {
+        "name": "Leverage Abdominal Crunch",
+        "product_url": "https://www.corehandf.com/products/nautilus-leverage-abdominal-crunch",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Abdominal-Crunch-60-9NP-L5003.png-Web-Image.png?v=1768928005",
+        "score": 0.75,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Abdominal Crunch",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-abdominal-crunch",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Leverage-Abdominal-Crunch-60-9NP-L5003.png-Web-Image.png?v=1768928005",
+          "score": 0.75,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        },
+        {
+          "name": "Leverage Abdominal Crunch Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-leverage-abdominal-crunch",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Nautilus-Leverage-Abdominal-Crunch-60-9NP-L5003.png-Web-Image.png?v=1768928005",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-leverage-abdominal-crunch"
+        },
+        {
+          "name": "Inspiration® Abdominal Crunch",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-abdominal-crunch",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Abdominal-Crunch-IPAC5-60-04.png?v=1731874383",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1020,
+      "brand": "NAUTILUS",
+      "source_model": "9NP-L1110",
+      "source_image_url": "https://oss-hk.247fitness.hk/4304c08c4481798d34100d51e70ec6cd3cd8763c586001ab7ad9f18c35129125.png",
+      "official_name": "Tilt Seat Calf",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-tilt-seat-calf",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Tilt_Seat_Calf-60.png?v=1768937109",
+      "approved_candidate": {
+        "name": "Tilt Seat Calf",
+        "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-tilt-seat-calf",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Tilt_Seat_Calf-60.png?v=1768937109",
+        "score": 0.5,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Tilt Seat Calf",
+          "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-tilt-seat-calf",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Tilt_Seat_Calf-60.png?v=1768937109",
+          "score": 0.5,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1022,
+      "brand": "NAUTILUS",
+      "source_model": "9NP-L1130",
+      "source_image_url": "https://oss-hk.247fitness.hk/f3bc902b66a763f90685839b115bb303121b26db0f40fff59f444b1078e4cc04.png",
+      "official_name": "Hack Squat",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-hack-squat",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Hack_Squat-60.png?v=1768936964",
+      "approved_candidate": {
+        "name": "Hack Squat",
+        "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-hack-squat",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Hack_Squat-60.png?v=1768936964",
+        "score": 0.4,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Hack Squat",
+          "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-hack-squat",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Hack_Squat-60.png?v=1768936964",
+          "score": 0.4,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1024,
+      "brand": "NAUTILUS",
+      "source_model": "9NP-L1141",
+      "source_image_url": "https://oss-hk.247fitness.hk/b4f821e62e9a258fe78dac81f187ae9a393ab3dd4a7b8705ec41c24c47ab2802.png",
+      "official_name": "Angled Leg Press",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-angled-leg-press",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Plate-Loaded-Angled-Leg-Press-NP-L1141-High-Poly-31-Product-Image-Web.png?v=1775058294",
+      "approved_candidate": {
+        "name": "Angled Leg Press",
+        "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-angled-leg-press",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Plate-Loaded-Angled-Leg-Press-NP-L1141-High-Poly-31-Product-Image-Web.png?v=1775058294",
+        "score": 0.5,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+      },
+      "previous_candidates": [
+        {
+          "name": "Angled Leg Press",
+          "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-angled-leg-press",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Plate-Loaded-Angled-Leg-Press-NP-L1141-High-Poly-31-Product-Image-Web.png?v=1775058294",
+          "score": 0.5,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        },
+        {
+          "name": "Angled Leg Press Pro",
+          "product_url": "https://www.corehandf.com/products/angled-leg-press-pro",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/AngledLegPressProNP-L1145NautilusFrontRight452048x2048.png?v=1782949679",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1025,
+      "brand": "NAUTILUS",
+      "source_model": "9NP-L3140",
+      "source_image_url": "https://oss-hk.247fitness.hk/bca84ff33c99405a5a9c6fa7e5cd5708cdb353f1c85e0c44d7405b3a2889bfd4.png",
+      "official_name": "Leverage Incline Lever Row",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-incline-lever-row",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverag_Incline_Lever_Row-60.png?v=1768936448",
+      "approved_candidate": {
+        "name": "Leverage Incline Lever Row",
+        "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-incline-lever-row",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverag_Incline_Lever_Row-60.png?v=1768936448",
+        "score": 0.429,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Leverage Incline Lever Row",
+          "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-incline-lever-row",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverag_Incline_Lever_Row-60.png?v=1768936448",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1026,
+      "brand": "NAUTILUS",
+      "source_model": "9NP-L8507",
+      "source_image_url": "https://oss-hk.247fitness.hk/0f2358f5ad9578e130e33f2d24c731db58a226f9ac9aee336c002362ea33f071.png",
+      "official_name": "Freedom Rack",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-freedom-rack",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Freedom_Rack-60.png?v=1764013060",
+      "approved_candidate": {
+        "name": "Freedom Rack",
+        "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-freedom-rack",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Freedom_Rack-60.png?v=1764013060",
+        "score": 0.667,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Freedom Rack",
+          "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-freedom-rack",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Freedom_Rack-60.png?v=1764013060",
+          "score": 0.667,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1103,
+      "brand": "NAUTILUS",
+      "source_model": "731-9092-KT",
+      "source_image_url": "https://oss-hk.247fitness.hk/566d033a190453f54ba6bd28852c13060f2098e06564b92310f3faa4d7d54e18.png",
+      "official_name": "Nautilus SVA Platform",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-sva-platform",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-9-HDP6D-Platform.jpg?v=1732692354",
+      "approved_candidate": {
+        "name": "Nautilus SVA Platform",
+        "product_url": "https://www.corehandf.com/products/nautilus-sva-platform",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-9-HDP6D-Platform.jpg?v=1732692354",
+        "score": 0.5,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Nautilus SVA Platform",
+          "product_url": "https://www.corehandf.com/products/nautilus-sva-platform",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-9-HDP6D-Platform.jpg?v=1732692354",
+          "score": 0.5,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1129,
+      "brand": "NAUTILUS",
+      "source_model": "9NP-D9302",
+      "source_image_url": "https://oss-hk.247fitness.hk/9ebb4cc94e226a18e4ba88abfa9f046c1113724b0b2023edba205e4b033bd319.png",
+      "official_name": "Inspiration® Dual Adjustable Pulley",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-inspiration-dual-adjustable-pulley",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Dual-Adjustable-Pully-9NP-D9302-60-Black-35-Product-Image-Web-e1654210503634.png?v=1732692030",
+      "approved_candidate": {
+        "name": "Inspiration® Dual Adjustable Pulley",
+        "product_url": "https://www.corehandf.com/products/nautilus-inspiration-dual-adjustable-pulley",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Dual-Adjustable-Pully-9NP-D9302-60-Black-35-Product-Image-Web-e1654210503634.png?v=1732692030",
+        "score": 0.667,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Inspiration® Dual Adjustable Pulley",
+          "product_url": "https://www.corehandf.com/products/nautilus-inspiration-dual-adjustable-pulley",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Nautilus-Inspiration-Dual-Adjustable-Pully-9NP-D9302-60-Black-35-Product-Image-Web-e1654210503634.png?v=1732692030",
+          "score": 0.667,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        },
+        {
+          "name": "Instinct® Dual Adjustable Pulley",
+          "product_url": "https://www.corehandf.com/products/nautilus-instinct-dual-adjustable-pulley",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Instinct_DAP_-60.png?v=1761683546",
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=2"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+    },
+    {
+      "inventory_id": 1130,
+      "brand": "NAUTILUS",
+      "source_model": "9NP-L1131",
+      "source_image_url": "https://oss-hk.247fitness.hk/2381fc0179e8467e33213c413751ac0f48a3dbef21d33fa61ba97c7784a4264c.png",
+      "official_name": "Glute Drive",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-glute-drive",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Glute_Drive-60.png?v=1764699053",
+      "approved_candidate": {
+        "name": "Glute Drive",
+        "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-glute-drive",
+        "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Glute_Drive-60.png?v=1764699053",
+        "score": 0.667,
+        "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+      },
+      "previous_candidates": [
+        {
+          "name": "Glute Drive",
+          "product_url": "https://www.corehandf.com/products/nautilus-plate-loaded-glute-drive",
+          "image_url": "https://cdn.shopify.com/s/files/1/0594/2260/5378/files/Leverage_Glute_Drive-60.png?v=1764699053",
+          "score": 0.667,
+          "evidence_url": "https://www.corehandf.com/products.json?limit=250&page=1"
+        }
+      ],
+      "previous_status": "candidate_requires_review",
+      "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed all NAUTILUS candidate_requires_review records have the correct First candidate and requested an update.",
+        "selection": "First candidate",
+        "brand": "NAUTILUS",
+        "original_status": "candidate_requires_review"
+      },
+      "note": "User confirmed the First candidate for this NAUTILUS inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     }
   ],
   "lifefitness_glute_bridge_followup": {

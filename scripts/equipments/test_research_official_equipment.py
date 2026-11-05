@@ -377,6 +377,22 @@ class SpecificationNameTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             research.apply_manual_equipment_reviews({'equipment': [stale]}, {'manual_equipment_reviews': [review]})
 
+    def test_nautilus_user_approved_first_candidates(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = [r for r in evidence['manual_equipment_reviews'] if r['brand'] == 'NAUTILUS']
+        self.assertEqual(len(reviews), 30)
+        for review in reviews:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
+            for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
+                self.assertEqual(entry[field], review['approved_candidate'][candidate_field])
+            self.assertEqual(entry['source_model'], review['source_model'])
+            self.assertEqual(entry['source_image_url'], review['source_image_url'])
+        self.assertFalse(any(e['brand'] == 'NAUTILUS' and e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
+
     def test_glute_bridge_reference_image_does_not_verify_a_different_model_code(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
