@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { parseMarkdownTables } from '../../../scripts/equipments/export-equipment-research-excel.mjs';
+import { parseMarkdownTables, workbookTables } from '../../../scripts/equipments/export-equipment-research-excel.mjs';
 
 describe('official equipment Excel report tables', () => {
   it('keeps every inventory ID and both image references from the real report', () => {
@@ -48,6 +48,24 @@ describe('official equipment Excel report tables', () => {
     expect(reviews.rows.reduce((sum, row) => sum + row[1].value, 0)).toBe(657);
     expect(reviews.rows.map((row) => row[0].value)).toEqual(catalog.brand_reviews.map((review) => review.brand));
 
+  });
+
+  it('merges coverage summaries by brand without duplicating shared counts', () => {
+    const markdown = readFileSync(new URL('../../../docs/data/247-fitness-hk-official-equipment-research-2026-10-28.md', import.meta.url), 'utf8');
+    const tables = parseMarkdownTables(markdown);
+    const names = tables.find((t) => t.heading === 'Name coverage by brand');
+    names.rows.reverse(); // Joining must use brand, not row order.
+    const merged = workbookTables(tables);
+    expect(merged.map((t) => t.heading)).toEqual(['Totals', 'Coverage by brand', 'All-brand follow-up', 'Full inventory cross-reference']);
+    const coverage = merged[1];
+    expect(coverage.headers).toHaveLength(12);
+    for (const row of coverage.rows) {
+      const original = names.rows.find((r) => r[0].value === row[0].value);
+      expect(row.slice(8)).toEqual([original[2], original[3], original[5], original[6]]);
+    }
+    expect(merged.at(-1)).toBe(tables.at(-1));
+    names.rows[0][1] = { value: -1 };
+    expect(() => workbookTables(tables)).toThrow('Coverage summaries disagree');
   });
 
   it('preserves escaped pipes, leading-zero IDs and parentheses in links', () => {

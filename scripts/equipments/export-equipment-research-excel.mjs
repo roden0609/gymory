@@ -47,6 +47,28 @@ export function parseMarkdownTables(markdown) {
   return tables;
 }
 
+// Join summaries by brand, retaining one copy of shared total/Chinese counts.
+export function workbookTables(tables) {
+  const coverage = tables.find((t) => t.heading === 'Coverage by brand');
+  const names = tables.find((t) => t.heading === 'Name coverage by brand');
+  if (!coverage || !names) return tables;
+  const byBrand = new Map(names.rows.map((row) => [row[0].value, row]));
+  if (byBrand.size !== names.rows.length || byBrand.size !== coverage.rows.length) {
+    throw new Error('Coverage summaries have inconsistent brands');
+  }
+  const extra = names.headers.map((header, index) => ({ header, index }))
+    .filter(({ header }) => !['Brand', 'Total', 'Chinese names recorded'].includes(header));
+  const merged = { ...coverage, headers: [...coverage.headers, ...extra.map((c) => c.header)],
+    rows: coverage.rows.map((row) => {
+      const name = byBrand.get(row[0].value);
+      if (!name || row[1].value !== name[1].value || row[7].value !== name[4].value) {
+        throw new Error(`Coverage summaries disagree for ${row[0].value}`);
+      }
+      return [...row, ...extra.map(({ index }) => name[index])];
+    }) };
+  return tables.filter((t) => t !== names).map((t) => t === coverage ? merged : t);
+}
+
 async function loadArtifactTool() {
   const modules = process.env.ARTIFACT_TOOL_NODE_MODULES || path.join(os.homedir(),
     '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules');
@@ -152,7 +174,7 @@ async function addNativeHyperlinks(bytes, sheetLinks, { JSZip, xml }) {
 }
 
 export async function exportReport(markdownPath, { previewDir } = {}) {
-  const tables = parseMarkdownTables(await fs.readFile(markdownPath, 'utf8'));
+  const tables = workbookTables(parseMarkdownTables(await fs.readFile(markdownPath, 'utf8')));
   if (!tables.length) throw new Error(`No Markdown tables found in ${markdownPath}`);
   const dependencies = await loadArtifactTool();
   const { SpreadsheetFile, Workbook } = dependencies;

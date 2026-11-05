@@ -335,7 +335,7 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual({r['inventory_id'] for r in reviews}, {46, 65, 67, 68, 69, 89, 158, 1368, 1485, 1486})
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
-            self.assertEqual(entry['status'], review['status'])
+            self.assertEqual(entry['status'], entry.get('manual_review', review)['status'])
             self.assertTrue(entry['official_name'])
             self.assertEqual(entry['official_product_url'], review['official_product_url'])
             self.assertEqual(entry['source_model'], review['source_model'])
@@ -345,7 +345,9 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual(byid[68]['status'], 'model_verified_image_missing')
         self.assertEqual(byid[68]['image_verification_status'], 'candidate_requires_review')
         self.assertIsNone(byid[65]['official_image_url'])
-        self.assertEqual(byid[1368]['status'], 'candidate_requires_review')
+        self.assertEqual(byid[1368]['status'], 'model_verified')
+        self.assertEqual(byid[1368]['manual_review']['previous_status'], 'candidate_requires_review')
+        self.assertEqual(next(r for r in reviews if r['inventory_id'] == 1368)['status'], 'candidate_requires_review')
         self.assertEqual(byid[1485]['brand'], 'HAMMER STRENGTH')
         self.assertIn('Life Fitness', byid[1485]['configuration_note'])
         review = next(r for r in reviews if r['inventory_id'] == 46)
@@ -360,7 +362,7 @@ class SpecificationNameTests(unittest.TestCase):
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
         evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
         reviews = [r for r in evidence['manual_equipment_reviews'] if r['brand'] == 'HAMMER STRENGTH']
-        self.assertEqual(len(reviews), 22)
+        self.assertEqual(len(reviews), 23)
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
             self.assertEqual(entry['status'], 'model_verified')
@@ -440,6 +442,22 @@ class SpecificationNameTests(unittest.TestCase):
             self.assertEqual(entry['source_model'], review['source_model'])
             self.assertEqual(entry['source_image_url'], review['source_image_url'])
         self.assertFalse(any(e['brand'] == 'Arsenal' and e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
+
+    def test_all_remaining_candidates_use_explicit_user_approved_snapshots(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = [r for r in evidence['manual_equipment_reviews'] if r['review_source'].get('scope') == 'all_remaining_candidates']
+        self.assertEqual(len(reviews), 58)
+        self.assertEqual(sum(not r['official_image_url'] for r in reviews), 11)
+        for review in reviews:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
+            self.assertEqual(entry['status'], 'model_verified' if review['official_image_url'] else 'model_verified_image_missing')
+            self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
+            self.assertEqual(entry['manual_review'], review)
+            for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
+                self.assertEqual(entry[field], review['approved_candidate'][candidate_field])
+        self.assertFalse(any(e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
 
     def test_glute_bridge_reference_image_does_not_verify_a_different_model_code(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
