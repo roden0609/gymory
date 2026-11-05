@@ -21,8 +21,8 @@ User-confirmed manual reviews: ABS: 2, ASSAULT FITNESS: 1, Arsenal: 16, BOOTY BU
 
 | Status | Count |
 | --- | ---: |
-| model_verified | 732 |
-| model_verified_image_missing | 28 |
+| model_verified | 733 |
+| model_verified_image_missing | 27 |
 | unresolved | 73 |
 
 ## Coverage by brand
@@ -30,7 +30,7 @@ User-confirmed manual reviews: ABS: 2, ASSAULT FITNESS: 1, Arsenal: 16, BOOTY BU
 | Brand | Total | Model + image | Model, image missing/unavailable | Indexed name only | Candidates / ambiguous | Unresolved | Official Chinese names |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | ABS | 4 | 3 | 0 | 0 | 0 | 1 | 1 |
-| ASSAULT FITNESS | 3 | 1 | 1 | 0 | 0 | 1 | 0 |
+| ASSAULT FITNESS | 3 | 2 | 0 | 0 | 0 | 1 | 0 |
 | Arsenal | 25 | 20 | 3 | 0 | 0 | 2 | 0 |
 | BOLT FITNESS | 2 | 2 | 0 | 0 | 0 | 0 | 0 |
 | BOOTY BUILDER | 16 | 10 | 1 | 0 | 0 | 5 | 0 |
@@ -177,6 +177,13 @@ User manual review applied for Inventory IDs 130, 155, 1339, 1369: Status is `mo
 Per-equipment Match scope and Review note are included in Full inventory cross-reference.
 
 
+## User-directed product corrections
+
+2026-11-05: 1492 corrected from AssaultRunner Classic treadmill to AssaultBike Classic fan bike using the user-supplied official page and visually matched HTTP-verified hero image. Prior bulk candidate approval remains historical and is not reapplied over the correction.
+
+The corrected reference is supported by the manufacturer product heading and a successfully retrieved, visually compared product image. Full source-bound evidence and previous references remain under user_product_corrections in the evidence JSON.
+
+
 ## Matrix exact-model product follow-up
 
 On 2026-11-05, all 11 Matrix inventory records were matched to global manufacturer product headings carrying the exact declared model and console. All 11 corresponding hero images were fetched successfully and visually inspected. Current standard-product names replace earlier CPO/refurbished/boxed-unit titles; all 11 records have model_verified catalog references. Existing manufacturer Chinese names are retained and bound to the current product pages. Previous user-approved candidate snapshots remain unchanged in manual_equipment_reviews and are linked to this manufacturer follow-up.
@@ -232,7 +239,7 @@ Official Chinese name (`official_name_zh`) records manufacturer wording or user-
 | 4 | 1143 | ABS | ABS1014B-X3 | THE ABS BENCH™ X3 | The Abs Bench™ X3 | — | model_verified | [source](https://theabscompany.com/products/the-absbench-x3) | [image](https://cdn.shopify.com/s/files/1/0554/7792/8041/files/AbsBenchX3Mainimg1.png?v=1785783477) | [image](https://oss-hk.247fitness.hk/1d4233e033185265cc593d1aee635ae542974e773f934e54b3b2fabcd20833c4.jpg) | — | manual_review | User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. | — | — | — | — |
 | 5 | 1098 | ASSAULT FITNESS | AS-ABPX Bike Pro X | AIR BIKE | — | — | unresolved | — | — | [image](https://oss-hk.247fitness.hk/300ae9b284d3afdb77beeb757e81cfe635ceb29c64170cfdaf4df2eccecf0505.webp) | — | — | — | — | — | — | — |
 | 6 | 1099 | ASSAULT FITNESS | AssaultRunner Pro | AssaultRunner Pro | AssaultRunner Pro | — | model_verified | [source](https://www.assaultfitness.com/treadmills/assault-runner-pro/) | [image](https://www.assaultfitness.com/_astro/assault_runner_pro_1_2x_61e19690-ea36-4fe3-94af-e7ed669f8d6d.DPCL6yUh_124t1o.webp) | [image](https://oss-hk.247fitness.hk/8d1855fdd8589261579188e76b6a127f60a53712d79508cae0415b7fe5780cec.webp) | — | — | — | — | — | — | — |
-| 7 | 1492 | ASSAULT FITNESS | ASSAULT AIRBIKE CLASSIC | ASSAULT AIRBIKE CLASSIC | AssaultRunner Classic – Assault Fitness | — | model_verified_image_missing | [source](https://shop.assaultfitness.com/treadmills/assault-runner-classic/) | — | [image](https://oss-hk.247fitness.hk/2021358fd4c3cb8483131bd72e25ca69a19b5d240707091da1862a17d405c169.webp) | — | manual_review | User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained. | — | — | — | — |
+| 7 | 1492 | ASSAULT FITNESS | ASSAULT AIRBIKE CLASSIC | ASSAULT AIRBIKE CLASSIC | AssaultBike Classic | — | model_verified | [source](https://www.assaultfitness.com/bikes/assault-bike-classic/) | [image](https://www.assaultfitness.com/_astro/assault_bike_classic_1_2x_374e588b-597b-4525-926f-5c93e3c1c615.Dt52bxOo_Z1iY2ax.webp) | [image](https://oss-hk.247fitness.hk/2021358fd4c3cb8483131bd72e25ca69a19b5d240707091da1862a17d405c169.webp) | — | user_corrected_manufacturer_product_name | User corrected the previous AssaultRunner Classic treadmill mismatch to AssaultBike Classic. The manufacturer product H1 and observed hero image confirm the bike reference. Captured image and official hero show the same AssaultBike Classic fan-resistance bike: circular front fan cage, long moving arms, silver adjustable seat post and rail, chain guard, crank/pedals and stabilizer feet match. Source is a bike, not an AssaultRunner treadmill. Image resolution differs; installed branch condition is not certified. Previous bulk First candidate approval is retained as historical evidence and superseded by this explicit correction; captured source fields are preserved. | — | — | — | — |
 | 8 | 1190 | Arsenal | AR-PNDLM | Pendulum Squat | RELOADED PENDULUM SQUAT | — | model_verified_image_missing | [source](https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat) | — | [image](https://oss-hk.247fitness.hk/2e3603fca9cdcb6fb6a8f3e8cade499c30b9a0ddb9d9d8801e3af0324cdfcc65.png) | — | manual_review | User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained. | — | — | — | — |
 | 9 | 1191 | Arsenal | AR-BLP | Bilateral Leg Press | RELOADED BILATERAL LEG PRESS | — | model_verified | [source](https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press) | [image](https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9012-AR-BLP.png) | [image](https://oss-hk.247fitness.hk/197ea428df5322731c6246655566e1fa61fb0019c57e5e5f33fca8859850b1dc.png) | — | manual_review | User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. | — | — | — | — |
 | 10 | 1192 | Arsenal | AR-HS | Hack Squat | RELOADED LINEAR HACK SQUAT | — | model_verified | [source](https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat) | [image](https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9013-AR-HS.png) | [image](https://oss-hk.247fitness.hk/96c3b976dcf2593f628568c068816fa6c70ade03a0b0c3510fa94c4e5d863c24.png) | — | manual_review | User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. | — | — | — | — |

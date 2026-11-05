@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Official image URLs only in official_image_url. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 732,
+    "model_verified": 733,
     "unresolved": 73,
-    "model_verified_image_missing": 28
+    "model_verified_image_missing": 27
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -9077,14 +9077,35 @@
         "megabox"
       ],
       "lookup_model": "ASSAULT AIRBIKE CLASSIC",
-      "official_name": "AssaultRunner Classic – Assault Fitness",
-      "official_product_url": "https://shop.assaultfitness.com/treadmills/assault-runner-classic/",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "official_name": "AssaultBike Classic",
+      "official_product_url": "https://www.assaultfitness.com/bikes/assault-bike-classic/",
+      "official_image_url": "https://www.assaultfitness.com/_astro/assault_bike_classic_1_2x_374e588b-597b-4525-926f-5c93e3c1c615.Dt52bxOo_Z1iY2ax.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.assaultfitness.com/bikes/assault-bike-classic/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "http_product_h1_and_observed_hero_plus_visual_comparison",
+        "evidence_sha256": "110e7bf8a775e9d649ba19a73f35ddd732cf548b767a7a341e96f6e7a8694797",
+        "manufacturer_model_codes": [],
+        "model_evidence": "User corrected Inventory ID 1492 to AssaultBike Classic and supplied its official bike product page. The page H1 is AssaultBike Classic; the captured AIRBIKE CLASSIC image depicts the same bike. No manufacturer numerical SKU alias is inferred.",
+        "visual_review": {
+          "source_image_url": "https://oss-hk.247fitness.hk/2021358fd4c3cb8483131bd72e25ca69a19b5d240707091da1862a17d405c169.webp",
+          "source_image_sha256": "2021358fd4c3cb8483131bd72e25ca69a19b5d240707091da1862a17d405c169",
+          "official_image_url": "https://www.assaultfitness.com/_astro/assault_bike_classic_1_2x_374e588b-597b-4525-926f-5c93e3c1c615.Dt52bxOo_Z1iY2ax.webp",
+          "official_image_sha256": "0c994aee0c9cffca6d11039fef666827cd9201cecc64e2c76a22f0085b8ff982",
+          "observations": "Captured image and official hero show the same AssaultBike Classic fan-resistance bike: circular front fan cage, long moving arms, silver adjustable seat post and rail, chain guard, crank/pedals and stabilizer feet match. Source is a bike, not an AssaultRunner treadmill. Image resolution differs; installed branch condition is not certified."
+        },
+        "identity_evidence": {
+          "source_heading": "AssaultBike Classic",
+          "equipment_type": "fan-resistance exercise bike",
+          "correction_source": "explicit user name and product URL",
+          "previous_mismatch": "AssaultRunner Classic is a treadmill; it does not match the captured air bike."
+        },
+        "image_evidence_url": "https://www.assaultfitness.com/bikes/assault-bike-classic/"
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User corrected the previous AssaultRunner Classic treadmill mismatch to AssaultBike Classic. The manufacturer product H1 and observed hero image confirm the bike reference. Captured image and official hero show the same AssaultBike Classic fan-resistance bike: circular front fan cage, long moving arms, silver adjustable seat post and rail, chain guard, crank/pedals and stabilizer feet match. Source is a bike, not an AssaultRunner treadmill. Image resolution differs; installed branch condition is not certified. Previous bulk First candidate approval is retained as historical evidence and superseded by this explicit correction; captured source fields are preserved.",
       "search_evidence": {
         "inventory_id": 1492,
         "query": "ASSAULT FITNESS \"ASSAULT AIRBIKE CLASSIC\"",
@@ -9132,16 +9153,24 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.assaultfitness.com/_astro/assault_bike_classic_1_2x_374e588b-597b-4525-926f-5c93e3c1c615.Dt52bxOo_Z1iY2ax.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "0c994aee0c9cffca6d11039fef666827cd9201cecc64e2c76a22f0085b8ff982",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "user_corrected_manufacturer_product_name",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manufacturer_image_checked",
       "manual_review": {
         "inventory_id": 1492,
         "brand": "ASSAULT FITNESS",
@@ -9182,7 +9211,13 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User corrected the previous AssaultRunner Classic treadmill mismatch to AssaultBike Classic. The manufacturer product H1 and observed hero image confirm the bike reference. Captured image and official hero show the same AssaultBike Classic fan-resistance bike: circular front fan cage, long moving arms, silver adjustable seat post and rail, chain guard, crank/pedals and stabilizer feet match. Source is a bike, not an AssaultRunner treadmill. Image resolution differs; installed branch condition is not certified. Previous bulk First candidate approval is retained as historical evidence and superseded by this explicit correction; captured source fields are preserved.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "user_product_corrections",
+        "review_date": "2026-11-05",
+        "reason": "An explicit user correction and manufacturer image evidence supply current product references; the original approved candidate snapshot is preserved."
+      }
     },
     {
       "inventory_id": 1190,
@@ -104226,5 +104261,12 @@
     "method": "Read exact-model global manufacturer pages and their observed hero links through public web reader; fetch all hero/captured images over HTTP and visually compare frame and console. Direct HTML requests return the application shell, not product headings.",
     "console_note": "All captured marketing images use Touch consoles; several are reused for LED and Premium LED inventory records. Official images are selected by exact declared model code and console, preserving the captured references and recording this discrepancy. No branch installation is certified.",
     "stepper_note": "1306 S-ES-LED uses /stepper/led; the user-provided /stepper/premium-led maps to 1309 S-ES-PLED."
+  },
+  "user_product_correction_followup": {
+    "review_date": "2026-11-05",
+    "inventory_ids": [
+      1492
+    ],
+    "note": "1492 corrected from AssaultRunner Classic treadmill to AssaultBike Classic fan bike using the user-supplied official page and visually matched HTTP-verified hero image. Prior bulk candidate approval remains historical and is not reapplied over the correction."
   }
 }

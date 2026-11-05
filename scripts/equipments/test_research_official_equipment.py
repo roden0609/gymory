@@ -327,6 +327,26 @@ class LifeFitnessReviewTests(unittest.TestCase):
 
 
 class SpecificationNameTests(unittest.TestCase):
+    def test_user_assault_bike_correction_supersedes_the_wrong_runner_candidate(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        entry = next(e for e in catalog['equipment'] if e['inventory_id'] == 1492)
+        review = next(r for r in evidence['user_product_corrections'] if r['inventory_id'] == 1492)
+        self.assertEqual(entry['official_name'], 'AssaultBike Classic')
+        self.assertEqual(entry['status'], 'model_verified')
+        self.assertEqual(entry['official_product_url'], 'https://www.assaultfitness.com/bikes/assault-bike-classic/')
+        self.assertEqual(entry['official_image_url'], review['official_image_url'])
+        self.assertTrue(entry['image_check']['available'])
+        self.assertEqual(entry['source_model'], 'ASSAULT AIRBIKE CLASSIC')
+        self.assertIn('AssaultRunner', entry['manual_review']['official_name'])
+        self.assertEqual(entry['manual_review_followup']['evidence_key'], 'user_product_corrections')
+        for change in ({'source_heading': 'AssaultRunner Classic'}, {'source_model': 'OTHER'},
+                       {'user_correction': {}}, {'image_observed_on': 'https://unrelated.example/product'}):
+            with self.assertRaises(ValueError):
+                research.apply_manufacturer_product_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'user_product_corrections': [{**review, **change}]})
+
     def test_matrix_exact_console_pages_supersede_cpo_references_without_erasing_manual_history(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
@@ -514,11 +534,12 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual(sum(not r['official_image_url'] for r in reviews), 11)
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
-            self.assertEqual(entry['status'], 'model_verified' if review['official_image_url'] else 'model_verified_image_missing')
+            current = next((r for r in evidence.get('user_product_corrections', []) if r['inventory_id'] == review['inventory_id']), review)
+            self.assertEqual(entry['status'], current['status'])
             self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
             self.assertEqual(entry['manual_review'], review)
             for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
-                self.assertEqual(entry[field], review['approved_candidate'][candidate_field])
+                self.assertEqual(entry[field], current[field])
         self.assertFalse(any(e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
 
     def test_ambiguous_models_use_user_approved_first_candidates(self):
