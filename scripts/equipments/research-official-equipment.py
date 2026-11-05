@@ -466,13 +466,14 @@ def apply_manual_equipment_reviews(result, supplemental):
                   'official_product_url', 'official_image_url')
         if entry is None or any(entry.get(k) != review.get(k) for k in fields):
             raise ValueError(f'Manual review no longer matches equipment data: {inventory_id}')
-        if (review.get('status') != 'model_verified' or not entry.get('official_image_url')
+        expected_status = 'model_verified' if entry.get('official_image_url') else 'model_verified_image_missing'
+        if (review.get('status') != expected_status
                 or not review.get('review_date') or not review.get('review_source')
                 or review.get('reviewed_by') != 'user'):
-            raise ValueError('Manual model verification requires an explicit user decision and image reference')
-        entry.update(status='model_verified', match_method='manual_equipment_review',
+            raise ValueError('Manual model verification requires explicit user approval and a status matching image availability')
+        entry.update(status=expected_status, match_method='manual_equipment_review',
                      match_scope='manual_review', configuration_status='manually_reviewed',
-                     image_verification_status='manually_reviewed', manual_review=review,
+                     image_verification_status='manually_reviewed' if entry.get('official_image_url') else 'image_missing', manual_review=review,
                      reason=review['note'], configuration_note=review['note'])
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
     if result.get('lifefitness_review'):
@@ -948,7 +949,7 @@ def write_reports(result):
              '- `ambiguous_model`: multiple different official products or bundles refer to the source model.',
              '- `unresolved`: no usable match found in this pass; this does not mean the product has no official source.', '',
              'Images are manufacturer catalog images, not visual confirmation of the physical machine installed in a branch. Colors, upholstery, console configuration and revisions may differ. Image URLs are supplied as research references; no local photo library was downloaded.', '',
-             *(['User-confirmed manual reviews: ' + ', '.join(f'{brand}: {count}' for brand, count in sorted(manual_counts.items())) + '. These records use model_verified based on explicit user approval, with the approved names, URLs and previous candidates retained in manual review evidence.', ''] if manual_counts else []),
+             *(['User-confirmed manual reviews: ' + ', '.join(f'{brand}: {count}' for brand, count in sorted(manual_counts.items())) + '. These records use model_verified (or model_verified_image_missing where no candidate image is available) based on explicit user approval, with the approved names, URLs and previous candidates retained in manual review evidence.', ''] if manual_counts else []),
              '## Totals', '', '| Status | Count |', '| --- | ---: |']
     lines.extend(f'| {status} | {count} |' for status, count in sorted(result['summary'].items()))
     lines += ['', '## Coverage by brand', '', '| Brand | Total | Model + image | Model, image missing/unavailable | Indexed name only | Candidates / ambiguous | Unresolved | Official Chinese names |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']

@@ -4,11 +4,11 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Official image URLs only in official_image_url. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "candidate_requires_review": 74,
+    "candidate_requires_review": 58,
     "unresolved": 78,
-    "model_verified": 656,
-    "ambiguous_model": 9,
-    "model_verified_image_missing": 16
+    "model_verified": 669,
+    "model_verified_image_missing": 19,
+    "ambiguous_model": 9
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -9057,22 +9057,14 @@
         "tsim-sha-tsui"
       ],
       "lookup_model": "AR-PNDLM",
-      "official_name": null,
-      "official_product_url": null,
+      "official_name": "RELOADED PENDULUM SQUAT",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat",
       "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "status": "model_verified_image_missing",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED PENDULUM SQUAT",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat",
-          "image_url": null,
-          "score": 0.667,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained.",
       "search_evidence": {
         "inventory_id": 1190,
         "query": "Arsenal \"AR-PNDLM\"",
@@ -9098,7 +9090,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "image_missing",
+      "manual_review": {
+        "inventory_id": 1190,
+        "brand": "Arsenal",
+        "source_model": "AR-PNDLM",
+        "source_image_url": "https://oss-hk.247fitness.hk/2e3603fca9cdcb6fb6a8f3e8cade499c30b9a0ddb9d9d8801e3af0324cdfcc65.png",
+        "official_name": "RELOADED PENDULUM SQUAT",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat",
+        "official_image_url": null,
+        "approved_candidate": {
+          "name": "RELOADED PENDULUM SQUAT",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat",
+          "image_url": null,
+          "score": 0.667,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED PENDULUM SQUAT",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat",
+            "image_url": null,
+            "score": 0.667,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified_image_missing",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
     },
     {
       "inventory_id": 1191,
@@ -9115,36 +9148,14 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "AR-BLP",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED BILATERAL LEG PRESS",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9012-AR-BLP.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED BILATERAL LEG PRESS",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9012-AR-BLP.png",
-          "score": 0.75,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press"
-        },
-        {
-          "name": "FORGEX PIVOT LEG PRESS",
-          "product_url": "https://www.myarsenalstrength.com/forgex-pivot-leg-press-arsenal-strength-equipment",
-          "image_url": null,
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/forgex-pivot-leg-press-arsenal-strength-equipment"
-        },
-        {
-          "name": "RELOADED HORIZONTAL LEG PRESS",
-          "product_url": "https://www.myarsenalstrength.com/reloaded-horizontal-leg-press-arsenal-strength-equipment",
-          "image_url": null,
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/reloaded-horizontal-leg-press-arsenal-strength-equipment"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1191,
         "query": "Arsenal \"AR-BLP\"",
@@ -9170,7 +9181,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1191,
+        "brand": "Arsenal",
+        "source_model": "AR-BLP",
+        "source_image_url": "https://oss-hk.247fitness.hk/197ea428df5322731c6246655566e1fa61fb0019c57e5e5f33fca8859850b1dc.png",
+        "official_name": "RELOADED BILATERAL LEG PRESS",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9012-AR-BLP.png",
+        "approved_candidate": {
+          "name": "RELOADED BILATERAL LEG PRESS",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9012-AR-BLP.png",
+          "score": 0.75,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED BILATERAL LEG PRESS",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9012-AR-BLP.png",
+            "score": 0.75,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-bilateral-leg-press"
+          },
+          {
+            "name": "FORGEX PIVOT LEG PRESS",
+            "product_url": "https://www.myarsenalstrength.com/forgex-pivot-leg-press-arsenal-strength-equipment",
+            "image_url": null,
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/forgex-pivot-leg-press-arsenal-strength-equipment"
+          },
+          {
+            "name": "RELOADED HORIZONTAL LEG PRESS",
+            "product_url": "https://www.myarsenalstrength.com/reloaded-horizontal-leg-press-arsenal-strength-equipment",
+            "image_url": null,
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/reloaded-horizontal-leg-press-arsenal-strength-equipment"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1192,
@@ -9189,22 +9255,14 @@
         "tsim-sha-tsui"
       ],
       "lookup_model": "AR-HS",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED LINEAR HACK SQUAT",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9013-AR-HS.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED LINEAR HACK SQUAT",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9013-AR-HS.png",
-          "score": 0.5,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1192,
         "query": "Arsenal \"AR-HS\"",
@@ -9230,7 +9288,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1192,
+        "brand": "Arsenal",
+        "source_model": "AR-HS",
+        "source_image_url": "https://oss-hk.247fitness.hk/96c3b976dcf2593f628568c068816fa6c70ade03a0b0c3510fa94c4e5d863c24.png",
+        "official_name": "RELOADED LINEAR HACK SQUAT",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9013-AR-HS.png",
+        "approved_candidate": {
+          "name": "RELOADED LINEAR HACK SQUAT",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9013-AR-HS.png",
+          "score": 0.5,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED LINEAR HACK SQUAT",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9013-AR-HS.png",
+            "score": 0.5,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-linear-hack-squat"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1193,
@@ -9248,22 +9347,14 @@
         "tsim-sha-tsui"
       ],
       "lookup_model": "AR-PS",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED POWER SQUAT",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9015-AR-PS.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED POWER SQUAT",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9015-AR-PS.png",
-          "score": 0.667,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1193,
         "query": "Arsenal \"AR-PS\"",
@@ -9289,7 +9380,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1193,
+        "brand": "Arsenal",
+        "source_model": "AR-PS",
+        "source_image_url": "https://oss-hk.247fitness.hk/e88538fb74f575d5f07872303b7714e6f0cee2af74f9f25ba57c3ec0bff34d3c.png",
+        "official_name": "RELOADED POWER SQUAT",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9015-AR-PS.png",
+        "approved_candidate": {
+          "name": "RELOADED POWER SQUAT",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9015-AR-PS.png",
+          "score": 0.667,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED POWER SQUAT",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9015-AR-PS.png",
+            "score": 0.667,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/lower-body-reloaded/reloaded-power-squat/"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1195,
@@ -9349,29 +9481,14 @@
         "mei-foo"
       ],
       "lookup_model": "AR-LP",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED ISO LAT PULLDOWN",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9032/9032.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED ISO LAT PULLDOWN",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9032/9032.png",
-          "score": 0.75,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown"
-        },
-        {
-          "name": "M1 SELECTORIZED LAT PULLDOWN",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/upper-body-m-1/m1-lat-pulldown-pin-select",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9029-M1-LP.png",
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/upper-body-m-1/m1-lat-pulldown-pin-select"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1196,
         "query": "Arsenal \"AR-LP\"",
@@ -9393,7 +9510,55 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1196,
+        "brand": "Arsenal",
+        "source_model": "AR-LP",
+        "source_image_url": "https://oss-hk.247fitness.hk/a9790ba13f6b1a0714da91180bdd1118f12428a74a4b81d30fecfe34a55dd02d.png",
+        "official_name": "RELOADED ISO LAT PULLDOWN",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9032/9032.png",
+        "approved_candidate": {
+          "name": "RELOADED ISO LAT PULLDOWN",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9032/9032.png",
+          "score": 0.75,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED ISO LAT PULLDOWN",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9032/9032.png",
+            "score": 0.75,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-lat-pulldown"
+          },
+          {
+            "name": "M1 SELECTORIZED LAT PULLDOWN",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/upper-body-m-1/m1-lat-pulldown-pin-select",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9029-M1-LP.png",
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/upper-body-m-1/m1-lat-pulldown-pin-select"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1197,
@@ -9411,22 +9576,14 @@
         "to-kwa-wan"
       ],
       "lookup_model": "AR-LR",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED LEVER ROW",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9024-AR-LR.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED LEVER ROW",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9024-AR-LR.png",
-          "score": 0.667,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1197,
         "query": "Arsenal \"AR-LR\"",
@@ -9448,7 +9605,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1197,
+        "brand": "Arsenal",
+        "source_model": "AR-LR",
+        "source_image_url": "https://oss-hk.247fitness.hk/baa58a89b34f75ebc0b9f926d9ef5b1827802c5ad976ede0c732a6d38d34823e.png",
+        "official_name": "RELOADED LEVER ROW",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9024-AR-LR.png",
+        "approved_candidate": {
+          "name": "RELOADED LEVER ROW",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9024-AR-LR.png",
+          "score": 0.667,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED LEVER ROW",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9024-AR-LR.png",
+            "score": 0.667,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-lever-row"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1198,
@@ -9467,36 +9665,14 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "AR-CP",
-      "official_name": null,
-      "official_product_url": null,
+      "official_name": "FORGEX CONVERGING CHEST PRESS",
+      "official_product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
       "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "status": "model_verified_image_missing",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "FORGEX CONVERGING CHEST PRESS",
-          "product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
-          "image_url": null,
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment"
-        },
-        {
-          "name": "FORGEX WIDE CHEST PRESS",
-          "product_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment",
-          "image_url": null,
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment"
-        },
-        {
-          "name": "RELOADED ISO FLAT PRESS",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-flat-press",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9018-AR-FCP.png",
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-flat-press"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained.",
       "search_evidence": {
         "inventory_id": 1198,
         "query": "Arsenal \"AR-CP\"",
@@ -9518,7 +9694,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "image_missing",
+      "manual_review": {
+        "inventory_id": 1198,
+        "brand": "Arsenal",
+        "source_model": "AR-CP",
+        "source_image_url": "https://oss-hk.247fitness.hk/9a120fc6ce4c97c60411a6b06f94c3ccc04cb1d6fc15d74924656708123e50c5.png",
+        "official_name": "FORGEX CONVERGING CHEST PRESS",
+        "official_product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
+        "official_image_url": null,
+        "approved_candidate": {
+          "name": "FORGEX CONVERGING CHEST PRESS",
+          "product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
+          "image_url": null,
+          "score": 0.4,
+          "evidence_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment"
+        },
+        "previous_candidates": [
+          {
+            "name": "FORGEX CONVERGING CHEST PRESS",
+            "product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
+            "image_url": null,
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment"
+          },
+          {
+            "name": "FORGEX WIDE CHEST PRESS",
+            "product_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment",
+            "image_url": null,
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment"
+          },
+          {
+            "name": "RELOADED ISO FLAT PRESS",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-flat-press",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9018-AR-FCP.png",
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-flat-press"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified_image_missing",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
     },
     {
       "inventory_id": 1199,
@@ -9539,36 +9770,14 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "AR-IP",
-      "official_name": null,
-      "official_product_url": null,
+      "official_name": "FORGEX CONVERGING CHEST PRESS",
+      "official_product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
       "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "status": "model_verified_image_missing",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "FORGEX CONVERGING CHEST PRESS",
-          "product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
-          "image_url": null,
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment"
-        },
-        {
-          "name": "FORGEX WIDE CHEST PRESS",
-          "product_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment",
-          "image_url": null,
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment"
-        },
-        {
-          "name": "RELOADED ISO INCLINE PRESS",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9017-AR-ICP.png",
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained.",
       "search_evidence": {
         "inventory_id": 1199,
         "query": "Arsenal \"AR-IP\"",
@@ -9590,7 +9799,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "image_missing",
+      "manual_review": {
+        "inventory_id": 1199,
+        "brand": "Arsenal",
+        "source_model": "AR-IP",
+        "source_image_url": "https://oss-hk.247fitness.hk/bb0254afdfff5f6e827789ef46781e72768a0f7f647f8c74eae6a072bc70e62c.png",
+        "official_name": "FORGEX CONVERGING CHEST PRESS",
+        "official_product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
+        "official_image_url": null,
+        "approved_candidate": {
+          "name": "FORGEX CONVERGING CHEST PRESS",
+          "product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
+          "image_url": null,
+          "score": 0.4,
+          "evidence_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment"
+        },
+        "previous_candidates": [
+          {
+            "name": "FORGEX CONVERGING CHEST PRESS",
+            "product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
+            "image_url": null,
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment"
+          },
+          {
+            "name": "FORGEX WIDE CHEST PRESS",
+            "product_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment",
+            "image_url": null,
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/forgex-wide-chest-press-arsenal-strength-equipment"
+          },
+          {
+            "name": "RELOADED ISO INCLINE PRESS",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9017-AR-ICP.png",
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified_image_missing",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
     },
     {
       "inventory_id": 1200,
@@ -9614,22 +9878,14 @@
         "tsim-sha-tsui"
       ],
       "lookup_model": "AR-FLY",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED INCLINE FLY",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9049-AR-FLY.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED INCLINE FLY",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9049-AR-FLY.png",
-          "score": 0.667,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1200,
         "query": "Arsenal \"AR-FLY\"",
@@ -9659,7 +9915,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1200,
+        "brand": "Arsenal",
+        "source_model": "AR-FLY",
+        "source_image_url": "https://oss-hk.247fitness.hk/51867573873387cfa4a7438aff61c3c80ab512a818df352c9be14c1191301354.png",
+        "official_name": "RELOADED INCLINE FLY",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9049-AR-FLY.png",
+        "approved_candidate": {
+          "name": "RELOADED INCLINE FLY",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9049-AR-FLY.png",
+          "score": 0.667,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED INCLINE FLY",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9049-AR-FLY.png",
+            "score": 0.667,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-incline-fly/"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1201,
@@ -9678,36 +9975,14 @@
         "to-kwa-wan"
       ],
       "lookup_model": "AR-SP",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED ISO CONV SHOULDER PRESS",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9019-AR-SP.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED ISO CONV SHOULDER PRESS",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9019-AR-SP.png",
-          "score": 0.6,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press"
-        },
-        {
-          "name": "FORGEX SHOULDER PRESS",
-          "product_url": "https://www.myarsenalstrength.com/forgex-shoulder-press-arsenal-strength-equipment",
-          "image_url": null,
-          "score": 0.5,
-          "evidence_url": "https://www.myarsenalstrength.com/forgex-shoulder-press-arsenal-strength-equipment"
-        },
-        {
-          "name": "RELOADED ISO INCLINE PRESS",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9017-AR-ICP.png",
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1201,
         "query": "Arsenal \"AR-SP\"",
@@ -9737,7 +10012,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1201,
+        "brand": "Arsenal",
+        "source_model": "AR-SP",
+        "source_image_url": "https://oss-hk.247fitness.hk/030791fe6b2b172040aa9ab7e8d9c1fbd430e6e628209e9d6e339a862c855638.png",
+        "official_name": "RELOADED ISO CONV SHOULDER PRESS",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9019-AR-SP.png",
+        "approved_candidate": {
+          "name": "RELOADED ISO CONV SHOULDER PRESS",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9019-AR-SP.png",
+          "score": 0.6,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED ISO CONV SHOULDER PRESS",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9019-AR-SP.png",
+            "score": 0.6,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-shoulder-press"
+          },
+          {
+            "name": "FORGEX SHOULDER PRESS",
+            "product_url": "https://www.myarsenalstrength.com/forgex-shoulder-press-arsenal-strength-equipment",
+            "image_url": null,
+            "score": 0.5,
+            "evidence_url": "https://www.myarsenalstrength.com/forgex-shoulder-press-arsenal-strength-equipment"
+          },
+          {
+            "name": "RELOADED ISO INCLINE PRESS",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9017-AR-ICP.png",
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1202,
@@ -9755,22 +10085,14 @@
         "tseung-kwan-o-second-branch"
       ],
       "lookup_model": "AR-MR",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "RELOADED ISO MULTI ROW",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9020/9020_WG_B_BG_1.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "RELOADED ISO MULTI ROW",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9020/9020_WG_B_BG_1.png",
-          "score": 0.5,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1202,
         "query": "Arsenal \"AR-MR\"",
@@ -9800,7 +10122,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1202,
+        "brand": "Arsenal",
+        "source_model": "AR-MR",
+        "source_image_url": "https://oss-hk.247fitness.hk/7da6be262f63f0f4406af7c8e5b0756cba57eb94e19464c645d5f443ce14ab81.png",
+        "official_name": "RELOADED ISO MULTI ROW",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9020/9020_WG_B_BG_1.png",
+        "approved_candidate": {
+          "name": "RELOADED ISO MULTI ROW",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9020/9020_WG_B_BG_1.png",
+          "score": 0.5,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row"
+        },
+        "previous_candidates": [
+          {
+            "name": "RELOADED ISO MULTI ROW",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9020/9020_WG_B_BG_1.png",
+            "score": 0.5,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-multi-row"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1206,
@@ -9925,22 +10288,14 @@
         "tung-chung"
       ],
       "lookup_model": "M1-SLR",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "M-1 SELECTORIZED STANDING LATERAL RAISE",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9008-M1-SLR.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "M-1 SELECTORIZED STANDING LATERAL RAISE",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9008-M1-SLR.png",
-          "score": 0.5,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1209,
         "query": "Arsenal \"M1-SLR\"",
@@ -9958,7 +10313,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1209,
+        "brand": "Arsenal",
+        "source_model": "M1-SLR",
+        "source_image_url": "https://oss-hk.247fitness.hk/83c01333448d12da926e3b2d90da71b4078210bb9f17922098be1fe8981113b9.png",
+        "official_name": "M-1 SELECTORIZED STANDING LATERAL RAISE",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9008-M1-SLR.png",
+        "approved_candidate": {
+          "name": "M-1 SELECTORIZED STANDING LATERAL RAISE",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9008-M1-SLR.png",
+          "score": 0.5,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise"
+        },
+        "previous_candidates": [
+          {
+            "name": "M-1 SELECTORIZED STANDING LATERAL RAISE",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9008-M1-SLR.png",
+            "score": 0.5,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-standing-lateral-raise"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1211,
@@ -10020,22 +10416,14 @@
         "to-kwa-wan"
       ],
       "lookup_model": "M1-GI",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "M1 SELECTORIZED GLUTE ISOLATOR",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9042-M1-GLUTE.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "M1 SELECTORIZED GLUTE ISOLATOR",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9042-M1-GLUTE.png",
-          "score": 0.5,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1218,
         "query": "Arsenal \"M1-GI\"",
@@ -10053,7 +10441,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1218,
+        "brand": "Arsenal",
+        "source_model": "M1-GI",
+        "source_image_url": "https://oss-hk.247fitness.hk/191e8a493ef7e587b82135e5bbe70f38866b563f2b36a9aea5ff53d4da1d2ad3.png",
+        "official_name": "M1 SELECTORIZED GLUTE ISOLATOR",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9042-M1-GLUTE.png",
+        "approved_candidate": {
+          "name": "M1 SELECTORIZED GLUTE ISOLATOR",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9042-M1-GLUTE.png",
+          "score": 0.5,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/"
+        },
+        "previous_candidates": [
+          {
+            "name": "M1 SELECTORIZED GLUTE ISOLATOR",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9042-M1-GLUTE.png",
+            "score": 0.5,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/featured-m-1/m1-glute-isolator/"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1219,
@@ -10113,36 +10542,14 @@
         "megabox"
       ],
       "lookup_model": "ALPHA-OFB",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "ALPHA OLYMPIC FLAT BENCH",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9022-ALPHA-OFB.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "ALPHA OLYMPIC FLAT BENCH",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9022-ALPHA-OFB.png",
-          "score": 0.75,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/"
-        },
-        {
-          "name": "ALPHA FLAT BENCH",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1021-ALPHA-FB.png",
-          "score": 0.5,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/"
-        },
-        {
-          "name": "ALPHA OLYMPIC DECLINE BENCH",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-decline-bench",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9023-ALPHA-ODB.png",
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-decline-bench"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1231,
         "query": "Arsenal \"ALPHA-OFB\"",
@@ -10160,7 +10567,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1231,
+        "brand": "Arsenal",
+        "source_model": "ALPHA-OFB",
+        "source_image_url": "https://oss-hk.247fitness.hk/678b38b1be53306c5be326d8d47bd4b5851bdb1728c68a0bd346a2fdb8bb7f14.jpeg",
+        "official_name": "ALPHA OLYMPIC FLAT BENCH",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9022-ALPHA-OFB.png",
+        "approved_candidate": {
+          "name": "ALPHA OLYMPIC FLAT BENCH",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9022-ALPHA-OFB.png",
+          "score": 0.75,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/"
+        },
+        "previous_candidates": [
+          {
+            "name": "ALPHA OLYMPIC FLAT BENCH",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9022-ALPHA-OFB.png",
+            "score": 0.75,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/"
+          },
+          {
+            "name": "ALPHA FLAT BENCH",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1021-ALPHA-FB.png",
+            "score": 0.5,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/"
+          },
+          {
+            "name": "ALPHA OLYMPIC DECLINE BENCH",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-decline-bench",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9023-ALPHA-ODB.png",
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-decline-bench"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1232,
@@ -10177,36 +10639,14 @@
         "k11"
       ],
       "lookup_model": "ALPHA-CFB",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "ALPHA FLAT BENCH",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1021-ALPHA-FB.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "ALPHA FLAT BENCH",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1021-ALPHA-FB.png",
-          "score": 0.5,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/"
-        },
-        {
-          "name": "ALPHA COMPETITION FLAT BENCH W/FACE SAVERS",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-competition-flat-bench",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1042-ALPHA-COMP.png",
-          "score": 0.429,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-competition-flat-bench"
-        },
-        {
-          "name": "ALPHA OLYMPIC FLAT BENCH",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9022-ALPHA-OFB.png",
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1232,
         "query": "Arsenal \"ALPHA-CFB\"",
@@ -10224,7 +10664,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1232,
+        "brand": "Arsenal",
+        "source_model": "ALPHA-CFB",
+        "source_image_url": "https://oss-hk.247fitness.hk/f110cf4a328778777680b7e612cefb2bb6c4560de4b127a714d5fe766cd8a9b2.jpeg",
+        "official_name": "ALPHA FLAT BENCH",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1021-ALPHA-FB.png",
+        "approved_candidate": {
+          "name": "ALPHA FLAT BENCH",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1021-ALPHA-FB.png",
+          "score": 0.5,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/"
+        },
+        "previous_candidates": [
+          {
+            "name": "ALPHA FLAT BENCH",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1021-ALPHA-FB.png",
+            "score": 0.5,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-flat-bench/"
+          },
+          {
+            "name": "ALPHA COMPETITION FLAT BENCH W/FACE SAVERS",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-competition-flat-bench",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/1042-ALPHA-COMP.png",
+            "score": 0.429,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-competition-flat-bench"
+          },
+          {
+            "name": "ALPHA OLYMPIC FLAT BENCH",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Hero%20Images/9022-ALPHA-OFB.png",
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-olympic-flat-bench/"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1237,
@@ -10242,22 +10737,14 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "ALPHA-UB",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "ALPHA UPRIGHT UTILITY BENCH",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9036/9036_Hero.png",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "ALPHA UPRIGHT UTILITY BENCH",
-          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/",
-          "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9036/9036_Hero.png",
-          "score": 0.4,
-          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1237,
         "query": "Arsenal \"ALPHA-UB\"",
@@ -10275,7 +10762,48 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1237,
+        "brand": "Arsenal",
+        "source_model": "ALPHA-UB",
+        "source_image_url": "https://oss-hk.247fitness.hk/e70083a74d0c91c0d45824b073503b17135aecf65bb7aca210109f8fd3564a64.png",
+        "official_name": "ALPHA UPRIGHT UTILITY BENCH",
+        "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/",
+        "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9036/9036_Hero.png",
+        "approved_candidate": {
+          "name": "ALPHA UPRIGHT UTILITY BENCH",
+          "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/",
+          "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9036/9036_Hero.png",
+          "score": 0.4,
+          "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/"
+        },
+        "previous_candidates": [
+          {
+            "name": "ALPHA UPRIGHT UTILITY BENCH",
+            "product_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/",
+            "image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9036/9036_Hero.png",
+            "score": 0.4,
+            "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/alpha/benches-and-storage-alpha/alpha-fixed-upright-bench/"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all Arsenal candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "Arsenal",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1238,
