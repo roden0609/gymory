@@ -517,13 +517,39 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual(len(reviews), 16)
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
-            self.assertEqual(entry['status'], 'model_verified' if review['approved_candidate'].get('image_url') else 'model_verified_image_missing')
+            current = next((r for r in evidence.get('user_product_corrections', []) if r['inventory_id'] == review['inventory_id']), review)
+            self.assertEqual(entry['status'], current['status'])
             self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
             for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
-                self.assertEqual(entry[field], review['approved_candidate'][candidate_field])
+                self.assertEqual(entry[field], current[field])
             self.assertEqual(entry['source_model'], review['source_model'])
             self.assertEqual(entry['source_image_url'], review['source_image_url'])
         self.assertFalse(any(e['brand'] == 'Arsenal' and e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
+
+    def test_arsenal_user_product_corrections_preserve_configuration_and_history(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = [r for r in evidence['user_product_corrections'] if r['brand'] == 'Arsenal']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {1190, 1198, 1199, 1208, 1294})
+        for review in reviews:
+            entry = next(x for x in catalog['equipment'] if x['inventory_id'] == review['inventory_id'])
+            self.assertEqual(entry['status'], 'model_verified')
+            for field in ('official_name', 'official_product_url', 'official_image_url', 'source_model', 'source_image_url'):
+                self.assertEqual(entry[field], review[field])
+            self.assertTrue(review['image_check']['available'])
+            self.assertEqual(review['hero_image_observed_href'], entry['official_image_url'])
+            if review['inventory_id'] in (1190, 1198, 1199):
+                self.assertEqual(entry['manual_review_followup']['evidence_key'], 'user_product_corrections')
+                self.assertEqual(entry['manual_review']['official_name'], review['previous_reference']['official_name'])
+            else:
+                self.assertNotIn('manual_review', entry)
+        entries = {x['inventory_id']: x for x in catalog['equipment']}
+        self.assertEqual(entries[1198]['official_name'], 'RELOADED ISO FLAT PRESS')
+        self.assertEqual(entries[1199]['official_name'], 'RELOADED ISO INCLINE PRESS')
+        self.assertNotEqual(entries[1198]['official_image_url'], entries[1199]['official_image_url'])
+        basic = next(r for r in reviews if r['inventory_id'] == 1208)
+        self.assertEqual(basic['identity_evidence']['configuration'], 'eight stations')
 
     def test_all_remaining_candidates_use_explicit_user_approved_snapshots(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'

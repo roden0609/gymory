@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Official image URLs only in official_image_url. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 733,
-    "unresolved": 73,
-    "model_verified_image_missing": 27
+    "model_verified": 738,
+    "unresolved": 71,
+    "model_verified_image_missing": 24
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -9239,12 +9239,32 @@
       "lookup_model": "AR-PNDLM",
       "official_name": "RELOADED PENDULUM SQUAT",
       "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Product%20Gallery%20Images/1-9002_WG_B_BG_1.png",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "http_product_heading_and_observed_gallery_plus_visual_comparison",
+        "evidence_sha256": "b001cc28a8f52f8d9d84dbb689912a914627d4ed1b002a654c7ae19dd00f4f29",
+        "manufacturer_model_codes": [],
+        "model_evidence": "User explicitly identified Inventory ID 1190 as RELOADED PENDULUM SQUAT and supplied the manufacturer product and image URLs. The manufacturer heading and observed gallery image support this identity. No source-model manufacturer SKU alias is inferred. Both images show a pendulum squat with high rear pivot, shoulder/back pads, angled foot platform and plate-loaded lever. Counterweight and adjustment hardware differ between catalog revisions; this verifies the user-selected product family, not an identical production revision.",
+        "visual_review": {
+          "source_image_url": "https://oss-hk.247fitness.hk/2e3603fca9cdcb6fb6a8f3e8cade499c30b9a0ddb9d9d8801e3af0324cdfcc65.png",
+          "source_image_sha256": "2e3603fca9cdcb6fb6a8f3e8cade499c30b9a0ddb9d9d8801e3af0324cdfcc65",
+          "official_image_url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Product%20Gallery%20Images/1-9002_WG_B_BG_1.png",
+          "official_image_sha256": "bd6e75c9842dbffb4481cb98d3f45bb69d641acaa728970a5920e768270bb13a",
+          "observations": "Both images show a pendulum squat with high rear pivot, shoulder/back pads, angled foot platform and plate-loaded lever. Counterweight and adjustment hardware differ between catalog revisions; this verifies the user-selected product family, not an identical production revision."
+        },
+        "identity_evidence": {
+          "source_heading": "RELOADED PENDULUM SQUAT",
+          "correction_source": "explicit user name, product URL and image URL",
+          "configuration": "manufacturer product family"
+        },
+        "image_evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-pendulum-squat"
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User-supplied manufacturer product correction. Both images show a pendulum squat with high rear pivot, shoulder/back pads, angled foot platform and plate-loaded lever. Counterweight and adjustment hardware differ between catalog revisions; this verifies the user-selected product family, not an identical production revision. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
       "search_evidence": {
         "inventory_id": 1190,
         "query": "Arsenal \"AR-PNDLM\"",
@@ -9264,16 +9284,24 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.myarsenalstrength.com/hubfs/My_Arsenal_Strength_2022/Product%20Gallery%20Images/1-9002_WG_B_BG_1.png",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "bd6e75c9842dbffb4481cb98d3f45bb69d641acaa728970a5920e768270bb13a",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "user_corrected_manufacturer_product_name",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manufacturer_image_checked",
       "manual_review": {
         "inventory_id": 1190,
         "brand": "Arsenal",
@@ -9311,7 +9339,13 @@
         },
         "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User-supplied manufacturer product correction. Both images show a pendulum squat with high rear pivot, shoulder/back pads, angled foot platform and plate-loaded lever. Counterweight and adjustment hardware differ between catalog revisions; this verifies the user-selected product family, not an identical production revision. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "user_product_corrections",
+        "review_date": "2026-11-05",
+        "reason": "An explicit user correction and manufacturer image evidence supply current product references; the original approved candidate snapshot is preserved."
+      }
     },
     {
       "inventory_id": 1191,
@@ -9845,14 +9879,34 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "AR-CP",
-      "official_name": "FORGEX CONVERGING CHEST PRESS",
-      "official_product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "official_name": "RELOADED ISO FLAT PRESS",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-flat-press",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9018/9018_WG_B_WG_1.png",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-flat-press",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "http_product_heading_and_observed_gallery_plus_visual_comparison",
+        "evidence_sha256": "34beb5a309308f5190ca1b661d70ad2db2a29be6886ae90fa6f41ccf0049d6d2",
+        "manufacturer_model_codes": [],
+        "model_evidence": "User explicitly identified Inventory ID 1198 as RELOADED ISO FLAT PRESS and supplied the manufacturer product and image URLs. The manufacturer heading and observed gallery image support this identity. No source-model manufacturer SKU alias is inferred. Both images show a supine flat bench, independent overhead press arms, multiple grips, rear uprights and plate storage. This is the Reloaded ISO Flat Press, replacing the incorrect seated FORGEX converging press match. Catalog revision details differ.",
+        "visual_review": {
+          "source_image_url": "https://oss-hk.247fitness.hk/9a120fc6ce4c97c60411a6b06f94c3ccc04cb1d6fc15d74924656708123e50c5.png",
+          "source_image_sha256": "9a120fc6ce4c97c60411a6b06f94c3ccc04cb1d6fc15d74924656708123e50c5",
+          "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9018/9018_WG_B_WG_1.png",
+          "official_image_sha256": "d929625effca73451c1306915e28204b5fc38c3a44387e601742eaaadd25aabc",
+          "observations": "Both images show a supine flat bench, independent overhead press arms, multiple grips, rear uprights and plate storage. This is the Reloaded ISO Flat Press, replacing the incorrect seated FORGEX converging press match. Catalog revision details differ."
+        },
+        "identity_evidence": {
+          "source_heading": "RELOADED ISO FLAT PRESS",
+          "correction_source": "explicit user name, product URL and image URL",
+          "configuration": "manufacturer product family"
+        },
+        "image_evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-iso-flat-press"
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User-supplied manufacturer product correction. Both images show a supine flat bench, independent overhead press arms, multiple grips, rear uprights and plate storage. This is the Reloaded ISO Flat Press, replacing the incorrect seated FORGEX converging press match. Catalog revision details differ. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
       "search_evidence": {
         "inventory_id": 1198,
         "query": "Arsenal \"AR-CP\"",
@@ -9868,16 +9922,24 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9018/9018_WG_B_WG_1.png",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "d929625effca73451c1306915e28204b5fc38c3a44387e601742eaaadd25aabc",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "user_corrected_manufacturer_product_name",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manufacturer_image_checked",
       "manual_review": {
         "inventory_id": 1198,
         "brand": "Arsenal",
@@ -9929,7 +9991,13 @@
         },
         "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User-supplied manufacturer product correction. Both images show a supine flat bench, independent overhead press arms, multiple grips, rear uprights and plate storage. This is the Reloaded ISO Flat Press, replacing the incorrect seated FORGEX converging press match. Catalog revision details differ. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "user_product_corrections",
+        "review_date": "2026-11-05",
+        "reason": "An explicit user correction and manufacturer image evidence supply current product references; the original approved candidate snapshot is preserved."
+      }
     },
     {
       "inventory_id": 1199,
@@ -9950,14 +10018,34 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "AR-IP",
-      "official_name": "FORGEX CONVERGING CHEST PRESS",
-      "official_product_url": "https://www.myarsenalstrength.com/forgex-converging-chest-press-arsenal-strength-equipment",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "official_name": "RELOADED ISO INCLINE PRESS",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9017/9017_WG_B_WG_1.png",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "http_product_heading_and_observed_gallery_plus_visual_comparison",
+        "evidence_sha256": "0ecb7cf2fded36835a9e99db63ab84b9855810206f4d06c085455271b09760f2",
+        "manufacturer_model_codes": [],
+        "model_evidence": "User explicitly identified Inventory ID 1199 as RELOADED ISO INCLINE PRESS and supplied the manufacturer product and image URLs. The manufacturer heading and observed gallery image support this identity. No source-model manufacturer SKU alias is inferred. Both images show an inclined long back pad and small seat, independent overhead press arms and plate storage on a white frame. This is the Reloaded ISO Incline Press, replacing the incorrect FORGEX converging press match. Updated adjustment hardware differs.",
+        "visual_review": {
+          "source_image_url": "https://oss-hk.247fitness.hk/bb0254afdfff5f6e827789ef46781e72768a0f7f647f8c74eae6a072bc70e62c.png",
+          "source_image_sha256": "bb0254afdfff5f6e827789ef46781e72768a0f7f647f8c74eae6a072bc70e62c",
+          "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9017/9017_WG_B_WG_1.png",
+          "official_image_sha256": "fe53a5bba439512993156a4d7fd908dec1ac8f00382f3412c492ab2cd5501ec2",
+          "observations": "Both images show an inclined long back pad and small seat, independent overhead press arms and plate storage on a white frame. This is the Reloaded ISO Incline Press, replacing the incorrect FORGEX converging press match. Updated adjustment hardware differs."
+        },
+        "identity_evidence": {
+          "source_heading": "RELOADED ISO INCLINE PRESS",
+          "correction_source": "explicit user name, product URL and image URL",
+          "configuration": "manufacturer product family"
+        },
+        "image_evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/upper-body-reloaded/reloaded-incline-press"
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User-supplied manufacturer product correction. Both images show an inclined long back pad and small seat, independent overhead press arms and plate storage on a white frame. This is the Reloaded ISO Incline Press, replacing the incorrect FORGEX converging press match. Updated adjustment hardware differs. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
       "search_evidence": {
         "inventory_id": 1199,
         "query": "Arsenal \"AR-IP\"",
@@ -9973,16 +10061,24 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9017/9017_WG_B_WG_1.png",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "fe53a5bba439512993156a4d7fd908dec1ac8f00382f3412c492ab2cd5501ec2",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "user_corrected_manufacturer_product_name",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manufacturer_image_checked",
       "manual_review": {
         "inventory_id": 1199,
         "brand": "Arsenal",
@@ -10034,7 +10130,13 @@
         },
         "note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this Arsenal inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User-supplied manufacturer product correction. Both images show an inclined long back pad and small seat, independent overhead press arms and plate storage on a white frame. This is the Reloaded ISO Incline Press, replacing the incorrect FORGEX converging press match. Updated adjustment hardware differs. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "user_product_corrections",
+        "review_date": "2026-11-05",
+        "reason": "An explicit user correction and manufacturer image evidence supply current product references; the original approved candidate snapshot is preserved."
+      }
     },
     {
       "inventory_id": 1200,
@@ -10403,14 +10505,34 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "M1-8BT",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "M-1 BASIC TRAINER",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/upper-body/m1-bt",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9200/9200_WG_B_BG_1.png",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/upper-body/m1-bt",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "http_product_heading_and_observed_gallery_plus_visual_comparison",
+        "evidence_sha256": "11abee3dda54a8649b68a7b9cb271574bb576f2ae2422a0147f2bae45966599b",
+        "manufacturer_model_codes": [],
+        "model_evidence": "User explicitly identified Inventory ID 1208 as M-1 BASIC TRAINER and supplied the manufacturer product and image URLs. The manufacturer heading and observed gallery image support this identity. No source-model manufacturer SKU alias is inferred. Both images show the eight-station layout with two connected multi-stack towers, lat-pulldown seats and thigh pads, low-row benches/footplates and cable handles. The manufacturer page also identifies an 8 Station Basic Trainer configuration. Official name is the modular M-1 BASIC TRAINER; configuration remains eight stations.",
+        "visual_review": {
+          "source_image_url": "https://oss-hk.247fitness.hk/e51be106bedabd438a3a6a647b59a8e90da53620b41bcbafe5ecf739bfb019ac.png",
+          "source_image_sha256": "e51be106bedabd438a3a6a647b59a8e90da53620b41bcbafe5ecf739bfb019ac",
+          "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9200/9200_WG_B_BG_1.png",
+          "official_image_sha256": "ae22da9c45337a2417a4aa2a597a25bf47544987e476bd50bf8cbddf5fc02713",
+          "observations": "Both images show the eight-station layout with two connected multi-stack towers, lat-pulldown seats and thigh pads, low-row benches/footplates and cable handles. The manufacturer page also identifies an 8 Station Basic Trainer configuration. Official name is the modular M-1 BASIC TRAINER; configuration remains eight stations."
+        },
+        "identity_evidence": {
+          "source_heading": "M-1 BASIC TRAINER",
+          "correction_source": "explicit user name, product URL and image URL",
+          "configuration": "eight stations"
+        },
+        "image_evidence_url": "https://www.myarsenalstrength.com/strength-equipment/m-1/upper-body/m1-bt"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User-supplied manufacturer product correction. Both images show the eight-station layout with two connected multi-stack towers, lat-pulldown seats and thigh pads, low-row benches/footplates and cable handles. The manufacturer page also identifies an 8 Station Basic Trainer configuration. Official name is the modular M-1 BASIC TRAINER; configuration remains eight stations. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
       "search_evidence": {
         "inventory_id": 1208,
         "query": "Arsenal \"M1-8BT\"",
@@ -10434,13 +10556,25 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9200/9200_WG_B_BG_1.png",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "ae22da9c45337a2417a4aa2a597a25bf47544987e476bd50bf8cbddf5fc02713",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "official_model": null,
+      "match_scope": "user_corrected_manufacturer_product_name_eight_station_configuration",
+      "configuration_note": "User-supplied manufacturer product correction. Both images show the eight-station layout with two connected multi-stack towers, lat-pulldown seats and thigh pads, low-row benches/footplates and cable handles. The manufacturer page also identifies an 8 Station Basic Trainer configuration. Official name is the modular M-1 BASIC TRAINER; configuration remains eight stations. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
+      "image_verification_status": "manufacturer_image_checked"
     },
     {
       "inventory_id": 1209,
@@ -11088,14 +11222,34 @@
         "shatin-second-branch"
       ],
       "lookup_model": "AR-MTFX",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "RELOADED MULTI FLEX",
+      "official_product_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-multi-flex/",
+      "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9063/9063_WG_B_WG_1.png",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-multi-flex/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "http_product_heading_and_observed_gallery_plus_visual_comparison",
+        "evidence_sha256": "35b6116be8943d1a4ef54f26722eb92b206dffefb7cafb9402ab8c29ce2f25a6",
+        "manufacturer_model_codes": [],
+        "model_evidence": "User explicitly identified Inventory ID 1294 as RELOADED MULTI FLEX and supplied the manufacturer product and image URLs. The manufacturer heading and observed gallery image support this identity. No source-model manufacturer SKU alias is inferred. Both images show the same compact Multi Flex arrangement: paired adjustable lever arms and handles, white triangular side supports, plate horns and central roller pads. Viewing angle and catalog revision differ.",
+        "visual_review": {
+          "source_image_url": "https://oss-hk.247fitness.hk/47fa17e397f398289158abdc1302a90e5c23b8d2c71c891efa318c4b29a0a5ce.png",
+          "source_image_sha256": "47fa17e397f398289158abdc1302a90e5c23b8d2c71c891efa318c4b29a0a5ce",
+          "official_image_url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9063/9063_WG_B_WG_1.png",
+          "official_image_sha256": "0e2368dc084610a2e0bde602a7eb14f46cf826d211f854b9b294ccf70f2a3631",
+          "observations": "Both images show the same compact Multi Flex arrangement: paired adjustable lever arms and handles, white triangular side supports, plate horns and central roller pads. Viewing angle and catalog revision differ."
+        },
+        "identity_evidence": {
+          "source_heading": "RELOADED MULTI FLEX",
+          "correction_source": "explicit user name, product URL and image URL",
+          "configuration": "manufacturer product family"
+        },
+        "image_evidence_url": "https://www.myarsenalstrength.com/strength-equipment/reloaded/featured-reloaded/reloaded-multi-flex/"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User-supplied manufacturer product correction. Both images show the same compact Multi Flex arrangement: paired adjustable lever arms and handles, white triangular side supports, plate horns and central roller pads. Viewing angle and catalog revision differ. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
       "search_evidence": {
         "inventory_id": 1294,
         "query": "Arsenal \"AR-MTFX\"",
@@ -11107,13 +11261,25 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.myarsenalstrength.com/hubfs/2026%20Product%20Updates/9063/9063_WG_B_WG_1.png",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "0e2368dc084610a2e0bde602a7eb14f46cf826d211f854b9b294ccf70f2a3631",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "official_model": null,
+      "match_scope": "user_corrected_manufacturer_product_name",
+      "configuration_note": "User-supplied manufacturer product correction. Both images show the same compact Multi Flex arrangement: paired adjustable lever arms and handles, white triangular side supports, plate horns and central roller pads. Viewing angle and catalog revision differ. Captured source fields and any previous manual candidate approval remain preserved as historical evidence; this correction supplies the current official reference.",
+      "image_verification_status": "manufacturer_image_checked"
     },
     {
       "inventory_id": 1360,
@@ -104265,8 +104431,13 @@
   "user_product_correction_followup": {
     "review_date": "2026-11-05",
     "inventory_ids": [
-      1492
+      1492,
+      1190,
+      1198,
+      1199,
+      1208,
+      1294
     ],
-    "note": "1492 corrected from AssaultRunner Classic treadmill to AssaultBike Classic fan bike using the user-supplied official page and visually matched HTTP-verified hero image. Prior bulk candidate approval remains historical and is not reapplied over the correction."
+    "note": "1492 corrected from AssaultRunner Classic treadmill to AssaultBike Classic fan bike using the user-supplied official page and visually matched HTTP-verified hero image. Prior bulk candidate approval remains historical and is not reapplied over the correction. Arsenal 1190, 1198, 1199, 1208 and 1294 now use user-supplied official product names and HTTP-verified, visually compared gallery images. 1198 and 1199 replace incorrect FORGEX matches; 1208 retains the eight-station configuration. All five are model_verified."
   }
 }
