@@ -474,6 +474,10 @@ class SpecificationNameTests(unittest.TestCase):
             self.assertEqual(entry['candidates'][0]['image_url'], entry['official_image_url'])
             self.assertEqual(entry['evidence']['identity_evidence']['catalog_model'], 'SS-GLB')
             self.assertEqual(entry['official_name_zh'], 'Insignia臀橋訓練機')
+            research.apply_manual_equipment_reviews({'equipment': [entry]}, {'manual_equipment_reviews': [r for r in evidence['manual_equipment_reviews'] if r['inventory_id'] == inventory_id]})
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+            self.assertEqual(entry['official_model'], 'SS-GLD')
         self.assertEqual(next(e for e in catalog['equipment'] if e['inventory_id'] == 130)['source_name'], 'Seated Leg Press')
 
     def test_manual_review_replays_and_rejects_changed_reviewed_data(self):
@@ -481,7 +485,7 @@ class SpecificationNameTests(unittest.TestCase):
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
         evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
         reviews = evidence['manual_equipment_reviews']
-        self.assertEqual({r['inventory_id'] for r in reviews if r['brand'] == 'Life Fitness'}, {1339, 1369})
+        self.assertEqual({r['inventory_id'] for r in reviews if r['brand'] == 'Life Fitness'}, {130, 155, 1339, 1369})
         result = {'equipment': copy.deepcopy(catalog['equipment'])}
         research.apply_browser_evidence(result, evidence)
         first = copy.deepcopy(result)
@@ -491,7 +495,7 @@ class SpecificationNameTests(unittest.TestCase):
             entry = next(e for e in result['equipment'] if e['inventory_id'] == review['inventory_id'])
             self.assertEqual(entry['status'], review['status'])
             self.assertEqual(entry['match_method'], 'manual_equipment_review')
-            self.assertEqual(entry['manual_review']['previous_status'], 'candidate_requires_review')
+            self.assertEqual(entry['manual_review']['previous_status'], review['previous_status'])
         for field in ('source_model', 'source_image_url', 'official_image_url'):
             stale = copy.deepcopy(first)
             entry = next(e for e in stale['equipment'] if e['inventory_id'] == 1339)

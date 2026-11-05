@@ -39545,6 +39545,28 @@
         "product_page_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
         "chinese_page_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
         "http_page_result": "307 redirect error; browser fallback attempted but browser methods failed; official visible page wording rechecked with web reader."
+      },
+      "manufacturer_model_history": {
+        "checked_date": "2026-11-05",
+        "evidence_url": "https://www.lifefitness.com/en-us/legal/patents",
+        "source_last_updated": "2026-10-26",
+        "manufacturer_records": [
+          {
+            "model": "SS-GLD",
+            "product": "Insignia Series Glute Bridge (Discontinued)"
+          },
+          {
+            "model": "SS-GLB",
+            "product": "Insignia Series Glute Bridge"
+          }
+        ],
+        "additional_source": {
+          "url": "https://support.lifefitness.com/hc/en-us/articles/360043013553-Life-Fitness-Insignia-Series",
+          "model": "IS-GLD",
+          "product": "Insignia Glute Bridge",
+          "production_start": "2022-04-27"
+        },
+        "scope": "Manufacturer confirms the Glute Bridge identities and discontinued SS-GLD designation. These sources do not explicitly establish SS-GLB/IS-GLD supersession, regional equivalence or identical image/configuration."
       }
     },
     {
@@ -41687,6 +41709,28 @@
         "product_page_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
         "chinese_page_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
         "http_page_result": "307 redirect error; browser fallback attempted but browser methods failed; official visible page wording rechecked with web reader."
+      },
+      "manufacturer_model_history": {
+        "checked_date": "2026-11-05",
+        "evidence_url": "https://www.lifefitness.com/en-us/legal/patents",
+        "source_last_updated": "2026-10-26",
+        "manufacturer_records": [
+          {
+            "model": "SS-GLD",
+            "product": "Insignia Series Glute Bridge (Discontinued)"
+          },
+          {
+            "model": "SS-GLB",
+            "product": "Insignia Series Glute Bridge"
+          }
+        ],
+        "additional_source": {
+          "url": "https://support.lifefitness.com/hc/en-us/articles/360043013553-Life-Fitness-Insignia-Series",
+          "model": "IS-GLD",
+          "product": "Insignia Glute Bridge",
+          "production_start": "2022-04-27"
+        },
+        "scope": "Manufacturer confirms the Glute Bridge identities and discontinued SS-GLD designation. These sources do not explicitly establish SS-GLB/IS-GLD supersession, regional equivalence or identical image/configuration."
       }
     },
     {
@@ -114384,6 +114428,132 @@
         "original_status": "candidate_requires_review"
       },
       "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
+    },
+    {
+      "inventory_id": 130,
+      "brand": "Life Fitness",
+      "source_model": "SS-GLD（LP）Full",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/4e9bb6362d2c3957767aa847898de35a3aba6a6da47f2c29fd55fdbbaf61b4d8.jpg",
+      "official_name": "Insignia Series Glute Bridge",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Selectorised/Insignia%20Series/Strength-Insignia-Series-Glute-Bridge.png?h=630&w=1200",
+      "approved_candidate": {
+        "name": "Insignia Series Glute Bridge",
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+        "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Selectorised/Insignia%20Series/Strength-Insignia-Series-Glute-Bridge.png?h=630&w=1200",
+        "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+        "reason": "Source name Seated Leg Press conflicts with its captured glute-bridge image and the manufacturer SS-GLD name. Manufacturer manual lists SS-GLD as Glute Bridge; the current catalog page uses SS-GLB. The manufacturer Chinese name and SS-GLB photo are recorded as product-family references. Captured photos depict glute-bridge machines, but foot-support/frame details differ from the catalog photo; SS-GLD/SS-GLB equivalence, exact image match and LP/SP/Full configuration remain unverified. No different-generation relationship is asserted.",
+        "name_zh": "Insignia臀橋訓練機"
+      },
+      "previous_candidates": [
+        {
+          "name": "Insignia Series Glute Bridge",
+          "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Selectorised/Insignia%20Series/Strength-Insignia-Series-Glute-Bridge.png?h=630&w=1200",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+          "reason": "Source name Seated Leg Press conflicts with its captured glute-bridge image and the manufacturer SS-GLD name. Manufacturer manual lists SS-GLD as Glute Bridge; the current catalog page uses SS-GLB. The manufacturer Chinese name and SS-GLB photo are recorded as product-family references. Captured photos depict glute-bridge machines, but foot-support/frame details differ from the catalog photo; SS-GLD/SS-GLB equivalence, exact image match and LP/SP/Full configuration remain unverified. No different-generation relationship is asserted.",
+          "name_zh": "Insignia臀橋訓練機"
+        }
+      ],
+      "previous_status": "model_verified_image_missing",
+      "previous_research_note": "Source name Seated Leg Press conflicts with its captured glute-bridge image and the manufacturer SS-GLD name. Manufacturer manual lists SS-GLD as Glute Bridge; the current catalog page uses SS-GLB. The manufacturer Chinese name and SS-GLB photo are recorded as product-family references. Captured photos depict glute-bridge machines, but foot-support/frame details differ from the catalog photo; SS-GLD/SS-GLB equivalence, exact image match and LP/SP/Full configuration remain unverified. No different-generation relationship is asserted.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the official images for Inventory IDs 130 and 155 are correct.",
+        "selection": "Existing official image",
+        "inventory_ids": [
+          130,
+          155
+        ]
+      },
+      "note": "User confirmed the existing official Glute Bridge image is correct for this inventory record. Model and image are manually approved. Previous SS-GLD versus SS-GLB and source-name/configuration discrepancies remain in the review evidence; this decision does not establish a manufacturer SKU alias. Manufacturer patent marking lists SS-GLD as Insignia Series Glute Bridge (Discontinued) and SS-GLB as Insignia Series Glute Bridge; the support history also records IS-GLD production from 2022-04-27. Explicit supersession/regional equivalence is not established by these sources.",
+      "manufacturer_model_history": {
+        "checked_date": "2026-11-05",
+        "evidence_url": "https://www.lifefitness.com/en-us/legal/patents",
+        "source_last_updated": "2026-10-26",
+        "manufacturer_records": [
+          {
+            "model": "SS-GLD",
+            "product": "Insignia Series Glute Bridge (Discontinued)"
+          },
+          {
+            "model": "SS-GLB",
+            "product": "Insignia Series Glute Bridge"
+          }
+        ],
+        "additional_source": {
+          "url": "https://support.lifefitness.com/hc/en-us/articles/360043013553-Life-Fitness-Insignia-Series",
+          "model": "IS-GLD",
+          "product": "Insignia Glute Bridge",
+          "production_start": "2022-04-27"
+        },
+        "scope": "Manufacturer confirms the Glute Bridge identities and discontinued SS-GLD designation. These sources do not explicitly establish SS-GLB/IS-GLD supersession, regional equivalence or identical image/configuration."
+      }
+    },
+    {
+      "inventory_id": 155,
+      "brand": "Life Fitness",
+      "source_model": " SS-GLD(SP)Full",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/46c2ad3370b6ea1c32ad1b0d456150d67543bf9d4cd33698623d35cf861248c9.jpg",
+      "official_name": "Insignia Series Glute Bridge",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Selectorised/Insignia%20Series/Strength-Insignia-Series-Glute-Bridge.png?h=630&w=1200",
+      "approved_candidate": {
+        "name": "Insignia Series Glute Bridge",
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+        "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Selectorised/Insignia%20Series/Strength-Insignia-Series-Glute-Bridge.png?h=630&w=1200",
+        "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+        "reason": "Manufacturer manual lists SS-GLD as Glute Bridge; the current catalog page uses SS-GLB. The manufacturer Chinese name and SS-GLB photo are recorded as product-family references. Captured photos depict glute-bridge machines, but foot-support/frame details differ from the catalog photo; SS-GLD/SS-GLB equivalence, exact image match and LP/SP/Full configuration remain unverified. No different-generation relationship is asserted.",
+        "name_zh": "Insignia臀橋訓練機"
+      },
+      "previous_candidates": [
+        {
+          "name": "Insignia Series Glute Bridge",
+          "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Selectorised/Insignia%20Series/Strength-Insignia-Series-Glute-Bridge.png?h=630&w=1200",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/insignia-series-glute-bridge",
+          "reason": "Manufacturer manual lists SS-GLD as Glute Bridge; the current catalog page uses SS-GLB. The manufacturer Chinese name and SS-GLB photo are recorded as product-family references. Captured photos depict glute-bridge machines, but foot-support/frame details differ from the catalog photo; SS-GLD/SS-GLB equivalence, exact image match and LP/SP/Full configuration remain unverified. No different-generation relationship is asserted.",
+          "name_zh": "Insignia臀橋訓練機"
+        }
+      ],
+      "previous_status": "model_verified_image_missing",
+      "previous_research_note": "Manufacturer manual lists SS-GLD as Glute Bridge; the current catalog page uses SS-GLB. The manufacturer Chinese name and SS-GLB photo are recorded as product-family references. Captured photos depict glute-bridge machines, but foot-support/frame details differ from the catalog photo; SS-GLD/SS-GLB equivalence, exact image match and LP/SP/Full configuration remain unverified. No different-generation relationship is asserted.",
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the official images for Inventory IDs 130 and 155 are correct.",
+        "selection": "Existing official image",
+        "inventory_ids": [
+          130,
+          155
+        ]
+      },
+      "note": "User confirmed the existing official Glute Bridge image is correct for this inventory record. Model and image are manually approved. Previous SS-GLD versus SS-GLB and source-name/configuration discrepancies remain in the review evidence; this decision does not establish a manufacturer SKU alias. Manufacturer patent marking lists SS-GLD as Insignia Series Glute Bridge (Discontinued) and SS-GLB as Insignia Series Glute Bridge; the support history also records IS-GLD production from 2022-04-27. Explicit supersession/regional equivalence is not established by these sources.",
+      "manufacturer_model_history": {
+        "checked_date": "2026-11-05",
+        "evidence_url": "https://www.lifefitness.com/en-us/legal/patents",
+        "source_last_updated": "2026-10-26",
+        "manufacturer_records": [
+          {
+            "model": "SS-GLD",
+            "product": "Insignia Series Glute Bridge (Discontinued)"
+          },
+          {
+            "model": "SS-GLB",
+            "product": "Insignia Series Glute Bridge"
+          }
+        ],
+        "additional_source": {
+          "url": "https://support.lifefitness.com/hc/en-us/articles/360043013553-Life-Fitness-Insignia-Series",
+          "model": "IS-GLD",
+          "product": "Insignia Glute Bridge",
+          "production_start": "2022-04-27"
+        },
+        "scope": "Manufacturer confirms the Glute Bridge identities and discontinued SS-GLD designation. These sources do not explicitly establish SS-GLB/IS-GLD supersession, regional equivalence or identical image/configuration."
+      }
     }
   ],
   "lifefitness_glute_bridge_followup": {
