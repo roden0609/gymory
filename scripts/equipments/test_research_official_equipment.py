@@ -731,6 +731,83 @@ class SpecificationNameTests(unittest.TestCase):
                 research.apply_lifefitness_reviews({'equipment': [entry]},
                     {'lifefitness_item_reviews': [{**review, 'visual_review': visual}]})
 
+    def test_lifefitness_gap_followup_keeps_models_components_and_generations_distinct(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        entries = {x['inventory_id']: x for x in catalog['equipment']}
+        audit = evidence['lifefitness_catalog_gap_followup']
+        self.assertEqual(audit['initial_gap_count'], 19)
+        self.assertEqual(len(audit['reviews']), 19)
+        self.assertEqual(set(audit['image_inventory_ids']), {1393, 1394, 1395, 1396, 1504, 1505, 1510, 1511, 1518})
+        self.assertEqual(entries[1392]['official_model'], 'MJLP')
+        self.assertIsNone(entries[1392]['official_image_url'])
+        self.assertEqual(entries[1392]['evidence']['rejected_references'][0]['manufacturer_model'], 'HS-PD')
+        for id in audit['image_review_required_ids']:
+            entry = entries[id]
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['manual_image_review']['previous_status'], 'model_verified_image_missing')
+            self.assertTrue(entry['image_check']['available'])
+            self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+            self.assertEqual(entry['candidates'], [])
+            self.assertTrue(entry['manual_image_review']['previous_candidates'])
+        for id in (1510, 1511):
+            self.assertEqual(entries[id]['status'], 'model_verified')
+            self.assertEqual(entries[id]['image_verification_status'], 'manufacturer_image_checked')
+            self.assertTrue(entries[id]['image_check']['available'])
+        self.assertEqual(entries[1511]['evidence']['identity_evidence']['image_scope'], 'manufacturer_annotated_component_diagram')
+        self.assertEqual(entries[1518]['evidence']['identity_evidence']['image_scope'], 'different_generation_component_reference')
+        self.assertEqual(entries[1482]['official_name_zh'], 'Heat 划船機')
+        self.assertEqual(entries[1510]['official_name_zh'], '核心')
+        for id in (1379, 1381, 1383, 1384, 1487):
+            self.assertIsNone(entries[id].get('official_name_zh'))
+        self.assertIsNone(entries[1383]['official_image_url'])
+        for id in (1184, 1500):
+            self.assertEqual(entries[id]['status'], 'unresolved')
+            self.assertIsNone(entries[id]['official_name'])
+        group = [x for x in entries.values() if x['brand'] == 'Life Fitness']
+        self.assertEqual([sum(not x.get(k) for x in group) for k in ('official_name', 'official_name_zh', 'official_image_url')], [2, 8, 5])
+
+    def test_lifefitness_user_image_approvals_preserve_initial_evidence_and_reject_stale_references(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        approvals = evidence['lifefitness_image_reviews']
+        self.assertEqual({r['inventory_id'] for r in approvals}, {1393, 1394, 1395, 1396, 1504, 1505, 1518})
+        for approval in approvals:
+            entry = next(x for x in catalog['equipment'] if x['inventory_id'] == approval['inventory_id'])
+            self.assertEqual(entry['manual_image_review'], approval)
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+            self.assertEqual(approval['review_date'], '2026-11-06')
+            initial = next(x for x in evidence['lifefitness_item_reviews'] if x['inventory_id'] == approval['inventory_id'])
+            initial_result = {'equipment': [copy.deepcopy(entry)]}
+            research.apply_lifefitness_reviews(initial_result, {'lifefitness_item_reviews': [initial]})
+            self.assertEqual(initial_result['equipment'][0]['status'], 'model_verified_image_missing')
+            research.apply_manual_equipment_reviews(initial_result, {'lifefitness_image_reviews': [approval]})
+            self.assertEqual(initial_result['equipment'][0]['status'], 'model_verified')
+        approval = approvals[0]
+        entry = next(x for x in catalog['equipment'] if x['inventory_id'] == approval['inventory_id'])
+        for field in ('brand', 'source_model', 'source_image_url', 'official_name', 'official_product_url', 'official_image_url'):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                research.apply_manual_equipment_reviews({'equipment': [{**entry, field: 'changed'}]},
+                    {'lifefitness_image_reviews': [approval]})
+        for change in ({'reviewed_by': 'automated'}, {'review_date': ''}, {'review_source': {}}, {'status': 'admin_verified'}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                research.apply_manual_equipment_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'lifefitness_image_reviews': [{**approval, **change}]})
+
+    def test_lifefitness_gap_image_review_rejects_changed_capture(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        review = next(x for x in evidence['lifefitness_item_reviews'] if x['inventory_id'] == 1393)
+        original = next(x for x in catalog['equipment'] if x['inventory_id'] == 1393)
+        for field in ('source_name', 'source_image_url'):
+            entry = {**original, field: 'changed'}
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                research.apply_lifefitness_reviews({'equipment': [entry]}, {'lifefitness_item_reviews': [review]})
+
     def test_component_names_are_read_from_labels_without_system_images(self):
         source = '''<h1>Multi-Jungle MJ8</h1><table>
           <tr><td>MJ Lat Pulldown (MJLP) Weight</td><td>340 lbs</td></tr>
@@ -758,12 +835,17 @@ class SpecificationNameTests(unittest.TestCase):
             self.assertTrue(entry['official_name_zh'])
             if entry['source_model'].startswith('MJ'):
                 self.assertEqual(entry['official_name_zh_evidence']['manufacturer_model_codes'], [entry['source_model']])
-                self.assertIsNone(entry['official_image_url'])
+                if inventory_id in (1393, 1394, 1395, 1396, 1504, 1505):
+                    self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+                    self.assertEqual(entry['evidence']['identity_evidence']['image_scope'], 'whole_system_context_only')
+                    self.assertEqual(entry['status'], 'model_verified')
+                else:
+                    self.assertIsNone(entry['official_image_url'])
         mixed = next(e for e in catalog['equipment'] if e['inventory_id'] == 1394)
         self.assertIn('训练', mixed['official_name_zh_evidence']['original_name'])
         self.assertIn('訓練', mixed['official_name_zh'])
         life = next(r for r in research.name_coverage_by_brand(catalog['equipment']) if r['brand'] == 'Life Fitness')
-        self.assertEqual((life['total'], life['chinese_names'], life['chinese_missing']), (112, 102, 10))
+        self.assertEqual((life['total'], life['chinese_names'], life['chinese_missing']), (112, 104, 8))
 
     def test_localized_trademark_and_candidate_image_do_not_verify_configuration(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'

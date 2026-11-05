@@ -42795,7 +42795,7 @@
       "source_name": "Mutil Junction-16 Stack",
       "base_model": "Adj-16",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Mutil Junction-16 Stack Adj-16 site:lifefitness.com",
       "search_results": [
         {
@@ -42870,7 +42870,10 @@
       "outcome": "unresolved",
       "match_scope": "unconfirmed",
       "configuration_status": "unverified",
-      "configuration_note": "Individual model/name search found no usable official Adj-16 / 16-stack product. Generic home-gym weight-stack results were excluded."
+      "configuration_note": "Individual model/name search found no usable official Adj-16 / 16-stack product. Generic home-gym weight-stack results were excluded. Catalog gap follow-up on 2026-11-05: Rechecked the Multi-Jungle MJ4/MJ8 catalog and the supplied directory. Source Adj-16 / 16-stack configuration does not identify a manufacturer model; the captured multi-core installation does not establish that an MJ8 standard image verifies a 16-stack configuration. Keep unresolved and do not invent a standard-product name.",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/92d7250ced1db0ee5b7ed2d023cedfae319a2fdcd803aaa123733c9c72af265f.png",
+      "catalog_gap_followup_note": "Rechecked the Multi-Jungle MJ4/MJ8 catalog and the supplied directory. Source Adj-16 / 16-stack configuration does not identify a manufacturer model; the captured multi-core installation does not establish that an MJ8 standard image verifies a 16-stack configuration. Keep unresolved and do not invent a standard-product name."
     },
     {
       "inventory_id": 1334,
@@ -45052,7 +45055,7 @@
       "source_name": "Life Fitness Signature Series Arm Curl Bench",
       "base_model": "SAC",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series Arm Curl Bench SAC site:lifefitness.com",
       "search_results": [
         {
@@ -45131,7 +45134,7 @@
       "outcome": "model_confirmed",
       "match_scope": "documented_sku_prefix",
       "configuration_status": "unverified",
-      "configuration_note": "SAC family confirmed by official stock SKUs. Outlet photo has a particular frame/upholstery color; source color and stock-unit revision are unverified.",
+      "configuration_note": "SAC family confirmed by official stock SKUs. Outlet photo has a particular frame/upholstery color; source color and stock-unit revision are unverified. Catalog gap follow-up on 2026-11-05: The Hong Kong arm-curl page provides 手臂彎舉訓練椅 under product code LBR-BC; the German page retains SAC and the outlet product retains the legacy Signature identity. No manufacturer SAC-to-LBR-BC generation relationship was established, so the newer Chinese wording is not assigned to legacy SAC.",
       "official_name": "Signature Series Arm Curl Bench",
       "official_model": "SAC",
       "official_product_url": "https://shop.lifefitness.com/products/signature-series-arm-curl-bench-outlet",
@@ -45151,7 +45154,10 @@
         "content_type": "image/jpeg",
         "status": 200,
         "sha256": "ca260ef474113faa5404721af392bc2542aeafdb96fee9dc3b264fdc37d4c0a9"
-      }
+      },
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/e1f74dfe0335d7bb5c2b91162aa8a9a190d1bf7ba85a520e84b3f7ad7b9f3f9c.png",
+      "catalog_gap_followup_note": "The Hong Kong arm-curl page provides 手臂彎舉訓練椅 under product code LBR-BC; the German page retains SAC and the outlet product retains the legacy Signature identity. No manufacturer SAC-to-LBR-BC generation relationship was established, so the newer Chinese wording is not assigned to legacy SAC."
     },
     {
       "inventory_id": 1380,
@@ -45266,7 +45272,7 @@
       "source_name": "Life Fitness Signature Series Barbell Rack",
       "base_model": "SBR",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series Barbell Rack SBR site:lifefitness.com",
       "search_results": [
         {
@@ -45337,7 +45343,7 @@
       "outcome": "model_confirmed",
       "match_scope": "documented_model",
       "configuration_status": "unverified",
-      "configuration_note": "SBR model confirmed using the manufacturer introduction and dedicated rack photo; no substitution with newer LBR-BR.",
+      "configuration_note": "SBR model confirmed using the manufacturer introduction and dedicated rack photo; no substitution with newer LBR-BR. Catalog gap follow-up on 2026-11-05: The Hong Kong Barbell Rack body contains 槓鈴架, but the product code is LBR-BR; inventory SBR is the legacy Signature rack. The unproven SBR-to-LBR-BR relationship prevents reusing that Chinese name as exact-model evidence.",
       "official_name": "Signature Series Barbell Rack",
       "official_model": "SBR",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/15111372873239-Life-Fitness-SBR-Signature-Barbell-Rack-Introduction",
@@ -45357,7 +45363,10 @@
         "content_type": "image/jpeg",
         "status": 200,
         "sha256": "6fa977d9e5c45eb252194e0d5a6494de96a11372770c26ac8ed9debdea564928"
-      }
+      },
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/fbe62cf7161922ad4aebf31e1290ae1f00a1b85c55f90abcf099b46fd1e29498.png",
+      "catalog_gap_followup_note": "The Hong Kong Barbell Rack body contains 槓鈴架, but the product code is LBR-BR; inventory SBR is the legacy Signature rack. The unproven SBR-to-LBR-BR relationship prevents reusing that Chinese name as exact-model evidence."
     },
     {
       "inventory_id": 1382,
@@ -45473,7 +45482,7 @@
       "source_name": "OP-DB3SS Optima 3 Tier Dumbbell Rack (10prs/rack)",
       "base_model": "OP-DB3SS",
       "brand": "Life Fitness",
-      "review_date": "2026-11-04",
+      "review_date": "2026-11-05",
       "query": "Life Fitness OP-DB3SS Optima 3 Tier Dumbbell Rack (10prs/rack) OP-DB3SS site:lifefitness.com",
       "search_results": [
         {
@@ -45548,7 +45557,7 @@
       "outcome": "model_confirmed",
       "match_scope": "exact_model_manual",
       "configuration_status": "unverified",
-      "configuration_note": "Exact OP-DB3SS model is listed in the manufacturer assembly manual. Short-rack image remains unverified; the catalog long-rack OP-DB3LS photo is not substituted. Source 10prs/rack claim is not verified.",
+      "configuration_note": "Exact OP-DB3SS model is listed in the manufacturer assembly manual. Short-rack image remains unverified; the catalog long-rack OP-DB3LS photo is not substituted. Source 10prs/rack claim is not verified. Catalog gap follow-up on 2026-11-05: Rechecked the discontinued Optima product page. Its hero is OP-DB3LS (long saddle, 15 pairs), not the source OP-DB3SS short saddle. The OP-DB3LS image and newer rack translations are excluded. No exact short-rack official photo or Chinese name was established.",
       "candidate_name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
       "candidate_product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
       "candidate_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/247-696-lf-os-ttlsdr-base.png?h=630&w=1200",
@@ -45567,7 +45576,10 @@
         "model_label": "Axiom OP-AR3, OP-DB3HX, OP-DB3LS, OP-DB3SS Three Tier Dumbbell Rack",
         "catalog_model": "OP-DB3LS",
         "rejected_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/247-696-lf-os-ttlsdr-base.png?h=630&w=1200"
-      }
+      },
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/09afd0f2700cc40c414f15bbdd040f1ea37215a5eaa1d89a03b69ad2bac755c2.png",
+      "catalog_gap_followup_note": "Rechecked the discontinued Optima product page. Its hero is OP-DB3LS (long saddle, 15 pairs), not the source OP-DB3SS short saddle. The OP-DB3LS image and newer rack translations are excluded. No exact short-rack official photo or Chinese name was established."
     },
     {
       "inventory_id": 1384,
@@ -45575,7 +45587,7 @@
       "source_name": "life fitness Utility Bench",
       "base_model": "LBRUB",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness life fitness Utility Bench LBRUB site:lifefitness.com",
       "search_results": [
         {
@@ -45650,7 +45662,7 @@
       "model_evidence": "Manufacturer product code/SKU: LBR-UB.",
       "match_scope": "exact_model",
       "configuration_status": "not_specified",
-      "configuration_note": "Source model identity confirmed; catalog image does not establish branch color or optional accessories.",
+      "configuration_note": "Source model identity confirmed; catalog image does not establish branch color or optional accessories. Catalog gap follow-up on 2026-11-05: Rechecked the Hong Kong Utility Bench H1 and body: the name remains Utility Bench and no specific Chinese name appears. The Mainland URL redirects to English. Automated support-article translations and generic bench wording are excluded.",
       "discontinued": false,
       "outcome": "model_confirmed",
       "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/life-fitness-utility-bench",
@@ -45663,7 +45675,10 @@
         "content_type": "image/png",
         "status": 200,
         "sha256": "58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a"
-      }
+      },
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a.png",
+      "catalog_gap_followup_note": "Rechecked the Hong Kong Utility Bench H1 and body: the name remains Utility Bench and no specific Chinese name appears. The Mainland URL redirects to English. Automated support-article translations and generic bench wording are excluded."
     },
     {
       "inventory_id": 1385,
@@ -46191,7 +46206,7 @@
       "source_name": "Life Fitness Signature Series MJ Station-Lat Pulldown",
       "base_model": "MJLP",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Station-Lat Pulldown MJLP site:lifefitness.com",
       "search_results": [
         {
@@ -46266,7 +46281,7 @@
       "outcome": "model_confirmed",
       "match_scope": "documented_station_model",
       "configuration_status": "unverified",
-      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded.",
+      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Catalog gap follow-up on 2026-11-05: User-supplied HS-PD reference rejected: the supplied Hammer Strength Select Lat Pulldown page explicitly identifies HS-PD, while inventory MJLP is the Multi-Jungle station. Captured white round-tube four-post frame with overhead pulleys differs from the supplied dark rectangular HS-PD frame. Neither source code nor Chinese name is replaced; no matching standalone MJLP image was found on the checked catalog pages.",
       "official_name": "Multi-Jungle Lat Pulldown",
       "official_model": "MJLP",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
@@ -46277,7 +46292,29 @@
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJLP-STA = Lat Pulldown in official owner manual, PDF page 47.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=47",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/b0c428ac6a919fd0c7f8b444075a1af59de4259b3656118e7a0b45cb416cd313.webp",
+      "rejected_references": [
+        {
+          "product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/hammer-strength-select-lat-pulldown",
+          "manufacturer_model": "HS-PD",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/20-483-hammer-strength-select-lat-pulldown-image-new.webp",
+          "page_sha256": "cda173cc441b87145a6fd342787fbb38a4d64cb63d8d8400dd01570d99e132c2",
+          "image_check": {
+            "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/20-483-hammer-strength-select-lat-pulldown-image-new.webp",
+            "available": true,
+            "http_status": 200,
+            "content_type": "image/webp",
+            "sha256": "e4603e8cadf86aaaa8b097d01c753574c3f9c92ab18058ae5d0593c5ebfa05ce",
+            "checked_at": "2026-11-05",
+            "method": "http_image_content_type_and_visual_inspection"
+          },
+          "reason": "User-supplied HS-PD reference rejected: the supplied Hammer Strength Select Lat Pulldown page explicitly identifies HS-PD, while inventory MJLP is the Multi-Jungle station. Captured white round-tube four-post frame with overhead pulleys differs from the supplied dark rectangular HS-PD frame. Neither source code nor Chinese name is replaced; no matching standalone MJLP image was found on the checked catalog pages.",
+          "source_image_sha256": "b0c428ac6a919fd0c7f8b444075a1af59de4259b3656118e7a0b45cb416cd313"
+        }
+      ],
+      "catalog_gap_followup_note": "User-supplied HS-PD reference rejected: the supplied Hammer Strength Select Lat Pulldown page explicitly identifies HS-PD, while inventory MJLP is the Multi-Jungle station. Captured white round-tube four-post frame with overhead pulleys differs from the supplied dark rectangular HS-PD frame. Neither source code nor Chinese name is replaced; no matching standalone MJLP image was found on the checked catalog pages."
     },
     {
       "inventory_id": 1393,
@@ -46285,7 +46322,7 @@
       "source_name": "Life Fitness Signature Series MJ Station-Row",
       "base_model": "MJRW",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Station-Row MJRW site:lifefitness.com",
       "search_results": [
         {
@@ -46359,19 +46396,50 @@
       ],
       "outcome": "model_confirmed",
       "match_scope": "documented_station_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded.",
+      "configuration_status": "system_context_requires_review",
+      "configuration_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRW. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
       "official_name": "Multi-Jungle Low Row",
       "official_model": "MJRW",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
-      "official_image_url": null,
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
       "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
       "evidence_sha256": "6ec0b77a08caa9ed1ec64617b03b11ba07e26dcb6157e83742f71f7a2613fc6c",
       "retrieved_at": "2026-10-29T12:47:53.388Z",
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJRW-STA = Low Row in official owner manual, PDF page 48.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=48",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_match_status": "candidate_requires_review",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+        "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "official_image_sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "result": "system_context_only",
+        "observations": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRW. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      "identity_evidence": {
+        "image_scope": "whole_system_context_only",
+        "inventory_model": "MJRW",
+        "image_product": "Signature Series Multi-Jungle MJ4",
+        "component_identity_source": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "system_image_is_not_standalone_component": true
+      },
+      "catalog_gap_followup_note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRW. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
     },
     {
       "inventory_id": 1394,
@@ -46379,7 +46447,7 @@
       "source_name": "Life Fitness Signature Series MJ Station-Dual Pulley Row",
       "base_model": "MJRWD",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Station-Dual Pulley Row MJRWD site:lifefitness.com",
       "search_results": [
         {
@@ -46441,19 +46509,50 @@
       ],
       "outcome": "model_confirmed",
       "match_scope": "documented_station_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded.",
+      "configuration_status": "system_context_requires_review",
+      "configuration_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRWD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
       "official_name": "Multi-Jungle Dual Pulley Row",
       "official_model": "MJRWD",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
-      "official_image_url": null,
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
       "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
       "evidence_sha256": "6ec0b77a08caa9ed1ec64617b03b11ba07e26dcb6157e83742f71f7a2613fc6c",
       "retrieved_at": "2026-10-29T12:47:53.388Z",
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJRWD-STA = Dual Pulley Row in official owner manual, PDF page 43.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=43",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_match_status": "candidate_requires_review",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+        "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "official_image_sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "result": "system_context_only",
+        "observations": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRWD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      "identity_evidence": {
+        "image_scope": "whole_system_context_only",
+        "inventory_model": "MJRWD",
+        "image_product": "Signature Series Multi-Jungle MJ4",
+        "component_identity_source": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "system_image_is_not_standalone_component": true
+      },
+      "catalog_gap_followup_note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRWD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
     },
     {
       "inventory_id": 1395,
@@ -46461,7 +46560,7 @@
       "source_name": "Life Fitness Signature Series MJ Station-Assist Dip Chin",
       "base_model": "MJADC",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Station-Assist Dip Chin MJADC site:lifefitness.com",
       "search_results": [
         {
@@ -46539,19 +46638,50 @@
       ],
       "outcome": "model_confirmed",
       "match_scope": "documented_station_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded.",
+      "configuration_status": "system_context_requires_review",
+      "configuration_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJADC. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
       "official_name": "Multi-Jungle Assisted Dip Chin",
       "official_model": "MJADC",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
-      "official_image_url": null,
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
       "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
       "evidence_sha256": "6ec0b77a08caa9ed1ec64617b03b11ba07e26dcb6157e83742f71f7a2613fc6c",
       "retrieved_at": "2026-10-29T12:47:53.388Z",
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJADC-STA = Assisted Dip Chin in official owner manual, PDF page 17.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=17",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_match_status": "candidate_requires_review",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+        "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "official_image_sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "result": "system_context_only",
+        "observations": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJADC. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      "identity_evidence": {
+        "image_scope": "whole_system_context_only",
+        "inventory_model": "MJADC",
+        "image_product": "Signature Series Multi-Jungle MJ4",
+        "component_identity_source": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "system_image_is_not_standalone_component": true
+      },
+      "catalog_gap_followup_note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJADC. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
     },
     {
       "inventory_id": 1396,
@@ -46559,7 +46689,7 @@
       "source_name": "Life Fitness Signature Series MJ Handle / Accessory Rack",
       "base_model": "MJHAR",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Handle / Accessory Rack MJHAR site:lifefitness.com",
       "search_results": [
         {
@@ -46629,19 +46759,50 @@
       ],
       "outcome": "model_confirmed",
       "match_scope": "documented_station_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded.",
+      "configuration_status": "system_context_requires_review",
+      "configuration_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJHAR. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
       "official_name": "Multi-Jungle Handle Accessory Rack",
       "official_model": "MJHAR",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
-      "official_image_url": null,
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
       "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
       "evidence_sha256": "6ec0b77a08caa9ed1ec64617b03b11ba07e26dcb6157e83742f71f7a2613fc6c",
       "retrieved_at": "2026-10-29T12:47:53.388Z",
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJHAR-STA = Handle Accessory Rack in official owner manual, PDF page 25.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=25",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_match_status": "candidate_requires_review",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+        "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "official_image_sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "result": "system_context_only",
+        "observations": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJHAR. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      "identity_evidence": {
+        "image_scope": "whole_system_context_only",
+        "inventory_model": "MJHAR",
+        "image_product": "Signature Series Multi-Jungle MJ4",
+        "component_identity_source": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "system_image_is_not_standalone_component": true
+      },
+      "catalog_gap_followup_note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJHAR. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
     },
     {
       "inventory_id": 1468,
@@ -46988,7 +47149,7 @@
       "source_name": "ROW MACHINE",
       "base_model": "PRF-ROW-LCD-01",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness ROW MACHINE PRF-ROW-LCD-01 site:lifefitness.com",
       "search_results": [
         {
@@ -47095,7 +47256,10 @@
         "content_type": "image/jpeg",
         "status": 200,
         "sha256": "f8336893d9f71bb5702c7cadb00ec8297f95c0cd15b4ff61c33c6532854ceaf2"
-      }
+      },
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/577bea16abf085df946360b4d037a13032df5d8bab2226a6a905ddf63215270d.png",
+      "catalog_gap_followup_note": "Gap rechecked against manufacturer directories and component pages; existing identity, names and references retained."
     },
     {
       "inventory_id": 1487,
@@ -47103,7 +47267,7 @@
       "source_name": "Utility Bench",
       "base_model": "LBR-UB",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Utility Bench LBR-UB site:lifefitness.com",
       "search_results": [
         {
@@ -47186,7 +47350,7 @@
       "model_evidence": "Manufacturer product code/SKU: LBR-UB.",
       "match_scope": "exact_model",
       "configuration_status": "not_specified",
-      "configuration_note": "Source model identity confirmed; catalog image does not establish branch color or optional accessories.",
+      "configuration_note": "Source model identity confirmed; catalog image does not establish branch color or optional accessories. Catalog gap follow-up on 2026-11-05: Rechecked the exact LBR-UB Hong Kong Utility Bench page: product name remains English in heading and body. The Mainland URL redirects to English; no manufacturer product-specific Chinese wording established.",
       "discontinued": false,
       "outcome": "model_confirmed",
       "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/life-fitness-utility-bench",
@@ -47199,7 +47363,10 @@
         "content_type": "image/png",
         "status": 200,
         "sha256": "58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a"
-      }
+      },
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/58bb9bed41dba04503604b8a9f547df4545a0bf758ec999b242557a64a7fd89a.png",
+      "catalog_gap_followup_note": "Rechecked the exact LBR-UB Hong Kong Utility Bench page: product name remains English in heading and body. The Mainland URL redirects to English; no manufacturer product-specific Chinese wording established."
     },
     {
       "inventory_id": 1500,
@@ -47207,7 +47374,7 @@
       "source_name": "Life Fitness Signature Series MJ Core",
       "base_model": "MJSCOR22510592",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Core MJSCOR22510592 site:lifefitness.com",
       "search_results": [
         {
@@ -47282,7 +47449,10 @@
       "outcome": "unresolved",
       "match_scope": "unconfirmed",
       "configuration_status": "unverified",
-      "configuration_note": "Source MJSCOR22510592 resembles a serial/inventory identifier. No exact manufacturer model or standalone core photo established; complete MJ system photos excluded."
+      "configuration_note": "Source MJSCOR22510592 resembles a serial/inventory identifier. No exact manufacturer model or standalone core photo established; complete MJ system photos excluded. Catalog gap follow-up on 2026-11-05: The captured blue MJ4 system render matches the supplied official MJ4 image and is shared with six station records. Source MJSCOR22510592 is not an established manufacturer SKU or verified alias of MJ-CORE. Keep the core record unresolved rather than label the bare core as a complete MJ4 system.",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "catalog_gap_followup_note": "The captured blue MJ4 system render matches the supplied official MJ4 image and is shared with six station records. Source MJSCOR22510592 is not an established manufacturer SKU or verified alias of MJ-CORE. Keep the core record unresolved rather than label the bare core as a complete MJ4 system."
     },
     {
       "inventory_id": 1501,
@@ -47498,7 +47668,7 @@
       "source_name": "Life Fitness Signature Series MJ Station-Adjustable Cable...",
       "base_model": "MJAXO",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Station-Adjustable Cable... MJAXO site:lifefitness.com",
       "search_results": [
         {
@@ -47588,7 +47758,10 @@
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJAXO-STA = Adjustable Crossover - core to core in official owner manual, PDF page 20.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=20",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3add11dcf67252c47d7d5d684cf18819a2f6cb3833fc888e6b86fad090d98ccc.webp",
+      "catalog_gap_followup_note": "Gap rechecked against manufacturer directories and component pages; existing identity, names and references retained."
     },
     {
       "inventory_id": 1504,
@@ -47596,7 +47769,7 @@
       "source_name": "Life Fitness Signature Series MJ Station-Adjustable Pulley",
       "base_model": "MJAP",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Station-Adjustable Pulley MJAP site:lifefitness.com",
       "search_results": [
         {
@@ -47674,19 +47847,50 @@
       ],
       "outcome": "model_confirmed",
       "match_scope": "documented_station_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded.",
+      "configuration_status": "system_context_requires_review",
+      "configuration_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJAP. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
       "official_name": "Multi-Jungle Adjustable Pulley",
       "official_model": "MJAP",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
-      "official_image_url": null,
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
       "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
       "evidence_sha256": "6ec0b77a08caa9ed1ec64617b03b11ba07e26dcb6157e83742f71f7a2613fc6c",
       "retrieved_at": "2026-10-29T12:47:53.388Z",
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJAP-STA = Adjustable Pulley in official owner manual, PDF page 18.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=18",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_match_status": "candidate_requires_review",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+        "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "official_image_sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "result": "system_context_only",
+        "observations": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJAP. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      "identity_evidence": {
+        "image_scope": "whole_system_context_only",
+        "inventory_model": "MJAP",
+        "image_product": "Signature Series Multi-Jungle MJ4",
+        "component_identity_source": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "system_image_is_not_standalone_component": true
+      },
+      "catalog_gap_followup_note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJAP. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
     },
     {
       "inventory_id": 1505,
@@ -47694,7 +47898,7 @@
       "source_name": "Life Fitness Signature Series MJ Station-Dual Pulley...",
       "base_model": "MJLPD",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness Life Fitness Signature Series MJ Station-Dual Pulley... MJLPD site:lifefitness.com",
       "search_results": [
         {
@@ -47764,19 +47968,50 @@
       ],
       "outcome": "model_confirmed",
       "match_scope": "documented_station_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded.",
+      "configuration_status": "system_context_requires_review",
+      "configuration_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJLPD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
       "official_name": "Multi-Jungle Dual Pulley Pulldown",
       "official_model": "MJLPD",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
-      "official_image_url": null,
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
       "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
       "evidence_sha256": "6ec0b77a08caa9ed1ec64617b03b11ba07e26dcb6157e83742f71f7a2613fc6c",
       "retrieved_at": "2026-10-29T12:47:53.388Z",
       "retrieval_method": "individual_official_page_review",
       "model_evidence": "MJLPD-STA = Dual Pulley Pulldown in official owner manual, PDF page 28.",
       "document_url": "https://kb.cybexintl.com/Owners_Manuals/Strength/1006799-0001_OM_MJ_Multi-Jungle_Owners_Manual_English.pdf#page=28",
-      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6"
+      "document_sha256": "fc4c560b2d3bbf3b9eedfb7347ade36bb5ce31f67a461604441742a44be9c4a6",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "image_match_status": "candidate_requires_review",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+        "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "official_image_sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "result": "system_context_only",
+        "observations": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJLPD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      "identity_evidence": {
+        "image_scope": "whole_system_context_only",
+        "inventory_model": "MJLPD",
+        "image_product": "Signature Series Multi-Jungle MJ4",
+        "component_identity_source": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "system_image_is_not_standalone_component": true
+      },
+      "catalog_gap_followup_note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJLPD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
     },
     {
       "inventory_id": 1510,
@@ -47784,7 +48019,7 @@
       "source_name": "LF PWR PLAY CORE",
       "base_model": "LPP-CORE",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness LF PWR PLAY CORE LPP-CORE site:lifefitness.com",
       "search_results": [
         {
@@ -47857,18 +48092,49 @@
         }
       ],
       "outcome": "model_confirmed",
-      "match_scope": "documented_component_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded.",
+      "match_scope": "exact_model_manual",
+      "configuration_status": "component_identity_confirmed",
+      "configuration_note": "Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured gray bare core and manufacturer white core have the same four-post open frame, curved top rails, square base and absence of attached exercise stations. Color, finish and production details differ; the exact LPP-CORE identity is supported by the existing manufacturer manual and the Core compatibility table. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero.",
       "official_name": "PWR Play Core",
       "official_model": "LPP-CORE",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
-      "official_image_url": null,
-      "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
-      "evidence_sha256": "b56a1fc23db1a0e258f2cb7365a85b4bf0f8e2d8ea3ab1a8947d66cbd20037d5",
+      "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33149931949463",
+      "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "evidence_sha256": "d11d34597005aa94c6fae1d44a83ef40d19eb022469ce7ec80f29afa3be35f6c",
       "retrieved_at": "2026-10-29T12:43:27.348Z",
-      "retrieval_method": "individual_official_page_review",
-      "model_evidence": "LPP-CORE = Core in the official PWR Play assembly-manual article."
+      "retrieval_method": "manufacturer_manual_plus_web_article_excerpt_and_http_image",
+      "model_evidence": "LPP-CORE = Core in the official PWR Play assembly-manual article.",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/c345f0dc230fe6e833745fa26a14a2c42f31e331882b8c8614c3a8849292e282.jpg",
+      "image_check": {
+        "url": "https://support.lifefitness.com/hc/article_attachments/33149931949463",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "9ead3e042719c25ed33cbc9158f672985c17faf6a2af6b18f4d9d3f23fe912c1",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "image_evidence_url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "evidence_excerpt": "Core and Station compatibility: LPP Core + LPP Station = Possible.",
+      "evidence_hash_scope": "UTF-8 manufacturer web-reading excerpt; not raw HTTP HTML",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/c345f0dc230fe6e833745fa26a14a2c42f31e331882b8c8614c3a8849292e282.jpg",
+        "source_image_sha256": "c345f0dc230fe6e833745fa26a14a2c42f31e331882b8c8614c3a8849292e282",
+        "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33149931949463",
+        "official_image_sha256": "9ead3e042719c25ed33cbc9158f672985c17faf6a2af6b18f4d9d3f23fe912c1",
+        "result": "product_identity_confirmed",
+        "observations": "Captured gray bare core and manufacturer white core have the same four-post open frame, curved top rails, square base and absence of attached exercise stations. Color, finish and production details differ; the exact LPP-CORE identity is supported by the existing manufacturer manual and the Core compatibility table."
+      },
+      "identity_evidence": {
+        "image_scope": "component_render",
+        "inventory_model": "LPP-CORE",
+        "manufacturer_label": "LPP Core",
+        "production_revision_verified": false
+      },
+      "catalog_gap_followup_note": "Captured gray bare core and manufacturer white core have the same four-post open frame, curved top rails, square base and absence of attached exercise stations. Color, finish and production details differ; the exact LPP-CORE identity is supported by the existing manufacturer manual and the Core compatibility table. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero."
     },
     {
       "inventory_id": 1511,
@@ -47876,7 +48142,7 @@
       "source_name": "LF PWR PLAY CORE CONNECTOR - ADJUSTABLE CABLE CROSSOVER",
       "base_model": "LPP-CX",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness LF PWR PLAY CORE CONNECTOR - ADJUSTABLE CABLE CROSSOVER LPP-CX site:lifefitness.com",
       "search_results": [
         {
@@ -47949,18 +48215,49 @@
         }
       ],
       "outcome": "model_confirmed",
-      "match_scope": "documented_component_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded.",
+      "match_scope": "exact_model_manual",
+      "configuration_status": "component_identity_confirmed",
+      "configuration_note": "Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured image shows two cores joined by an overhead crossover/chin-up bar, two adjustable pulley rails and cable stacks. The manufacturer diagram explicitly points to the same connector/cable assembly as LPP-CX, shown attached to MJ/PP and LPP cores. This is an annotated component-in-context diagram, not an isolated connector photograph; core generations and finish differ. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero.",
       "official_name": "PWR Play Core Connector - Adjustable Cable Crossover",
       "official_model": "LPP-CX",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
-      "official_image_url": null,
-      "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
-      "evidence_sha256": "b56a1fc23db1a0e258f2cb7365a85b4bf0f8e2d8ea3ab1a8947d66cbd20037d5",
+      "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33152764848407",
+      "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "evidence_sha256": "929df6da290a6cc3467f774e83ed610fc6b083ba5ca452b88765f002343c26ff",
       "retrieved_at": "2026-10-29T12:43:27.348Z",
-      "retrieval_method": "individual_official_page_review",
-      "model_evidence": "LPP-CX = Core Connector - Adjustable Cable Crossover in the official PWR Play assembly-manual article."
+      "retrieval_method": "manufacturer_manual_plus_web_article_excerpt_and_http_image",
+      "model_evidence": "LPP-CX = Core Connector - Adjustable Cable Crossover in the official PWR Play assembly-manual article.",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/47bdfc5ca27aad2a91e376355f06b2d2fd4f8bbf456c774b41882adcb15ac9c8.jpg",
+      "image_check": {
+        "url": "https://support.lifefitness.com/hc/article_attachments/33152764848407",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "17fe849fc74793d7d3ee434b53504634dd4d7198e9f1b6170d859313a8ed1574",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "image_evidence_url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "evidence_excerpt": "Connect MJ/PP Core with LPP Core: this can only be established with LPP Core Connectors, Accessory Storage (LPP-SX) or Adjustable Cable Crossover (LPP-CX). The diagram explicitly labels LPP-CX.",
+      "evidence_hash_scope": "UTF-8 manufacturer web-reading excerpt; not raw HTTP HTML",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/47bdfc5ca27aad2a91e376355f06b2d2fd4f8bbf456c774b41882adcb15ac9c8.jpg",
+        "source_image_sha256": "47bdfc5ca27aad2a91e376355f06b2d2fd4f8bbf456c774b41882adcb15ac9c8",
+        "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33152764848407",
+        "official_image_sha256": "17fe849fc74793d7d3ee434b53504634dd4d7198e9f1b6170d859313a8ed1574",
+        "result": "product_identity_confirmed",
+        "observations": "Captured image shows two cores joined by an overhead crossover/chin-up bar, two adjustable pulley rails and cable stacks. The manufacturer diagram explicitly points to the same connector/cable assembly as LPP-CX, shown attached to MJ/PP and LPP cores. This is an annotated component-in-context diagram, not an isolated connector photograph; core generations and finish differ."
+      },
+      "identity_evidence": {
+        "image_scope": "manufacturer_annotated_component_diagram",
+        "inventory_model": "LPP-CX",
+        "manufacturer_label": "LPP-CX",
+        "production_revision_verified": false
+      },
+      "catalog_gap_followup_note": "Captured image shows two cores joined by an overhead crossover/chin-up bar, two adjustable pulley rails and cable stacks. The manufacturer diagram explicitly points to the same connector/cable assembly as LPP-CX, shown attached to MJ/PP and LPP cores. This is an annotated component-in-context diagram, not an isolated connector photograph; core generations and finish differ. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero."
     },
     {
       "inventory_id": 1512,
@@ -48590,7 +48887,7 @@
       "source_name": "LF PWR PLAY CABLE STATION HANDLE STORAGE",
       "base_model": "LPP-HR",
       "brand": "Life Fitness",
-      "review_date": "2026-10-29",
+      "review_date": "2026-11-05",
       "query": "Life Fitness LF PWR PLAY CABLE STATION HANDLE STORAGE LPP-HR site:lifefitness.com",
       "search_results": [
         {
@@ -48668,17 +48965,49 @@
       ],
       "outcome": "model_confirmed",
       "match_scope": "documented_component_model",
-      "configuration_status": "unverified",
-      "configuration_note": "Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded.",
+      "configuration_status": "generation_requires_review",
+      "configuration_note": "Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero.",
       "official_name": "PWR Play Adjustable Cable Handle Storage",
       "official_model": "LPP-HR",
       "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
-      "official_image_url": null,
-      "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
-      "evidence_sha256": "b56a1fc23db1a0e258f2cb7365a85b4bf0f8e2d8ea3ab1a8947d66cbd20037d5",
+      "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+      "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "evidence_sha256": "049ea6872784efc827c0ba6a8293d950a4820142d952b615f75d87581895641e",
       "retrieved_at": "2026-10-29T12:43:27.348Z",
-      "retrieval_method": "individual_official_page_review",
-      "model_evidence": "LPP-HR = Adjustable Cable Handle Storage in the official PWR Play assembly-manual article."
+      "retrieval_method": "manufacturer_manual_plus_web_article_excerpt_and_http_image",
+      "model_evidence": "LPP-HR = Adjustable Cable Handle Storage in the official PWR Play assembly-manual article.",
+      "catalog_gap_followup": true,
+      "source_image_url": "https://oss-hk.247fitness.hk/1783e03d5bcd1c9f196e4dd85c44ab5fddaa9f1bba5c0ad0937be36c87a44e09.jpg",
+      "image_check": {
+        "url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "3210bf13dd7b5903b2c6559474c4f3d93fe79110795f761f0b5b462aba478bde",
+        "checked_at": "2026-11-05",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "image_observed_on": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "image_evidence_url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+      "evidence_excerpt": "Adjustable Cable Handle Rack Storage (LPP-HR): the PWR Play Handle Rack Storage (LPP-HR), shown on the right, connects to MJ/PP Cores in the same way as previous MJ-HAR.",
+      "evidence_hash_scope": "UTF-8 manufacturer web-reading excerpt; not raw HTTP HTML",
+      "visual_review": {
+        "review_date": "2026-11-05",
+        "source_image_url": "https://oss-hk.247fitness.hk/1783e03d5bcd1c9f196e4dd85c44ab5fddaa9f1bba5c0ad0937be36c87a44e09.jpg",
+        "source_image_sha256": "1783e03d5bcd1c9f196e4dd85c44ab5fddaa9f1bba5c0ad0937be36c87a44e09",
+        "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+        "official_image_sha256": "3210bf13dd7b5903b2c6559474c4f3d93fe79110795f761f0b5b462aba478bde",
+        "result": "generation_requires_review",
+        "observations": "Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate."
+      },
+      "identity_evidence": {
+        "image_scope": "different_generation_component_reference",
+        "inventory_model": "LPP-HR",
+        "manufacturer_label": "Adjustable Cable Handle Rack Storage (LPP-HR)",
+        "production_revision_verified": false
+      },
+      "image_match_status": "candidate_requires_review",
+      "catalog_gap_followup_note": "Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero."
     },
     {
       "inventory_id": 1520,
@@ -54057,6 +54386,56 @@
         "note": "Name/model correspondence establishes Chinese wording only. Existing English identity, image, matching status and console/configuration uncertainty are unchanged."
       },
       "note": "Manufacturer base-model Chinese wording; the optional dip attachment is recorded separately in the product review."
+    },
+    {
+      "inventory_id": 1482,
+      "brand": "Life Fitness",
+      "source_model": "PRF-ROW-LCD-01",
+      "product_url": "https://shop.lifefitness.com/products/heat-row",
+      "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/rowers/heat-row",
+      "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/rowers/heat-row",
+      "official_name_zh": "Heat 划船機",
+      "original_name": "Heat 划船機",
+      "source_locale": "zh-Hant",
+      "conversion_method": "none",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "http_hong_kong_product_heading",
+      "evidence_sha256": "7f1ab3f606a62e353cc90b436dc0637f9876db5a3a65d7dbe0cd58aa76651c60",
+      "source_heading": "Heat 划船機",
+      "source_label": "Heat 划船機",
+      "match_scope": "manufacturer_product_name_lcd_console",
+      "identity_evidence": {
+        "manufacturer_model": "PRF-ROW-LCD-01",
+        "model_evidence_url": "https://shop.lifefitness.com/products/heat-row",
+        "parallel_english_url": "https://www.lifefitness.com/en-hk/catalog/cardio/rowers/heat-row",
+        "scope": "Heat Row product explicitly uses LCD console; existing exact manufacturer SKU is retained."
+      },
+      "note": "Verbatim manufacturer Hong Kong wording. The component name does not certify a complete-system configuration or translate an English term independently."
+    },
+    {
+      "inventory_id": 1510,
+      "brand": "Life Fitness",
+      "source_model": "LPP-CORE",
+      "product_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
+      "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/pwr-play",
+      "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/pwr-play",
+      "official_name_zh": "核心",
+      "original_name": "核心",
+      "source_locale": "zh-Hant",
+      "conversion_method": "none",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "http_parallel_locale_body_component_wording",
+      "evidence_sha256": "74b00f614df3e6addfe729f2cb6cfa6f0e8b904f3c4c6cf7056c7d32dfa81632",
+      "source_heading": "一切從核心開始",
+      "source_label": "一切從核心開始",
+      "match_scope": "component_name_parallel_locale",
+      "identity_evidence": {
+        "manufacturer_model": "LPP-CORE",
+        "model_evidence_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
+        "parallel_english_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/pwr-play",
+        "scope": "Core in manufacturer body text is 核心; existing manual identifies LPP-CORE."
+      },
+      "note": "Verbatim manufacturer Hong Kong wording. The component name does not certify a complete-system configuration or translate an English term independently."
     }
   ],
   "official_chinese_name_reviews": [
@@ -62080,9 +62459,9 @@
       "inventory_id": 1482,
       "brand": "Life Fitness",
       "source_model": "PRF-ROW-LCD-01",
-      "review_date": "2026-11-03",
-      "status": "no_chinese_product_name_found",
-      "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted.",
+      "review_date": "2026-11-05",
+      "status": "manufacturer_name_recorded",
+      "reason": "Verbatim manufacturer Hong Kong wording. The component name does not certify a complete-system configuration or translate an English term independently.",
       "checked_urls": [
         "https://shop-uk.lifefitness.com/products/heat-row",
         "https://shop.lifefitness.com/products/heat-row",
@@ -62383,9 +62762,9 @@
       "inventory_id": 1510,
       "brand": "Life Fitness",
       "source_model": "LPP-CORE",
-      "review_date": "2026-11-04",
-      "status": "no_chinese_product_name_found",
-      "reason": "Chinese PWR Play page labels configured Core+4 packages. This does not establish a Chinese name for the standalone LPP-CORE; package name/image not substituted.",
+      "review_date": "2026-11-05",
+      "status": "manufacturer_name_recorded",
+      "reason": "Verbatim manufacturer Hong Kong wording. The component name does not certify a complete-system configuration or translate an English term independently.",
       "checked_urls": [
         "https://shop.lifefitness.com/collections/functional-trainers-and-cable-machines",
         "https://shop.lifefitness.com/products/life-fitness-power-play-3-stations",
@@ -118641,6 +119020,590 @@
         "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
       },
       "note": "Captured image shows an elevated standing platform, tall weight-stack tower, upright grips and low cable attachment, matching the Selectorized Kick Back page description. No source-code alias is inferred. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
+    }
+  ],
+  "lifefitness_catalog_gap_followup": {
+    "review_date": "2026-11-05",
+    "inventory_count": 112,
+    "initial_gap_count": 19,
+    "image_urls_added": 9,
+    "image_inventory_ids": [
+      1393,
+      1394,
+      1395,
+      1396,
+      1504,
+      1505,
+      1510,
+      1511,
+      1518
+    ],
+    "new_verified_image_ids": [
+      1510,
+      1511
+    ],
+    "image_review_required_ids": [
+      1393,
+      1394,
+      1395,
+      1396,
+      1504,
+      1505,
+      1518
+    ],
+    "chinese_names_added": 2,
+    "chinese_inventory_ids": [
+      1482,
+      1510
+    ],
+    "retained_complete_count": 93,
+    "summary": "Checked all 112 Life Fitness records for missing English names, Chinese names and image URLs; individually rechecked all 19 initial gap records. Added nine manufacturer image URLs: two verified component references and seven context/generation candidates. Added two manufacturer Traditional Chinese names (Heat 划船機 and 核心). Unmatched source codes and replacement-generation translations remain unverified.",
+    "method": "Read the supplied Hong Kong catalog, parallel English/Hong Kong product pages, product specification labels, Mainland/German alternatives and the manufacturer MJ/PWR Play compatibility article. Public product HTML and all nine selected image files were retrieved successfully. The support article returned HTTP 403; Chrome navigation was attempted but failed to connect, so the web-reading service supplied its labels and attachment links. Support images were independently retrieved via HTTP and visually compared. No automated support-article Chinese translations or English-to-Chinese translations were accepted.",
+    "reviews": [
+      {
+        "inventory_id": 1184,
+        "source_model": "Adj-16",
+        "previous_status": "unresolved",
+        "official_image_url": null,
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "not_established",
+        "note": "Rechecked the Multi-Jungle MJ4/MJ8 catalog and the supplied directory. Source Adj-16 / 16-stack configuration does not identify a manufacturer model; the captured multi-core installation does not establish that an MJ8 standard image verifies a 16-stack configuration. Keep unresolved and do not invent a standard-product name."
+      },
+      {
+        "inventory_id": 1379,
+        "source_model": "SAC",
+        "previous_status": "model_verified",
+        "official_image_url": "https://shop.lifefitness.com/cdn/shop/files/outlet-signature-series-arm-curl-bench-platinum-green-1000x1000.jpg?v=1790616778&width=700",
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "not_established",
+        "note": "The Hong Kong arm-curl page provides 手臂彎舉訓練椅 under product code LBR-BC; the German page retains SAC and the outlet product retains the legacy Signature identity. No manufacturer SAC-to-LBR-BC generation relationship was established, so the newer Chinese wording is not assigned to legacy SAC."
+      },
+      {
+        "inventory_id": 1381,
+        "source_model": "SBR",
+        "previous_status": "model_verified",
+        "official_image_url": "https://support.lifefitness.com/hc/article_attachments/15110814541975",
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "not_established",
+        "note": "The Hong Kong Barbell Rack body contains 槓鈴架, but the product code is LBR-BR; inventory SBR is the legacy Signature rack. The unproven SBR-to-LBR-BR relationship prevents reusing that Chinese name as exact-model evidence."
+      },
+      {
+        "inventory_id": 1383,
+        "source_model": "OP-DB3SS",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": null,
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "not_established",
+        "note": "Rechecked the discontinued Optima product page. Its hero is OP-DB3LS (long saddle, 15 pairs), not the source OP-DB3SS short saddle. The OP-DB3LS image and newer rack translations are excluded. No exact short-rack official photo or Chinese name was established."
+      },
+      {
+        "inventory_id": 1384,
+        "source_model": "LBRUB",
+        "previous_status": "model_verified",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/202-199-signatureseries-benches-racks-olympic-utility-bench-l.png?h=630&w=1200",
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "not_established",
+        "note": "Rechecked the Hong Kong Utility Bench H1 and body: the name remains Utility Bench and no specific Chinese name appears. The Mainland URL redirects to English. Automated support-article translations and generic bench wording are excluded."
+      },
+      {
+        "inventory_id": 1392,
+        "source_model": "MJLP",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": null,
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "retained",
+        "note": "User-supplied HS-PD reference rejected: the supplied Hammer Strength Select Lat Pulldown page explicitly identifies HS-PD, while inventory MJLP is the Multi-Jungle station. Captured white round-tube four-post frame with overhead pulleys differs from the supplied dark rectangular HS-PD frame. Neither source code nor Chinese name is replaced; no matching standalone MJLP image was found on the checked catalog pages."
+      },
+      {
+        "inventory_id": 1393,
+        "source_model": "MJRW",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "image_outcome": "whole_system_context_only",
+        "chinese_name_outcome": "retained",
+        "note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRW. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      {
+        "inventory_id": 1394,
+        "source_model": "MJRWD",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "image_outcome": "whole_system_context_only",
+        "chinese_name_outcome": "retained",
+        "note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRWD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      {
+        "inventory_id": 1395,
+        "source_model": "MJADC",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "image_outcome": "whole_system_context_only",
+        "chinese_name_outcome": "retained",
+        "note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJADC. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      {
+        "inventory_id": 1396,
+        "source_model": "MJHAR",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "image_outcome": "whole_system_context_only",
+        "chinese_name_outcome": "retained",
+        "note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJHAR. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      {
+        "inventory_id": 1482,
+        "source_model": "PRF-ROW-LCD-01",
+        "previous_status": "model_verified",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0538/8307/6805/products/life-fitness-heat-row-full-1000x1000.jpg?v=1748945315",
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "manufacturer_name_added",
+        "note": "Gap rechecked against manufacturer directories and component pages; existing identity, names and references retained."
+      },
+      {
+        "inventory_id": 1487,
+        "source_model": "LBR-UB",
+        "previous_status": "model_verified",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/MediaSync/202-199-signatureseries-benches-racks-olympic-utility-bench-l.png?h=630&w=1200",
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "not_established",
+        "note": "Rechecked the exact LBR-UB Hong Kong Utility Bench page: product name remains English in heading and body. The Mainland URL redirects to English; no manufacturer product-specific Chinese wording established."
+      },
+      {
+        "inventory_id": 1500,
+        "source_model": "MJSCOR22510592",
+        "previous_status": "unresolved",
+        "official_image_url": null,
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "not_established",
+        "note": "The captured blue MJ4 system render matches the supplied official MJ4 image and is shared with six station records. Source MJSCOR22510592 is not an established manufacturer SKU or verified alias of MJ-CORE. Keep the core record unresolved rather than label the bare core as a complete MJ4 system."
+      },
+      {
+        "inventory_id": 1503,
+        "source_model": "MJAXO",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": null,
+        "image_outcome": "retained_or_no_matching_image",
+        "chinese_name_outcome": "retained",
+        "note": "Gap rechecked against manufacturer directories and component pages; existing identity, names and references retained."
+      },
+      {
+        "inventory_id": 1504,
+        "source_model": "MJAP",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "image_outcome": "whole_system_context_only",
+        "chinese_name_outcome": "retained",
+        "note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJAP. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      {
+        "inventory_id": 1505,
+        "source_model": "MJLPD",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "image_outcome": "whole_system_context_only",
+        "chinese_name_outcome": "retained",
+        "note": "Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJLPD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed."
+      },
+      {
+        "inventory_id": 1510,
+        "source_model": "LPP-CORE",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33149931949463",
+        "image_outcome": "component_render",
+        "chinese_name_outcome": "manufacturer_name_added",
+        "note": "Captured gray bare core and manufacturer white core have the same four-post open frame, curved top rails, square base and absence of attached exercise stations. Color, finish and production details differ; the exact LPP-CORE identity is supported by the existing manufacturer manual and the Core compatibility table. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero."
+      },
+      {
+        "inventory_id": 1511,
+        "source_model": "LPP-CX",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33152764848407",
+        "image_outcome": "manufacturer_annotated_component_diagram",
+        "chinese_name_outcome": "retained",
+        "note": "Captured image shows two cores joined by an overhead crossover/chin-up bar, two adjustable pulley rails and cable stacks. The manufacturer diagram explicitly points to the same connector/cable assembly as LPP-CX, shown attached to MJ/PP and LPP cores. This is an annotated component-in-context diagram, not an isolated connector photograph; core generations and finish differ. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero."
+      },
+      {
+        "inventory_id": 1518,
+        "source_model": "LPP-HR",
+        "previous_status": "model_verified_image_missing",
+        "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+        "image_outcome": "different_generation_component_reference",
+        "chinese_name_outcome": "not_established",
+        "note": "Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero."
+      }
+    ],
+    "reference_checks": [
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/benches/life-fitness-arm-curl-bench",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/benches/life-fitness-arm-curl-bench",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "3ef96225ba60f3cde89a32837109187e9cc126fa092edd60f040e65da090462e"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/life-fitness-utility-bench",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/life-fitness-utility-bench",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "650f2515f5a21f384a6ea75f01fe74c5600eb0eac7c9494db20186604ff970a5"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+        "final_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "1bbe1e82f1c18a8aabcf92e1c8d4001b0d37ac8b2d4adcccb1e3a8515356b960"
+      },
+      {
+        "url": "https://support.lifefitness.com/hc/article_attachments/33149931949463",
+        "final_url": "https://support.lifefitness.com/hc/article_attachments/33149931949463",
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "9ead3e042719c25ed33cbc9158f672985c17faf6a2af6b18f4d9d3f23fe912c1"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/hammer-strength-select-lat-pulldown",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/selectorized/hammer-strength-select-lat-pulldown",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "cda173cc441b87145a6fd342787fbb38a4d64cb63d8d8400dd01570d99e132c2"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj12",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://support.lifefitness.com/hc/article_attachments/33152764848407",
+        "final_url": "https://support.lifefitness.com/hc/article_attachments/33152764848407",
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "17fe849fc74793d7d3ee434b53504634dd4d7198e9f1b6170d859313a8ed1574"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/storage-racks/life-fitness-barbell-rack",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/storage-racks/life-fitness-barbell-rack",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "27494eea0e2b642c69557b1c59136d12df1b2478740bada0770d186ca5daa772"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/pwr-play",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/pwr-play",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "74b00f614df3e6addfe729f2cb6cfa6f0e8b904f3c4c6cf7056c7d32dfa81632"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj8",
+        "final_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj8",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "0e2dfd9cbbad1e86fbd8252bc847ded126f5d0650bb95c8be64a5384a8c1a5bd"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/cardio/rowers/heat-row",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/cardio/rowers/heat-row",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "7f1ab3f606a62e353cc90b436dc0637f9876db5a3a65d7dbe0cd58aa76651c60"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/benches/life-fitness-utility-bench",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/benches/life-fitness-utility-bench",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "e9496706d4e625b594c777d51cbd5927c870c6d48785ebaa1b92061866322ac6"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "c590039124a55b472b5eb4a7ca3c05cc8a17cf32f2146edd3207e4471a3a0d1d"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "final_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "c4fd052046e22583182b35c2e0459722367f70e64204f2cb7b29589ccc17424f"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/pwr-play",
+        "final_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/pwr-play",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "cd25d2e4bdd0e64ecfeaee5a906837b5d530ab06b02981beb33c712148b0e491"
+      },
+      {
+        "url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+        "final_url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "3210bf13dd7b5903b2c6559474c4f3d93fe79110795f761f0b5b462aba478bde"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/life-fitness-arm-curl-bench",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/life-fitness-arm-curl-bench",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "acdee928f62330c6b086066f2a24c586060295f7a0552bc8feb40f4bc8118262"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "a24cb07670ee31dc53cae67e470f405ae5ab1a9f8a0a10de44f23651fa35ef87"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj12",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/benches/life-fitness-utility-bench",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/strength-training/benches/life-fitness-utility-bench",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "650f2515f5a21f384a6ea75f01fe74c5600eb0eac7c9494db20186604ff970a5"
+      },
+      {
+        "url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj8",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj8",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "50550be68a5308f5e505d321a3f44e8f75976053138bf3f3072483fa62407362"
+      }
+    ]
+  },
+  "lifefitness_image_reviews": [
+    {
+      "inventory_id": 1393,
+      "brand": "Life Fitness",
+      "source_model": "MJRW",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "official_name": "Multi-Jungle Low Row",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_lifefitness_gap_image_ids",
+        "instruction": "User explicitly requested updating Inventory IDs 1393, 1394, 1395, 1396, 1504, 1505 and 1518 to model_verified using their current official references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_image_verification_status": "candidate_requires_review",
+      "previous_configuration_status": "system_context_requires_review",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Low Row",
+          "product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "reason": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRW. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+          "name_zh": "MJ 低拉背肌訓練器"
+        }
+      ],
+      "previous_research_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRW. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+      "note": "Previous research: Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRW. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
+    },
+    {
+      "inventory_id": 1394,
+      "brand": "Life Fitness",
+      "source_model": "MJRWD",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "official_name": "Multi-Jungle Dual Pulley Row",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_lifefitness_gap_image_ids",
+        "instruction": "User explicitly requested updating Inventory IDs 1393, 1394, 1395, 1396, 1504, 1505 and 1518 to model_verified using their current official references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_image_verification_status": "candidate_requires_review",
+      "previous_configuration_status": "system_context_requires_review",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Dual Pulley Row",
+          "product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "reason": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRWD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+          "name_zh": "MJ 雙滑輪低拉背肌訓練器"
+        }
+      ],
+      "previous_research_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRWD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+      "note": "Previous research: Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJRWD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
+    },
+    {
+      "inventory_id": 1395,
+      "brand": "Life Fitness",
+      "source_model": "MJADC",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "official_name": "Multi-Jungle Assisted Dip Chin",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_lifefitness_gap_image_ids",
+        "instruction": "User explicitly requested updating Inventory IDs 1393, 1394, 1395, 1396, 1504, 1505 and 1518 to model_verified using their current official references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_image_verification_status": "candidate_requires_review",
+      "previous_configuration_status": "system_context_requires_review",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Assisted Dip Chin",
+          "product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "reason": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJADC. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+          "name_zh": "MJ 引體上升訓練器"
+        }
+      ],
+      "previous_research_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJADC. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+      "note": "Previous research: Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJADC. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
+    },
+    {
+      "inventory_id": 1396,
+      "brand": "Life Fitness",
+      "source_model": "MJHAR",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "official_name": "Multi-Jungle Handle Accessory Rack",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_lifefitness_gap_image_ids",
+        "instruction": "User explicitly requested updating Inventory IDs 1393, 1394, 1395, 1396, 1504, 1505 and 1518 to model_verified using their current official references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_image_verification_status": "candidate_requires_review",
+      "previous_configuration_status": "system_context_requires_review",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Handle Accessory Rack",
+          "product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "reason": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJHAR. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+          "name_zh": "手柄配件支架"
+        }
+      ],
+      "previous_research_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJHAR. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+      "note": "Previous research: Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJHAR. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
+    },
+    {
+      "inventory_id": 1504,
+      "brand": "Life Fitness",
+      "source_model": "MJAP",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "official_name": "Multi-Jungle Adjustable Pulley",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_lifefitness_gap_image_ids",
+        "instruction": "User explicitly requested updating Inventory IDs 1393, 1394, 1395, 1396, 1504, 1505 and 1518 to model_verified using their current official references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_image_verification_status": "candidate_requires_review",
+      "previous_configuration_status": "system_context_requires_review",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Adjustable Pulley",
+          "product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "reason": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJAP. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+          "name_zh": "MJ 可調式滑輪多功能訓練器"
+        }
+      ],
+      "previous_research_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJAP. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+      "note": "Previous research: Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJAP. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
+    },
+    {
+      "inventory_id": 1505,
+      "brand": "Life Fitness",
+      "source_model": "MJLPD",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "official_name": "Multi-Jungle Dual Pulley Pulldown",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_lifefitness_gap_image_ids",
+        "instruction": "User explicitly requested updating Inventory IDs 1393, 1394, 1395, 1396, 1504, 1505 and 1518 to model_verified using their current official references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_image_verification_status": "candidate_requires_review",
+      "previous_configuration_status": "system_context_requires_review",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Dual Pulley Pulldown",
+          "product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+          "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "reason": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJLPD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+          "name_zh": "MJ 可調式雙滑輪高拉背肌訓練機"
+        }
+      ],
+      "previous_research_note": "Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJLPD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed.",
+      "note": "Previous research: Initial review: Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Follow-up on 2026-11-05: Official MJ4 system render matches the shared captured blue-frame image (same four-post frame, paired high/low handles, four stacks and front seat/pads). It is a whole configured system, not a standalone image of MJLPD. Exact station identity remains supported by the manufacturer manual/specification label. The system image is recorded best effort for comparison only; component/generation imagery requires user review. A shared photo does not verify which station is installed. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
+    },
+    {
+      "inventory_id": 1518,
+      "brand": "Life Fitness",
+      "source_model": "LPP-HR",
+      "source_image_url": "https://oss-hk.247fitness.hk/1783e03d5bcd1c9f196e4dd85c44ab5fddaa9f1bba5c0ad0937be36c87a44e09.jpg",
+      "official_name": "PWR Play Adjustable Cable Handle Storage",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
+      "official_image_url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_lifefitness_gap_image_ids",
+        "instruction": "User explicitly requested updating Inventory IDs 1393, 1394, 1395, 1396, 1504, 1505 and 1518 to model_verified using their current official references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_image_verification_status": "candidate_requires_review",
+      "previous_configuration_status": "generation_requires_review",
+      "previous_candidates": [
+        {
+          "name": "PWR Play Adjustable Cable Handle Storage",
+          "product_url": "https://support.lifefitness.com/hc/en-us/articles/30762202977431-Life-Fitness-PWR-Play-Assembly-Manual",
+          "image_url": "https://support.lifefitness.com/hc/article_attachments/33149961913879",
+          "evidence_url": "https://support.lifefitness.com/hc/en-us/articles/33149931965591-Life-Fitness-Multi-Jungle-MJ-Cybex-PWR-Play-PP-upgrade-to-PWR-Play-LPP",
+          "reason": "Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero."
+        }
+      ],
+      "previous_research_note": "Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero.",
+      "note": "Previous research: Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
     }
   ]
 }

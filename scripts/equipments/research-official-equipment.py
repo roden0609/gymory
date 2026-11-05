@@ -308,6 +308,9 @@ def apply_lifefitness_reviews(result, supplemental):
                       e['brand'] == 'Life Fitness' and e['source_model'] == review['source_model']), None)
         if entry is None:
             raise ValueError(f'Life Fitness review does not match original inventory: {inventory_id}')
+        if review.get('catalog_gap_followup') and any(entry.get(k) != review.get(k)
+                for k in ('source_name', 'source_image_url')):
+            raise ValueError('Life Fitness gap follow-up no longer matches the reviewed source capture')
         if not review.get('query') or not review.get('configuration_note'):
             raise ValueError('Life Fitness review requires an individual search and configuration note')
         entry['lookup_model'] = lifefitness_lookup_model(entry['source_model'])
@@ -343,7 +346,7 @@ def apply_lifefitness_reviews(result, supplemental):
                          evidence={key: review.get(key) for key in ('evidence_url', 'evidence_sha256', 'retrieved_at',
                                                                   'retrieval_method', 'model_evidence', 'image_evidence_url')},
                          reason=review['configuration_note'])
-            for key in ('visual_review', 'identity_evidence'):
+            for key in ('visual_review', 'identity_evidence', 'evidence_hash_scope', 'evidence_excerpt', 'rejected_references'):
                 if key in review:
                     entry['evidence'][key] = review[key]
             if review['match_scope'] in ('product_name_and_image', 'exact_model_manual'):
@@ -385,6 +388,8 @@ def apply_lifefitness_reviews(result, supplemental):
             raise ValueError(f'Unsupported Life Fitness review outcome: {review["outcome"]}')
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
     result['lifefitness_review'] = supplemental.get('lifefitness_review', {})
+    if supplemental.get('lifefitness_catalog_gap_followup'):
+        result['lifefitness_catalog_gap_followup'] = supplemental['lifefitness_catalog_gap_followup']
 
 
 def apply_manufacturer_product_reviews(result, supplemental):
@@ -557,19 +562,23 @@ def apply_manual_equipment_reviews(result, supplemental):
                      match_scope='manual_review', configuration_status='manually_reviewed',
                      image_verification_status='manually_reviewed' if entry.get('official_image_url') else 'image_missing', manual_review=review,
                      reason=review['note'], configuration_note=review['note'])
-    for review in supplemental.get('booty_builder_image_reviews', []):
+    for brand, review in [(brand, review) for brand, key in (
+            ('BOOTY BUILDER', 'booty_builder_image_reviews'), ('Life Fitness', 'lifefitness_image_reviews'))
+            for review in supplemental.get(key, [])]:
         entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
         fields = ('brand', 'source_model', 'source_image_url', 'official_name',
                   'official_product_url', 'official_image_url')
-        if (entry is None or entry['brand'] != 'BOOTY BUILDER'
+        if (entry is None or entry['brand'] != brand
                 or any(entry.get(k) != review.get(k) for k in fields)
                 or not entry.get('official_image_url')
                 or entry['status'] not in ('model_verified_image_missing', 'model_verified')
                 or review.get('reviewed_by') != 'user' or review.get('status') != 'model_verified'
                 or not review.get('review_date') or not review.get('review_source', {}).get('instruction')):
-            raise ValueError('Booty Builder image approval requires an explicit user decision bound to current source and official references')
+            raise ValueError('Image approval requires an explicit user decision bound to current source and official references')
         entry.update(status='model_verified', image_verification_status='manually_reviewed',
                      manual_image_review=review, reason=review['note'], configuration_note=review['note'])
+        if brand == 'Life Fitness':
+            entry.update(configuration_status='manually_reviewed', candidates=[])
         if entry.get('manual_review_followup'):
             entry['manual_review_followup']['reason'] = (
                 'Manufacturer product references supersede the historical candidate; the user subsequently verified the current official image. Both decisions are preserved.')
@@ -1152,7 +1161,7 @@ def write_reports(result):
         counts = Counter(e['status'] for e in group)
         lines += ['', '## Life Fitness item review', '',
                   f"Initial individual review: {result['lifefitness_review']['review_date']} (Hong Kong), covering all {len(group)} Life Fitness inventory IDs using their equipment name and conservatively normalized model. Official product pages, support articles and manufacturer-linked manuals were inspected; Chrome supplied content where direct HTTP failed. Current results after follow-ups: {counts['model_verified']} model + image, {counts['model_verified_image_missing']} model confirmed without a verified product image, {counts['candidate_requires_review']} candidates and {counts['unresolved']} unresolved.", '',
-                  'Recognized LP/SP Full and OP-series -FS annotations are separated from the base model. A verified base model does not verify those configuration annotations. Source codes, names and 24/7 images are preserved. Manual-only components are not assigned whole-system photos. Configuration notes describe console, generation and source-name discrepancies.', '',
+                  'Recognized LP/SP Full and OP-series -FS annotations are separated from the base model. A verified base model does not verify those configuration annotations. Source codes, names and 24/7 images are preserved. Whole-system photos are only recorded as explicitly unverified context references for components; they do not verify standalone component imagery. Configuration notes describe console, generation and source-name discrepancies.', '',
                   ]
         if result['lifefitness_review'].get('candidate_followup'):
             followup = result['lifefitness_review']['candidate_followup']
@@ -1161,6 +1170,17 @@ def write_reports(result):
         if manual:
             lines += [f"User manual review applied for Inventory IDs {', '.join(str(e['inventory_id']) for e in manual)}: Status is `model_verified`, based on the user's workbook comments or explicit confirmation of candidate/image references. These decisions override earlier automated candidate outcomes. Original console/photo discrepancies and reviewed source/image references remain in `manual_equipment_reviews` in the evidence JSON; these are user decisions, not new manufacturer SKU evidence.", '']
         lines += ['Per-equipment Match scope and Review note are included in Full inventory cross-reference.', '']
+    if result.get('lifefitness_catalog_gap_followup'):
+        gap = result['lifefitness_catalog_gap_followup']
+        group = [e for e in entries if e['brand'] == 'Life Fitness']
+        lines += ['', '## Life Fitness catalog gap follow-up', '',
+                  gap['review_date'] + ': ' + gap['summary'], '', gap['method'], '',
+                  f"Current coverage across {len(group)} Life Fitness inventory IDs: {sum(not e.get('official_name') for e in group)} English names, {sum(not e.get('official_name_zh') for e in group)} Chinese names and {sum(not e.get('official_image_url') for e in group)} image URLs remain blank. An image URL does not establish a verified component image. Review notes distinguish whole-system context images and differing generations from verified component images.", '',
+                  'Inventory 1392 is MJLP, not the user-supplied Hammer Strength HS-PD: its original identity is retained and the mismatched reference is recorded in the evidence. At the initial gap review, Inventory 1393 and five other stations shared the captured MJ4 system render, recorded as context only with model_verified_image_missing and candidate_requires_review image verification. PWR Play Core and the annotated LPP-CX component diagram were verified; the LPP-HR tray differed from the older padded capture and was recorded as an image candidate. Subsequent user approvals are recorded below. The Optima catalog hero is the long OP-DB3LS rack and is not assigned to short OP-DB3SS. Unresolved Adj-16 and MJSCOR22510592 codes remain unresolved. Exact manufacturer code aliases are not inferred from shared photos.', '',
+                  'Full audit of the 19 initial gap records and retrieved reference URLs: lifefitness_catalog_gap_followup in the evidence JSON. Original inventory, previous user decisions and the remaining 93 already-complete records are preserved.', '']
+        image_approvals = [e for e in group if e.get('manual_image_review')]
+        if image_approvals:
+            lines += [f"Subsequent user image approval on {max(e['manual_image_review']['review_date'] for e in image_approvals)}: Inventory IDs {', '.join(str(e['inventory_id']) for e in image_approvals)} are now model_verified with image_verification_status manually_reviewed. The user explicitly approved the current references. Original system-context/generation observations and candidate snapshots remain historical under lifefitness_image_reviews; no new manufacturer SKU alias or isolated-component photograph is asserted.", '']
     if result.get('user_product_correction_followup'):
         correction = result['user_product_correction_followup']
         lines += ['', '## User-directed product corrections', '',
