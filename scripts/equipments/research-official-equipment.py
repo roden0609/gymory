@@ -483,6 +483,68 @@ def apply_manual_equipment_reviews(result, supplemental):
             'candidate_count': counts['candidate_requires_review'], 'unresolved_count': counts['unresolved']}
 
 
+def apply_distributor_enrichment(result, supplemental):
+    """Replay gap-only Active China references without upgrading identity/image checks."""
+    for record in supplemental.get('active_china_enrichment', []):
+        entry = next((e for e in result['equipment'] if e['inventory_id'] == record['inventory_id']), None)
+        if entry is None or any(entry.get(k) != record.get(k) for k in ('brand', 'source_model', 'source_image_url')):
+            raise ValueError('Distributor reference no longer matches inventory source')
+        urls = [record['evidence_url'], record['product_url']]
+        if record.get('image_url'):
+            urls.append(record['image_url'])
+            if record.get('image_observed_on') != record['evidence_url']:
+                raise ValueError('Distributor image requires its observed product-page context')
+        for url in urls:
+            parsed = urllib.parse.urlparse(url)
+            if (parsed.scheme != 'https' or parsed.hostname != 'www.active.cn' or parsed.username
+                    or parsed.password or parsed.port or not parsed.path.startswith(('/index.php', '/en/index.php', '/uploadfile/'))):
+                raise ValueError('Distributor reference must use the observed Active China site')
+        if (record.get('source_type') != 'distributor' or not record.get('match_basis')
+                or not record.get('original_name') or not record.get('retrieved_at')):
+            raise ValueError('Distributor references require source wording and an explicit matching basis')
+        expected = record.get('matched_official_name')
+        if expected and entry.get('official_name') != expected:
+            raise ValueError('Distributor reference no longer matches the reviewed product name')
+        changed = []
+        for field, key in [('official_name', 'english_name'), ('official_name_zh', 'chinese_name'),
+                           ('official_image_url', 'image_url')]:
+            value = record.get(key)
+            if not value or entry.get(field):
+                continue
+            if field == 'official_name_zh' and (record.get('conversion_method') != 'OpenCC cn-to-hk'
+                    or record.get('source_locale') != 'zh-Hans'):
+                raise ValueError('Distributor Chinese names require original wording and character conversion evidence')
+            if field == 'official_name' and value not in record['original_name']:
+                raise ValueError('Distributor English names must be recorded verbatim, not translated')
+            entry[field] = value
+            changed.append(field)
+            if field == 'official_name_zh':
+                entry['official_name_zh_evidence'] = {**record, 'official_name_zh': value,
+                    'match_scope': 'distributor_product_name_reference; exact SKU/configuration not established'}
+            elif field == 'official_name':
+                entry['official_name_en_evidence'] = record
+            else:
+                entry['image_check'] = {'available': False, 'url': value, 'checked_at': record['retrieved_at'],
+                    'method': 'distributor_page_link_only', 'reason': 'Image URL observed on the product page; direct retrieval failed and the image could not be visually compared.'}
+                entry['image_verification_status'] = 'distributor_reference_unverified'
+        previous = entry.get('distributor_enrichment')
+        if not changed and not previous:
+            continue
+        entry['distributor_enrichment'] = {**record, 'applied_fields': changed or previous['applied_fields']}
+        if not entry.get('official_product_url'):
+            entry['official_product_url'] = record['product_url']
+        if not entry.get('match_scope'):
+            entry['match_scope'] = 'distributor_base_product_reference'
+        note = ('Active China distributor reference (gap-only enrichment): ' + record['match_basis']
+                + ' Source: ' + record['evidence_url']
+                + ' Distributor wording is not independently verified manufacturer wording; identity status is unchanged.'
+                + (' The image is an unverified distributor page link; image retrieval/visual comparison was unavailable.' if record.get('image_url') else ''))
+        if note not in (entry.get('configuration_note') or ''):
+            entry['configuration_note'] = ((entry.get('configuration_note') or '') + ' ' + note).strip()
+    if supplemental.get('active_china_followup'):
+        result['active_china_followup'] = supplemental['active_china_followup']
+
+
 def apply_browser_evidence(result, supplemental):
     """Apply exact, standalone model cards actually displayed in a browser.
 
@@ -568,6 +630,7 @@ def apply_browser_evidence(result, supplemental):
     apply_manufacturer_product_reviews(result, supplemental)
     apply_official_chinese_names(result, supplemental)
     apply_manual_equipment_reviews(result, supplemental)
+    apply_distributor_enrichment(result, supplemental)
 
 
 class Page(HTMLParser):
@@ -940,7 +1003,7 @@ def write_reports(result):
              'Initial research date: 2026-10-28 (Hong Kong).' +
              (f" Latest all-brand follow-up: {result['last_review_date']} (Hong Kong)." if result.get('last_review_date') else '') +
              ' All 159 branch JSON files are preserved.', '',
-             f'The cross-reference covers all {len(entries)} unique inventory IDs. It records manufacturer names and image URLs separately from the original 24/7 data. No database changes or image substitutions were made.', '',
+             f'The cross-reference covers all {len(entries)} unique inventory IDs. It records manufacturer names/images and explicitly labeled distributor gap references separately from the original 24/7 data. No database changes or image substitutions were made.', '',
              '## Interpretation', '',
              '- `model_verified`: a manufacturer SKU, product title/URL, relevant product description or directly viewed catalog card matches the source model. Image checks use HTTP image content types or a successfully decoded image in the browser.',
              '- `model_verified_image_missing` / `model_verified_image_unavailable`: model evidence exists, but a verified image is missing, unavailable or not matched to the source model. An official candidate image URL may be recorded with its unresolved scope in Review note.',
@@ -948,7 +1011,7 @@ def write_reports(result):
              '- `candidate_requires_review`: an official candidate exists, but model, generation or configuration is not established. Recorded official names, product links or images can describe that candidate; their presence does not verify the inventory match.',
              '- `ambiguous_model`: multiple different official products or bundles refer to the source model.',
              '- `unresolved`: no usable match found in this pass; this does not mean the product has no official source.', '',
-             'Images are manufacturer catalog images, not visual confirmation of the physical machine installed in a branch. Colors, upholstery, console configuration and revisions may differ. Image URLs are supplied as research references; no local photo library was downloaded.', '',
+             'Images are manufacturer catalog images or explicitly labeled distributor references, not visual confirmation of the physical machine installed in a branch. Colors, upholstery, console configuration and revisions may differ. Image URLs are supplied as research references; no local photo library was downloaded.', '',
              *(['User-confirmed manual reviews: ' + ', '.join(f'{brand}: {count}' for brand, count in sorted(manual_counts.items())) + '. These records use model_verified (or model_verified_image_missing where no candidate image is available) based on explicit user approval, with the approved names, URLs and previous candidates retained in manual review evidence.', ''] if manual_counts else []),
              '## Totals', '', '| Status | Count |', '| --- | ---: |']
     lines.extend(f'| {status} | {count} |' for status, count in sorted(result['summary'].items()))
@@ -1000,19 +1063,25 @@ def write_reports(result):
         if manual:
             lines += [f"User manual review applied for Inventory IDs {', '.join(str(e['inventory_id']) for e in manual)}: Status is `model_verified`, based on the user's workbook comments or explicit confirmation of candidate/image references. These decisions override earlier automated candidate outcomes. Original console/photo discrepancies and reviewed source/image references remain in `manual_equipment_reviews` in the evidence JSON; these are user decisions, not new manufacturer SKU evidence.", '']
         lines += ['Per-equipment Match scope and Review note are included in Full inventory cross-reference.', '']
+    if result.get('active_china_followup'):
+        active = result['active_china_followup']
+        lines += ['', '## Active China distributor gap follow-up', '',
+                  f"On {active['review_date']}, Active China supplied {active['chinese_names_added']} Chinese name references, {active['english_names_added']} English name references and {active['image_urls_added']} unverified image links across {active['enrichment_count']} inventory IDs. No inventory verification status was upgraded. Existing nonblank names/images and all user decisions were preserved. Simplified wording is retained with OpenCC cn-to-hk character conversion. Chinese names are distributor product-name references; base-product names do not establish exact source SKU/options. Source type, matching basis, original wording and URLs are retained per item under `active_china_enrichment` and in the catalog. The existing Original source wording column includes both manufacturer and distributor originals.", '',
+                  active['source_limitations'], '',
+                  'Gauntlet image links for Inventory IDs 170 and 171 were observed on Active’s product page but could not be retrieved or visually compared. Their URLs are best-effort references, not verified manufacturer images. Inventory identity statuses remain unresolved. Jacobs Ladder 1/X, DO!T ROBUR and generic Eleiko bars/plates were not substituted for different inventory models.', '']
     if result.get('official_chinese_name_followup'):
         names = [e for e in entries if e.get('official_name_zh')]
         converted = sum(e.get('official_name_zh_evidence', {}).get('conversion_method') == 'OpenCC cn-to-hk' for e in names)
         lines += ['', '## Official Chinese name evidence', '',
-                  f"Chinese-name follow-up: {result['official_chinese_name_followup']['review_date']}. The review covers {len(entries)} inventory records across {len({e['brand'] for e in entries})} brands: {len(names)} manufacturer Chinese names recorded, including {converted} names converted to Traditional Chinese with OpenCC (cn-to-hk). {len(entries) - len(names)} names remain unverified; a blank does not establish that no official Chinese name exists.", '',
-                  'Original manufacturer wording is included in Full inventory cross-reference; Chinese source links remain in the catalog and evidence JSON. Only character conversion is applied; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. A new Chinese source can establish an exact source-model name independently of the existing English match; this does not replace the English product/candidate, image or status. Base-model Chinese names do not verify console, full-shroud, prefix or generation variants. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '']
+                  f"Chinese-name follow-up: {result['official_chinese_name_followup']['review_date']}. The review covers {len(entries)} inventory records across {len({e['brand'] for e in entries})} brands: {len(names)} Chinese names recorded (manufacturer names plus explicitly labeled distributor references), including {converted} names converted to Traditional Chinese with OpenCC (cn-to-hk). {len(entries) - len(names)} names remain unverified; a blank does not establish that no official Chinese name exists.", '',
+                  'Original source wording is included in Full inventory cross-reference; Chinese source links remain in the catalog and evidence JSON. Only character conversion is applied; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. A new Chinese source can establish an exact source-model name independently of the existing English match; this does not replace the English product/candidate, image or status. Base-model Chinese names do not verify console, full-shroud, prefix or generation variants. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '']
         if result['official_chinese_name_followup'].get('name_search_followup'):
             search = result['official_chinese_name_followup']['name_search_followup']
             lines += [f"Name-based follow-up on {search['review_date']}: all {search['inventory_count']} previously blank records were searched independently of their stored URLs ({search['unique_name_queries']} unique equipment-name groups, {search['search_query_count']} queries across general name and manufacturer-domain Chinese searches). Official shop/catalog identity review, normal-browser pages and model-specific Chinese manufacturer PDFs supplied {search['new_name_count']} additional names. Search queries and official result links are retained in the evidence JSON under `official_chinese_name_search_followup`. Search results are leads, not automatic matches.", '']
         if result['official_chinese_name_followup'].get('specification_followup'):
             review = result['official_chinese_name_followup']['specification_followup']
             lines += [f"Life Fitness specification/body follow-up on {review['review_date']}: {review['new_name_count']} additional Chinese names recorded from exact-model specification rows, parallel-language component cards backed by manufacturer manuals, and product body wording. At that stage, {review['remaining_unverified_count']} of {review['inventory_count']} Life Fitness Chinese names remained unconfirmed. Current counts are in Name coverage by brand. Component wording does not verify a whole-system image. Full audit: `lifefitness_specification_name_followup` in the evidence JSON.", '']
-        lines += ['Original manufacturer wording, Source locale, Conversion and Chinese name scope are included in Full inventory cross-reference. Chinese source URLs remain in the catalog and evidence JSON.', '']
+        lines += ['Original source wording, Source locale, Conversion and Chinese name scope are included in Full inventory cross-reference. Chinese source URLs remain in the catalog and evidence JSON.', '']
     lines += ['', '## Known discrepancies requiring care', '',
               '- Life Fitness inventory IDs 130 and 155: the official manual identifies SS-GLD as Glute Bridge; ID 130 source name says Seated Leg Press. The current SS-GLB photo and Chinese name are recorded as product-family references. SS-GLD/SS-GLB equivalence and exact image match remain unverified.',
               '- NEWTECH `NT-OH-SLC`: the source says Leg Extension; the manufacturer identifies OnHim Seated Leg Curl.',
@@ -1020,8 +1089,8 @@ def write_reports(result):
               '- A model mention in a kit description does not prove the kit image depicts the standalone component. Such ambiguity is retained.',
               '- Missing models, generic brand-only entries (such as InBody) and custom 24/7 racks cannot be assigned an exact manufacturer image from their names alone.', '',
               '## Full inventory cross-reference', '',
-              'Official Chinese name (`official_name_zh`) is populated only when manufacturer-provided Chinese wording is recorded in the catalog. Missing values are shown as —; captured Chinese names and manual translations are not substituted.', '',
-              '| # | Inventory ID | Brand | Source model | Source name | Official name | Official Chinese name | Status | Official source | Official image | 24/7 image | First candidate | Match scope | Review note | Original manufacturer wording | Source locale | Conversion | Chinese name scope |',
+              'Official Chinese name (`official_name_zh`) records manufacturer wording or user-requested Active China distributor references. Distributor-only names are explicitly labeled in Chinese name scope and Review note; they are not independently verified manufacturer wording. Missing values are shown as —; captured Chinese names and manual translations are not substituted.', '',
+              '| # | Inventory ID | Brand | Source model | Source name | Official name | Official Chinese name | Status | Official source | Official image | 24/7 image | First candidate | Match scope | Review note | Original source wording | Source locale | Conversion | Chinese name scope |',
               '| ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |']
     for row_number, e in enumerate(entries, start=1):
         source = e['official_product_url'] or (e['evidence'] or {}).get('evidence_url')
@@ -1037,7 +1106,7 @@ def write_reports(result):
                                       cell(chinese_evidence.get('conversion_method')), cell(chinese_evidence.get('match_scope'))]) + ' |')
     lines += ['', '## Reproduce and continue', '',
               '```bash', 'python3 scripts/equipments/research-official-equipment.py --check-images', 'pnpm test', '```', '',
-              'Every report generation also writes the matching `.xlsx` beside this Markdown file. Each Markdown table has its own Excel sheet, with image/source hyperlinks and filterable headers. To regenerate both reports from the existing catalog without fetching websites, run `python3 scripts/equipments/research-official-equipment.py --report-only`.', '',
+              'Every report generation also writes the matching `.xlsx` beside this Markdown file. Markdown tables supply Excel sheets with image/source hyperlinks and filterable headers; Coverage by brand and Name coverage by brand are joined by brand into one Coverage by brand sheet. To regenerate both reports from the existing catalog without fetching websites, run `python3 scripts/equipments/research-official-equipment.py --report-only`.', '',
               'When HTTP requests cannot read an official site, inspect it in a normal browser. Captured exact-model cards and decoded-image evidence are stored in `247-fitness-hk-official-evidence.json` under `browser_models`. Apply those records to the existing catalog with `python3 scripts/equipments/research-official-equipment.py --apply-browser-evidence`. Full research runs also reapply these records after HTTP image checks.', '',
               'Excel export uses Node.js and `@oai/artifact-tool` from the Codex runtime. The runtime is detected automatically; for another installation, set `ARTIFACT_TOOL_NODE_MODULES` to its `node_modules` directory and optionally `ARTIFACT_TOOL_NODE` to its Node executable. Export failures cause the command to fail instead of silently skipping Excel.', '',
               'The public catalogs and product pages are cached under `/tmp/gymory-official-equipment/cache` by default. Use `--cache-dir` to select a different cache or a fresh directory. Network access is required for uncached URLs. Python uses the system certificate store and adds certifi certificates when that optional package is installed.', '',

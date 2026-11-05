@@ -30,7 +30,7 @@ describe('official equipment Excel report tables', () => {
       for (const [heading, value] of [
         ['Match scope', equipment.match_scope],
         ['Review note', equipment.configuration_note],
-        ['Original manufacturer wording', chineseEvidence.original_name],
+        ['Original source wording', chineseEvidence.original_name],
         ['Source locale', chineseEvidence.source_locale],
         ['Conversion', chineseEvidence.conversion_method],
         ['Chinese name scope', chineseEvidence.match_scope],

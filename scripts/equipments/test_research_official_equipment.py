@@ -327,6 +327,36 @@ class LifeFitnessReviewTests(unittest.TestCase):
 
 
 class SpecificationNameTests(unittest.TestCase):
+    def test_active_distributor_references_fill_gaps_without_verifying_identity(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        records = evidence['active_china_enrichment']
+        self.assertEqual(len(records), 30)
+        self.assertEqual(sum(bool(r.get('chinese_name')) for r in records), 29)
+        self.assertEqual(sum(bool(r.get('english_name')) for r in records), 4)
+        for record in records:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == record['inventory_id'])
+            self.assertEqual(entry['distributor_enrichment']['source_type'], 'distributor')
+            if record.get('chinese_name'):
+                self.assertEqual(entry['official_name_zh'], record['chinese_name'])
+                self.assertIn('distributor', entry['official_name_zh_evidence']['match_scope'])
+                self.assertEqual(entry['official_name_zh_evidence']['original_name'], record['original_name'])
+            if record.get('image_url'):
+                self.assertEqual(entry['official_image_url'], record['image_url'])
+                self.assertFalse(entry['image_check']['available'])
+                self.assertEqual(entry['status'], 'unresolved')
+        record = next(r for r in records if r['inventory_id'] == 170)
+        entry = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == 170))
+        entry.update(official_name='Manufacturer name', official_name_zh='廠商名稱', official_image_url='https://example.com/manufacturer.png')
+        research.apply_distributor_enrichment({'equipment': [entry]}, {'active_china_enrichment': [record]})
+        self.assertEqual((entry['official_name'], entry['official_name_zh'], entry['official_image_url']),
+                         ('Manufacturer name', '廠商名稱', 'https://example.com/manufacturer.png'))
+        for change in ({'source_model': 'OTHER'}, {'evidence_url': 'https://unrelated.example/product'},
+                       {'image_observed_on': 'https://www.active.cn/other'}):
+            with self.assertRaises(ValueError):
+                research.apply_distributor_enrichment({'equipment': [entry]}, {'active_china_enrichment': [{**record, **change}]})
+
     def test_unresolved_hammer_followup_matches_codes_without_erasing_configuration_conflicts(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
