@@ -67,6 +67,7 @@ SITEMAPS = {
 # CDN paths actually observed on the manufacturers' public product pages.
 # Restrict shared CDNs to the manufacturer's account, not the whole CDN host.
 BROWSER_IMAGE_PREFIXES = {
+    'MATRIX': ('https://assets.jhtbrand.co/files/product/',),
     'Life Fitness': ('https://production-gvckb4eyhna3g6c7.a03.azurefd.net/',
                      'https://cdn.shopify.com/s/files/1/0538/8307/6805/'),
     'FREEMOTION': ('https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/',),
@@ -389,12 +390,23 @@ def apply_lifefitness_reviews(result, supplemental):
 def apply_manufacturer_product_reviews(result, supplemental):
     """Apply source-bound product/model/image evidence independently of Chinese-name collection."""
     from collections import Counter
-    for review in supplemental.get('manufacturer_product_reviews', []):
+    matrix_reviews = supplemental.get('matrix_product_reviews', [])
+    for review in [*supplemental.get('manufacturer_product_reviews', []), *matrix_reviews]:
         entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
         if entry is None or any(entry.get(k) != review.get(k) for k in ('brand', 'source_model', 'source_image_url')):
             raise ValueError('Manufacturer product review does not match source inventory')
-        if entry.get('manual_review'):
+        if entry.get('manual_review') and review not in matrix_reviews:
             continue
+        if review in matrix_reviews:
+            console = 'Premium LED' if entry['source_model'].endswith('-PLED') else 'LED'
+            slug = 'premium-led' if console == 'Premium LED' else 'led'
+            if (entry['brand'] != 'MATRIX' or review.get('official_model') != entry['source_model']
+                    or entry['source_model'] not in review.get('source_heading', '')
+                    or review.get('catalog_console') != console
+                    or not review['official_product_url'].endswith('/' + slug)
+                    or review.get('hero_image_observed_href') != review.get('official_image_url')
+                    or review.get('image_observed_on') != review['official_product_url']):
+                raise ValueError('Matrix follow-up requires the exact model, console and observed hero image')
         status = review['status']
         if status not in ('model_verified', 'model_verified_image_missing', 'candidate_requires_review'):
             raise ValueError('Unsupported manufacturer product review status')
@@ -413,7 +425,8 @@ def apply_manufacturer_product_reviews(result, supplemental):
         image = review.get('official_image_url')
         validate_browser_urls({'brand': entry['brand'], 'product_url': review['official_product_url'],
                                'evidence_url': review['evidence_url'], 'image_url': image,
-                               'image_evidence_url': review.get('image_evidence_url')})
+                               'image_evidence_url': review.get('image_evidence_url'),
+                               'image_observed_on': review.get('image_observed_on')})
         if status == 'model_verified':
             check = review.get('image_check', {})
             visual = review.get('visual_review', {})
@@ -435,6 +448,8 @@ def apply_manufacturer_product_reviews(result, supplemental):
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
     if supplemental.get('hammer_strength_unresolved_followup'):
         result['hammer_strength_unresolved_followup'] = supplemental['hammer_strength_unresolved_followup']
+    if supplemental.get('matrix_product_followup'):
+        result['matrix_product_followup'] = supplemental['matrix_product_followup']
 
 
 def apply_manual_equipment_reviews(result, supplemental):
@@ -448,6 +463,26 @@ def apply_manual_equipment_reviews(result, supplemental):
         seen.add(inventory_id)
         entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
         approved = review.get('approved_candidate')
+        followup = next((r for r in supplemental.get('matrix_product_reviews', [])
+                         if r['inventory_id'] == inventory_id), None)
+        if followup:
+            # Preserve the user's historical CPO candidate approval, while exact
+            # manufacturer evidence owns the current standard-product references.
+            if (entry is None or entry.get('match_method') != 'manufacturer_product_review'
+                    or review.get('reviewed_by') != 'user' or not review.get('review_source')
+                    or not review.get('review_date') or not approved
+                    or approved != review.get('previous_candidates', [None])[0]
+                    or any(entry.get(k) != review.get(k) for k in ('brand', 'source_model', 'source_image_url'))
+                    or any(entry.get(k) != followup.get(k) for k in
+                           ('official_name', 'official_product_url', 'official_image_url'))
+                    or any(review.get(k) != approved.get(v) for k, v in
+                           [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')])):
+                raise ValueError('Matrix manufacturer follow-up no longer matches the historical manual decision')
+            entry['manual_review'] = review
+            entry['manual_review_followup'] = {'evidence_key': 'matrix_product_reviews',
+                'review_date': followup['retrieved_at'],
+                'reason': 'Exact manufacturer model/console evidence supplies the current standard product name and image; the original user-approved CPO candidate snapshot is preserved.'}
+            continue
         if approved:
             source_fields = ('brand', 'source_model', 'source_image_url')
             if entry is None or any(entry.get(k) != review.get(k) for k in source_fields):
@@ -1012,7 +1047,7 @@ def write_reports(result):
              '- `ambiguous_model`: multiple different official products or bundles refer to the source model.',
              '- `unresolved`: no usable match found in this pass; this does not mean the product has no official source.', '',
              'Images are manufacturer catalog images or explicitly labeled distributor references, not visual confirmation of the physical machine installed in a branch. Colors, upholstery, console configuration and revisions may differ. Image URLs are supplied as research references; no local photo library was downloaded.', '',
-             *(['User-confirmed manual reviews: ' + ', '.join(f'{brand}: {count}' for brand, count in sorted(manual_counts.items())) + '. These records use model_verified (or model_verified_image_missing where no candidate image is available) based on explicit user approval, with the approved names, URLs and previous candidates retained in manual review evidence.', ''] if manual_counts else []),
+             *(['User-confirmed manual reviews: ' + ', '.join(f'{brand}: {count}' for brand, count in sorted(manual_counts.items())) + '. These records use model_verified (or model_verified_image_missing where no candidate image is available) based on explicit user approval, with the approved names, URLs and previous candidates retained in manual review evidence. Later exact-model manufacturer follow-ups may supply current product references while preserving the historical user decision.', ''] if manual_counts else []),
              '## Totals', '', '| Status | Count |', '| --- | ---: |']
     lines.extend(f'| {status} | {count} |' for status, count in sorted(result['summary'].items()))
     lines += ['', '## Coverage by brand', '', '| Brand | Total | Model + image | Model, image missing/unavailable | Indexed name only | Candidates / ambiguous | Unresolved | Official Chinese names |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']
@@ -1063,6 +1098,12 @@ def write_reports(result):
         if manual:
             lines += [f"User manual review applied for Inventory IDs {', '.join(str(e['inventory_id']) for e in manual)}: Status is `model_verified`, based on the user's workbook comments or explicit confirmation of candidate/image references. These decisions override earlier automated candidate outcomes. Original console/photo discrepancies and reviewed source/image references remain in `manual_equipment_reviews` in the evidence JSON; these are user decisions, not new manufacturer SKU evidence.", '']
         lines += ['Per-equipment Match scope and Review note are included in Full inventory cross-reference.', '']
+    if result.get('matrix_product_followup'):
+        matrix = result['matrix_product_followup']
+        lines += ['', '## Matrix exact-model product follow-up', '',
+                  f"On {matrix['review_date']}, all {matrix['inventory_count']} Matrix inventory records were matched to global manufacturer product headings carrying the exact declared model and console. All {matrix['image_http_success_count']} corresponding hero images were fetched successfully and visually inspected. Current standard-product names replace earlier CPO/refurbished/boxed-unit titles; all 11 records have model_verified catalog references. Existing manufacturer Chinese names are retained and bound to the current product pages. Previous user-approved candidate snapshots remain unchanged in manual_equipment_reviews and are linked to this manufacturer follow-up.", '',
+                  matrix['method'], '', matrix['console_note'], '', matrix['stepper_note'], '',
+                  'Per-item heading/model, observed image link, HTTP image hash, visual comparison and previous product references are recorded under matrix_product_reviews in the evidence JSON.', '']
     if result.get('active_china_followup'):
         active = result['active_china_followup']
         lines += ['', '## Active China distributor gap follow-up', '',

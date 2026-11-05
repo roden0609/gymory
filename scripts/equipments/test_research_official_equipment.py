@@ -327,6 +327,38 @@ class LifeFitnessReviewTests(unittest.TestCase):
 
 
 class SpecificationNameTests(unittest.TestCase):
+    def test_matrix_exact_console_pages_supersede_cpo_references_without_erasing_manual_history(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['matrix_product_reviews']
+        self.assertEqual({r['inventory_id'] for r in reviews}, set(range(1302, 1313)))
+        for review in reviews:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['official_model'], entry['source_model'])
+            self.assertEqual(entry['official_name'], review['official_name'])
+            self.assertEqual(entry['official_image_url'], review['hero_image_observed_href'])
+            self.assertTrue(entry['image_check']['available'])
+            self.assertTrue(entry['official_name_zh'])
+            self.assertEqual(entry['official_name_zh_evidence']['product_url'], entry['official_product_url'])
+            self.assertEqual(review['visual_review']['captured_console'], 'Touch')
+            self.assertIn('not the actual console installed', review['visual_review']['observations'])
+            if entry.get('manual_review'):
+                self.assertIsNone(entry['manual_review']['official_image_url'])
+                self.assertEqual(entry['manual_review_followup']['evidence_key'], 'matrix_product_reviews')
+        led = next(r for r in reviews if r['inventory_id'] == 1306)
+        pled = next(r for r in reviews if r['inventory_id'] == 1309)
+        self.assertTrue(led['official_product_url'].endswith('/stepper/led'))
+        self.assertTrue(pled['official_product_url'].endswith('/stepper/premium-led'))
+        self.assertNotEqual(led['official_image_url'], pled['official_image_url'])
+        entry = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == 1306))
+        for change in ({'manufacturer_model_codes': ['S-ES-PLED']}, {'catalog_console': 'Premium LED'},
+                       {'official_image_url': pled['official_image_url']},
+                       {'image_observed_on': 'https://unrelated.example/product'}):
+            with self.assertRaises(ValueError):
+                research.apply_manufacturer_product_reviews({'equipment': [entry]}, {'matrix_product_reviews': [{**led, **change}]})
+
     def test_active_distributor_references_fill_gaps_without_verifying_identity(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
@@ -414,7 +446,7 @@ class SpecificationNameTests(unittest.TestCase):
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
         evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
         reviews = [r for r in evidence['manual_equipment_reviews'] if r['brand'] == 'NAUTILUS']
-        self.assertEqual(len(reviews), 30)
+        self.assertEqual(len(reviews), 31)
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
             self.assertEqual(entry['status'], 'model_verified')
@@ -489,6 +521,23 @@ class SpecificationNameTests(unittest.TestCase):
                 self.assertEqual(entry[field], review['approved_candidate'][candidate_field])
         self.assertFalse(any(e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
 
+    def test_ambiguous_models_use_user_approved_first_candidates(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = [r for r in evidence['manual_equipment_reviews'] if r['review_source'].get('scope') == 'all_remaining_ambiguous']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {792, 1303, 1305, 1306, 1308, 1311, 1312, 1104, 1275})
+        self.assertEqual(sum(not r['official_image_url'] for r in reviews), 6)
+        for review in reviews:
+            entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
+            current = next((r for r in evidence.get('matrix_product_reviews', []) if r['inventory_id'] == review['inventory_id']), review)
+            self.assertEqual(entry['status'], current['status'])
+            self.assertEqual(review['previous_status'], 'ambiguous_model')
+            self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
+            for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
+                self.assertEqual(entry[field], current[field])
+        self.assertFalse(any(e['status'] == 'ambiguous_model' for e in catalog['equipment']))
+
     def test_glute_bridge_reference_image_does_not_verify_a_different_model_code(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
@@ -523,8 +572,9 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual(result, first)
         for review in reviews:
             entry = next(e for e in result['equipment'] if e['inventory_id'] == review['inventory_id'])
-            self.assertEqual(entry['status'], review['status'])
-            self.assertEqual(entry['match_method'], 'manual_equipment_review')
+            followup = entry.get('manual_review_followup')
+            self.assertEqual(entry['status'], 'model_verified' if followup else review['status'])
+            self.assertEqual(entry['match_method'], 'manufacturer_product_review' if followup else 'manual_equipment_review')
             self.assertEqual(entry['manual_review']['previous_status'], review['previous_status'])
         for field in ('source_model', 'source_image_url', 'official_image_url'):
             stale = copy.deepcopy(first)

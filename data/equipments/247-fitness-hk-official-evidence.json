@@ -52106,7 +52106,7 @@
       "inventory_id": 1302,
       "brand": "MATRIX",
       "source_model": "C-ES-LED",
-      "product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/led",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/led",
       "official_name_zh": "Endurance 爬梯機附 LED 儀表",
@@ -52132,7 +52132,7 @@
       "inventory_id": 1303,
       "brand": "MATRIX",
       "source_model": "T-ES-LED",
-      "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-tread-graphite-refurbished/",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/treadmill/led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/treadmill/led",
       "official_name_zh": "Endurance 跑步機附 LED 儀表",
@@ -52145,13 +52145,13 @@
       "manufacturer_model_codes": [
         "T-ES-LED"
       ],
-      "match_scope": "candidate_product_only"
+      "match_scope": "exact_source_model_chinese_name_only"
     },
     {
       "inventory_id": 1304,
       "brand": "MATRIX",
       "source_model": "E-ES-LED",
-      "product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/elliptical/led",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/elliptical/led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/elliptical/led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/elliptical/led",
       "official_name_zh": "Endurance 橢圓機附 LED 儀表",
@@ -52177,7 +52177,7 @@
       "inventory_id": 1305,
       "brand": "MATRIX",
       "source_model": "U-ES-LED",
-      "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/matrix-endurance-led-upright-cycle-graphite-refurbished/",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/upright-cycle/led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/upright-cycle/led",
       "official_name_zh": "Endurance 立式健身車附 LED 儀表",
@@ -52190,13 +52190,13 @@
       "manufacturer_model_codes": [
         "U-ES-LED"
       ],
-      "match_scope": "candidate_product_only"
+      "match_scope": "exact_source_model_chinese_name_only"
     },
     {
       "inventory_id": 1306,
       "brand": "MATRIX",
       "source_model": "S-ES-LED",
-      "product_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-black-matte-boxed-unit-10/",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/stepper/led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/stepper/led",
       "official_name_zh": "Endurance 踏步機附 LED 儀表",
@@ -52209,13 +52209,13 @@
       "manufacturer_model_codes": [
         "S-ES-LED"
       ],
-      "match_scope": "candidate_product_only"
+      "match_scope": "exact_source_model_chinese_name_only"
     },
     {
       "inventory_id": 1307,
       "brand": "MATRIX",
       "source_model": "R-ES-PLED",
-      "product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/recumbent-cycle/premium-led",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/recumbent-cycle/premium-led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/recumbent-cycle/premium-led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/recumbent-cycle/premium-led",
       "official_name_zh": "Endurance 臥式健身車附頂級 LED 儀表",
@@ -52241,7 +52241,7 @@
       "inventory_id": 1308,
       "brand": "MATRIX",
       "source_model": "T-ES-PLED",
-      "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-2/",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/premium-led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/treadmill/premium-led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/treadmill/premium-led",
       "official_name_zh": "Endurance 跑步機附頂級 LED 儀表",
@@ -52254,13 +52254,13 @@
       "manufacturer_model_codes": [
         "T-ES-PLED"
       ],
-      "match_scope": "candidate_product_only"
+      "match_scope": "exact_source_model_chinese_name_only"
     },
     {
       "inventory_id": 1309,
       "brand": "MATRIX",
       "source_model": "S-ES-PLED",
-      "product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/stepper/premium-led",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/premium-led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/stepper/premium-led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/stepper/premium-led",
       "official_name_zh": "Endurance 踏步機附頂級 LED 儀表",
@@ -52286,7 +52286,7 @@
       "inventory_id": 1310,
       "brand": "MATRIX",
       "source_model": "C-ES-PLED",
-      "product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/premium-led",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/premium-led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/premium-led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/climbmill/premium-led",
       "official_name_zh": "Endurance 爬梯機附頂級 LED 儀表",
@@ -52312,7 +52312,7 @@
       "inventory_id": 1311,
       "brand": "MATRIX",
       "source_model": "U-ES-PLED",
-      "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-cycle-built/",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/premium-led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/endurance/upright-cycle/premium-led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/endurance/upright-cycle/premium-led",
       "official_name_zh": "Endurance 立式健身車附頂級 LED 儀表",
@@ -52325,13 +52325,13 @@
       "manufacturer_model_codes": [
         "U-ES-PLED"
       ],
-      "match_scope": "candidate_product_only"
+      "match_scope": "exact_source_model_chinese_name_only"
     },
     {
       "inventory_id": 1312,
       "brand": "MATRIX",
       "source_model": "A-PS-PLED",
-      "product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-led-ascent-trainer-black-matte-refurbished/",
+      "product_url": "https://world.matrixfitness.com/eng/cardio/performance/ascent-trainer/premium-led",
       "localized_product_url": "https://tw.matrixfitness.com/zht/cardio/performance/ascent-trainer/premium-led",
       "evidence_url": "https://tw.matrixfitness.com/zht/cardio/performance/ascent-trainer/premium-led",
       "official_name_zh": "Performance 升降式橢圓機附頂級 LED 儀表",
@@ -52344,7 +52344,7 @@
       "manufacturer_model_codes": [
         "A-PS-PLED"
       ],
-      "match_scope": "candidate_product_only"
+      "match_scope": "exact_source_model_chinese_name_only"
     },
     {
       "inventory_id": 1334,
@@ -114554,6 +114554,556 @@
         },
         "scope": "Manufacturer confirms the Glute Bridge identities and discontinued SS-GLD designation. These sources do not explicitly establish SS-GLB/IS-GLD supersession, regional equivalence or identical image/configuration."
       }
+    },
+    {
+      "inventory_id": 792,
+      "brand": "GLUTE BUILDER",
+      "source_model": "GSL0622",
+      "source_image_url": "https://oss-hk.247fitness.hk/b07104236b91d21d026aae54ce41f97941244d13c72f4e180119375ba40b2b00.png",
+      "official_name": "Selectorized 3D-Multi Abductor Pro",
+      "official_product_url": "https://www.precor.com/en-US/products/GSL0622",
+      "official_image_url": "https://images.ctfassets.net/5bv2a78ngtvd/2PuC3H7AoRRA98k5oe49Uk/e9e548bea08dcaa27f0d3c8e818258a1/S3DAB.2053.png?fm=webp&w=3840&q=70",
+      "approved_candidate": {
+        "name": "Selectorized 3D-Multi Abductor Pro",
+        "product_url": "https://www.precor.com/en-US/products/GSL0622",
+        "image_url": "https://images.ctfassets.net/5bv2a78ngtvd/2PuC3H7AoRRA98k5oe49Uk/e9e548bea08dcaa27f0d3c8e818258a1/S3DAB.2053.png?fm=webp&w=3840&q=70",
+        "score": 1,
+        "evidence_url": "https://www.precor.com/en-US/products/GSL0622",
+        "name_zh": "插片系列 3D 多角度髖外展訓練器"
+      },
+      "previous_candidates": [
+        {
+          "name": "Selectorized 3D-Multi Abductor Pro",
+          "product_url": "https://www.precor.com/en-US/products/GSL0622",
+          "image_url": "https://images.ctfassets.net/5bv2a78ngtvd/2PuC3H7AoRRA98k5oe49Uk/e9e548bea08dcaa27f0d3c8e818258a1/S3DAB.2053.png?fm=webp&w=3840&q=70",
+          "score": 1,
+          "evidence_url": "https://www.precor.com/en-US/products/GSL0622",
+          "name_zh": "插片系列 3D 多角度髖外展訓練器"
+        },
+        {
+          "name": "SELECTORISED 3D Multi-abductor Pro",
+          "product_url": "https://www.precor.com/en-GB/products/GSL0622",
+          "image_url": "https://images.ctfassets.net/5bv2a78ngtvd/2PuC3H7AoRRA98k5oe49Uk/e9e548bea08dcaa27f0d3c8e818258a1/S3DAB.2053.png?fm=webp&w=3840&q=70",
+          "score": 1,
+          "evidence_url": "https://www.precor.com/en-GB/products/GSL0622"
+        },
+        {
+          "name": "セレクタライズド 3D Multi-Abductor Pro - Glutebuilder | 製品 | Precor",
+          "product_url": "https://www.precor.com/ja-JP/products/GSL0622",
+          "image_url": null,
+          "score": 0.667,
+          "evidence_url": "https://www.precor.com/ja-JP/products/GSL0622",
+          "retrieval_method": "web_search_index"
+        },
+        {
+          "name": "SELECTORIZED 3D Multi-Abductor Pro - Glutebuilder | Productos | Precor",
+          "product_url": "https://www.precor.com/es-419/products/GSL0622",
+          "image_url": null,
+          "score": 0.5,
+          "evidence_url": "https://www.precor.com/es-419/products/GSL0622",
+          "retrieval_method": "web_search_index"
+        },
+        {
+          "name": "SELECTORIZED 3D Multi-Abductor Pro - Glutebuilder | Produkte | Precor",
+          "product_url": "https://www.precor.com/de-DE/products/GSL0622",
+          "image_url": null,
+          "score": 0.5,
+          "evidence_url": "https://www.precor.com/de-DE/products/GSL0622",
+          "retrieval_method": "web_search_index"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "GLUTE BUILDER",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred."
+    },
+    {
+      "inventory_id": 1303,
+      "brand": "MATRIX",
+      "source_model": "T-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08.jpg",
+      "official_name": "Matrix Endurance LED Tread Graphite – Refurbished",
+      "official_product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-tread-graphite-refurbished/",
+      "official_image_url": null,
+      "approved_candidate": {
+        "name": "Matrix Endurance LED Tread Graphite – Refurbished",
+        "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-tread-graphite-refurbished/",
+        "image_url": null,
+        "score": 1,
+        "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-tread-graphite-refurbished/",
+        "name_zh": "Endurance 跑步機附 LED 儀表"
+      },
+      "previous_candidates": [
+        {
+          "name": "Matrix Endurance LED Tread Graphite – Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-tread-graphite-refurbished/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-tread-graphite-refurbished/",
+          "name_zh": "Endurance 跑步機附 LED 儀表"
+        },
+        {
+          "name": "Matrix Endurance LED Treadmill Black Matte – Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-black-matte-refurbished-3/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-black-matte-refurbished-3/"
+        },
+        {
+          "name": "Matrix Endurance LED Treadmill Graphite-Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-graphite-refurbished/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-graphite-refurbished/"
+        },
+        {
+          "name": "Matrix Endurance LED Treadmill Lace White-Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-lace-white-refurbished/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-lace-white-refurbished/"
+        },
+        {
+          "name": "Matrix Endurance LED Treadmill RC",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-rc/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-treadmill-rc/"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified_image_missing",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "MATRIX",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred. The approved candidate has no image URL; status is model_verified_image_missing."
+    },
+    {
+      "inventory_id": 1305,
+      "brand": "MATRIX",
+      "source_model": "U-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e.jpg",
+      "official_name": "Matrix Endurance LED Upright Cycle Graphite – Refurbished",
+      "official_product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/matrix-endurance-led-upright-cycle-graphite-refurbished/",
+      "official_image_url": null,
+      "approved_candidate": {
+        "name": "Matrix Endurance LED Upright Cycle Graphite – Refurbished",
+        "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/matrix-endurance-led-upright-cycle-graphite-refurbished/",
+        "image_url": null,
+        "score": 1,
+        "evidence_url": "https://cpo.matrixfitness.com/products/cardio/cycles/matrix-endurance-led-upright-cycle-graphite-refurbished/",
+        "name_zh": "Endurance 立式健身車附 LED 儀表"
+      },
+      "previous_candidates": [
+        {
+          "name": "Matrix Endurance LED Upright Cycle Graphite – Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/matrix-endurance-led-upright-cycle-graphite-refurbished/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/cycles/matrix-endurance-led-upright-cycle-graphite-refurbished/",
+          "name_zh": "Endurance 立式健身車附 LED 儀表"
+        },
+        {
+          "name": "Mx Endurance Upright Cycle LED Iced Silver Boxed Unit",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-upright-cycle-led-kit/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-upright-cycle-led-kit/"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified_image_missing",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "MATRIX",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred. The approved candidate has no image URL; status is model_verified_image_missing."
+    },
+    {
+      "inventory_id": 1306,
+      "brand": "MATRIX",
+      "source_model": "S-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/87369a41604a430a8ebd46f2087a8201bfe7d7418f7a57720ddb27326bfd6470.jpg",
+      "official_name": "Matrix Endurance LED Stepper Black Matte Boxed Unit",
+      "official_product_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-black-matte-boxed-unit-10/",
+      "official_image_url": null,
+      "approved_candidate": {
+        "name": "Matrix Endurance LED Stepper Black Matte Boxed Unit",
+        "product_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-black-matte-boxed-unit-10/",
+        "image_url": null,
+        "score": 1,
+        "evidence_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-black-matte-boxed-unit-10/",
+        "name_zh": "Endurance 踏步機附 LED 儀表"
+      },
+      "previous_candidates": [
+        {
+          "name": "Matrix Endurance LED Stepper Black Matte Boxed Unit",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-black-matte-boxed-unit-10/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-black-matte-boxed-unit-10/",
+          "name_zh": "Endurance 踏步機附 LED 儀表"
+        },
+        {
+          "name": "Matrix Endurance LED Stepper Iced Silver Boxed Unit",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-iced-silver-boxed-unit-4/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-iced-silver-boxed-unit-4/"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified_image_missing",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "MATRIX",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred. The approved candidate has no image URL; status is model_verified_image_missing."
+    },
+    {
+      "inventory_id": 1308,
+      "brand": "MATRIX",
+      "source_model": "T-ES-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08.jpg",
+      "official_name": "Matrix Endurance Premium LED Treadmill Refurbished",
+      "official_product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-2/",
+      "official_image_url": null,
+      "approved_candidate": {
+        "name": "Matrix Endurance Premium LED Treadmill Refurbished",
+        "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-2/",
+        "image_url": null,
+        "score": 1,
+        "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-2/",
+        "name_zh": "Endurance 跑步機附頂級 LED 儀表"
+      },
+      "previous_candidates": [
+        {
+          "name": "Matrix Endurance Premium LED Treadmill Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-2/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-2/",
+          "name_zh": "Endurance 跑步機附頂級 LED 儀表"
+        },
+        {
+          "name": "Matrix Endurance Premium LED Treadmill Black Matte – Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-5/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-5/"
+        },
+        {
+          "name": "Matrix Endurance Treadmill with PLED console Iced Silver Boxed Unit",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-treadmill-with-pled-console-iced-silver-boxed-unit/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-treadmill-with-pled-console-iced-silver-boxed-unit/"
+        },
+        {
+          "name": "Mx Endurance Premium LED Treadmill Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/mx-endurance-premium-led-treadmill-refurbished/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/mx-endurance-premium-led-treadmill-refurbished/"
+        },
+        {
+          "name": "Matrix Endurance Premium LED Treadmill Refurbished – Matrix CPO",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished/",
+          "image_url": null,
+          "score": 0.444,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished/",
+          "retrieval_method": "web_search_index"
+        },
+        {
+          "name": "Matrix Endurance Premium LED Treadmill – Refurbished – Matrix CPO",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-3/",
+          "image_url": null,
+          "score": 0.444,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-3/",
+          "retrieval_method": "web_search_index"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified_image_missing",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "MATRIX",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred. The approved candidate has no image URL; status is model_verified_image_missing."
+    },
+    {
+      "inventory_id": 1311,
+      "brand": "MATRIX",
+      "source_model": "U-ES-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e.jpg",
+      "official_name": "Matrix Endurance Premium LED Upright Cycle Black Matte Built",
+      "official_product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-cycle-built/",
+      "official_image_url": null,
+      "approved_candidate": {
+        "name": "Matrix Endurance Premium LED Upright Cycle Black Matte Built",
+        "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-cycle-built/",
+        "image_url": null,
+        "score": 1,
+        "evidence_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-cycle-built/",
+        "name_zh": "Endurance 立式健身車附頂級 LED 儀表"
+      },
+      "previous_candidates": [
+        {
+          "name": "Matrix Endurance Premium LED Upright Cycle Black Matte Built",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-cycle-built/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-cycle-built/",
+          "name_zh": "Endurance 立式健身車附頂級 LED 儀表"
+        },
+        {
+          "name": "MX Endurance Premium LED Upright Gymkit/RFID Black Matte",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-gymkit-rfid-black-matte/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-gymkit-rfid-black-matte/"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified_image_missing",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "MATRIX",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred. The approved candidate has no image URL; status is model_verified_image_missing."
+    },
+    {
+      "inventory_id": 1312,
+      "brand": "MATRIX",
+      "source_model": "A-PS-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/99bb2b5aa38b0392c0fc68624ca9b6df4a4502ff5cc201b5702b4a8eb26f50bf.jpg",
+      "official_name": "Matrix Performance PLED Ascent Trainer Black Matte – Refurbished",
+      "official_product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-led-ascent-trainer-black-matte-refurbished/",
+      "official_image_url": null,
+      "approved_candidate": {
+        "name": "Matrix Performance PLED Ascent Trainer Black Matte – Refurbished",
+        "product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-led-ascent-trainer-black-matte-refurbished/",
+        "image_url": null,
+        "score": 1,
+        "evidence_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-led-ascent-trainer-black-matte-refurbished/",
+        "name_zh": "Performance 升降式橢圓機附頂級 LED 儀表"
+      },
+      "previous_candidates": [
+        {
+          "name": "Matrix Performance PLED Ascent Trainer Black Matte – Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-led-ascent-trainer-black-matte-refurbished/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-led-ascent-trainer-black-matte-refurbished/",
+          "name_zh": "Performance 升降式橢圓機附頂級 LED 儀表"
+        },
+        {
+          "name": "Matrix Performance Premium LED Ascent Graphite – Refurbished",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-premium-led-ascent-graphite-refurbished/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-premium-led-ascent-graphite-refurbished/"
+        },
+        {
+          "name": "MX Performance Premium LED Ascent Graphite – Built",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/mx-performance-premium-led-ascent-graphite-built/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/mx-performance-premium-led-ascent-graphite-built/"
+        },
+        {
+          "name": "MX Performance Premium LED Ascent Trainer with Gymkit/RFID Graphite Built",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/mx-performance-premium-led-ascent-trainer-with-gymkit-rfid-graphite-built/",
+          "image_url": null,
+          "score": 1,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/mx-performance-premium-led-ascent-trainer-with-gymkit-rfid-graphite-built/"
+        },
+        {
+          "name": "Matrix Performance Premium LED Ascent Graphite – Refurbished – Matrix CPO",
+          "product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/mx-perf-premium-led-ascent-graphite-refurbished/",
+          "image_url": null,
+          "score": 0.364,
+          "evidence_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/mx-perf-premium-led-ascent-graphite-refurbished/",
+          "retrieval_method": "web_search_index"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified_image_missing",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "MATRIX",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred. The approved candidate has no image URL; status is model_verified_image_missing."
+    },
+    {
+      "inventory_id": 1104,
+      "brand": "NAUTILUS",
+      "source_model": "9-HDHR2",
+      "source_image_url": "https://oss-hk.247fitness.hk/6da6350fcc7785e6aee875ce6f73084a6edd7d3e8c88baa6c53b1cabb94fe998.png",
+      "official_name": "Half Rack Download Spec Sheet",
+      "official_product_url": "https://www.corehandf.com/products/nautilus-benches-racks-half-rack",
+      "official_image_url": "http://www.corehandf.com/cdn/shop/files/Benches__Racks_Half_Rack-60.png?v=1778011962",
+      "approved_candidate": {
+        "name": "Half Rack Download Spec Sheet",
+        "product_url": "https://www.corehandf.com/products/nautilus-benches-racks-half-rack",
+        "image_url": "http://www.corehandf.com/cdn/shop/files/Benches__Racks_Half_Rack-60.png?v=1778011962",
+        "score": 1,
+        "evidence_url": "https://www.corehandf.com/products/nautilus-benches-racks-half-rack"
+      },
+      "previous_candidates": [
+        {
+          "name": "Half Rack Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-benches-racks-half-rack",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Benches__Racks_Half_Rack-60.png?v=1778011962",
+          "score": 1,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-benches-racks-half-rack"
+        },
+        {
+          "name": "Nautilus Half Rack with SVA Platform Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-half-rack-with-sva-platform",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Half-Rack-with-4ft-SVA-Platform-Bamboo-II-9-HDHR2-9-HDP4D-BB2-5-e1678996826368.png?v=1732691849",
+          "score": 1,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-half-rack-with-sva-platform"
+        },
+        {
+          "name": "Nautilus Half Rack with SVA Platform Bamboo II Download Spec Sheet",
+          "product_url": "https://www.corehandf.com/products/nautilus-half-rack-with-sva-platform-bamboo",
+          "image_url": "http://www.corehandf.com/cdn/shop/files/Half-Rack-with-4ft-Platform-Bamboo-II-9-HDHR2-9-HDP4-BB2-6-e1678998417953.png?v=1732691858",
+          "score": 1,
+          "evidence_url": "https://www.corehandf.com/products/nautilus-half-rack-with-sva-platform-bamboo"
+        },
+        {
+          "name": "Nautilus Half Rack com plataforma SVA - corehandf",
+          "product_url": "https://www.corehandf.com/pt-br/products/nautilus-half-rack-with-sva-platform",
+          "image_url": null,
+          "score": 0.429,
+          "evidence_url": "https://www.corehandf.com/pt-br/products/nautilus-half-rack-with-sva-platform",
+          "retrieval_method": "web_search_index"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "NAUTILUS",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred."
+    },
+    {
+      "inventory_id": 1275,
+      "brand": "SportArt",
+      "source_model": "E875",
+      "source_image_url": "https://oss-hk.247fitness.hk/02707ac5661a367185382523c948890e0f16e5dbdee2e0934dc67b20d14c944e.png",
+      "official_name": "E875 Elliptical",
+      "official_product_url": "https://www.gosportsart.com/product/e875-elliptical/",
+      "official_image_url": "https://www.gosportsart.com/wp-content/uploads/2025/04/E875-03-969x1000_300.png",
+      "approved_candidate": {
+        "name": "E875 Elliptical",
+        "product_url": "https://www.gosportsart.com/product/e875-elliptical/",
+        "image_url": "https://www.gosportsart.com/wp-content/uploads/2025/04/E875-03-969x1000_300.png",
+        "score": 1,
+        "evidence_url": "https://www.gosportsart.com/product/e875-elliptical/",
+        "name_zh": "E875 心肺橢圓交叉訓練機"
+      },
+      "previous_candidates": [
+        {
+          "name": "E875 Elliptical",
+          "product_url": "https://www.gosportsart.com/product/e875-elliptical/",
+          "image_url": "https://www.gosportsart.com/wp-content/uploads/2025/04/E875-03-969x1000_300.png",
+          "score": 1,
+          "evidence_url": "https://www.gosportsart.com/product/e875-elliptical/",
+          "name_zh": "E875 心肺橢圓交叉訓練機"
+        },
+        {
+          "name": "E875 ICARE",
+          "product_url": "https://www.gosportsart.com/product/e875-icare/",
+          "image_url": "https://www.gosportsart.com/wp-content/uploads/2025/04/E875MAE875MUE875MP-03-1000x667_300.png",
+          "score": 1,
+          "evidence_url": "https://www.gosportsart.com/product/e875-icare/"
+        },
+        {
+          "name": "E875 ELLIPTICAL",
+          "product_url": "https://www.gosportsart.com/wp-content/uploads/documentation/E875_Sell_ENG.pdf",
+          "image_url": null,
+          "score": 1.0,
+          "evidence_url": "https://www.gosportsart.com/wp-content/uploads/documentation/E875_Sell_ENG.pdf",
+          "retrieval_method": "web_search_index"
+        }
+      ],
+      "previous_status": "ambiguous_model",
+      "previous_research_note": "Multiple official products contain this model.",
+      "previous_configuration_note": null,
+      "status": "model_verified",
+      "review_date": "2026-11-05",
+      "reviewed_by": "user",
+      "review_source": {
+        "instruction": "User explicitly confirmed the First candidate for every ambiguous_model inventory record and requested an update.",
+        "selection": "First candidate",
+        "scope": "all_remaining_ambiguous",
+        "brand": "SportArt",
+        "original_status": "ambiguous_model"
+      },
+      "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred."
     }
   ],
   "lifefitness_glute_bridge_followup": {
@@ -116123,5 +116673,704 @@
       77
     ],
     "directory_comparison_complete": false
+  },
+  "matrix_product_reviews": [
+    {
+      "inventory_id": 1302,
+      "brand": "MATRIX",
+      "source_model": "C-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/530f007592b03d1e8b0ee7f56e98a3bad2bb91be6fb330046a0004d1f6cfdc68.jpg",
+      "official_name": "Endurance ClimbMill with LED Console",
+      "official_model": "C-ES-LED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/975e8bc5e5dd4a17225247511984b82f1eb5b892/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "C-ES-LED"
+      ],
+      "source_heading": "Endurance ClimbMill WITH LED CONSOLE C-ES-LED",
+      "catalog_console": "LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/975e8bc5e5dd4a17225247511984b82f1eb5b892/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "bcec282355c55960661d9f2f7294a60f8966ae031b8972d557a4c34d42a437eb",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance ClimbMill WITH LED CONSOLE C-ES-LED",
+      "identity_evidence": {
+        "source_heading": "Endurance ClimbMill WITH LED CONSOLE C-ES-LED",
+        "model_code": "C-ES-LED",
+        "console": "LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/975e8bc5e5dd4a17225247511984b82f1eb5b892/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "53a73ee46892c220e012b66345bc57cfe33141af469cb98d9115f533343be306",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/530f007592b03d1e8b0ee7f56e98a3bad2bb91be6fb330046a0004d1f6cfdc68.jpg",
+        "source_image_sha256": "530f007592b03d1e8b0ee7f56e98a3bad2bb91be6fb330046a0004d1f6cfdc68",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/975e8bc5e5dd4a17225247511984b82f1eb5b892/",
+        "official_image_sha256": "53a73ee46892c220e012b66345bc57cfe33141af469cb98d9115f533343be306",
+        "captured_console": "Touch",
+        "catalog_console": "LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Wide rotating steps, side shrouds, forward handrails and low safety platform match the Endurance ClimbMill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "unresolved",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists C-ES-LED with the LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Wide rotating steps, side shrouds, forward handrails and low safety platform match the Endurance ClimbMill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1303,
+      "brand": "MATRIX",
+      "source_model": "T-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08.jpg",
+      "official_name": "Endurance Treadmill with LED Console",
+      "official_model": "T-ES-LED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/4669a2e209b4c28bc77a1d7d6132e62b6851ec59/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "T-ES-LED"
+      ],
+      "source_heading": "Endurance Treadmill WITH LED CONSOLE T-ES-LED",
+      "catalog_console": "LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/4669a2e209b4c28bc77a1d7d6132e62b6851ec59/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "90af16a5c728b074a22c9ad37c4ed703b7a19a9dc0d7dc07c4ee64e8fd698c11",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Treadmill WITH LED CONSOLE T-ES-LED",
+      "identity_evidence": {
+        "source_heading": "Endurance Treadmill WITH LED CONSOLE T-ES-LED",
+        "model_code": "T-ES-LED",
+        "console": "LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/4669a2e209b4c28bc77a1d7d6132e62b6851ec59/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "d9a809b9def36ee1598117e6143145c5f7eba74e0298a86d95139f1a57e01d8a",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08.jpg",
+        "source_image_sha256": "1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/4669a2e209b4c28bc77a1d7d6132e62b6851ec59/",
+        "official_image_sha256": "d9a809b9def36ee1598117e6143145c5f7eba74e0298a86d95139f1a57e01d8a",
+        "captured_console": "Touch",
+        "catalog_console": "LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Running deck, paired front uprights and handrail layout match the Endurance treadmill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "model_verified_image_missing",
+        "official_name": "Matrix Endurance LED Tread Graphite – Refurbished",
+        "official_product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-led-tread-graphite-refurbished/",
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists T-ES-LED with the LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Running deck, paired front uprights and handrail layout match the Endurance treadmill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1304,
+      "brand": "MATRIX",
+      "source_model": "E-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/e5a4b0ceb48f0766526fa0006959dccfee26612e1380b6bb10fd0275d4968878.jpg",
+      "official_name": "Endurance Elliptical with LED Console",
+      "official_model": "E-ES-LED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/elliptical/led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/4a7c9ebd47c9118262fa1a955988a9ce39ce41f7/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "E-ES-LED"
+      ],
+      "source_heading": "Endurance Elliptical WITH LED CONSOLE E-ES-LED",
+      "catalog_console": "LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/4a7c9ebd47c9118262fa1a955988a9ce39ce41f7/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/elliptical/led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/elliptical/led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/elliptical/led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "45c16854f3bf42e7b8da6cdb440385d123d866f84cd575ad28ce50e1c1b4bc73",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Elliptical WITH LED CONSOLE E-ES-LED",
+      "identity_evidence": {
+        "source_heading": "Endurance Elliptical WITH LED CONSOLE E-ES-LED",
+        "model_code": "E-ES-LED",
+        "console": "LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/elliptical/led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/4a7c9ebd47c9118262fa1a955988a9ce39ce41f7/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "d771e07078a108c413551a04ab87df9205f7f7a39814e8f627c8ad74a93fdd69",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/e5a4b0ceb48f0766526fa0006959dccfee26612e1380b6bb10fd0275d4968878.jpg",
+        "source_image_sha256": "e5a4b0ceb48f0766526fa0006959dccfee26612e1380b6bb10fd0275d4968878",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/4a7c9ebd47c9118262fa1a955988a9ce39ce41f7/",
+        "official_image_sha256": "d771e07078a108c413551a04ab87df9205f7f7a39814e8f627c8ad74a93fdd69",
+        "captured_console": "Touch",
+        "catalog_console": "LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Rear suspension linkages, moving handles and pedal layout match the Endurance Elliptical frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "unresolved",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists E-ES-LED with the LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Rear suspension linkages, moving handles and pedal layout match the Endurance Elliptical frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1305,
+      "brand": "MATRIX",
+      "source_model": "U-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e.jpg",
+      "official_name": "Endurance Upright Cycle with LED Console",
+      "official_model": "U-ES-LED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/516d8fefba71455be5afca1bce88fef515c83642/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "U-ES-LED"
+      ],
+      "source_heading": "Endurance Upright Cycle WITH LED CONSOLE U-ES-LED",
+      "catalog_console": "LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/516d8fefba71455be5afca1bce88fef515c83642/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "5133a7d832c03ad7b8e0e97e87a00f4bbaa134c196bd8336afcfaf84e006a75e",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Upright Cycle WITH LED CONSOLE U-ES-LED",
+      "identity_evidence": {
+        "source_heading": "Endurance Upright Cycle WITH LED CONSOLE U-ES-LED",
+        "model_code": "U-ES-LED",
+        "console": "LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/516d8fefba71455be5afca1bce88fef515c83642/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "3d70c53101dfb64671557cb21360477c3ba37eadf3af4973fe921a004244934f",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e.jpg",
+        "source_image_sha256": "5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/516d8fefba71455be5afca1bce88fef515c83642/",
+        "official_image_sha256": "3d70c53101dfb64671557cb21360477c3ba37eadf3af4973fe921a004244934f",
+        "captured_console": "Touch",
+        "catalog_console": "LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Saddle, front support mast, pedal/crank and stabilizer layout match the Endurance upright cycle frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "model_verified_image_missing",
+        "official_name": "Matrix Endurance LED Upright Cycle Graphite – Refurbished",
+        "official_product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/matrix-endurance-led-upright-cycle-graphite-refurbished/",
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists U-ES-LED with the LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Saddle, front support mast, pedal/crank and stabilizer layout match the Endurance upright cycle frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1306,
+      "brand": "MATRIX",
+      "source_model": "S-ES-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/87369a41604a430a8ebd46f2087a8201bfe7d7418f7a57720ddb27326bfd6470.jpg",
+      "official_name": "Endurance Stepper with LED Console",
+      "official_model": "S-ES-LED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/81c45a419a0ba6d090b537956a6b849274705e61/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "S-ES-LED"
+      ],
+      "source_heading": "Endurance Stepper WITH LED CONSOLE S-ES-LED",
+      "catalog_console": "LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/81c45a419a0ba6d090b537956a6b849274705e61/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "d69a990b26172e26b1a0affac55544a03e4e3caffe19610c9b02c018669a8dbd",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Stepper WITH LED CONSOLE S-ES-LED",
+      "identity_evidence": {
+        "source_heading": "Endurance Stepper WITH LED CONSOLE S-ES-LED",
+        "model_code": "S-ES-LED",
+        "console": "LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/81c45a419a0ba6d090b537956a6b849274705e61/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "03ec23bc966457085bda940b4bfc6b8b962a7c1caf1314b70f8868ed56af4a74",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/87369a41604a430a8ebd46f2087a8201bfe7d7418f7a57720ddb27326bfd6470.jpg",
+        "source_image_sha256": "87369a41604a430a8ebd46f2087a8201bfe7d7418f7a57720ddb27326bfd6470",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/81c45a419a0ba6d090b537956a6b849274705e61/",
+        "official_image_sha256": "03ec23bc966457085bda940b4bfc6b8b962a7c1caf1314b70f8868ed56af4a74",
+        "captured_console": "Touch",
+        "catalog_console": "LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Two independent pedals, forward console mast and surrounding rail match the Endurance stepper frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "model_verified_image_missing",
+        "official_name": "Matrix Endurance LED Stepper Black Matte Boxed Unit",
+        "official_product_url": "https://cpo.matrixfitness.com/products/cardio/steppers/matrix-endurance-led-stepper-black-matte-boxed-unit-10/",
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists S-ES-LED with the LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Two independent pedals, forward console mast and surrounding rail match the Endurance stepper frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1307,
+      "brand": "MATRIX",
+      "source_model": "R-ES-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/dd0b82fa47b5879f24563e4dd86512e1a4502e216a837f713f45d453654e86ad.jpg",
+      "official_name": "Endurance Recumbent Cycle with Premium LED Console",
+      "official_model": "R-ES-PLED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/recumbent-cycle/premium-led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/8bd79f193166b42e23977e7bb9800f7ac91c13d2/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "R-ES-PLED"
+      ],
+      "source_heading": "Endurance Recumbent Cycle WITH LED PREMIUM CONSOLE R-ES-PLED",
+      "catalog_console": "Premium LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/8bd79f193166b42e23977e7bb9800f7ac91c13d2/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/recumbent-cycle/premium-led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/recumbent-cycle/premium-led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/recumbent-cycle/premium-led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "3bf7e3e6f5648932aa6b6a803b6da6f9e5f4e7c57760871ee77d9c44d16a4c6b",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Recumbent Cycle WITH LED PREMIUM CONSOLE R-ES-PLED",
+      "identity_evidence": {
+        "source_heading": "Endurance Recumbent Cycle WITH LED PREMIUM CONSOLE R-ES-PLED",
+        "model_code": "R-ES-PLED",
+        "console": "Premium LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/recumbent-cycle/premium-led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/8bd79f193166b42e23977e7bb9800f7ac91c13d2/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "c07bd2ea9c4c774cd17b8f1834d2f7dba2082373d4d16d5a0e31af008b0481ac",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/dd0b82fa47b5879f24563e4dd86512e1a4502e216a837f713f45d453654e86ad.jpg",
+        "source_image_sha256": "dd0b82fa47b5879f24563e4dd86512e1a4502e216a837f713f45d453654e86ad",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/8bd79f193166b42e23977e7bb9800f7ac91c13d2/",
+        "official_image_sha256": "c07bd2ea9c4c774cd17b8f1834d2f7dba2082373d4d16d5a0e31af008b0481ac",
+        "captured_console": "Touch",
+        "catalog_console": "Premium LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Step-through frame, seat/backrest, side handles and front crank housing match the Endurance recumbent cycle frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "unresolved",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists R-ES-PLED with the Premium LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Step-through frame, seat/backrest, side handles and front crank housing match the Endurance recumbent cycle frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1308,
+      "brand": "MATRIX",
+      "source_model": "T-ES-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08.jpg",
+      "official_name": "Endurance Treadmill with Premium LED Console",
+      "official_model": "T-ES-PLED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/premium-led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/46db2e1896c033fccaf97ebd6b0373be84ef4c3f/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "T-ES-PLED"
+      ],
+      "source_heading": "Endurance Treadmill WITH LED PREMIUM CONSOLE T-ES-PLED",
+      "catalog_console": "Premium LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/46db2e1896c033fccaf97ebd6b0373be84ef4c3f/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/premium-led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/premium-led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/premium-led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "48a226864543af9b53068e34027023c773e381bf92f579c7814e11077fcd4d9f",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Treadmill WITH LED PREMIUM CONSOLE T-ES-PLED",
+      "identity_evidence": {
+        "source_heading": "Endurance Treadmill WITH LED PREMIUM CONSOLE T-ES-PLED",
+        "model_code": "T-ES-PLED",
+        "console": "Premium LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/treadmill/premium-led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/46db2e1896c033fccaf97ebd6b0373be84ef4c3f/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "429f92a969d8801e9c4b42706d0704d61033d1cc5c414fb592d9d4687d5c76d6",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08.jpg",
+        "source_image_sha256": "1c97bf4aa2cca894ec48d4badc89094ff9262ee246abff9206bbb44e4cec9c08",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/46db2e1896c033fccaf97ebd6b0373be84ef4c3f/",
+        "official_image_sha256": "429f92a969d8801e9c4b42706d0704d61033d1cc5c414fb592d9d4687d5c76d6",
+        "captured_console": "Touch",
+        "catalog_console": "Premium LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Running deck, paired front uprights and handrail layout match the Endurance treadmill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "model_verified_image_missing",
+        "official_name": "Matrix Endurance Premium LED Treadmill Refurbished",
+        "official_product_url": "https://cpo.matrixfitness.com/products/cardio/treadmills/matrix-endurance-premium-led-treadmill-refurbished-2/",
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists T-ES-PLED with the Premium LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Running deck, paired front uprights and handrail layout match the Endurance treadmill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1309,
+      "brand": "MATRIX",
+      "source_model": "S-ES-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/87369a41604a430a8ebd46f2087a8201bfe7d7418f7a57720ddb27326bfd6470.jpg",
+      "official_name": "Endurance Stepper with Premium LED Console",
+      "official_model": "S-ES-PLED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/premium-led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/d8d3f694080c9c93903e8c109190e1cd7e95df59/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "S-ES-PLED"
+      ],
+      "source_heading": "Endurance Stepper WITH LED PREMIUM CONSOLE S-ES-PLED",
+      "catalog_console": "Premium LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/d8d3f694080c9c93903e8c109190e1cd7e95df59/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/premium-led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/premium-led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/premium-led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "085050eb519f6ed24836f4a3b2b33d538f15e739ebd465659c089d14a49c6592",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Stepper WITH LED PREMIUM CONSOLE S-ES-PLED",
+      "identity_evidence": {
+        "source_heading": "Endurance Stepper WITH LED PREMIUM CONSOLE S-ES-PLED",
+        "model_code": "S-ES-PLED",
+        "console": "Premium LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/stepper/premium-led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/d8d3f694080c9c93903e8c109190e1cd7e95df59/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "013673223d57ce88b17223548aa76d955bbeee902ae52aa629dbeafa36601253",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/87369a41604a430a8ebd46f2087a8201bfe7d7418f7a57720ddb27326bfd6470.jpg",
+        "source_image_sha256": "87369a41604a430a8ebd46f2087a8201bfe7d7418f7a57720ddb27326bfd6470",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/d8d3f694080c9c93903e8c109190e1cd7e95df59/",
+        "official_image_sha256": "013673223d57ce88b17223548aa76d955bbeee902ae52aa629dbeafa36601253",
+        "captured_console": "Touch",
+        "catalog_console": "Premium LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Two independent pedals, forward console mast and surrounding rail match the Endurance stepper frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "unresolved",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists S-ES-PLED with the Premium LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Two independent pedals, forward console mast and surrounding rail match the Endurance stepper frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1310,
+      "brand": "MATRIX",
+      "source_model": "C-ES-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/530f007592b03d1e8b0ee7f56e98a3bad2bb91be6fb330046a0004d1f6cfdc68.jpg",
+      "official_name": "Endurance ClimbMill with Premium LED Console",
+      "official_model": "C-ES-PLED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/premium-led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/64892c533aba0e1995bb09316b562f2bc77efa55/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "C-ES-PLED"
+      ],
+      "source_heading": "Endurance ClimbMill WITH LED PREMIUM CONSOLE C-ES-PLED",
+      "catalog_console": "Premium LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/64892c533aba0e1995bb09316b562f2bc77efa55/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/premium-led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/premium-led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/premium-led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "7e0755f033a0a519113e31f72f5799332bacaf74c1b74d018072509ae2050e82",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance ClimbMill WITH LED PREMIUM CONSOLE C-ES-PLED",
+      "identity_evidence": {
+        "source_heading": "Endurance ClimbMill WITH LED PREMIUM CONSOLE C-ES-PLED",
+        "model_code": "C-ES-PLED",
+        "console": "Premium LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/climbmill/premium-led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/64892c533aba0e1995bb09316b562f2bc77efa55/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "62e2e0a1d41d31abc469609c3671beda27a4eb8a089e8217059ad6e941616061",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/530f007592b03d1e8b0ee7f56e98a3bad2bb91be6fb330046a0004d1f6cfdc68.jpg",
+        "source_image_sha256": "530f007592b03d1e8b0ee7f56e98a3bad2bb91be6fb330046a0004d1f6cfdc68",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/64892c533aba0e1995bb09316b562f2bc77efa55/",
+        "official_image_sha256": "62e2e0a1d41d31abc469609c3671beda27a4eb8a089e8217059ad6e941616061",
+        "captured_console": "Touch",
+        "catalog_console": "Premium LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Wide rotating steps, side shrouds, forward handrails and low safety platform match the Endurance ClimbMill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "unresolved",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists C-ES-PLED with the Premium LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Wide rotating steps, side shrouds, forward handrails and low safety platform match the Endurance ClimbMill frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1311,
+      "brand": "MATRIX",
+      "source_model": "U-ES-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e.jpg",
+      "official_name": "Endurance Upright Cycle with Premium LED Console",
+      "official_model": "U-ES-PLED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/premium-led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/c8b49c3deff926c930a93a5da19d87dddba2840a/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "U-ES-PLED"
+      ],
+      "source_heading": "Endurance Upright Cycle WITH LED PREMIUM CONSOLE U-ES-PLED",
+      "catalog_console": "Premium LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/c8b49c3deff926c930a93a5da19d87dddba2840a/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/premium-led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/premium-led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/premium-led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "c0886470451a43ee3efb0a49f8dfb29f738049f27539a6199fd274a5ee0729c8",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Endurance Upright Cycle WITH LED PREMIUM CONSOLE U-ES-PLED",
+      "identity_evidence": {
+        "source_heading": "Endurance Upright Cycle WITH LED PREMIUM CONSOLE U-ES-PLED",
+        "model_code": "U-ES-PLED",
+        "console": "Premium LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/endurance/upright-cycle/premium-led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/c8b49c3deff926c930a93a5da19d87dddba2840a/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "3f1398f194f5da505913fda620739709ab0915edda8dbc79cd6e4ab245d4c607",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e.jpg",
+        "source_image_sha256": "5bb5ffee41fba18a188a551f9b12c48ea1616638fe964555ab2cd5f7834c584e",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/c8b49c3deff926c930a93a5da19d87dddba2840a/",
+        "official_image_sha256": "3f1398f194f5da505913fda620739709ab0915edda8dbc79cd6e4ab245d4c607",
+        "captured_console": "Touch",
+        "catalog_console": "Premium LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Saddle, front support mast, pedal/crank and stabilizer layout match the Endurance upright cycle frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "model_verified_image_missing",
+        "official_name": "Matrix Endurance Premium LED Upright Cycle Black Matte Built",
+        "official_product_url": "https://cpo.matrixfitness.com/products/cardio/cycles/mx-endurance-premium-led-upright-cycle-built/",
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists U-ES-PLED with the Premium LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Saddle, front support mast, pedal/crank and stabilizer layout match the Endurance upright cycle frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    },
+    {
+      "inventory_id": 1312,
+      "brand": "MATRIX",
+      "source_model": "A-PS-PLED",
+      "source_image_url": "https://oss-hk.247fitness.hk/99bb2b5aa38b0392c0fc68624ca9b6df4a4502ff5cc201b5702b4a8eb26f50bf.jpg",
+      "official_name": "Performance Ascent Trainer with Premium LED Console",
+      "official_model": "A-PS-PLED",
+      "official_product_url": "https://world.matrixfitness.com/eng/cardio/performance/ascent-trainer/premium-led",
+      "official_image_url": "https://assets.jhtbrand.co/files/product/1e309e9bc7b43cbbde8b4a6fed6b7d776d4b0bc5/",
+      "status": "model_verified",
+      "manufacturer_model_codes": [
+        "A-PS-PLED"
+      ],
+      "source_heading": "Performance Ascent Trainer WITH LED PREMIUM CONSOLE A-PS-PLED",
+      "catalog_console": "Premium LED",
+      "hero_image_observed_href": "https://assets.jhtbrand.co/files/product/1e309e9bc7b43cbbde8b4a6fed6b7d776d4b0bc5/",
+      "image_observed_on": "https://world.matrixfitness.com/eng/cardio/performance/ascent-trainer/premium-led",
+      "image_evidence_url": "https://world.matrixfitness.com/eng/cardio/performance/ascent-trainer/premium-led",
+      "evidence_url": "https://world.matrixfitness.com/eng/cardio/performance/ascent-trainer/premium-led",
+      "retrieved_at": "2026-11-05",
+      "retrieval_method": "web_reader_rendered_heading_and_hero_link_plus_http_image",
+      "evidence_sha256": "6e20f4f0eeb0d634d904e8906ee4984da701ccde395ea18c3a11a173b5997139",
+      "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML",
+      "match_scope": "exact_manufacturer_model_and_console_catalog_reference",
+      "model_evidence": "Performance Ascent Trainer WITH LED PREMIUM CONSOLE A-PS-PLED",
+      "identity_evidence": {
+        "source_heading": "Performance Ascent Trainer WITH LED PREMIUM CONSOLE A-PS-PLED",
+        "model_code": "A-PS-PLED",
+        "console": "Premium LED",
+        "image_url_observed_on": "https://world.matrixfitness.com/eng/cardio/performance/ascent-trainer/premium-led",
+        "evidence_hash_scope": "URL + rendered product heading + observed hero image URL; not raw HTML"
+      },
+      "image_check": {
+        "url": "https://assets.jhtbrand.co/files/product/1e309e9bc7b43cbbde8b4a6fed6b7d776d4b0bc5/",
+        "available": true,
+        "method": "http_image_content_type_and_visual_inspection",
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "233061fe8e9501c014a206185e0bb2aa51d1bdf97821b357ac5881ebbc4bcab6",
+        "checked_at": "2026-11-05"
+      },
+      "visual_review": {
+        "source_image_url": "https://oss-hk.247fitness.hk/99bb2b5aa38b0392c0fc68624ca9b6df4a4502ff5cc201b5702b4a8eb26f50bf.jpg",
+        "source_image_sha256": "99bb2b5aa38b0392c0fc68624ca9b6df4a4502ff5cc201b5702b4a8eb26f50bf",
+        "official_image_url": "https://assets.jhtbrand.co/files/product/1e309e9bc7b43cbbde8b4a6fed6b7d776d4b0bc5/",
+        "official_image_sha256": "233061fe8e9501c014a206185e0bb2aa51d1bdf97821b357ac5881ebbc4bcab6",
+        "captured_console": "Touch",
+        "catalog_console": "Premium LED",
+        "frame_comparison": "same_product_family",
+        "console_comparison": "different_from_shared_captured_marketing_image",
+        "observations": "Moving handles, suspension linkages, incline housing and yellow accents match the Performance Ascent Trainer frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch.",
+        "scope": "Declared source SKU catalog image; does not verify installed equipment/console"
+      },
+      "previous_reference": {
+        "status": "model_verified_image_missing",
+        "official_name": "Matrix Performance PLED Ascent Trainer Black Matte – Refurbished",
+        "official_product_url": "https://cpo.matrixfitness.com/products/cardio/ascent-trainers/matrix-performance-led-ascent-trainer-black-matte-refurbished/",
+        "official_image_url": null
+      },
+      "note": "Exact manufacturer product heading lists A-PS-PLED with the Premium LED console. Current English name and image use this standard-product page, replacing earlier CPO/refurbished/boxed-unit listings. Moving handles, suspension linkages, incline housing and yellow accents match the Performance Ascent Trainer frame. The captured marketing image visibly uses a Touch console and is shared between several source LED/PLED records. The manufacturer hero for this exact model code visibly uses the Premium LED console. This verifies the manufacturer catalog reference for the declared SKU, not the actual console installed at a branch. Captured name/model/image fields are preserved; prior user-approved CPO candidates remain in manual_equipment_reviews."
+    }
+  ],
+  "matrix_product_followup": {
+    "review_date": "2026-11-05",
+    "inventory_count": 11,
+    "model_verified_count": 11,
+    "previous_status_counts": {
+      "unresolved": 5,
+      "model_verified_image_missing": 6
+    },
+    "inventory_ids": [
+      1302,
+      1303,
+      1304,
+      1305,
+      1306,
+      1307,
+      1308,
+      1309,
+      1310,
+      1311,
+      1312
+    ],
+    "image_http_success_count": 11,
+    "method": "Read exact-model global manufacturer pages and their observed hero links through public web reader; fetch all hero/captured images over HTTP and visually compare frame and console. Direct HTML requests return the application shell, not product headings.",
+    "console_note": "All captured marketing images use Touch consoles; several are reused for LED and Premium LED inventory records. Official images are selected by exact declared model code and console, preserving the captured references and recording this discrepancy. No branch installation is certified.",
+    "stepper_note": "1306 S-ES-LED uses /stepper/led; the user-provided /stepper/premium-led maps to 1309 S-ES-PLED."
   }
 }
