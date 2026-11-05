@@ -518,7 +518,7 @@ class SpecificationNameTests(unittest.TestCase):
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
             current = next((r for r in evidence.get('user_product_corrections', []) if r['inventory_id'] == review['inventory_id']), review)
-            self.assertEqual(entry['status'], current['status'])
+            self.assertEqual(entry['status'], entry.get('manual_image_review', current)['status'])
             self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
             for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
                 self.assertEqual(entry[field], current[field])
@@ -560,8 +560,8 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual(sum(not r['official_image_url'] for r in reviews), 11)
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
-            current = next((r for r in evidence.get('user_product_corrections', []) if r['inventory_id'] == review['inventory_id']), review)
-            self.assertEqual(entry['status'], current['status'])
+            current = next((r for r in [*evidence.get('user_product_corrections', []), *evidence.get('booty_builder_product_reviews', [])] if r['inventory_id'] == review['inventory_id']), review)
+            self.assertEqual(entry['status'], entry.get('manual_image_review', current)['status'])
             self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
             self.assertEqual(entry['manual_review'], review)
             for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
@@ -578,7 +578,7 @@ class SpecificationNameTests(unittest.TestCase):
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
             current = next((r for r in evidence.get('matrix_product_reviews', []) if r['inventory_id'] == review['inventory_id']), review)
-            self.assertEqual(entry['status'], current['status'])
+            self.assertEqual(entry['status'], entry.get('manual_image_review', current)['status'])
             self.assertEqual(review['previous_status'], 'ambiguous_model')
             self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
             for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
@@ -606,6 +606,76 @@ class SpecificationNameTests(unittest.TestCase):
             self.assertEqual(entry['official_model'], 'SS-GLD')
         self.assertEqual(next(e for e in catalog['equipment'] if e['inventory_id'] == 130)['source_name'], 'Seated Leg Press')
 
+    def test_booty_builder_followup_covers_all_inventory_and_corrects_variants(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        entries = {x['inventory_id']: x for x in catalog['equipment'] if x['brand'] == 'BOOTY BUILDER'}
+        audit = evidence['booty_builder_product_followup']
+        self.assertEqual({r['inventory_id'] for r in audit['reviews']}, set(entries))
+        self.assertEqual(len(entries), 16)
+        expected = {749: 'Booty Builder Split Squat Stand', 752: 'Booty Builder Standing Hip Adduction',
+                    754: 'Booty Builder Dual Hip Thrust', 756: 'Booty Builder Platinum V4',
+                    757: 'Booty Builder V Squat', 758: 'Booty Builder Selectorized Standing Hip Thrust',
+                    759: 'Booty Builder Selectorized Standing Abductor',
+                    760: 'Booty Builder Selectorized Standing Hip Adduction', 761: 'Booty Builder V8',
+                    765: 'Booty Builder Selectorized Kick Back'}
+        self.assertEqual(set(audit['changed_inventory_ids']), set(expected))
+        for id, name in expected.items():
+            entry = entries[id]
+            self.assertEqual(entry['official_name'], name)
+            self.assertTrue(entry['official_image_url'])
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['manual_image_review']['reviewed_by'], 'user')
+            self.assertEqual(entry['manual_image_review']['previous_status'], 'model_verified_image_missing')
+            self.assertFalse(entry['image_check']['available'])
+            self.assertEqual(entry['image_check']['content_type'], 'text/html')
+            self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+            self.assertIsNone(entry['official_model'])
+            if entry.get('manual_review'):
+                self.assertEqual(entry['manual_review_followup']['evidence_key'], 'booty_builder_product_reviews')
+        for id in (750, 751, 753, 755, 762, 764):
+            self.assertEqual(entries[id]['status'], 'model_verified')
+        self.assertNotEqual(entries[750]['official_product_url'], entries[758]['official_product_url'])
+        self.assertNotEqual(entries[751]['official_product_url'], entries[759]['official_product_url'])
+        self.assertNotEqual(entries[752]['official_product_url'], entries[760]['official_product_url'])
+        self.assertNotEqual(entries[756]['official_image_url'], entries[761]['official_image_url'])
+        self.assertTrue(all(x['official_name'] and x['official_image_url'] for x in entries.values()))
+        self.assertTrue(all(not x.get('official_name_zh') for x in entries.values()))
+
+    def test_booty_builder_image_approval_is_bound_to_reviewed_references(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['booty_builder_image_reviews']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {749, 752, 754, 756, 757, 758, 759, 760, 761, 765})
+        self.assertTrue(all(x['status'] == 'model_verified' for x in catalog['equipment'] if x['brand'] == 'BOOTY BUILDER'))
+        review = reviews[0]
+        entry = next(x for x in catalog['equipment'] if x['inventory_id'] == review['inventory_id'])
+        for field in ('source_model', 'source_image_url', 'official_name', 'official_product_url', 'official_image_url'):
+            stale = copy.deepcopy(entry)
+            stale[field] = 'changed'
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                research.apply_manual_equipment_reviews({'equipment': [stale]}, {'booty_builder_image_reviews': [review]})
+        for change in ({'reviewed_by': 'automated'}, {'review_source': {}}, {'status': 'admin_verified'}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                research.apply_manual_equipment_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'booty_builder_image_reviews': [{**review, **change}]})
+
+    def test_booty_builder_followup_rejects_stale_source_and_wrong_resistance(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        review = next(r for r in evidence['booty_builder_product_reviews'] if r['inventory_id'] == 758)
+        entry = next(x for x in catalog['equipment'] if x['inventory_id'] == 758)
+        for change in ({'source_name': 'changed'}, {'source_heading': 'Standing Hip Thrust'},
+                       {'identity_evidence': {**review['identity_evidence'], 'manufacturer_resistance_type': 'plate_loaded'}},
+                       {'official_image_url': 'https://bootybuilder.com/wp-content/unobserved.jpg'},
+                       {'status': 'model_verified'}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                research.apply_manufacturer_product_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'booty_builder_product_reviews': [{**review, **change}]})
+
     def test_manual_review_replays_and_rejects_changed_reviewed_data(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
@@ -620,7 +690,8 @@ class SpecificationNameTests(unittest.TestCase):
         for review in reviews:
             entry = next(e for e in result['equipment'] if e['inventory_id'] == review['inventory_id'])
             followup = entry.get('manual_review_followup')
-            self.assertEqual(entry['status'], 'model_verified' if followup else review['status'])
+            current = next((r for r in evidence.get(followup['evidence_key'], []) if r['inventory_id'] == review['inventory_id']), review) if followup else review
+            self.assertEqual(entry['status'], entry.get('manual_image_review', current)['status'])
             self.assertEqual(entry['match_method'], 'manufacturer_product_review' if followup else 'manual_equipment_review')
             self.assertEqual(entry['manual_review']['previous_status'], review['previous_status'])
         for field in ('source_model', 'source_image_url', 'official_image_url'):

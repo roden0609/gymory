@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Official image URLs only in official_image_url. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 738,
-    "unresolved": 71,
-    "model_verified_image_missing": 24
+    "model_verified": 744,
+    "unresolved": 66,
+    "model_verified_image_missing": 23
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -11431,14 +11431,36 @@
         "laguna-city"
       ],
       "lookup_model": "BB-SSS",
-      "official_name": "Split Squat Programming",
-      "official_product_url": "https://bootybuilder.com/exercises/split-squat/programming/",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "official_name": "Booty Builder Split Squat Stand",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-split-squat-stand/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-SLS-US-4.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-split-squat-stand/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "2b44d8b1c5aa23b2b17be0c64bdd8e18c31185732427b25cb91207481f3a939c",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows an unweighted stand with two height-adjustable uprights, one horizontal foam roller, transport wheels and side handle. Manufacturer describes an adjustable split squat stand; the old exercise-programming article is not a product name.",
+        "identity_evidence": {
+          "source_name": "Split Squat",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "unweighted_stand",
+          "manufacturer_resistance_type": "unweighted_stand",
+          "source_image_sha256": "d08b7ff77a040547741226ccfd6663353bd0e8bbfd5c5bf82b5238cb3db78f7b",
+          "source_image_observations": "Captured image shows an unweighted stand with two height-adjustable uprights, one horizontal foam roller, transport wheels and side handle. Manufacturer describes an adjustable split squat stand; the old exercise-programming article is not a product name."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-split-squat-stand/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-split-squat-stand/",
+          "heading": "Booty Builder Split Squat Stand",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-SLS-US-4-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "Captured image shows an unweighted stand with two height-adjustable uprights, one horizontal foam roller, transport wheels and side handle. Manufacturer describes an adjustable split squat stand; the old exercise-programming article is not a product name. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 749,
         "query": "BOOTY BUILDER \"BB-SSS\"",
@@ -11507,16 +11529,25 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-SLS-US-4.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "3a000aae63c39c5f96c1e74ac6c2d3e4daa5840587d80db2dde23d4d66bd9345",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "manufacturer_product_name_and_resistance_type",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 749,
         "brand": "BOOTY BUILDER",
@@ -11562,7 +11593,31 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "Captured image shows an unweighted stand with two height-adjustable uprights, one horizontal foam roller, transport wheels and side handle. Manufacturer describes an adjustable split squat stand; the old exercise-programming article is not a product name. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "booty_builder_product_reviews",
+        "review_date": "2026-11-05",
+        "reason": "Manufacturer product references supersede the historical candidate; the user subsequently verified the current official image. Both decisions are preserved."
+      },
+      "manual_image_review": {
+        "inventory_id": 749,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-SSS",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/d08b7ff77a040547741226ccfd6663353bd0e8bbfd5c5bf82b5238cb3db78f7b.jpg",
+        "official_name": "Booty Builder Split Squat Stand",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-split-squat-stand/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-SLS-US-4.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows an unweighted stand with two height-adjustable uprights, one horizontal foam roller, transport wheels and side handle. Manufacturer describes an adjustable split squat stand; the old exercise-programming article is not a product name. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
+      }
     },
     {
       "inventory_id": 750,
@@ -11906,14 +11961,36 @@
         "sai-kung"
       ],
       "lookup_model": "BB-SADM",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Booty Builder Standing Hip Adduction",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-standing-hip-adduction/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/06/Booty-Builder-Standing-Adductor-01.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-standing-hip-adduction/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "6968d5d5c27366a65e25b36790242fd04b63d283e334c51bad06f0449cd24240",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows two thigh pads, foot platforms and external plate horn without a weight-stack tower. Manufacturer distinguishes this plate-loaded standing adduction product from its selectorized counterpart.",
+        "identity_evidence": {
+          "source_name": "Standing Adductor",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "plate_loaded",
+          "manufacturer_resistance_type": "plate_loaded",
+          "source_image_sha256": "504bdee31606ccf1ff676d4cfa6fdf014808e558b053e02d569b5a479280faa5",
+          "source_image_observations": "Captured image shows two thigh pads, foot platforms and external plate horn without a weight-stack tower. Manufacturer distinguishes this plate-loaded standing adduction product from its selectorized counterpart."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-standing-hip-adduction/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-standing-hip-adduction/",
+          "heading": "Booty Builder Standing Hip Adduction",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2025/06/Booty-Builder-Standing-Adductor-01-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Captured image shows two thigh pads, foot platforms and external plate horn without a weight-stack tower. Manufacturer distinguishes this plate-loaded standing adduction product from its selectorized counterpart. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 752,
         "query": "BOOTY BUILDER \"BB-SADM\"",
@@ -11982,12 +12059,43 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2025/06/Booty-Builder-Standing-Adductor-01.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "738fa8aa5c7d32014233b95341782d31b449dff18a380a52fc9179a3426876f8",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_name_and_resistance_type",
+      "configuration_note": "Captured image shows two thigh pads, foot platforms and external plate horn without a weight-stack tower. Manufacturer distinguishes this plate-loaded standing adduction product from its selectorized counterpart. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "image_verification_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 752,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-SADM",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/504bdee31606ccf1ff676d4cfa6fdf014808e558b053e02d569b5a479280faa5.jpg",
+        "official_name": "Booty Builder Standing Hip Adduction",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-standing-hip-adduction/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/06/Booty-Builder-Standing-Adductor-01.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows two thigh pads, foot platforms and external plate horn without a weight-stack tower. Manufacturer distinguishes this plate-loaded standing adduction product from its selectorized counterpart. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
       }
     },
     {
@@ -12155,14 +12263,36 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "BB-DHP",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Booty Builder Dual Hip Thrust",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-dual-hip-thrust/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/04/BB-SOD-US-600x600.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-dual-hip-thrust/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "8df758b2857f5dbc23c71d949641eb4ecbbcabcc510b41f14184d387a9f1ece9",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows a low barbell/band hip-thrust station with adjustable backrest, sliding footplate and multiple band pegs, matching the Dual Hip Thrust description. This is not the selectorized Pendulum Hip Press.",
+        "identity_evidence": {
+          "source_name": "Hip Press",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "barbell_and_band_station",
+          "manufacturer_resistance_type": "barbell_and_band_station",
+          "source_image_sha256": "408a2928d617a6d1a29cdf6ff63d974503117c10917b58aebc778577d816617d",
+          "source_image_observations": "Captured image shows a low barbell/band hip-thrust station with adjustable backrest, sliding footplate and multiple band pegs, matching the Dual Hip Thrust description. This is not the selectorized Pendulum Hip Press."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-dual-hip-thrust/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-dual-hip-thrust/",
+          "heading": "Booty Builder Dual Hip Thrust",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2024/04/BB-SOD-US-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Captured image shows a low barbell/band hip-thrust station with adjustable backrest, sliding footplate and multiple band pegs, matching the Dual Hip Thrust description. This is not the selectorized Pendulum Hip Press. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 754,
         "query": "BOOTY BUILDER \"BB-DHP\"",
@@ -12231,12 +12361,43 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2024/04/BB-SOD-US-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "5d64a354b744d8ae342d1ccac7805bd32450190e18ccd2f3f5faa328389d017a",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_name_and_resistance_type",
+      "configuration_note": "Captured image shows a low barbell/band hip-thrust station with adjustable backrest, sliding footplate and multiple band pegs, matching the Dual Hip Thrust description. This is not the selectorized Pendulum Hip Press. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "image_verification_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 754,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-DHP",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/408a2928d617a6d1a29cdf6ff63d974503117c10917b58aebc778577d816617d.jpg",
+        "official_name": "Booty Builder Dual Hip Thrust",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-dual-hip-thrust/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/04/BB-SOD-US-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows a low barbell/band hip-thrust station with adjustable backrest, sliding footplate and multiple band pegs, matching the Dual Hip Thrust description. This is not the selectorized Pendulum Hip Press. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
       }
     },
     {
@@ -12415,14 +12576,36 @@
         "yuen-long"
       ],
       "lookup_model": "BB-V4",
-      "official_name": "Hip thrust machines",
-      "official_product_url": "https://bootybuilder.com/product-category/machines/hip-thrust-machines/",
+      "official_name": "Booty Builder Platinum V4",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-platinum/",
       "official_image_url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_4_0_6-600x600.jpg",
       "status": "model_verified",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-platinum/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "851d3b1a5b5bd77b134fa801869cbeb71afdb838fc55257d08b58e5603135f0d",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image and source name identify V4: low hip-thrust bench, elevated footplates and external plate-loaded arms. The V4 product page explicitly describes plate-loaded hip thrusts; replace the generic category title.",
+        "identity_evidence": {
+          "source_name": "Platinum V4 Hip Thrust",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "plate_loaded",
+          "manufacturer_resistance_type": "plate_loaded",
+          "source_image_sha256": "d5aa12c95faf10e43cc91505fa1fd12321fdc5ebdc300161b20e37eed7ba1ffa",
+          "source_image_observations": "Captured image and source name identify V4: low hip-thrust bench, elevated footplates and external plate-loaded arms. The V4 product page explicitly describes plate-loaded hip thrusts; replace the generic category title."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-platinum/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-platinum/",
+          "heading": "Booty Builder Platinum V4",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_4_0_6-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts.",
+      "reason": "Captured image and source name identify V4: low hip-thrust bench, elevated footplates and external plate-loaded arms. The V4 product page explicitly describes plate-loaded hip thrusts; replace the generic category title. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 756,
         "query": "BOOTY BUILDER \"BB-V4\"",
@@ -12491,14 +12674,23 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_4_0_6-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "9a2cca5d8d84f53f98067f9da73e945a3bb9e34a038e13acfd84b41cdbea5080",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "manufacturer_product_name_and_resistance_type",
       "configuration_status": "manually_reviewed",
       "image_verification_status": "manually_reviewed",
       "manual_review": {
@@ -12547,7 +12739,31 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
+      "configuration_note": "Captured image and source name identify V4: low hip-thrust bench, elevated footplates and external plate-loaded arms. The V4 product page explicitly describes plate-loaded hip thrusts; replace the generic category title. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "booty_builder_product_reviews",
+        "review_date": "2026-11-05",
+        "reason": "Manufacturer product references supersede the historical candidate; the user subsequently verified the current official image. Both decisions are preserved."
+      },
+      "manual_image_review": {
+        "inventory_id": 756,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-V4",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/d5aa12c95faf10e43cc91505fa1fd12321fdc5ebdc300161b20e37eed7ba1ffa.jpg",
+        "official_name": "Booty Builder Platinum V4",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-platinum/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_4_0_6-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image and source name identify V4: low hip-thrust bench, elevated footplates and external plate-loaded arms. The V4 product page explicitly describes plate-loaded hip thrusts; replace the generic category title. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
+      }
     },
     {
       "inventory_id": 757,
@@ -12591,14 +12807,36 @@
         "wan-chai"
       ],
       "lookup_model": "BB-HS/VSM",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Booty Builder V Squat",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-v-squat/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/02/BB_Squat_1SQ-600x600.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-v-squat/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "aa7751de6c89ce4e52dda6d5b057793cfe9c42919dd248ab59c82c06fe6ccd42",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows a pivoting shoulder-yoke squat lever, angled footplate and external plate horns, matching the V Squat product and the VSM source annotation. Retain the captured Hack Squat wording; do not substitute the newer selectorized Multi Leg Press/Hack Squat.",
+        "identity_evidence": {
+          "source_name": "Hack Squat",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "plate_loaded",
+          "manufacturer_resistance_type": "plate_loaded",
+          "source_image_sha256": "96aca822a796c6a6aea228460a2d2d8f13f190a0040121220dade0973cfa87f5",
+          "source_image_observations": "Captured image shows a pivoting shoulder-yoke squat lever, angled footplate and external plate horns, matching the V Squat product and the VSM source annotation. Retain the captured Hack Squat wording; do not substitute the newer selectorized Multi Leg Press/Hack Squat."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-v-squat/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-v-squat/",
+          "heading": "Booty Builder V Squat",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2023/02/BB_Squat_1SQ-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Captured image shows a pivoting shoulder-yoke squat lever, angled footplate and external plate horns, matching the V Squat product and the VSM source annotation. Retain the captured Hack Squat wording; do not substitute the newer selectorized Multi Leg Press/Hack Squat. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 757,
         "query": "BOOTY BUILDER \"BB-HS/VSM\"",
@@ -12667,12 +12905,43 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2023/02/BB_Squat_1SQ-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "98b14d046c878ad7f156ede8cecd9fd5d7d796f4d8153a493a37e5645c16c3c1",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_name_and_resistance_type",
+      "configuration_note": "Captured image shows a pivoting shoulder-yoke squat lever, angled footplate and external plate horns, matching the V Squat product and the VSM source annotation. Retain the captured Hack Squat wording; do not substitute the newer selectorized Multi Leg Press/Hack Squat. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "image_verification_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 757,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-HS/VSM",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/96aca822a796c6a6aea228460a2d2d8f13f190a0040121220dade0973cfa87f5.jpg",
+        "official_name": "Booty Builder V Squat",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-v-squat/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/02/BB_Squat_1SQ-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows a pivoting shoulder-yoke squat lever, angled footplate and external plate horns, matching the V Squat product and the VSM source annotation. Retain the captured Hack Squat wording; do not substitute the newer selectorized Multi Leg Press/Hack Squat. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
       }
     },
     {
@@ -12695,14 +12964,36 @@
         "wan-chai"
       ],
       "lookup_model": "BB-SHTS/SHM",
-      "official_name": "Booty Builder Standing Hip Thrust",
-      "official_product_url": "https://bootybuilder.com/product/booty-builder-standing-hip-thrust/",
-      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/04/Booty-Builder-Standing-Hip-Thrust-02-1.jpg",
+      "official_name": "Booty Builder Selectorized Standing Hip Thrust",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-thrust/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB_Hip_Thrust_1-2-600x600.jpg",
       "status": "model_verified",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-thrust/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "9a33586380909388ae52735b3ba7ea11c410950f7ca5bb9add22cc5364ca5983",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows a tall enclosed weight-stack tower, hip-thrust seat and roller linkage, matching the selectorized product description. The previously matched plate-loaded version lacks this tower.",
+        "identity_evidence": {
+          "source_name": "Standing Hip Thrust",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "selectorized",
+          "manufacturer_resistance_type": "selectorized",
+          "source_image_sha256": "cad538691d7871c0e679ab88381f149289033511ba2e0b8407d60e941f23528e",
+          "source_image_observations": "Captured image shows a tall enclosed weight-stack tower, hip-thrust seat and roller linkage, matching the selectorized product description. The previously matched plate-loaded version lacks this tower."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-thrust/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-thrust/",
+          "heading": "Booty Builder Selectorized Standing Hip Thrust",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2024/03/BB_Hip_Thrust_1-2-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts.",
+      "reason": "Captured image shows a tall enclosed weight-stack tower, hip-thrust seat and roller linkage, matching the selectorized product description. The previously matched plate-loaded version lacks this tower. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 758,
         "query": "BOOTY BUILDER \"BB-SHTS/SHM\"",
@@ -12771,14 +13062,23 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB_Hip_Thrust_1-2-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "e0c4e83072b1f0831adb7e77cd1abe25f1118d9f6ae9739112476e8962a21aec",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "manufacturer_product_name_and_resistance_type",
       "configuration_status": "manually_reviewed",
       "image_verification_status": "manually_reviewed",
       "manual_review": {
@@ -12833,7 +13133,31 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
+      "configuration_note": "Captured image shows a tall enclosed weight-stack tower, hip-thrust seat and roller linkage, matching the selectorized product description. The previously matched plate-loaded version lacks this tower. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "booty_builder_product_reviews",
+        "review_date": "2026-11-05",
+        "reason": "Manufacturer product references supersede the historical candidate; the user subsequently verified the current official image. Both decisions are preserved."
+      },
+      "manual_image_review": {
+        "inventory_id": 758,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-SHTS/SHM",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/cad538691d7871c0e679ab88381f149289033511ba2e0b8407d60e941f23528e.jpg",
+        "official_name": "Booty Builder Selectorized Standing Hip Thrust",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-thrust/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB_Hip_Thrust_1-2-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows a tall enclosed weight-stack tower, hip-thrust seat and roller linkage, matching the selectorized product description. The previously matched plate-loaded version lacks this tower. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
+      }
     },
     {
       "inventory_id": 759,
@@ -12852,14 +13176,36 @@
         "yuen-long-third-branch"
       ],
       "lookup_model": "BB-SAS",
-      "official_name": "Booty Builder Standing Abductor",
-      "official_product_url": "https://bootybuilder.com/product/booty-builder-standing-abductor/",
-      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/04/Booty-Builder-Standing-Abductor-03-new-1.jpg",
+      "official_name": "Booty Builder Selectorized Standing Abductor",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-abductor/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB-StandingAbductor_1-600x600.jpg",
       "status": "model_verified",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-abductor/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "75fa8644e2487c5e307809f7fb9c04a125a877f70d41ab8f205bc5e4ab6f6d99",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows a tall weight-stack tower, knee pad/abductor arm, footplates and upright handles, matching the selectorized standing abductor. Keep distinct from the plate-loaded BB-SA record 751.",
+        "identity_evidence": {
+          "source_name": "Standing Abductor",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "selectorized",
+          "manufacturer_resistance_type": "selectorized",
+          "source_image_sha256": "f989b0225502acdb7c3c32a21f4f066beac7bdeb33aecd0db56ce5582aa342cf",
+          "source_image_observations": "Captured image shows a tall weight-stack tower, knee pad/abductor arm, footplates and upright handles, matching the selectorized standing abductor. Keep distinct from the plate-loaded BB-SA record 751."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-abductor/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-abductor/",
+          "heading": "Booty Builder Selectorized Standing Abductor",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2024/03/BB-StandingAbductor_1-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts.",
+      "reason": "Captured image shows a tall weight-stack tower, knee pad/abductor arm, footplates and upright handles, matching the selectorized standing abductor. Keep distinct from the plate-loaded BB-SA record 751. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 759,
         "query": "BOOTY BUILDER \"BB-SAS\"",
@@ -12928,14 +13274,23 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB-StandingAbductor_1-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "8a08dad1dd7700d6e34c8ae2c2b5ff410cbea44462ba9509fb7b87cc44eaf90f",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "manufacturer_product_name_and_resistance_type",
       "configuration_status": "manually_reviewed",
       "image_verification_status": "manually_reviewed",
       "manual_review": {
@@ -12983,7 +13338,31 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
+      "configuration_note": "Captured image shows a tall weight-stack tower, knee pad/abductor arm, footplates and upright handles, matching the selectorized standing abductor. Keep distinct from the plate-loaded BB-SA record 751. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "booty_builder_product_reviews",
+        "review_date": "2026-11-05",
+        "reason": "Manufacturer product references supersede the historical candidate; the user subsequently verified the current official image. Both decisions are preserved."
+      },
+      "manual_image_review": {
+        "inventory_id": 759,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-SAS",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/f989b0225502acdb7c3c32a21f4f066beac7bdeb33aecd0db56ce5582aa342cf.jpg",
+        "official_name": "Booty Builder Selectorized Standing Abductor",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-abductor/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB-StandingAbductor_1-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows a tall weight-stack tower, knee pad/abductor arm, footplates and upright handles, matching the selectorized standing abductor. Keep distinct from the plate-loaded BB-SA record 751. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
+      }
     },
     {
       "inventory_id": 760,
@@ -13000,14 +13379,36 @@
         "fo-tan-branch"
       ],
       "lookup_model": "BB-SSADM",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Booty Builder Selectorized Standing Hip Adduction",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-adduction/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-Standing-Adductor-Selectorized-03-600x600.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-adduction/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "e98beb75b28e3973b7cbbc43e99de106632d4e13340febe118b62509bfb8948b",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows a weight-stack tower, paired inner-thigh pads, foot platforms and upright handles, matching the selectorized standing hip adduction description. Keep distinct from plate-loaded record 752.",
+        "identity_evidence": {
+          "source_name": "Standing Adductor",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "selectorized",
+          "manufacturer_resistance_type": "selectorized",
+          "source_image_sha256": "59145825acbc9c0b6823fe2bb0626045fdf01c288aafe85787591fc7785a19da",
+          "source_image_observations": "Captured image shows a weight-stack tower, paired inner-thigh pads, foot platforms and upright handles, matching the selectorized standing hip adduction description. Keep distinct from plate-loaded record 752."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-adduction/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-adduction/",
+          "heading": "Booty Builder Selectorized Standing Hip Adduction",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-Standing-Adductor-Selectorized-03-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Captured image shows a weight-stack tower, paired inner-thigh pads, foot platforms and upright handles, matching the selectorized standing hip adduction description. Keep distinct from plate-loaded record 752. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 760,
         "query": "BOOTY BUILDER \"BB-SSADM\"",
@@ -13076,12 +13477,43 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-Standing-Adductor-Selectorized-03-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "f110c78c4cf5309826f26b0f8d11671d5db6d2b8ebccf78b399ddf8db2ed10fc",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_name_and_resistance_type",
+      "configuration_note": "Captured image shows a weight-stack tower, paired inner-thigh pads, foot platforms and upright handles, matching the selectorized standing hip adduction description. Keep distinct from plate-loaded record 752. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "image_verification_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 760,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-SSADM",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/59145825acbc9c0b6823fe2bb0626045fdf01c288aafe85787591fc7785a19da.jpg",
+        "official_name": "Booty Builder Selectorized Standing Hip Adduction",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-adduction/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-Standing-Adductor-Selectorized-03-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows a weight-stack tower, paired inner-thigh pads, foot platforms and upright handles, matching the selectorized standing hip adduction description. Keep distinct from plate-loaded record 752. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
       }
     },
     {
@@ -13100,14 +13532,36 @@
         "wan-chai"
       ],
       "lookup_model": "BB-V8",
-      "official_name": "Hip thrust machines",
-      "official_product_url": "https://bootybuilder.com/product-category/machines/hip-thrust-machines/",
-      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_4_0_6-600x600.jpg",
+      "official_name": "Booty Builder V8",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-hip-thrust-machine/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_v8_1-600x600.jpg",
       "status": "model_verified",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-hip-thrust-machine/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "41d566aea0e3cf73c3c639354ff83fb2c3964fbfe058daf1808ea065901b4ff3",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows the V8 hip-thrust seat, elevated footplates and tall weight-stack tower, matching the V8 source name and selectorized product description. The previously assigned V4 image depicts a different plate-loaded machine.",
+        "identity_evidence": {
+          "source_name": "Platinum V8 Hip Thrust",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "selectorized",
+          "manufacturer_resistance_type": "selectorized",
+          "source_image_sha256": "940d49916506dd97a5adef54dcd3b3244bd5a1d03859c6d934aa87b829cdb70f",
+          "source_image_observations": "Captured image shows the V8 hip-thrust seat, elevated footplates and tall weight-stack tower, matching the V8 source name and selectorized product description. The previously assigned V4 image depicts a different plate-loaded machine."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-hip-thrust-machine/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-selectorized-hip-thrust-machine/",
+          "heading": "Booty Builder V8",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_v8_1-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts.",
+      "reason": "Captured image shows the V8 hip-thrust seat, elevated footplates and tall weight-stack tower, matching the V8 source name and selectorized product description. The previously assigned V4 image depicts a different plate-loaded machine. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 761,
         "query": "BOOTY BUILDER \"BB-V8\"",
@@ -13119,14 +13573,23 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_v8_1-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "2a44ddc465a2e9533673c7d80447b3b555433edd3597e2fd243f4499eb839d05",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
       },
-      "match_scope": "manual_review",
+      "match_scope": "manufacturer_product_name_and_resistance_type",
       "configuration_status": "manually_reviewed",
       "image_verification_status": "manually_reviewed",
       "manual_review": {
@@ -13175,7 +13638,31 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts."
+      "configuration_note": "Captured image shows the V8 hip-thrust seat, elevated footplates and tall weight-stack tower, matching the V8 source name and selectorized product description. The previously assigned V4 image depicts a different plate-loaded machine. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "official_model": null,
+      "manual_review_followup": {
+        "evidence_key": "booty_builder_product_reviews",
+        "review_date": "2026-11-05",
+        "reason": "Manufacturer product references supersede the historical candidate; the user subsequently verified the current official image. Both decisions are preserved."
+      },
+      "manual_image_review": {
+        "inventory_id": 761,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-V8",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/940d49916506dd97a5adef54dcd3b3244bd5a1d03859c6d934aa87b829cdb70f.jpg",
+        "official_name": "Booty Builder V8",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-hip-thrust-machine/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_v8_1-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows the V8 hip-thrust seat, elevated footplates and tall weight-stack tower, matching the V8 source name and selectorized product description. The previously assigned V4 image depicts a different plate-loaded machine. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
+      }
     },
     {
       "inventory_id": 762,
@@ -13370,14 +13857,36 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "BB-KB",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Booty Builder Selectorized Kick Back",
+      "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-kick-back/",
+      "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/10/BB-KickBack_1-600x600.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-kick-back/",
+        "retrieved_at": "2026-11-05",
+        "retrieval_method": "web_page_heading_gallery_link_and_source_image_inspection",
+        "evidence_sha256": "57046be84f7458002fa730c59e216d8a949d719cc16acc97f0e19e3ace6c794a",
+        "manufacturer_model_codes": [],
+        "model_evidence": "Captured image shows an elevated standing platform, tall weight-stack tower, upright grips and low cable attachment, matching the Selectorized Kick Back page description. No source-code alias is inferred.",
+        "identity_evidence": {
+          "source_name": "KickBack",
+          "source_model_alias_verified": false,
+          "source_resistance_type": "selectorized",
+          "manufacturer_resistance_type": "selectorized",
+          "source_image_sha256": "8a084d29876b8e8a2c3762205da3ca972772205688359a30c8e49f223f853280",
+          "source_image_observations": "Captured image shows an elevated standing platform, tall weight-stack tower, upright grips and low cable attachment, matching the Selectorized Kick Back page description. No source-code alias is inferred."
+        },
+        "image_evidence_url": "https://bootybuilder.com/product/booty-builder-selectorized-kick-back/",
+        "evidence_hash_scope": "normalized observed heading, product URL and gallery thumbnail URL; not raw HTML",
+        "observed_page_facts": {
+          "product_url": "https://bootybuilder.com/product/booty-builder-selectorized-kick-back/",
+          "heading": "Booty Builder Selectorized Kick Back",
+          "observed_gallery_thumbnail": "https://bootybuilder.com/wp-content/uploads/2024/10/BB-KickBack_1-600x600.jpg"
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Captured image shows an elevated standing platform, tall weight-stack tower, upright grips and low cable attachment, matching the Selectorized Kick Back page description. No source-code alias is inferred. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
       "search_evidence": {
         "inventory_id": 765,
         "query": "BOOTY BUILDER \"BB-KB\"",
@@ -13389,12 +13898,43 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://bootybuilder.com/wp-content/uploads/2024/10/BB-KickBack_1-600x600.jpg",
+        "available": false,
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "d8cc97ce40c57b6de84cc6701fb9c04980a5bfa6e264e96d33b0f637f4dd6cde",
+        "checked_at": "2026-11-05",
+        "method": "http_content_type_check",
+        "error": "HTTP 200 returned a One moment verification HTML page, not image bytes. Browser navigation unavailable."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_name_and_resistance_type",
+      "configuration_note": "Captured image shows an elevated standing platform, tall weight-stack tower, upright grips and low cable attachment, matching the Selectorized Kick Back page description. No source-code alias is inferred. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download.",
+      "image_verification_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 765,
+        "brand": "BOOTY BUILDER",
+        "source_model": "BB-KB",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/8a084d29876b8e8a2c3762205da3ca972772205688359a30c8e49f223f853280.jpg",
+        "official_name": "Booty Builder Selectorized Kick Back",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-kick-back/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/10/BB-KickBack_1-600x600.jpg",
+        "status": "model_verified",
+        "previous_status": "model_verified_image_missing",
+        "reviewed_by": "user",
+        "review_date": "2026-11-05",
+        "review_source": {
+          "scope": "all_booty_builder_model_verified_image_missing",
+          "instruction": "User confirmed all Booty Builder model_verified_image_missing images were visually reviewed and correct, and requested updating them to verified."
+        },
+        "note": "Captured image shows an elevated standing platform, tall weight-stack tower, upright grips and low cable attachment, matching the Selectorized Kick Back page description. No source-code alias is inferred. Product identity follows the captured name, depicted equipment features and manufacturer description, not an exact manufacturer SKU alias. Official gallery image URL recorded best effort; direct HTTP returned a verification HTML page, and browser navigation failed. The official image could not be decoded or visually compared, so image verification remains missing. Previous manual approval is historical; captured fields are preserved. Subsequent user review on 2026-11-05 confirmed the current official image is correct and explicitly approved model_verified. This manual approval supersedes the earlier image-missing outcome; the historical automated HTTP failure is preserved, not reclassified as a successful download."
       }
     },
     {
@@ -104439,5 +104979,180 @@
       1294
     ],
     "note": "1492 corrected from AssaultRunner Classic treadmill to AssaultBike Classic fan bike using the user-supplied official page and visually matched HTTP-verified hero image. Prior bulk candidate approval remains historical and is not reapplied over the correction. Arsenal 1190, 1198, 1199, 1208 and 1294 now use user-supplied official product names and HTTP-verified, visually compared gallery images. 1198 and 1199 replace incorrect FORGEX matches; 1208 retains the eight-station configuration. All five are model_verified."
+  },
+  "booty_builder_product_followup": {
+    "review_date": "2026-11-05",
+    "inventory_count": 16,
+    "changed_inventory_ids": [
+      749,
+      752,
+      754,
+      756,
+      757,
+      758,
+      759,
+      760,
+      761,
+      765
+    ],
+    "previous_unresolved_resolved": [
+      752,
+      754,
+      757,
+      760,
+      765
+    ],
+    "catalog_urls": [
+      "https://bootybuilder.com/product-category/machines/",
+      "https://bootybuilder.com/gym-equipment/"
+    ],
+    "reviews": [
+      {
+        "inventory_id": 749,
+        "official_name": "Booty Builder Split Squat Stand",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-split-squat-stand/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-SLS-US-4.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 750,
+        "official_name": "Booty Builder Standing Hip Thrust",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-standing-hip-thrust/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/04/Booty-Builder-Standing-Hip-Thrust-02-1.jpg",
+        "outcome": "existing_product_reference_retained",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 751,
+        "official_name": "Booty Builder Standing Abductor",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-standing-abductor/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/04/Booty-Builder-Standing-Abductor-03-new-1.jpg",
+        "outcome": "existing_product_reference_retained",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 752,
+        "official_name": "Booty Builder Standing Hip Adduction",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-standing-hip-adduction/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/06/Booty-Builder-Standing-Adductor-01.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 753,
+        "official_name": "Booty Builder Belt Squat",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-belt-squat/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/04/Booty-Builder-Belt-Squat-00.jpeg",
+        "outcome": "existing_product_reference_retained",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 754,
+        "official_name": "Booty Builder Dual Hip Thrust",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-dual-hip-thrust/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/04/BB-SOD-US-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 755,
+        "official_name": "Booty Builder Reverse Lunge Machine",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-reverse-lunge-machine/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-Reverse-Sliding-Lunge-Plate-Loaded-03.jpg",
+        "outcome": "existing_product_reference_retained",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 756,
+        "official_name": "Booty Builder Platinum V4",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-platinum/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_4_0_6-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 757,
+        "official_name": "Booty Builder V Squat",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-v-squat/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/02/BB_Squat_1SQ-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 758,
+        "official_name": "Booty Builder Selectorized Standing Hip Thrust",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-thrust/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB_Hip_Thrust_1-2-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 759,
+        "official_name": "Booty Builder Selectorized Standing Abductor",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-abductor/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/03/BB-StandingAbductor_1-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 760,
+        "official_name": "Booty Builder Selectorized Standing Hip Adduction",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-standing-hip-adduction/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-Standing-Adductor-Selectorized-03-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 761,
+        "official_name": "Booty Builder V8",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-hip-thrust-machine/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2022/07/Booty_Builder_Platinum_v8_1-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 762,
+        "official_name": "Booty Builder Selectorized Back Extension",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-back-extension/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2023/05/BB_Backextension_3.jpg",
+        "outcome": "existing_product_reference_retained",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 764,
+        "official_name": "Booty Builder Selectorized 3D Multi-Abductor",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-3d-multi-abductor/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2025/03/BB-3D-Multi-Abductor-01.jpg",
+        "outcome": "existing_product_reference_retained",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      },
+      {
+        "inventory_id": 765,
+        "official_name": "Booty Builder Selectorized Kick Back",
+        "official_product_url": "https://bootybuilder.com/product/booty-builder-selectorized-kick-back/",
+        "official_image_url": "https://bootybuilder.com/wp-content/uploads/2024/10/BB-KickBack_1-600x600.jpg",
+        "outcome": "corrected_product_reference_image_unverified",
+        "image_retrieval_result": "verification_html_instead_of_image",
+        "chinese_name_outcome": "No manufacturer Chinese name found on the checked English catalog/product pages; no translation added."
+      }
+    ],
+    "method": "Read both manufacturer directories and the individual product pages through the web-reading service. Inspected all 16 captured images. Direct HTTP returned verification HTML for pages and images; Chrome navigation and the alternative DOM interface failed with a browser connection error. No official-image download or image-to-image comparison succeeded.",
+    "note": "Ten product references corrected or filled, including the user-supplied 749/752 references, Dual Hip Thrust 754, V4 756, V Squat 757, selectorized 758/759/760, V8 761 and Kick Back 765. Six already-correct references retained. All 16 now have product-specific English names and official image URLs; ten corrected image references remain unverified and use model_verified_image_missing. Six retained model_verified decisions remain historical, not newly image-verified. No exact BB source-code aliases or branch installation are certified. Chinese names remain blank for all 16; the checked official pages provide English names only."
   }
 }

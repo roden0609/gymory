@@ -391,13 +391,35 @@ def apply_manufacturer_product_reviews(result, supplemental):
     """Apply source-bound product/model/image evidence independently of Chinese-name collection."""
     from collections import Counter
     matrix_reviews = supplemental.get('matrix_product_reviews', [])
+    booty_reviews = supplemental.get('booty_builder_product_reviews', [])
     corrections = supplemental.get('user_product_corrections', [])
-    for review in [*supplemental.get('manufacturer_product_reviews', []), *matrix_reviews, *corrections]:
+    for review in [*supplemental.get('manufacturer_product_reviews', []), *matrix_reviews, *booty_reviews, *corrections]:
         entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
         if entry is None or any(entry.get(k) != review.get(k) for k in ('brand', 'source_model', 'source_image_url')):
             raise ValueError('Manufacturer product review does not match source inventory')
-        if entry.get('manual_review') and review not in matrix_reviews and review not in corrections:
+        if entry.get('manual_review') and review not in matrix_reviews and review not in booty_reviews and review not in corrections:
             continue
+        product_name_match = review in booty_reviews
+        if product_name_match:
+            identity = review.get('identity_evidence', {})
+            facts = review.get('observed_page_facts', {})
+            if (entry['brand'] != 'BOOTY BUILDER' or entry.get('source_name') != review.get('source_name')
+                    or review.get('source_heading') != review['official_name']
+                    or facts.get('heading') != review['official_name']
+                    or facts.get('product_url') != review['official_product_url']
+                    or not review['official_product_url'].startswith('https://bootybuilder.com/product/')
+                    or not identity.get('source_image_sha256') or not identity.get('source_image_observations')
+                    or not identity.get('source_resistance_type')
+                    or identity['source_resistance_type'] != identity.get('manufacturer_resistance_type')
+                    or review.get('image_observed_on') != review['official_product_url']):
+                raise ValueError('Booty Builder follow-up requires source-bound product heading and resistance evidence')
+            observed_image = review.get('observed_gallery_thumbnail')
+            supplied = review.get('user_supplied_reference', {})
+            if (not observed_image or facts.get('observed_gallery_thumbnail') != observed_image
+                    or (review.get('official_image_url') != observed_image
+                        and any(supplied.get(k) != review.get(k) for k in
+                                ('official_name', 'official_product_url', 'official_image_url')))):
+                raise ValueError('Booty Builder image must be an observed gallery link or explicit user reference')
         user_named_match = review in corrections
         if user_named_match:
             decision = review.get('user_correction', {})
@@ -431,7 +453,7 @@ def apply_manufacturer_product_reviews(result, supplemental):
                             and entry['source_model'].strip().upper().endswith('-DH')
                             and model_key(entry['source_model'].strip()[:-3], entry['brand']) == base
                             and base in codes)
-            if not review.get('model_evidence') or not (source_key in codes or base_match or config_match or user_named_match):
+            if not review.get('model_evidence') or not (source_key in codes or base_match or config_match or user_named_match or product_name_match):
                 raise ValueError(f'Manufacturer product review requires matching model evidence: {entry["inventory_id"]}')
         image = review.get('official_image_url')
         validate_browser_urls({'brand': entry['brand'], 'product_url': review['official_product_url'],
@@ -456,6 +478,10 @@ def apply_manufacturer_product_reviews(result, supplemental):
                      evidence={k: review[k] for k in ('evidence_url', 'retrieved_at', 'retrieval_method',
                                'evidence_sha256', 'manufacturer_model_codes', 'model_evidence', 'visual_review',
                                'identity_evidence', 'document_page', 'image_evidence_url') if k in review})
+        if product_name_match:
+            entry['evidence'].update({k: review[k] for k in ('evidence_hash_scope', 'observed_page_facts')})
+            if status == 'model_verified_image_missing':
+                entry['image_verification_status'] = 'image_unavailable'
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
     if supplemental.get('hammer_strength_unresolved_followup'):
         result['hammer_strength_unresolved_followup'] = supplemental['hammer_strength_unresolved_followup']
@@ -463,6 +489,8 @@ def apply_manufacturer_product_reviews(result, supplemental):
         result['matrix_product_followup'] = supplemental['matrix_product_followup']
     if supplemental.get('user_product_correction_followup'):
         result['user_product_correction_followup'] = supplemental['user_product_correction_followup']
+    if supplemental.get('booty_builder_product_followup'):
+        result['booty_builder_product_followup'] = supplemental['booty_builder_product_followup']
 
 
 def apply_manual_equipment_reviews(result, supplemental):
@@ -476,8 +504,8 @@ def apply_manual_equipment_reviews(result, supplemental):
         seen.add(inventory_id)
         entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
         approved = review.get('approved_candidate')
-        followup_key = ('user_product_corrections' if any(r['inventory_id'] == inventory_id
-                        for r in supplemental.get('user_product_corrections', [])) else 'matrix_product_reviews')
+        followup_key = next((key for key in ('user_product_corrections', 'booty_builder_product_reviews', 'matrix_product_reviews')
+                             if any(r['inventory_id'] == inventory_id for r in supplemental.get(key, []))), 'matrix_product_reviews')
         followup = next((r for r in supplemental.get(followup_key, [])
                          if r['inventory_id'] == inventory_id), None)
         if followup:
@@ -498,6 +526,8 @@ def apply_manual_equipment_reviews(result, supplemental):
                 'review_date': followup['retrieved_at'],
                 'reason': ('Exact manufacturer model/console evidence supplies the current standard product name and image; the original user-approved CPO candidate snapshot is preserved.'
                            if followup_key == 'matrix_product_reviews' else
+                           'Manufacturer product heading, resistance type and captured-image features correct the product reference; the official image is unverified and the original approved candidate snapshot is preserved.'
+                           if followup_key == 'booty_builder_product_reviews' else
                            'An explicit user correction and manufacturer image evidence supply current product references; the original approved candidate snapshot is preserved.')}
             continue
         if approved:
@@ -527,6 +557,22 @@ def apply_manual_equipment_reviews(result, supplemental):
                      match_scope='manual_review', configuration_status='manually_reviewed',
                      image_verification_status='manually_reviewed' if entry.get('official_image_url') else 'image_missing', manual_review=review,
                      reason=review['note'], configuration_note=review['note'])
+    for review in supplemental.get('booty_builder_image_reviews', []):
+        entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
+        fields = ('brand', 'source_model', 'source_image_url', 'official_name',
+                  'official_product_url', 'official_image_url')
+        if (entry is None or entry['brand'] != 'BOOTY BUILDER'
+                or any(entry.get(k) != review.get(k) for k in fields)
+                or not entry.get('official_image_url')
+                or entry['status'] not in ('model_verified_image_missing', 'model_verified')
+                or review.get('reviewed_by') != 'user' or review.get('status') != 'model_verified'
+                or not review.get('review_date') or not review.get('review_source', {}).get('instruction')):
+            raise ValueError('Booty Builder image approval requires an explicit user decision bound to current source and official references')
+        entry.update(status='model_verified', image_verification_status='manually_reviewed',
+                     manual_image_review=review, reason=review['note'], configuration_note=review['note'])
+        if entry.get('manual_review_followup'):
+            entry['manual_review_followup']['reason'] = (
+                'Manufacturer product references supersede the historical candidate; the user subsequently verified the current official image. Both decisions are preserved.')
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
     if result.get('lifefitness_review'):
         counts = Counter(e['status'] for e in result['equipment'] if e['brand'] == 'Life Fitness')
@@ -1120,6 +1166,14 @@ def write_reports(result):
         lines += ['', '## User-directed product corrections', '',
                   correction['review_date'] + ': ' + correction['note'], '',
                   'The corrected reference is supported by the manufacturer product heading and a successfully retrieved, visually compared product image. Full source-bound evidence and previous references remain under user_product_corrections in the evidence JSON.', '']
+    if result.get('booty_builder_product_followup'):
+        booty = result['booty_builder_product_followup']
+        lines += ['', '## Booty Builder product follow-up', '',
+                  'Initial product review on ' + booty['review_date'] + ': ' + booty['note'], '', booty['method'], '',
+                  'Product headings and resistance types establish product-name matches; they do not prove that the captured BB codes are manufacturer SKUs. The initial HTTP checks returned verification HTML rather than decoded images. The earlier manual approvals and initial checks are preserved as historical evidence. Per-item evidence and all 16 audit outcomes are retained under booty_builder_product_reviews and booty_builder_product_followup in the evidence JSON.', '']
+        approved_images = [e for e in entries if e['brand'] == 'BOOTY BUILDER' and e.get('manual_image_review')]
+        if approved_images:
+            lines += [f"Subsequent user image review: all {len(approved_images)} previously model_verified_image_missing records ({', '.join(str(e['inventory_id']) for e in approved_images)}) were visually checked and explicitly approved by the user. Their current status is model_verified and image_verification_status is manually_reviewed. Historical HTTP failures are retained unchanged; this approval does not claim a successful automated download. Source-bound decisions are stored under booty_builder_image_reviews.", '']
     if result.get('matrix_product_followup'):
         matrix = result['matrix_product_followup']
         lines += ['', '## Matrix exact-model product follow-up', '',
