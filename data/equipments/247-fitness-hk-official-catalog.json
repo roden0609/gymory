@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Official image URLs only in official_image_url. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "candidate_requires_review": 114,
+    "candidate_requires_review": 94,
     "unresolved": 78,
-    "model_verified": 616,
+    "model_verified": 636,
     "ambiguous_model": 9,
     "model_verified_image_missing": 16
   },
@@ -62177,36 +62177,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-OH-APFRD",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "OnHim Pec Dec Fly (With Reverse)",
+      "official_product_url": "https://newtechworldwide.com/products/pec-dec-fly-with-reverse",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/aa328f063b4cf.png?v=1732065981",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "OnHim Pec Dec Fly (With Reverse)",
-          "product_url": "https://newtechworldwide.com/products/pec-dec-fly-with-reverse",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/aa328f063b4cf.png?v=1732065981",
-          "score": 0.833,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Pec Dec Fly",
-          "product_url": "https://newtechworldwide.com/products/pec-dec-fly",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/8541193e3056d.png?v=1732086455",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Pec Dec Fly (con reversa)",
-          "product_url": "https://newtechworldwide.com/es/products/pec-dec-fly-with-reverse",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/aa328f063b4cf.png?v=1732065981",
-          "score": 0.429,
-          "evidence_url": "https://newtechworldwide.com/es/products/pec-dec-fly-with-reverse"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 172,
         "query": "NEWTECH \"NT-OH-APFRD\"",
@@ -62273,7 +62251,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 172,
+        "brand": "NEWTECH",
+        "source_model": "NT-OH-APFRD",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/2fbe65c23421dbcd87d553a643f25ad362004bc87e999afe047392e82959d304.jpg",
+        "official_name": "OnHim Pec Dec Fly (With Reverse)",
+        "official_product_url": "https://newtechworldwide.com/products/pec-dec-fly-with-reverse",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/aa328f063b4cf.png?v=1732065981",
+        "approved_candidate": {
+          "name": "OnHim Pec Dec Fly (With Reverse)",
+          "product_url": "https://newtechworldwide.com/products/pec-dec-fly-with-reverse",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/aa328f063b4cf.png?v=1732065981",
+          "score": 0.833,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "OnHim Pec Dec Fly (With Reverse)",
+            "product_url": "https://newtechworldwide.com/products/pec-dec-fly-with-reverse",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/aa328f063b4cf.png?v=1732065981",
+            "score": 0.833,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Pec Dec Fly",
+            "product_url": "https://newtechworldwide.com/products/pec-dec-fly",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/8541193e3056d.png?v=1732086455",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Pec Dec Fly (con reversa)",
+            "product_url": "https://newtechworldwide.com/es/products/pec-dec-fly-with-reverse",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/aa328f063b4cf.png?v=1732065981",
+            "score": 0.429,
+            "evidence_url": "https://newtechworldwide.com/es/products/pec-dec-fly-with-reverse"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 173,
@@ -63018,36 +63051,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-OH-( R )-SCP S",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Seated Chest Press (Rotary)",
+      "official_product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/4e0e6226d9ff2.png?v=1732087494",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Seated Chest Press (Rotary)",
-          "product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/4e0e6226d9ff2.png?v=1732087494",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Seated Chest Press (Rotary)",
-          "product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/4e0e6226d9ff2.png?v=1732087494",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products/seated-chest-press-2"
-        },
-        {
-          "name": "OnHim Chest Press (Rotary)",
-          "product_url": "https://newtechworldwide.com/products/seated-chest-press-1",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/21fab740ceebc_99f8e5dd-880d-4952-a7ef-04043c247d1e.png?v=1732078556",
-          "score": 0.6,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 185,
         "query": "NEWTECH \"NT-OH-( R )-SCP S\"",
@@ -63114,7 +63125,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 185,
+        "brand": "NEWTECH",
+        "source_model": "NT-OH-( R )-SCP S",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/73808e0f5917e17a618150b2b15e54a54a103e4f6d8a9fc0a7defd586caba691.jpg",
+        "official_name": "Torture Seated Chest Press (Rotary)",
+        "official_product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/4e0e6226d9ff2.png?v=1732087494",
+        "approved_candidate": {
+          "name": "Torture Seated Chest Press (Rotary)",
+          "product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/4e0e6226d9ff2.png?v=1732087494",
+          "score": 0.8,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Seated Chest Press (Rotary)",
+            "product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/4e0e6226d9ff2.png?v=1732087494",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Seated Chest Press (Rotary)",
+            "product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/4e0e6226d9ff2.png?v=1732087494",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products/seated-chest-press-2"
+          },
+          {
+            "name": "OnHim Chest Press (Rotary)",
+            "product_url": "https://newtechworldwide.com/products/seated-chest-press-1",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/21fab740ceebc_99f8e5dd-880d-4952-a7ef-04043c247d1e.png?v=1732078556",
+            "score": 0.6,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 186,
@@ -63144,36 +63210,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-OH-( R )-SR-I",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Seated Row",
+      "official_product_url": "https://newtechworldwide.com/products/seated-row-2",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Seated Row",
-          "product_url": "https://newtechworldwide.com/products/seated-row-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "OnHim Seated Row",
-          "product_url": "https://newtechworldwide.com/products/seated-row",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/af5a488624e7a_2255ae17-e043-4af2-b032-9b39717b9218.png?v=1732070338",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "OnHim Seated Row (Outward)",
-          "product_url": "https://newtechworldwide.com/products/seated-row-outward",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-onhim-seated-row-outward-1.png?v=1793042833",
-          "score": 0.4,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": null,
       "image_check": null,
       "official_name_zh": null,
@@ -63181,7 +63225,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 186,
+        "brand": "NEWTECH",
+        "source_model": "NT-OH-( R )-SR-I",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/091189ec9438258a77de1847c13506b3477c13e0931299d166f4fdc5899abfb9.jpg",
+        "official_name": "Torture Seated Row",
+        "official_product_url": "https://newtechworldwide.com/products/seated-row-2",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+        "approved_candidate": {
+          "name": "Torture Seated Row",
+          "product_url": "https://newtechworldwide.com/products/seated-row-2",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+          "score": 0.5,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Seated Row",
+            "product_url": "https://newtechworldwide.com/products/seated-row-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "OnHim Seated Row",
+            "product_url": "https://newtechworldwide.com/products/seated-row",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/af5a488624e7a_2255ae17-e043-4af2-b032-9b39717b9218.png?v=1732070338",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "OnHim Seated Row (Outward)",
+            "product_url": "https://newtechworldwide.com/products/seated-row-outward",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-onhim-seated-row-outward-1.png?v=1793042833",
+            "score": 0.4,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 187,
@@ -63202,36 +63301,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-OH-( R )-SR-O",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Seated Row",
+      "official_product_url": "https://newtechworldwide.com/products/seated-row-2",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Seated Row",
-          "product_url": "https://newtechworldwide.com/products/seated-row-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "OnHim Seated Row",
-          "product_url": "https://newtechworldwide.com/products/seated-row",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/af5a488624e7a_2255ae17-e043-4af2-b032-9b39717b9218.png?v=1732070338",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "OnHim Seated Row (Outward)",
-          "product_url": "https://newtechworldwide.com/products/seated-row-outward",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-onhim-seated-row-outward-1.png?v=1793042833",
-          "score": 0.4,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": null,
       "image_check": null,
       "official_name_zh": null,
@@ -63239,7 +63316,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 187,
+        "brand": "NEWTECH",
+        "source_model": "NT-OH-( R )-SR-O",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/bc435f5703383855b7591f0ac01e5a3e6d6ca15da54ebff7600e085eb4f97ba2.jpg",
+        "official_name": "Torture Seated Row",
+        "official_product_url": "https://newtechworldwide.com/products/seated-row-2",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+        "approved_candidate": {
+          "name": "Torture Seated Row",
+          "product_url": "https://newtechworldwide.com/products/seated-row-2",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+          "score": 0.5,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Seated Row",
+            "product_url": "https://newtechworldwide.com/products/seated-row-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "OnHim Seated Row",
+            "product_url": "https://newtechworldwide.com/products/seated-row",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/af5a488624e7a_2255ae17-e043-4af2-b032-9b39717b9218.png?v=1732070338",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "OnHim Seated Row (Outward)",
+            "product_url": "https://newtechworldwide.com/products/seated-row-outward",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-onhim-seated-row-outward-1.png?v=1793042833",
+            "score": 0.4,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 188,
@@ -63664,36 +63796,14 @@
         "tsuen-wan-seventh-branch-d-park"
       ],
       "lookup_model": "NT-T-(R)-LR",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Low Row (Rotary) (NEW)",
+      "official_product_url": "https://newtechworldwide.com/products/low-row-2-r",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/cf9b68a1ee6dd.png?v=1732087498",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Low Row (Rotary) (NEW)",
-          "product_url": "https://newtechworldwide.com/products/low-row-2-r",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/cf9b68a1ee6dd.png?v=1732087498",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Low Row (Rotary) (NEW)",
-          "product_url": "https://newtechworldwide.com/products/low-row-2-r",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/cf9b68a1ee6dd.png?v=1732087498",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products/low-row-2-r"
-        },
-        {
-          "name": "Torture Low Row 2 (NEW)",
-          "product_url": "https://newtechworldwide.com/products/torture-low-row-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-torture-low-row-2-1.png?v=1793041822",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 195,
         "query": "NEWTECH \"NT-T-(R)-LR\"",
@@ -63760,7 +63870,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 195,
+        "brand": "NEWTECH",
+        "source_model": "NT-T-(R)-LR",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/4497ad198b55e2e3a769b83da0e0875aec45679626964037707e69f1cefd1bf5.jpg",
+        "official_name": "Torture Low Row (Rotary) (NEW)",
+        "official_product_url": "https://newtechworldwide.com/products/low-row-2-r",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/cf9b68a1ee6dd.png?v=1732087498",
+        "approved_candidate": {
+          "name": "Torture Low Row (Rotary) (NEW)",
+          "product_url": "https://newtechworldwide.com/products/low-row-2-r",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/cf9b68a1ee6dd.png?v=1732087498",
+          "score": 0.8,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Low Row (Rotary) (NEW)",
+            "product_url": "https://newtechworldwide.com/products/low-row-2-r",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/cf9b68a1ee6dd.png?v=1732087498",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Low Row (Rotary) (NEW)",
+            "product_url": "https://newtechworldwide.com/products/low-row-2-r",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/cf9b68a1ee6dd.png?v=1732087498",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products/low-row-2-r"
+          },
+          {
+            "name": "Torture Low Row 2 (NEW)",
+            "product_url": "https://newtechworldwide.com/products/torture-low-row-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-torture-low-row-2-1.png?v=1793041822",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 196,
@@ -63782,36 +63947,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "NT-T-(R)-SR",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Seated Row",
+      "official_product_url": "https://newtechworldwide.com/products/seated-row-2",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Seated Row",
-          "product_url": "https://newtechworldwide.com/products/seated-row-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
-          "score": 0.6,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Seated Chest Press (Rotary)",
-          "product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/4e0e6226d9ff2.png?v=1732087494",
-          "score": 0.429,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Low Row (Rotary) (NEW)",
-          "product_url": "https://newtechworldwide.com/products/low-row-2-r",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/cf9b68a1ee6dd.png?v=1732087498",
-          "score": 0.429,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 196,
         "query": "NEWTECH \"NT-T-(R)-SR\"",
@@ -63849,7 +63992,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 196,
+        "brand": "NEWTECH",
+        "source_model": "NT-T-(R)-SR",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/6ad9e6b087228ce9dd91e98f92b04fa19fe7d38293faf7e6f8d11e503deff48a.jpg",
+        "official_name": "Torture Seated Row",
+        "official_product_url": "https://newtechworldwide.com/products/seated-row-2",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+        "approved_candidate": {
+          "name": "Torture Seated Row",
+          "product_url": "https://newtechworldwide.com/products/seated-row-2",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+          "score": 0.6,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Seated Row",
+            "product_url": "https://newtechworldwide.com/products/seated-row-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+            "score": 0.6,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Seated Chest Press (Rotary)",
+            "product_url": "https://newtechworldwide.com/products/seated-chest-press-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/4e0e6226d9ff2.png?v=1732087494",
+            "score": 0.429,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Low Row (Rotary) (NEW)",
+            "product_url": "https://newtechworldwide.com/products/low-row-2-r",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/cf9b68a1ee6dd.png?v=1732087498",
+            "score": 0.429,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 197,
@@ -63889,36 +64087,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-T-(R)-HTT",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Hip Thrust (Rotary) (NEW)",
+      "official_product_url": "https://newtechworldwide.com/products/hip-thrust-1",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/hip_thrust_new.jpg?v=1763596283",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Hip Thrust (Rotary) (NEW)",
-          "product_url": "https://newtechworldwide.com/products/hip-thrust-1",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/hip_thrust_new.jpg?v=1763596283",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Hip Thrust",
-          "product_url": "https://newtechworldwide.com/products/hip-thrust",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/b49773b1984d9.png?v=1732087221",
-          "score": 0.75,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Hip Thrust Bench",
-          "product_url": "https://newtechworldwide.com/products/hip-thrust-bench",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/32b7f570a0eb9.png?v=1732084546",
-          "score": 0.4,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 197,
         "query": "NEWTECH \"3 NT-T-(R)-HTT\"",
@@ -63956,7 +64132,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 197,
+        "brand": "NEWTECH",
+        "source_model": "3 NT-T-(R)-HTT",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/9eab572b27c9330af3a046c5f2a10ca424e28df7d0397aaad6791aecc2175b26.jpg",
+        "official_name": "Torture Hip Thrust (Rotary) (NEW)",
+        "official_product_url": "https://newtechworldwide.com/products/hip-thrust-1",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/hip_thrust_new.jpg?v=1763596283",
+        "approved_candidate": {
+          "name": "Torture Hip Thrust (Rotary) (NEW)",
+          "product_url": "https://newtechworldwide.com/products/hip-thrust-1",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/hip_thrust_new.jpg?v=1763596283",
+          "score": 0.8,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Hip Thrust (Rotary) (NEW)",
+            "product_url": "https://newtechworldwide.com/products/hip-thrust-1",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/hip_thrust_new.jpg?v=1763596283",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Hip Thrust",
+            "product_url": "https://newtechworldwide.com/products/hip-thrust",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/b49773b1984d9.png?v=1732087221",
+            "score": 0.75,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Hip Thrust Bench",
+            "product_url": "https://newtechworldwide.com/products/hip-thrust-bench",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/32b7f570a0eb9.png?v=1732084546",
+            "score": 0.4,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 198,
@@ -63986,36 +64217,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-T-HS-(P)",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Hack Squat (Thomson)",
+      "official_product_url": "https://newtechworldwide.com/products/hack-squat",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/241fac6103690_4e6f404e-997c-4773-a471-6b8b460a862c.png?v=1732086686",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Hack Squat (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/hack-squat",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/241fac6103690_4e6f404e-997c-4773-a471-6b8b460a862c.png?v=1732086686",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Hack Squat Premium Fixed (Thomson) (NEW)",
-          "product_url": "https://newtechworldwide.com/products/torture-hack-squat-premium-fixed-thomson",
-          "image_url": null,
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Hack Squat Premium Moving (Thomson) (NEW)",
-          "product_url": "https://newtechworldwide.com/products/torture-hack-squat-premium-thomsonnew",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/hack_squat_new.jpg?v=1763594364",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 198,
         "query": "NEWTECH \"NT-T-HS-(P)\"",
@@ -64053,7 +64262,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 198,
+        "brand": "NEWTECH",
+        "source_model": "NT-T-HS-(P)",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/8a9bcb5aa34f831a484f7a504e79a11019522ac24165a8457d6ae79caa5b7a21.jpg",
+        "official_name": "Torture Hack Squat (Thomson)",
+        "official_product_url": "https://newtechworldwide.com/products/hack-squat",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/241fac6103690_4e6f404e-997c-4773-a471-6b8b460a862c.png?v=1732086686",
+        "approved_candidate": {
+          "name": "Torture Hack Squat (Thomson)",
+          "product_url": "https://newtechworldwide.com/products/hack-squat",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/241fac6103690_4e6f404e-997c-4773-a471-6b8b460a862c.png?v=1732086686",
+          "score": 0.8,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Hack Squat (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/hack-squat",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/241fac6103690_4e6f404e-997c-4773-a471-6b8b460a862c.png?v=1732086686",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Hack Squat Premium Fixed (Thomson) (NEW)",
+            "product_url": "https://newtechworldwide.com/products/torture-hack-squat-premium-fixed-thomson",
+            "image_url": null,
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Hack Squat Premium Moving (Thomson) (NEW)",
+            "product_url": "https://newtechworldwide.com/products/torture-hack-squat-premium-thomsonnew",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/hack_squat_new.jpg?v=1763594364",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 199,
@@ -64093,36 +64357,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-T-PLP-(P)",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Power Leg Press Premium (Thomson) (NEW)",
+      "official_product_url": "https://newtechworldwide.com/products/toture-power-leg-press-premium-thomsonnew",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Power_Leg_Press_new.png?v=1763593945",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Power Leg Press Premium (Thomson) (NEW)",
-          "product_url": "https://newtechworldwide.com/products/toture-power-leg-press-premium-thomsonnew",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Power_Leg_Press_new.png?v=1763593945",
-          "score": 0.857,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Power Leg Press (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/power-leg-press",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/aacd16c75c98c.png?v=1732086695",
-          "score": 0.833,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Hack Press (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/hack-press",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/06820a7feadf0.png?v=1732087049",
-          "score": 0.429,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": null,
       "image_check": null,
       "official_name_zh": null,
@@ -64130,7 +64372,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 199,
+        "brand": "NEWTECH",
+        "source_model": "NT-T-PLP-(P)",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/b9b85b2eab7ce6a150bc200e2e638a5ed430bcb245d839b00695688fe011194e.jpg",
+        "official_name": "Torture Power Leg Press Premium (Thomson) (NEW)",
+        "official_product_url": "https://newtechworldwide.com/products/toture-power-leg-press-premium-thomsonnew",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Power_Leg_Press_new.png?v=1763593945",
+        "approved_candidate": {
+          "name": "Torture Power Leg Press Premium (Thomson) (NEW)",
+          "product_url": "https://newtechworldwide.com/products/toture-power-leg-press-premium-thomsonnew",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Power_Leg_Press_new.png?v=1763593945",
+          "score": 0.857,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Power Leg Press Premium (Thomson) (NEW)",
+            "product_url": "https://newtechworldwide.com/products/toture-power-leg-press-premium-thomsonnew",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Power_Leg_Press_new.png?v=1763593945",
+            "score": 0.857,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Power Leg Press (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/power-leg-press",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/aacd16c75c98c.png?v=1732086695",
+            "score": 0.833,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Hack Press (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/hack-press",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/06820a7feadf0.png?v=1732087049",
+            "score": 0.429,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 200,
@@ -65111,36 +65408,14 @@
         "yuen-long-fourth-branch"
       ],
       "lookup_model": "",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Belt Squat (NEW)",
+      "official_product_url": "https://newtechworldwide.com/products/torture-belt-squat-new",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Belt_squat_new.jpg?v=1763596532",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Belt Squat (NEW)",
-          "product_url": "https://newtechworldwide.com/products/torture-belt-squat-new",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Belt_squat_new.jpg?v=1763596532",
-          "score": 0.75,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Belt Squat (NEW)",
-          "product_url": "https://newtechworldwide.com/products/torture-belt-squat-new",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/Belt_squat_new.jpg?v=1763596532",
-          "score": 0.75,
-          "evidence_url": "https://newtechworldwide.com/products/torture-belt-squat-new"
-        },
-        {
-          "name": "Torture Drop Squat",
-          "product_url": "https://newtechworldwide.com/products/drop-squat",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/f69d627a2dc7a.png?v=1732087055",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 217,
@@ -65179,7 +65454,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 217,
+        "brand": "NEWTECH",
+        "source_model": "",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/9b7ec01b902ce58a3add08263ce7a548ef8a85339da1c0bb9e14c31a034b2779.jpg",
+        "official_name": "Torture Belt Squat (NEW)",
+        "official_product_url": "https://newtechworldwide.com/products/torture-belt-squat-new",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Belt_squat_new.jpg?v=1763596532",
+        "approved_candidate": {
+          "name": "Torture Belt Squat (NEW)",
+          "product_url": "https://newtechworldwide.com/products/torture-belt-squat-new",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Belt_squat_new.jpg?v=1763596532",
+          "score": 0.75,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Belt Squat (NEW)",
+            "product_url": "https://newtechworldwide.com/products/torture-belt-squat-new",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Belt_squat_new.jpg?v=1763596532",
+            "score": 0.75,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Belt Squat (NEW)",
+            "product_url": "https://newtechworldwide.com/products/torture-belt-squat-new",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/Belt_squat_new.jpg?v=1763596532",
+            "score": 0.75,
+            "evidence_url": "https://newtechworldwide.com/products/torture-belt-squat-new"
+          },
+          {
+            "name": "Torture Drop Squat",
+            "product_url": "https://newtechworldwide.com/products/drop-squat",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/f69d627a2dc7a.png?v=1732087055",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 218,
@@ -65290,36 +65620,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-P-3DHS",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "3D + Smith + Half Rack (Thomson)",
+      "official_product_url": "https://newtechworldwide.com/products/3d-smith-half-rack",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "3D + Smith + Half Rack (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/3d-smith-half-rack",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Smith Machine & Half Rack (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/smith-half-rack",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
-          "score": 0.6,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "3D + Smith + Medio Rack",
-          "product_url": "https://newtechworldwide.com/es/products/3d-smith-half-rack",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/smith_and_half_rack.jpg?v=1764116648",
-          "score": 0.6,
-          "evidence_url": "https://newtechworldwide.com/es/products/3d-smith-half-rack"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 219,
         "query": "NEWTECH \"1 NT-P-3DHS\"",
@@ -65386,7 +65694,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 219,
+        "brand": "NEWTECH",
+        "source_model": "1 NT-P-3DHS",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/ceaf5defa242af70666c206ddba5a32638c7b4c4ffcab84679702bb0486f70de.jpg",
+        "official_name": "3D + Smith + Half Rack (Thomson)",
+        "official_product_url": "https://newtechworldwide.com/products/3d-smith-half-rack",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+        "approved_candidate": {
+          "name": "3D + Smith + Half Rack (Thomson)",
+          "product_url": "https://newtechworldwide.com/products/3d-smith-half-rack",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+          "score": 0.8,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "3D + Smith + Half Rack (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/3d-smith-half-rack",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Smith Machine & Half Rack (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/smith-half-rack",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+            "score": 0.6,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "3D + Smith + Medio Rack",
+            "product_url": "https://newtechworldwide.com/es/products/3d-smith-half-rack",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/smith_and_half_rack.jpg?v=1764116648",
+            "score": 0.6,
+            "evidence_url": "https://newtechworldwide.com/es/products/3d-smith-half-rack"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 220,
@@ -65403,36 +65766,14 @@
         "kwun-tong-fourth-branch"
       ],
       "lookup_model": "NT-P-SHR (SLING)",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Smith Machine & Half Rack (Thomson)",
+      "official_product_url": "https://newtechworldwide.com/products/smith-half-rack",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Smith Machine & Half Rack (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/smith-half-rack",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "3D + Smith + Half Rack (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/3d-smith-half-rack",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
-          "score": 0.8,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Half Rack",
-          "product_url": "https://newtechworldwide.com/products/half-rack",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/half_rack.jpg?v=1764119160",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 220,
         "query": "NEWTECH \"NT-P-SHR (SLING)\"",
@@ -65499,7 +65840,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 220,
+        "brand": "NEWTECH",
+        "source_model": "NT-P-SHR (SLING)",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/7f3ed890f3d981a6e84953bd67cf3991620368f59137a0e7177952b329f44046.jpg",
+        "official_name": "Smith Machine & Half Rack (Thomson)",
+        "official_product_url": "https://newtechworldwide.com/products/smith-half-rack",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+        "approved_candidate": {
+          "name": "Smith Machine & Half Rack (Thomson)",
+          "product_url": "https://newtechworldwide.com/products/smith-half-rack",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Smith Machine & Half Rack (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/smith-half-rack",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "3D + Smith + Half Rack (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/3d-smith-half-rack",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_and_half_rack.jpg?v=1764116648",
+            "score": 0.8,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Half Rack",
+            "product_url": "https://newtechworldwide.com/products/half-rack",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/half_rack.jpg?v=1764119160",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 221,
@@ -65521,36 +65917,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-P-A20",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Smith Machine (Angle) (Thomson)",
+      "official_product_url": "https://newtechworldwide.com/products/smith-angle-2000",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_angle_40b11142-a776-4841-8003-fc4241ca8428.jpg?v=1764118991",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Smith Machine (Angle) (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/smith-angle-2000",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_angle_40b11142-a776-4841-8003-fc4241ca8428.jpg?v=1764118991",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Smith Machine (Vertical) (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Smith Machine (Vertical) (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products/smith-vertical-2000"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 221,
         "query": "NEWTECH \"NT-P-A20\"",
@@ -65617,7 +65991,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 221,
+        "brand": "NEWTECH",
+        "source_model": "NT-P-A20",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/af8b400fd7e96b863a33228eacaff75eacb17e2169acaf2b1542f343eddaaefb.jpg",
+        "official_name": "Smith Machine (Angle) (Thomson)",
+        "official_product_url": "https://newtechworldwide.com/products/smith-angle-2000",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_angle_40b11142-a776-4841-8003-fc4241ca8428.jpg?v=1764118991",
+        "approved_candidate": {
+          "name": "Smith Machine (Angle) (Thomson)",
+          "product_url": "https://newtechworldwide.com/products/smith-angle-2000",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_angle_40b11142-a776-4841-8003-fc4241ca8428.jpg?v=1764118991",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Smith Machine (Angle) (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/smith-angle-2000",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/smith_angle_40b11142-a776-4841-8003-fc4241ca8428.jpg?v=1764118991",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Smith Machine (Vertical) (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Smith Machine (Vertical) (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products/smith-vertical-2000"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 222,
@@ -65890,36 +66319,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-F-O",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Olympic Bench",
+      "official_product_url": "https://newtechworldwide.com/products/olympic-bench",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/5bbf1b0503d50_1.png?v=1732083473",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Olympic Bench",
-          "product_url": "https://newtechworldwide.com/products/olympic-bench",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/5bbf1b0503d50_1.png?v=1732083473",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "MV Olympic Bench",
-          "product_url": "https://newtechworldwide.com/products/mv-olympic-bench",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/c3543371f7061_1.png?v=1732083509",
-          "score": 0.667,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Olympic Incline Bench",
-          "product_url": "https://newtechworldwide.com/products/olympia-incline-bench",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/c4e4decbc890d_1.png?v=1732083431",
-          "score": 0.667,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 228,
         "query": "NEWTECH \"NT-F-O\"",
@@ -65953,7 +66360,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 228,
+        "brand": "NEWTECH",
+        "source_model": "NT-F-O",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/13bf9cd60f43aa4ced8dc73e1c4ef34372bdad345b0797d016194a6936aed5fa.jpg",
+        "official_name": "Olympic Bench",
+        "official_product_url": "https://newtechworldwide.com/products/olympic-bench",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/5bbf1b0503d50_1.png?v=1732083473",
+        "approved_candidate": {
+          "name": "Olympic Bench",
+          "product_url": "https://newtechworldwide.com/products/olympic-bench",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/5bbf1b0503d50_1.png?v=1732083473",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Olympic Bench",
+            "product_url": "https://newtechworldwide.com/products/olympic-bench",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/5bbf1b0503d50_1.png?v=1732083473",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "MV Olympic Bench",
+            "product_url": "https://newtechworldwide.com/products/mv-olympic-bench",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/c3543371f7061_1.png?v=1732083509",
+            "score": 0.667,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Olympic Incline Bench",
+            "product_url": "https://newtechworldwide.com/products/olympia-incline-bench",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/c4e4decbc890d_1.png?v=1732083431",
+            "score": 0.667,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 229,
@@ -66541,36 +67003,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-P-BLR/MLR",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Multi Lateral Raise",
+      "official_product_url": "https://newtechworldwide.com/products/multi-lateral-raise",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/multi_lateral_raise.jpg?v=1764120857",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Multi Lateral Raise",
-          "product_url": "https://newtechworldwide.com/products/multi-lateral-raise",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/multi_lateral_raise.jpg?v=1764120857",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Lateral Raise",
-          "product_url": "https://newtechworldwide.com/products/lateral-raise-1",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/5c0faa10222d9.png?v=1732086448",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "OnHim Single Lateral Raise",
-          "product_url": "https://newtechworldwide.com/products/single-lateral-raise",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/fc36be983d613.png?v=1732072039",
-          "score": 0.4,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 242,
         "query": "NEWTECH \"NT-P-BLR/MLR\"",
@@ -66604,7 +67044,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 242,
+        "brand": "NEWTECH",
+        "source_model": "NT-P-BLR/MLR",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/72abff73a9c74a18defcbfdaf7253ca3fa4e38327ba68e4b8d923a22eb6652be.jpg",
+        "official_name": "Multi Lateral Raise",
+        "official_product_url": "https://newtechworldwide.com/products/multi-lateral-raise",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/multi_lateral_raise.jpg?v=1764120857",
+        "approved_candidate": {
+          "name": "Multi Lateral Raise",
+          "product_url": "https://newtechworldwide.com/products/multi-lateral-raise",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/multi_lateral_raise.jpg?v=1764120857",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Multi Lateral Raise",
+            "product_url": "https://newtechworldwide.com/products/multi-lateral-raise",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/multi_lateral_raise.jpg?v=1764120857",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Lateral Raise",
+            "product_url": "https://newtechworldwide.com/products/lateral-raise-1",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/5c0faa10222d9.png?v=1732086448",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "OnHim Single Lateral Raise",
+            "product_url": "https://newtechworldwide.com/products/single-lateral-raise",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/fc36be983d613.png?v=1732072039",
+            "score": 0.4,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 243,
@@ -67066,36 +67561,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "T-LE",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Leg Extension",
+      "official_product_url": "https://newtechworldwide.com/products/leg-extension-2",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/ac75d7ef0ce6f.png?v=1732087231",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Leg Extension",
-          "product_url": "https://newtechworldwide.com/products/leg-extension-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/ac75d7ef0ce6f.png?v=1732087231",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Leg Extension",
-          "product_url": "https://newtechworldwide.com/products/leg-extension-2",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/ac75d7ef0ce6f.png?v=1732087231",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products/leg-extension-2"
-        },
-        {
-          "name": "Torture Leg Curl",
-          "product_url": "https://newtechworldwide.com/products/leg-curl-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/fa322f88ef3e9.png?v=1732087224",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1092,
         "query": "NEWTECH \"T-LE\"",
@@ -67129,7 +67602,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1092,
+        "brand": "NEWTECH",
+        "source_model": "T-LE",
+        "source_image_url": "https://oss-hk.247fitness.hk/ceaf45033d6df374b897f35ae451d285e67dc0858f23beb21f3dfc4cf1e6a2f8.jpg",
+        "official_name": "Torture Leg Extension",
+        "official_product_url": "https://newtechworldwide.com/products/leg-extension-2",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/ac75d7ef0ce6f.png?v=1732087231",
+        "approved_candidate": {
+          "name": "Torture Leg Extension",
+          "product_url": "https://newtechworldwide.com/products/leg-extension-2",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/ac75d7ef0ce6f.png?v=1732087231",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Leg Extension",
+            "product_url": "https://newtechworldwide.com/products/leg-extension-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/ac75d7ef0ce6f.png?v=1732087231",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Leg Extension",
+            "product_url": "https://newtechworldwide.com/products/leg-extension-2",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/ac75d7ef0ce6f.png?v=1732087231",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products/leg-extension-2"
+          },
+          {
+            "name": "Torture Leg Curl",
+            "product_url": "https://newtechworldwide.com/products/leg-curl-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/fa322f88ef3e9.png?v=1732087224",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1093,
@@ -67148,36 +67676,14 @@
         "yuen-long-fourth-branch"
       ],
       "lookup_model": "T-WP(F)",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Wide Pulldown Front",
+      "official_product_url": "https://newtechworldwide.com/products/wide-pulldown-front",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-m-torture-wide-pulldown-front-1.png?v=1793124784",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Wide Pulldown Front",
-          "product_url": "https://newtechworldwide.com/products/wide-pulldown-front",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-m-torture-wide-pulldown-front-1.png?v=1793124784",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Wide Pulldown Front",
-          "product_url": "https://newtechworldwide.com/products/wide-pulldown-front",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/newtech-m-torture-wide-pulldown-front-1.png?v=1793124784",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products/wide-pulldown-front"
-        },
-        {
-          "name": "Torture Wide Pulldown Rear 2",
-          "product_url": "https://newtechworldwide.com/products/wide-pulldown-rear-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-m-torture-wide-pulldown-rear-2-1.png?v=1793124719",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1093,
         "query": "NEWTECH \"T-WP(F)\"",
@@ -67211,7 +67717,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1093,
+        "brand": "NEWTECH",
+        "source_model": "T-WP(F)",
+        "source_image_url": "https://oss-hk.247fitness.hk/80518c892818046ae04751b3210fe3a4452b179efbc23bef5a7b0b468bee4220.webp",
+        "official_name": "Torture Wide Pulldown Front",
+        "official_product_url": "https://newtechworldwide.com/products/wide-pulldown-front",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-m-torture-wide-pulldown-front-1.png?v=1793124784",
+        "approved_candidate": {
+          "name": "Torture Wide Pulldown Front",
+          "product_url": "https://newtechworldwide.com/products/wide-pulldown-front",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-m-torture-wide-pulldown-front-1.png?v=1793124784",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Wide Pulldown Front",
+            "product_url": "https://newtechworldwide.com/products/wide-pulldown-front",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-m-torture-wide-pulldown-front-1.png?v=1793124784",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Wide Pulldown Front",
+            "product_url": "https://newtechworldwide.com/products/wide-pulldown-front",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/newtech-m-torture-wide-pulldown-front-1.png?v=1793124784",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products/wide-pulldown-front"
+          },
+          {
+            "name": "Torture Wide Pulldown Rear 2",
+            "product_url": "https://newtechworldwide.com/products/wide-pulldown-rear-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-m-torture-wide-pulldown-rear-2-1.png?v=1793124719",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1094,
@@ -67444,36 +68005,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "N. T(R)-SSRC",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Torture Standing & Seated Row Combo (NEW)",
+      "official_product_url": "https://newtechworldwide.com/products/standing-seated-low-combo",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/standing_and_seated_row.jpg?v=1764116013",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Torture Standing & Seated Row Combo (NEW)",
-          "product_url": "https://newtechworldwide.com/products/standing-seated-low-combo",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/standing_and_seated_row.jpg?v=1764116013",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Seated Row",
-          "product_url": "https://newtechworldwide.com/products/seated-row-2",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Torture Twist Row (NEW)",
-          "product_url": "https://newtechworldwide.com/products/torture-twist-row",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-torture-twist-row-1.png?v=1793041917",
-          "score": 0.429,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1160,
         "query": "NEWTECH \"N. T(R)-SSRC\"",
@@ -67507,7 +68046,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1160,
+        "brand": "NEWTECH",
+        "source_model": "N. T(R)-SSRC",
+        "source_image_url": "https://oss-hk.247fitness.hk/12fe579d2091be4b839c7039ee402c98d7c48b99699965fe18637f2a34e701ad.webp",
+        "official_name": "Torture Standing & Seated Row Combo (NEW)",
+        "official_product_url": "https://newtechworldwide.com/products/standing-seated-low-combo",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/standing_and_seated_row.jpg?v=1764116013",
+        "approved_candidate": {
+          "name": "Torture Standing & Seated Row Combo (NEW)",
+          "product_url": "https://newtechworldwide.com/products/standing-seated-low-combo",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/standing_and_seated_row.jpg?v=1764116013",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Torture Standing & Seated Row Combo (NEW)",
+            "product_url": "https://newtechworldwide.com/products/standing-seated-low-combo",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/standing_and_seated_row.jpg?v=1764116013",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Seated Row",
+            "product_url": "https://newtechworldwide.com/products/seated-row-2",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/2b5bc091999a9.jpg?v=1732085914",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Torture Twist Row (NEW)",
+            "product_url": "https://newtechworldwide.com/products/torture-twist-row",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/newtech-torture-twist-row-1.png?v=1793041917",
+            "score": 0.429,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1397,
@@ -67528,29 +68122,14 @@
         "sham-shui-po-fourth-branch"
       ],
       "lookup_model": "P-SM20",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Smith Machine (Vertical) (Thomson)",
+      "official_product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Smith Machine (Vertical) (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
-          "score": 0.667,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Smith Machine (Vertical) (Thomson)",
-          "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
-          "score": 0.667,
-          "evidence_url": "https://newtechworldwide.com/products/smith-vertical-2000"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1397,
         "query": "NEWTECH \"P-SM20\"",
@@ -67584,7 +68163,55 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1397,
+        "brand": "NEWTECH",
+        "source_model": "P-SM20",
+        "source_image_url": "https://oss-hk.247fitness.hk/3d474d16cb2f953d86c449175ef6296ca78e4be1385fae43c3e17fbdcefe6c9a.jpg",
+        "official_name": "Smith Machine (Vertical) (Thomson)",
+        "official_product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
+        "approved_candidate": {
+          "name": "Smith Machine (Vertical) (Thomson)",
+          "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
+          "score": 0.667,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Smith Machine (Vertical) (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
+            "score": 0.667,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Smith Machine (Vertical) (Thomson)",
+            "product_url": "https://newtechworldwide.com/products/smith-vertical-2000",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/Smith_vertical_2000s_7d63cc74-1259-43a6-890a-1ca80612fdc0.jpg?v=1764118420",
+            "score": 0.667,
+            "evidence_url": "https://newtechworldwide.com/products/smith-vertical-2000"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1398,
@@ -67602,36 +68229,14 @@
         "tsuen-wan-seventh-branch-d-park"
       ],
       "lookup_model": "C-MP8ST",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "candidate_requires_review",
-      "match_method": null,
+      "official_name": "Multi Gym Pro (8Station)",
+      "official_product_url": "https://newtechworldwide.com/products/multi-gym-pro-8station",
+      "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/136ed128be028.png?v=1732088587",
+      "status": "model_verified",
+      "match_method": "manual_equipment_review",
       "evidence": null,
-      "candidates": [
-        {
-          "name": "Multi Gym Pro (8Station)",
-          "product_url": "https://newtechworldwide.com/products/multi-gym-pro-8station",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/136ed128be028.png?v=1732088587",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        },
-        {
-          "name": "Multi Gym Pro (8Station)",
-          "product_url": "https://newtechworldwide.com/products/multi-gym-pro-8station",
-          "image_url": "http://newtechworldwide.com/cdn/shop/files/136ed128be028.png?v=1732088587",
-          "score": 1.0,
-          "evidence_url": "https://newtechworldwide.com/products/multi-gym-pro-8station"
-        },
-        {
-          "name": "Multi Gym Pro (5Station-P)",
-          "product_url": "https://newtechworldwide.com/products/multi-gym-pro-5station-p",
-          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/1f8e69433adc9.png?v=1732088590",
-          "score": 0.5,
-          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
-        }
-      ],
-      "reason": "Name similarity only; exact model or generation is not verified.",
+      "candidates": [],
+      "reason": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred.",
       "search_evidence": {
         "inventory_id": 1398,
         "query": "NEWTECH \"C-MP8ST\"",
@@ -67657,7 +68262,62 @@
         "review_date": "2026-11-03",
         "status": "no_chinese_product_name_found",
         "reason": "Manufacturer product/catalog and language evidence did not supply Chinese wording for this model; captured and retailer translations excluded. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "match_scope": "manual_review",
+      "configuration_status": "manually_reviewed",
+      "image_verification_status": "manually_reviewed",
+      "manual_review": {
+        "inventory_id": 1398,
+        "brand": "NEWTECH",
+        "source_model": "C-MP8ST",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/b28e8420ba9d8d28eba9afad1067fbbf85bcc2caa5970fee6e215e8cbe25b6f8.jpg",
+        "official_name": "Multi Gym Pro (8Station)",
+        "official_product_url": "https://newtechworldwide.com/products/multi-gym-pro-8station",
+        "official_image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/136ed128be028.png?v=1732088587",
+        "approved_candidate": {
+          "name": "Multi Gym Pro (8Station)",
+          "product_url": "https://newtechworldwide.com/products/multi-gym-pro-8station",
+          "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/136ed128be028.png?v=1732088587",
+          "score": 1.0,
+          "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+        },
+        "previous_candidates": [
+          {
+            "name": "Multi Gym Pro (8Station)",
+            "product_url": "https://newtechworldwide.com/products/multi-gym-pro-8station",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/136ed128be028.png?v=1732088587",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          },
+          {
+            "name": "Multi Gym Pro (8Station)",
+            "product_url": "https://newtechworldwide.com/products/multi-gym-pro-8station",
+            "image_url": "http://newtechworldwide.com/cdn/shop/files/136ed128be028.png?v=1732088587",
+            "score": 1.0,
+            "evidence_url": "https://newtechworldwide.com/products/multi-gym-pro-8station"
+          },
+          {
+            "name": "Multi Gym Pro (5Station-P)",
+            "product_url": "https://newtechworldwide.com/products/multi-gym-pro-5station-p",
+            "image_url": "https://cdn.shopify.com/s/files/1/0625/6171/4264/files/1f8e69433adc9.png?v=1732088590",
+            "score": 0.5,
+            "evidence_url": "https://newtechworldwide.com/products.json?limit=250&page=1"
+          }
+        ],
+        "previous_status": "candidate_requires_review",
+        "previous_research_note": "Name similarity only; exact model or generation is not verified.",
+        "status": "model_verified",
+        "review_date": "2026-11-05",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly confirmed all NEWTECH candidate_requires_review records have the correct First candidate and requested an update.",
+          "selection": "First candidate",
+          "brand": "NEWTECH",
+          "original_status": "candidate_requires_review"
+        },
+        "note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
+      },
+      "configuration_note": "User confirmed the First candidate for this NEWTECH inventory record and approved model_verified. Official name, product URL and image URL use that approved candidate. Original source fields and previous candidates remain in the manual review evidence; no additional manufacturer SKU alias is inferred."
     },
     {
       "inventory_id": 1400,
