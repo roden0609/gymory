@@ -558,6 +558,8 @@ def apply_manual_equipment_reviews(result, supplemental):
                 or not review.get('review_date') or not review.get('review_source')
                 or review.get('reviewed_by') != 'user'):
             raise ValueError('Manual model verification requires explicit user approval and a status matching image availability')
+        if review.get('review_source', {}).get('scope') == 'explicit_user_reference_model_approval':
+            entry['candidates'] = []
         entry.update(status=expected_status, match_method='manual_equipment_review',
                      match_scope='manual_review', configuration_status='manually_reviewed',
                      image_verification_status='manually_reviewed' if entry.get('official_image_url') else 'image_missing', manual_review=review,
@@ -588,6 +590,62 @@ def apply_manual_equipment_reviews(result, supplemental):
         result['lifefitness_review'] = {**result['lifefitness_review'],
             'model_with_image': counts['model_verified'], 'model_without_image': counts['model_verified_image_missing'],
             'candidate_count': counts['candidate_requires_review'], 'unresolved_count': counts['unresolved']}
+
+
+def apply_user_reference_images(result, supplemental):
+    """Record explicitly supplied images without certifying models or manufacturer provenance."""
+    from collections import Counter
+    seen = set()
+    for reference in supplemental.get('lifefitness_user_reference_images', []):
+        inventory_id = reference['inventory_id']
+        entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
+        if (inventory_id in seen or entry is None or reference.get('brand') != 'Life Fitness'
+                or any(entry.get(k) != reference.get(k) for k in ('brand', 'source_model', 'source_image_url'))
+                or entry.get('official_name') != reference.get('expected_official_name')
+                or entry.get('official_product_url') != reference.get('expected_official_product_url')
+                or reference.get('reference_source') != 'user' or not reference.get('request_date')
+                or not reference.get('instruction') or not reference.get('note')):
+            raise ValueError('User image reference no longer matches the explicitly supplied inventory reference')
+        seen.add(inventory_id)
+        image = reference['image_url']
+        if entry.get('official_image_url') not in (reference['previous_reference']['official_image_url'], image):
+            raise ValueError('User image reference cannot replace an unreviewed image change')
+        supplied = reference['supplied_image_url']
+        origin = reference['url_resolution']
+        source = urllib.parse.urlparse(supplied)
+        target = urllib.parse.urlparse(image)
+        direct = origin == 'direct' and image == supplied
+        template = origin == 'width_template' and '{width}' in supplied and image == supplied.replace('{width}', '960')
+        drive = (origin == 'google_drive_download' and source.hostname == 'drive.google.com'
+                 and source.path.startswith('/file/d/') and source.path.endswith('/view')
+                 and target.hostname == 'drive.usercontent.google.com' and target.path == '/uc'
+                 and urllib.parse.parse_qs(target.query) == {'id': [source.path.split('/')[3]], 'export': ['download']})
+        check = reference.get('image_check', {})
+        visual = reference.get('visual_comparison', {})
+        if (not (direct or template or drive) or any(p.scheme != 'https' or p.username or p.password for p in (source, target))
+                or check.get('url') != image or check.get('available') is not True
+                or not check.get('content_type', '').startswith('image/') or not check.get('sha256')
+                or visual.get('source_image_url') != entry['source_image_url']
+                or visual.get('reference_image_url') != image or not visual.get('observations')):
+            raise ValueError('User image reference requires the supplied HTTPS URL and a source-bound image check')
+        if entry['status'] != reference['expected_status']:
+            raise ValueError('User reference cannot override an existing verification decision')
+        if reference.get('image_source_type') not in ('user_shared_file', 'external_cdn_unattributed',
+                                                     'manufacturer_catalog', 'regional_manufacturer_site'):
+            raise ValueError('User reference requires explicit image provenance')
+        entry.update(official_image_url=image, image_check=check,
+                     image_source_type=reference['image_source_type'],
+                     image_verification_status='candidate_requires_review', user_reference_image=reference,
+                     configuration_note=reference['note'], reason=reference['note'],
+                     candidates=[{'name': entry.get('official_name') or 'User-supplied image reference (model unverified)',
+                                  'product_url': reference['evidence_url'], 'image_url': image,
+                                  'evidence_url': reference['evidence_url'], 'reason': reference['note']}])
+    if seen:
+        result['image_policy'] = ('Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. '
+                                 'Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. '
+                                 'Existing 24/7 images are retained separately. No permission to republish images is inferred.')
+        result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
+        result['lifefitness_user_reference_followup'] = supplemental['lifefitness_user_reference_followup']
 
 
 def apply_distributor_enrichment(result, supplemental):
@@ -736,6 +794,7 @@ def apply_browser_evidence(result, supplemental):
     apply_official_english_names(result, supplemental)
     apply_manufacturer_product_reviews(result, supplemental)
     apply_official_chinese_names(result, supplemental)
+    apply_user_reference_images(result, supplemental)
     apply_manual_equipment_reviews(result, supplemental)
     apply_distributor_enrichment(result, supplemental)
 
@@ -1176,11 +1235,17 @@ def write_reports(result):
         lines += ['', '## Life Fitness catalog gap follow-up', '',
                   gap['review_date'] + ': ' + gap['summary'], '', gap['method'], '',
                   f"Current coverage across {len(group)} Life Fitness inventory IDs: {sum(not e.get('official_name') for e in group)} English names, {sum(not e.get('official_name_zh') for e in group)} Chinese names and {sum(not e.get('official_image_url') for e in group)} image URLs remain blank. An image URL does not establish a verified component image. Review notes distinguish whole-system context images and differing generations from verified component images.", '',
-                  'Inventory 1392 is MJLP, not the user-supplied Hammer Strength HS-PD: its original identity is retained and the mismatched reference is recorded in the evidence. At the initial gap review, Inventory 1393 and five other stations shared the captured MJ4 system render, recorded as context only with model_verified_image_missing and candidate_requires_review image verification. PWR Play Core and the annotated LPP-CX component diagram were verified; the LPP-HR tray differed from the older padded capture and was recorded as an image candidate. Subsequent user approvals are recorded below. The Optima catalog hero is the long OP-DB3LS rack and is not assigned to short OP-DB3SS. Unresolved Adj-16 and MJSCOR22510592 codes remain unresolved. Exact manufacturer code aliases are not inferred from shared photos.', '',
+                  'Inventory 1392 is MJLP, not the earlier user-supplied Hammer Strength HS-PD: its original identity is retained and that mismatched reference remains in the evidence. At the initial gap review, Inventory 1393 and five other stations shared the captured MJ4 system render, recorded as context only with model_verified_image_missing and candidate_requires_review image verification. PWR Play Core and the annotated LPP-CX component diagram were verified; the LPP-HR tray differed from the older padded capture and was recorded as an image candidate. Subsequent user approvals are recorded below. The Optima catalog hero is the long OP-DB3LS rack and was initially excluded from short OP-DB3SS imagery; the later supplied-reference follow-up records it as a variant candidate only. Unresolved Adj-16 and MJSCOR22510592 codes remain unresolved. Exact manufacturer code aliases are not inferred from shared photos.', '',
                   'Full audit of the 19 initial gap records and retrieved reference URLs: lifefitness_catalog_gap_followup in the evidence JSON. Original inventory, previous user decisions and the remaining 93 already-complete records are preserved.', '']
         image_approvals = [e for e in group if e.get('manual_image_review')]
         if image_approvals:
             lines += [f"Subsequent user image approval on {max(e['manual_image_review']['review_date'] for e in image_approvals)}: Inventory IDs {', '.join(str(e['inventory_id']) for e in image_approvals)} are now model_verified with image_verification_status manually_reviewed. The user explicitly approved the current references. Original system-context/generation observations and candidate snapshots remain historical under lifefitness_image_reviews; no new manufacturer SKU alias or isolated-component photograph is asserted.", '']
+    if result.get('lifefitness_user_reference_followup'):
+        reference = result['lifefitness_user_reference_followup']
+        lines += ['', '## User-supplied Life Fitness reference images', '',
+                  reference['review_date'] + ': ' + reference['summary'], '',
+                  'The Official image comparison column now includes explicitly supplied best-effort references. It does not certify that a shared Drive file or external CDN asset was published by the manufacturer. Check image_source_type and user_reference_image in the catalog and the per-item Review note. All five statuses remain unchanged; the two unresolved source identifiers have image references but no established official names. The Australian regional product page labels the 1503 image Rope Pull, which conflicts with source code MJAXO (Adjustable Crossover - core to core). The 1383 Chinese name describes the manufacturer short/long family and does not verify the long-rack image for the short-rack model.', '',
+                  'Evidence and retrieval hashes: lifefitness_user_reference_images and lifefitness_user_reference_followup. Existing user-approved records are preserved.', '']
     if result.get('user_product_correction_followup'):
         correction = result['user_product_correction_followup']
         lines += ['', '## User-directed product corrections', '',

@@ -54436,6 +54436,29 @@
         "scope": "Core in manufacturer body text is 核心; existing manual identifies LPP-CORE."
       },
       "note": "Verbatim manufacturer Hong Kong wording. The component name does not certify a complete-system configuration or translate an English term independently."
+    },
+    {
+      "inventory_id": 1383,
+      "brand": "Life Fitness",
+      "source_model": "OP-DB3SS",
+      "product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+      "localized_product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6",
+      "evidence_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6",
+      "official_name_zh": "Optima 傲體系列短款和長款 3 層鞍形底座啞鈴架",
+      "original_name": "Optima 傲体系列短款和长款 3 层鞍形底座哑铃架",
+      "source_heading": "产品停产: Optima 傲体系列短款和长款 3 层鞍形底座哑铃架",
+      "source_locale": "zh-Hans",
+      "conversion_method": "OpenCC cn-to-hk",
+      "retrieved_at": "2026-11-06",
+      "retrieval_method": "http_localized_family_heading_and_short_long_body",
+      "evidence_sha256": "2110c706d42fac4883b95b4b5854c8d013850ea519f179a2ae2d9d3562893147",
+      "match_scope": "manufacturer_short_long_family_name",
+      "identity_evidence": {
+        "source_model": "OP-DB3SS",
+        "displayed_catalog_code": "OP-DB3LS",
+        "scope": "Chinese manufacturer heading explicitly names both short and long saddle variants. Name is family-level; displayed long-rack code/photo does not verify the short-rack image or source capacity."
+      },
+      "note": "Manufacturer Simplified Chinese family name converted to Traditional Chinese with OpenCC; original wording retained. Both variants are explicitly described. Product-discontinued prefix is metadata, not part of the name. No OP-DB3SS-to-OP-DB3LS alias is inferred."
     }
   ],
   "official_chinese_name_reviews": [
@@ -61988,9 +62011,9 @@
       "inventory_id": 1383,
       "brand": "Life Fitness",
       "source_model": "OP-DB3SS",
-      "review_date": "2026-11-04",
-      "status": "requires_review",
-      "reason": "The source OP-DB3SS configuration is not tied to an exact Chinese manufacturer product/model in the reviewed sources. Similar dumbbell-rack names do not establish that configuration.",
+      "review_date": "2026-11-06",
+      "status": "manufacturer_name_recorded",
+      "reason": "Manufacturer Simplified Chinese family name converted to Traditional Chinese with OpenCC; original wording retained. Both variants are explicitly described. Product-discontinued prefix is metadata, not part of the name. No OP-DB3SS-to-OP-DB3LS alias is inferred.",
       "checked_urls": [
         "https://shop.lifefitness.com/collections/benches-racks",
         "https://shop.lifefitness.com/collections/storage",
@@ -62019,7 +62042,8 @@
         "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/three-tier-xl-dumbbell-rack",
         "https://www.lifefitness.com/zh-hk/catalog/strength-training/benches/life-fitness-utility-bench",
         "https://www.lifefitness.com/zh-hk/catalog/strength-training/storage-racks/life-fitness-saddle-dumbbell-rack",
-        "https://www.lifefitness.com/zh-hk/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks"
+        "https://www.lifefitness.com/zh-hk/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+        "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6"
       ],
       "name_search": {
         "queries": [
@@ -115483,6 +115507,146 @@
         "original_status": "ambiguous_model"
       },
       "note": "User confirmed the First candidate for this previously ambiguous inventory record. Official name, product URL and available image URL use that approved candidate verbatim. Previous ambiguity notes and all candidates remain in the manual review evidence; no additional manufacturer SKU alias or physical configuration equivalence is inferred."
+    },
+    {
+      "inventory_id": 1184,
+      "brand": "Life Fitness",
+      "source_model": "Adj-16",
+      "source_image_url": "https://oss-hk.247fitness.hk/92d7250ced1db0ee5b7ed2d023cedfae319a2fdcd803aaa123733c9c72af265f.png",
+      "official_name": null,
+      "official_product_url": null,
+      "official_image_url": "https://drive.usercontent.google.com/uc?id=1E5s-i3r73cU8ytCduO41BongxkHZrk5R&export=download",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_user_reference_model_approval",
+        "instruction": "User explicitly requested updating Inventory IDs 1184, 1383, 1392, 1500 and 1503 to model_verified using their current references."
+      },
+      "previous_status": "unresolved",
+      "previous_candidates": [
+        {
+          "name": "User-supplied image reference (model unverified)",
+          "product_url": "https://drive.google.com/file/d/1E5s-i3r73cU8ytCduO41BongxkHZrk5R/view?usp=sharing",
+          "image_url": "https://drive.usercontent.google.com/uc?id=1E5s-i3r73cU8ytCduO41BongxkHZrk5R&export=download",
+          "evidence_url": "https://drive.google.com/file/d/1E5s-i3r73cU8ytCduO41BongxkHZrk5R/view?usp=sharing",
+          "reason": "User-supplied reference follow-up on 2026-11-06: The supplied Drive file is named 多功能綜合訓練機產品渲染圖.png. It shows the same multi-core installation as the captured image: two front multi-stack towers, rear cable uprights, connecting chin-up rails and left row bench. It is a clearer user-shared render, not a manufacturer product page or evidence that Adj-16 is an official SKU. Official English/Chinese names and unresolved status remain unchanged. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+        }
+      ],
+      "previous_research_note": "User-supplied reference follow-up on 2026-11-06: The supplied Drive file is named 多功能綜合訓練機產品渲染圖.png. It shows the same multi-core installation as the captured image: two front multi-stack towers, rear cable uprights, connecting chin-up rails and left row bench. It is a clearer user-shared render, not a manufacturer product page or evidence that Adj-16 is an official SKU. Official English/Chinese names and unresolved status remain unchanged. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence.",
+      "note": "User-supplied reference follow-up on 2026-11-06: The supplied Drive file is named 多功能綜合訓練機產品渲染圖.png. It shows the same multi-core installation as the captured image: two front multi-stack towers, rear cable uprights, connecting chin-up rails and left row bench. It is a clearer user-shared render, not a manufacturer product page or evidence that Adj-16 is an official SKU. Official English/Chinese names and unresolved status remain unchanged. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. Earlier model, configuration and image-source observations remain historical. Missing official names remain blank; this approval does not invent manufacturer wording or change image provenance."
+    },
+    {
+      "inventory_id": 1383,
+      "brand": "Life Fitness",
+      "source_model": "OP-DB3SS",
+      "source_image_url": "https://oss-hk.247fitness.hk/09afd0f2700cc40c414f15bbdd040f1ea37215a5eaa1d89a03b69ad2bac755c2.png",
+      "official_name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
+      "official_product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_user_reference_model_approval",
+        "instruction": "User explicitly requested updating Inventory IDs 1184, 1383, 1392, 1500 and 1503 to model_verified using their current references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_candidates": [
+        {
+          "name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
+          "product_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+          "evidence_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6",
+          "reason": "User-supplied reference follow-up on 2026-11-06: The supplied manufacturer image is the same long OP-DB3LS loaded rack previously excluded from exact short OP-DB3SS imagery. Three loaded tiers with five pairs per tier illustrate the long variant. The new Chinese page explicitly describes both sizes and supplies the family name, but still displays OP-DB3LS. Record this image as a long-variant reference only; source capacity and exact short-rack image remain unverified. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+        }
+      ],
+      "previous_research_note": "User-supplied reference follow-up on 2026-11-06: The supplied manufacturer image is the same long OP-DB3LS loaded rack previously excluded from exact short OP-DB3SS imagery. Three loaded tiers with five pairs per tier illustrate the long variant. The new Chinese page explicitly describes both sizes and supplies the family name, but still displays OP-DB3LS. Record this image as a long-variant reference only; source capacity and exact short-rack image remain unverified. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence.",
+      "note": "User-supplied reference follow-up on 2026-11-06: The supplied manufacturer image is the same long OP-DB3LS loaded rack previously excluded from exact short OP-DB3SS imagery. Three loaded tiers with five pairs per tier illustrate the long variant. The new Chinese page explicitly describes both sizes and supplies the family name, but still displays OP-DB3LS. Record this image as a long-variant reference only; source capacity and exact short-rack image remain unverified. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. Earlier model, configuration and image-source observations remain historical. Missing official names remain blank; this approval does not invent manufacturer wording or change image provenance."
+    },
+    {
+      "inventory_id": 1392,
+      "brand": "Life Fitness",
+      "source_model": "MJLP",
+      "source_image_url": "https://oss-hk.247fitness.hk/b0c428ac6a919fd0c7f8b444075a1af59de4259b3656118e7a0b45cb416cd313.webp",
+      "official_name": "Multi-Jungle Lat Pulldown",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_user_reference_model_approval",
+        "instruction": "User explicitly requested updating Inventory IDs 1184, 1383, 1392, 1500 and 1503 to model_verified using their current references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Lat Pulldown",
+          "product_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+          "image_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+          "evidence_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+          "reason": "User-supplied reference follow-up on 2026-11-06: The supplied BigCommerce image matches the captured MJLP product: white round-tube four-post frame, black overhead pulleys, angled lat bar, guide rods, exposed weight stack, small seat and thigh rollers. It differs from the previously rejected HS-PD image. The image is publicly retrievable, but its BigCommerce account owner and manufacturer publication provenance were not established. Preserve the manual-verified MJLP name/model and record this as an external image reference pending approval. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+        }
+      ],
+      "previous_research_note": "User-supplied reference follow-up on 2026-11-06: The supplied BigCommerce image matches the captured MJLP product: white round-tube four-post frame, black overhead pulleys, angled lat bar, guide rods, exposed weight stack, small seat and thigh rollers. It differs from the previously rejected HS-PD image. The image is publicly retrievable, but its BigCommerce account owner and manufacturer publication provenance were not established. Preserve the manual-verified MJLP name/model and record this as an external image reference pending approval. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence.",
+      "note": "User-supplied reference follow-up on 2026-11-06: The supplied BigCommerce image matches the captured MJLP product: white round-tube four-post frame, black overhead pulleys, angled lat bar, guide rods, exposed weight stack, small seat and thigh rollers. It differs from the previously rejected HS-PD image. The image is publicly retrievable, but its BigCommerce account owner and manufacturer publication provenance were not established. Preserve the manual-verified MJLP name/model and record this as an external image reference pending approval. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. Earlier model, configuration and image-source observations remain historical. Missing official names remain blank; this approval does not invent manufacturer wording or change image provenance."
+    },
+    {
+      "inventory_id": 1500,
+      "brand": "Life Fitness",
+      "source_model": "MJSCOR22510592",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "official_name": null,
+      "official_product_url": null,
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_user_reference_model_approval",
+        "instruction": "User explicitly requested updating Inventory IDs 1184, 1383, 1392, 1500 and 1503 to model_verified using their current references."
+      },
+      "previous_status": "unresolved",
+      "previous_candidates": [
+        {
+          "name": "User-supplied image reference (model unverified)",
+          "product_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+          "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+          "reason": "User-supplied reference follow-up on 2026-11-06: The official blue MJ4 complete-system render matches the shared captured image (four stacks, front seat/pads, high/low pulleys and blue frame). User template {width} resolved to 960, as used by the catalog image family. This is an MJ4 whole-system context reference for a source record named MJ Core; it does not establish that MJSCOR22510592 is a manufacturer SKU or MJ-CORE alias. Keep source fields and unresolved identity; do not relabel a core as the complete MJ4 system. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+        }
+      ],
+      "previous_research_note": "User-supplied reference follow-up on 2026-11-06: The official blue MJ4 complete-system render matches the shared captured image (four stacks, front seat/pads, high/low pulleys and blue frame). User template {width} resolved to 960, as used by the catalog image family. This is an MJ4 whole-system context reference for a source record named MJ Core; it does not establish that MJSCOR22510592 is a manufacturer SKU or MJ-CORE alias. Keep source fields and unresolved identity; do not relabel a core as the complete MJ4 system. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence.",
+      "note": "User-supplied reference follow-up on 2026-11-06: The official blue MJ4 complete-system render matches the shared captured image (four stacks, front seat/pads, high/low pulleys and blue frame). User template {width} resolved to 960, as used by the catalog image family. This is an MJ4 whole-system context reference for a source record named MJ Core; it does not establish that MJSCOR22510592 is a manufacturer SKU or MJ-CORE alias. Keep source fields and unresolved identity; do not relabel a core as the complete MJ4 system. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. Earlier model, configuration and image-source observations remain historical. Missing official names remain blank; this approval does not invent manufacturer wording or change image provenance."
+    },
+    {
+      "inventory_id": 1503,
+      "brand": "Life Fitness",
+      "source_model": "MJAXO",
+      "source_image_url": "https://oss-hk.247fitness.hk/3add11dcf67252c47d7d5d684cf18819a2f6cb3833fc888e6b86fad090d98ccc.webp",
+      "official_name": "Multi-Jungle Adjustable Crossover - core to core",
+      "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "official_image_url": "https://a.storyblok.com/f/292045577297161/1920x1920/84df0fb3b8/strength-cable-pwrplay-stations-6-1.webp",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-06",
+      "review_source": {
+        "scope": "explicit_user_reference_model_approval",
+        "instruction": "User explicitly requested updating Inventory IDs 1184, 1383, 1392, 1500 and 1503 to model_verified using their current references."
+      },
+      "previous_status": "model_verified_image_missing",
+      "previous_candidates": [
+        {
+          "name": "Multi-Jungle Adjustable Crossover - core to core",
+          "product_url": "https://www.lifefitness.com.au/commercial/pwr-play",
+          "image_url": "https://a.storyblok.com/f/292045577297161/1920x1920/84df0fb3b8/strength-cable-pwrplay-stations-6-1.webp",
+          "evidence_url": "https://www.lifefitness.com.au/commercial/pwr-play",
+          "reason": "User-supplied reference follow-up on 2026-11-06: The Australian regional page associates this exact Storyblok asset with heading Rope Pull, describing an overhead infinity rope and middle/low redirect pulleys. Its white core, black pulley column and looped rope match the captured image. However, the inventory source code MJAXO is documented as Adjustable Crossover - core to core. The photo/source code conflict remains unresolved; preserve the manual-confirmed MJAXO name and record the Rope Pull photo as a mismatched reference pending review, not a newly verified MJAXO image. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+        }
+      ],
+      "previous_research_note": "User-supplied reference follow-up on 2026-11-06: The Australian regional page associates this exact Storyblok asset with heading Rope Pull, describing an overhead infinity rope and middle/low redirect pulleys. Its white core, black pulley column and looped rope match the captured image. However, the inventory source code MJAXO is documented as Adjustable Crossover - core to core. The photo/source code conflict remains unresolved; preserve the manual-confirmed MJAXO name and record the Rope Pull photo as a mismatched reference pending review, not a newly verified MJAXO image. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence.",
+      "note": "User-supplied reference follow-up on 2026-11-06: The Australian regional page associates this exact Storyblok asset with heading Rope Pull, describing an overhead infinity rope and middle/low redirect pulleys. Its white core, black pulley column and looped rope match the captured image. However, the inventory source code MJAXO is documented as Adjustable Crossover - core to core. The photo/source code conflict remains unresolved; preserve the manual-confirmed MJAXO name and record the Rope Pull photo as a mismatched reference pending review, not a newly verified MJAXO image. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. Earlier model, configuration and image-source observations remain historical. Missing official names remain blank; this approval does not invent manufacturer wording or change image provenance."
     }
   ],
   "lifefitness_glute_bridge_followup": {
@@ -119605,5 +119769,337 @@
       "previous_research_note": "Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero.",
       "note": "Previous research: Initial review: Exact component code/name confirmed in manufacturer manual. No dedicated component photo verified; Core +4 / Connected Core / connector installation bundles excluded. Follow-up on 2026-11-05: Captured image shows an older padded handle hanger with three handles on a rounded-base core. The manufacturer LPP-HR image shows a flat tray and multiple underside hooks attached to a square-base core. The article explicitly identifies the LPP-HR successor and earlier MJ-HAR compatibility, but does not establish that the captured older hanger is the pictured new tray. Keep image as a differing-generation candidate. Existing English component name/model and captured fields are preserved; the official image is bound to the labeled support-article component, not the generic PWR Play system hero. Subsequent user approval on 2026-11-06: the user explicitly approved the current references and requested model_verified. The image is manually_reviewed. Earlier whole-system context or generation observations remain historical; no new exact SKU alias or isolated-component photo is asserted."
     }
-  ]
+  ],
+  "lifefitness_user_reference_images": [
+    {
+      "inventory_id": 1184,
+      "brand": "Life Fitness",
+      "source_model": "Adj-16",
+      "source_image_url": "https://oss-hk.247fitness.hk/92d7250ced1db0ee5b7ed2d023cedfae319a2fdcd803aaa123733c9c72af265f.png",
+      "expected_official_name": null,
+      "expected_official_product_url": null,
+      "expected_status": "unresolved",
+      "reference_source": "user",
+      "request_date": "2026-11-06",
+      "instruction": "User supplied this new reference for Inventory ID 1184 and requested continuing the equipment reference update.",
+      "supplied_image_url": "https://drive.google.com/file/d/1E5s-i3r73cU8ytCduO41BongxkHZrk5R/view?usp=sharing",
+      "image_url": "https://drive.usercontent.google.com/uc?id=1E5s-i3r73cU8ytCduO41BongxkHZrk5R&export=download",
+      "url_resolution": "google_drive_download",
+      "image_source_type": "user_shared_file",
+      "evidence_url": "https://drive.google.com/file/d/1E5s-i3r73cU8ytCduO41BongxkHZrk5R/view?usp=sharing",
+      "reference_page_sha256": "e148c99954b550dea1b4ffdbd473b5038a5be5103db3f2bd4b5f4fd0512d6b8a",
+      "image_check": {
+        "url": "https://drive.usercontent.google.com/uc?id=1E5s-i3r73cU8ytCduO41BongxkHZrk5R&export=download",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "fb507510013c8a8545e3d9de3ad04b14dd7640523643beec64a0b3720c345141",
+        "checked_at": "2026-11-06",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "visual_comparison": {
+        "source_image_url": "https://oss-hk.247fitness.hk/92d7250ced1db0ee5b7ed2d023cedfae319a2fdcd803aaa123733c9c72af265f.png",
+        "source_image_sha256": "92d7250ced1db0ee5b7ed2d023cedfae319a2fdcd803aaa123733c9c72af265f",
+        "reference_image_url": "https://drive.usercontent.google.com/uc?id=1E5s-i3r73cU8ytCduO41BongxkHZrk5R&export=download",
+        "reference_image_sha256": "fb507510013c8a8545e3d9de3ad04b14dd7640523643beec64a0b3720c345141",
+        "observations": "The supplied Drive file is named 多功能綜合訓練機產品渲染圖.png. It shows the same multi-core installation as the captured image: two front multi-stack towers, rear cable uprights, connecting chin-up rails and left row bench. It is a clearer user-shared render, not a manufacturer product page or evidence that Adj-16 is an official SKU. Official English/Chinese names and unresolved status remain unchanged."
+      },
+      "previous_reference": {
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null,
+        "status": "unresolved",
+        "configuration_note": "Individual model/name search found no usable official Adj-16 / 16-stack product. Generic home-gym weight-stack results were excluded. Catalog gap follow-up on 2026-11-05: Rechecked the Multi-Jungle MJ4/MJ8 catalog and the supplied directory. Source Adj-16 / 16-stack configuration does not identify a manufacturer model; the captured multi-core installation does not establish that an MJ8 standard image verifies a 16-stack configuration. Keep unresolved and do not invent a standard-product name."
+      },
+      "note": "User-supplied reference follow-up on 2026-11-06: The supplied Drive file is named 多功能綜合訓練機產品渲染圖.png. It shows the same multi-core installation as the captured image: two front multi-stack towers, rear cable uprights, connecting chin-up rails and left row bench. It is a clearer user-shared render, not a manufacturer product page or evidence that Adj-16 is an official SKU. Official English/Chinese names and unresolved status remain unchanged. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence.",
+      "file_name": "多功能綜合訓練機產品渲染圖.png"
+    },
+    {
+      "inventory_id": 1383,
+      "brand": "Life Fitness",
+      "source_model": "OP-DB3SS",
+      "source_image_url": "https://oss-hk.247fitness.hk/09afd0f2700cc40c414f15bbdd040f1ea37215a5eaa1d89a03b69ad2bac755c2.png",
+      "expected_official_name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
+      "expected_official_product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+      "expected_status": "model_verified_image_missing",
+      "reference_source": "user",
+      "request_date": "2026-11-06",
+      "instruction": "User supplied this new reference for Inventory ID 1383 and requested continuing the equipment reference update.",
+      "supplied_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+      "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+      "url_resolution": "direct",
+      "image_source_type": "manufacturer_catalog",
+      "evidence_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6",
+      "reference_page_sha256": "2110c706d42fac4883b95b4b5854c8d013850ea519f179a2ae2d9d3562893147",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "82681ed2a35b4bb17042e73ce31c6bee124ff551804f3173a3e7157b7745c886",
+        "checked_at": "2026-11-06",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "visual_comparison": {
+        "source_image_url": "https://oss-hk.247fitness.hk/09afd0f2700cc40c414f15bbdd040f1ea37215a5eaa1d89a03b69ad2bac755c2.png",
+        "source_image_sha256": "09afd0f2700cc40c414f15bbdd040f1ea37215a5eaa1d89a03b69ad2bac755c2",
+        "reference_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+        "reference_image_sha256": "82681ed2a35b4bb17042e73ce31c6bee124ff551804f3173a3e7157b7745c886",
+        "observations": "The supplied manufacturer image is the same long OP-DB3LS loaded rack previously excluded from exact short OP-DB3SS imagery. Three loaded tiers with five pairs per tier illustrate the long variant. The new Chinese page explicitly describes both sizes and supplies the family name, but still displays OP-DB3LS. Record this image as a long-variant reference only; source capacity and exact short-rack image remain unverified."
+      },
+      "previous_reference": {
+        "official_name": "Optima Series Three-Tier Short & Long Saddle Dumbbell Racks",
+        "official_product_url": "https://www.lifefitness.com/en-eu/catalog/strength-training/storage-racks/optima-series-three-tier-short-long-saddle-dumbbell-racks",
+        "official_image_url": null,
+        "status": "model_verified_image_missing",
+        "configuration_note": "Exact OP-DB3SS model is listed in the manufacturer assembly manual. Short-rack image remains unverified; the catalog long-rack OP-DB3LS photo is not substituted. Source 10prs/rack claim is not verified. Catalog gap follow-up on 2026-11-05: Rechecked the discontinued Optima product page. Its hero is OP-DB3LS (long saddle, 15 pairs), not the source OP-DB3SS short saddle. The OP-DB3LS image and newer rack translations are excluded. No exact short-rack official photo or Chinese name was established."
+      },
+      "note": "User-supplied reference follow-up on 2026-11-06: The supplied manufacturer image is the same long OP-DB3LS loaded rack previously excluded from exact short OP-DB3SS imagery. Three loaded tiers with five pairs per tier illustrate the long variant. The new Chinese page explicitly describes both sizes and supplies the family name, but still displays OP-DB3LS. Record this image as a long-variant reference only; source capacity and exact short-rack image remain unverified. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+    },
+    {
+      "inventory_id": 1392,
+      "brand": "Life Fitness",
+      "source_model": "MJLP",
+      "source_image_url": "https://oss-hk.247fitness.hk/b0c428ac6a919fd0c7f8b444075a1af59de4259b3656118e7a0b45cb416cd313.webp",
+      "expected_official_name": "Multi-Jungle Lat Pulldown",
+      "expected_official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "expected_status": "model_verified_image_missing",
+      "reference_source": "user",
+      "request_date": "2026-11-06",
+      "instruction": "User supplied this new reference for Inventory ID 1392 and requested continuing the equipment reference update.",
+      "supplied_image_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+      "image_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+      "url_resolution": "direct",
+      "image_source_type": "external_cdn_unattributed",
+      "evidence_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+      "reference_page_sha256": "8947042ba0255a2c63602f932602e1075e6b4e7ccfc0a2f91bf856342216e78b",
+      "image_check": {
+        "url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "8947042ba0255a2c63602f932602e1075e6b4e7ccfc0a2f91bf856342216e78b",
+        "checked_at": "2026-11-06",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "visual_comparison": {
+        "source_image_url": "https://oss-hk.247fitness.hk/b0c428ac6a919fd0c7f8b444075a1af59de4259b3656118e7a0b45cb416cd313.webp",
+        "source_image_sha256": "b0c428ac6a919fd0c7f8b444075a1af59de4259b3656118e7a0b45cb416cd313",
+        "reference_image_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+        "reference_image_sha256": "8947042ba0255a2c63602f932602e1075e6b4e7ccfc0a2f91bf856342216e78b",
+        "observations": "The supplied BigCommerce image matches the captured MJLP product: white round-tube four-post frame, black overhead pulleys, angled lat bar, guide rods, exposed weight stack, small seat and thigh rollers. It differs from the previously rejected HS-PD image. The image is publicly retrievable, but its BigCommerce account owner and manufacturer publication provenance were not established. Preserve the manual-verified MJLP name/model and record this as an external image reference pending approval."
+      },
+      "previous_reference": {
+        "official_name": "Multi-Jungle Lat Pulldown",
+        "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "official_image_url": null,
+        "status": "model_verified_image_missing",
+        "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded. Catalog gap follow-up on 2026-11-05: User-supplied HS-PD reference rejected: the supplied Hammer Strength Select Lat Pulldown page explicitly identifies HS-PD, while inventory MJLP is the Multi-Jungle station. Captured white round-tube four-post frame with overhead pulleys differs from the supplied dark rectangular HS-PD frame. Neither source code nor Chinese name is replaced; no matching standalone MJLP image was found on the checked catalog pages."
+      },
+      "note": "User-supplied reference follow-up on 2026-11-06: The supplied BigCommerce image matches the captured MJLP product: white round-tube four-post frame, black overhead pulleys, angled lat bar, guide rods, exposed weight stack, small seat and thigh rollers. It differs from the previously rejected HS-PD image. The image is publicly retrievable, but its BigCommerce account owner and manufacturer publication provenance were not established. Preserve the manual-verified MJLP name/model and record this as an external image reference pending approval. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+    },
+    {
+      "inventory_id": 1500,
+      "brand": "Life Fitness",
+      "source_model": "MJSCOR22510592",
+      "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+      "expected_official_name": null,
+      "expected_official_product_url": null,
+      "expected_status": "unresolved",
+      "reference_source": "user",
+      "request_date": "2026-11-06",
+      "instruction": "User supplied this new reference for Inventory ID 1500 and requested continuing the equipment reference update.",
+      "supplied_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/{width}_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+      "url_resolution": "width_template",
+      "image_source_type": "manufacturer_catalog",
+      "evidence_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+      "reference_page_sha256": "00e938560b2c99ee94d02898835e5ef25f1b1f4b8bc28414f480cedf8207c1c1",
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "checked_at": "2026-11-06",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "visual_comparison": {
+        "source_image_url": "https://oss-hk.247fitness.hk/3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a.png",
+        "source_image_sha256": "3bdc4547975e127a23841168a9c66c0f98e05177ca679d88b0a6c143b68ddf9a",
+        "reference_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "reference_image_sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d",
+        "observations": "The official blue MJ4 complete-system render matches the shared captured image (four stacks, front seat/pads, high/low pulleys and blue frame). User template {width} resolved to 960, as used by the catalog image family. This is an MJ4 whole-system context reference for a source record named MJ Core; it does not establish that MJSCOR22510592 is a manufacturer SKU or MJ-CORE alias. Keep source fields and unresolved identity; do not relabel a core as the complete MJ4 system."
+      },
+      "previous_reference": {
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null,
+        "status": "unresolved",
+        "configuration_note": "Source MJSCOR22510592 resembles a serial/inventory identifier. No exact manufacturer model or standalone core photo established; complete MJ system photos excluded. Catalog gap follow-up on 2026-11-05: The captured blue MJ4 system render matches the supplied official MJ4 image and is shared with six station records. Source MJSCOR22510592 is not an established manufacturer SKU or verified alias of MJ-CORE. Keep the core record unresolved rather than label the bare core as a complete MJ4 system."
+      },
+      "note": "User-supplied reference follow-up on 2026-11-06: The official blue MJ4 complete-system render matches the shared captured image (four stacks, front seat/pads, high/low pulleys and blue frame). User template {width} resolved to 960, as used by the catalog image family. This is an MJ4 whole-system context reference for a source record named MJ Core; it does not establish that MJSCOR22510592 is a manufacturer SKU or MJ-CORE alias. Keep source fields and unresolved identity; do not relabel a core as the complete MJ4 system. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence."
+    },
+    {
+      "inventory_id": 1503,
+      "brand": "Life Fitness",
+      "source_model": "MJAXO",
+      "source_image_url": "https://oss-hk.247fitness.hk/3add11dcf67252c47d7d5d684cf18819a2f6cb3833fc888e6b86fad090d98ccc.webp",
+      "expected_official_name": "Multi-Jungle Adjustable Crossover - core to core",
+      "expected_official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+      "expected_status": "model_verified_image_missing",
+      "reference_source": "user",
+      "request_date": "2026-11-06",
+      "instruction": "User supplied this new reference for Inventory ID 1503 and requested continuing the equipment reference update.",
+      "supplied_image_url": "https://a.storyblok.com/f/292045577297161/1920x1920/84df0fb3b8/strength-cable-pwrplay-stations-6-1.webp",
+      "image_url": "https://a.storyblok.com/f/292045577297161/1920x1920/84df0fb3b8/strength-cable-pwrplay-stations-6-1.webp",
+      "url_resolution": "direct",
+      "image_source_type": "regional_manufacturer_site",
+      "evidence_url": "https://www.lifefitness.com.au/commercial/pwr-play",
+      "reference_page_sha256": "901c16d690ce8efb00cfb21107aa7e1dcba8fb48dd75e9beaa8fcdb5deb40669",
+      "image_check": {
+        "url": "https://a.storyblok.com/f/292045577297161/1920x1920/84df0fb3b8/strength-cable-pwrplay-stations-6-1.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "d4121e6ba49191ebe5e10ac9c5aa212ac21aecc05757cc8be420c84a83be8dba",
+        "checked_at": "2026-11-06",
+        "method": "http_image_content_type_and_visual_inspection"
+      },
+      "visual_comparison": {
+        "source_image_url": "https://oss-hk.247fitness.hk/3add11dcf67252c47d7d5d684cf18819a2f6cb3833fc888e6b86fad090d98ccc.webp",
+        "source_image_sha256": "3add11dcf67252c47d7d5d684cf18819a2f6cb3833fc888e6b86fad090d98ccc",
+        "reference_image_url": "https://a.storyblok.com/f/292045577297161/1920x1920/84df0fb3b8/strength-cable-pwrplay-stations-6-1.webp",
+        "reference_image_sha256": "d4121e6ba49191ebe5e10ac9c5aa212ac21aecc05757cc8be420c84a83be8dba",
+        "observations": "The Australian regional page associates this exact Storyblok asset with heading Rope Pull, describing an overhead infinity rope and middle/low redirect pulleys. Its white core, black pulley column and looped rope match the captured image. However, the inventory source code MJAXO is documented as Adjustable Crossover - core to core. The photo/source code conflict remains unresolved; preserve the manual-confirmed MJAXO name and record the Rope Pull photo as a mismatched reference pending review, not a newly verified MJAXO image."
+      },
+      "previous_reference": {
+        "official_name": "Multi-Jungle Adjustable Crossover - core to core",
+        "official_product_url": "https://support.lifefitness.com/hc/en-us/articles/360036925454-Life-Fitness-Multi-Jungle-Owner-s-Manual",
+        "official_image_url": null,
+        "status": "model_verified_image_missing",
+        "configuration_note": "Official owner manual confirms this station model/name. Standalone product photo not verified; MJ4/MJ8 bundle and CMRW/CMPD photos excluded."
+      },
+      "note": "User-supplied reference follow-up on 2026-11-06: The Australian regional page associates this exact Storyblok asset with heading Rope Pull, describing an overhead infinity rope and middle/low redirect pulleys. Its white core, black pulley column and looped rope match the captured image. However, the inventory source code MJAXO is documented as Adjustable Crossover - core to core. The photo/source code conflict remains unresolved; preserve the manual-confirmed MJAXO name and record the Rope Pull photo as a mismatched reference pending review, not a newly verified MJAXO image. URL recorded best effort in the comparison column; this request supplies references, not an explicit model_verified approval. Earlier research and any prior rejection remain historical evidence.",
+      "manufacturer_component_heading": "Rope Pull",
+      "previous_image_references": [
+        {
+          "image_url": "https://www.lifefitness.com.au/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F292045577297161%2F1920x1920%2F84df0fb3b8%2Fstrength-cable-pwrplay-stations-6-1.webp&w=1920&q=70",
+          "image_check": {
+            "url": "https://www.lifefitness.com.au/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F292045577297161%2F1920x1920%2F84df0fb3b8%2Fstrength-cable-pwrplay-stations-6-1.webp&w=1920&q=70",
+            "available": true,
+            "http_status": 200,
+            "content_type": "image/jpeg",
+            "sha256": "bf24de9a66df08cdaafd1d5463c3e67030960c379d46e22cb55b21baed626090",
+            "checked_at": "2026-11-06",
+            "method": "http_image_content_type_and_visual_inspection"
+          },
+          "replaced_at": "2026-11-06",
+          "reason": "User supplied the direct original Storyblok asset URL to replace the regional image optimizer URL."
+        }
+      ]
+    }
+  ],
+  "lifefitness_user_reference_followup": {
+    "review_date": "2026-11-06",
+    "inventory_ids": [
+      1184,
+      1383,
+      1392,
+      1500,
+      1503
+    ],
+    "image_urls_added": 5,
+    "chinese_names_added": 1,
+    "chinese_inventory_ids": [
+      1383
+    ],
+    "summary": "Recorded all five user-supplied image references without upgrading verification status. The Drive render is user-shared, the MJLP photo is an unattributed external CDN reference, the rack photo is the long variant, MJ4 is system context for an unresolved core identifier, and the Australian photo is explicitly Rope Pull rather than the documented MJAXO crossover. Added the manufacturer short/long Optima Chinese family name using OpenCC while retaining original Simplified wording.",
+    "reference_checks": [
+      {
+        "url": "https://drive.google.com/file/d/1E5s-i3r73cU8ytCduO41BongxkHZrk5R/view?usp=sharing",
+        "final_url": "https://drive.google.com/file/d/1E5s-i3r73cU8ytCduO41BongxkHZrk5R/view?usp=sharing",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "e148c99954b550dea1b4ffdbd473b5038a5be5103db3f2bd4b5f4fd0512d6b8a"
+      },
+      {
+        "url": "https://www.lifefitness.com.au/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F292045577297161%2F1920x1920%2F84df0fb3b8%2Fstrength-cable-pwrplay-stations-6-1.webp&w=1920&q=70",
+        "final_url": "https://www.lifefitness.com.au/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F292045577297161%2F1920x1920%2F84df0fb3b8%2Fstrength-cable-pwrplay-stations-6-1.webp&w=1920&q=70",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "bf24de9a66df08cdaafd1d5463c3e67030960c379d46e22cb55b21baed626090"
+      },
+      {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "final_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/320-12-signature-series-mj4.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "7b16585d952f8f61a3ad2d6a30f92eb0895a971dda64a4dd032fdafd52462f6d"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6",
+        "final_url": "https://www.lifefitness.com/zh-cn/catalog/strength-training/storage-racks/optima-%E5%82%B2%E4%BD%93%E7%B3%BB%E5%88%97%E7%9F%AD%E6%AC%BE%E5%92%8C%E9%95%BF%E6%AC%BE-3-%E5%B1%82%E9%9E%8D%E5%BD%A2%E5%BA%95%E5%BA%A7%E5%93%91%E9%93%83%E6%9E%B6",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "2110c706d42fac4883b95b4b5854c8d013850ea519f179a2ae2d9d3562893147"
+      },
+      {
+        "url": "https://www.lifefitness.com.au/commercial/pwr-play",
+        "final_url": "https://www.lifefitness.com.au/commercial/pwr-play",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "901c16d690ce8efb00cfb21107aa7e1dcba8fb48dd75e9beaa8fcdb5deb40669"
+      },
+      {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+        "final_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/247-696-lf-os-ttlsdr-base.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "82681ed2a35b4bb17042e73ce31c6bee124ff551804f3173a3e7157b7745c886"
+      },
+      {
+        "url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+        "final_url": "https://cdn11.bigcommerce.com/s-hcb73f16u2/images/stencil/1280x1280/products/1995/11441/download_7__54435.1739234832.jpg",
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "8947042ba0255a2c63602f932602e1075e6b4e7ccfc0a2f91bf856342216e78b"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "final_url": "https://www.lifefitness.com/en-hk/catalog/strength-training/cable-machines-functional-trainers/signature-series-multi-jungle-mj4",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "00e938560b2c99ee94d02898835e5ef25f1b1f4b8bc28414f480cedf8207c1c1"
+      },
+      {
+        "url": "https://www.lifefitness.com.au/commercial/strength/commercial-strength-equipment",
+        "final_url": "https://www.lifefitness.com.au/commercial/strength/commercial-strength-equipment",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "1d3e5f112ecb2c379d1acf8f974a711db90367bf47831a6ddcee9238c72c88b4"
+      },
+      {
+        "url": "https://www.lifefitness.com.au/commercial/strength/cables-and-functional-strength-training",
+        "final_url": "https://www.lifefitness.com.au/commercial/strength/cables-and-functional-strength-training",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "48159e50271850c2b91d77e3377f84a952a15b18f88582fcc79d70479698d249"
+      },
+      {
+        "url": "https://drive.usercontent.google.com/uc?id=1E5s-i3r73cU8ytCduO41BongxkHZrk5R&export=download",
+        "final_url": "https://drive.usercontent.google.com/download?id=1E5s-i3r73cU8ytCduO41BongxkHZrk5R&export=download",
+        "status": 200,
+        "content_type": "image/png",
+        "sha256": "fb507510013c8a8545e3d9de3ad04b14dd7640523643beec64a0b3720c345141"
+      },
+      {
+        "url": "https://www.lifefitness.com.au/",
+        "final_url": "https://www.lifefitness.com.au/",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "8ee80391a06682e30066184d8330dae0aa4152716d8f07c78c0c476d6602d2af"
+      }
+    ]
+  }
 }
