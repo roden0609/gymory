@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 758,
-    "unresolved": 64,
-    "model_verified_image_missing": 11
+    "model_verified": 769,
+    "unresolved": 55,
+    "model_verified_image_missing": 9
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -14380,14 +14380,37 @@
         "yuen-long"
       ],
       "lookup_model": "CVTH-LED-E",
-      "official_name": "V Series Treadmill | Cybex",
-      "official_product_url": "https://locator.lifefitness.com/products/treadmills/v-series-treadmill-specs.aspx",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "official_name": "V Series Treadmill",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "5b6f97f8e3fc05910501b776862a1259a41b96594d7241fc268b17451cbd3f74",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVTH-LED-E is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8.png",
+          "source_image_sha256": "e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+          "official_image_sha256": "b016cb12e5108bade74648ac373433847f594c4d4269e67f739f74cc250b8a0c",
+          "observations": "The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill"
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVTH-LED-E is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking. Earlier user-approved locator candidate remains in manual_equipment_reviews; this catalog follow-up supplies the current manufacturer heading and image.",
       "search_evidence": {
         "inventory_id": 1347,
         "query": "Cybex \"CVTH-LED-E\"",
@@ -14456,16 +14479,23 @@
           ]
         }
       },
-      "image_check": null,
-      "official_name_zh": null,
-      "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_chinese_product_name_found",
-        "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "b016cb12e5108bade74648ac373433847f594c4d4269e67f739f74cc250b8a0c",
+        "checked_at": "2026-11-06"
       },
-      "match_scope": "manual_review",
+      "official_name_zh": "V 系列跑步機",
+      "official_name_zh_review": {
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "match_scope": "manufacturer_product_visual_match",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manufacturer_image_checked",
       "manual_review": {
         "inventory_id": 1347,
         "brand": "Cybex",
@@ -14514,7 +14544,28 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVTH-LED-E is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking. Earlier user-approved locator candidate remains in manual_equipment_reviews; this catalog follow-up supplies the current manufacturer heading and image.",
+      "official_model": null,
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_product_heading",
+        "original_name": "V 系列跑步機",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "b1d499fc0779df928d1ee032a4c4ead17162e303586cde8228da34138d3e87b7",
+        "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_product_visual_match",
+        "note": "Traditional Chinese catalog H1; no independent translation.",
+        "evidence_hash_scope": "raw_manufacturer_html"
+      },
+      "manual_review_followup": {
+        "evidence_key": "cybex_product_reviews",
+        "review_date": "2026-11-06",
+        "reason": "Manufacturer catalog model and source-image evidence supplies current Cybex references; the original user approval remains historical and source identifiers are preserved without new SKU aliases."
+      }
     },
     {
       "inventory_id": 1348,
@@ -14554,14 +14605,37 @@
         "yuen-long"
       ],
       "lookup_model": "CVCT-LED-E",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Cross Trainer",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "4d109bf61f97cd2e45c9295525ecf5177758416bb976bab7429c7d6422f33886",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVCT-LED-E is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a.png",
+          "source_image_sha256": "105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+          "official_image_sha256": "eacc27fb7aaa4a79a720cd16f2dde4c051a5d3a94be939b8f84f5dc70204a25a",
+          "observations": "The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVCT-LED-E is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
       "search_evidence": {
         "inventory_id": 1348,
         "query": "Cybex \"CVCT-LED-E\"",
@@ -14630,12 +14704,39 @@
           ]
         }
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "eacc27fb7aaa4a79a720cd16f2dde4c051a5d3a94be939b8f84f5dc70204a25a",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "Cybex V 系列橢圓機",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVCT-LED-E is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "evidence_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "web_reader_manufacturer_support_product_list",
+        "original_name": "Cybex V 系列橢圓機",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "15aff2df07d2a1a63e09e6ca3b43f703b7222e188cdd6efce08fa51652ad3670",
+        "localized_product_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_auto_translated_support_product_name",
+        "note": "Manufacturer-published Traditional Chinese support wording; the publisher marks this support article as automatically translated from English. Preserved verbatim, not independently translated by the researcher.",
+        "evidence_hash_scope": "extracted_manufacturer_support_product_names_and_translation_notice",
+        "publisher_translation_notice": "本文由人工智慧自動從英文翻譯而來。如有衝突，以英文版本為準。"
       }
     },
     {
@@ -14853,14 +14954,37 @@
         "yuen-long"
       ],
       "lookup_model": "CVUB-LED-E",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Upright Bike",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "a68d1e9c7fa092190e5b9a39c148a49d10d2cd81645eaddecae9c7c383677bdf",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVUB-LED-E is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997.png",
+          "source_image_sha256": "c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+          "official_image_sha256": "a51c6fee4cdeb5022d509a00595cae8b104c1eb5283d14034d6f7b6c173b50fd",
+          "observations": "The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVUB-LED-E is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
       "search_evidence": {
         "inventory_id": 1350,
         "query": "Cybex \"CVUB-LED-E\"",
@@ -14929,12 +15053,39 @@
           ]
         }
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "a51c6fee4cdeb5022d509a00595cae8b104c1eb5283d14034d6f7b6c173b50fd",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "Cybex V 系列直立式健身車",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVUB-LED-E is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "evidence_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "web_reader_manufacturer_support_product_list",
+        "original_name": "Cybex V 系列直立式健身車",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "15aff2df07d2a1a63e09e6ca3b43f703b7222e188cdd6efce08fa51652ad3670",
+        "localized_product_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_auto_translated_support_product_name",
+        "note": "Manufacturer-published Traditional Chinese support wording; the publisher marks this support article as automatically translated from English. Preserved verbatim, not independently translated by the researcher.",
+        "evidence_hash_scope": "extracted_manufacturer_support_product_names_and_translation_notice",
+        "publisher_translation_notice": "本文由人工智慧自動從英文翻譯而來。如有衝突，以英文版本為準。"
       }
     },
     {
@@ -14953,14 +15104,42 @@
         "chai-wan"
       ],
       "lookup_model": "8810",
-      "official_name": "Bravo Advanced All-in-One Functional Trainer | Cybex",
-      "official_product_url": "https://locator.lifefitness.com/functional-trainer-bravo-specs.aspx",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
-      "match_method": "manual_equipment_review",
-      "evidence": null,
+      "official_name": "Bravo Advanced",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "b4bcc1c61dc16346858d83c8da846c4e8a0fbd998c3c0af3bb015f708ac5c891",
+        "manufacturer_model_codes": [
+          "8800",
+          "8810",
+          "8830",
+          "8840"
+        ],
+        "model_evidence": "The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8810 is explicitly present in that specification.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7.png",
+          "source_image_sha256": "77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+          "official_image_sha256": "64bab6ec046136aa40e1d532d7570c8d5c391ae0ff007a637ab61ab9a3bcb80d",
+          "observations": "The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7",
+          "source_image_observations": "The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions.",
+          "match_basis": "manufacturer_product_number",
+          "source_identifier_is_manufacturer_sku": true,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced"
+      },
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8810 is explicitly present in that specification. The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions. Source description explicitly specifies tall chin-up and source code 8810 is the catalog Tall 2:1 model; the matching catalog image is accepted for this configuration. Earlier user-approved locator candidate remains in manual_equipment_reviews; this catalog follow-up supplies the current manufacturer heading and image.",
       "search_evidence": {
         "inventory_id": 1351,
         "query": "Cybex \"8810\"",
@@ -15036,16 +15215,23 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "64bab6ec046136aa40e1d532d7570c8d5c391ae0ff007a637ab61ab9a3bcb80d",
+        "checked_at": "2026-11-06"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_chinese_product_name_found",
-        "reason": "Checked manufacturer product, locale options and brand-level search did not establish a Chinese product name; no English translation substituted. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_heading_remains_english",
+        "reason": "Bravo Advanced English H1 remains unchanged on the manufacturer Chinese catalog. No Chinese product name invented."
       },
-      "match_scope": "manual_review",
+      "match_scope": "exact_model",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manufacturer_image_checked",
       "manual_review": {
         "inventory_id": 1351,
         "brand": "Cybex",
@@ -15086,7 +15272,13 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8810 is explicitly present in that specification. The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions. Source description explicitly specifies tall chin-up and source code 8810 is the catalog Tall 2:1 model; the matching catalog image is accepted for this configuration. Earlier user-approved locator candidate remains in manual_equipment_reviews; this catalog follow-up supplies the current manufacturer heading and image.",
+      "official_model": "8810",
+      "manual_review_followup": {
+        "evidence_key": "cybex_product_reviews",
+        "review_date": "2026-11-06",
+        "reason": "Manufacturer catalog model and source-image evidence supplies current Cybex references; the original user approval remains historical and source identifiers are preserved without new SKU aliases."
+      }
     },
     {
       "inventory_id": 1352,
@@ -15234,14 +15426,42 @@
         "wong-tai-sin"
       ],
       "lookup_model": "8800",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Bravo Advanced",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "b4bcc1c61dc16346858d83c8da846c4e8a0fbd998c3c0af3bb015f708ac5c891",
+        "manufacturer_model_codes": [
+          "8800",
+          "8810",
+          "8830",
+          "8840"
+        ],
+        "model_evidence": "The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8800 is explicitly present in that specification.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7.png",
+          "source_image_sha256": "77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+          "official_image_sha256": "64bab6ec046136aa40e1d532d7570c8d5c391ae0ff007a637ab61ab9a3bcb80d",
+          "observations": "The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7",
+          "source_image_observations": "The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions.",
+          "match_basis": "manufacturer_product_number",
+          "source_identifier_is_manufacturer_sku": true,
+          "configuration_conflict": true
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Previous research: The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8800 is explicitly present in that specification. The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions. Source 8800 is the documented Compact model, but its captured image is identical to Inventory 1351 (8810, tall chin-up). The catalog hero is shared across all four variants and is not labeled as 8800. Model/name are confirmed; retain this image best effort with model_verified_image_missing until the Compact image/configuration is reviewed. Subsequent user approval on 2026-11-08: the user explicitly approved the current references for Inventory 1353 and requested model_verified. The image and configuration are manually_reviewed; earlier Compact/Tall observations and candidate snapshots remain historical evidence.",
       "search_evidence": {
         "inventory_id": 1353,
         "query": "Cybex \"8800\"",
@@ -15317,13 +15537,54 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "64bab6ec046136aa40e1d532d7570c8d5c391ae0ff007a637ab61ab9a3bcb80d",
+        "checked_at": "2026-11-06"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_heading_remains_english",
+        "reason": "Bravo Advanced English H1 remains unchanged on the manufacturer Chinese catalog. No Chinese product name invented."
+      },
+      "official_model": "8800",
+      "match_scope": "exact_model",
+      "configuration_note": "Previous research: The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8800 is explicitly present in that specification. The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions. Source 8800 is the documented Compact model, but its captured image is identical to Inventory 1351 (8810, tall chin-up). The catalog hero is shared across all four variants and is not labeled as 8800. Model/name are confirmed; retain this image best effort with model_verified_image_missing until the Compact image/configuration is reviewed. Subsequent user approval on 2026-11-08: the user explicitly approved the current references for Inventory 1353 and requested model_verified. The image and configuration are manually_reviewed; earlier Compact/Tall observations and candidate snapshots remain historical evidence.",
+      "image_verification_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 1353,
+        "brand": "Cybex",
+        "source_model": "8800",
+        "source_image_url": "https://oss-hk.247fitness.hk/77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7.png",
+        "official_name": "Bravo Advanced",
+        "official_product_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-08",
+        "review_source": {
+          "scope": "explicit_cybex_image_approval",
+          "instruction": "User explicitly requested updating Inventory ID 1353 to model_verified using its current references."
+        },
+        "previous_status": "model_verified_image_missing",
+        "previous_image_verification_status": "candidate_requires_review",
+        "previous_candidates": [
+          {
+            "name": "Bravo Advanced",
+            "product_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+            "image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+            "evidence_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+            "reason": "Shared Bravo hero; Compact 8800 vs Tall 8810 captured-image conflict requires review."
+          }
+        ],
+        "previous_research_note": "The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8800 is explicitly present in that specification. The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions. Source 8800 is the documented Compact model, but its captured image is identical to Inventory 1351 (8810, tall chin-up). The catalog hero is shared across all four variants and is not labeled as 8800. Model/name are confirmed; retain this image best effort with model_verified_image_missing until the Compact image/configuration is reviewed.",
+        "note": "Previous research: The manufacturer specification explicitly lists 8800 Compact and 8810 Tall (2:1), separately from 8830/8840 (4:1). Source model 8800 is explicitly present in that specification. The captured image and catalog hero show the same Bravo dual-stack frame, upper multi-grip chin-up bar, adjustable yellow pulley handles, forward adjustable stabilization pad and central instruction panel. The shared hero does not independently distinguish Compact and Tall dimensions. Source 8800 is the documented Compact model, but its captured image is identical to Inventory 1351 (8810, tall chin-up). The catalog hero is shared across all four variants and is not labeled as 8800. Model/name are confirmed; retain this image best effort with model_verified_image_missing until the Compact image/configuration is reviewed. Subsequent user approval on 2026-11-08: the user explicitly approved the current references for Inventory 1353 and requested model_verified. The image and configuration are manually_reviewed; earlier Compact/Tall observations and candidate snapshots remain historical evidence."
+      },
+      "configuration_status": "manually_reviewed"
     },
     {
       "inventory_id": 1354,
@@ -15459,14 +15720,37 @@
         "to-kwa-wan-second-branch"
       ],
       "lookup_model": "CVC",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Upright Bike",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "a68d1e9c7fa092190e5b9a39c148a49d10d2cd81645eaddecae9c7c383677bdf",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVC is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997.png",
+          "source_image_sha256": "c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+          "official_image_sha256": "a51c6fee4cdeb5022d509a00595cae8b104c1eb5283d14034d6f7b6c173b50fd",
+          "observations": "The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVC is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
       "search_evidence": {
         "inventory_id": 1479,
         "query": "Cybex \"CVC\"",
@@ -15478,12 +15762,39 @@
           }
         ]
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "a51c6fee4cdeb5022d509a00595cae8b104c1eb5283d14034d6f7b6c173b50fd",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "Cybex V 系列直立式健身車",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVC is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "evidence_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "web_reader_manufacturer_support_product_list",
+        "original_name": "Cybex V 系列直立式健身車",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "15aff2df07d2a1a63e09e6ca3b43f703b7222e188cdd6efce08fa51652ad3670",
+        "localized_product_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_auto_translated_support_product_name",
+        "note": "Manufacturer-published Traditional Chinese support wording; the publisher marks this support article as automatically translated from English. Preserved verbatim, not independently translated by the researcher.",
+        "evidence_hash_scope": "extracted_manufacturer_support_product_names_and_translation_notice",
+        "publisher_translation_notice": "本文由人工智慧自動從英文翻譯而來。如有衝突，以英文版本為準。"
       }
     },
     {
@@ -15506,14 +15817,37 @@
         "tuen-mun-third-branch"
       ],
       "lookup_model": "CVX-TWNXX-2401",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Cross Trainer",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "4d109bf61f97cd2e45c9295525ecf5177758416bb976bab7429c7d6422f33886",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVX-TWNXX-2401 is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a.png",
+          "source_image_sha256": "105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+          "official_image_sha256": "eacc27fb7aaa4a79a720cd16f2dde4c051a5d3a94be939b8f84f5dc70204a25a",
+          "observations": "The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVX-TWNXX-2401 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
       "search_evidence": {
         "inventory_id": 1480,
         "query": "Cybex \"CVX-TWNXX-2401\"",
@@ -15525,12 +15859,39 @@
           }
         ]
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "eacc27fb7aaa4a79a720cd16f2dde4c051a5d3a94be939b8f84f5dc70204a25a",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "Cybex V 系列橢圓機",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVX-TWNXX-2401 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "evidence_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "web_reader_manufacturer_support_product_list",
+        "original_name": "Cybex V 系列橢圓機",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "15aff2df07d2a1a63e09e6ca3b43f703b7222e188cdd6efce08fa51652ad3670",
+        "localized_product_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_auto_translated_support_product_name",
+        "note": "Manufacturer-published Traditional Chinese support wording; the publisher marks this support article as automatically translated from English. Preserved verbatim, not independently translated by the researcher.",
+        "evidence_hash_scope": "extracted_manufacturer_support_product_names_and_translation_notice",
+        "publisher_translation_notice": "本文由人工智慧自動從英文翻譯而來。如有衝突，以英文版本為準。"
       }
     },
     {
@@ -15548,14 +15909,37 @@
         "tin-shui-wai-third-branch"
       ],
       "lookup_model": "CVSTRMX",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Treadmill",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "5b6f97f8e3fc05910501b776862a1259a41b96594d7241fc268b17451cbd3f74",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVSTRMX is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8.png",
+          "source_image_sha256": "e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+          "official_image_sha256": "b016cb12e5108bade74648ac373433847f594c4d4269e67f739f74cc250b8a0c",
+          "observations": "The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVSTRMX is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking.",
       "search_evidence": {
         "inventory_id": 1481,
         "query": "Cybex \"CVSTRMX\"",
@@ -15567,12 +15951,38 @@
           }
         ]
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "b016cb12e5108bade74648ac373433847f594c4d4269e67f739f74cc250b8a0c",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "V 系列跑步機",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVSTRMX is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_product_heading",
+        "original_name": "V 系列跑步機",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "b1d499fc0779df928d1ee032a4c4ead17162e303586cde8228da34138d3e87b7",
+        "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_product_visual_match",
+        "note": "Traditional Chinese catalog H1; no independent translation.",
+        "evidence_hash_scope": "raw_manufacturer_html"
       }
     },
     {
@@ -15590,14 +16000,37 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "CVC500363",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Upright Bike",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "a68d1e9c7fa092190e5b9a39c148a49d10d2cd81645eaddecae9c7c383677bdf",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVC500363 is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997.png",
+          "source_image_sha256": "c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+          "official_image_sha256": "a51c6fee4cdeb5022d509a00595cae8b104c1eb5283d14034d6f7b6c173b50fd",
+          "observations": "The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVC500363 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
       "search_evidence": {
         "inventory_id": 1497,
         "query": "Cybex \"CVC500363\"",
@@ -15609,12 +16042,39 @@
           }
         ]
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "a51c6fee4cdeb5022d509a00595cae8b104c1eb5283d14034d6f7b6c173b50fd",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "Cybex V 系列直立式健身車",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVC500363 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, upright CYBEX-branded mast, split upright handlebar ends, short horizontal contact grips, saddle post, silver crank and front/rear stabilizers.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "evidence_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "web_reader_manufacturer_support_product_list",
+        "original_name": "Cybex V 系列直立式健身車",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "15aff2df07d2a1a63e09e6ca3b43f703b7222e188cdd6efce08fa51652ad3670",
+        "localized_product_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_auto_translated_support_product_name",
+        "note": "Manufacturer-published Traditional Chinese support wording; the publisher marks this support article as automatically translated from English. Preserved verbatim, not independently translated by the researcher.",
+        "evidence_hash_scope": "extracted_manufacturer_support_product_names_and_translation_notice",
+        "publisher_translation_notice": "本文由人工智慧自動從英文翻譯而來。如有衝突，以英文版本為準。"
       }
     },
     {
@@ -15637,14 +16097,37 @@
         "tseung-kwan-o"
       ],
       "lookup_model": "CVX600537",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Cross Trainer",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "4d109bf61f97cd2e45c9295525ecf5177758416bb976bab7429c7d6422f33886",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVX600537 is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a.png",
+          "source_image_sha256": "105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+          "official_image_sha256": "eacc27fb7aaa4a79a720cd16f2dde4c051a5d3a94be939b8f84f5dc70204a25a",
+          "observations": "The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVX600537 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
       "search_evidence": {
         "inventory_id": 1498,
         "query": "Cybex \"CVX600537\"",
@@ -15717,12 +16200,39 @@
           ]
         }
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "eacc27fb7aaa4a79a720cd16f2dde4c051a5d3a94be939b8f84f5dc70204a25a",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "Cybex V 系列橢圓機",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVX600537 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, tall moving handles, shorter stationary bullhorns, round rear flywheel housing, long silver pedal linkages and black floor rails.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "evidence_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "web_reader_manufacturer_support_product_list",
+        "original_name": "Cybex V 系列橢圓機",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "15aff2df07d2a1a63e09e6ca3b43f703b7222e188cdd6efce08fa51652ad3670",
+        "localized_product_url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_auto_translated_support_product_name",
+        "note": "Manufacturer-published Traditional Chinese support wording; the publisher marks this support article as automatically translated from English. Preserved verbatim, not independently translated by the researcher.",
+        "evidence_hash_scope": "extracted_manufacturer_support_product_names_and_translation_notice",
+        "publisher_translation_notice": "本文由人工智慧自動從英文翻譯而來。如有衝突，以英文版本為準。"
       }
     },
     {
@@ -15743,14 +16253,37 @@
         "wong-chuk-hang"
       ],
       "lookup_model": "CVSTRMX23060011",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "V Series Treadmill",
+      "official_product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+      "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_catalog_and_visual_source_comparison",
+        "evidence_sha256": "5b6f97f8e3fc05910501b776862a1259a41b96594d7241fc268b17451cbd3f74",
+        "manufacturer_model_codes": [],
+        "model_evidence": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVSTRMX23060011 is preserved verbatim and is not added to manufacturer_model_codes.",
+        "visual_review": {
+          "review_date": "2026-11-06",
+          "source_image_url": "https://oss-hk.247fitness.hk/e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8.png",
+          "source_image_sha256": "e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8",
+          "official_image_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+          "official_image_sha256": "b016cb12e5108bade74648ac373433847f594c4d4269e67f739f74cc250b8a0c",
+          "observations": "The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking."
+        },
+        "identity_evidence": {
+          "source_image_sha256": "e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8",
+          "source_image_observations": "The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking.",
+          "match_basis": "catalog_heading_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "configuration_conflict": false
+        },
+        "image_evidence_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVSTRMX23060011 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking.",
       "search_evidence": {
         "inventory_id": 1499,
         "query": "Cybex \"CVSTRMX23060011\"",
@@ -15823,12 +16356,38 @@
           ]
         }
       },
-      "image_check": null,
-      "official_name_zh": null,
+      "image_check": {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "b016cb12e5108bade74648ac373433847f594c4d4269e67f739f74cc250b8a0c",
+        "checked_at": "2026-11-06"
+      },
+      "official_name_zh": "V 系列跑步機",
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_bound_product",
-        "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-06",
+        "status": "manufacturer_chinese_name_recorded",
+        "reason": "Manufacturer Traditional Chinese catalog or support product wording recorded; see official_chinese_names evidence."
+      },
+      "official_model": null,
+      "match_scope": "manufacturer_product_visual_match",
+      "configuration_note": "The manufacturer catalog heading and its LED-console hero identify the same product shown in the captured image. This is a source-image-bound product match, not an exact sales SKU or serial-number lookup. The inventory identifier CVSTRMX23060011 is preserved verbatim and is not added to manufacturer_model_codes. The captured image and catalog hero show the same LED console, long straight black handrails, CYBEX-branded angled uprights, silver belt rails and IS4 Intelligent Suspension marking.",
+      "image_verification_status": "manufacturer_image_checked",
+      "official_name_zh_evidence": {
+        "product_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "evidence_url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "retrieved_at": "2026-11-06",
+        "retrieval_method": "http_manufacturer_product_heading",
+        "original_name": "V 系列跑步機",
+        "source_locale": "zh-Hant",
+        "conversion_method": "none",
+        "evidence_sha256": "b1d499fc0779df928d1ee032a4c4ead17162e303586cde8228da34138d3e87b7",
+        "localized_product_url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "manufacturer_model_codes": [],
+        "match_scope": "manufacturer_product_visual_match",
+        "note": "Traditional Chinese catalog H1; no independent translation.",
+        "evidence_hash_scope": "raw_manufacturer_html"
       }
     },
     {
@@ -104934,7 +105493,7 @@
           "outcome": "net::ERR_CERT_COMMON_NAME_INVALID; no security exception used"
         }
       ],
-      "notes": "Old locator site fails certificate checks in HTTP and Chrome. Current V Series page opened; source console/serial codes remain unverified."
+      "notes": "Old locator site fails certificate checks in HTTP and Chrome. Current V Series page opened; source console/serial codes remain unverified. Follow-up on 2026-11-06: all 11 previously unresolved/image-missing records rechecked against Life Fitness Cybex catalog headings and source images; ten now model_verified, 8800 Compact image remains under review. Source serial/SKU aliases are not inferred. See Cybex catalog follow-up. Subsequent user approval on 2026-11-08: Inventory 1353 is now model_verified with its current image manually reviewed; all 14 Cybex records are model_verified."
     },
     {
       "brand": "ELEIKO",
@@ -106891,6 +107450,223 @@
         "content_type": "text/html; charset=utf-8",
         "sha256": "8ee80391a06682e30066184d8330dae0aa4152716d8f07c78c0c476d6602d2af"
       }
+    ]
+  },
+  "cybex_product_followup": {
+    "review_date": "2026-11-06",
+    "inventory_ids": [
+      1347,
+      1481,
+      1499,
+      1348,
+      1480,
+      1498,
+      1350,
+      1479,
+      1497,
+      1351,
+      1353
+    ],
+    "initial_status_counts": {
+      "model_verified_image_missing": 2,
+      "unresolved": 9
+    },
+    "summary": "Rechecked all 11 Cybex records previously missing a verified image or unresolved, using the user-supplied Life Fitness Cybex catalog pattern. Ten now have verified product/image matches; 8800 Compact has a verified name and a shared image pending configuration review. All 11 now have English names and image URLs; nine have manufacturer Chinese wording.",
+    "method": "Read catalog H1, observed hero asset and specifications with Python HTTP; download and visually compare every distinct captured/official image. Follow actual locale links rather than assuming an English slug exists in zh-hk. Support HTTP returned 403; attempted the normal Chrome browser, whose control API failed before navigation (timeoutMs error). Read the public manufacturer support text with the web tool as fallback. No blocked response is treated as evidence that a product or Chinese name does not exist.",
+    "limitations": "Cardio source identifiers include sales annotations, base codes and serial-like values. Product identity is established by catalog wording and matching captured images; no undocumented SKU aliases or serial-number normalization is asserted. Inventory 1353 (8800 Compact) shares the 8810 Tall captured image and remains model_verified_image_missing with a best-effort catalog hero. Bravo Chinese catalog H1 remains English (Bravo Advanced); no Chinese name invented. Three already model_verified Cybex records are unchanged.",
+    "reference_checks": [
+      {
+        "url": "https://oss-hk.247fitness.hk/e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8.png",
+        "final_url": "https://oss-hk.247fitness.hk/e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8.png",
+        "status": 200,
+        "content_type": "image/png",
+        "path": "/tmp/gymory-cybex-2026-11-06/1c5a8d9228e9d2e1c9421d67db5eff327ad67595e0b3972d7f438d7ee5eefa45.png",
+        "sha256": "e4ba53f50185b07c730721367ad2f92172f479575c691e88cbedc994da8b1ac8",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "final_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/6e7bd933a93f553b64bd5393696557001750e9b9e092540bad36176269950eec.html",
+        "sha256": "4d109bf61f97cd2e45c9295525ecf5177758416bb976bab7429c7d6422f33886",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7.png",
+        "final_url": "https://oss-hk.247fitness.hk/77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7.png",
+        "status": 200,
+        "content_type": "image/png",
+        "path": "/tmp/gymory-cybex-2026-11-06/87ee662a9019f39126958ebd02fad44de635d7f201b13053c1e09c43103029cc.png",
+        "sha256": "77d2a812ac26130470b98b202b7f9ccaa712120f6c9bce416c7eccd7398347e7",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/3878b06fc825def306963728e55ba2f58097a8ae04f8e709e2f29472de614478.html",
+        "sha256": "b4bcc1c61dc16346858d83c8da846c4e8a0fbd998c3c0af3bb015f708ac5c891",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+        "final_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/226-487-cybex-v-series-tread.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "path": "/tmp/gymory-cybex-2026-11-06/54df70721258af5fd17af1a0b84025c7bed7421a16e39cc2e20eeb10c7a32b6d.png",
+        "sha256": "b016cb12e5108bade74648ac373433847f594c4d4269e67f739f74cc250b8a0c",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/7b9fe19f6cd1698bd2599deca7c6132f7408892770e188644788ed546cd0ff44.html",
+        "sha256": "7943a2f1a9b2feb2d3c60a0413a89e292d93497619156d4166640c0cc87b045b",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://support.lifefitness.com/hc/en-us/articles/360037409313-Cybex-V-Series-Cardio-Introduction",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+        "final_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/139-067-cybex-v-series-upright-bike-1-.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "path": "/tmp/gymory-cybex-2026-11-06/6a77c62a949b041f27f7fd539b4d77e3d00be94b77dde48534d07e7faab93675.png",
+        "sha256": "a51c6fee4cdeb5022d509a00595cae8b104c1eb5283d14034d6f7b6c173b50fd",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://support.lifefitness.com/hc/en-us/articles/360036927954-Cybex-Bravo-Introduction",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a.png",
+        "final_url": "https://oss-hk.247fitness.hk/105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a.png",
+        "status": 200,
+        "content_type": "image/png",
+        "path": "/tmp/gymory-cybex-2026-11-06/100b40083c61eed53eb40b5b6886e64ee065bc9e526be8f7ed6a087717f718d5.png",
+        "sha256": "105502c898f97547e4dedd6ab79f69ffddebd7367bbade66de375b957b49e95a",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/2946c541fdd83563300b0df0083517849fa79213a2ab9e50dcd83f036f8d46b9.html",
+        "sha256": "b4bcc1c61dc16346858d83c8da846c4e8a0fbd998c3c0af3bb015f708ac5c891",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+        "final_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/256-166-cybex-bravo-advanced-1-1-.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "path": "/tmp/gymory-cybex-2026-11-06/31c505302d2737ae5759be7a62142d6781148ee52e2dabdf0dd89bfe3850bc0d.png",
+        "sha256": "64bab6ec046136aa40e1d532d7570c8d5c391ae0ff007a637ab61ab9a3bcb80d",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "final_url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-%E7%B3%BB%E5%88%97%E8%B7%91%E6%AD%A5%E6%A9%9F",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/66db6232985d37403f72e45e1ad6c0d1f1c7b5e3fa9cf894b0ce17fe6d3dfc72.html",
+        "sha256": "b1d499fc0779df928d1ee032a4c4ead17162e303586cde8228da34138d3e87b7",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/81ef37124c0c632c94ff160897a74f6d50fb85d68bcf33b8c89cec63a99c45b3.html",
+        "sha256": "4b92cbab72c04e453ffb61b4376ba51902421068fe156a5fad30ee9525b68d75",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+        "final_url": "https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/960_lossy_level2_webp/kentico13corebase/media/lfmedia/lifefitnessimages/mediasync/238-565-cybex-v-series-cross-trainer-1.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "path": "/tmp/gymory-cybex-2026-11-06/07783fa833e715b4fd07bf72651228ca9d2f02c6b6ace3d386dc538fe6dd1113.png",
+        "sha256": "eacc27fb7aaa4a79a720cd16f2dde4c051a5d3a94be939b8f84f5dc70204a25a",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-cn/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "final_url": "https://www.lifefitness.com/zh-cn/catalog/cybex/cybex-products/cybex-bravo-advanced",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/04efc7be598f6ca96edb00a49090ce8e13b65a865069b0d4adfbc6fe446f8f66.html",
+        "sha256": "fec10e3ecae011730cec7c5d5b5e8cc48af8e2d27eaac6ad2629ba31513c245f",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "final_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-upright-bike",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/70fbbb2bfa5d462e96e93cae19319a7f5d6be3859717b9fbf3827c5a0483336c.html",
+        "sha256": "a68d1e9c7fa092190e5b9a39c148a49d10d2cd81645eaddecae9c7c383677bdf",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/zh-hk/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "final_url": "https://www.lifefitness.com/en-us/catalog/cybex/cybex-products/cybex-v-series-cross-trainer",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/fecf3809dd028efee3877128df9951589e186184fdd1ed613dd022a2ddf18aa9.html",
+        "sha256": "cea7d916730781ddd78d9fd15cfd27124e793a926015e14b7afe1eb75d39205a",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "final_url": "https://www.lifefitness.com/en-hk/catalog/cybex/cybex-products/cybex-v-series-treadmill",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "path": "/tmp/gymory-cybex-2026-11-06/df744a4f4d57b94923f54a40d78506bac20f1fe75b88e9db876bb1ced9593b9f.html",
+        "sha256": "5b6f97f8e3fc05910501b776862a1259a41b96594d7241fc268b17451cbd3f74",
+        "retrieved_at": "2026-11-06"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997.png",
+        "final_url": "https://oss-hk.247fitness.hk/c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997.png",
+        "status": 200,
+        "content_type": "image/png",
+        "path": "/tmp/gymory-cybex-2026-11-06/1873d4e3017c46c0d1d527c1a08f624614ff43131d8feac90f3edc476fcea808.png",
+        "sha256": "c124c0e1ed90161df1d7476c0aecedeff140e677881510799c4ef6b5f4693997",
+        "retrieved_at": "2026-11-06"
+      }
+    ],
+    "support_name_facts": {
+      "url": "https://support.lifefitness.com/hc/zh-tw/articles/360037409313-Cybex-V-%E7%B3%BB%E5%88%97%E5%BF%83%E8%82%BA%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9",
+      "facts": {
+        "product_names": [
+          "Cybex V 系列直立式健身車",
+          "Cybex V 系列橢圓機"
+        ],
+        "publisher_translation_notice": "本文由人工智慧自動從英文翻譯而來。如有衝突，以英文版本為準。"
+      },
+      "sha256": "15aff2df07d2a1a63e09e6ca3b43f703b7222e188cdd6efce08fa51652ad3670",
+      "hash_scope": "extracted_facts",
+      "retrieval_method": "web_reader",
+      "retrieved_at": "2026-11-06"
+    },
+    "search_queries": [
+      "lifefitness Cybex V Series Cross Trainer with LED Console",
+      "site:lifefitness.com Cybex V Series upright bike cross trainer Bravo 8800 8810",
+      "Cybex CVC CVX CVSTRMX treadmill bike",
+      "Cybex CVX-TWNXX-2401",
+      "site:lifefitness.com/zh-cn/catalog/cybex/ Bravo",
+      "site:lifefitness.com Cybex V Series Chinese names"
     ]
   }
 }

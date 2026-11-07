@@ -70,6 +70,7 @@ BROWSER_IMAGE_PREFIXES = {
     'MATRIX': ('https://assets.jhtbrand.co/files/product/',),
     'Life Fitness': ('https://production-gvckb4eyhna3g6c7.a03.azurefd.net/',
                      'https://cdn.shopify.com/s/files/1/0538/8307/6805/'),
+    'Cybex': ('https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/',),
     'FREEMOTION': ('https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/',),
     'FORWARD': ('https://cdn-optimized.imweb.me/upload/S20221208a9a497601a979/',),
     'XMASTER': ('https://img-va.myshopline.com/image/store/1688111732036/',),
@@ -253,6 +254,9 @@ def apply_official_chinese_names(result, supplemental):
             'source_locale', 'conversion_method', 'evidence_sha256', 'localized_product_url',
             'manufacturer_model_codes', 'match_scope', 'identity_evidence', 'document_page',
             'source_heading', 'source_label', 'name_language', 'note') if k in record}
+        if record['brand'] == 'Cybex':
+            entry['official_name_zh_evidence'].update({k: record[k] for k in
+                ('evidence_hash_scope', 'publisher_translation_notice') if k in record})
         for candidate in candidates:
             candidate['name_zh'] = record['official_name_zh']
     reviews = supplemental.get('official_chinese_name_reviews', [])
@@ -398,12 +402,40 @@ def apply_manufacturer_product_reviews(result, supplemental):
     matrix_reviews = supplemental.get('matrix_product_reviews', [])
     booty_reviews = supplemental.get('booty_builder_product_reviews', [])
     corrections = supplemental.get('user_product_corrections', [])
-    for review in [*supplemental.get('manufacturer_product_reviews', []), *matrix_reviews, *booty_reviews, *corrections]:
+    cybex_reviews = supplemental.get('cybex_product_reviews', [])
+    for review in [*supplemental.get('manufacturer_product_reviews', []), *matrix_reviews, *booty_reviews, *corrections, *cybex_reviews]:
         entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
         if entry is None or any(entry.get(k) != review.get(k) for k in ('brand', 'source_model', 'source_image_url')):
             raise ValueError('Manufacturer product review does not match source inventory')
-        if entry.get('manual_review') and review not in matrix_reviews and review not in booty_reviews and review not in corrections:
+        if entry.get('manual_review') and review not in matrix_reviews and review not in booty_reviews and review not in corrections and review not in cybex_reviews:
             continue
+        cybex_visual_match = False
+        if review in cybex_reviews:
+            facts = review.get('observed_page_facts', {})
+            identity = review.get('identity_evidence', {})
+            visual = review.get('visual_review', {})
+            page = review['official_product_url']
+            if (entry['brand'] != 'Cybex' or entry.get('source_name') != review.get('source_name')
+                    or '/catalog/cybex/cybex-products/' not in page
+                    or facts.get('product_url') != page
+                    or facts.get('heading') != review['official_name']
+                    or not review.get('evidence_sha256')
+                    or not identity.get('source_image_sha256')
+                    or visual.get('source_image_sha256') != identity.get('source_image_sha256')
+                    or facts.get('hero_image_url') != review.get('official_image_url')
+                    or review.get('image_observed_on') != page
+                    or review.get('image_evidence_url') != page
+                    or not identity.get('source_image_observations')):
+                raise ValueError('Cybex follow-up requires source-bound catalog heading, image and identity evidence')
+            cybex_visual_match = review['match_scope'] == 'manufacturer_product_visual_match'
+            if cybex_visual_match and (not review.get('model_evidence')
+                    or identity.get('match_basis') != 'catalog_heading_and_source_image'
+                    or identity.get('source_identifier_is_manufacturer_sku') is not False
+                    or not page.endswith(('/cybex-v-series-treadmill', '/cybex-v-series-cross-trainer',
+                                          '/cybex-v-series-upright-bike'))):
+                raise ValueError('Cybex visual matches must preserve unverified source identifiers without SKU aliases')
+            if identity.get('configuration_conflict') and review['status'] == 'model_verified':
+                raise ValueError('Conflicting Cybex configurations cannot receive a verified image')
         product_name_match = review in booty_reviews
         if product_name_match:
             identity = review.get('identity_evidence', {})
@@ -458,7 +490,7 @@ def apply_manufacturer_product_reviews(result, supplemental):
                             and entry['source_model'].strip().upper().endswith('-DH')
                             and model_key(entry['source_model'].strip()[:-3], entry['brand']) == base
                             and base in codes)
-            if not review.get('model_evidence') or not (source_key in codes or base_match or config_match or user_named_match or product_name_match):
+            if not review.get('model_evidence') or not (source_key in codes or base_match or config_match or user_named_match or product_name_match or cybex_visual_match):
                 raise ValueError(f'Manufacturer product review requires matching model evidence: {entry["inventory_id"]}')
         image = review.get('official_image_url')
         validate_browser_urls({'brand': entry['brand'], 'product_url': review['official_product_url'],
@@ -488,6 +520,8 @@ def apply_manufacturer_product_reviews(result, supplemental):
             if status == 'model_verified_image_missing':
                 entry['image_verification_status'] = 'image_unavailable'
     result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
+    if supplemental.get('cybex_product_followup'):
+        result['cybex_product_followup'] = supplemental['cybex_product_followup']
     if supplemental.get('hammer_strength_unresolved_followup'):
         result['hammer_strength_unresolved_followup'] = supplemental['hammer_strength_unresolved_followup']
     if supplemental.get('matrix_product_followup'):
@@ -509,7 +543,7 @@ def apply_manual_equipment_reviews(result, supplemental):
         seen.add(inventory_id)
         entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
         approved = review.get('approved_candidate')
-        followup_key = next((key for key in ('user_product_corrections', 'booty_builder_product_reviews', 'matrix_product_reviews')
+        followup_key = next((key for key in ('user_product_corrections', 'booty_builder_product_reviews', 'matrix_product_reviews', 'cybex_product_reviews')
                              if any(r['inventory_id'] == inventory_id for r in supplemental.get(key, []))), 'matrix_product_reviews')
         followup = next((r for r in supplemental.get(followup_key, [])
                          if r['inventory_id'] == inventory_id), None)
@@ -531,6 +565,8 @@ def apply_manual_equipment_reviews(result, supplemental):
                 'review_date': followup['retrieved_at'],
                 'reason': ('Exact manufacturer model/console evidence supplies the current standard product name and image; the original user-approved CPO candidate snapshot is preserved.'
                            if followup_key == 'matrix_product_reviews' else
+                           'Manufacturer catalog model and source-image evidence supplies current Cybex references; the original user approval remains historical and source identifiers are preserved without new SKU aliases.'
+                           if followup_key == 'cybex_product_reviews' else
                            'Manufacturer product heading, resistance type and captured-image features correct the product reference; the official image is unverified and the original approved candidate snapshot is preserved.'
                            if followup_key == 'booty_builder_product_reviews' else
                            'An explicit user correction and manufacturer image evidence supply current product references; the original approved candidate snapshot is preserved.')}
@@ -565,7 +601,8 @@ def apply_manual_equipment_reviews(result, supplemental):
                      image_verification_status='manually_reviewed' if entry.get('official_image_url') else 'image_missing', manual_review=review,
                      reason=review['note'], configuration_note=review['note'])
     for brand, review in [(brand, review) for brand, key in (
-            ('BOOTY BUILDER', 'booty_builder_image_reviews'), ('Life Fitness', 'lifefitness_image_reviews'))
+            ('BOOTY BUILDER', 'booty_builder_image_reviews'), ('Life Fitness', 'lifefitness_image_reviews'),
+            ('Cybex', 'cybex_image_reviews'))
             for review in supplemental.get(key, [])]:
         entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
         fields = ('brand', 'source_model', 'source_image_url', 'official_name',
@@ -579,7 +616,7 @@ def apply_manual_equipment_reviews(result, supplemental):
             raise ValueError('Image approval requires an explicit user decision bound to current source and official references')
         entry.update(status='model_verified', image_verification_status='manually_reviewed',
                      manual_image_review=review, reason=review['note'], configuration_note=review['note'])
-        if brand == 'Life Fitness':
+        if brand in ('Life Fitness', 'Cybex'):
             entry.update(configuration_status='manually_reviewed', candidates=[])
         if entry.get('manual_review_followup'):
             entry['manual_review_followup']['reason'] = (
@@ -1240,6 +1277,17 @@ def write_reports(result):
         image_approvals = [e for e in group if e.get('manual_image_review')]
         if image_approvals:
             lines += [f"Subsequent user image approval on {max(e['manual_image_review']['review_date'] for e in image_approvals)}: Inventory IDs {', '.join(str(e['inventory_id']) for e in image_approvals)} are now model_verified with image_verification_status manually_reviewed. The user explicitly approved the current references. Original system-context/generation observations and candidate snapshots remain historical under lifefitness_image_reviews; no new manufacturer SKU alias or isolated-component photograph is asserted.", '']
+    if result.get('cybex_product_followup'):
+        followup = result['cybex_product_followup']
+        group = [e for e in entries if e['brand'] == 'Cybex']
+        lines += ['', '## Cybex catalog follow-up', '',
+                  followup['review_date'] + ': ' + followup['summary'], '',
+                  f"Current Cybex coverage: {len(group)} inventory records, {sum(e['status'] == 'model_verified' for e in group)} model_verified, {sum(e['status'] == 'model_verified_image_missing' for e in group)} model_verified_image_missing and {sum(e['status'] == 'unresolved' for e in group)} unresolved. {sum(not e.get('official_name') for e in group)} English names, {sum(not e.get('official_name_zh') for e in group)} Chinese names and {sum(not e.get('official_image_url') for e in group)} image URLs remain blank.", '',
+                  followup['method'], '', followup['limitations'], '',
+                  'Source-bound product reviews, retrieval checks and historical decisions: cybex_product_reviews and cybex_product_followup in the evidence JSON. Per-item Match scope and Review note distinguish visual product matches from manufacturer SKU verification.', '']
+        approvals = [e for e in group if e.get('manual_image_review')]
+        if approvals:
+            lines += [f"Subsequent user approval on {max(e['manual_image_review']['review_date'] for e in approvals)}: Inventory IDs {', '.join(str(e['inventory_id']) for e in approvals)} are now model_verified with manually_reviewed image and configuration. Initial Compact/Tall observations remain historical under cybex_product_reviews; the explicit decision and earlier candidates are retained under cybex_image_reviews.", '']
     if result.get('lifefitness_user_reference_followup'):
         reference = result['lifefitness_user_reference_followup']
         lines += ['', '## User-supplied Life Fitness reference images', '',
@@ -1276,7 +1324,7 @@ def write_reports(result):
         converted = sum(e.get('official_name_zh_evidence', {}).get('conversion_method') == 'OpenCC cn-to-hk' for e in names)
         lines += ['', '## Official Chinese name evidence', '',
                   f"Chinese-name follow-up: {result['official_chinese_name_followup']['review_date']}. The review covers {len(entries)} inventory records across {len({e['brand'] for e in entries})} brands: {len(names)} Chinese names recorded (manufacturer names plus explicitly labeled distributor references), including {converted} names converted to Traditional Chinese with OpenCC (cn-to-hk). {len(entries) - len(names)} names remain unverified; a blank does not establish that no official Chinese name exists.", '',
-                  'Original source wording is included in Full inventory cross-reference; Chinese source links remain in the catalog and evidence JSON. Only character conversion is applied; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. A new Chinese source can establish an exact source-model name independently of the existing English match; this does not replace the English product/candidate, image or status. Base-model Chinese names do not verify console, full-shroud, prefix or generation variants. Manufacturer pages with conflicting product names, mismatched model generations, generic navigation labels or automatic support-article translations are excluded. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '']
+                  'Original source wording is included in Full inventory cross-reference; Chinese source links remain in the catalog and evidence JSON. Only character conversion is applied; English names are not translated. Candidate names describe the candidate product and do not establish an inventory match or upgrade its status. A new Chinese source can establish an exact source-model name independently of the existing English match; this does not replace the English product/candidate, image or status. Base-model Chinese names do not verify console, full-shroud, prefix or generation variants. Manufacturer pages with conflicting product names, mismatched model generations or generic navigation labels are excluded. Cybex manufacturer-published automatic support translations are recorded verbatim with manufacturer_auto_translated_support_product_name scope and the original publisher translation notice; they are distinguished from catalog Chinese headings. Per-inventory review outcomes and checked URLs are retained in the evidence JSON under `official_chinese_name_reviews`.', '']
         if result['official_chinese_name_followup'].get('name_search_followup'):
             search = result['official_chinese_name_followup']['name_search_followup']
             lines += [f"Name-based follow-up on {search['review_date']}: all {search['inventory_count']} previously blank records were searched independently of their stored URLs ({search['unique_name_queries']} unique equipment-name groups, {search['search_query_count']} queries across general name and manufacturer-domain Chinese searches). Official shop/catalog identity review, normal-browser pages and model-specific Chinese manufacturer PDFs supplied {search['new_name_count']} additional names. Search queries and official result links are retained in the evidence JSON under `official_chinese_name_search_followup`. Search results are leads, not automatic matches.", '']

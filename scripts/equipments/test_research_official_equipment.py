@@ -560,7 +560,7 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual(sum(not r['official_image_url'] for r in reviews), 11)
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
-            current = next((r for r in [*evidence.get('user_product_corrections', []), *evidence.get('booty_builder_product_reviews', [])] if r['inventory_id'] == review['inventory_id']), review)
+            current = next((r for r in [*evidence.get('user_product_corrections', []), *evidence.get('booty_builder_product_reviews', []), *evidence.get('cybex_product_reviews', [])] if r['inventory_id'] == review['inventory_id']), review)
             self.assertEqual(entry['status'], entry.get('manual_image_review', current)['status'])
             self.assertEqual(review['previous_candidates'][0], review['approved_candidate'])
             self.assertEqual(entry['manual_review'], review)
@@ -675,6 +675,83 @@ class SpecificationNameTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 research.apply_manufacturer_product_reviews({'equipment': [copy.deepcopy(entry)]},
                     {'booty_builder_product_reviews': [{**review, **change}]})
+
+    def test_cybex_catalog_followup_preserves_identifiers_and_compact_tall_conflict(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['cybex_product_reviews']
+        ids = {1347, 1348, 1350, 1351, 1353, 1479, 1480, 1481, 1497, 1498, 1499}
+        self.assertEqual({r['inventory_id'] for r in reviews}, ids)
+        entries = {x['inventory_id']: x for x in catalog['equipment']}
+        for review in reviews:
+            entry = entries[review['inventory_id']]
+            self.assertEqual(entry['official_name'], review['observed_page_facts']['heading'])
+            self.assertEqual(entry['official_image_url'], review['official_image_url'])
+            self.assertTrue(entry['image_check']['available'])
+            self.assertEqual(entry['source_model'], review['source_model'])
+            if review['match_scope'] == 'manufacturer_product_visual_match':
+                self.assertEqual(review['manufacturer_model_codes'], [])
+                self.assertIsNone(entry['official_model'])
+                self.assertFalse(review['identity_evidence']['source_identifier_is_manufacturer_sku'])
+        self.assertEqual(entries[1351]['status'], 'model_verified')
+        self.assertEqual(entries[1353]['status'], 'model_verified')
+        self.assertEqual(entries[1353]['official_model'], '8800')
+        self.assertEqual(entries[1353]['candidates'], [])
+        self.assertEqual(entries[1353]['manual_image_review']['previous_status'], 'model_verified_image_missing')
+        self.assertTrue(entries[1353]['manual_image_review']['previous_candidates'])
+        self.assertEqual(entries[1353]['image_verification_status'], 'manually_reviewed')
+        self.assertEqual(entries[1353]['source_image_url'], entries[1351]['source_image_url'])
+        for id in (1347, 1351):
+            self.assertEqual(entries[id]['manual_review_followup']['evidence_key'], 'cybex_product_reviews')
+            self.assertIsNone(entries[id]['manual_review']['approved_candidate']['image_url'])
+        for id in (1347, 1481, 1499):
+            self.assertEqual(entries[id]['official_name_zh'], 'V 系列跑步機')
+        for id in (1348, 1480, 1498, 1350, 1479, 1497):
+            self.assertIn('manufacturer-published', entries[id]['official_name_zh_evidence']['note'].lower())
+            self.assertEqual(entries[id]['official_name_zh_evidence']['conversion_method'], 'none')
+        for id in (1351, 1353):
+            self.assertIsNone(entries[id]['official_name_zh'])
+
+    def test_cybex_followup_rejects_changed_source_unobserved_images_and_configuration_promotion(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        review = next(r for r in evidence['cybex_product_reviews'] if r['inventory_id'] == 1480)
+        entry = next(x for x in catalog['equipment'] if x['inventory_id'] == 1480)
+        for field in ('source_name', 'source_model', 'source_image_url'):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                research.apply_manufacturer_product_reviews({'equipment': [{**entry, field: 'changed'}]},
+                    {'cybex_product_reviews': [review]})
+        for change in ({'official_name': 'Wrong product'}, {'official_image_url': 'https://example.org/image.jpg'},
+                       {'image_observed_on': 'https://example.org/product'},
+                       {'identity_evidence': {**review['identity_evidence'], 'source_identifier_is_manufacturer_sku': True}},
+                       {'visual_review': {**review['visual_review'], 'source_image_sha256': 'changed'}}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                research.apply_manufacturer_product_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'cybex_product_reviews': [{**review, **change}]})
+        conflict = next(r for r in evidence['cybex_product_reviews'] if r['inventory_id'] == 1353)
+        entry = next(x for x in catalog['equipment'] if x['inventory_id'] == 1353)
+        with self.assertRaises(ValueError):
+            research.apply_manufacturer_product_reviews({'equipment': [copy.deepcopy(entry)]},
+                {'cybex_product_reviews': [{**conflict, 'status': 'model_verified'}]})
+
+    def test_cybex_image_approval_is_bound_to_current_references(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        approval, = evidence['cybex_image_reviews']
+        entry = next(e for e in catalog['equipment'] if e['inventory_id'] == 1353)
+        self.assertEqual(entry['manual_image_review'], approval)
+        self.assertEqual(approval['review_date'], '2026-11-08')
+        for field in ('brand', 'source_model', 'source_image_url', 'official_name', 'official_product_url', 'official_image_url'):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                research.apply_manual_equipment_reviews({'equipment': [{**entry, field: 'changed'}]},
+                    {'cybex_image_reviews': [approval]})
+        for change in ({'reviewed_by': 'automated'}, {'review_date': ''}, {'review_source': {}}, {'status': 'admin_verified'}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                research.apply_manual_equipment_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'cybex_image_reviews': [{**approval, **change}]})
 
     def test_manual_review_replays_and_rejects_changed_reviewed_data(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
