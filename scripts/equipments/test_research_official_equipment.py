@@ -833,7 +833,7 @@ class SpecificationNameTests(unittest.TestCase):
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
         evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
         reviews = evidence['panatta_user_reviews']
-        self.assertEqual({r['inventory_id'] for r in reviews}, {1406, 1408, 1409, 1410, 1519})
+        self.assertEqual({r['inventory_id'] for r in reviews}, {796, 1090, 1264, 1265, 1266, 1321, 1406, 1407, 1408, 1409, 1410, 1519})
         for review in reviews:
             entry = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id']))
             self.assertEqual(entry['status'], 'model_verified')

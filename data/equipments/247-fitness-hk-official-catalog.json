@@ -4,8 +4,8 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 784,
-    "unresolved": 45,
+    "model_verified": 791,
+    "unresolved": 38,
     "model_verified_image_missing": 4
   },
   "catalog_product_counts": {
@@ -79361,14 +79361,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "1HP121",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Power Smith Machine Dual System",
+      "official_product_url": "https://www.panattasport.com/en/free-weight-special/power-smith-machine-dual-system/",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW121-1.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval.",
       "search_evidence": {
         "inventory_id": 796,
         "query": "PANATTA \"1HP121\"",
@@ -79424,13 +79424,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW121-1.webp",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 796,
+        "brand": "PANATTA",
+        "source_model": "1HP121",
+        "source_image_url": "https://oss-hk.247fitness.hk/990ec04b1a1eda8fe7674106bc39cb72cf9f12053f5c0bb4851cf502887dbdf4.png",
+        "official_name": "Power Smith Machine Dual System",
+        "official_product_url": "https://www.panattasport.com/en/free-weight-special/power-smith-machine-dual-system/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW121-1.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "scope": "explicit_panatta_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 796, 1090, 1264, 1265, 1266, 1321 and 1407 using the supplied product and image URLs. Tracking parameters are omitted from stored image URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW121-1.webp",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
+      },
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
     },
     {
       "inventory_id": 797,
@@ -83170,14 +83219,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "1FW081",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Alternate Leg Extension",
+      "official_product_url": "https://www.panattasport.com/en/free-weight-special/alternate-leg-extension/",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW281-1.avif",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval.",
       "search_evidence": {
         "inventory_id": 1090,
         "query": "PANATTA \"1FW081\"",
@@ -83237,13 +83286,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW281-1.avif",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1090,
+        "brand": "PANATTA",
+        "source_model": "1FW081",
+        "source_image_url": "https://oss-hk.247fitness.hk/e382de3311c34e96b5fec7c073ce5bf31778f1ff7555671ce37446b7fd7b9f61.jpg",
+        "official_name": "Alternate Leg Extension",
+        "official_product_url": "https://www.panattasport.com/en/free-weight-special/alternate-leg-extension/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW281-1.avif",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "scope": "explicit_panatta_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 796, 1090, 1264, 1265, 1266, 1321 and 1407 using the supplied product and image URLs. Tracking parameters are omitted from stored image URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW281-1.avif",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
+      },
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
     },
     {
       "inventory_id": 1263,
@@ -83332,14 +83430,14 @@
         "sham-shui-po-third-branch"
       ],
       "lookup_model": "1HP525",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Super Deltoid Press",
+      "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-deltoid-press/",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw025-1-jpg-webp.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval.",
       "search_evidence": {
         "inventory_id": 1264,
         "query": "PANATTA \"1HP525\"",
@@ -83399,13 +83497,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw025-1-jpg-webp.webp",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1264,
+        "brand": "PANATTA",
+        "source_model": "1HP525",
+        "source_image_url": "https://oss-hk.247fitness.hk/730aca6242400390bc9e97636421e0276ae80f30e45eace6a4de00da45bbc2ee.png",
+        "official_name": "Super Deltoid Press",
+        "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-deltoid-press/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw025-1-jpg-webp.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "scope": "explicit_panatta_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 796, 1090, 1264, 1265, 1266, 1321 and 1407 using the supplied product and image URLs. Tracking parameters are omitted from stored image URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw025-1-jpg-webp.webp",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
+      },
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
     },
     {
       "inventory_id": 1265,
@@ -83423,14 +83570,14 @@
         "sham-shui-po-third-branch"
       ],
       "lookup_model": "1HP584",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Power Squat",
+      "official_product_url": "https://www.panattagymequipment.com.au/product/power-squat-1hp584/",
+      "official_image_url": "https://www.panattagymequipment.com.au/wp-content/uploads/2020/02/pic-1hp584_01-700x700.jpg",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: regional_manufacturer_site. Regional product page names the captured model (1HP584); supplied image downloaded successfully.",
       "search_evidence": {
         "inventory_id": 1265,
         "query": "PANATTA \"1HP584\"",
@@ -83490,13 +83637,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattagymequipment.com.au/wp-content/uploads/2020/02/pic-1hp584_01-700x700.jpg",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "87df032b8722baecd60a1ff6881dbadd475734ef2bc94491a0413cab58c07a71",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "regional_manufacturer_site",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1265,
+        "brand": "PANATTA",
+        "source_model": "1HP584",
+        "source_image_url": "https://oss-hk.247fitness.hk/8ccd070448286058720e16ab003991d579baef13bd1b7c1e5117d518b2463627.png",
+        "official_name": "Power Squat",
+        "official_product_url": "https://www.panattagymequipment.com.au/product/power-squat-1hp584/",
+        "official_image_url": "https://www.panattagymequipment.com.au/wp-content/uploads/2020/02/pic-1hp584_01-700x700.jpg",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "scope": "explicit_panatta_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 796, 1090, 1264, 1265, 1266, 1321 and 1407 using the supplied product and image URLs. Tracking parameters are omitted from stored image URLs."
+        },
+        "image_source_type": "regional_manufacturer_site",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.panattagymequipment.com.au/wp-content/uploads/2020/02/pic-1hp584_01-700x700.jpg",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "87df032b8722baecd60a1ff6881dbadd475734ef2bc94491a0413cab58c07a71",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: regional_manufacturer_site. Regional product page names the captured model (1HP584); supplied image downloaded successfully."
+      },
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: regional_manufacturer_site. Regional product page names the captured model (1HP584); supplied image downloaded successfully."
     },
     {
       "inventory_id": 1266,
@@ -83514,14 +83710,14 @@
         "sham-shui-po-third-branch"
       ],
       "lookup_model": "1HP588",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Seated Calf",
+      "official_product_url": "https://www.panattasport.com/en/freeweight-one/seated-calf/",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO088-1.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval.",
       "search_evidence": {
         "inventory_id": 1266,
         "query": "PANATTA \"1HP588\"",
@@ -83577,13 +83773,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO088-1.webp",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1266,
+        "brand": "PANATTA",
+        "source_model": "1HP588",
+        "source_image_url": "https://oss-hk.247fitness.hk/7dc282b381a41b1bfe883ff2eb823572627985e247894c7626a1cb0a57aa2368.png",
+        "official_name": "Seated Calf",
+        "official_product_url": "https://www.panattasport.com/en/freeweight-one/seated-calf/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO088-1.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "scope": "explicit_panatta_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 796, 1090, 1264, 1265, 1266, 1321 and 1407 using the supplied product and image URLs. Tracking parameters are omitted from stored image URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO088-1.webp",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
+      },
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
     },
     {
       "inventory_id": 1313,
@@ -84022,14 +84267,14 @@
         "kwai-fong"
       ],
       "lookup_model": "1HP234A",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Half Rack Base",
+      "official_product_url": "https://panattaturkiye.com/half-rack-base",
+      "official_image_url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/996728f5-4322-4921-a257-cd69e29605ad/1080/1hp234a.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: regional_manufacturer_site. Regional product page names the captured model (1HP234A); supplied image downloaded successfully.",
       "search_evidence": {
         "inventory_id": 1321,
         "query": "PANATTA \"1HP234A\"",
@@ -84085,13 +84330,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/996728f5-4322-4921-a257-cd69e29605ad/1080/1hp234a.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "3e46536be6528df1d351399971576d9d68f7685ea49d2adb0d5badfc35e5a124",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "regional_manufacturer_site",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1321,
+        "brand": "PANATTA",
+        "source_model": "1HP234A",
+        "source_image_url": "https://oss-hk.247fitness.hk/9398eca4523ca428a49bf3ed1db1c3618c6bd482d1aad97f22031f411b9fba9b.jpg",
+        "official_name": "Half Rack Base",
+        "official_product_url": "https://panattaturkiye.com/half-rack-base",
+        "official_image_url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/996728f5-4322-4921-a257-cd69e29605ad/1080/1hp234a.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "scope": "explicit_panatta_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 796, 1090, 1264, 1265, 1266, 1321 and 1407 using the supplied product and image URLs. Tracking parameters are omitted from stored image URLs."
+        },
+        "image_source_type": "regional_manufacturer_site",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/996728f5-4322-4921-a257-cd69e29605ad/1080/1hp234a.webp",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/webp",
+          "sha256": "3e46536be6528df1d351399971576d9d68f7685ea49d2adb0d5badfc35e5a124",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: regional_manufacturer_site. Regional product page names the captured model (1HP234A); supplied image downloaded successfully."
+      },
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: regional_manufacturer_site. Regional product page names the captured model (1HP234A); supplied image downloaded successfully."
     },
     {
       "inventory_id": 1322,
@@ -84573,14 +84867,14 @@
         "kwai-fong-second-branch"
       ],
       "lookup_model": "1HP505",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Dorsy Bar",
+      "official_product_url": "https://www.panattasport.com/en/freeweight-one/dorsy-bar/",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO005-1.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval.",
       "search_evidence": {
         "inventory_id": 1407,
         "query": "PANATTA \"1HP505\"",
@@ -84641,13 +84935,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO005-1.webp",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1407,
+        "brand": "PANATTA",
+        "source_model": "1HP505",
+        "source_image_url": "https://oss-hk.247fitness.hk/def37c63c4e7d81cf21974af88c557cb26b7fc5466035e3b46220ba46c285fee.webp",
+        "official_name": "Dorsy Bar",
+        "official_product_url": "https://www.panattasport.com/en/freeweight-one/dorsy-bar/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO005-1.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "scope": "explicit_panatta_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 796, 1090, 1264, 1265, 1266, 1321 and 1407 using the supplied product and image URLs. Tracking parameters are omitted from stored image URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO005-1.webp",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
+      },
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Captured model identifiers remain unchanged; differing source and current product codes are not asserted to be manufacturer SKU aliases. Official English name follows the user-supplied product reference; no Chinese name is inferred. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval."
     },
     {
       "inventory_id": 1408,
