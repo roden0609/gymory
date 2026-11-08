@@ -507,7 +507,9 @@ class SpecificationNameTests(unittest.TestCase):
                 self.assertEqual(entry[field], review['approved_candidate'][candidate_field])
             self.assertEqual(entry['source_model'], review['source_model'])
             self.assertEqual(entry['source_image_url'], review['source_image_url'])
-        self.assertFalse(any(e['brand'] == 'TechnoGym' and e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
+        approved_ids = {r['inventory_id'] for r in reviews}
+        self.assertFalse(any(e['status'] == 'candidate_requires_review' for e in catalog['equipment']
+                             if e['inventory_id'] in approved_ids))
 
     def test_arsenal_user_approved_first_candidates(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
@@ -566,7 +568,9 @@ class SpecificationNameTests(unittest.TestCase):
             self.assertEqual(entry['manual_review'], review)
             for field, candidate_field in [('official_name', 'name'), ('official_product_url', 'product_url'), ('official_image_url', 'image_url')]:
                 self.assertEqual(entry[field], current[field])
-        self.assertFalse(any(e['status'] == 'candidate_requires_review' for e in catalog['equipment']))
+        approved_ids = {r['inventory_id'] for r in reviews}
+        self.assertFalse(any(e['status'] == 'candidate_requires_review' for e in catalog['equipment']
+                             if e['inventory_id'] in approved_ids))
 
     def test_ambiguous_models_use_user_approved_first_candidates(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
@@ -752,6 +756,77 @@ class SpecificationNameTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 research.apply_manual_equipment_reviews({'equipment': [copy.deepcopy(entry)]},
                     {'cybex_image_reviews': [{**approval, **change}]})
+
+    def test_technogym_unresolved_followup_preserves_variant_conflicts_and_blank_identifiers(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['technogym_product_reviews']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {1172,1173,1174,1175,1176,1327,1328,1331,1456,1458})
+        entries = {x['inventory_id']: x for x in catalog['equipment']}
+        for review in reviews:
+            entry = entries[review['inventory_id']]
+            self.assertEqual(entry['status'], entry.get('manual_image_review', review)['status'])
+            self.assertEqual(entry['source_model'], review['source_model'])
+            self.assertEqual(entry['source_image_url'], review['source_image_url'])
+            if entry['status'] == 'model_verified' and review['inventory_id'] != 1456:
+                self.assertTrue(entry['image_check']['available'])
+                self.assertEqual(entry['official_name'], review['observed_page_facts']['product_name'])
+                self.assertEqual(entry['evidence']['manufacturer_model_codes'], [])
+        for id in (1173,1328):
+            self.assertEqual(entries[id]['status'], 'model_verified')
+            self.assertEqual(entries[id]['candidates'], [])
+            self.assertTrue(entries[id]['manual_image_review']['previous_candidates'])
+            self.assertEqual(entries[id]['manual_image_review']['reviewed_by'], 'user')
+            self.assertTrue(entries[id]['evidence']['identity_evidence']['configuration_conflict'])
+        self.assertEqual(entries[1173]['source_model'], 'DF5E')
+        self.assertEqual(entries[1173]['official_model'], 'DFH-DGE')
+        self.assertEqual(entries[1328]['source_model'], 'MB88EN0')
+        self.assertEqual(entries[1328]['official_model'], 'MQ0D')
+        self.assertEqual(entries[1331]['source_model'], '')
+        self.assertEqual(entries[1331]['official_model'], 'MB91')
+        self.assertEqual(entries[1458]['official_model'], 'PA04')
+        self.assertEqual(entries[1456]['status'], 'model_verified')
+        self.assertIsNone(entries[1456]['official_name'])
+        self.assertEqual(entries[1456]['official_image_url'], entries[1456]['evidence']['user_supplied_reference']['image_url'])
+        self.assertTrue(entries[1456]['image_check']['available'])
+        self.assertEqual(entries[1456]['image_verification_status'], 'manually_reviewed')
+        self.assertEqual(entries[1456]['candidates'], [])
+        self.assertEqual(entries[1456]['manual_image_review']['previous_status'], 'unresolved')
+        self.assertEqual(entries[1456]['manual_image_review']['reviewed_by'], 'user')
+
+    def test_technogym_followup_rejects_stale_captures_unobserved_images_and_conflict_upgrades(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        review = next(r for r in evidence['technogym_product_reviews'] if r['inventory_id'] == 1172)
+        entry = next(x for x in catalog['equipment'] if x['inventory_id'] == 1172)
+        for field in ('brand','source_name','source_model','source_image_url'):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                research.apply_technogym_reviews({'equipment': [{**entry, field: 'changed'}]},
+                    {'technogym_product_reviews': [review]})
+        for change in ({'official_name': 'Wrong product'}, {'official_image_url': 'https://example.org/image.jpg'},
+                       {'user_supplied_reference': {}}, {'evidence_sha256': ''},
+                       {'image_check': {**review['image_check'], 'available': False}},
+                       {'visual_review': {**review['visual_review'], 'source_image_sha256': 'changed'}}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                research.apply_technogym_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'technogym_product_reviews': [{**review, **change}]})
+        for id in (1173,1328):
+            conflict = next(r for r in evidence['technogym_product_reviews'] if r['inventory_id'] == id)
+            entry = next(x for x in catalog['equipment'] if x['inventory_id'] == id)
+            with self.subTest(id=id), self.assertRaises(ValueError):
+                research.apply_technogym_reviews({'equipment': [copy.deepcopy(entry)]},
+                    {'technogym_product_reviews': [{**conflict, 'status': 'model_verified'}]})
+            initial = {'equipment': [copy.deepcopy(entry)]}
+            research.apply_technogym_reviews(initial, {'technogym_product_reviews': [conflict]})
+            self.assertEqual(initial['equipment'][0]['status'], 'candidate_requires_review')
+            approval = next(r for r in evidence['technogym_image_reviews'] if r['inventory_id'] == id)
+            research.apply_manual_equipment_reviews(initial, {'technogym_image_reviews': [approval]})
+            self.assertEqual(initial['equipment'][0]['status'], 'model_verified')
+            for change in ({'official_image_url': 'https://example.org/changed.jpg'}, {'reviewed_by': 'automated'}):
+                with self.subTest(id=id, change=change), self.assertRaises(ValueError):
+                    research.apply_manual_equipment_reviews(initial, {'technogym_image_reviews': [{**approval, **change}]})
 
     def test_manual_review_replays_and_rejects_changed_reviewed_data(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'

@@ -70,6 +70,7 @@ BROWSER_IMAGE_PREFIXES = {
     'MATRIX': ('https://assets.jhtbrand.co/files/product/',),
     'Life Fitness': ('https://production-gvckb4eyhna3g6c7.a03.azurefd.net/',
                      'https://cdn.shopify.com/s/files/1/0538/8307/6805/'),
+    'TechnoGym': ('https://images.ctfassets.net/ipjoepkmtnha/',),
     'Cybex': ('https://production-gvckb4eyhna3g6c7.a03.azurefd.net/v11-24-24/',),
     'FREEMOTION': ('https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/',),
     'FORWARD': ('https://cdn-optimized.imweb.me/upload/S20221208a9a497601a979/',),
@@ -532,6 +533,114 @@ def apply_manufacturer_product_reviews(result, supplemental):
         result['booty_builder_product_followup'] = supplemental['booty_builder_product_followup']
 
 
+def apply_technogym_reviews(result, supplemental):
+    """Replay manually researched product/image matches without inventing SKU aliases."""
+    from collections import Counter
+    seen = set()
+    for review in supplemental.get('technogym_product_reviews', []):
+        entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
+        if (review['inventory_id'] in seen or entry is None or entry['brand'] != 'TechnoGym'
+                or any(entry.get(k) != review.get(k) for k in
+                       ('brand', 'source_model', 'source_name', 'source_image_url'))):
+            raise ValueError('Technogym review no longer matches the captured inventory')
+        seen.add(review['inventory_id'])
+        facts = review.get('observed_page_facts', {})
+        identity = review.get('identity_evidence', {})
+        status = review['status']
+        if (status not in ('model_verified', 'candidate_requires_review', 'unresolved')
+                or not review.get('note') or not review.get('retrieved_at')
+                or not review.get('evidence_sha256') or not identity.get('source_image_sha256')
+                or not identity.get('source_image_observations')
+                or facts.get('product_url') != review.get('evidence_url')):
+            raise ValueError('Technogym review requires recorded manufacturer facts and captured-image evidence')
+        if status == 'unresolved':
+            approval = entry.get('manual_image_review')
+            replaying_approval = (approval in supplemental.get('technogym_image_reviews', [])
+                and approval is not None and approval.get('previous_status') == 'unresolved'
+                and entry['status'] == 'model_verified'
+                and all(entry.get(k) == approval.get(k) for k in
+                    ('brand', 'source_model', 'source_image_url', 'official_name',
+                     'official_product_url', 'official_image_url')))
+            if ((entry['status'] != 'unresolved' and not replaying_approval) or any(entry.get(k) or review.get(k) for k in
+                    ('official_name', 'official_product_url'))):
+                raise ValueError('Unresolved Technogym research cannot replace established official references')
+            image = review.get('official_image_url')
+            supplied = review.get('user_supplied_reference', {})
+            check = review.get('image_check', {})
+            visual = review.get('visual_review', {})
+            if image:
+                validate_browser_urls({'brand': 'TechnoGym', 'product_url': review['evidence_url'],
+                    'evidence_url': review['evidence_url'], 'image_url': image,
+                    'image_evidence_url': review.get('image_evidence_url'),
+                    'image_observed_on': review.get('image_evidence_url')})
+                if (supplied.get('image_url') != image or not supplied.get('instruction') or not supplied.get('request_date')
+                        or entry.get('official_image_url') not in (None, image)
+                        or check.get('url') != image or check.get('available') is not True
+                        or not check.get('content_type', '').startswith('image/') or not check.get('sha256')
+                        or visual.get('source_image_url') != entry['source_image_url']
+                        or visual.get('source_image_sha256') != identity['source_image_sha256']
+                        or visual.get('official_image_url') != image
+                        or visual.get('official_image_sha256') != check['sha256'] or not visual.get('observations')):
+                    raise ValueError('Unresolved Technogym images require an explicit supplied reference and bound image check')
+            elif entry.get('official_image_url'):
+                raise ValueError('Unresolved Technogym research cannot discard an existing image reference')
+            for candidate in review.get('candidates', []):
+                validate_browser_urls({'brand': 'TechnoGym', 'product_url': candidate['product_url'],
+                                       'evidence_url': candidate['evidence_url'], 'image_url': candidate.get('image_url'),
+                                       'image_evidence_url': review.get('image_evidence_url'),
+                                       'image_observed_on': review.get('image_evidence_url')})
+            entry.update(match_scope='unresolved_after_manufacturer_search',
+                         reason=review['note'], configuration_note=review['note'],
+                         candidates=review.get('candidates', []), evidence=review, official_image_url=image,
+                         image_check=check or None, image_source_type='manufacturer_catalog' if image else None,
+                         image_verification_status='candidate_requires_review' if image else 'image_missing')
+            continue
+        image = review.get('official_image_url')
+        page = review.get('official_product_url')
+        visual = review.get('visual_review', {})
+        check = review.get('image_check', {})
+        previous = review.get('previous_reference', {})
+        validate_browser_urls({'brand': 'TechnoGym', 'product_url': page,
+                               'evidence_url': review['evidence_url'], 'image_url': image})
+        supplied = review.get('user_supplied_reference', {})
+        image_observed = image in facts.get('observed_image_urls', [])
+        supplied_page = urllib.parse.urlparse(supplied.get('product_url', ''))
+        image_supplied = (review.get('image_reference_source') == 'user_supplied_manufacturer_image'
+                          and supplied.get('image_url') == image and supplied.get('instruction')
+                          and supplied.get('request_date') and supplied_page.scheme == 'https'
+                          and supplied_page.hostname == 'www.technogym.com'
+                          and '/product/' in supplied_page.path
+                          and supplied_page.path.split('/product/', 1)[1] == urllib.parse.urlparse(page).path.split('/product/', 1)[-1])
+        if (facts.get('product_url') != page or facts.get('product_name') != review.get('official_name')
+                or not facts.get('heading') or not review.get('model_evidence')
+                or review.get('match_scope') not in ('manufacturer_product_visual_match', 'manufacturer_family_candidate')
+                or identity.get('source_identifier_is_manufacturer_sku') is not False
+                or entry.get('official_product_url') not in (previous.get('official_product_url'), page)
+                or entry.get('official_image_url') not in (previous.get('official_image_url'), image)
+                or not image or not (image_observed or image_supplied)
+                or check.get('available') is not True or check.get('url') != image
+                or not check.get('content_type', '').startswith('image/') or not check.get('sha256')
+                or visual.get('source_image_url') != entry['source_image_url']
+                or visual.get('source_image_sha256') != identity['source_image_sha256']
+                or visual.get('official_image_url') != image
+                or visual.get('official_image_sha256') != check['sha256'] or not visual.get('observations')):
+            raise ValueError('Technogym product references require source-bound names, supplied/observed images and visual checks')
+        if status == 'model_verified' and (identity.get('configuration_conflict')
+                or review['match_scope'] != 'manufacturer_product_visual_match'):
+            raise ValueError('Unresolved Technogym generation/configuration conflicts cannot be verified')
+        entry.update(official_name=review['official_name'], official_model=review.get('official_model'),
+                     official_product_url=page, official_image_url=image, status=status,
+                     match_method='manufacturer_product_review', match_scope=review['match_scope'],
+                     image_source_type='manufacturer_catalog', image_check=check,
+                     image_verification_status='manufacturer_image_checked' if status == 'model_verified' else 'candidate_requires_review',
+                     configuration_status='requires_review' if identity.get('configuration_conflict') else 'product_identity_verified',
+                     configuration_note=review['note'], reason=review['note'],
+                     candidates=review.get('candidates', []), evidence=review)
+    result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
+    if supplemental.get('technogym_product_followup'):
+        result['technogym_product_followup'] = supplemental['technogym_product_followup']
+
+
 def apply_manual_equipment_reviews(result, supplemental):
     """Replay explicit user decisions only while the reviewed source and official data match."""
     from collections import Counter
@@ -602,7 +711,7 @@ def apply_manual_equipment_reviews(result, supplemental):
                      reason=review['note'], configuration_note=review['note'])
     for brand, review in [(brand, review) for brand, key in (
             ('BOOTY BUILDER', 'booty_builder_image_reviews'), ('Life Fitness', 'lifefitness_image_reviews'),
-            ('Cybex', 'cybex_image_reviews'))
+            ('Cybex', 'cybex_image_reviews'), ('TechnoGym', 'technogym_image_reviews'))
             for review in supplemental.get(key, [])]:
         entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
         fields = ('brand', 'source_model', 'source_image_url', 'official_name',
@@ -610,13 +719,15 @@ def apply_manual_equipment_reviews(result, supplemental):
         if (entry is None or entry['brand'] != brand
                 or any(entry.get(k) != review.get(k) for k in fields)
                 or not entry.get('official_image_url')
-                or entry['status'] not in ('model_verified_image_missing', 'model_verified')
+                or entry['status'] not in (('model_verified_image_missing', 'model_verified', 'candidate_requires_review', 'unresolved')
+                                         if brand == 'TechnoGym' else ('model_verified_image_missing', 'model_verified'))
+                or (entry['status'] == 'unresolved' and review.get('previous_status') != 'unresolved')
                 or review.get('reviewed_by') != 'user' or review.get('status') != 'model_verified'
                 or not review.get('review_date') or not review.get('review_source', {}).get('instruction')):
             raise ValueError('Image approval requires an explicit user decision bound to current source and official references')
         entry.update(status='model_verified', image_verification_status='manually_reviewed',
                      manual_image_review=review, reason=review['note'], configuration_note=review['note'])
-        if brand in ('Life Fitness', 'Cybex'):
+        if brand in ('Life Fitness', 'Cybex', 'TechnoGym'):
             entry.update(configuration_status='manually_reviewed', candidates=[])
         if entry.get('manual_review_followup'):
             entry['manual_review_followup']['reason'] = (
@@ -830,6 +941,7 @@ def apply_browser_evidence(result, supplemental):
     apply_lifefitness_reviews(result, supplemental)
     apply_official_english_names(result, supplemental)
     apply_manufacturer_product_reviews(result, supplemental)
+    apply_technogym_reviews(result, supplemental)
     apply_official_chinese_names(result, supplemental)
     apply_user_reference_images(result, supplemental)
     apply_manual_equipment_reviews(result, supplemental)
@@ -1277,6 +1389,21 @@ def write_reports(result):
         image_approvals = [e for e in group if e.get('manual_image_review')]
         if image_approvals:
             lines += [f"Subsequent user image approval on {max(e['manual_image_review']['review_date'] for e in image_approvals)}: Inventory IDs {', '.join(str(e['inventory_id']) for e in image_approvals)} are now model_verified with image_verification_status manually_reviewed. The user explicitly approved the current references. Original system-context/generation observations and candidate snapshots remain historical under lifefitness_image_reviews; no new manufacturer SKU alias or isolated-component photograph is asserted.", '']
+    if result.get('technogym_product_followup'):
+        followup = result['technogym_product_followup']
+        group = [e for e in entries if e['brand'] == 'TechnoGym']
+        counts = Counter(e['status'] for e in group)
+        lines += ['', '## Technogym unresolved follow-up', '',
+                  followup['review_date'] + ': ' + followup['summary'], '',
+                  f"Current coverage across {len(group)} Technogym records: {counts['model_verified']} model_verified, {counts['candidate_requires_review']} candidate_requires_review and {counts['unresolved']} unresolved. {sum(not e.get('official_name') for e in group)} English names, {sum(not e.get('official_name_zh') for e in group)} Chinese names and {sum(not e.get('official_image_url') for e in group)} image URLs remain blank.", '',
+                  followup['method'], '', followup['limitations'], '',
+                  'Full source-bound checks, extracted page-fact hashes, supplied URLs, supporting manufacturer documents and previous references: technogym_product_reviews and technogym_product_followup in the evidence JSON.', '']
+        approvals = [e for e in group if e.get('manual_image_review')]
+        if approvals:
+            lines += [f"Subsequent user approval on {max(e['manual_image_review']['review_date'] for e in approvals)}: Inventory IDs {', '.join(str(e['inventory_id']) for e in approvals)} are now model_verified with manually_reviewed image and configuration. Original variant observations remain historical; decisions and previous candidates are retained under technogym_image_reviews.", '']
+        supplied = [e for e in group if (e.get('evidence') or {}).get('user_supplied_reference') and e['status'] == 'unresolved']
+        if supplied:
+            lines += ['Subsequent supplied-image follow-up: unresolved Inventory IDs ' + ', '.join(str(e['inventory_id']) for e in supplied) + ' now include the user-supplied manufacturer-context image for comparison. This does not verify the exact platform model; official names remain blank. See the per-item Review note and image check.', '']
     if result.get('cybex_product_followup'):
         followup = result['cybex_product_followup']
         group = [e for e in entries if e['brand'] == 'Cybex']

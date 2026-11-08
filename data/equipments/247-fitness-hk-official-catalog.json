@@ -4,8 +4,8 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 769,
-    "unresolved": 55,
+    "model_verified": 779,
+    "unresolved": 45,
     "model_verified_image_missing": 9
   },
   "catalog_product_counts": {
@@ -101943,14 +101943,87 @@
         "tung-chung"
       ],
       "lookup_model": "DFKE",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Excite Run",
+      "official_product_url": "https://www.technogym.com/en-HK/product/excite-run_DFK-DGE.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1172,
+        "brand": "TechnoGym",
+        "source_model": "DFKE",
+        "source_name": "Excite RunProfessional treadmill",
+        "source_image_url": "https://oss-hk.247fitness.hk/a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615.jpg",
+        "status": "model_verified",
+        "match_scope": "manufacturer_product_visual_match",
+        "official_name": "Excite Run",
+        "official_model": "DFK-DGE",
+        "official_product_url": "https://www.technogym.com/en-HK/product/excite-run_DFK-DGE.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-HK/product/excite-run_DFK-DGE.html",
+        "evidence_sha256": "923f75982344e3c19b33df85e317d430212aa7a86a9fa69cafad456a87493ad4",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-HK/product/excite-run_DFK-DGE.html",
+          "product_name": "Excite Run",
+          "heading": "Excite Run Professional treadmill",
+          "observed_image_urls": [],
+          "manufacturer_product_identifier": "DFK-DGE",
+          "locale": "en-HK",
+          "console_options": [
+            "Connect",
+            "Live 10",
+            "Live 22"
+          ]
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "user_supplied_manufacturer_image",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "433a0eb17d041b44b9ac06d5eb5209e202f01d3be61260c3668dc91a151d3a07",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615",
+          "source_image_observations": "The source and supplied manufacturer Connect image share the broad digital keypad console, horizontal padded handrails, rounded front uprights, green safety-light strip, deck proportions and transport wheels. Finish/color and view angle differ; no full source SKU equivalence is asserted.",
+          "configuration_conflict": false
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615.jpg",
+          "source_image_sha256": "a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+          "official_image_sha256": "433a0eb17d041b44b9ac06d5eb5209e202f01d3be61260c3668dc91a151d3a07",
+          "observations": "The source and supplied manufacturer Connect image share the broad digital keypad console, horizontal padded handrails, rounded front uprights, green safety-light strip, deck proportions and transport wheels. Finish/color and view angle differ; no full source SKU equivalence is asserted."
+        },
+        "model_evidence": "The source and supplied manufacturer Connect image share the broad digital keypad console, horizontal padded handrails, rounded front uprights, green safety-light strip, deck proportions and transport wheels. Finish/color and view angle differ; no full source SKU equivalence is asserted.",
+        "note": "The source and supplied manufacturer Connect image share the broad digital keypad console, horizontal padded handrails, rounded front uprights, green safety-light strip, deck proportions and transport wheels. Finish/color and view angle differ; no full source SKU equivalence is asserted. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": [],
+        "user_supplied_reference": {
+          "product_url": "https://www.technogym.com/en-HK/product/excite-run_DFK-DGE.html?color-version=pearl-grey&console-version=connect&pid=DFKEAC600BA0AAX2",
+          "image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+          "request_date": "2026-11-08",
+          "instruction": "Use these manufacturer references to research the remaining unresolved Technogym equipment; no explicit model_verified approval was given."
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The source and supplied manufacturer Connect image share the broad digital keypad console, horizontal padded handrails, rounded front uprights, green safety-light strip, deck proportions and transport wheels. Finish/color and view angle differ; no full source SKU equivalence is asserted. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
       "search_evidence": {
         "inventory_id": 1172,
         "query": "TechnoGym \"DFKE\"",
@@ -102019,13 +102092,26 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "433a0eb17d041b44b9ac06d5eb5209e202f01d3be61260c3668dc91a151d3a07",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "DFK-DGE",
+      "match_scope": "manufacturer_product_visual_match",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manufacturer_image_checked",
+      "configuration_status": "product_identity_verified",
+      "configuration_note": "The source and supplied manufacturer Connect image share the broad digital keypad console, horizontal padded handrails, rounded front uprights, green safety-light strip, deck proportions and transport wheels. Finish/color and view angle differ; no full source SKU equivalence is asserted. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases."
     },
     {
       "inventory_id": 1173,
@@ -102061,14 +102147,103 @@
         "tsuen-wan-seventh-branch-d-park"
       ],
       "lookup_model": "DF5E",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Excite+ Synchro",
+      "official_product_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1173,
+        "brand": "TechnoGym",
+        "source_model": "DF5E",
+        "source_name": "EXCITE+ SYNCHRO",
+        "source_image_url": "https://oss-hk.247fitness.hk/1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487.webp",
+        "status": "candidate_requires_review",
+        "match_scope": "manufacturer_family_candidate",
+        "official_name": "Excite+ Synchro",
+        "official_model": "DFH-DGE",
+        "official_product_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+        "evidence_sha256": "09094107a32d232ac6ef377059db086633c2e84ab767c2c9aa819f16f64d7944",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+          "product_name": "Excite+ Synchro",
+          "heading": "Excite+ Synchro Professional gym crosstrainer",
+          "observed_image_urls": [],
+          "manufacturer_product_identifier": "DFH-DGE",
+          "locale": "en-HK",
+          "console_options": [
+            "Connect",
+            "Live 10",
+            "Live 16"
+          ]
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "user_supplied_manufacturer_image",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "7eb88050895daaa5527d8bf03c1c4023e52b2f13dc2fdf4dd759f38ac920d37c",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487",
+          "source_image_observations": "Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration.",
+          "configuration_conflict": true,
+          "supporting_manufacturer_document": {
+            "url": "https://media.wpd.digital/qicraft/uploads/sites/12/2022/03/INST_REQ_EXCITE-LIVE-2.0_EN.pdf",
+            "publisher": "Technogym",
+            "hosting": "third_party_copy",
+            "sha256": "a8b7a083bba69606f42cf0f98196e316a7700ef9be30344735bf584f28ac266f",
+            "pdf_page": 14,
+            "observations": "Manufacturer pre-installation document separates DF5 Synchro Live (Live 10) and DFH Synchro AR Live (adjustable ramp; Live 10/16). Used as a reason not to assert a DF5E/DFH SKU alias."
+          }
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487.webp",
+          "source_image_sha256": "1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+          "official_image_sha256": "7eb88050895daaa5527d8bf03c1c4023e52b2f13dc2fdf4dd759f38ac920d37c",
+          "observations": "Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration."
+        },
+        "model_evidence": "Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration.",
+        "note": "Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": [
+          {
+            "name": "Excite+ Synchro",
+            "product_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+            "image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+            "evidence_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+            "reason": "Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration."
+          }
+        ],
+        "user_supplied_reference": {
+          "product_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+          "image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+          "request_date": "2026-11-08",
+          "instruction": "Use these manufacturer references to research the remaining unresolved Technogym equipment; no explicit model_verified approval was given."
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Previous research: Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases. Subsequent user approval on 2026-11-09: the user explicitly approved the current model/image references and requested model_verified. Image and configuration are manually_reviewed; previous code/generation observations remain historical evidence.",
       "search_evidence": {
         "inventory_id": 1173,
         "query": "TechnoGym \"DF5E\"",
@@ -102145,12 +102320,53 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "7eb88050895daaa5527d8bf03c1c4023e52b2f13dc2fdf4dd759f38ac920d37c",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "DFH-DGE",
+      "match_scope": "manufacturer_family_candidate",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "configuration_note": "Previous research: Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases. Subsequent user approval on 2026-11-09: the user explicitly approved the current model/image references and requested model_verified. Image and configuration are manually_reviewed; previous code/generation observations remain historical evidence.",
+      "manual_image_review": {
+        "inventory_id": 1173,
+        "brand": "TechnoGym",
+        "source_model": "DF5E",
+        "source_image_url": "https://oss-hk.247fitness.hk/1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487.webp",
+        "official_name": "Excite+ Synchro",
+        "official_product_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_technogym_image_and_model_approval",
+          "instruction": "User explicitly requested updating Inventory IDs 1173 and 1328 to model_verified using their current references."
+        },
+        "previous_status": "candidate_requires_review",
+        "previous_candidates": [
+          {
+            "name": "Excite+ Synchro",
+            "product_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+            "image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+            "evidence_url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+            "reason": "Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration."
+          }
+        ],
+        "previous_research_note": "Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "note": "Previous research: Both images depict the Excite Synchro family with rear flywheel, long pedal linkages, moving levers and a central console. The source DF5E image has different fixed-grip geometry from the supplied DFH-DGE Connect render. Manufacturer pre-installation documentation separates DF5 Synchro Live from DFH Synchro AR Live (adjustable ramp). Keep the supplied DFH image as a candidate, not a verified DF5E alias or configuration. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases. Subsequent user approval on 2026-11-09: the user explicitly approved the current model/image references and requested model_verified. Image and configuration are manually_reviewed; previous code/generation observations remain historical evidence."
       }
     },
     {
@@ -102197,14 +102413,87 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "DFEE",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Excite+ Climb",
+      "official_product_url": "https://www.technogym.com/en-CA/product/excite-climb_DFE-DGE.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1174,
+        "brand": "TechnoGym",
+        "source_model": "DFEE",
+        "source_name": "EXCITE+ CLIMB",
+        "source_image_url": "https://oss-hk.247fitness.hk/55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf.jpg",
+        "status": "model_verified",
+        "match_scope": "manufacturer_product_visual_match",
+        "official_name": "Excite+ Climb",
+        "official_model": "DFE-DGE",
+        "official_product_url": "https://www.technogym.com/en-CA/product/excite-climb_DFE-DGE.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-CA/product/excite-climb_DFE-DGE.html",
+        "evidence_sha256": "5882fd3f00c6287c9e19be4f4d3056c95238bfa9dd4d3c561742a4f988b64972",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-CA/product/excite-climb_DFE-DGE.html",
+          "product_name": "Excite+ Climb",
+          "heading": "Excite+ Climb",
+          "observed_image_urls": [],
+          "manufacturer_product_identifier": "DFE-DGE",
+          "locale": "en-CA",
+          "console_options": [
+            "Connect",
+            "Live 10",
+            "Live 16"
+          ]
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "user_supplied_manufacturer_image",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "9063ff0089c340b748d281df4699baa68bde149947b861445848923923b2136d",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf",
+          "source_image_observations": "The source side view and supplied manufacturer Connect render share the revolving split-step staircase, enclosed rounded side shroud, long rear-reaching safety rails, central digital console support, cupholders and entry-step geometry. Cosmetic finish and viewing angle differ.",
+          "configuration_conflict": false
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf.jpg",
+          "source_image_sha256": "55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+          "official_image_sha256": "9063ff0089c340b748d281df4699baa68bde149947b861445848923923b2136d",
+          "observations": "The source side view and supplied manufacturer Connect render share the revolving split-step staircase, enclosed rounded side shroud, long rear-reaching safety rails, central digital console support, cupholders and entry-step geometry. Cosmetic finish and viewing angle differ."
+        },
+        "model_evidence": "The source side view and supplied manufacturer Connect render share the revolving split-step staircase, enclosed rounded side shroud, long rear-reaching safety rails, central digital console support, cupholders and entry-step geometry. Cosmetic finish and viewing angle differ.",
+        "note": "The source side view and supplied manufacturer Connect render share the revolving split-step staircase, enclosed rounded side shroud, long rear-reaching safety rails, central digital console support, cupholders and entry-step geometry. Cosmetic finish and viewing angle differ. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": [],
+        "user_supplied_reference": {
+          "product_url": "https://www.technogym.com/en-HK/product/excite-climb_DFE-DGE.html",
+          "image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+          "request_date": "2026-11-08",
+          "instruction": "Use these manufacturer references to research the remaining unresolved Technogym equipment; no explicit model_verified approval was given."
+        }
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The source side view and supplied manufacturer Connect render share the revolving split-step staircase, enclosed rounded side shroud, long rear-reaching safety rails, central digital console support, cupholders and entry-step geometry. Cosmetic finish and viewing angle differ. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
       "search_evidence": {
         "inventory_id": 1174,
         "query": "TechnoGym \"DFEE\"",
@@ -102281,13 +102570,26 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "9063ff0089c340b748d281df4699baa68bde149947b861445848923923b2136d",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "DFE-DGE",
+      "match_scope": "manufacturer_product_visual_match",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manufacturer_image_checked",
+      "configuration_status": "product_identity_verified",
+      "configuration_note": "The source side view and supplied manufacturer Connect render share the revolving split-step staircase, enclosed rounded side shroud, long rear-reaching safety rails, central digital console support, cupholders and entry-step geometry. Cosmetic finish and viewing angle differ. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases."
     },
     {
       "inventory_id": 1175,
@@ -102325,14 +102627,83 @@
         "tsuen-wan-seventh-branch-d-park"
       ],
       "lookup_model": "DFDE",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Excite+ Recline",
+      "official_product_url": "https://www.technogym.com/en-INT/product/excite-recline_DFD-DGE.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1175,
+        "brand": "TechnoGym",
+        "source_model": "DFDE",
+        "source_name": "EXCITE+ RECLINE",
+        "source_image_url": "https://oss-hk.247fitness.hk/c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b.jpg",
+        "status": "model_verified",
+        "match_scope": "manufacturer_product_visual_match",
+        "official_name": "Excite+ Recline",
+        "official_model": "DFD-DGE",
+        "official_product_url": "https://www.technogym.com/en-INT/product/excite-recline_DFD-DGE.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-INT/product/excite-recline_DFD-DGE.html",
+        "evidence_sha256": "7dab9c3cb8ad65f2e7e75691a1db3c84e6aef0d1be62b91c3b9aa758b85f228b",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-INT/product/excite-recline_DFD-DGE.html",
+          "product_name": "Excite+ Recline",
+          "heading": "Excite+ Recline",
+          "observed_image_urls": [
+            "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg"
+          ],
+          "manufacturer_product_identifier": "DFD-DGE",
+          "locale": "en-INT",
+          "console_options": [
+            "Connect",
+            "Live 10",
+            "Live 16"
+          ]
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "manufacturer_page_link",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "82f16ffcd9bccf0659b07173b892b693d7de5182e6289fa843bad20eb9d0db70",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b",
+          "source_image_observations": "The source and manufacturer image share the deep walk-through frame, circular front crank shroud, long rear seat rail, upright backrest, yellow seat-adjustment lever, side handgrips and curved front console mast. Upholstery/finish differs. This establishes the product reference, not an undocumented full DFDE console SKU.",
+          "configuration_conflict": false
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b.jpg",
+          "source_image_sha256": "c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg",
+          "official_image_sha256": "82f16ffcd9bccf0659b07173b892b693d7de5182e6289fa843bad20eb9d0db70",
+          "observations": "The source and manufacturer image share the deep walk-through frame, circular front crank shroud, long rear seat rail, upright backrest, yellow seat-adjustment lever, side handgrips and curved front console mast. Upholstery/finish differs. This establishes the product reference, not an undocumented full DFDE console SKU."
+        },
+        "model_evidence": "The source and manufacturer image share the deep walk-through frame, circular front crank shroud, long rear seat rail, upright backrest, yellow seat-adjustment lever, side handgrips and curved front console mast. Upholstery/finish differs. This establishes the product reference, not an undocumented full DFDE console SKU.",
+        "note": "The source and manufacturer image share the deep walk-through frame, circular front crank shroud, long rear seat rail, upright backrest, yellow seat-adjustment lever, side handgrips and curved front console mast. Upholstery/finish differs. This establishes the product reference, not an undocumented full DFDE console SKU. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": []
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The source and manufacturer image share the deep walk-through frame, circular front crank shroud, long rear seat rail, upright backrest, yellow seat-adjustment lever, side handgrips and curved front console mast. Upholstery/finish differs. This establishes the product reference, not an undocumented full DFDE console SKU. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
       "search_evidence": {
         "inventory_id": 1175,
         "query": "TechnoGym \"DFDE\"",
@@ -102405,13 +102776,26 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "82f16ffcd9bccf0659b07173b892b693d7de5182e6289fa843bad20eb9d0db70",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "DFD-DGE",
+      "match_scope": "manufacturer_product_visual_match",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manufacturer_image_checked",
+      "configuration_status": "product_identity_verified",
+      "configuration_note": "The source and manufacturer image share the deep walk-through frame, circular front crank shroud, long rear seat rail, upright backrest, yellow seat-adjustment lever, side handgrips and curved front console mast. Upholstery/finish differs. This establishes the product reference, not an undocumented full DFDE console SKU. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases."
     },
     {
       "inventory_id": 1176,
@@ -102451,14 +102835,83 @@
         "tung-chung"
       ],
       "lookup_model": "DFCE",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Excite+ Bike",
+      "official_product_url": "https://www.technogym.com/en-GB/product/excite-bike_DFC-DGE.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1176,
+        "brand": "TechnoGym",
+        "source_model": "DFCE",
+        "source_name": "EXCITE+ BIKE",
+        "source_image_url": "https://oss-hk.247fitness.hk/f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac.jpg",
+        "status": "model_verified",
+        "match_scope": "manufacturer_product_visual_match",
+        "official_name": "Excite+ Bike",
+        "official_model": "DFC-DGE",
+        "official_product_url": "https://www.technogym.com/en-GB/product/excite-bike_DFC-DGE.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-GB/product/excite-bike_DFC-DGE.html",
+        "evidence_sha256": "fab8a8b2fc6f34f0c6b901297ba09c05b1ba32ff5414c25a606ed69234c28878",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-GB/product/excite-bike_DFC-DGE.html",
+          "product_name": "Excite+ Bike",
+          "heading": "Excite+ Bike Professional exercise bike",
+          "observed_image_urls": [
+            "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg"
+          ],
+          "manufacturer_product_identifier": "DFC-DGE",
+          "locale": "en-GB",
+          "console_options": [
+            "Connect",
+            "Live 10",
+            "Live 16"
+          ]
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "manufacturer_page_link",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "01e50c276d1b323eee3b05da0aa20aacff2cb6aa5ae0d6e8df56487606aea8e6",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac",
+          "source_image_observations": "The source and manufacturer image share the open walk-through upright-bike frame, one-piece curved console mast, two bottle-holder rings, horizontal grips with raised ends, saddle post, round crank hub and stabilizer feet. Upholstery/finish differs; no unsupported full DFCE console/SKU alias is recorded.",
+          "configuration_conflict": false
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac.jpg",
+          "source_image_sha256": "f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg",
+          "official_image_sha256": "01e50c276d1b323eee3b05da0aa20aacff2cb6aa5ae0d6e8df56487606aea8e6",
+          "observations": "The source and manufacturer image share the open walk-through upright-bike frame, one-piece curved console mast, two bottle-holder rings, horizontal grips with raised ends, saddle post, round crank hub and stabilizer feet. Upholstery/finish differs; no unsupported full DFCE console/SKU alias is recorded."
+        },
+        "model_evidence": "The source and manufacturer image share the open walk-through upright-bike frame, one-piece curved console mast, two bottle-holder rings, horizontal grips with raised ends, saddle post, round crank hub and stabilizer feet. Upholstery/finish differs; no unsupported full DFCE console/SKU alias is recorded.",
+        "note": "The source and manufacturer image share the open walk-through upright-bike frame, one-piece curved console mast, two bottle-holder rings, horizontal grips with raised ends, saddle post, round crank hub and stabilizer feet. Upholstery/finish differs; no unsupported full DFCE console/SKU alias is recorded. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": []
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The source and manufacturer image share the open walk-through upright-bike frame, one-piece curved console mast, two bottle-holder rings, horizontal grips with raised ends, saddle post, round crank hub and stabilizer feet. Upholstery/finish differs; no unsupported full DFCE console/SKU alias is recorded. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
       "search_evidence": {
         "inventory_id": 1176,
         "query": "TechnoGym \"DFCE\"",
@@ -102531,13 +102984,26 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "01e50c276d1b323eee3b05da0aa20aacff2cb6aa5ae0d6e8df56487606aea8e6",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "DFC-DGE",
+      "match_scope": "manufacturer_product_visual_match",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manufacturer_image_checked",
+      "configuration_status": "product_identity_verified",
+      "configuration_note": "The source and manufacturer image share the open walk-through upright-bike frame, one-piece curved console mast, two bottle-holder rings, horizontal grips with raised ends, saddle post, round crank hub and stabilizer feet. Upholstery/finish differs; no unsupported full DFCE console/SKU alias is recorded. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases."
     },
     {
       "inventory_id": 1177,
@@ -102681,14 +103147,83 @@
         "tsing-yi-second-branch"
       ],
       "lookup_model": "DFFG",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Excite+ Vario",
+      "official_product_url": "https://www.technogym.com/en-INT/product/excite-vario_DFF-DGE.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1327,
+        "brand": "TechnoGym",
+        "source_model": "DFFG",
+        "source_name": "Excite+ Vario",
+        "source_image_url": "https://oss-hk.247fitness.hk/1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5.jpg",
+        "status": "model_verified",
+        "match_scope": "manufacturer_product_visual_match",
+        "official_name": "Excite+ Vario",
+        "official_model": "DFF-DGE",
+        "official_product_url": "https://www.technogym.com/en-INT/product/excite-vario_DFF-DGE.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-INT/product/excite-vario_DFF-DGE.html",
+        "evidence_sha256": "24381b963ba35b8340979595cb6eef525d58446f3cb57220d4eea08d8de96ad6",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-INT/product/excite-vario_DFF-DGE.html",
+          "product_name": "Excite+ Vario",
+          "heading": "Excite+ Vario",
+          "observed_image_urls": [
+            "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg"
+          ],
+          "manufacturer_product_identifier": "DFF-DGE",
+          "locale": "en-INT",
+          "console_options": [
+            "Connect",
+            "Live 10",
+            "Live 16"
+          ]
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "manufacturer_page_link",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "2a97a1bc2a8cad078f10f035267cf8395340daff191fbeda4175ae10613030f4",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5",
+          "source_image_observations": "The source and manufacturer image share the suspended pedal cables, oval horizontal upper housings, two diagonal front uprights, large rear body, curved moving handles and front entry platform. Their view angles and finishes differ. Product identity is matched visually; a complete DFFG console configuration is not inferred from a partial source identifier.",
+          "configuration_conflict": false
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5.jpg",
+          "source_image_sha256": "1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg",
+          "official_image_sha256": "2a97a1bc2a8cad078f10f035267cf8395340daff191fbeda4175ae10613030f4",
+          "observations": "The source and manufacturer image share the suspended pedal cables, oval horizontal upper housings, two diagonal front uprights, large rear body, curved moving handles and front entry platform. Their view angles and finishes differ. Product identity is matched visually; a complete DFFG console configuration is not inferred from a partial source identifier."
+        },
+        "model_evidence": "The source and manufacturer image share the suspended pedal cables, oval horizontal upper housings, two diagonal front uprights, large rear body, curved moving handles and front entry platform. Their view angles and finishes differ. Product identity is matched visually; a complete DFFG console configuration is not inferred from a partial source identifier.",
+        "note": "The source and manufacturer image share the suspended pedal cables, oval horizontal upper housings, two diagonal front uprights, large rear body, curved moving handles and front entry platform. Their view angles and finishes differ. Product identity is matched visually; a complete DFFG console configuration is not inferred from a partial source identifier. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": []
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The source and manufacturer image share the suspended pedal cables, oval horizontal upper housings, two diagonal front uprights, large rear body, curved moving handles and front entry platform. Their view angles and finishes differ. Product identity is matched visually; a complete DFFG console configuration is not inferred from a partial source identifier. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
       "search_evidence": {
         "inventory_id": 1327,
         "query": "TechnoGym \"DFFG\"",
@@ -102769,13 +103304,26 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "2a97a1bc2a8cad078f10f035267cf8395340daff191fbeda4175ae10613030f4",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "DFF-DGE",
+      "match_scope": "manufacturer_product_visual_match",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manufacturer_image_checked",
+      "configuration_status": "product_identity_verified",
+      "configuration_note": "The source and manufacturer image share the suspended pedal cables, oval horizontal upper housings, two diagonal front uprights, large rear body, curved moving handles and front entry platform. Their view angles and finishes differ. Product identity is matched visually; a complete DFFG console configuration is not inferred from a partial source identifier. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases."
     },
     {
       "inventory_id": 1328,
@@ -102798,14 +103346,94 @@
         "tsuen-wan-sixth-branch"
       ],
       "lookup_model": "MB88EN0",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Cable Station 4",
+      "official_product_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1328,
+        "brand": "TechnoGym",
+        "source_model": "MB88EN0",
+        "source_name": "Cable Station 4 Evolution",
+        "source_image_url": "https://oss-hk.247fitness.hk/ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1.jpg",
+        "status": "candidate_requires_review",
+        "match_scope": "manufacturer_family_candidate",
+        "official_name": "Cable Station 4",
+        "official_model": "MQ0D",
+        "official_product_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+        "evidence_sha256": "74408cc9737369034d3d617ab1ac272f1005287c90a15ed586b53001e7df7e13",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+          "product_name": "Cable Station 4",
+          "heading": "Cable Station 4",
+          "observed_image_urls": [
+            "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg"
+          ],
+          "manufacturer_product_identifier": "MQ0D",
+          "locale": "en-INT"
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "manufacturer_page_link",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "549cfce93d60668e6d71449106d0bd0faa134d0956f9cda4fb8683ef38679200",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1",
+          "source_image_observations": "The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate.",
+          "configuration_conflict": true,
+          "supporting_manufacturer_document": {
+            "url": "https://www.technogymkr.com/web/catalog/02_catalog_cable_station.pdf",
+            "publisher": "Technogym",
+            "hosting": "regional_site_copy",
+            "sha256": "a709e988c44ee54d8aef872285c9daa817615d418811f916e58dee2cfb737c23",
+            "pdf_page": 25,
+            "observations": "Manufacturer Cable Stations brochure explicitly labels MB88 as Cable Stations 4 Evolution. Does not establish MB88EN0-to-current-MQ0D equivalence."
+          }
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1.jpg",
+          "source_image_sha256": "ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+          "official_image_sha256": "549cfce93d60668e6d71449106d0bd0faa134d0956f9cda4fb8683ef38679200",
+          "observations": "The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate."
+        },
+        "model_evidence": "The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate.",
+        "note": "The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": [
+          {
+            "name": "Cable Station 4",
+            "product_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+            "image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+            "evidence_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+            "reason": "The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate."
+          }
+        ]
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Previous research: The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases. Subsequent user approval on 2026-11-09: the user explicitly approved the current model/image references and requested model_verified. Image and configuration are manually_reviewed; previous code/generation observations remain historical evidence.",
       "search_evidence": {
         "inventory_id": 1328,
         "query": "TechnoGym \"MB88EN0\"",
@@ -102878,12 +103506,53 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "549cfce93d60668e6d71449106d0bd0faa134d0956f9cda4fb8683ef38679200",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "MQ0D",
+      "match_scope": "manufacturer_family_candidate",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "configuration_note": "Previous research: The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases. Subsequent user approval on 2026-11-09: the user explicitly approved the current model/image references and requested model_verified. Image and configuration are manually_reviewed; previous code/generation observations remain historical evidence.",
+      "manual_image_review": {
+        "inventory_id": 1328,
+        "brand": "TechnoGym",
+        "source_model": "MB88EN0",
+        "source_image_url": "https://oss-hk.247fitness.hk/ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1.jpg",
+        "official_name": "Cable Station 4",
+        "official_product_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_technogym_image_and_model_approval",
+          "instruction": "User explicitly requested updating Inventory IDs 1173 and 1328 to model_verified using their current references."
+        },
+        "previous_status": "candidate_requires_review",
+        "previous_candidates": [
+          {
+            "name": "Cable Station 4",
+            "product_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+            "image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+            "evidence_url": "https://www.technogym.com/en-INT/product/cable-station-4_MQ0D.html",
+            "reason": "The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate."
+          }
+        ],
+        "previous_research_note": "The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "note": "Previous research: The captured four-stack station and current catalog image share a compact four-module layout, lat-pulldown seat and thigh rollers, seated-row bench and footplate, overhead pulleys and adjustable cable positions. The current product URL uses MQ0D, whereas the captured model is MB88EN0. The manufacturer Cable Stations brochure names MB88 as Cable Stations 4 Evolution. No documented MB88EN0-to-MQ0D alias was found; retain the current image/name as a manufacturer-family candidate. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases. Subsequent user approval on 2026-11-09: the user explicitly approved the current model/image references and requested model_verified. Image and configuration are manually_reviewed; previous code/generation observations remain historical evidence."
       }
     },
     {
@@ -103180,14 +103849,78 @@
         "tsuen-wan-sixth-branch"
       ],
       "lookup_model": "",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Kneeling Easy Chin Dip",
+      "official_product_url": "https://www.technogym.com/en-INT/product/kneeling-easy-chin-dip_MB91.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1331,
+        "brand": "TechnoGym",
+        "source_model": "",
+        "source_name": "Kneeling Easy Chin Dip",
+        "source_image_url": "https://oss-hk.247fitness.hk/f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d.jpg",
+        "status": "model_verified",
+        "match_scope": "manufacturer_product_visual_match",
+        "official_name": "Kneeling Easy Chin Dip",
+        "official_model": "MB91",
+        "official_product_url": "https://www.technogym.com/en-INT/product/kneeling-easy-chin-dip_MB91.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-INT/product/kneeling-easy-chin-dip_MB91.html",
+        "evidence_sha256": "674c7800a9f172c76851c1ad05f84049e4bdcfd44d35d2660d80572ac321fc17",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-INT/product/kneeling-easy-chin-dip_MB91.html",
+          "product_name": "Kneeling Easy Chin Dip",
+          "heading": "Kneeling Easy Chin Dip",
+          "observed_image_urls": [
+            "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg"
+          ],
+          "manufacturer_product_identifier": "MB91",
+          "locale": "en-INT"
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "manufacturer_page_link",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "4dc50092c08cc5f3d07a05bc30ceb80c1e64e2064c32d4936e0fbe9e533aa56e",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d",
+          "source_image_observations": "The captured and manufacturer images show the same two tall pull-up uprights with multiple grip angles, horizontal dip handles, folding assisted knee pad, two-level entry steps and rear rectangular weight-stack shroud. The page product name exactly matches the captured description. Source model is blank and remains blank; MB91 is recorded only as the manufacturer product identifier.",
+          "configuration_conflict": false
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d.jpg",
+          "source_image_sha256": "f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg",
+          "official_image_sha256": "4dc50092c08cc5f3d07a05bc30ceb80c1e64e2064c32d4936e0fbe9e533aa56e",
+          "observations": "The captured and manufacturer images show the same two tall pull-up uprights with multiple grip angles, horizontal dip handles, folding assisted knee pad, two-level entry steps and rear rectangular weight-stack shroud. The page product name exactly matches the captured description. Source model is blank and remains blank; MB91 is recorded only as the manufacturer product identifier."
+        },
+        "model_evidence": "The captured and manufacturer images show the same two tall pull-up uprights with multiple grip angles, horizontal dip handles, folding assisted knee pad, two-level entry steps and rear rectangular weight-stack shroud. The page product name exactly matches the captured description. Source model is blank and remains blank; MB91 is recorded only as the manufacturer product identifier.",
+        "note": "The captured and manufacturer images show the same two tall pull-up uprights with multiple grip angles, horizontal dip handles, folding assisted knee pad, two-level entry steps and rear rectangular weight-stack shroud. The page product name exactly matches the captured description. Source model is blank and remains blank; MB91 is recorded only as the manufacturer product identifier. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": []
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The captured and manufacturer images show the same two tall pull-up uprights with multiple grip angles, horizontal dip handles, folding assisted knee pad, two-level entry steps and rear rectangular weight-stack shroud. The page product name exactly matches the captured description. Source model is blank and remains blank; MB91 is recorded only as the manufacturer product identifier. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1331,
@@ -103261,13 +103994,26 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "4dc50092c08cc5f3d07a05bc30ceb80c1e64e2064c32d4936e0fbe9e533aa56e",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "MB91",
+      "match_scope": "manufacturer_product_visual_match",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manufacturer_image_checked",
+      "configuration_status": "product_identity_verified",
+      "configuration_note": "The captured and manufacturer images show the same two tall pull-up uprights with multiple grip angles, horizontal dip handles, folding assisted knee pad, two-level entry steps and rear rectangular weight-stack shroud. The page product name exactly matches the captured description. Source model is blank and remains blank; MB91 is recorded only as the manufacturer product identifier. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases."
     },
     {
       "inventory_id": 1332,
@@ -103691,12 +104437,95 @@
       "lookup_model": "A0000944-NB",
       "official_name": null,
       "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_image_url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+      "status": "model_verified",
       "match_method": null,
-      "evidence": null,
+      "evidence": {
+        "inventory_id": 1456,
+        "brand": "TechnoGym",
+        "source_model": "A0000944-NB",
+        "source_name": "Power Rack Platform 60MM",
+        "source_image_url": "https://oss-hk.247fitness.hk/cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb.jpg",
+        "status": "unresolved",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+        "match_scope": "unresolved_after_manufacturer_search",
+        "evidence_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+        "evidence_sha256": "b6935eb434d026f05efcb5cb2da9786ef90bf097e1af25538ee40910bb8324de",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+          "section": "Platforms",
+          "versions": [
+            "Standalone",
+            "Half Rack",
+            "Power Rack"
+          ],
+          "thickness_mm": [
+            30,
+            60
+          ],
+          "displayed_image_label": "STANDALONE PLATFORM 60mm"
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "manufacturer_rack_accessories_page_and_source_image_review",
+        "identity_evidence": {
+          "source_image_sha256": "cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb",
+          "source_image_observations": "Captured image shows a platform fitted around a Pure Strength power rack, with a central rack lane and wide side lifting areas. The official rack-accessories page confirms 30/60 mm platforms for Standalone, Half Rack and Power Rack, but its displayed 60 mm image is labeled Standalone. It does not identify A0000944-NB or establish the pictured Power Rack variant. Reject the standalone image as a verified replacement."
+        },
+        "note": "Captured image shows a platform fitted around a Pure Strength power rack, with a central rack lane and wide side lifting areas. The official rack-accessories page confirms 30/60 mm platforms for Standalone, Half Rack and Power Rack, but its displayed 60 mm image is labeled Standalone. It does not identify A0000944-NB or establish the pictured Power Rack variant. Reject the standalone image as a verified replacement. External search leads mention the base code A0000944, but the exact manufacturer code/name/image binding was not verified. Keep official fields blank rather than substitute a standalone platform or infer the -NB suffix. User-supplied image follow-up on 2026-11-09: The supplied image shows a wide standalone lifting platform with side rubber sections, central lane. The captured inventory photo includes a platform fitted around a power rack. This image is accepted best effort as supplied context, not as proof that the standalone platform is A0000944-NB or the captured rack configuration. The image URL is recorded for comparison; unresolved status and blank official names are preserved.",
+        "candidates": [
+          {
+            "name": "Power Rack platform (30/60 mm family; exact model unverified)",
+            "product_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+            "image_url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+            "evidence_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+            "reason": "Captured image shows a platform fitted around a Pure Strength power rack, with a central rack lane and wide side lifting areas. The official rack-accessories page confirms 30/60 mm platforms for Standalone, Half Rack and Power Rack, but its displayed 60 mm image is labeled Standalone. It does not identify A0000944-NB or establish the pictured Power Rack variant. Reject the standalone image as a verified replacement. External search leads mention the base code A0000944, but the exact manufacturer code/name/image binding was not verified. Keep official fields blank rather than substitute a standalone platform or infer the -NB suffix. User-supplied image follow-up on 2026-11-09: The supplied image shows a wide standalone lifting platform with side rubber sections, central lane. The captured inventory photo includes a platform fitted around a power rack. This image is accepted best effort as supplied context, not as proof that the standalone platform is A0000944-NB or the captured rack configuration. The image URL is recorded for comparison; unresolved status and blank official names are preserved."
+          }
+        ],
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "note": "Captured image shows a platform fitted around a Pure Strength power rack, with a central rack lane and wide side lifting areas. The official rack-accessories page confirms 30/60 mm platforms for Standalone, Half Rack and Power Rack, but its displayed 60 mm image is labeled Standalone. It does not identify A0000944-NB or establish the pictured Power Rack variant. Reject the standalone image as a verified replacement. External search leads mention the base code A0000944, but the exact manufacturer code/name/image binding was not verified. Keep official fields blank rather than substitute a standalone platform or infer the -NB suffix.",
+          "candidates": [
+            {
+              "name": "Power Rack platform (30/60 mm family; exact model unverified)",
+              "product_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+              "image_url": null,
+              "evidence_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+              "reason": "Captured image shows a platform fitted around a Pure Strength power rack, with a central rack lane and wide side lifting areas. The official rack-accessories page confirms 30/60 mm platforms for Standalone, Half Rack and Power Rack, but its displayed 60 mm image is labeled Standalone. It does not identify A0000944-NB or establish the pictured Power Rack variant. Reject the standalone image as a verified replacement."
+            }
+          ]
+        },
+        "user_supplied_reference": {
+          "product_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+          "image_url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+          "request_date": "2026-11-09",
+          "instruction": "User supplied this image for Inventory 1456; no explicit model_verified approval was given for this ID."
+        },
+        "image_check": {
+          "url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+          "available": true,
+          "status": 200,
+          "content_type": "image/webp",
+          "sha256": "d028044bd1902452cb7878f06970bcc8ed54a407c37fb0600484dcf9babb3337",
+          "checked_at": "2026-11-09"
+        },
+        "visual_review": {
+          "source_image_url": "https://oss-hk.247fitness.hk/cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb.jpg",
+          "source_image_sha256": "cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb",
+          "official_image_url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+          "official_image_sha256": "d028044bd1902452cb7878f06970bcc8ed54a407c37fb0600484dcf9babb3337",
+          "review_date": "2026-11-09",
+          "observations": "The supplied image shows a wide standalone lifting platform with side rubber sections, central lane. The captured inventory photo includes a platform fitted around a power rack. This image is accepted best effort as supplied context, not as proof that the standalone platform is A0000944-NB or the captured rack configuration."
+        },
+        "image_evidence_url": "https://www.technogym.com/de-DE/rack-zubehoer/"
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "Subsequent user approval on 2026-11-09: Inventory 1456 and its supplied image are manually verified. Previous platform variant observations remain historical evidence. Official English and Chinese names remain blank because no exact manufacturer wording was established; no SKU alias is asserted.",
       "search_evidence": {
         "inventory_id": 1456,
         "query": "TechnoGym \"A0000944-NB\"",
@@ -103794,13 +104623,53 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+        "available": true,
+        "status": 200,
+        "content_type": "image/webp",
+        "sha256": "d028044bd1902452cb7878f06970bcc8ed54a407c37fb0600484dcf9babb3337",
+        "checked_at": "2026-11-09"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "match_scope": "unresolved_after_manufacturer_search",
+      "configuration_note": "Subsequent user approval on 2026-11-09: Inventory 1456 and its supplied image are manually verified. Previous platform variant observations remain historical evidence. Official English and Chinese names remain blank because no exact manufacturer wording was established; no SKU alias is asserted.",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 1456,
+        "brand": "TechnoGym",
+        "source_model": "A0000944-NB",
+        "source_image_url": "https://oss-hk.247fitness.hk/cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb.jpg",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_technogym_image_and_model_approval",
+          "instruction": "User explicitly requested updating Inventory ID 1456 to model_verified using the current supplied image."
+        },
+        "previous_status": "unresolved",
+        "previous_candidates": [
+          {
+            "name": "Power Rack platform (30/60 mm family; exact model unverified)",
+            "product_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+            "image_url": "https://images.ctfassets.net/ipjoepkmtnha/5LLrIKtR1a5snctT0mC34i/757e31ead34c3ebe2be893c289736d03/03_platform_01_standalone_60mm_sq.jpg?w=900&fm=webp&q=75",
+            "evidence_url": "https://www.technogym.com/en-SA/weight-training-rack-accessories/",
+            "reason": "Captured image shows a platform fitted around a Pure Strength power rack, with a central rack lane and wide side lifting areas. The official rack-accessories page confirms 30/60 mm platforms for Standalone, Half Rack and Power Rack, but its displayed 60 mm image is labeled Standalone. It does not identify A0000944-NB or establish the pictured Power Rack variant. Reject the standalone image as a verified replacement. External search leads mention the base code A0000944, but the exact manufacturer code/name/image binding was not verified. Keep official fields blank rather than substitute a standalone platform or infer the -NB suffix. User-supplied image follow-up on 2026-11-09: The supplied image shows a wide standalone lifting platform with side rubber sections, central lane. The captured inventory photo includes a platform fitted around a power rack. This image is accepted best effort as supplied context, not as proof that the standalone platform is A0000944-NB or the captured rack configuration. The image URL is recorded for comparison; unresolved status and blank official names are preserved."
+          }
+        ],
+        "previous_research_note": "Captured image shows a platform fitted around a Pure Strength power rack, with a central rack lane and wide side lifting areas. The official rack-accessories page confirms 30/60 mm platforms for Standalone, Half Rack and Power Rack, but its displayed 60 mm image is labeled Standalone. It does not identify A0000944-NB or establish the pictured Power Rack variant. Reject the standalone image as a verified replacement. External search leads mention the base code A0000944, but the exact manufacturer code/name/image binding was not verified. Keep official fields blank rather than substitute a standalone platform or infer the -NB suffix. User-supplied image follow-up on 2026-11-09: The supplied image shows a wide standalone lifting platform with side rubber sections, central lane. The captured inventory photo includes a platform fitted around a power rack. This image is accepted best effort as supplied context, not as proof that the standalone platform is A0000944-NB or the captured rack configuration. The image URL is recorded for comparison; unresolved status and blank official names are preserved.",
+        "note": "Subsequent user approval on 2026-11-09: Inventory 1456 and its supplied image are manually verified. Previous platform variant observations remain historical evidence. Official English and Chinese names remain blank because no exact manufacturer wording was established; no SKU alias is asserted."
+      },
+      "configuration_status": "manually_reviewed"
     },
     {
       "inventory_id": 1457,
@@ -103999,14 +104868,78 @@
         "tsing-yi-second-branch"
       ],
       "lookup_model": "Adjustable Bench",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
-      "match_method": null,
-      "evidence": null,
+      "official_name": "Adjustable Bench",
+      "official_product_url": "https://www.technogym.com/en-US/product/adjustable-bench_PA04.html",
+      "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg",
+      "status": "model_verified",
+      "match_method": "manufacturer_product_review",
+      "evidence": {
+        "inventory_id": 1458,
+        "brand": "TechnoGym",
+        "source_model": "Adjustable Bench",
+        "source_name": "Adjustable Bench",
+        "source_image_url": "https://oss-hk.247fitness.hk/8b7092287b9d4aea01cfe2198606addcf7d33ed94bf5080541794a0f2ce9f0fe.jpg",
+        "status": "model_verified",
+        "match_scope": "manufacturer_product_visual_match",
+        "official_name": "Adjustable Bench",
+        "official_model": "PA04",
+        "official_product_url": "https://www.technogym.com/en-US/product/adjustable-bench_PA04.html",
+        "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg",
+        "manufacturer_model_codes": [],
+        "evidence_url": "https://www.technogym.com/en-US/product/adjustable-bench_PA04.html",
+        "evidence_sha256": "f71b4a274c325e10a572f624180b639bacd9272fb3e6ea63b0d1a49f02c443fa",
+        "evidence_hash_scope": "extracted_manufacturer_page_facts_not_raw_html",
+        "observed_page_facts": {
+          "product_url": "https://www.technogym.com/en-US/product/adjustable-bench_PA04.html",
+          "product_name": "Adjustable Bench",
+          "heading": "Adjustable Bench Flat weight bench",
+          "observed_image_urls": [
+            "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg"
+          ],
+          "manufacturer_product_identifier": "PA04",
+          "locale": "en-US"
+        },
+        "retrieved_at": "2026-11-08",
+        "retrieval_method": "web_reader_manufacturer_page_and_http_images_after_http_403_and_browser_connection_failure",
+        "image_reference_source": "manufacturer_page_link",
+        "image_check": {
+          "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg",
+          "available": true,
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "8b38e61fe4707ee27905e286cb080abe1d8eac8a75d210d652caaca5820fc6b9",
+          "checked_at": "2026-11-08"
+        },
+        "identity_evidence": {
+          "match_basis": "catalog_wording_and_source_image",
+          "source_identifier_is_manufacturer_sku": false,
+          "source_image_sha256": "8b7092287b9d4aea01cfe2198606addcf7d33ed94bf5080541794a0f2ce9f0fe",
+          "source_image_observations": "The captured and manufacturer images show the same split head/back padding, chrome telescoping backrest support, round adjustment knobs, yellow seat lever, long single rear base rail, curved front foot and integrated carrying handle. The current PA04 image matches the source geometry; the different PG04 bench was not selected. The source model is the generic text Adjustable Bench and is not replaced with a fabricated original SKU.",
+          "configuration_conflict": false
+        },
+        "visual_review": {
+          "review_date": "2026-11-08",
+          "source_image_url": "https://oss-hk.247fitness.hk/8b7092287b9d4aea01cfe2198606addcf7d33ed94bf5080541794a0f2ce9f0fe.jpg",
+          "source_image_sha256": "8b7092287b9d4aea01cfe2198606addcf7d33ed94bf5080541794a0f2ce9f0fe",
+          "official_image_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg",
+          "official_image_sha256": "8b38e61fe4707ee27905e286cb080abe1d8eac8a75d210d652caaca5820fc6b9",
+          "observations": "The captured and manufacturer images show the same split head/back padding, chrome telescoping backrest support, round adjustment knobs, yellow seat lever, long single rear base rail, curved front foot and integrated carrying handle. The current PA04 image matches the source geometry; the different PG04 bench was not selected. The source model is the generic text Adjustable Bench and is not replaced with a fabricated original SKU."
+        },
+        "model_evidence": "The captured and manufacturer images show the same split head/back padding, chrome telescoping backrest support, round adjustment knobs, yellow seat lever, long single rear base rail, curved front foot and integrated carrying handle. The current PA04 image matches the source geometry; the different PG04 bench was not selected. The source model is the generic text Adjustable Bench and is not replaced with a fabricated original SKU.",
+        "note": "The captured and manufacturer images show the same split head/back padding, chrome telescoping backrest support, round adjustment knobs, yellow seat lever, long single rear base rail, curved front foot and integrated carrying handle. The current PA04 image matches the source geometry; the different PG04 bench was not selected. The source model is the generic text Adjustable Bench and is not replaced with a fabricated original SKU. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
+        "previous_reference": {
+          "status": "unresolved",
+          "official_name": null,
+          "official_name_zh": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "candidates": [],
+          "reason": "No exact match in accessible official catalog; this does not establish that no official product exists."
+        },
+        "candidates": []
+      },
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "The captured and manufacturer images show the same split head/back padding, chrome telescoping backrest support, round adjustment knobs, yellow seat lever, long single rear base rail, curved front foot and integrated carrying handle. The current PA04 image matches the source geometry; the different PG04 bench was not selected. The source model is the generic text Adjustable Bench and is not replaced with a fabricated original SKU. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases.",
       "search_evidence": {
         "inventory_id": 1458,
         "query": "TechnoGym \"Adjustable Bench\"",
@@ -104100,13 +105033,26 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg",
+        "available": true,
+        "status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "8b38e61fe4707ee27905e286cb080abe1d8eac8a75d210d652caaca5820fc6b9",
+        "checked_at": "2026-11-08"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
-        "review_date": "2026-11-03",
-        "status": "no_product_chinese_evidence",
-        "reason": "Localized product probes failed or redirected to a generic Chinese homepage. Legacy sitemap product URLs also return homepage content; no exact Chinese product heading verified. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+        "review_date": "2026-11-08",
+        "status": "no_chinese_product_name_established_in_followup",
+        "reason": "English manufacturer product/catalog references and source images were researched. The Chinese Excite family page retains English product trademarks and generic descriptions; no model-specific Chinese name accepted or independently translated."
+      },
+      "official_model": "PA04",
+      "match_scope": "manufacturer_product_visual_match",
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manufacturer_image_checked",
+      "configuration_status": "product_identity_verified",
+      "configuration_note": "The captured and manufacturer images show the same split head/back padding, chrome telescoping backrest support, round adjustment knobs, yellow seat lever, long single rear base rail, curved front foot and integrated carrying handle. The current PA04 image matches the source geometry; the different PG04 bench was not selected. The source model is the generic text Adjustable Bench and is not replaced with a fabricated original SKU. Manufacturer wording and an actual source-image comparison establish the selected product reference; stored inventory fields are preserved. This research does not designate source identifiers as manufacturer-published SKU aliases."
     },
     {
       "inventory_id": 1165,
@@ -106039,7 +106985,7 @@
           "title": "All products"
         }
       ],
-      "notes": "HTTP blocked; Chrome expanded all 300 All Products cards, plus Selection (53) and Pure Strength (32). Exact base codes verified; longer configuration suffixes remain candidates."
+      "notes": "HTTP blocked; Chrome expanded all 300 All Products cards, plus Selection (53) and Pure Strength (32). Exact base codes verified; longer configuration suffixes remain candidates. Follow-up on 2026-11-08: rechecked all 10 unresolved records; seven visual product/image matches verified, DF5E Synchro and MB88EN0 Cable Station retain configuration candidates, A0000944-NB platform remains unresolved. See Technogym unresolved follow-up. User follow-up on 2026-11-09: 1173 and 1328 manually verified; 1456 supplied platform image recorded best effort while unresolved."
     },
     {
       "brand": "Torque Fitness",
@@ -107667,6 +108613,287 @@
       "Cybex CVX-TWNXX-2401",
       "site:lifefitness.com/zh-cn/catalog/cybex/ Bravo",
       "site:lifefitness.com Cybex V Series Chinese names"
+    ]
+  },
+  "technogym_product_followup": {
+    "review_date": "2026-11-08",
+    "inventory_ids": [
+      1172,
+      1173,
+      1174,
+      1175,
+      1176,
+      1327,
+      1328,
+      1331,
+      1458,
+      1456
+    ],
+    "initial_status_counts": {
+      "unresolved": 10
+    },
+    "summary": "Rechecked all 10 unresolved Technogym inventory records using the supplied Excite Run, Synchro and Climb references plus name-based manufacturer searches. Seven now have verified visual product/image references, two retain manufacturer-family candidates due to model/configuration discrepancies, and one Power Rack platform remains unresolved. Nine English product names and nine image URLs were recorded best effort. Existing 49 verified Technogym records are unchanged.",
+    "method": "Download all 10 captured images and actual manufacturer image URLs over HTTP, then compare the distinct images. Main manufacturer product HTTP requests returned 403; a normal Chrome navigation was attempted but the browser control connection failed before navigation with a timeoutMs error. Read accessible manufacturer pages through the web reader, using English regional/International pages where Hong Kong pages could not be read. Hash scope is explicitly extracted page facts, never an unavailable raw HTML response. Search results are leads; no match is based solely on a guessed URL or source-code prefix.",
+    "limitations": "1173: source DF5E vs current DFH-DGE Synchro AR family remains a configuration candidate. 1328: source MB88EN0 vs current MQ0D lacks a published SKU alias, despite the older MB88 brochure and similar station layout. 1456: the official family page does not bind A0000944-NB to a Power Rack 60 mm standalone image, so official fields stay blank. Product visual matches do not decode complete console/color SKU suffixes. No manufacturer Chinese product wording was established in this follow-up; Chinese names remain blank.",
+    "reference_checks": [
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw8d769639/product/DFK-DGE/DFKEAC600BA0AAX1/DFKEAC600BA0AAX1_gallery01-w.jpg?sw=1920&q=75",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/0be26d500a6a451b2872a271b31c4882b9d6d6abaa4e41579113b504d06cbabb.png",
+        "sha256": "433a0eb17d041b44b9ac06d5eb5209e202f01d3be61260c3668dc91a151d3a07",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://media.wpd.digital/qicraft/uploads/sites/12/2022/03/INST_REQ_EXCITE-LIVE-2.0_EN.pdf",
+        "final_url": "https://media.wpd.digital/qicraft/uploads/sites/12/2022/03/INST_REQ_EXCITE-LIVE-2.0_EN.pdf",
+        "status": 200,
+        "content_type": "application/pdf",
+        "path": "/tmp/gymory-technogym-2026-11-08/68e69ad01a14c771c8ea6a7a57b8878fbe5b318fcc1ca5519705bc48b4cf7ba2.bin",
+        "sha256": "a8b7a083bba69606f42cf0f98196e316a7700ef9be30344735bf584f28ac266f",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/b72ba1a85875421213c9532d3b85faa93694a5f66c6808fc035b8794468ac56e.png",
+        "sha256": "55a3b37bae9aa2dd847f1683aff921fd4a4876a6066c46a1f601c490948839cf",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw0b3e7601/product/DFF-DGE/excite%2B-vario-hero.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/e50e509075e076c6e1b2b49cec95c7b73c39fe440dd53cf78ee1ff8a8c73aa1e.png",
+        "sha256": "2a97a1bc2a8cad078f10f035267cf8395340daff191fbeda4175ae10613030f4",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwe3a20493/product/DFD-DGE/DFDD3Q3A0BAAAAX0-gallery01.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/fabe201f9b340042c9f0c6797bfda17cbe37facf73fd0070c869071d93a99693.png",
+        "sha256": "82f16ffcd9bccf0659b07173b892b693d7de5182e6289fa843bad20eb9d0db70",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw35d58efb/product/DFF-DGE/Vario-1.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw35d58efb/product/DFF-DGE/Vario-1.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/b1646191913be97a93e0c6c490e8efedd1d7949c01e007d5683d812aefcdc537.png",
+        "sha256": "17ef873964d1e0b195f232762f3ecdb12819342f84344c3867bf0b09f40452f4",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw5945ff06/product/DFH-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/15e7703ae82421b5b15c610b7234dfe27eb8cd580393eec108169f5ee50d38c4.png",
+        "sha256": "7eb88050895daaa5527d8bf03c1c4023e52b2f13dc2fdf4dd759f38ac920d37c",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487.webp",
+        "final_url": "https://oss-hk.247fitness.hk/1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "path": "/tmp/gymory-technogym-2026-11-08/372361ec638048e61ea1be0b6754d9cb7c6aa747032d17e0ed86175c541e92fb.png",
+        "sha256": "1606dbe15ca68e4c33b09b6cdaacadbfe50af90c566e264c8cb7aae9ce023487",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/8b7092287b9d4aea01cfe2198606addcf7d33ed94bf5080541794a0f2ce9f0fe.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/8b7092287b9d4aea01cfe2198606addcf7d33ed94bf5080541794a0f2ce9f0fe.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/bd3dce8443dc7cd49b3469d430168c80bd388b73e7b5d5b9499214911c99778c.png",
+        "sha256": "8b7092287b9d4aea01cfe2198606addcf7d33ed94bf5080541794a0f2ce9f0fe",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwabbb4fff/product/MB910N0-ANV0GGGK/kneeling_element_related.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/f363b41019d87b47fb3b9f407c3e589f3679b3ab7cbcce6fc2359478a00f0853.png",
+        "sha256": "4dc50092c08cc5f3d07a05bc30ceb80c1e64e2064c32d4936e0fbe9e533aa56e",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://www.technogym.com/en-HK/product/excite-run_DFK-DGE.html?color-version=pearl-grey&console-version=connect&pid=DFKEAC600BA0AAX2",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw67e0f486/product/MQ0D/MQ0D_gallery01.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/873cadd12b6f78e7b489213b6978eb966acf9e9da4ae6e234404fbe01ffb7fed.png",
+        "sha256": "549cfce93d60668e6d71449106d0bd0faa134d0956f9cda4fb8683ef38679200",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/949a369885fb2be8f088000295864de928c7a6b4a10a446fb66d02b74ce627c8.png",
+        "sha256": "f72cbc54c0cfcee743e324a9a659a0fc65952e619eab5ab8c4a0fac9ff6a279d",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/3545086165965d4eeb695be050a55fdad84adda3c038d0bb02e7a1bda7b09091.png",
+        "sha256": "ce39cc30c015043136cc11c19e7aaa22ea18e3427792c6c4c7109177720ed2a1",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/d5bffc2f380812f05e3f572bcece1e6b7092e04cbb325157dce432500de96dce.png",
+        "sha256": "c91b74bf93946880585735f05491624b348279ceb9fbef615f5ad672b16bbc6b",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://www.technogym.com/en-HK/product/excite-climb_DFE-DGE.html",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw3816675e/product/PA04/PA04-gallery01.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/fb42c7e6c5054af4594d8b7790d1ff49fd5d576ca6becd59808432f72ff9c449.png",
+        "sha256": "8b38e61fe4707ee27905e286cb080abe1d8eac8a75d210d652caaca5820fc6b9",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/4dbe2fd969028d424eda470d1e0354e81eabba36a250fce4f0630abe1a5eac7f.png",
+        "sha256": "cfa4d5af608cf101784f39efa53ac9ba8b9c5f5c66664bcf3cf2c93243aa57cb",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/c13011f6a68b9a086c8905d14189384fe573183164a5751ae0a7026427a23b46.png",
+        "sha256": "1e140b5683e35f5edabbdfad6b25af819e64521fc9a4bdb7189d235747f030c5",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://www.technogymkr.com/web/catalog/02_catalog_cable_station.pdf",
+        "final_url": "https://www.technogymkr.com/web/catalog/02_catalog_cable_station.pdf",
+        "status": 200,
+        "content_type": "application/pdf",
+        "path": "/tmp/gymory-technogym-2026-11-08/6467726e6623877a750db9d234732604bb0b69e7ee9b6d9ee4dfc99ac8520256.bin",
+        "sha256": "a709e988c44ee54d8aef872285c9daa817615d418811f916e58dee2cfb737c23",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw4ba3c1db/product/DFE-DGE/identity_pearl-grey_version_connect-gallery01.jpg?sw=1920&q=75",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/7ef9fd402155e1434a3fa9f1547aa4bca8a92fca5ed409911d5f8874a7060f16.png",
+        "sha256": "9063ff0089c340b748d281df4699baa68bde149947b861445848923923b2136d",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/9cecf27ab570a87433234be54e3b73686bc67462b5cb2054c72e287c4d3a85b1.png",
+        "sha256": "f5d1b59d2ee68ec3b400408bf74e4b74f3f481fc06333c0d3aec6687519af6ac",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://oss-hk.247fitness.hk/a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615.jpg",
+        "final_url": "https://oss-hk.247fitness.hk/a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/4bdd403cbacea3d38b71820f053f0fc060089a05c4b406fb05b8f36d31d34bae.png",
+        "sha256": "a00440e233116e6b4c9a99119cd96be43dd01ce8759363812a909c88a6c85615",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwd5fcd75d/product/DFD-DGE/recline-gallery-1.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dwd5fcd75d/product/DFD-DGE/recline-gallery-1.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/89c0418c8ab599b225c9c550b4f279fd7632fabaf20de34a2dfb72f5bf023b60.png",
+        "sha256": "d6be1b393f53eec083c50309e1a19ce1bfe2090c98f90663b9fd14c1d0353335",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw49e276a1/product/DFC-DGE/excite%2B-bike-hero.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/fef66fcdaf25243b58cfdca8e0af766daab6c923bc8d8834b838101982a06666.png",
+        "sha256": "01e50c276d1b323eee3b05da0aa20aacff2cb6aa5ae0d6e8df56487606aea8e6",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw6c03bf28/product/DFC-DGE/bike-excite-gallery1.jpg",
+        "final_url": "https://webapi-prod.technogym.com/dw/image/v2/BFLQ_PRD/on/demandware.static/-/Sites-tg-catalog-master/default/dw6c03bf28/product/DFC-DGE/bike-excite-gallery1.jpg",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "path": "/tmp/gymory-technogym-2026-11-08/b9604bc259a7a034a314c32f843f977edb6afd08687854453aa29a16e6f49c35.png",
+        "sha256": "17925667769fe02496bfa4d4fcf3b87514919e725a955a08b915594cb7bd04db",
+        "retrieved_at": "2026-11-08"
+      },
+      {
+        "url": "https://www.technogym.com/en-HK/product/excite-synchro_DFH-DGE.html",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "supporting_manufacturer_documents": [
+      {
+        "url": "https://media.wpd.digital/qicraft/uploads/sites/12/2022/03/INST_REQ_EXCITE-LIVE-2.0_EN.pdf",
+        "publisher": "Technogym",
+        "hosting": "third_party_copy",
+        "sha256": "a8b7a083bba69606f42cf0f98196e316a7700ef9be30344735bf584f28ac266f",
+        "pdf_page": 14,
+        "observations": "Manufacturer pre-installation document separates DF5 Synchro Live (Live 10) and DFH Synchro AR Live (adjustable ramp; Live 10/16). Used as a reason not to assert a DF5E/DFH SKU alias."
+      },
+      {
+        "url": "https://www.technogymkr.com/web/catalog/02_catalog_cable_station.pdf",
+        "publisher": "Technogym",
+        "hosting": "regional_site_copy",
+        "sha256": "a709e988c44ee54d8aef872285c9daa817615d418811f916e58dee2cfb737c23",
+        "pdf_page": 25,
+        "observations": "Manufacturer Cable Stations brochure explicitly labels MB88 as Cable Stations 4 Evolution. Does not establish MB88EN0-to-current-MQ0D equivalence."
+      }
+    ],
+    "search_queries": [
+      "Technogym Excite Run DFKE",
+      "Technogym Excite Synchro DF5E DFH",
+      "Technogym Excite Climb DFE-DGE",
+      "Technogym Excite Recline DFD-DGE",
+      "Technogym Excite Bike DFC-DGE",
+      "Technogym Excite Vario DFF-DGE",
+      "Technogym Cable Stations 4 Evolution MB88EN0",
+      "Technogym Kneeling Easy Chin Dip",
+      "Technogym Power Rack Platform A0000944 60mm",
+      "Technogym Adjustable Bench PA04 PG04"
     ]
   }
 }
