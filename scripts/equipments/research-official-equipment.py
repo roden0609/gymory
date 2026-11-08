@@ -652,6 +652,12 @@ def apply_manual_equipment_reviews(result, supplemental):
         seen.add(inventory_id)
         entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
         approved = review.get('approved_candidate')
+        panatta = next((r for r in supplemental.get('panatta_user_reviews', [])
+                        if r['inventory_id'] == inventory_id), None)
+        if panatta and entry is not None and all(entry.get(k) == panatta.get(k) for k in
+                ('brand', 'source_model', 'source_image_url', 'official_name', 'official_product_url', 'official_image_url')):
+            # Rebuild the historical decision before applying the later explicit correction.
+            entry.update(panatta['previous_reference'])
         followup_key = next((key for key in ('user_product_corrections', 'booty_builder_product_reviews', 'matrix_product_reviews', 'cybex_product_reviews')
                              if any(r['inventory_id'] == inventory_id for r in supplemental.get(key, []))), 'matrix_product_reviews')
         followup = next((r for r in supplemental.get(followup_key, [])
@@ -738,6 +744,28 @@ def apply_manual_equipment_reviews(result, supplemental):
         result['lifefitness_review'] = {**result['lifefitness_review'],
             'model_with_image': counts['model_verified'], 'model_without_image': counts['model_verified_image_missing'],
             'candidate_count': counts['candidate_requires_review'], 'unresolved_count': counts['unresolved']}
+
+
+def apply_panatta_user_reviews(result, supplemental):
+    """Apply source-bound user corrections without claiming new manufacturer SKU aliases."""
+    from collections import Counter
+    for review in supplemental.get('panatta_user_reviews', []):
+        entry = next((e for e in result['equipment'] if e['inventory_id'] == review['inventory_id']), None)
+        fields = ('official_name', 'official_product_url', 'official_image_url')
+        if (entry is None or review.get('brand') != 'PANATTA'
+                or any(entry.get(k) != review.get(k) for k in ('brand', 'source_model', 'source_image_url'))
+                or review.get('reviewed_by') != 'user' or review.get('status') != 'model_verified'
+                or not review.get('review_date') or not review.get('review_source', {}).get('instruction')
+                or not review.get('official_image_url')
+                or not any(all(entry.get(k) == reference.get(k) for k in fields)
+                           for reference in (review['previous_reference'], review))):
+            raise ValueError('PANATTA approval no longer matches the reviewed source and references')
+        entry.update({k: review[k] for k in fields})
+        entry.update(status='model_verified', image_check=review['image_check'],
+                     image_source_type=review['image_source_type'], image_verification_status='manually_reviewed',
+                     configuration_status='manually_reviewed', match_scope='manual_review',
+                     manual_image_review=review, reason=review['note'], configuration_note=review['note'], candidates=[])
+    result['summary'] = dict(Counter(e['status'] for e in result['equipment']))
 
 
 def apply_user_reference_images(result, supplemental):
@@ -945,6 +973,7 @@ def apply_browser_evidence(result, supplemental):
     apply_official_chinese_names(result, supplemental)
     apply_user_reference_images(result, supplemental)
     apply_manual_equipment_reviews(result, supplemental)
+    apply_panatta_user_reviews(result, supplemental)
     apply_distributor_enrichment(result, supplemental)
 
 

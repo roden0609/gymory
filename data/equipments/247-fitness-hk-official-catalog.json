@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 779,
+    "model_verified": 784,
     "unresolved": 45,
-    "model_verified_image_missing": 9
+    "model_verified_image_missing": 4
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -84383,12 +84383,12 @@
       "lookup_model": "1FE124",
       "official_name": "Jungle machine hlp + adjustable cable station with bar | Panatta Sport",
       "official_product_url": "https://www.panattasport.com/es/fit-evo/jungle-machine-hlp-adjustable-cable-station-with-bar/",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
+      "official_image_url": "https://drive.usercontent.google.com/uc?id=1DVh8Y2BDH7AINQX6IU7f6m9FvNzWjWca&export=download",
+      "status": "model_verified",
       "match_method": "manual_equipment_review",
       "evidence": null,
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: user_shared_file. The Google Drive file is recorded as a user-shared image; its manufacturer origin is unverified. Existing approved product name/page retained.",
       "search_evidence": {
         "inventory_id": 1406,
         "query": "PANATTA \"1FE124\"",
@@ -84444,7 +84444,16 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://drive.usercontent.google.com/uc?id=1DVh8Y2BDH7AINQX6IU7f6m9FvNzWjWca&export=download",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "62e2410abf62cbbbcfe6975df93a6f2082198aac623230d6ba6ea26d3e84a85b",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -84453,7 +84462,7 @@
       },
       "match_scope": "manual_review",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 1406,
         "brand": "PANATTA",
@@ -84510,7 +84519,44 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: user_shared_file. The Google Drive file is recorded as a user-shared image; its manufacturer origin is unverified. Existing approved product name/page retained.",
+      "image_source_type": "user_shared_file",
+      "manual_image_review": {
+        "inventory_id": 1406,
+        "brand": "PANATTA",
+        "source_model": "1FE124",
+        "source_image_url": "https://oss-hk.247fitness.hk/45c4c625ad6c3b7cd1d2e5d9d796e4c224a7f4248896369a448637f24c631429.jpg",
+        "official_name": "Jungle machine hlp + adjustable cable station with bar | Panatta Sport",
+        "official_product_url": "https://www.panattasport.com/es/fit-evo/jungle-machine-hlp-adjustable-cable-station-with-bar/",
+        "official_image_url": "https://drive.usercontent.google.com/uc?id=1DVh8Y2BDH7AINQX6IU7f6m9FvNzWjWca&export=download",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 1406, 1408, 1409, 1410 and 1519 using the supplied product/image references.",
+          "scope": "explicit_panatta_model_and_image_approval"
+        },
+        "image_source_type": "user_shared_file",
+        "previous_reference": {
+          "official_name": "Jungle machine hlp + adjustable cable station with bar | Panatta Sport",
+          "official_product_url": "https://www.panattasport.com/es/fit-evo/jungle-machine-hlp-adjustable-cable-station-with-bar/",
+          "official_image_url": null,
+          "status": "model_verified_image_missing"
+        },
+        "previous_research_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+        "image_check": {
+          "url": "https://drive.usercontent.google.com/uc?id=1DVh8Y2BDH7AINQX6IU7f6m9FvNzWjWca&export=download",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "62e2410abf62cbbbcfe6975df93a6f2082198aac623230d6ba6ea26d3e84a85b",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: user_shared_file. The Google Drive file is recorded as a user-shared image; its manufacturer origin is unverified. Existing approved product name/page retained.",
+        "supplied_image_url": "https://drive.google.com/file/d/1DVh8Y2BDH7AINQX6IU7f6m9FvNzWjWca/view?usp=sharing"
+      }
     },
     {
       "inventory_id": 1407,
@@ -84618,14 +84664,14 @@
         "kwai-fong-second-branch"
       ],
       "lookup_model": "1SC034A",
-      "official_name": "Vertical chest convergent | Panatta Sport",
+      "official_name": "Vertical chest convergent",
       "official_product_url": "https://www.panattasport.com/en/sec/vertical-chest-convergent/",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc034-2-jpg-webp.webp",
+      "status": "model_verified",
       "match_method": "manual_equipment_review",
       "evidence": null,
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update.",
       "search_evidence": {
         "inventory_id": 1408,
         "query": "PANATTA \"1SC034A\"",
@@ -84690,7 +84736,16 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc034-2-jpg-webp.webp",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -84699,7 +84754,7 @@
       },
       "match_scope": "manual_review",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 1408,
         "brand": "PANATTA",
@@ -84740,7 +84795,43 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update.",
+      "image_source_type": "manufacturer_catalog",
+      "manual_image_review": {
+        "inventory_id": 1408,
+        "brand": "PANATTA",
+        "source_model": "1SC034A",
+        "source_image_url": "https://oss-hk.247fitness.hk/0c854ee5ea27e924182ebe54ce72924691e8d6cde0734d2016cdfa4fd66c8299.webp",
+        "official_name": "Vertical chest convergent",
+        "official_product_url": "https://www.panattasport.com/en/sec/vertical-chest-convergent/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc034-2-jpg-webp.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 1406, 1408, 1409, 1410 and 1519 using the supplied product/image references.",
+          "scope": "explicit_panatta_model_and_image_approval"
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": "Vertical chest convergent | Panatta Sport",
+          "official_product_url": "https://www.panattasport.com/en/sec/vertical-chest-convergent/",
+          "official_image_url": null,
+          "status": "model_verified_image_missing"
+        },
+        "previous_research_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc034-2-jpg-webp.webp",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update."
+      }
     },
     {
       "inventory_id": 1409,
@@ -84757,14 +84848,14 @@
         "to-kwa-wan"
       ],
       "lookup_model": "1HP541",
-      "official_name": "Declined Chest Press | Chest Machine | Panatta",
-      "official_product_url": "https://www.panattasport.com/en/freeweight-one/declined-chest-press/",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
+      "official_name": "Super Declined Chest Press",
+      "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-declined-chest-press/",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw041-jpg-webp.webp",
+      "status": "model_verified",
       "match_method": "manual_equipment_review",
       "evidence": null,
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update.",
       "search_evidence": {
         "inventory_id": 1409,
         "query": "PANATTA \"1HP541\"",
@@ -84829,7 +84920,16 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw041-jpg-webp.webp",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -84838,7 +84938,7 @@
       },
       "match_scope": "manual_review",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 1409,
         "brand": "PANATTA",
@@ -84895,7 +84995,43 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update.",
+      "image_source_type": "manufacturer_catalog",
+      "manual_image_review": {
+        "inventory_id": 1409,
+        "brand": "PANATTA",
+        "source_model": "1HP541",
+        "source_image_url": "https://oss-hk.247fitness.hk/c1251ad81c783ebe330cf7a5800382dab70f0986beac1a2c79f8ac2c7cf8fe9d.jpg",
+        "official_name": "Super Declined Chest Press",
+        "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-declined-chest-press/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw041-jpg-webp.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 1406, 1408, 1409, 1410 and 1519 using the supplied product/image references.",
+          "scope": "explicit_panatta_model_and_image_approval"
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": "Declined Chest Press | Chest Machine | Panatta",
+          "official_product_url": "https://www.panattasport.com/en/freeweight-one/declined-chest-press/",
+          "official_image_url": null,
+          "status": "model_verified_image_missing"
+        },
+        "previous_research_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw041-jpg-webp.webp",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update."
+      }
     },
     {
       "inventory_id": 1410,
@@ -84912,14 +85048,14 @@
         "to-kwa-wan"
       ],
       "lookup_model": "1HP565",
-      "official_name": "Abdominal crunch | Panatta Sport",
-      "official_product_url": "https://www.panattasport.com/en/monolith/abdominal-crunch-3/",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
+      "official_name": "Abdominal Crunch",
+      "official_product_url": "https://panattaturkiye.com/abdominal-crunch-1",
+      "official_image_url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/871fe93f-11d3-4016-80c5-5eced70bf409/1080/1hp565.webp",
+      "status": "model_verified",
       "match_method": "manual_equipment_review",
       "evidence": null,
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: regional_manufacturer_site. Regional product page names 1HP565-Abdominal Crunch and supplies the referenced CDN image; previous Monolith product reference superseded.",
       "search_evidence": {
         "inventory_id": 1410,
         "query": "PANATTA \"1HP565\"",
@@ -84984,7 +85120,16 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/871fe93f-11d3-4016-80c5-5eced70bf409/1080/1hp565.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "3efd74774eee64b8994157f179a8c42c80986cff6e6a6824fa5d23749ec646df",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -84993,7 +85138,7 @@
       },
       "match_scope": "manual_review",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 1410,
         "brand": "PANATTA",
@@ -85034,7 +85179,43 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: regional_manufacturer_site. Regional product page names 1HP565-Abdominal Crunch and supplies the referenced CDN image; previous Monolith product reference superseded.",
+      "image_source_type": "regional_manufacturer_site",
+      "manual_image_review": {
+        "inventory_id": 1410,
+        "brand": "PANATTA",
+        "source_model": "1HP565",
+        "source_image_url": "https://oss-hk.247fitness.hk/754e7b2252305bd3c7a61eb400c3efe350407ce9afe5c8f0a81a154dea3f76e9.jpg",
+        "official_name": "Abdominal Crunch",
+        "official_product_url": "https://panattaturkiye.com/abdominal-crunch-1",
+        "official_image_url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/871fe93f-11d3-4016-80c5-5eced70bf409/1080/1hp565.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 1406, 1408, 1409, 1410 and 1519 using the supplied product/image references.",
+          "scope": "explicit_panatta_model_and_image_approval"
+        },
+        "image_source_type": "regional_manufacturer_site",
+        "previous_reference": {
+          "official_name": "Abdominal crunch | Panatta Sport",
+          "official_product_url": "https://www.panattasport.com/en/monolith/abdominal-crunch-3/",
+          "official_image_url": null,
+          "status": "model_verified_image_missing"
+        },
+        "previous_research_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+        "image_check": {
+          "url": "https://cdn.myikas.com/images/22897694-2345-464e-bcac-27ac8c0e06b2/871fe93f-11d3-4016-80c5-5eced70bf409/1080/1hp565.webp",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/webp",
+          "sha256": "3efd74774eee64b8994157f179a8c42c80986cff6e6a6824fa5d23749ec646df",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: regional_manufacturer_site. Regional product page names 1HP565-Abdominal Crunch and supplies the referenced CDN image; previous Monolith product reference superseded."
+      }
     },
     {
       "inventory_id": 1489,
@@ -85098,14 +85279,14 @@
         "lai-chi-kok"
       ],
       "lookup_model": "1HP533",
-      "official_name": "Super Inclined Bench Press | Pectoral and deltoid | Panatta",
-      "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-inclined-bench-press",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
+      "official_name": "Super Inclined Bench Press",
+      "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-inclined-bench-press/",
+      "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw033-jpg-webp.webp",
+      "status": "model_verified",
       "match_method": "manual_equipment_review",
       "evidence": null,
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update.",
       "search_evidence": {
         "inventory_id": 1519,
         "query": "PANATTA \"1HP533\"",
@@ -85170,7 +85351,16 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw033-jpg-webp.webp",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_blocked_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -85179,7 +85369,7 @@
       },
       "match_scope": "manual_review",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 1519,
         "brand": "PANATTA",
@@ -85236,7 +85426,43 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update.",
+      "image_source_type": "manufacturer_catalog",
+      "manual_image_review": {
+        "inventory_id": 1519,
+        "brand": "PANATTA",
+        "source_model": "1HP533",
+        "source_image_url": "https://oss-hk.247fitness.hk/c2b578ac95df378b09337d0190bab6cc5c4939898a7cd87ba19545916d7e88e3.jpg",
+        "official_name": "Super Inclined Bench Press",
+        "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-inclined-bench-press/",
+        "official_image_url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw033-jpg-webp.webp",
+        "status": "model_verified",
+        "review_date": "2026-11-09",
+        "reviewed_by": "user",
+        "review_source": {
+          "instruction": "User explicitly requested model_verified for PANATTA Inventory IDs 1406, 1408, 1409, 1410 and 1519 using the supplied product/image references.",
+          "scope": "explicit_panatta_model_and_image_approval"
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": "Super Inclined Bench Press | Pectoral and deltoid | Panatta",
+          "official_product_url": "https://www.panattasport.com/en/free-weight-special/super-inclined-bench-press",
+          "official_image_url": null,
+          "status": "model_verified_image_missing"
+        },
+        "previous_research_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+        "image_check": {
+          "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw033-jpg-webp.webp",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_blocked_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly verified the supplied model/image references on 2026-11-09. Historical candidate approvals and captured model identifiers remain unchanged; this decision does not establish manufacturer SKU aliases. Image provenance: manufacturer_catalog. Manufacturer image HTTP returned 403; browser navigation failed with timeoutMs runtime error. Image availability was not independently confirmed; model_verified reflects explicit user approval. Product heading wording follows the supplied manufacturer product reference; no new page body was readable during this update."
+      }
     },
     {
       "inventory_id": 772,
