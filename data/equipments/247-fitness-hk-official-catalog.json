@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 791,
-    "unresolved": 38,
-    "model_verified_image_missing": 4
+    "model_verified": 799,
+    "unresolved": 31,
+    "model_verified_image_missing": 3
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -95460,13 +95460,13 @@
       ],
       "lookup_model": "9-5345-8GX-15-PAL",
       "official_name": "Gauntlet",
-      "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=336&m=content&mid=22",
-      "official_image_url": "https://www.active.cn/uploadfile/2016/0919/20160919105818985.jpg",
-      "status": "unresolved",
+      "official_product_url": "https://www.stairmastergauntlet.com/",
+      "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed.",
       "search_evidence": {
         "inventory_id": 170,
         "query": "StairMaster \"9-5345-8GX-15-PAL\"",
@@ -95479,11 +95479,14 @@
         ]
       },
       "image_check": {
-        "available": false,
-        "url": "https://www.active.cn/uploadfile/2016/0919/20160919105818985.jpg",
-        "checked_at": "2026-11-05",
-        "method": "distributor_page_link_only",
-        "reason": "Image URL observed on the product page; direct retrieval failed and the image could not be visually compared."
+        "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "available": null,
+        "http_status": 202,
+        "content_type": "text/html",
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_non_image_user_approved_reference",
+        "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
       },
       "official_name_zh": "Gauntlet 樓梯機",
       "official_name_zh_review": {
@@ -95537,7 +95540,7 @@
         "official_name_zh": "Gauntlet 樓梯機",
         "match_scope": "distributor_product_name_reference; exact SKU/configuration not established"
       },
-      "image_verification_status": "distributor_reference_unverified",
+      "image_verification_status": "manually_reviewed",
       "distributor_enrichment": {
         "inventory_id": 170,
         "brand": "StairMaster",
@@ -95566,8 +95569,45 @@
           "official_image_url"
         ]
       },
-      "match_scope": "distributor_base_product_reference",
-      "configuration_note": "Active China distributor reference (gap-only enrichment): StairMaster Gauntlet is explicitly named in the source inventory and Active product heading; Active describes selectable 15-inch/10-inch/LCD consoles. Exact source 9-5345 SKU/console and physical-image equivalence remain unverified. Source: https://www.active.cn/index.php?a=show&c=index&catid=44&id=336&m=content&mid=22 Distributor wording is not independently verified manufacturer wording; identity status is unchanged. The image is an unverified distributor page link; image retrieval/visual comparison was unavailable."
+      "match_scope": "manual_review",
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed.",
+      "image_source_type": "distributor",
+      "configuration_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 170,
+        "brand": "StairMaster",
+        "source_model": "9-5345-8GX-15-PAL",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/d4b6de418ea3aeee1ea98b6d526fd663c1e97edf98a408eef3bb3fcc9985bd9a.jpg",
+        "official_name": "Gauntlet",
+        "official_product_url": "https://www.stairmastergauntlet.com/",
+        "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "distributor",
+        "previous_reference": {
+          "official_name": "Gauntlet",
+          "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=336&m=content&mid=22",
+          "official_image_url": "https://www.active.cn/uploadfile/2016/0919/20160919105818985.jpg",
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+          "available": null,
+          "http_status": 202,
+          "content_type": "text/html",
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_non_image_user_approved_reference",
+          "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
+      }
     },
     {
       "inventory_id": 171,
@@ -95598,13 +95638,13 @@
       ],
       "lookup_model": "9-5345-8GX-LCD",
       "official_name": "Gauntlet",
-      "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=336&m=content&mid=22",
-      "official_image_url": "https://www.active.cn/uploadfile/2016/0919/20160919105818985.jpg",
-      "status": "unresolved",
+      "official_product_url": "https://www.stairmastergauntlet.com/",
+      "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed.",
       "search_evidence": {
         "inventory_id": 171,
         "query": "StairMaster \"9-5345-8GX-LCD\"",
@@ -95617,11 +95657,14 @@
         ]
       },
       "image_check": {
-        "available": false,
-        "url": "https://www.active.cn/uploadfile/2016/0919/20160919105818985.jpg",
-        "checked_at": "2026-11-05",
-        "method": "distributor_page_link_only",
-        "reason": "Image URL observed on the product page; direct retrieval failed and the image could not be visually compared."
+        "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "available": null,
+        "http_status": 202,
+        "content_type": "text/html",
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_non_image_user_approved_reference",
+        "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
       },
       "official_name_zh": "Gauntlet 樓梯機",
       "official_name_zh_review": {
@@ -95675,7 +95718,7 @@
         "official_name_zh": "Gauntlet 樓梯機",
         "match_scope": "distributor_product_name_reference; exact SKU/configuration not established"
       },
-      "image_verification_status": "distributor_reference_unverified",
+      "image_verification_status": "manually_reviewed",
       "distributor_enrichment": {
         "inventory_id": 171,
         "brand": "StairMaster",
@@ -95704,8 +95747,45 @@
           "official_image_url"
         ]
       },
-      "match_scope": "distributor_base_product_reference",
-      "configuration_note": "Active China distributor reference (gap-only enrichment): StairMaster Gauntlet is explicitly named in the source inventory and Active product heading; Active describes selectable 15-inch/10-inch/LCD consoles. Exact source 9-5345 SKU/console and physical-image equivalence remain unverified. Source: https://www.active.cn/index.php?a=show&c=index&catid=44&id=336&m=content&mid=22 Distributor wording is not independently verified manufacturer wording; identity status is unchanged. The image is an unverified distributor page link; image retrieval/visual comparison was unavailable."
+      "match_scope": "manual_review",
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed.",
+      "image_source_type": "distributor",
+      "configuration_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 171,
+        "brand": "StairMaster",
+        "source_model": "9-5345-8GX-LCD",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/556df31f67bb4fdae8169925dba1d5b3ab123527c70835a902bcee23929dcaaa.jpg",
+        "official_name": "Gauntlet",
+        "official_product_url": "https://www.stairmastergauntlet.com/",
+        "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "distributor",
+        "previous_reference": {
+          "official_name": "Gauntlet",
+          "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=336&m=content&mid=22",
+          "official_image_url": "https://www.active.cn/uploadfile/2016/0919/20160919105818985.jpg",
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+          "available": null,
+          "http_status": 202,
+          "content_type": "text/html",
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_non_image_user_approved_reference",
+          "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
+      }
     },
     {
       "inventory_id": 1161,
@@ -95738,14 +95818,14 @@
         "tung-chung-second-branch"
       ],
       "lookup_model": "9-5450-8FC-LED",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "FREECLIMBER 8 Series StairClimber Stepper",
+      "official_product_url": "https://www.ironcompany.com/stairmaster-freeclimber-stairclimber-stepper",
+      "official_image_url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation.",
       "search_evidence": {
         "inventory_id": 1161,
         "query": "StairMaster \"9-5450-8FC-LED\"",
@@ -95757,13 +95837,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "30ab1aa45ff72f7002a8c6e9f96c9aa8b951c252f44beae577424ab8ef7f9d12",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "reason": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1161,
+        "brand": "StairMaster",
+        "source_model": "9-5450-8FC-LED",
+        "source_image_url": "https://oss-hk.247fitness.hk/30ab1aa45ff72f7002a8c6e9f96c9aa8b951c252f44beae577424ab8ef7f9d12.webp",
+        "official_name": "FREECLIMBER 8 Series StairClimber Stepper",
+        "official_product_url": "https://www.ironcompany.com/stairmaster-freeclimber-stairclimber-stepper",
+        "official_image_url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/webp",
+          "sha256": "30ab1aa45ff72f7002a8c6e9f96c9aa8b951c252f44beae577424ab8ef7f9d12",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "reason": null
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation."
+      },
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation."
     },
     {
       "inventory_id": 1168,
@@ -95796,14 +95925,14 @@
         "tung-chung-second-branch"
       ],
       "lookup_model": "9-5395-8GX-LED-60",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "StairMaster 8Gx",
+      "official_product_url": "https://www.stairmastergauntlet.com/",
+      "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed.",
       "search_evidence": {
         "inventory_id": 1168,
         "query": "StairMaster \"9-5395-8GX-LED-60\"",
@@ -95815,13 +95944,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "available": null,
+        "http_status": 202,
+        "content_type": "text/html",
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_non_image_user_approved_reference",
+        "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "distributor",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1168,
+        "brand": "StairMaster",
+        "source_model": "9-5395-8GX-LED-60",
+        "source_image_url": "https://oss-hk.247fitness.hk/2e566001cc09bb23f9c101361779d4757d315186eb18cc046a48b9a73a4295aa.webp",
+        "official_name": "StairMaster 8Gx",
+        "official_product_url": "https://www.stairmastergauntlet.com/",
+        "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "distributor",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+          "available": null,
+          "http_status": 202,
+          "content_type": "text/html",
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_non_image_user_approved_reference",
+          "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
+      },
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
     },
     {
       "inventory_id": 1171,
@@ -95859,14 +96037,14 @@
         "tung-chung"
       ],
       "lookup_model": "9-5260-8FC-LCD-60",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "FREECLIMBER 8 Series StairClimber Stepper",
+      "official_product_url": "https://www.ironcompany.com/stairmaster-freeclimber-stairclimber-stepper",
+      "official_image_url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation.",
       "search_evidence": {
         "inventory_id": 1171,
         "query": "StairMaster \"9-5260-8FC-LCD-60\"",
@@ -95935,13 +96113,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "30ab1aa45ff72f7002a8c6e9f96c9aa8b951c252f44beae577424ab8ef7f9d12",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "reason": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1171,
+        "brand": "StairMaster",
+        "source_model": "9-5260-8FC-LCD-60",
+        "source_image_url": "https://oss-hk.247fitness.hk/fc3f7cd2fac916311a797e181f426ac2c0a4cf0ae3c234608b5f094e829cfc91.jpeg",
+        "official_name": "FREECLIMBER 8 Series StairClimber Stepper",
+        "official_product_url": "https://www.ironcompany.com/stairmaster-freeclimber-stairclimber-stepper",
+        "official_image_url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.ironcompany.com/media/mf_webp/png/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/o/core_health_and_fitness_stairmaster_8fc_freeclimber-min.webp",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/webp",
+          "sha256": "30ab1aa45ff72f7002a8c6e9f96c9aa8b951c252f44beae577424ab8ef7f9d12",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "reason": null
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation."
+      },
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation."
     },
     {
       "inventory_id": 1180,
@@ -95959,13 +96186,13 @@
       ],
       "lookup_model": "JACOB'S-LADDER 2",
       "official_name": "Jacobs Ladder 2",
-      "official_product_url": "https://shop.corehandf.com/cdn/shop/files/StairMaster_Jacobs_Ladder_2_Product_Sheet.pdf",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
+      "official_product_url": "https://www.fitshop.co.uk/stairmaster-jacobs-ladder-2-sm-jl2",
+      "official_image_url": "https://cdn.fitshop.co.uk/pictures/stairmaster/climbers_and_steppers/SM-JL2/StairMaster_Jacobs_Ladder_2_Left-Angled_View_1600_1600_1600.jpg",
+      "status": "model_verified",
       "match_method": "manual_equipment_review",
       "evidence": null,
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation.",
       "search_evidence": {
         "inventory_id": 1180,
         "query": "StairMaster \"JACOB'S-LADDER 2\"",
@@ -96034,7 +96261,16 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://cdn.fitshop.co.uk/pictures/stairmaster/climbers_and_steppers/SM-JL2/StairMaster_Jacobs_Ladder_2_Left-Angled_View_1600_1600_1600.jpg",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "a0ecaa1fed0ca813772ab874bd2b64792cb195c0d75649e3a373212f675a35b4",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "reason": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -96043,7 +96279,7 @@
       },
       "match_scope": "manual_review",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 1180,
         "brand": "StairMaster",
@@ -96084,7 +96320,43 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation.",
+      "image_source_type": "retailer",
+      "manual_image_review": {
+        "inventory_id": 1180,
+        "brand": "StairMaster",
+        "source_model": "JACOB'S-LADDER 2",
+        "source_image_url": "https://oss-hk.247fitness.hk/7f3311118e4aa28f1277db68352b63cbc3d319d9a73a378c49a22abd16ef4213.jpeg",
+        "official_name": "Jacobs Ladder 2",
+        "official_product_url": "https://www.fitshop.co.uk/stairmaster-jacobs-ladder-2-sm-jl2",
+        "official_image_url": "https://cdn.fitshop.co.uk/pictures/stairmaster/climbers_and_steppers/SM-JL2/StairMaster_Jacobs_Ladder_2_Left-Angled_View_1600_1600_1600.jpg",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": "Jacobs Ladder 2",
+          "official_product_url": "https://shop.corehandf.com/cdn/shop/files/StairMaster_Jacobs_Ladder_2_Product_Sheet.pdf",
+          "official_image_url": null,
+          "status": "model_verified_image_missing"
+        },
+        "previous_research_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+        "image_check": {
+          "url": "https://cdn.fitshop.co.uk/pictures/stairmaster/climbers_and_steppers/SM-JL2/StairMaster_Jacobs_Ladder_2_Left-Angled_View_1600_1600_1600.jpg",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "a0ecaa1fed0ca813772ab874bd2b64792cb195c0d75649e3a373212f675a35b4",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "reason": null
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: retailer. Retailer product reference and image are user-approved; image download succeeded. Product-family photograph does not independently establish the exact inventory console/generation."
+      }
     },
     {
       "inventory_id": 1451,
@@ -96102,14 +96374,14 @@
         "sai-kung"
       ],
       "lookup_model": "SM5395L26030252",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "StairMaster 8Gx",
+      "official_product_url": "https://www.stairmastergauntlet.com/",
+      "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed.",
       "search_evidence": {
         "inventory_id": 1451,
         "query": "StairMaster \"SM5395L26030252\"",
@@ -96178,13 +96450,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "available": null,
+        "http_status": 202,
+        "content_type": "text/html",
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_non_image_user_approved_reference",
+        "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "distributor",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1451,
+        "brand": "StairMaster",
+        "source_model": "SM5395L26030252",
+        "source_image_url": "https://oss-hk.247fitness.hk/2e566001cc09bb23f9c101361779d4757d315186eb18cc046a48b9a73a4295aa.webp",
+        "official_name": "StairMaster 8Gx",
+        "official_product_url": "https://www.stairmastergauntlet.com/",
+        "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "distributor",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+          "available": null,
+          "http_status": 202,
+          "content_type": "text/html",
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_non_image_user_approved_reference",
+          "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
+      },
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
     },
     {
       "inventory_id": 1452,
@@ -96365,14 +96686,14 @@
         "yuen-long-fifth-branch"
       ],
       "lookup_model": "H-9-5295-10G-LCD",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "StairMaster 10G",
+      "official_product_url": "https://www.stairmastergauntlet.com/",
+      "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed.",
       "search_evidence": {
         "inventory_id": 1478,
         "query": "StairMaster \"H-9-5295-10G-LCD\"",
@@ -96449,13 +96770,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "available": null,
+        "http_status": 202,
+        "content_type": "text/html",
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_non_image_user_approved_reference",
+        "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "distributor",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1478,
+        "brand": "StairMaster",
+        "source_model": "H-9-5295-10G-LCD",
+        "source_image_url": "https://oss-hk.247fitness.hk/0d3dbbe3a19ee9bc842511efd8e263b0fc02ee53d3e2e3515a04652e1ad3deef.webp",
+        "official_name": "StairMaster 10G",
+        "official_product_url": "https://www.stairmastergauntlet.com/",
+        "official_image_url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_stairmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for StairMaster Inventory IDs 170, 171, 1161, 1168, 1171, 1180, 1451 and 1478 using the supplied product and image references. Product URL search tracking parameters omitted."
+        },
+        "image_source_type": "distributor",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.stairmastergauntlet.com/images/10g-hero-banner.png",
+          "available": null,
+          "http_status": 202,
+          "content_type": "text/html",
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_non_image_user_approved_reference",
+          "reason": "HTTP 202 returned HTML, not image data; browser navigation also failed with timeoutMs runtime error."
+        },
+        "note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
+      },
+      "configuration_note": "User explicitly approved the supplied model and image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU/console alias is asserted. Source provenance: distributor. The supplied site identifies itself as a factory-authorized dealer, not the manufacturer. Its supplied hero is labelled StairMaster 10G; it is retained by explicit user approval, including for Gauntlet/8Gx inventory records, without relabelling their model as 10G. Direct retrieval returned HTTP 202 HTML; image availability was not independently confirmed."
     },
     {
       "inventory_id": 1491,
