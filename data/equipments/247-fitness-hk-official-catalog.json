@@ -4,9 +4,9 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 809,
-    "unresolved": 21,
-    "model_verified_image_missing": 3
+    "model_verified": 814,
+    "unresolved": 17,
+    "model_verified_image_missing": 2
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -106592,14 +106592,14 @@
         "wong-tai-sin-third-branch"
       ],
       "lookup_model": "",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "XMASTER Half Rack (Chrome)",
+      "official_product_url": "https://en.playstrongsport.com/product-page/xmaster-half-rack-chrome",
+      "official_image_url": "https://static.wixstatic.com/media/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png/v1/fill/w_729,h_755,al_c,q_90,enc_avif,quality_auto/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: retailer. Product name follows the supplied product page; inventory match is an explicit user decision.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1144,
@@ -106612,13 +106612,60 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://static.wixstatic.com/media/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png/v1/fill/w_729,h_755,al_c,q_90,enc_avif,quality_auto/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "c79558ceb3b8d4366157abe08cf2cd09cc7c11baed327bf260bd2a5726e5ade7",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1144,
+        "brand": "XMASTER",
+        "source_model": "",
+        "source_image_url": "https://oss-hk.247fitness.hk/7eb21ee075fbd86b322ecc97b8ea0ea741d887fcdd7884db9ebe134d95b83d1d.jpg",
+        "official_name": "XMASTER Half Rack (Chrome)",
+        "official_product_url": "https://en.playstrongsport.com/product-page/xmaster-half-rack-chrome",
+        "official_image_url": "https://static.wixstatic.com/media/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png/v1/fill/w_729,h_755,al_c,q_90,enc_avif,quality_auto/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_xmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for XMASTER Inventory IDs 1144, 1145, 1155, 1462 and 1488 with the supplied references."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://static.wixstatic.com/media/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png/v1/fill/w_729,h_755,al_c,q_90,enc_avif,quality_auto/ebb84e_90a95ec09a1b49d5959d0fe87cab9852~mv2.png",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "c79558ceb3b8d4366157abe08cf2cd09cc7c11baed327bf260bd2a5726e5ade7",
+          "checked_at": "2026-11-09",
+          "method": "http_download"
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: retailer. Product name follows the supplied product page; inventory match is an explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: retailer. Product name follows the supplied product page; inventory match is an explicit user decision."
     },
     {
       "inventory_id": 1145,
@@ -106648,12 +106695,12 @@
       "lookup_model": "",
       "official_name": null,
       "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_image_url": "https://drive.usercontent.google.com/uc?id=1_4qQ691Vd5eD4U9J7SeWhFh_ZNSx3Gju&export=download",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: user_shared_file. Google Drive shared file recorded as a user-supplied image with unverified manufacturer origin. No product page or manufacturer name wording was supplied; official English name and product URL remain blank.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1145,
@@ -106666,13 +106713,61 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://drive.usercontent.google.com/uc?id=1_4qQ691Vd5eD4U9J7SeWhFh_ZNSx3Gju&export=download",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "b03ef71b8e08d4be80e5afe606d33ac9cddd6839d32b82b68353e3b868bdaeef",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "user_shared_file",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1145,
+        "brand": "XMASTER",
+        "source_model": "",
+        "source_image_url": "https://oss-hk.247fitness.hk/5c3572d5992b1d0f36b15e333116e097ab119656f9fc69b1a2209e8d7aff9121.jpg",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://drive.usercontent.google.com/uc?id=1_4qQ691Vd5eD4U9J7SeWhFh_ZNSx3Gju&export=download",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_xmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for XMASTER Inventory IDs 1144, 1145, 1155, 1462 and 1488 with the supplied references."
+        },
+        "image_source_type": "user_shared_file",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://drive.usercontent.google.com/uc?id=1_4qQ691Vd5eD4U9J7SeWhFh_ZNSx3Gju&export=download",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "b03ef71b8e08d4be80e5afe606d33ac9cddd6839d32b82b68353e3b868bdaeef",
+          "checked_at": "2026-11-09",
+          "method": "http_download"
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: user_shared_file. Google Drive shared file recorded as a user-supplied image with unverified manufacturer origin. No product page or manufacturer name wording was supplied; official English name and product URL remain blank.",
+        "supplied_image_url": "https://drive.google.com/file/d/1_4qQ691Vd5eD4U9J7SeWhFh_ZNSx3Gju/view?usp=sharing"
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: user_shared_file. Google Drive shared file recorded as a user-supplied image with unverified manufacturer origin. No product page or manufacturer name wording was supplied; official English name and product URL remain blank."
     },
     {
       "inventory_id": 1155,
@@ -106724,14 +106819,14 @@
         "yuen-long"
       ],
       "lookup_model": "ZY-2003",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Multi-Angle Adjustable Bench Press Rack",
+      "official_product_url": "https://www.xmasterfitness.com/products/multi-angle-adjustable-bench-press-rack",
+      "official_image_url": "https://img-va.myshopline.com/image/store/1688111732036/847709d0ab5c35d290c29895d330d81a.jpg?w=800&h=800&q=80",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Product name follows the supplied product page; inventory match is an explicit user decision.",
       "search_evidence": {
         "inventory_id": 1155,
         "query": "XMASTER \"ZY-2003\"",
@@ -106743,13 +106838,60 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://img-va.myshopline.com/image/store/1688111732036/847709d0ab5c35d290c29895d330d81a.jpg?w=800&h=800&q=80",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "51b7975e114ae6a1c7eb35c8f21a8f8e52bdb24e11f8943deceb80c504da4663",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1155,
+        "brand": "XMASTER",
+        "source_model": "ZY-2003",
+        "source_image_url": "https://oss-hk.247fitness.hk/abbf78e28d918158cd3fbab305885f525bb93f1ba98e27e7ac7b4688ab8d584c.png",
+        "official_name": "Multi-Angle Adjustable Bench Press Rack",
+        "official_product_url": "https://www.xmasterfitness.com/products/multi-angle-adjustable-bench-press-rack",
+        "official_image_url": "https://img-va.myshopline.com/image/store/1688111732036/847709d0ab5c35d290c29895d330d81a.jpg?w=800&h=800&q=80",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_xmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for XMASTER Inventory IDs 1144, 1145, 1155, 1462 and 1488 with the supplied references."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://img-va.myshopline.com/image/store/1688111732036/847709d0ab5c35d290c29895d330d81a.jpg?w=800&h=800&q=80",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "51b7975e114ae6a1c7eb35c8f21a8f8e52bdb24e11f8943deceb80c504da4663",
+          "checked_at": "2026-11-09",
+          "method": "http_download"
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Product name follows the supplied product page; inventory match is an explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Product name follows the supplied product page; inventory match is an explicit user decision."
     },
     {
       "inventory_id": 1156,
@@ -107159,14 +107301,14 @@
         "tsuen-wan-sixth-branch"
       ],
       "lookup_model": "Combo Rack",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Squat Combo Rack",
+      "official_product_url": "https://www.xmasterfitness.com/products/squat-combo-rack",
+      "official_image_url": "https://img-va.myshopline.com/image/store/1688111732036/31c4150a55087f0d8f3395e9ae6aacb_800x.jpg?w=800&h=800&q=80",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Product name follows the supplied product page; inventory match is an explicit user decision.",
       "search_evidence": {
         "inventory_id": 1462,
         "query": "XMASTER \"Combo Rack\"",
@@ -107222,13 +107364,60 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://img-va.myshopline.com/image/store/1688111732036/31c4150a55087f0d8f3395e9ae6aacb_800x.jpg?w=800&h=800&q=80",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "7982a25a2a74145db486e76990c52b74228311bec809d621b5a7781488677cdd",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1462,
+        "brand": "XMASTER",
+        "source_model": "Combo Rack",
+        "source_image_url": "https://oss-hk.247fitness.hk/d47aacafe996db6652c43938a481aa91cf911f2c092d52e3fe89196bc611637d.webp",
+        "official_name": "Squat Combo Rack",
+        "official_product_url": "https://www.xmasterfitness.com/products/squat-combo-rack",
+        "official_image_url": "https://img-va.myshopline.com/image/store/1688111732036/31c4150a55087f0d8f3395e9ae6aacb_800x.jpg?w=800&h=800&q=80",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_xmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for XMASTER Inventory IDs 1144, 1145, 1155, 1462 and 1488 with the supplied references."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://img-va.myshopline.com/image/store/1688111732036/31c4150a55087f0d8f3395e9ae6aacb_800x.jpg?w=800&h=800&q=80",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "7982a25a2a74145db486e76990c52b74228311bec809d621b5a7781488677cdd",
+          "checked_at": "2026-11-09",
+          "method": "http_download"
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Product name follows the supplied product page; inventory match is an explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Product name follows the supplied product page; inventory match is an explicit user decision."
     },
     {
       "inventory_id": 1488,
@@ -107261,14 +107450,14 @@
         "yuen-long-fourth-branch"
       ],
       "lookup_model": "Adjustable Bench 2.0",
-      "official_name": "XMASTER Adjustable Bench 2.0 | 500KG Capacity – XMASTER FITNESS",
-      "official_product_url": "https://www.xmasterfitness.com/products/adjustable-bench-2.0",
-      "official_image_url": null,
-      "status": "model_verified_image_missing",
+      "official_name": "Stainless Steel Adjustable FlD Bench",
+      "official_product_url": "https://www.xmasterfitness.com/products/stainless-steel-adjustable-fld-bench",
+      "official_image_url": "https://img-va.myshopline.com/image/store/1688111732036/c5f38a6caf335d57984ed052a419389.jpg?w=800&h=800&q=80",
+      "status": "model_verified",
       "match_method": "manual_equipment_review",
       "evidence": null,
       "candidates": [],
-      "reason": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Supplied manufacturer page heading Stainless Steel Adjustable FlD Bench replaces the previous Adjustable Bench 2.0 reference by explicit user approval. Captured Adjustable Bench 2.0 text remains unchanged; no equivalence between these models is inferred.",
       "search_evidence": {
         "inventory_id": 1488,
         "query": "XMASTER \"Adjustable Bench 2.0\"",
@@ -107324,7 +107513,15 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://img-va.myshopline.com/image/store/1688111732036/c5f38a6caf335d57984ed052a419389.jpg?w=800&h=800&q=80",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "622d6140f67293e870daf984ba482698fb47e2708bc359cfc2ffc4088a200082",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
       "browser_review": {
         "inventory_id": 1488,
         "brand": "XMASTER",
@@ -107342,7 +107539,7 @@
       },
       "match_scope": "manual_review",
       "configuration_status": "manually_reviewed",
-      "image_verification_status": "image_missing",
+      "image_verification_status": "manually_reviewed",
       "manual_review": {
         "inventory_id": 1488,
         "brand": "XMASTER",
@@ -107383,7 +107580,42 @@
         },
         "note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
       },
-      "configuration_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained."
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Supplied manufacturer page heading Stainless Steel Adjustable FlD Bench replaces the previous Adjustable Bench 2.0 reference by explicit user approval. Captured Adjustable Bench 2.0 text remains unchanged; no equivalence between these models is inferred.",
+      "image_source_type": "manufacturer_catalog",
+      "manual_image_review": {
+        "inventory_id": 1488,
+        "brand": "XMASTER",
+        "source_model": "Adjustable Bench 2.0",
+        "source_image_url": "https://oss-hk.247fitness.hk/0bca7f726381517faba892c351856c645d45ce24423e30cf60736387d0ac7b67.webp",
+        "official_name": "Stainless Steel Adjustable FlD Bench",
+        "official_product_url": "https://www.xmasterfitness.com/products/stainless-steel-adjustable-fld-bench",
+        "official_image_url": "https://img-va.myshopline.com/image/store/1688111732036/c5f38a6caf335d57984ed052a419389.jpg?w=800&h=800&q=80",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_xmaster_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for XMASTER Inventory IDs 1144, 1145, 1155, 1462 and 1488 with the supplied references."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": "XMASTER Adjustable Bench 2.0 | 500KG Capacity – XMASTER FITNESS",
+          "official_product_url": "https://www.xmasterfitness.com/products/adjustable-bench-2.0",
+          "official_image_url": null,
+          "status": "model_verified_image_missing"
+        },
+        "previous_research_note": "User confirmed the First candidate for this inventory record. Official name, product URL and available image URL use that approved candidate. Original source fields, previous research notes and candidates remain in the manual review evidence; this user decision does not establish a manufacturer SKU alias or erase previously documented configuration conflicts. The approved candidate has no image URL; model_verified_image_missing is retained.",
+        "image_check": {
+          "url": "https://img-va.myshopline.com/image/store/1688111732036/c5f38a6caf335d57984ed052a419389.jpg?w=800&h=800&q=80",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "622d6140f67293e870daf984ba482698fb47e2708bc359cfc2ffc4088a200082",
+          "checked_at": "2026-11-09",
+          "method": "http_download"
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Supplied manufacturer page heading Stainless Steel Adjustable FlD Bench replaces the previous Adjustable Bench 2.0 reference by explicit user approval. Captured Adjustable Bench 2.0 text remains unchanged; no equivalence between these models is inferred."
+      }
     },
     {
       "inventory_id": 1178,
