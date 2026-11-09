@@ -417,16 +417,17 @@ class SpecificationNameTests(unittest.TestCase):
         self.assertEqual({r['inventory_id'] for r in reviews}, {46, 65, 67, 68, 69, 89, 158, 1368, 1485, 1486})
         for review in reviews:
             entry = next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id'])
-            self.assertEqual(entry['status'], entry.get('manual_review', review)['status'])
+            self.assertEqual(entry['status'], entry.get('manual_image_review', entry.get('manual_review', review))['status'])
             self.assertTrue(entry['official_name'])
             self.assertEqual(entry['official_product_url'], review['official_product_url'])
             self.assertEqual(entry['source_model'], review['source_model'])
         byid = {e['inventory_id']: e for e in catalog['equipment']}
         self.assertEqual(byid[46]['status'], 'model_verified')
         self.assertEqual(byid[46]['official_model'], 'PL-GRIP')
-        self.assertEqual(byid[68]['status'], 'model_verified_image_missing')
-        self.assertEqual(byid[68]['image_verification_status'], 'candidate_requires_review')
-        self.assertIsNone(byid[65]['official_image_url'])
+        self.assertEqual(byid[68]['status'], 'model_verified')
+        self.assertEqual(byid[68]['image_verification_status'], 'manually_reviewed')
+        self.assertTrue(byid[65]['official_image_url'])
+        self.assertEqual(byid[65]['manual_image_review']['previous_reference']['status'], 'model_verified_image_missing')
         self.assertEqual(byid[1368]['status'], 'model_verified')
         self.assertEqual(byid[1368]['manual_review']['previous_status'], 'candidate_requires_review')
         self.assertEqual(next(r for r in reviews if r['inventory_id'] == 1368)['status'], 'candidate_requires_review')
@@ -977,6 +978,31 @@ class SpecificationNameTests(unittest.TestCase):
                     research.apply_panatta_user_reviews(stale, {'startrac_user_reviews': [review]}, 'STAR TRAC', 'startrac_user_reviews')
             with self.assertRaises(ValueError):
                 research.apply_panatta_user_reviews(copy.deepcopy(first), {'startrac_user_reviews': [{**review, 'reviewed_by': 'automated'}]}, 'STAR TRAC', 'startrac_user_reviews')
+
+    def test_hammer_image_user_approvals_preserve_sources_and_reject_stale_references(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['hammer_strength_user_image_reviews']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {65, 68})
+        for review in reviews:
+            entry = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id']))
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['official_image_url'], review['official_image_url'])
+            self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+            entry.update(review['previous_reference'])
+            result = {'equipment': [entry]}
+            research.apply_panatta_user_reviews(result, {'hammer_strength_user_image_reviews': [review]}, 'HAMMER STRENGTH', 'hammer_strength_user_image_reviews')
+            first = copy.deepcopy(result)
+            research.apply_panatta_user_reviews(result, {'hammer_strength_user_image_reviews': [review]}, 'HAMMER STRENGTH', 'hammer_strength_user_image_reviews')
+            self.assertEqual(result, first)
+            for field in ('source_model', 'source_image_url', 'official_image_url'):
+                stale = copy.deepcopy(first)
+                stale['equipment'][0][field] = 'changed'
+                with self.assertRaises(ValueError):
+                    research.apply_panatta_user_reviews(stale, {'hammer_strength_user_image_reviews': [review]}, 'HAMMER STRENGTH', 'hammer_strength_user_image_reviews')
+            with self.assertRaises(ValueError):
+                research.apply_panatta_user_reviews(copy.deepcopy(first), {'hammer_strength_user_image_reviews': [{**review, 'reviewed_by': 'automated'}]}, 'HAMMER STRENGTH', 'hammer_strength_user_image_reviews')
 
     def test_manual_review_replays_and_rejects_changed_reviewed_data(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'

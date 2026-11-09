@@ -123890,5 +123890,85 @@
       },
       "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names remain unchanged; no manufacturer SKU, console or generation alias is asserted. Product name follows the supplied product reference. Image downloaded successfully. Image provenance: retailer. The supplied retailer page identifies StairMaster 8Gx, while captured inventory brand is STAR TRAC. Brand remains unchanged; the cross-brand discrepancy is preserved for later catalog correction."
     }
+  ],
+  "hammer_strength_user_image_reviews": [
+    {
+      "inventory_id": 65,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLLHS",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/e84e731c4158814242f02dcca51858b2dd823ea56a0a907d3fee1ea5675845ee.jpg",
+      "official_name": "Linear Hack Press",
+      "official_product_url": "https://www.lifefitness.com.au/wp-content/uploads/2022/06/GM-002-20-ISBU-HammerStrengthCatalog-vf-PRINT.pdf",
+      "official_image_url": "https://cdn11.bigcommerce.com/s-g5uohfnavt/images/stencil/1280x1280/products/2084/2731/Hammer_Strength_Linear_Hack_Sqaut_Haack_Slide_-_Stock_-_1__30073.1752510251.jpg?c=1",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-09",
+      "review_source": {
+        "scope": "explicit_hammer_strength_model_and_image_approval",
+        "instruction": "User explicitly requested model_verified for HAMMER STRENGTH Inventory IDs 65 and 68 with the supplied image URLs."
+      },
+      "image_source_type": "external_cdn_unattributed",
+      "previous_reference": {
+        "official_name": "Linear Hack Press",
+        "official_product_url": "https://www.lifefitness.com.au/wp-content/uploads/2022/06/GM-002-20-ISBU-HammerStrengthCatalog-vf-PRINT.pdf",
+        "official_image_url": null,
+        "status": "model_verified_image_missing"
+      },
+      "previous_candidates": [],
+      "previous_research_note": "Manufacturer 2022 catalog page 61 lists Linear Hack Press / PL-LHS-01. Source PLLHS normalizes to the PL-LHS base, with the same descriptive product name; revision -01 is not verified for the source. No standalone official image URL was established; a PDF page is not used as an image URL.",
+      "image_check": {
+        "url": "https://cdn11.bigcommerce.com/s-g5uohfnavt/images/stencil/1280x1280/products/2084/2731/Hammer_Strength_Linear_Hack_Sqaut_Haack_Slide_-_Stock_-_1__30073.1752510251.jpg?c=1",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "8155d7e23633d3a7eef351fc9d9614a02a6eb443b7c2cb38eff7e9bc0f5e5666",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
+      "note": "User explicitly approved the supplied model/image reference on 2026-11-09. Existing official names, product URLs, Chinese names and captured model codes are preserved; no new manufacturer SKU alias is asserted. Image download succeeded. User-supplied BigCommerce CDN image; publisher/manufacturer origin has not been independently established."
+    },
+    {
+      "inventory_id": 68,
+      "brand": "HAMMER STRENGTH",
+      "source_model": "PLBSQ",
+      "source_image_url": "https://oss-hk.247fitness.hk/equipment/017e9fb1229f9a96750046a92f2e6e12c38f70cf96cdb60dc66622c9e87f768c.jpg",
+      "official_name": "Plate Loaded Belt Squat",
+      "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+      "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-09",
+      "review_source": {
+        "scope": "explicit_hammer_strength_model_and_image_approval",
+        "instruction": "User explicitly requested model_verified for HAMMER STRENGTH Inventory IDs 65 and 68 with the supplied image URLs."
+      },
+      "image_source_type": "manufacturer_catalog",
+      "previous_reference": {
+        "official_name": "Plate Loaded Belt Squat",
+        "official_product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+        "official_image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+        "status": "model_verified_image_missing"
+      },
+      "previous_candidates": [
+        {
+          "name": "Plate Loaded Belt Squat",
+          "product_url": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hammer-strength-plate-loaded-belt-squat",
+          "image_url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+          "reason": "Manufacturer hero image includes optional dip attachment; source capture does not.",
+          "name_zh": "掛片式皮帶深蹲訓練機"
+        }
+      ],
+      "previous_research_note": "Official PL-BSQ matches source PLBSQ. The base Belt Squat is identified; current manufacturer hero image includes the optional dip attachment, absent from the source picture. Base-model photo reference only; optional attachment is not asserted for this inventory. Official image URL is retained as a candidate reference; image-to-source configuration is not verified.",
+      "image_check": {
+        "url": "https://www.lifefitness.com/Kentico13CoreBase/media/LFMedia/LifeFitnessImages/Equipment/Strength/Plate-Loaded/Belt%20Squat/Strength-PlateLoaded-BeltSquat-7.png?h=630&w=1200",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "44acc7a9541adcde70e8340d3105484a0daa545aecda6206b47203772cb2e89c",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
+      "note": "User explicitly approved the supplied model/image reference on 2026-11-09. Existing official names, product URLs, Chinese names and captured model codes are preserved; no new manufacturer SKU alias is asserted. Image download succeeded. User-approved manufacturer-hosted image supersedes the previous unverified image outcome. Historical research and candidates remain in the approval evidence."
+    }
   ]
 }
