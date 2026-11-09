@@ -123718,5 +123718,177 @@
       },
       "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image download succeeded. Image provenance: manufacturer_catalog. Supplied manufacturer page heading Stainless Steel Adjustable FlD Bench replaces the previous Adjustable Bench 2.0 reference by explicit user approval. Captured Adjustable Bench 2.0 text remains unchanged; no equivalence between these models is inferred."
     }
+  ],
+  "startrac_user_reviews": [
+    {
+      "inventory_id": 930,
+      "brand": "STAR TRAC",
+      "source_model": "9-9324-8TR-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/3529f374e1501846dfaecf1f54f3e16ae72aadab9c1ff2c38c6ded4f0852e4b9.png",
+      "official_name": "8TRx Treadmill - NEW",
+      "official_product_url": "https://www.corehandf.com/products/8trx-treadmill-copy",
+      "official_image_url": "https://www.corehandf.com/cdn/shop/files/8TRxSteelFrameApexTouchStarTrac9-9341ProductImage45LeftWeb.png?v=1793723053",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-09",
+      "review_source": {
+        "scope": "explicit_startrac_model_and_image_approval",
+        "instruction": "User explicitly requested model_verified for STAR TRAC Inventory IDs 930, 1167, 1187, 1453 and 1454 with the supplied product and image URLs."
+      },
+      "image_source_type": "manufacturer_catalog",
+      "previous_reference": {
+        "official_name": null,
+        "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=8&m=content&mid=22",
+        "official_image_url": null,
+        "status": "unresolved"
+      },
+      "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "image_check": {
+        "url": "https://www.corehandf.com/cdn/shop/files/8TRxSteelFrameApexTouchStarTrac9-9341ProductImage45LeftWeb.png?v=1793723053",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "cb995fa6e8bd9d150d682cf4abad12bd3cdb2579c47ca9fbb1d0787546a8cd64",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
+      "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names remain unchanged; no manufacturer SKU, console or generation alias is asserted. Product name follows the supplied product reference. Image downloaded successfully. Image provenance: manufacturer_catalog. The supplied page/image describes the new 8TRx steel-frame Apex Touch product (image filename 9-9341), while captured inventory describes StarTrac 8TR Treadmill 21IN LED / 9-9324-8TR-LED. This reference is retained by explicit user approval, not independent verification of identical model or console."
+    },
+    {
+      "inventory_id": 1167,
+      "brand": "STAR TRAC",
+      "source_model": "9-9324-8TR22-LED",
+      "source_image_url": "https://oss-hk.247fitness.hk/a3bbde72ded46e7b48a8fe84395934b626de10f767c7cd6f0dd57b845cd53739.jpeg",
+      "official_name": "8TRx Treadmill - NEW",
+      "official_product_url": "https://www.corehandf.com/products/8trx-treadmill-copy",
+      "official_image_url": "https://www.corehandf.com/cdn/shop/files/8TRxSteelFrameApexTouchStarTrac9-9341ProductImage45LeftWeb.png?v=1793723053",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-09",
+      "review_source": {
+        "scope": "explicit_startrac_model_and_image_approval",
+        "instruction": "User explicitly requested model_verified for STAR TRAC Inventory IDs 930, 1167, 1187, 1453 and 1454 with the supplied product and image URLs."
+      },
+      "image_source_type": "manufacturer_catalog",
+      "previous_reference": {
+        "official_name": null,
+        "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=8&m=content&mid=22",
+        "official_image_url": null,
+        "status": "unresolved"
+      },
+      "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "image_check": {
+        "url": "https://www.corehandf.com/cdn/shop/files/8TRxSteelFrameApexTouchStarTrac9-9341ProductImage45LeftWeb.png?v=1793723053",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "cb995fa6e8bd9d150d682cf4abad12bd3cdb2579c47ca9fbb1d0787546a8cd64",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
+      "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names remain unchanged; no manufacturer SKU, console or generation alias is asserted. Product name follows the supplied product reference. Image downloaded successfully. Image provenance: manufacturer_catalog. The supplied page/image describes the new 8TRx steel-frame Apex Touch product (image filename 9-9341), while captured inventory describes Star Trac 8TR Commercial Treadmill w/ 22\" LED / 9-9324-8TR22-LED. This reference is retained by explicit user approval, not independent verification of identical model or console."
+    },
+    {
+      "inventory_id": 1187,
+      "brand": "STAR TRAC",
+      "source_model": "NXT7170",
+      "source_image_url": "https://oss-hk.247fitness.hk/e84d8f247f6c6b0a74a0213affcf53b7f996ae72b3f84f3a02fb7cd7d9547ee3.webp",
+      "official_name": "Spinner NXT®",
+      "official_product_url": "https://spinning.com/products/spinner-nxt",
+      "official_image_url": "https://spinning.com/cdn/shop/files/8dc68ab90d79bbb81264e1171b24574ea1c37b7c3c9e0b30b780867c51daf52c__03246.1665778926.1280.1280.jpg?v=1732322478&width=1200",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-09",
+      "review_source": {
+        "scope": "explicit_startrac_model_and_image_approval",
+        "instruction": "User explicitly requested model_verified for STAR TRAC Inventory IDs 930, 1167, 1187, 1453 and 1454 with the supplied product and image URLs."
+      },
+      "image_source_type": "manufacturer_catalog",
+      "previous_reference": {
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null,
+        "status": "unresolved"
+      },
+      "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "image_check": {
+        "url": "https://spinning.com/cdn/shop/files/8dc68ab90d79bbb81264e1171b24574ea1c37b7c3c9e0b30b780867c51daf52c__03246.1665778926.1280.1280.jpg?v=1732322478&width=1200",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "f315d1f146c3348ec0529aac0ea1b08eb79caba0e5d494f818049dd7e8487f80",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
+      "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names remain unchanged; no manufacturer SKU, console or generation alias is asserted. Product name follows the supplied product reference. Image downloaded successfully. Image provenance: manufacturer_catalog. Current Spinning NXT reference is user-approved; no exact generation equivalence with captured NXT7170 is established."
+    },
+    {
+      "inventory_id": 1453,
+      "brand": "STAR TRAC",
+      "source_model": "H-9-9334-6TR-220-LED-KM-60",
+      "source_image_url": "https://oss-hk.247fitness.hk/86602e17ec64708c3830356a2c506685d21058ee72ecf4fa15282f66040babdf.png",
+      "official_name": "8TRx Treadmill - NEW",
+      "official_product_url": "https://www.corehandf.com/products/8trx-treadmill-copy",
+      "official_image_url": "https://www.corehandf.com/cdn/shop/files/8TRxSteelFrameApexTouchStarTrac9-9341ProductImage45LeftWeb.png?v=1793723053",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-09",
+      "review_source": {
+        "scope": "explicit_startrac_model_and_image_approval",
+        "instruction": "User explicitly requested model_verified for STAR TRAC Inventory IDs 930, 1167, 1187, 1453 and 1454 with the supplied product and image URLs."
+      },
+      "image_source_type": "manufacturer_catalog",
+      "previous_reference": {
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null,
+        "status": "unresolved"
+      },
+      "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "image_check": {
+        "url": "https://www.corehandf.com/cdn/shop/files/8TRxSteelFrameApexTouchStarTrac9-9341ProductImage45LeftWeb.png?v=1793723053",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "cb995fa6e8bd9d150d682cf4abad12bd3cdb2579c47ca9fbb1d0787546a8cd64",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
+      "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names remain unchanged; no manufacturer SKU, console or generation alias is asserted. Product name follows the supplied product reference. Image downloaded successfully. Image provenance: manufacturer_catalog. The supplied page/image describes the new 8TRx steel-frame Apex Touch product (image filename 9-9341), while captured inventory describes 6 SERIES TREADMILL / H-9-9334-6TR-220-LED-KM-60. This reference is retained by explicit user approval, not independent verification of identical model or console."
+    },
+    {
+      "inventory_id": 1454,
+      "brand": "STAR TRAC",
+      "source_model": "H-9-5395-8GX-LED-60",
+      "source_image_url": "https://oss-hk.247fitness.hk/2e566001cc09bb23f9c101361779d4757d315186eb18cc046a48b9a73a4295aa.webp",
+      "official_name": "StairMaster 8Gx Series Gauntlet StepMill",
+      "official_product_url": "https://ardentfitness.com/gauntlet-8gx-climber/",
+      "official_image_url": "https://cdn11.bigcommerce.com/s-o2j5iejem/images/stencil/1280x1280/products/1364/2611/stairmaster_8Gx-StepMill_1__93046.1659718561.jpg?c=1",
+      "status": "model_verified",
+      "reviewed_by": "user",
+      "review_date": "2026-11-09",
+      "review_source": {
+        "scope": "explicit_startrac_model_and_image_approval",
+        "instruction": "User explicitly requested model_verified for STAR TRAC Inventory IDs 930, 1167, 1187, 1453 and 1454 with the supplied product and image URLs."
+      },
+      "image_source_type": "retailer",
+      "previous_reference": {
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": null,
+        "status": "unresolved"
+      },
+      "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "image_check": {
+        "url": "https://cdn11.bigcommerce.com/s-o2j5iejem/images/stencil/1280x1280/products/1364/2611/stairmaster_8Gx-StepMill_1__93046.1659718561.jpg?c=1",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "29793fd42d1874af0f2d5b4d0f42172a41cde5be2dd886f729a888103d99b37f",
+        "checked_at": "2026-11-09",
+        "method": "http_download"
+      },
+      "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names remain unchanged; no manufacturer SKU, console or generation alias is asserted. Product name follows the supplied product reference. Image downloaded successfully. Image provenance: retailer. The supplied retailer page identifies StairMaster 8Gx, while captured inventory brand is STAR TRAC. Brand remains unchanged; the cross-brand discrepancy is preserved for later catalog correction."
+    }
   ]
 }
