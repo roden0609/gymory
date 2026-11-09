@@ -979,6 +979,31 @@ class SpecificationNameTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 research.apply_panatta_user_reviews(copy.deepcopy(first), {'startrac_user_reviews': [{**review, 'reviewed_by': 'automated'}]}, 'STAR TRAC', 'startrac_user_reviews')
 
+    def test_multi_brand_user_approvals_preserve_sources_and_reject_stale_references(self):
+        folder = Path(__file__).resolve().parents[2] / 'data/equipments'
+        catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())
+        evidence = json.loads((folder / '247-fitness-hk-official-evidence.json').read_text())
+        reviews = evidence['multi_brand_user_reviews']
+        self.assertEqual({r['inventory_id'] for r in reviews}, {1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150, 1425, 1072, 1073})
+        for review in reviews:
+            entry = copy.deepcopy(next(e for e in catalog['equipment'] if e['inventory_id'] == review['inventory_id']))
+            self.assertEqual(entry['status'], 'model_verified')
+            self.assertEqual(entry['official_image_url'], review['official_image_url'])
+            self.assertEqual(entry['image_verification_status'], 'manually_reviewed')
+            entry.update(review['previous_reference'])
+            result = {'equipment': [entry]}
+            research.apply_panatta_user_reviews(result, {'multi_brand_user_reviews': [review]}, review['brand'], 'multi_brand_user_reviews')
+            first = copy.deepcopy(result)
+            research.apply_panatta_user_reviews(result, {'multi_brand_user_reviews': [review]}, review['brand'], 'multi_brand_user_reviews')
+            self.assertEqual(result, first)
+            for field in ('source_model', 'source_image_url', 'official_image_url'):
+                stale = copy.deepcopy(first)
+                stale['equipment'][0][field] = 'changed'
+                with self.assertRaises(ValueError):
+                    research.apply_panatta_user_reviews(stale, {'multi_brand_user_reviews': [review]}, review['brand'], 'multi_brand_user_reviews')
+            with self.assertRaises(ValueError):
+                research.apply_panatta_user_reviews(copy.deepcopy(first), {'multi_brand_user_reviews': [{**review, 'reviewed_by': 'automated'}]}, review['brand'], 'multi_brand_user_reviews')
+
     def test_hammer_image_user_approvals_preserve_sources_and_reject_stale_references(self):
         folder = Path(__file__).resolve().parents[2] / 'data/equipments'
         catalog = json.loads((folder / '247-fitness-hk-official-catalog.json').read_text())

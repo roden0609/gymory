@@ -4,8 +4,7 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 821,
-    "unresolved": 12
+    "model_verified": 833
   },
   "catalog_product_counts": {
     "ABS": 495,
@@ -8700,14 +8699,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "ABS1008-01B",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "AbSolo®",
+      "official_product_url": "https://theabscompany.com/products/ab-solo",
+      "official_image_url": "https://theabscompany.com/cdn/shop/files/AbSoloMainimg1.png?v=1785783536&width=1440",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision.",
       "search_evidence": {
         "inventory_id": 1141,
         "query": "ABS \"ABS1008-01B\"",
@@ -8723,13 +8722,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://theabscompany.com/cdn/shop/files/AbSoloMainimg1.png?v=1785783536&width=1440",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "b046414810dc7701ec64318e0e30e6873507c8a6d1069f4339e7d3014f3e66bd",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1141,
+        "brand": "ABS",
+        "source_model": "ABS1008-01B",
+        "source_image_url": "https://oss-hk.247fitness.hk/de79ddd6ff43fa00915a81091ad275e763953e618536be594f994565b9fbbb09.jpg",
+        "official_name": "AbSolo®",
+        "official_product_url": "https://theabscompany.com/products/ab-solo",
+        "official_image_url": "https://theabscompany.com/cdn/shop/files/AbSoloMainimg1.png?v=1785783536&width=1440",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://theabscompany.com/cdn/shop/files/AbSoloMainimg1.png?v=1785783536&width=1440",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "b046414810dc7701ec64318e0e30e6873507c8a6d1069f4339e7d3014f3e66bd",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision."
     },
     {
       "inventory_id": 1142,
@@ -8898,14 +8946,14 @@
         "tuen-mun"
       ],
       "lookup_model": "AS-ABPX Bike Pro X",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "AssaultBike Pro X - Belt Drive",
+      "official_product_url": "https://assaultfitness.ch/gb/bikes/575-assault-airbike.html",
+      "official_image_url": "https://assaultfitness.ch/1848-thickbox_default/assault-airbike.jpg",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: regional_manufacturer_site. Image retrieval failed: <urlopen error [Errno 54] Connection reset by peer>. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Product name follows the supplied product page; inventory match is the explicit user decision.",
       "search_evidence": {
         "inventory_id": 1098,
         "query": "ASSAULT FITNESS \"AS-ABPX Bike Pro X\"",
@@ -8953,13 +9001,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://assaultfitness.ch/1848-thickbox_default/assault-airbike.jpg",
+        "available": null,
+        "http_status": null,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_failed_user_approved_reference",
+        "error": "<urlopen error [Errno 54] Connection reset by peer>"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "regional_manufacturer_site",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1098,
+        "brand": "ASSAULT FITNESS",
+        "source_model": "AS-ABPX Bike Pro X",
+        "source_image_url": "https://oss-hk.247fitness.hk/300ae9b284d3afdb77beeb757e81cfe635ceb29c64170cfdaf4df2eccecf0505.webp",
+        "official_name": "AssaultBike Pro X - Belt Drive",
+        "official_product_url": "https://assaultfitness.ch/gb/bikes/575-assault-airbike.html",
+        "official_image_url": "https://assaultfitness.ch/1848-thickbox_default/assault-airbike.jpg",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "regional_manufacturer_site",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://assaultfitness.ch/1848-thickbox_default/assault-airbike.jpg",
+          "available": null,
+          "http_status": null,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_failed_user_approved_reference",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>"
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: regional_manufacturer_site. Image retrieval failed: <urlopen error [Errno 54] Connection reset by peer>. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Product name follows the supplied product page; inventory match is the explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: regional_manufacturer_site. Image retrieval failed: <urlopen error [Errno 54] Connection reset by peer>. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Product name follows the supplied product page; inventory match is the explicit user decision."
     },
     {
       "inventory_id": 1099,
@@ -14245,14 +14342,14 @@
         "tai-po-fourth-branch"
       ],
       "lookup_model": "CONPII-ROW ERG STANDARD CONCEPT 2 PM 5 INDOOR POWER",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Concept2 RowErg Rowing Machine",
+      "official_product_url": "https://www.concept2.com/ergs/rowerg",
+      "official_image_url": "https://cms.concept2.com/sites/default/files/styles/max_2048/public/2024-02/RowERG_Standard_FlyFrontAngle_Gator_1920px.png?itok=vdsr5YUv",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image retrieval failed: HTTP Error 403: Forbidden. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Product name follows the supplied product page; inventory match is the explicit user decision.",
       "search_evidence": {
         "inventory_id": 1365,
         "query": "Concept 2 \"CONPII-ROW ERG STANDARD CONCEPT 2 PM 5 INDOOR POWER\"",
@@ -14328,13 +14425,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://cms.concept2.com/sites/default/files/styles/max_2048/public/2024-02/RowERG_Standard_FlyFrontAngle_Gator_1920px.png?itok=vdsr5YUv",
+        "available": null,
+        "http_status": 403,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_failed_user_approved_reference",
+        "error": "HTTP Error 403: Forbidden"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1365,
+        "brand": "Concept 2",
+        "source_model": "CONPII-ROW ERG STANDARD CONCEPT 2 PM 5 INDOOR POWER",
+        "source_image_url": "https://oss-hk.247fitness.hk/9e98f9d0c34b5b9c48367795e107ada521548d96d28adacea0eef1d0d6219f04.jpg",
+        "official_name": "Concept2 RowErg Rowing Machine",
+        "official_product_url": "https://www.concept2.com/ergs/rowerg",
+        "official_image_url": "https://cms.concept2.com/sites/default/files/styles/max_2048/public/2024-02/RowERG_Standard_FlyFrontAngle_Gator_1920px.png?itok=vdsr5YUv",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://cms.concept2.com/sites/default/files/styles/max_2048/public/2024-02/RowERG_Standard_FlyFrontAngle_Gator_1920px.png?itok=vdsr5YUv",
+          "available": null,
+          "http_status": 403,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_failed_user_approved_reference",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image retrieval failed: HTTP Error 403: Forbidden. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Product name follows the supplied product page; inventory match is the explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image retrieval failed: HTTP Error 403: Forbidden. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Product name follows the supplied product page; inventory match is the explicit user decision."
     },
     {
       "inventory_id": 1347,
@@ -16529,14 +16675,14 @@
         "yuen-long-third-branch"
       ],
       "lookup_model": "3085550-03",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Prestera Power Rack Black",
+      "official_product_url": "https://eleiko.com/en/equipment/racksandrigs/racks/3085611-03-eleiko-prestera-power-rack-black",
+      "official_image_url": "https://drive.usercontent.google.com/uc?id=1zHTO8FUjdDebIrc1MvhxvSCngs47HwD-&export=download",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: user_shared_file. Image download succeeded. Manufacturer page names Prestera Power Rack Black (3085611-03), while captured source is 3085550-03 and includes an insert platform. Shared Drive image is user-approved; manufacturer origin of the file is unverified.",
       "search_evidence": {
         "inventory_id": 1298,
         "query": "ELEIKO \"3085550-03\"",
@@ -16604,13 +16750,63 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://drive.usercontent.google.com/uc?id=1zHTO8FUjdDebIrc1MvhxvSCngs47HwD-&export=download",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/webp",
+        "sha256": "8bad53bc00d0a95e3da2beb53222ea5ced28c0954989419e0280f34a8e6a310e",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "user_shared_file",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1298,
+        "brand": "ELEIKO",
+        "source_model": "3085550-03",
+        "source_image_url": "https://oss-hk.247fitness.hk/b3f3774bb8eb426d7ed7e537e0a0c7ed75b44c2efc0469444e83c164a2052853.jpg",
+        "official_name": "Prestera Power Rack Black",
+        "official_product_url": "https://eleiko.com/en/equipment/racksandrigs/racks/3085611-03-eleiko-prestera-power-rack-black",
+        "official_image_url": "https://drive.usercontent.google.com/uc?id=1zHTO8FUjdDebIrc1MvhxvSCngs47HwD-&export=download",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "user_shared_file",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://drive.usercontent.google.com/uc?id=1zHTO8FUjdDebIrc1MvhxvSCngs47HwD-&export=download",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/webp",
+          "sha256": "8bad53bc00d0a95e3da2beb53222ea5ced28c0954989419e0280f34a8e6a310e",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: user_shared_file. Image download succeeded. Manufacturer page names Prestera Power Rack Black (3085611-03), while captured source is 3085550-03 and includes an insert platform. Shared Drive image is user-approved; manufacturer origin of the file is unverified.",
+        "supplied_image_url": "https://drive.google.com/file/d/1zHTO8FUjdDebIrc1MvhxvSCngs47HwD-/view?usp=sharing"
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: user_shared_file. Image download succeeded. Manufacturer page names Prestera Power Rack Black (3085611-03), while captured source is 3085550-03 and includes an insert platform. Shared Drive image is user-approved; manufacturer origin of the file is unverified."
     },
     {
       "inventory_id": 1299,
@@ -17966,14 +18162,14 @@
         "tseung-kwan-o-5th-branch"
       ],
       "lookup_model": "FMDY14XRG",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "14' Premium 4.5 Rig",
+      "official_product_url": "https://www.freemotionfitness.com/zh-chs/strength-machine/14-premium-4-5-rig/",
+      "official_image_url": "https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/blt0e080df5034fff1f/6a0edd2826d6ac5e822900d1/14-Premium-4.5.png?branch=uat_components&width=1920&quality=65&disable=upscale&environment=production&format=pjpg",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied page slug and image label; exact page wording could not be read because HTTP returned 429 and browser navigation failed. No Chinese translation is inferred.",
       "search_evidence": {
         "inventory_id": 515,
         "query": "FREEMOTION \"FMDY14XRG\"",
@@ -18029,13 +18225,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/blt0e080df5034fff1f/6a0edd2826d6ac5e822900d1/14-Premium-4.5.png?branch=uat_components&width=1920&quality=65&disable=upscale&environment=production&format=pjpg",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "0c4ab7f4f138b0365b8d948ee653c5f469f5fc64f7351bcf284a3f5549c8d01e",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 515,
+        "brand": "FREEMOTION",
+        "source_model": "FMDY14XRG",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/db89149b2376d5693b654439e03894a9665888a3e17ef01d383c8e949f163ecd.jpg",
+        "official_name": "14' Premium 4.5 Rig",
+        "official_product_url": "https://www.freemotionfitness.com/zh-chs/strength-machine/14-premium-4-5-rig/",
+        "official_image_url": "https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/blt0e080df5034fff1f/6a0edd2826d6ac5e822900d1/14-Premium-4.5.png?branch=uat_components&width=1920&quality=65&disable=upscale&environment=production&format=pjpg",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://images.contentstack.io/v3/assets/blt57f09fe1af8ef70f/blt0e080df5034fff1f/6a0edd2826d6ac5e822900d1/14-Premium-4.5.png?branch=uat_components&width=1920&quality=65&disable=upscale&environment=production&format=pjpg",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "0c4ab7f4f138b0365b8d948ee653c5f469f5fc64f7351bcf284a3f5549c8d01e",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied page slug and image label; exact page wording could not be read because HTTP returned 429 and browser navigation failed. No Chinese translation is inferred."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied page slug and image label; exact page wording could not be read because HTTP returned 429 and browser navigation failed. No Chinese translation is inferred."
     },
     {
       "inventory_id": 523,
@@ -30538,12 +30783,12 @@
       "lookup_model": "-",
       "official_name": null,
       "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_image_url": "https://yt3.googleusercontent.com/pDr7yINa4vDfP8NkNzghDQpyQGvjbQ8B_vqUF9gVks2fAOIBVPNLUM3OwaLPOZl_yOAByy4l=s900-c-k-c0x00ffffff-no-rj",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved this reference on 2026-11-09 and requested model_verified. The supplied image is a HOWBODY brand logo, not an equipment product photograph. Image download succeeded and logo was visually inspected. Google-hosted image provenance is external_cdn_unattributed; manufacturer origin is unverified. No specific equipment model is established. Official English name and product URL remain blank; captured brand, name and model placeholder are unchanged. Status reflects the explicit user decision, not independent exact-model verification.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1072,
@@ -30600,13 +30845,61 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://yt3.googleusercontent.com/pDr7yINa4vDfP8NkNzghDQpyQGvjbQ8B_vqUF9gVks2fAOIBVPNLUM3OwaLPOZl_yOAByy4l=s900-c-k-c0x00ffffff-no-rj",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "a048c32d1aa14f1c17a3908bf3d38c86a185e1f6f4646851206321202b2cefda",
+        "checked_at": "2026-11-09",
+        "method": "http_download_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "external_cdn_unattributed",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1072,
+        "brand": "HOWBODY",
+        "source_model": "-",
+        "source_image_url": "https://oss-hk.247fitness.hk/90f9216b5f71fefb760ae47411876fd78ad3b56a2d6a5c1e19354691b46a81d0.png",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://yt3.googleusercontent.com/pDr7yINa4vDfP8NkNzghDQpyQGvjbQ8B_vqUF9gVks2fAOIBVPNLUM3OwaLPOZl_yOAByy4l=s900-c-k-c0x00ffffff-no-rj",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_brand_logo_reference_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1072 and 1073 using the supplied Google-hosted images."
+        },
+        "image_source_type": "external_cdn_unattributed",
+        "image_role": "brand_logo",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://yt3.googleusercontent.com/pDr7yINa4vDfP8NkNzghDQpyQGvjbQ8B_vqUF9gVks2fAOIBVPNLUM3OwaLPOZl_yOAByy4l=s900-c-k-c0x00ffffff-no-rj",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "a048c32d1aa14f1c17a3908bf3d38c86a185e1f6f4646851206321202b2cefda",
+          "checked_at": "2026-11-09",
+          "method": "http_download_and_visual_inspection"
+        },
+        "note": "User explicitly approved this reference on 2026-11-09 and requested model_verified. The supplied image is a HOWBODY brand logo, not an equipment product photograph. Image download succeeded and logo was visually inspected. Google-hosted image provenance is external_cdn_unattributed; manufacturer origin is unverified. No specific equipment model is established. Official English name and product URL remain blank; captured brand, name and model placeholder are unchanged. Status reflects the explicit user decision, not independent exact-model verification."
+      },
+      "configuration_note": "User explicitly approved this reference on 2026-11-09 and requested model_verified. The supplied image is a HOWBODY brand logo, not an equipment product photograph. Image download succeeded and logo was visually inspected. Google-hosted image provenance is external_cdn_unattributed; manufacturer origin is unverified. No specific equipment model is established. Official English name and product URL remain blank; captured brand, name and model placeholder are unchanged. Status reflects the explicit user decision, not independent exact-model verification."
     },
     {
       "inventory_id": 1154,
@@ -30636,14 +30929,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "IRONWOD Single-Leg Squat Stand",
+      "official_product_url": "https://ironwodfitness.com/products/single-leg-squat-stand",
+      "official_image_url": "https://ironwodfitness.com/cdn/shop/files/1_3ddca832-38e7-4b59-8fed-66d08cd84f56.jpg?v=1790151709&width=800",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1154,
@@ -30656,13 +30949,62 @@
           "official_domain_results": []
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://ironwodfitness.com/cdn/shop/files/1_3ddca832-38e7-4b59-8fed-66d08cd84f56.jpg?v=1790151709&width=800",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "42dedbc4617074cf98753095b443eb1abc55c31271a1b976c425426bca12774b",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1154,
+        "brand": "IRONWOD",
+        "source_model": "",
+        "source_image_url": "https://oss-hk.247fitness.hk/d6bacc560971faeeaa6956a010d4e9b41f4a2e9b9b6b4f9058feb9be63d0c053.png",
+        "official_name": "IRONWOD Single-Leg Squat Stand",
+        "official_product_url": "https://ironwodfitness.com/products/single-leg-squat-stand",
+        "official_image_url": "https://ironwodfitness.com/cdn/shop/files/1_3ddca832-38e7-4b59-8fed-66d08cd84f56.jpg?v=1790151709&width=800",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://ironwodfitness.com/cdn/shop/files/1_3ddca832-38e7-4b59-8fed-66d08cd84f56.jpg?v=1790151709&width=800",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "42dedbc4617074cf98753095b443eb1abc55c31271a1b976c425426bca12774b",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision."
     },
     {
       "inventory_id": 1073,
@@ -30765,12 +31107,12 @@
       "lookup_model": "-",
       "official_name": null,
       "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsgdkRpzElnXXbgJ6Q7Brv6WKVhfC_xrQ6zic2C1NdiA&s=10",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved this reference on 2026-11-09 and requested model_verified. The supplied image is a InBody brand logo, not an equipment product photograph. Image download succeeded and logo was visually inspected. Google-hosted image provenance is external_cdn_unattributed; manufacturer origin is unverified. No specific equipment model is established. Official English name and product URL remain blank; captured brand, name and model placeholder are unchanged. Status reflects the explicit user decision, not independent exact-model verification.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1073,
@@ -30839,13 +31181,61 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsgdkRpzElnXXbgJ6Q7Brv6WKVhfC_xrQ6zic2C1NdiA&s=10",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "b904a736b27b319a2e8d06c82c99766b93e0216813a4c12718be61b2ec01efb5",
+        "checked_at": "2026-11-09",
+        "method": "http_download_and_visual_inspection"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "external_cdn_unattributed",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1073,
+        "brand": "InBody",
+        "source_model": "-",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/7678ee1c29efeffec80efba29c0887a923c2a9a44ffa71c1dbbd61712730b263.png",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsgdkRpzElnXXbgJ6Q7Brv6WKVhfC_xrQ6zic2C1NdiA&s=10",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_brand_logo_reference_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1072 and 1073 using the supplied Google-hosted images."
+        },
+        "image_source_type": "external_cdn_unattributed",
+        "image_role": "brand_logo",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsgdkRpzElnXXbgJ6Q7Brv6WKVhfC_xrQ6zic2C1NdiA&s=10",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "b904a736b27b319a2e8d06c82c99766b93e0216813a4c12718be61b2ec01efb5",
+          "checked_at": "2026-11-09",
+          "method": "http_download_and_visual_inspection"
+        },
+        "note": "User explicitly approved this reference on 2026-11-09 and requested model_verified. The supplied image is a InBody brand logo, not an equipment product photograph. Image download succeeded and logo was visually inspected. Google-hosted image provenance is external_cdn_unattributed; manufacturer origin is unverified. No specific equipment model is established. Official English name and product URL remain blank; captured brand, name and model placeholder are unchanged. Status reflects the explicit user decision, not independent exact-model verification."
+      },
+      "configuration_note": "User explicitly approved this reference on 2026-11-09 and requested model_verified. The supplied image is a InBody brand logo, not an equipment product photograph. Image download succeeded and logo was visually inspected. Google-hosted image provenance is external_cdn_unattributed; manufacturer origin is unverified. No specific equipment model is established. Official English name and product URL remain blank; captured brand, name and model placeholder are unchanged. Status reflects the explicit user decision, not independent exact-model verification."
     },
     {
       "inventory_id": 1102,
@@ -88173,13 +88563,13 @@
       ],
       "lookup_model": "SCHWINN IC CLASSIC 9-7420-BINTP0 BIKE",
       "official_name": "IC Classic",
-      "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=271&m=content&mid=22",
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_product_url": "https://www.fitnesssuperstore.com/products/schwinn-ic-classic-9-7420-bintp0-bike-new",
+      "official_image_url": "https://www.fitnesssuperstore.com/cdn/shop/files/Schwinn-9-7420-main.webp?v=1759341130&width=900",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: retailer. Image download succeeded. Existing IC Classic name retained; supplied retailer lists the captured 9-7420-BINTP0 model.",
       "search_evidence": {
         "inventory_id": 1148,
         "query": "SCHWINN \"SCHWINN IC CLASSIC 9-7420-BINTP0 BIKE\"",
@@ -88256,7 +88646,16 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.fitnesssuperstore.com/cdn/shop/files/Schwinn-9-7420-main.webp?v=1759341130&width=900",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "60ae60eb68af3fd6b035979af466260b1d0be9dc7c8b5a4ee82c89df23bb5faf",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": "IC Classic 室內單車",
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -88330,8 +88729,46 @@
           "official_name_zh"
         ]
       },
-      "match_scope": "distributor_base_product_reference",
-      "configuration_note": "Active China distributor reference (gap-only enrichment): Schwinn IC Classic is explicitly named in the source model and Active product heading. The complete 9-7420-BINTP0 option code is not established by this page. Source: https://www.active.cn/index.php?a=show&c=index&catid=44&id=271&m=content&mid=22 Distributor wording is not independently verified manufacturer wording; identity status is unchanged."
+      "match_scope": "manual_review",
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: retailer. Image download succeeded. Existing IC Classic name retained; supplied retailer lists the captured 9-7420-BINTP0 model.",
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 1148,
+        "brand": "SCHWINN",
+        "source_model": "SCHWINN IC CLASSIC 9-7420-BINTP0 BIKE",
+        "source_image_url": "https://oss-hk.247fitness.hk/c17d516afc30b355144b41ba5da6cdf8a5000bcb99c58979abf545af39d6929b.jpg",
+        "official_name": "IC Classic",
+        "official_product_url": "https://www.fitnesssuperstore.com/products/schwinn-ic-classic-9-7420-bintp0-bike-new",
+        "official_image_url": "https://www.fitnesssuperstore.com/cdn/shop/files/Schwinn-9-7420-main.webp?v=1759341130&width=900",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": "IC Classic",
+          "official_product_url": "https://www.active.cn/index.php?a=show&c=index&catid=44&id=271&m=content&mid=22",
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.fitnesssuperstore.com/cdn/shop/files/Schwinn-9-7420-main.webp?v=1759341130&width=900",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "60ae60eb68af3fd6b035979af466260b1d0be9dc7c8b5a4ee82c89df23bb5faf",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: retailer. Image download succeeded. Existing IC Classic name retained; supplied retailer lists the captured 9-7420-BINTP0 model."
+      }
     },
     {
       "inventory_id": 1146,
@@ -88396,14 +88833,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "SK-GHDM001",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Skelcore Ghd Machine",
+      "official_product_url": "https://www.leisureconcepts.com.au/collections/skelcore/products/skelcore-ghd-machine",
+      "official_image_url": "https://www.leisureconcepts.com.au/cdn/shop/files/download_1220x_crop_center_d9e07e4e-983f-46e7-9811-e422b3950d08.webp?v=1759792864&width=1080",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: retailer. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision.",
       "search_evidence": {
         "inventory_id": 1147,
         "query": "SKELCORE \"SK-GHDM001\"",
@@ -88464,13 +88901,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.leisureconcepts.com.au/cdn/shop/files/download_1220x_crop_center_d9e07e4e-983f-46e7-9811-e422b3950d08.webp?v=1759792864&width=1080",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "b1234035bbc69cc2757fc14d81524bb2f60df0c4cc188c779bf126f1ccb5a0e2",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1147,
+        "brand": "SKELCORE",
+        "source_model": "SK-GHDM001",
+        "source_image_url": "https://oss-hk.247fitness.hk/e49d05a1e73fea5377dddebfd16cbf7ed820a10d4e3d0ebc4e21d2bf643243d9.jpg",
+        "official_name": "Skelcore Ghd Machine",
+        "official_product_url": "https://www.leisureconcepts.com.au/collections/skelcore/products/skelcore-ghd-machine",
+        "official_image_url": "https://www.leisureconcepts.com.au/cdn/shop/files/download_1220x_crop_center_d9e07e4e-983f-46e7-9811-e422b3950d08.webp?v=1759792864&width=1080",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.leisureconcepts.com.au/cdn/shop/files/download_1220x_crop_center_d9e07e4e-983f-46e7-9811-e422b3950d08.webp?v=1759792864&width=1080",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "b1234035bbc69cc2757fc14d81524bb2f60df0c4cc188c779bf126f1ccb5a0e2",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: retailer. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: retailer. Image download succeeded. Product name follows the supplied product page; inventory match is the explicit user decision."
     },
     {
       "inventory_id": 1149,
@@ -88532,12 +89018,12 @@
       "lookup_model": "SK-PL-FX1",
       "official_name": null,
       "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_image_url": "https://5.imimg.com/data5/SELLER/Default/2026/2/581282804/IN/TJ/QR/65603173/skelcore-wunda-chair-oak-1000x1000.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: external_cdn_unattributed. Image retrieval failed: HTTP Error 444: Unknown. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Only a marketplace/CDN image was supplied. Official English name and product URL remain blank; no manufacturer origin is asserted.",
       "search_evidence": {
         "inventory_id": 1150,
         "query": "SKELCORE \"SK-PL-FX1\"",
@@ -88598,13 +89084,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://5.imimg.com/data5/SELLER/Default/2026/2/581282804/IN/TJ/QR/65603173/skelcore-wunda-chair-oak-1000x1000.png",
+        "available": null,
+        "http_status": 444,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_failed_user_approved_reference",
+        "error": "HTTP Error 444: Unknown"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "external_cdn_unattributed",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1150,
+        "brand": "SKELCORE",
+        "source_model": "SK-PL-FX1",
+        "source_image_url": "https://oss-hk.247fitness.hk/ce4c55323e6da7633bff32c841daf94a124707d92b2b68958afe424fe742cdfb.jpg",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://5.imimg.com/data5/SELLER/Default/2026/2/581282804/IN/TJ/QR/65603173/skelcore-wunda-chair-oak-1000x1000.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "external_cdn_unattributed",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://5.imimg.com/data5/SELLER/Default/2026/2/581282804/IN/TJ/QR/65603173/skelcore-wunda-chair-oak-1000x1000.png",
+          "available": null,
+          "http_status": 444,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_failed_user_approved_reference",
+          "error": "HTTP Error 444: Unknown"
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: external_cdn_unattributed. Image retrieval failed: HTTP Error 444: Unknown. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Only a marketplace/CDN image was supplied. Official English name and product URL remain blank; no manufacturer origin is asserted."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: external_cdn_unattributed. Image retrieval failed: HTTP Error 444: Unknown. Status reflects explicit user approval; image availability was not independently confirmed. Browser fallback encountered the timeoutMs runtime error. Only a marketplace/CDN image was supplied. Official English name and product URL remain blank; no manufacturer origin is asserted."
     },
     {
       "inventory_id": 1151,
@@ -93785,14 +94320,14 @@
         "tsuen-wan-second-branch"
       ],
       "lookup_model": "DF-205",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "DF-305 Bicep/Tricep",
+      "official_product_url": "https://www.gosportsart.com/product/df-305-bicep-tricep/",
+      "official_image_url": "https://www.gosportsart.com/wp-content/uploads/2022/03/DF-305-Bicep-Tricep-web.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Supplied manufacturer reference is DF-305 Bicep/Tricep, while captured model is DF-205. User approval owns the replacement reference; the codes are not asserted as equivalent.",
       "search_evidence": {
         "inventory_id": 1425,
         "query": "SportArt \"DF-205\"",
@@ -93844,13 +94379,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.gosportsart.com/wp-content/uploads/2022/03/DF-305-Bicep-Tricep-web.png",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "fd48bef7b288b1430cfaf3c3347b98c4090f7db52e6881e85213492094922cc6",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "requires_review",
         "reason": "Individual name search finds nearby SportsArt models (DF304/DF103/DF108/P759/P812), not the inventory DF model. Names not substituted across model numbers."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1425,
+        "brand": "SportArt",
+        "source_model": "DF-205",
+        "source_image_url": "https://oss-hk.247fitness.hk/565a8f23bdb1df0b6aa29263744d437da8846dd76b3d0d7267e673d042ebc039.jpg",
+        "official_name": "DF-305 Bicep/Tricep",
+        "official_product_url": "https://www.gosportsart.com/product/df-305-bicep-tricep/",
+        "official_image_url": "https://www.gosportsart.com/wp-content/uploads/2022/03/DF-305-Bicep-Tricep-web.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_multi_brand_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for Inventory IDs 1141, 1098, 1365, 1298, 515, 1154, 1148, 1147, 1150 and 1425 with the supplied references. Search tracking parameters omitted."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.gosportsart.com/wp-content/uploads/2022/03/DF-305-Bicep-Tricep-web.png",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "fd48bef7b288b1430cfaf3c3347b98c4090f7db52e6881e85213492094922cc6",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Supplied manufacturer reference is DF-305 Bicep/Tricep, while captured model is DF-205. User approval owns the replacement reference; the codes are not asserted as equivalent."
+      },
+      "configuration_note": "User explicitly approved the supplied product/image references on 2026-11-09. Captured brand, model codes and Chinese names are preserved; no manufacturer SKU, configuration or generation alias is asserted. Image provenance: manufacturer_catalog. Image download succeeded. Supplied manufacturer reference is DF-305 Bicep/Tricep, while captured model is DF-205. User approval owns the replacement reference; the codes are not asserted as equivalent."
     },
     {
       "inventory_id": 1427,
