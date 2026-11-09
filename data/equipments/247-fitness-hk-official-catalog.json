@@ -4,8 +4,8 @@
   "scope": "All unique inventory_id values in data/equipments/247-fitness-hk/*.json",
   "image_policy": "Manufacturer images and explicitly sourced best-effort references may be recorded in official_image_url. Check image_source_type, verification status and Review note for shared-file, third-party, variant and system-context references. Existing 24/7 images are retained separately. No permission to republish images is inferred.",
   "summary": {
-    "model_verified": 799,
-    "unresolved": 31,
+    "model_verified": 809,
+    "unresolved": 21,
     "model_verified_image_missing": 3
   },
   "catalog_product_counts": {
@@ -60985,14 +60985,14 @@
         "tsuen-wan-third-branch"
       ],
       "lookup_model": "9NN-L8506",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Smith Machine",
+      "official_product_url": "https://www.corehandf.com/products/smith-machine",
+      "official_image_url": "https://www.corehandf.com/cdn/shop/files/smith-machine-insinct-vertical-market-strength-product-image-0003-scaled.webp?v=1778104631",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: manufacturer_catalog. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match.",
       "search_evidence": {
         "inventory_id": 963,
         "query": "NAUTILUS \"9NN-L8506\"",
@@ -61012,13 +61012,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://www.corehandf.com/cdn/shop/files/smith-machine-insinct-vertical-market-strength-product-image-0003-scaled.webp?v=1778104631",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "3766386e803d9e441501cbf70ff76f4a64ff95ebe5ae6ad00acd2833731c0a54",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 963,
+        "brand": "NAUTILUS",
+        "source_model": "9NN-L8506",
+        "source_image_url": "https://oss-hk.247fitness.hk/9128a0253b201025b7d6555f38041b4727d47b65f39d50d498f7888cb9d49f96.png",
+        "official_name": "Smith Machine",
+        "official_product_url": "https://www.corehandf.com/products/smith-machine",
+        "official_image_url": "https://www.corehandf.com/cdn/shop/files/smith-machine-insinct-vertical-market-strength-product-image-0003-scaled.webp?v=1778104631",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_nautilus_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NAUTILUS Inventory IDs 963, 998, 1000, 1027, 1182 and 1183 with the supplied references. Search tracking parameters omitted from product URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://www.corehandf.com/cdn/shop/files/smith-machine-insinct-vertical-market-strength-product-image-0003-scaled.webp?v=1778104631",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "3766386e803d9e441501cbf70ff76f4a64ff95ebe5ae6ad00acd2833731c0a54",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: manufacturer_catalog. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: manufacturer_catalog. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match."
     },
     {
       "inventory_id": 964,
@@ -62950,14 +62999,14 @@
         "tuen-mun-fifth-branch"
       ],
       "lookup_model": "9-IPPO",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Nautilus Inspiration Pullover",
+      "official_product_url": "https://fitnesssupply.com/products/nautilus-inspiration-pull-over",
+      "official_image_url": "https://fitnesssupply.com/cdn/shop/files/b9013a06d1d66608cc2c3a25eec20367.png?v=1702680489&width=900",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match.",
       "search_evidence": {
         "inventory_id": 998,
         "query": "NAUTILUS \"9-IPPO\"",
@@ -62969,13 +63018,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://fitnesssupply.com/cdn/shop/files/b9013a06d1d66608cc2c3a25eec20367.png?v=1702680489&width=900",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "e55e7086e69f0fe39297b10aa7f6c955f34b7effff11a8504e777b9fd7ddd71f",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 998,
+        "brand": "NAUTILUS",
+        "source_model": "9-IPPO",
+        "source_image_url": "https://oss-hk.247fitness.hk/1f21be1995003134220d9bc15a9b9fec5225adb56894953e422e1f9b26e459e9.png",
+        "official_name": "Nautilus Inspiration Pullover",
+        "official_product_url": "https://fitnesssupply.com/products/nautilus-inspiration-pull-over",
+        "official_image_url": "https://fitnesssupply.com/cdn/shop/files/b9013a06d1d66608cc2c3a25eec20367.png?v=1702680489&width=900",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_nautilus_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NAUTILUS Inventory IDs 963, 998, 1000, 1027, 1182 and 1183 with the supplied references. Search tracking parameters omitted from product URLs."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://fitnesssupply.com/cdn/shop/files/b9013a06d1d66608cc2c3a25eec20367.png?v=1702680489&width=900",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "e55e7086e69f0fe39297b10aa7f6c955f34b7effff11a8504e777b9fd7ddd71f",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match."
     },
     {
       "inventory_id": 999,
@@ -63076,14 +63174,14 @@
         "tsim-sha-tsui"
       ],
       "lookup_model": "9-IPTD",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Nautilus Inspiration Triceps Press",
+      "official_product_url": "https://fitdir.com/nautilus-inspiration-triceps-press/",
+      "official_image_url": "https://fitdir.com/wp-content/uploads/2021/04/INSPIRATION-TRICEP-DIP.jpg",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. The supplied #lg=1&slide=1 gallery fragment resolves to the second linked product gallery image, INSPIRATION-TRICEP-DIP.jpg. Direct image download succeeded; retailer lists N-IPTD2, which is not asserted as an alias of captured 9-IPTD.",
       "search_evidence": {
         "inventory_id": 1000,
         "query": "NAUTILUS \"9-IPTD\"",
@@ -63160,13 +63258,70 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://fitdir.com/wp-content/uploads/2021/04/INSPIRATION-TRICEP-DIP.jpg",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "d4955f523fb49df4b5c0a132be800533f40b9062973cbef605385888136a60ae",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1000,
+        "brand": "NAUTILUS",
+        "source_model": "9-IPTD",
+        "source_image_url": "https://oss-hk.247fitness.hk/33602285ee1e674451c73a38201ab9742de0ad8b19a37a8df236a2a25e2c0833.png",
+        "official_name": "Nautilus Inspiration Triceps Press",
+        "official_product_url": "https://fitdir.com/nautilus-inspiration-triceps-press/",
+        "official_image_url": "https://fitdir.com/wp-content/uploads/2021/04/INSPIRATION-TRICEP-DIP.jpg",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_nautilus_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NAUTILUS Inventory IDs 963, 998, 1000, 1027, 1182 and 1183 with the supplied references. Search tracking parameters omitted from product URLs."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://fitdir.com/wp-content/uploads/2021/04/INSPIRATION-TRICEP-DIP.jpg",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "d4955f523fb49df4b5c0a132be800533f40b9062973cbef605385888136a60ae",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. The supplied #lg=1&slide=1 gallery fragment resolves to the second linked product gallery image, INSPIRATION-TRICEP-DIP.jpg. Direct image download succeeded; retailer lists N-IPTD2, which is not asserted as an alias of captured 9-IPTD.",
+        "supplied_image_reference": "https://fitdir.com/nautilus-inspiration-triceps-press/#lg=1&slide=1",
+        "gallery_resolution": {
+          "index": 1,
+          "image_url": "https://fitdir.com/wp-content/uploads/2021/04/INSPIRATION-TRICEP-DIP.jpg",
+          "page_url": "https://fitdir.com/nautilus-inspiration-triceps-press/",
+          "method": "second product gallery image linked as INSPIRATION TRICEP DIP",
+          "page_sha256": "d9c7a5ff0e8029a27de69ed6770587018683692d6f81f2c70a4b95cb90b271af"
+        }
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. The supplied #lg=1&slide=1 gallery fragment resolves to the second linked product gallery image, INSPIRATION-TRICEP-DIP.jpg. Direct image download succeeded; retailer lists N-IPTD2, which is not asserted as an alias of captured 9-IPTD."
     },
     {
       "inventory_id": 1002,
@@ -65855,14 +66010,14 @@
         "ma-on-shan-third-branch"
       ],
       "lookup_model": "9NP-L8500",
-      "official_name": "Plate loaded Smith Machine",
-      "official_product_url": "https://www.active.cn/en/index.php?a=lists&c=index&catid=44&m=content",
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Smith Machine",
+      "official_product_url": "https://www.corehandf.net/product/218253-214798/smith-machine",
+      "official_image_url": "https://image.makewebcdn.com/makeweb/m_1920x0/6hYClxYMU/DefaultData/smith_machine.jpg?v=202405291424",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: regional_manufacturer_site. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match.",
       "search_evidence": {
         "inventory_id": 1027,
         "query": "NAUTILUS \"9NP-L8500\"",
@@ -65914,7 +66069,16 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://image.makewebcdn.com/makeweb/m_1920x0/6hYClxYMU/DefaultData/smith_machine.jpg?v=202405291424",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "sha256": "8171dd6d3853c4bbce241832641c00f2d37cef4aa090889d4ddf80be6cb27523",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "error": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
@@ -65961,8 +66125,46 @@
           "official_name"
         ]
       },
-      "match_scope": "distributor_base_product_reference",
-      "configuration_note": "Active China distributor reference (gap-only enrichment): Active English catalog lists Plate loaded Smith Machine alongside Nautilus Plate Loaded Freedom Rack, Incline Lever Row and Glute Drive. Source inventory names Nautilus Smith Machine 9NP-L8500. This is a base-product name reference only; the catalog listing does not establish exact L8500 identity or an image. Source: https://www.active.cn/en/index.php?a=lists&c=index&catid=44&m=content Distributor wording is not independently verified manufacturer wording; identity status is unchanged."
+      "match_scope": "manual_review",
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: regional_manufacturer_site. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match.",
+      "image_source_type": "regional_manufacturer_site",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "manual_image_review": {
+        "inventory_id": 1027,
+        "brand": "NAUTILUS",
+        "source_model": "9NP-L8500",
+        "source_image_url": "https://oss-hk.247fitness.hk/9809db8356ae654b6f9df4062d5f8f87c861f307f6e622297bbb5aecd36444c2.png",
+        "official_name": "Smith Machine",
+        "official_product_url": "https://www.corehandf.net/product/218253-214798/smith-machine",
+        "official_image_url": "https://image.makewebcdn.com/makeweb/m_1920x0/6hYClxYMU/DefaultData/smith_machine.jpg?v=202405291424",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_nautilus_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NAUTILUS Inventory IDs 963, 998, 1000, 1027, 1182 and 1183 with the supplied references. Search tracking parameters omitted from product URLs."
+        },
+        "image_source_type": "regional_manufacturer_site",
+        "previous_reference": {
+          "official_name": "Plate loaded Smith Machine",
+          "official_product_url": "https://www.active.cn/en/index.php?a=lists&c=index&catid=44&m=content",
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://image.makewebcdn.com/makeweb/m_1920x0/6hYClxYMU/DefaultData/smith_machine.jpg?v=202405291424",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "8171dd6d3853c4bbce241832641c00f2d37cef4aa090889d4ddf80be6cb27523",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "error": null
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: regional_manufacturer_site. Product name follows the supplied product page; image downloaded successfully. User approval owns the inventory match."
+      }
     },
     {
       "inventory_id": 1028,
@@ -67775,12 +67977,12 @@
       "lookup_model": "9NP-M96",
       "official_name": null,
       "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_image_url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Only an image URL was supplied; official English name and product URL remain blank. The filename describes a Multistation 4 Station 6 image, while captured names describe 16/32 Stack systems. The image is retained by explicit user approval without asserting an exact station configuration. HTTP retrieval failed with connection reset; browser navigation failed with timeoutMs runtime error.",
       "search_evidence": {
         "inventory_id": 1182,
         "query": "NAUTILUS \"9NP-M96\"",
@@ -67844,13 +68046,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+        "available": null,
+        "http_status": null,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_failed_user_approved_reference",
+        "error": "<urlopen error [Errno 54] Connection reset by peer>"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1182,
+        "brand": "NAUTILUS",
+        "source_model": "9NP-M96",
+        "source_image_url": "https://oss-hk.247fitness.hk/42c43c7c21cacb63efeca80adf246470f2b329eefc5ec9811abbae5b6ef438d6.png",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_nautilus_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NAUTILUS Inventory IDs 963, 998, 1000, 1027, 1182 and 1183 with the supplied references. Search tracking parameters omitted from product URLs."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+          "available": null,
+          "http_status": null,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_failed_user_approved_reference",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>"
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Only an image URL was supplied; official English name and product URL remain blank. The filename describes a Multistation 4 Station 6 image, while captured names describe 16/32 Stack systems. The image is retained by explicit user approval without asserting an exact station configuration. HTTP retrieval failed with connection reset; browser navigation failed with timeoutMs runtime error."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Only an image URL was supplied; official English name and product URL remain blank. The filename describes a Multistation 4 Station 6 image, while captured names describe 16/32 Stack systems. The image is retained by explicit user approval without asserting an exact station configuration. HTTP retrieval failed with connection reset; browser navigation failed with timeoutMs runtime error."
     },
     {
       "inventory_id": 1183,
@@ -67870,12 +68121,12 @@
       "lookup_model": "",
       "official_name": null,
       "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_image_url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Only an image URL was supplied; official English name and product URL remain blank. The filename describes a Multistation 4 Station 6 image, while captured names describe 16/32 Stack systems. The image is retained by explicit user approval without asserting an exact station configuration. HTTP retrieval failed with connection reset; browser navigation failed with timeoutMs runtime error.",
       "source_model_missing": true,
       "search_evidence": {
         "inventory_id": 1183,
@@ -67940,13 +68191,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+        "available": null,
+        "http_status": null,
+        "content_type": null,
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_failed_user_approved_reference",
+        "error": "<urlopen error [Errno 54] Connection reset by peer>"
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "retailer",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1183,
+        "brand": "NAUTILUS",
+        "source_model": "",
+        "source_image_url": "https://oss-hk.247fitness.hk/d96fa62dd45cd05621763a33ce7fb0e67ddfde42f1bfbf41b684409fcc34b967.png",
+        "official_name": null,
+        "official_product_url": null,
+        "official_image_url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_nautilus_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NAUTILUS Inventory IDs 963, 998, 1000, 1027, 1182 and 1183 with the supplied references. Search tracking parameters omitted from product URLs."
+        },
+        "image_source_type": "retailer",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://ratio.ch/thumbnail/88/6a/db/1756978928/Nautilus%20Multistation%204%20Station%206%20Transparent%20Product%20Image%20Web.png_1920x1920.png",
+          "available": null,
+          "http_status": null,
+          "content_type": null,
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_failed_user_approved_reference",
+          "error": "<urlopen error [Errno 54] Connection reset by peer>"
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Only an image URL was supplied; official English name and product URL remain blank. The filename describes a Multistation 4 Station 6 image, while captured names describe 16/32 Stack systems. The image is retained by explicit user approval without asserting an exact station configuration. HTTP retrieval failed with connection reset; browser navigation failed with timeoutMs runtime error."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Image provenance: retailer. Only an image URL was supplied; official English name and product URL remain blank. The filename describes a Multistation 4 Station 6 image, while captured names describe 16/32 Stack systems. The image is retained by explicit user approval without asserting an exact station configuration. HTTP retrieval failed with connection reset; browser navigation failed with timeoutMs runtime error."
     },
     {
       "inventory_id": 172,
@@ -69449,14 +69749,14 @@
         "kwun-tong-fourth-branch"
       ],
       "lookup_model": "NT-OH-LPD（N)",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "OnHim Lat Pulldown (High Pulley)",
+      "official_product_url": "https://newtechworldwide.com/products/lat-pulldown-high-pulley",
+      "official_image_url": "https://newtechworldwide.com/cdn/shop/files/fe457a5afaa18.png?v=1732070133",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: manufacturer_catalog. Manufacturer page lists NT-OH-LPD; captured NT-OH-LPD（N) is retained without decoding the suffix. Image download succeeded.",
       "search_evidence": {
         "inventory_id": 193,
         "query": "NEWTECH \"NT-OH-LPD（N)\"",
@@ -69517,13 +69817,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://newtechworldwide.com/cdn/shop/files/fe457a5afaa18.png?v=1732070133",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "11c970924b73a7fc89b9ab373e852bac159d3b26a4f72af06c9388ac31ac532d",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "reason": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 193,
+        "brand": "NEWTECH",
+        "source_model": "NT-OH-LPD（N)",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/f25bc884d5693d42945a3df31b2e377ad48182cdbd394ec0ad1a8a4ffea7cdc8.jpg",
+        "official_name": "OnHim Lat Pulldown (High Pulley)",
+        "official_product_url": "https://newtechworldwide.com/products/lat-pulldown-high-pulley",
+        "official_image_url": "https://newtechworldwide.com/cdn/shop/files/fe457a5afaa18.png?v=1732070133",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_newtech_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NEWTECH Inventory IDs 193, 218, 1095 and 1402 with the supplied product and image URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://newtechworldwide.com/cdn/shop/files/fe457a5afaa18.png?v=1732070133",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "11c970924b73a7fc89b9ab373e852bac159d3b26a4f72af06c9388ac31ac532d",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "reason": null
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: manufacturer_catalog. Manufacturer page lists NT-OH-LPD; captured NT-OH-LPD（N) is retained without decoding the suffix. Image download succeeded."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: manufacturer_catalog. Manufacturer page lists NT-OH-LPD; captured NT-OH-LPD（N) is retained without decoding the suffix. Image download succeeded."
     },
     {
       "inventory_id": 194,
@@ -71335,14 +71684,14 @@
         "pok-fu-lam"
       ],
       "lookup_model": "NT-T-LTB",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Torture Linear T-Bar Row (NEW)",
+      "official_product_url": "https://newtechworldwide.com/products/torture-linear-t-bar-row",
+      "official_image_url": "https://newtechworldwide.com/cdn/shop/files/newtech-m-torture-linear-t-bar-row-1.png?v=1793388424",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: manufacturer_catalog. Manufacturer page lists NT-T-MTTR and labels the product NEW; captured NT-T-LTB is preserved. User approval owns the reference match; these codes are not asserted as aliases. Image download succeeded.",
       "search_evidence": {
         "inventory_id": 218,
         "query": "NEWTECH \"NT-T-LTB\"",
@@ -71403,13 +71752,62 @@
           ]
         }
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://newtechworldwide.com/cdn/shop/files/newtech-m-torture-linear-t-bar-row-1.png?v=1793388424",
+        "available": true,
+        "http_status": 200,
+        "content_type": "image/png",
+        "sha256": "9fdf7a05aa9ac049363095471e0c1c2934b498f585b6f379111cdb1121571809",
+        "checked_at": "2026-11-09",
+        "method": "http_download",
+        "reason": null
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "manufacturer_catalog",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 218,
+        "brand": "NEWTECH",
+        "source_model": "NT-T-LTB",
+        "source_image_url": "https://oss-hk.247fitness.hk/equipment/e82fa1bc86e527f5c6c3959d13b5e74bf190d2f2bde24a7cd318edf2099334ce.png",
+        "official_name": "Torture Linear T-Bar Row (NEW)",
+        "official_product_url": "https://newtechworldwide.com/products/torture-linear-t-bar-row",
+        "official_image_url": "https://newtechworldwide.com/cdn/shop/files/newtech-m-torture-linear-t-bar-row-1.png?v=1793388424",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_newtech_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NEWTECH Inventory IDs 193, 218, 1095 and 1402 with the supplied product and image URLs."
+        },
+        "image_source_type": "manufacturer_catalog",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://newtechworldwide.com/cdn/shop/files/newtech-m-torture-linear-t-bar-row-1.png?v=1793388424",
+          "available": true,
+          "http_status": 200,
+          "content_type": "image/png",
+          "sha256": "9fdf7a05aa9ac049363095471e0c1c2934b498f585b6f379111cdb1121571809",
+          "checked_at": "2026-11-09",
+          "method": "http_download",
+          "reason": null
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: manufacturer_catalog. Manufacturer page lists NT-T-MTTR and labels the product NEW; captured NT-T-LTB is preserved. User approval owns the reference match; these codes are not asserted as aliases. Image download succeeded."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: manufacturer_catalog. Manufacturer page lists NT-T-MTTR and labels the product NEW; captured NT-T-LTB is preserved. User approval owns the reference match; these codes are not asserted as aliases. Image download succeeded."
     },
     {
       "inventory_id": 219,
@@ -73662,14 +74060,14 @@
         "yuen-long-fourth-branch"
       ],
       "lookup_model": "NT-T-VSQS",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Newtech M-Torture V Squat",
+      "official_product_url": "https://gymsolutions.com.au/product/newtech-m-torture-v-squat/",
+      "official_image_url": "https://gymsolutions.com.au/wp-content/uploads/2026/01/newtech-m-torture-v-squat_1_m-torture-v-squat.png",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: distributor. The supplied distributor image URL returned HTML rather than image bytes. Image availability was not independently confirmed; model_verified reflects explicit user approval.",
       "search_evidence": {
         "inventory_id": 1095,
         "query": "NEWTECH \"NT-T-VSQS\"",
@@ -73697,13 +74095,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://gymsolutions.com.au/wp-content/uploads/2026/01/newtech-m-torture-v-squat_1_m-torture-v-squat.png",
+        "available": null,
+        "http_status": 200,
+        "content_type": "text/html",
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_non_image_user_approved_reference",
+        "reason": "HTTP 200 returned text/html, not image data; browser navigation failed with timeoutMs runtime error."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "distributor",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1095,
+        "brand": "NEWTECH",
+        "source_model": "NT-T-VSQS",
+        "source_image_url": "https://oss-hk.247fitness.hk/28aebbdf14d9df2f7c88e1b2592e4d39caffdc690d9c2a0eb3edbc20b4205c0d.png",
+        "official_name": "Newtech M-Torture V Squat",
+        "official_product_url": "https://gymsolutions.com.au/product/newtech-m-torture-v-squat/",
+        "official_image_url": "https://gymsolutions.com.au/wp-content/uploads/2026/01/newtech-m-torture-v-squat_1_m-torture-v-squat.png",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_newtech_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NEWTECH Inventory IDs 193, 218, 1095 and 1402 with the supplied product and image URLs."
+        },
+        "image_source_type": "distributor",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://gymsolutions.com.au/wp-content/uploads/2026/01/newtech-m-torture-v-squat_1_m-torture-v-squat.png",
+          "available": null,
+          "http_status": 200,
+          "content_type": "text/html",
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_non_image_user_approved_reference",
+          "reason": "HTTP 200 returned text/html, not image data; browser navigation failed with timeoutMs runtime error."
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: distributor. The supplied distributor image URL returned HTML rather than image bytes. Image availability was not independently confirmed; model_verified reflects explicit user approval."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: distributor. The supplied distributor image URL returned HTML rather than image bytes. Image availability was not independently confirmed; model_verified reflects explicit user approval."
     },
     {
       "inventory_id": 1159,
@@ -74253,14 +74700,14 @@
         "yuen-long-second-branch"
       ],
       "lookup_model": "NT-OH-AB",
-      "official_name": null,
-      "official_product_url": null,
-      "official_image_url": null,
-      "status": "unresolved",
+      "official_name": "Newtech Onhim Abdominal",
+      "official_product_url": "https://gymsolutions.com.au/product/newtech-onhim-abdominal/",
+      "official_image_url": "https://gymsolutions.com.au/wp-content/uploads/2024/05/ScreenShot2024-04-10at6.50.24PM_720x.webp",
+      "status": "model_verified",
       "match_method": null,
       "evidence": null,
       "candidates": [],
-      "reason": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+      "reason": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: distributor. The supplied distributor image URL returned HTML rather than image bytes. Image availability was not independently confirmed; model_verified reflects explicit user approval.",
       "search_evidence": {
         "inventory_id": 1402,
         "query": "NEWTECH \"NT-OH-AB\"",
@@ -74280,13 +74727,62 @@
           }
         ]
       },
-      "image_check": null,
+      "image_check": {
+        "url": "https://gymsolutions.com.au/wp-content/uploads/2024/05/ScreenShot2024-04-10at6.50.24PM_720x.webp",
+        "available": null,
+        "http_status": 200,
+        "content_type": "text/html",
+        "sha256": null,
+        "checked_at": "2026-11-09",
+        "method": "http_non_image_user_approved_reference",
+        "reason": "HTTP 200 returned text/html, not image data; browser navigation failed with timeoutMs runtime error."
+      },
       "official_name_zh": null,
       "official_name_zh_review": {
         "review_date": "2026-11-03",
         "status": "no_bound_product",
         "reason": "No bound official product or candidate; brand-level search did not establish an exact Chinese name. Follow-up completed both an equipment-name search and a Chinese-wording search restricted to the manufacturer domain; no verified Chinese name accepted."
-      }
+      },
+      "image_source_type": "distributor",
+      "image_verification_status": "manually_reviewed",
+      "configuration_status": "manually_reviewed",
+      "match_scope": "manual_review",
+      "manual_image_review": {
+        "inventory_id": 1402,
+        "brand": "NEWTECH",
+        "source_model": "NT-OH-AB",
+        "source_image_url": "https://oss-hk.247fitness.hk/5d58cbc5df1c107f2aee4e4f2d9b73732cbdb85c736e126742459be20660f788.jpeg",
+        "official_name": "Newtech Onhim Abdominal",
+        "official_product_url": "https://gymsolutions.com.au/product/newtech-onhim-abdominal/",
+        "official_image_url": "https://gymsolutions.com.au/wp-content/uploads/2024/05/ScreenShot2024-04-10at6.50.24PM_720x.webp",
+        "status": "model_verified",
+        "reviewed_by": "user",
+        "review_date": "2026-11-09",
+        "review_source": {
+          "scope": "explicit_newtech_model_and_image_approval",
+          "instruction": "User explicitly requested model_verified for NEWTECH Inventory IDs 193, 218, 1095 and 1402 with the supplied product and image URLs."
+        },
+        "image_source_type": "distributor",
+        "previous_reference": {
+          "official_name": null,
+          "official_product_url": null,
+          "official_image_url": null,
+          "status": "unresolved"
+        },
+        "previous_research_note": "No exact match in accessible official catalog; this does not establish that no official product exists.",
+        "image_check": {
+          "url": "https://gymsolutions.com.au/wp-content/uploads/2024/05/ScreenShot2024-04-10at6.50.24PM_720x.webp",
+          "available": null,
+          "http_status": 200,
+          "content_type": "text/html",
+          "sha256": null,
+          "checked_at": "2026-11-09",
+          "method": "http_non_image_user_approved_reference",
+          "reason": "HTTP 200 returned text/html, not image data; browser navigation failed with timeoutMs runtime error."
+        },
+        "note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: distributor. The supplied distributor image URL returned HTML rather than image bytes. Image availability was not independently confirmed; model_verified reflects explicit user approval."
+      },
+      "configuration_note": "User explicitly approved the supplied model/image references on 2026-11-09. Captured model codes and Chinese names remain unchanged; no manufacturer SKU or generation alias is asserted. Product name follows the supplied product page. Image provenance: distributor. The supplied distributor image URL returned HTML rather than image bytes. Image availability was not independently confirmed; model_verified reflects explicit user approval."
     },
     {
       "inventory_id": 1403,

@@ -652,7 +652,7 @@ def apply_manual_equipment_reviews(result, supplemental):
         seen.add(inventory_id)
         entry = next((e for e in result['equipment'] if e['inventory_id'] == inventory_id), None)
         approved = review.get('approved_candidate')
-        panatta = next((r for key in ('panatta_user_reviews', 'stairmaster_user_reviews')
+        panatta = next((r for key in ('panatta_user_reviews', 'stairmaster_user_reviews', 'nautilus_user_reviews', 'newtech_user_reviews')
                         for r in supplemental.get(key, [])
                         if r['inventory_id'] == inventory_id), None)
         if panatta and entry is not None and all(entry.get(k) == panatta.get(k) for k in
@@ -977,6 +977,8 @@ def apply_browser_evidence(result, supplemental):
     apply_panatta_user_reviews(result, supplemental)
     apply_distributor_enrichment(result, supplemental)
     apply_panatta_user_reviews(result, supplemental, 'StairMaster', 'stairmaster_user_reviews')
+    apply_panatta_user_reviews(result, supplemental, 'NAUTILUS', 'nautilus_user_reviews')
+    apply_panatta_user_reviews(result, supplemental, 'NEWTECH', 'newtech_user_reviews')
 
 
 class Page(HTMLParser):
