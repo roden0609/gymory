@@ -18,9 +18,11 @@ export function equipmentStorageImageUrl(base: string, path: string): string {
   return `${base.replace(/\/$/, "")}/storage/v1/object/public/${EQUIPMENT_IMAGE_BUCKET}/${path.split("/").map(encodeURIComponent).join("/")}`;
 }
 
+export type PublicEquipmentImage = Pick<EquipmentReviewImage, "id" | "image_role" | "storage_path" | "is_primary" | "sort_order">;
+
 // Explicit admin selection wins; imported official Storage images work without
 // a separate primary-selection step. Never publish remote/captured fallbacks.
-export function primaryEquipmentImageUrl(base: string, images: EquipmentReviewImage[]): string | null {
+export function primaryEquipmentImageUrl(base: string, images: PublicEquipmentImage[]): string | null {
   const stored = images.filter(image => image.storage_path)
     .sort((a, b) => a.sort_order - b.sort_order || a.id.localeCompare(b.id));
   const image = stored.find(image => image.is_primary) ?? stored.find(image => image.image_role === "official");

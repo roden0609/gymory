@@ -4,18 +4,21 @@ export type PublicEquipmentType = Pick<EquipmentType,
   "code" | "name_en" | "name_zh" | "category" | "labels" | "display_order" | "is_active"
 >;
 
+export type PublicGymTypeInventory = Pick<GymEquipmentInventoryItem,
+  "equipment_code" | "is_present" | "quantity" | "is_directly_reported"
+> & { equipment_type?: PublicEquipmentType };
+
 export type PublicGymMachine = {
   id: string;
   name: string;
   nameZh: string | null;
-  modelNumber: string | null;
   imageUrl?: string | null;
   quantity: number | null;
   labels: string[];
   verifiedStatus: "admin_verified" | "owner_verified";
   equipmentType: PublicEquipmentType;
   equipmentTypes?: PublicEquipmentType[];
-  brand: { id: string; nameEn: string; nameZh: string | null };
+  brand: { nameEn: string; nameZh: string | null };
 };
 
 export type GymEquipmentTypeSummary = {
@@ -26,7 +29,7 @@ export type GymEquipmentTypeSummary = {
 };
 
 export function groupGymEquipmentTypes(
-  inventory: GymEquipmentInventoryItem[],
+  inventory: PublicGymTypeInventory[],
   machines: PublicGymMachine[]
 ) {
   const summaries = new Map<string, GymEquipmentTypeSummary>();

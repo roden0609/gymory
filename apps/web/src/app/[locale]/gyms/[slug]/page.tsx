@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import type { Gym } from "@gymory/shared";
+import type { PublicGymDetail } from "@/lib/db/queries/gym-public-columns";
 import { getHkDistrictLabel } from "@gymory/shared";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
@@ -38,7 +38,7 @@ type Props = {
   searchParams: Promise<{ flash?: string }>;
 };
 
-function getLocalizedGym(gym: Gym, locale: Locale) {
+function getLocalizedGym(gym: PublicGymDetail, locale: Locale) {
   return {
     name: locale === "zh-HK" && gym.name_zh ? gym.name_zh : gym.name,
     address:
@@ -70,7 +70,7 @@ function buildGymJsonLd({
   display,
   description,
 }: {
-  gym: Gym;
+  gym: PublicGymDetail;
   locale: Locale;
   display: ReturnType<typeof getLocalizedGym>;
   description: string;
@@ -151,7 +151,7 @@ function sortOpeningHoursEntries(openingHours: Record<string, string>) {
 }
 
 function formatDataSource(
-  value: Gym["data_source"],
+  value: PublicGymDetail["data_source"],
   t: Awaited<ReturnType<typeof getTranslations>>
 ) {
   if (!value) return t("notListed");
@@ -194,7 +194,7 @@ function formatWeight(value: number | null, fallback: string) {
 }
 
 function formatSizeCategory(
-  value: Gym["size_category"],
+  value: PublicGymDetail["size_category"],
   t: Awaited<ReturnType<typeof getTranslations>>
 ) {
   if (!value) return t("notListed");

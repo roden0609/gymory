@@ -9,7 +9,7 @@ export const getGymBrandOverview = cache(async (slug: string) => {
   const brand = getGymBrand(slug);
   if (!brand) return null;
   const supabase = await createClient();
-  const { data, error } = await supabase.from("gyms_normalized")
+  const { data, error } = await supabase.from("gyms_public")
     .select(BRAND_SUMMARY_COLUMNS)
     .eq("is_active", true)
     .or(brand.slugPrefixes.map((prefix) => `slug.like.${prefix}*`).join(","));

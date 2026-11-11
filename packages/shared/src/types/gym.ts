@@ -232,7 +232,6 @@ export type GymSummary = Pick<
   | "address_zh"
   | "lat"
   | "lng"
-  | "size_category"
   | "rack_count"
   | "bench_count"
   | "barbell_count"
@@ -370,11 +369,7 @@ export type GymSummary = Pick<
   | "equipment_notes"
   | "is_verified"
   | "is_hyrox_official"
-  | "hyrox_partner_id"
-  | "hyrox_source_url"
-  | "hyrox_source_synced_at"
   | "data_accuracy_status"
-  | "equipment_last_verified_at"
   | "updated_at"
 > & {
   accuracy_like_count?: number;

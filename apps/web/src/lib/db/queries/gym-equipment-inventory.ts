@@ -1,21 +1,18 @@
-import type {
-  EquipmentType,
-  GymEquipmentInventoryItem,
-} from "@gymory/shared";
+import type { PublicEquipmentType, PublicGymTypeInventory } from "@/lib/equipment-machine-inventory";
 import { createClient } from "../supabase-server";
 
-type InventoryRow = Omit<GymEquipmentInventoryItem, "equipment_type"> & {
-  equipment_types: EquipmentType | EquipmentType[] | null;
+type InventoryRow = Omit<PublicGymTypeInventory, "equipment_type"> & {
+  equipment_types: PublicEquipmentType | PublicEquipmentType[] | null;
 };
 
 export async function getGymEquipmentInventory(
   gymId: string
-): Promise<GymEquipmentInventoryItem[]> {
+): Promise<PublicGymTypeInventory[]> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("gym_equipment_type_inventory")
     .select(
-      "id, gym_id, equipment_code, is_present, quantity, is_directly_reported, created_at, updated_at, equipment_types(code, name_en, name_zh, category, parent_code, supports_quantity, aliases, labels, is_active, display_order, created_at, updated_at)"
+      "equipment_code, is_present, quantity, is_directly_reported, equipment_types(code, name_en, name_zh, category, labels, is_active, display_order)"
     )
     .eq("gym_id", gymId);
 

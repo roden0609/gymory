@@ -16,7 +16,7 @@ export async function getGymsForTrainingPage(
 ): Promise<TrainingLandingResult> {
   const supabase = await createClient();
   const { data, error, count } = await supabase
-    .from("gyms_normalized")
+    .from("gyms_public")
     .select(GYM_SEARCH_COLUMNS, { count: "exact" })
     .eq("is_active", true)
     .or(definition.orFilter);

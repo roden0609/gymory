@@ -18,7 +18,7 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 type SubmitGymFormProps = {
   gymId?: string;
-  initialGym?: Gym | null;
+  initialGym?: Partial<Gym> | null;
   initialBrandSlugs?: string[];
   returnTo?: string;
 };
@@ -177,7 +177,7 @@ const NUMBER_FIELD_STEPS: Partial<Record<keyof Gym, string>> = {
   plate_max_weight_kg: "0.25",
 };
 
-function buildFeatureStateMap(initialGym?: Gym | null): FeatureStateMap {
+function buildFeatureStateMap(initialGym?: Partial<Gym> | null): FeatureStateMap {
   return Object.fromEntries(
     FEATURE_FIELD_NAMES.map((name) => [name, initialGym?.[name] ?? null])
   ) as FeatureStateMap;
@@ -240,7 +240,7 @@ function hasMeaningfulUpdateChange({
   initialBrandSlugs,
   payload,
 }: {
-  initialGym?: Gym | null;
+  initialGym?: Partial<Gym> | null;
   initialBrandSlugs: string[];
   payload: SubmitPayload;
 }) {

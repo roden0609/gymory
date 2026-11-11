@@ -28,7 +28,6 @@ export const GYM_SEARCH_COLUMNS = [
   "address_zh",
   "lat",
   "lng",
-  "size_category",
   "rack_count",
   "bench_count",
   "barbell_count",
@@ -166,11 +165,7 @@ export const GYM_SEARCH_COLUMNS = [
   "equipment_notes",
   "is_verified",
   "is_hyrox_official",
-  "hyrox_partner_id",
-  "hyrox_source_url",
-  "hyrox_source_synced_at",
   "data_accuracy_status",
-  "equipment_last_verified_at",
   "updated_at",
 ].join(", ");
 
@@ -321,7 +316,7 @@ export async function searchGyms(
   const supabase = await createClient();
 
   let query = supabase
-    .from("gyms_normalized")
+    .from("gyms_public")
     .select(GYM_SEARCH_COLUMNS, { count: "exact" })
     .eq("is_active", true);
 
