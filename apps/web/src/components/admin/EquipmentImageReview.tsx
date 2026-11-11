@@ -42,16 +42,16 @@ export function EquipmentImageReview({ machine, locale, page, filters = {} }: {
       <label className="min-w-0 text-sm sm:col-span-2">{zh ? "核對備註／型號差異" : "Review notes / model differences"}<textarea name="official_review_note" rows={3} maxLength={5000} defaultValue={machine.official_review_note ?? ""} className={input} /></label>
       <label className="flex min-w-0 items-start gap-2 text-sm sm:col-span-2"><input type="checkbox" name="verify" defaultChecked={Boolean(machine.official_verified_at)} className="mt-1 shrink-0" />
         <span>{zh ? "我已核對所有官方資料及官方圖片，確認正確（取消勾選可撤回確認）" : "I checked all official data and official images and confirm they are correct (uncheck to withdraw approval)."}</span></label>
-      <label className="flex min-w-0 items-start gap-2 text-sm sm:col-span-2"><input type="checkbox" name="apply_official_names" className="mt-1 shrink-0" /><span>{zh ? "確認後將官方名稱套用為展示名稱；官方中文留空時保留現有中文展示名。" : "Apply confirmed official names as display names; keep the current Chinese display name if no official Chinese name is supplied."}</span></label>
+      <p className="text-sm text-gray-500 sm:col-span-2">{zh ? "儲存後展示名稱會優先使用該語言的官方名稱；留空則使用擷取名稱。人工確認獨立記錄。" : "Saving uses the official name for each language, falling back to its captured name. Admin approval is recorded separately."}</p>
       <div className="sm:col-span-2"><button className={button}>{zh ? "儲存核對結果" : "Save review"}</button></div>
     </form>
-    <p className="text-sm text-gray-500">{zh ? "兩邊圖片供對比；官方來源唔代表已確認正確。改動圖片或型號資料後須重新確認。展示圖片可獨立選擇。" : "Compare both sources below. An official source is not approval. Image or model changes require a new review. Display-image selection is independent."}</p>
+    <p className="text-sm text-gray-500">{zh ? "兩邊圖片供對比；官方來源唔代表已確認正確。改動圖片或型號資料後須重新確認。未指定主圖時，公開頁會使用已上傳的官方圖片。" : "Compare both sources below. An official source is not approval. Image or model changes require a new review. Without a selected primary image, public pages use an uploaded official image."}</p>
     <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2">
       {(["captured","official"] as const).map(role => <section key={role} className="min-w-0 max-w-full space-y-3 rounded-lg border border-gray-200 p-3">
         <h4 className="font-medium">{role === "captured" ? (zh ? "擷取原圖" : "Captured images") : (zh ? "官方／官方候選圖片" : "Official / candidate images")}</h4>
         {machine.equipment_images.filter(image => image.image_role === role).sort((a,b) => a.sort_order-b.sort_order || a.id.localeCompare(b.id)).map(image => <article key={image.id} className="min-w-0 space-y-3 border-b border-gray-100 pb-4">
           {httpUrl(image.url) ? <a href={image.url} target="_blank" rel="noreferrer" className="block min-w-0 max-w-full">
-            <Image src={image.url} unoptimized width={640} height={480} alt={role === "captured" ? (zh ? "擷取器材圖片" : "Captured equipment") : (zh ? "官方器材圖片候選" : "Official equipment candidate")}
+            <Image src={image.storage_path && process.env.NEXT_PUBLIC_SUPABASE_URL ? equipmentStorageImageUrl(process.env.NEXT_PUBLIC_SUPABASE_URL,image.storage_path) : image.url} unoptimized width={640} height={480} alt={role === "captured" ? (zh ? "擷取器材圖片" : "Captured equipment") : (zh ? "官方器材圖片候選" : "Official equipment candidate")}
               className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" />
           </a> : <p className="text-sm text-gray-500">{zh ? "圖片網址無效" : "Invalid image URL"}</p>}
           <p className="break-words text-sm text-gray-600">{image.is_primary ? (zh ? "目前展示主圖" : "Current primary image") : image.storage_path ? (zh ? "已上傳 Storage" : "Uploaded to Storage") : (zh ? "未上傳 Storage" : "Not uploaded to Storage")}</p>

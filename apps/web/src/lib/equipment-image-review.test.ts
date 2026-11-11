@@ -4,11 +4,26 @@ import { equipmentOfficialReviewSchema, equipmentReviewImageSchema } from "./adm
 
 describe("equipment image review",()=>{
   const image:EquipmentReviewImage={id:"image",image_role:"official",url:"https://manufacturer.example/original.jpg",source_url:null,storage_path:null,is_primary:true,sort_order:0};
-  it("only publishes Storage images explicitly selected as primary",()=>{
+  it("uses uploaded official images when no primary is selected",()=>{
     expect(primaryEquipmentImageUrl("https://example.supabase.co",[image])).toBeNull();
-    expect(primaryEquipmentImageUrl("https://example.supabase.co",[{...image,storage_path:"equipment/image/a b.jpg",is_primary:false}])).toBeNull();
+    expect(primaryEquipmentImageUrl("https://example.supabase.co",[{...image,storage_path:"equipment/image/a b.jpg",is_primary:false}]))
+      .toBe("https://example.supabase.co/storage/v1/object/public/equipment-images/equipment/image/a%20b.jpg");
     expect(primaryEquipmentImageUrl("https://example.supabase.co/",[{...image,storage_path:"equipment/image/a b.jpg"}]))
       .toBe("https://example.supabase.co/storage/v1/object/public/equipment-images/equipment/image/a%20b.jpg");
+  });
+  it("honors an explicit captured primary and ignores unselected captured images",()=>{
+    const official={...image,is_primary:false,storage_path:"official.webp"};
+    const captured={...image,id:"captured",image_role:"captured" as const,storage_path:"captured.webp"};
+    expect(primaryEquipmentImageUrl("https://example.supabase.co",[official,captured])).toContain("/captured.webp");
+    expect(primaryEquipmentImageUrl("https://example.supabase.co",[{...captured,is_primary:false}])).toBeNull();
+  });
+  it("selects official fallback deterministically without mutating the input",()=>{
+    const images=[{...image,id:"z",is_primary:false,sort_order:1,storage_path:"later.webp"},
+      {...image,id:"b",is_primary:false,sort_order:0,storage_path:"b.webp"},
+      {...image,id:"a",is_primary:false,sort_order:0,storage_path:"a.webp"}];
+    expect(primaryEquipmentImageUrl("https://example.supabase.co",images)).toContain("/a.webp");
+    expect(images.map(i=>i.id)).toEqual(["z","b","a"]);
+    expect(primaryEquipmentImageUrl("https://example.supabase.co",[])).toBeNull();
   });
   it("rejects HTML and SVG regardless of the supplied file extension",()=>{
     expect(equipmentImageFileType(new TextEncoder().encode('<svg>not a bitmap</svg>'))).toBeNull();

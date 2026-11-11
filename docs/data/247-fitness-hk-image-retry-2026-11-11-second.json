@@ -1,0 +1,1128 @@
+{
+  "environment": "local",
+  "date": "2026-11-11",
+  "attempted_records": 184,
+  "unique_urls": 178,
+  "newly_uploaded": 8,
+  "total_uploaded": 657,
+  "pending": [
+    {
+      "inventory_id": 1096,
+      "brand": "Concept 2",
+      "url": "https://cms.concept2.com/sites/default/files/styles/max_2048/public/2026-04/SkiErg.png?itok=fsr6Ws1O",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1097,
+      "brand": "Concept 2",
+      "url": "https://cms.concept2.com/sites/default/files/styles/max_2048/public/2024-02/RowERG_Standard_FlyFrontAngle_Gator_1920px.png?itok=vdsr5YUv",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1365,
+      "brand": "Concept 2",
+      "url": "https://cms.concept2.com/sites/default/files/styles/max_2048/public/2024-02/RowERG_Standard_FlyFrontAngle_Gator_1920px.png?itok=vdsr5YUv",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 366,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FE008-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 368,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe001-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 369,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/01/pic_1FE101_01-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 370,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe002-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 373,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe003-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 375,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe004a-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 376,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe025-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 377,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe024-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 380,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe036-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 382,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe034-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 385,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe038-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 386,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe053-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 388,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe051-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 390,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe356-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 391,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe456-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 395,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe067-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 396,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe066-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 397,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe081-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 398,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe082-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 399,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe083-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 400,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe084-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 401,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe095-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 402,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/12/0005_1FE085_1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 403,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe086-2-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 404,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe087-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 405,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe093-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 406,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe094a-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 407,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe088-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 408,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe097-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 409,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe089-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 410,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/12/1FE096-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 414,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/11/1FE055A-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 416,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe118a-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 417,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe117-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 418,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe121-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 419,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe202-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 427,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe210-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 432,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe221-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 433,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe230-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 434,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe201-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 435,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe211-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 436,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1hp233-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 437,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe204-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 438,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/10/1FE231A-01-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 441,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1pwl103-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 616,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth002-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 617,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth007-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 618,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth006-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 620,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth004-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 621,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth024-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 623,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth033-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 624,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth034-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 630,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth057-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 634,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth067-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 638,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth085-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 643,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth088-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 644,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1mth097-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 654,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/02/1MTH115_-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 659,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/01/pic_1MTH028_01-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 662,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc001-2-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 663,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc003-2-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 666,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc037-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 668,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc024-2-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 669,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc051-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 672,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc065-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 682,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc090-2-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 690,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc115-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 704,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/09/1sc211-1-2024-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 706,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc297-3-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 709,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd050-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 710,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd030-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 711,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd060-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 712,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1scd080-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 715,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO140-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 716,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO120-4-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 717,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO091-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 719,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO087-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 722,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FO094-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 723,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FO043-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 724,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FO039-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 725,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO101-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 726,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO097-1-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 727,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO085-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 728,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/06/1FO038-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 729,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO001-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 730,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO004-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 731,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1FO002-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 733,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1FO003-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 735,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO025-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 742,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO086-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 743,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1fO080-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 796,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW121-1.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 797,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/05/1FW452-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 799,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/05/1fw055-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 801,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW199-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 802,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW122-01-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 803,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW065-01-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 804,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/03/1FW045-01-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 805,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw036-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 806,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw035-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 807,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw041-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 808,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/08/pic_1FW037_02-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 809,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw033-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 810,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw043-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 811,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw038-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 812,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw044-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 813,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw042-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 814,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw040-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 815,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw140-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 816,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/08/1FW039-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 817,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw139-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 818,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/08/1FW001-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 819,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw101-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 820,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw003-2-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 821,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw102-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 822,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw002-2-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 823,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/08/pic_fw104_01-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 824,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/08/pic_1FW204_01-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 825,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/08/1FW007-1-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 827,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw105-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 829,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw025-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 830,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw027-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 831,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw026-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 834,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/pic_1FW251_01-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 836,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/11/1fw451-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 837,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW085-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 838,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/11/1fw100-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 839,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw086-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 840,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw090-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 841,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw093-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 842,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1fw193-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 843,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw091-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 844,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW084-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 845,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1fw080-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 846,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW095-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 847,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw087-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 849,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW098-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 850,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW097-01-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 851,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw099-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 852,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW181-1-450x450.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 853,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW082-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 854,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw182--450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 856,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/1FW094-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 857,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw096-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 860,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/pic_1FW117_01-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 861,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw029-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 862,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw520-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 868,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw518-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1089,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/07/pic_1FW252_01-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1090,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2025/07/1FW281-1.avif",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1263,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe028-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1264,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw025-1-jpg-webp.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1266,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO088-1.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1313,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe123-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1314,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1cf73-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1315,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fxt004-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1316,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fxt006-1-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1317,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe252-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1318,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe254-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1319,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe260-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1320,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1hp213-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1322,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1hp590-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1323,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2022/03/1PWL302-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1324,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1RPT001-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1325,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1RPT002-1-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1326,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2024/07/1RPT003-1-450x450.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1405,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe120-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1407,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2026/04/1FO005-1.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1408,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1sc034-2-jpg-webp.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1409,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw041-jpg-webp.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1489,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fe039-450x450.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1519,
+      "brand": "PANATTA",
+      "url": "https://www.panattasport.com/wp-content/uploads/2023/03/1fw033-jpg-webp.webp",
+      "error": "HTTP 403"
+    },
+    {
+      "inventory_id": 1150,
+      "brand": "SKELCORE",
+      "url": "https://5.imimg.com/data5/SELLER/Default/2026/2/581282804/IN/TJ/QR/65603173/skelcore-wunda-chair-oak-1000x1000.png",
+      "error": "HTTP 444"
+    }
+  ],
+  "uploads": [
+    {
+      "inventory_id": 1098,
+      "image_id": "cf47d0c2-2329-4772-ad9e-7d2a358a4c97",
+      "status": "uploaded_verified",
+      "storage_path": "06d4988f-bf7b-4c3d-bd8b-207b48de0ba9/cf47d0c2-2329-4772-ad9e-7d2a358a4c97/67ea442e4842ec9ffdf19cc0980f1ad1a86c9464b57e274f0be00bb2b7f5da11.webp"
+    },
+    {
+      "inventory_id": 1182,
+      "image_id": "927fd62b-0513-41d1-8c57-343d62bf6a8a",
+      "status": "uploaded_verified",
+      "storage_path": "6eec122d-24cb-4f5d-82ea-37507580749d/927fd62b-0513-41d1-8c57-343d62bf6a8a/4757f58169b1d559cab23cb88f8c707046447443dde7e5a14c17a30b191c3d98.webp"
+    },
+    {
+      "inventory_id": 1183,
+      "image_id": "622ca09f-2ce6-4d6e-a8b4-8ad905d0e6d1",
+      "status": "uploaded_verified",
+      "storage_path": "441ae1eb-d356-4b69-8bab-266bebb439c3/622ca09f-2ce6-4d6e-a8b4-8ad905d0e6d1/4757f58169b1d559cab23cb88f8c707046447443dde7e5a14c17a30b191c3d98.webp"
+    },
+    {
+      "inventory_id": 170,
+      "image_id": "4fd18529-f109-4b11-b76e-506678fe9798",
+      "status": "uploaded_verified",
+      "storage_path": "45ea4905-18da-41f1-bf39-a49c5be8a54e/4fd18529-f109-4b11-b76e-506678fe9798/6be0bb18126906da6c7224117cd5294ff9d33c8695bf3595af40ae64ff754188.webp"
+    },
+    {
+      "inventory_id": 171,
+      "image_id": "acc32487-951d-4947-9c40-eca4b3413be6",
+      "status": "uploaded_verified",
+      "storage_path": "73d325ca-c90b-4e56-b51a-276608e04616/acc32487-951d-4947-9c40-eca4b3413be6/6be0bb18126906da6c7224117cd5294ff9d33c8695bf3595af40ae64ff754188.webp"
+    },
+    {
+      "inventory_id": 1168,
+      "image_id": "0273c682-6696-482c-830c-967d2e47ee19",
+      "status": "uploaded_verified",
+      "storage_path": "95b7a88b-2e8b-4ad9-9642-3eeb4c279f69/0273c682-6696-482c-830c-967d2e47ee19/6be0bb18126906da6c7224117cd5294ff9d33c8695bf3595af40ae64ff754188.webp"
+    },
+    {
+      "inventory_id": 1451,
+      "image_id": "59a1b97a-5f6a-4c4d-8aa2-22d670ce27fa",
+      "status": "uploaded_verified",
+      "storage_path": "252a2919-050c-40ba-8d8e-38083c5785ee/59a1b97a-5f6a-4c4d-8aa2-22d670ce27fa/6be0bb18126906da6c7224117cd5294ff9d33c8695bf3595af40ae64ff754188.webp"
+    },
+    {
+      "inventory_id": 1478,
+      "image_id": "34f0bf28-7855-41cb-a3d9-d16dd373f033",
+      "status": "uploaded_verified",
+      "storage_path": "82985eca-746b-434d-9cad-e83cabd7b0a0/34f0bf28-7855-41cb-a3d9-d16dd373f033/6be0bb18126906da6c7224117cd5294ff9d33c8695bf3595af40ae64ff754188.webp"
+    }
+  ],
+  "browser_attempt": {
+    "status": "tool_error_before_navigation",
+    "error": "Cannot read properties of undefined (reading timeoutMs)",
+    "methods": [
+      "navigation",
+      "alternate browser controls"
+    ],
+    "note": "Unable to navigate; website image downloads in browser remain untested."
+  },
+  "name_errors": [],
+  "missing_storage_objects": [],
+  "bundle": ".cache/equipment-promotions/official-2026-11-11-retry2"
+}

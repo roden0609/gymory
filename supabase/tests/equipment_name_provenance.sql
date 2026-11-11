@@ -1,4 +1,4 @@
--- Run after 0064. Fixtures and their changes roll back.
+-- Run after 0065. Fixtures and their changes roll back.
 begin;
 create or replace function pg_temp.assert(ok boolean, message text) returns void language plpgsql as $$
 begin if not coalesce(ok,false) then raise exception '%',message; end if; end $$;
@@ -8,10 +8,10 @@ values('00000000-0064-4000-8000-000000000002','00000000-0064-4000-8000-000000000
 select pg_temp.assert((select captured_name is null and official_name_zh is null from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Do not infer source/official names from display values');
 select public.import_equipment_official_research('247-fitness:640000','M1',
   '{"captured_name":"Source name","captured_name_zh":"原始中文","name":"Official name","status":"candidate_requires_review"}','[]');
-select pg_temp.assert((select captured_name='Source name' and captured_name_zh='原始中文' and name='Curated display' and name_zh='人工中文展示名' and official_name_zh is null from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Import source names independently; never manufacture an official translation');
+select pg_temp.assert((select captured_name='Source name' and captured_name_zh='原始中文' and name='Official name' and name_zh='原始中文' and official_name_zh is null from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Import adopts official English and captured Chinese without manufacturing an official translation');
 select public.save_equipment_official_review(id,updated_at,'Official name','M1',null,official_status,null,true,'admin','官方中文',false)
 from public.equipment where id='00000000-0064-4000-8000-000000000002';
-select pg_temp.assert((select official_name_zh='官方中文' and official_verified_at is not null and name='Curated display' from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Saving official names alone must not change display names');
+select pg_temp.assert((select official_name_zh='官方中文' and official_verified_at is not null and name='Official name' and name_zh='官方中文' from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Saving official names synchronizes display names independently of the legacy apply flag');
 update public.equipment set official_name_zh='官方中文修訂' where id='00000000-0064-4000-8000-000000000002';
 select pg_temp.assert((select official_verified_at is null from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Official Chinese changes invalidate approval');
 select public.import_equipment_official_research('247-fitness:640000','M1','{"name":"Official name","status":"model_verified"}','[]');
@@ -27,7 +27,7 @@ begin
 end $$;
 select public.save_equipment_official_review(id,updated_at,'Official name','M1',null,official_status,null,true,'admin','',true)
 from public.equipment where id='00000000-0064-4000-8000-000000000002';
-select pg_temp.assert((select name='Official name' and name_zh='人工中文展示名' and official_name_zh is null and captured_name='Source name' and captured_name_zh='原始中文' and official_verified_at is not null and slug='name-provenance-test-0064' from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Applying English keeps the Chinese display fallback, captured data and stable URL');
+select pg_temp.assert((select name='Official name' and name_zh='原始中文' and official_name_zh is null and captured_name='Source name' and captured_name_zh='原始中文' and official_verified_at is not null and slug='name-provenance-test-0064' from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Clearing official Chinese restores captured Chinese and preserves provenance and stable URL');
 select public.save_equipment_official_review(id,updated_at,'Official name','M1',null,official_status,null,true,'admin','官方中文',true)
 from public.equipment where id='00000000-0064-4000-8000-000000000002';
 select pg_temp.assert((select name_zh='官方中文' and captured_name_zh='原始中文' from public.equipment where id='00000000-0064-4000-8000-000000000002'),'Explicit application adopts confirmed official Chinese');

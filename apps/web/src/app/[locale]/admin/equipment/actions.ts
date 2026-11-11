@@ -40,6 +40,9 @@ function refreshCatalog() {
     }
   }
   revalidatePath("/[locale]/gyms/[slug]", "page");
+  revalidatePath("/[locale]/gyms/[slug]/[equipment]", "page");
+  revalidatePath("/[locale]/search", "page");
+  revalidatePath("/[locale]/equipment/[equipment]", "page");
 }
 
 type CatalogEntity = "brand" | "machine" | "type";

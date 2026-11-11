@@ -1,4 +1,4 @@
--- Run after 0063. All fixtures roll back.
+-- Run after 0065. All fixtures roll back.
 begin;
 do $$
 begin
@@ -22,7 +22,7 @@ select public.import_equipment_official_research('247-fitness:630000','M1',
   '{"name":"Official candidate","model":"M1","status":"candidate_requires_review","note":"Configuration uncertain"}',
   '[{"role":"captured","url":"https://example.com/same.jpg"},{"role":"official","url":"https://example.com/same.jpg"}]');
 select pg_temp.assert((select count(*)=2 from public.equipment_images where equipment_id='00000000-0063-4000-8000-000000000002'),'Same URL can have two distinct roles');
-select pg_temp.assert((select name='Source name' and official_name='Official candidate' and official_verified_at is null from public.equipment where id='00000000-0063-4000-8000-000000000002'),'Import preserves source identity and does not approve candidates');
+select pg_temp.assert((select name='Official candidate' and model_number='M1' and source_external_id='247-fitness:630000' and official_name='Official candidate' and official_verified_at is null from public.equipment where id='00000000-0063-4000-8000-000000000002'),'Import applies official display name while preserving source identity and keeping approval independent');
 
 select public.save_equipment_official_review(id,updated_at,'Approved name','M1','https://example.com/model',official_status,'Accepted configuration',true,'firebase-admin-uid')
 from public.equipment where id='00000000-0063-4000-8000-000000000002';

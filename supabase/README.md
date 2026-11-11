@@ -176,6 +176,11 @@ Create another migration for corrections so migration history stays consistent a
 Schema migrations and data imports such as `pnpm import:247-equipment ... --upsert`
 are separate operations; applying migrations does not automatically run an importer.
 
+For promoting the 24/7 official research and locally stored images, follow
+[the equipment promotion workflow](../docs/db/promote-official-equipment.md).
+It exports a portable bundle, previews target changes, backs up target rows and
+copies image bytes using target-specific UUIDs. It requires migrations through 0066.
+
 ## Troubleshooting
 
 ### Migration history is inconsistent
