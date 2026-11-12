@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { query, createClient } = vi.hoisted(() => {
   const query = {
-    select: vi.fn(), eq: vi.fn(), in: vi.fn(), or: vi.fn(), gte: vi.fn(),
-    then: (resolve: (value: unknown) => unknown) => Promise.resolve({ data: [], count: 0, error: null }).then(resolve),
+    execute: vi.fn(), select: vi.fn(), eq: vi.fn(), in: vi.fn(), or: vi.fn(), gte: vi.fn(),
+    then: (resolve: (value: unknown) => unknown) => query.execute().then(resolve),
   };
   return { query, createClient: vi.fn(async () => ({ from: () => query })) };
 });
@@ -13,6 +13,7 @@ import { searchGyms } from "./search-gyms";
 
 beforeEach(() => {
   vi.clearAllMocks();
+  query.execute.mockResolvedValue({ data: [], count: 0, error: null });
   for (const method of [query.select, query.eq, query.in, query.or, query.gte]) method.mockReturnValue(query);
 });
 
@@ -36,4 +37,9 @@ describe("multi-district gym search", () => {
     expect(result.totalCount).toBe(0);
     expect(result.gyms).toEqual([]);
   });
+});
+
+it("does not present a database timeout as a successful empty search", async () => {
+  query.execute.mockResolvedValue({ data: null, count: null, error: { code: "57014", message: "canceling statement due to statement timeout" } });
+  await expect(searchGyms({})).rejects.toThrow("Failed to load gyms (57014)");
 });

@@ -94,12 +94,15 @@ B. Deploy to DEV:
       Complete and record both before proceeding to DB Migration.
       Do not replay these SQL files directly into existing DEV as a rollback.
 
-      Review the exact pending migration list through 0069 for this release.
+      Review the exact pending migration list through 0072 for this release.
       Unexpected migrations, missing history or drift must be resolved first;
       do not use migration repair merely to bypass a mismatch.
 
       Check the currently deployed app against the pending schema/grant changes,
-      especially 0067/0068 public read restrictions and 0069 equipment URLs.
+      especially 0067/0068 public read restrictions, 0069 equipment URLs and
+      0070 removal of the private data_source dependency from gyms_public, and
+      0071 gym_brand_overview_public (required before deploying the new app), and
+      0072 public inventory visibility performance with explicit publication rules.
       Rehearse old-app reads against the migrated schema in an isolated database.
       If incompatible, arrange a maintenance window that blocks public access
       and writes before migration, and reopen only after the new app passes

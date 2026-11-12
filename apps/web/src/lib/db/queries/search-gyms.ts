@@ -605,14 +605,7 @@ export async function searchGyms(
 
   const { data, error, count } = await query;
   if (error) {
-    return {
-      gyms: [],
-      totalCount: 0,
-      page,
-      pageSize,
-      totalPages: 0,
-      hasNextPage: false,
-    };
+    throw new Error(`Failed to load gyms (${error.code ?? "unknown"})`);
   }
 
   const allGyms = ((data ?? []) as unknown as GymSummary[]).filter((gym) =>

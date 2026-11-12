@@ -1,4 +1,4 @@
--- Run after 0067. Transactional fixtures and schema changes are rolled back.
+-- Run after 0070. Transactional fixtures and schema changes are rolled back.
 begin;
 
 insert into public.gyms (id, name, slug, district_code, is_active)
@@ -31,13 +31,14 @@ begin
         raise exception '% can read internal equipment column %', api_role, column_name;
       end if;
     end loop;
-    foreach column_name in array array['hyrox_partner_id', 'hyrox_source_url', 'hyrox_source_synced_at', 'last_reported_at', 'created_at', 'data_accuracy_flagged_at'] loop
+    foreach column_name in array array['hyrox_partner_id', 'hyrox_source_url', 'hyrox_source_synced_at', 'last_reported_at', 'created_at', 'data_accuracy_flagged_at', 'data_source'] loop
       if has_column_privilege(api_role, 'public.gyms', column_name, 'SELECT')
         or has_column_privilege(api_role, 'public.gyms_normalized', column_name, 'SELECT') then
         raise exception '% can read internal gym column %', api_role, column_name;
       end if;
     end loop;
-    if has_column_privilege(api_role, 'public.gyms', 'frontend_acl_future_private', 'SELECT')
+    if has_column_privilege(api_role, 'public.gyms_public', 'data_source', 'SELECT')
+      or has_column_privilege(api_role, 'public.gyms', 'frontend_acl_future_private', 'SELECT')
       or has_column_privilege(api_role, 'public.gym_accuracy_votes', 'user_id', 'SELECT')
       or has_any_column_privilege(api_role, 'public.equipment_specs', 'SELECT')
       or has_any_column_privilege(api_role, 'public.users', 'SELECT')
@@ -80,6 +81,18 @@ begin
   select count(*) into visible_count from public.gyms_public
     where id in ('00000000-0067-4000-8000-000000000001', '00000000-0067-4000-8000-000000000002');
   if visible_count <> 1 then raise exception 'Active gym RLS failed: % rows', visible_count; end if;
+  -- A narrow projection must work without access to ANY provenance column.
+  perform id, name, slug from public.gyms_public limit 1;
+  begin
+    perform data_source from public.gyms_public limit 0;
+    raise exception 'Gym provenance unexpectedly readable through public view';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform data_source from public.gyms limit 0;
+    raise exception 'Gym provenance unexpectedly readable from base table';
+  exception when insufficient_privilege then null;
+  end;
   begin
     perform official_review_note from public.equipment limit 0;
     raise exception 'Internal equipment notes unexpectedly readable';

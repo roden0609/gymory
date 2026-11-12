@@ -396,3 +396,32 @@ SQL 回歸測試：[frontend_column_read_access.sql](../../supabase/tests/fronte
 - 舊 slug 可能包含 restricted source inventory ID，唔複製到公開 aliases；使用舊 slug 嘅搜尋 bookmark 需更新。現有 name／alias 搜尋及按 equipment UUID 關聯不變。
 - Helper functions 撤走 PUBLIC／anon／authenticated EXECUTE；不新增公開欄位、view 或 grant。
 - 注意：既有 migration 0065 display-name trigger 仍有 captured-name fallback；0069 不讀取 captured 欄位生成 slug，亦不修改該既有名稱政策。該 fallback 與現行 restricted-column 政策不一致，需獨立修正。
+
+
+Migration `0070` 修正 `gyms_public` 的 security-invoker 依賴：保留原有
+`data_source` 欄位位置及 text 型別，但內容固定為 NULL，不再引用
+`gyms.data_source`。兩者的公開欄位權限仍撤銷；前端不選取此欄位。
+這避免 0068 撤權後，連只選 `id/name/slug` 都因底層私有欄位而失敗。
+後台繼續透過 `gyms`／`gyms_normalized` 讀取真實來源。權限回歸測試
+`supabase/tests/frontend_column_read_access.sql` 必須在 0070 之後執行，
+同時驗證公開查詢成功、來源欄位被拒絕及 active-row RLS。
+
+
+Migration `0071` 新增 security-invoker view `gym_brand_overview_public`，
+供品牌 overview 使用，保留 `gyms`／`gym_equipment_type_inventory` 既有 RLS。
+回傳只包含 district_code、rack_count、dumbbell_max_weight_kg、treadmill_count、
+rower_count、has_bathroom、has_changing_room、has_free_water。
+slug／is_active 只用作資料庫篩選，不回傳。View 只聚合 rack／treadmill／rower，
+避免一般 gyms_public 聚合所有器材類型的 RLS 成本；不增加共享查詢欄位。
+公開角色只獲明確列出的 view 欄位 SELECT，沒有底層新增 grants。
+必須先部署 0071，再部署使用此 view 的 application code。
+
+
+Migration `0072` 把 `gym_type_has_public_models(uuid,text)` 改成固定 search_path
+的 security-definer 布林 helper，避免完整搜尋逐項重入 inventory/equipment/
+assignment RLS。只回傳公開器材存在與否，不回傳任何原始資料。函式內明確
+檢查 active gym、admin/owner verified inventory、active equipment/brand、
+active 主分類及其 category，以及 active 查詢分類及其 category。
+PUBLIC execute 被撤銷，anon/authenticated/service_role 明確獲准執行。
+底層 table/column grants 及 RLS policies 不變；未驗證或停用資料不能透過
+這個 helper 推斷為公開存在。回歸測試：public_inventory_visibility.sql。
