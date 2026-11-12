@@ -387,3 +387,12 @@ SQL 回歸測試：[frontend_column_read_access.sql](../../supabase/tests/fronte
 本次冇改 UI markup／CSS。已用本機資料喺 320px／375px 驗證 `/zh-HK/search`、`/zh-HK/districts/yau-tsim-mong`、定位搜尋、map、split 同 gym 詳情頁；全部 HTTP 200，documentElement／body scrollWidth 冇超過 viewport，列表有正常 gym 結果。瀏覽器測試只臨時建立本機 gyms_public（冇套用權限收窄），完成後已移除；完整 ACL 行為由上述 rollback SQL 測試獨立驗證。仍應喺部署測試環境驗證登入提交表單完整流程。
 
 公開 gym 詳情頁不顯示或查詢 `data_source`。Migration `0068` 撤銷 `PUBLIC`、`anon`、`authenticated` 對 `gyms.data_source` 及 `gyms_public.data_source` 的欄位讀取權限；後台 service-role 存取不變。
+
+## Equipment slug policy（0069）
+
+- `equipment.slug` 由公開 `equipment.name` 及品牌 `slug/name_en/aliases` 生成；只在 backend 使用品牌 aliases，公開查詢毋須增加欄位。
+- 品牌以完整 normalized token 識別並去重；同名記錄使用器材 UUID 前 8 位作後綴，碰撞時延長。唔使用 model number 或 restricted source identity。
+- 初次 migration 會更新全部現有 slug，同組重複記錄全部加後綴；往後只替新增記錄分配 slug，名稱／品牌修改保持既有 slug。全表 unique index 防止重複。
+- 舊 slug 可能包含 restricted source inventory ID，唔複製到公開 aliases；使用舊 slug 嘅搜尋 bookmark 需更新。現有 name／alias 搜尋及按 equipment UUID 關聯不變。
+- Helper functions 撤走 PUBLIC／anon／authenticated EXECUTE；不新增公開欄位、view 或 grant。
+- 注意：既有 migration 0065 display-name trigger 仍有 captured-name fallback；0069 不讀取 captured 欄位生成 slug，亦不修改該既有名稱政策。該 fallback 與現行 restricted-column 政策不一致，需獨立修正。

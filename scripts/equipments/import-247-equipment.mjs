@@ -197,7 +197,7 @@ export async function persistPlan(plan, request, { verify = false, now = () => n
     // models) must never merge distinct source IDs or claim manual records.
     if (!model) {
       model = await request('rpc/create_247_equipment_model', {
-        p_machine: { brand_id: brand.id, slug: `${slug(e.name) || 'equipment'}-247-${e.key.split(':')[1]}`, name: e.name, name_zh: e.name_zh, model_number: e.model_number, source_external_id: e.key, source_url: e.source_url, imported_at: e.captured_at },
+        p_machine: { brand_id: brand.id, slug: slug(e.name) || 'equipment', name: e.name, name_zh: e.name_zh, model_number: e.model_number, source_external_id: e.key, source_url: e.source_url, imported_at: e.captured_at },
         p_primary_code: e.equipment_type_code,
         p_additional_codes: e.classification?.secondary_equipment_type_codes ?? [],
         p_verified: verify,
