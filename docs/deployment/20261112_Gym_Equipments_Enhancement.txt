@@ -1,3 +1,15 @@
+Release rules:
+  - Run commands from the repository root, one at a time. Stop on any error.
+  - CLI linking and importer env files select targets independently.
+    Confirm each env file contains the intended URL and SUPABASE_SECRET_KEY;
+    never print or commit credentials.
+    DEV:  https://yzvipswjmgcolaepqwoz.supabase.co
+    PROD: https://qgldameylaysgfsvytjh.supabase.co
+  - --upsert-file and --upsert write immediately. --verify approves imported
+    equipment presence for public display; it does not verify physical counts.
+  - Keep backups, promotion bundles and reports private. Reports may contain
+    restricted review/source data. Do not commit them or publish them in logs.
+
 A. Local Preparation:
   1. Prepare gyms data
       pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-district-overrides.json
@@ -9,10 +21,90 @@ A. Local Preparation:
       pnpm import:pure-fitness-hk --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
       pnpm import:snap-fitness-hk
 
-  2. Import equipment catalog
+  2. Generate and review equipment import plan (no database writes)
       pnpm import:247-equipment
 
+      Review data/equipments/247-fitness-hk-import-plan.json, especially review
+      entries, classifications and gym mappings. Edit source/rules if needed;
+      the generated plan is overwritten on each import.
+
+  3. Freeze and validate release inputs
+      Review gym JSON diffs generated in step 1 before accepting them.
+      Commit the reviewed code, migrations and JSON source artifacts. Record the
+      release commit SHA; DEV and PROD must use identical release inputs.
+      Do not rerun source-fetch preparation between DEV and PROD.
+
+      pnpm test
+      pnpm --filter web typecheck
+      pnpm --filter web lint
+      pnpm build:web
+
+      If typecheck only changes apps/web/tsconfig.tsbuildinfo, restore that
+      generated change before committing.
+
+      Confirm the entire existing promotion bundle is present:
+        .cache/equipment-promotions/official-2026-11-11-retry6
+      Retain a durable private copy of manifest.json and all bundled image files;
+      .cache is ignored by Git. Use this same bundle in DEV and PROD.
+      See docs/db/promote-official-equipment.md for bundle details.
+
 B. Deploy to DEV:
+  0. Preflight and backup
+      Record the current DEV deployment ID/commit and migration history.
+      Back up the DEV database and affected Storage objects before any writes.
+      Record backup locations and confirm the restore procedure is usable.
+
+      # Start Docker. Pause relevant writes and schema changes until all dumps
+      # finish; separate dumps do not share a database snapshot.
+      # Run each command separately and stop immediately if any command fails.
+      umask 077
+      backup_dir=".cache/db-backups/dev-$(date +%Y%m%d-%H%M%S)"
+      mkdir -p "$backup_dir"
+
+      # Explicitly select DEV; importer env files do not control CLI dumps.
+      supabase link --project-ref yzvipswjmgcolaepqwoz
+
+      # Public schema definitions, including views/functions/triggers and ACLs.
+      supabase db dump --linked --schema public \
+        --file "$backup_dir/public-schema.sql"
+
+      # All public table data, including private fields; keep this file private.
+      supabase db dump --linked --schema public --data-only --use-copy \
+        --file "$backup_dir/public-data.sql"
+
+      # Preserve migration-history definitions and records separately.
+      supabase db dump --linked --schema supabase_migrations \
+        --file "$backup_dir/migration-schema.sql"
+      supabase db dump --linked --schema supabase_migrations --data-only --use-copy \
+        --file "$backup_dir/migration-history.sql"
+      supabase migration list --linked > "$backup_dir/migration-list.txt"
+
+      Confirm all commands succeeded and the expected SQL files are nonempty.
+      Copy this directory to durable private backup storage outside .cache.
+      Record the target project, backup time and deployed commit with the backup.
+      Test restoration in an isolated Supabase environment, including row counts,
+      public reads, RLS and column grants, before relying on these files.
+
+      These dumps cover public structure/data and migration-history data only.
+      They do not include Auth users, custom roles, other schema definitions or
+      cross-schema dependencies. Include those separately if needed for recovery.
+      Separately back up the equipment-images bucket files and the bucket/object
+      metadata needed to restore them. A DB dump does not contain image bytes.
+      Follow E for Storage backup and F for the restore rehearsal.
+      Complete and record both before proceeding to DB Migration.
+      Do not replay these SQL files directly into existing DEV as a rollback.
+
+      Review the exact pending migration list through 0069 for this release.
+      Unexpected migrations, missing history or drift must be resolved first;
+      do not use migration repair merely to bypass a mismatch.
+
+      Check the currently deployed app against the pending schema/grant changes,
+      especially 0067/0068 public read restrictions and 0069 equipment URLs.
+      Rehearse old-app reads against the migrated schema in an isolated database.
+      If incompatible, arrange a maintenance window that blocks public access
+      and writes before migration, and reopen only after the new app passes
+      smoke tests. Do not weaken restricted-column grants for compatibility.
+
   1. DB Migration
       # Explicitly select the project whenever switching environments.
       supabase link --project-ref yzvipswjmgcolaepqwoz
@@ -30,7 +122,10 @@ B. Deploy to DEV:
       supabase migration list --linked
 
   2. Application Code Migration
-      i. Merge feature branch to develop branch
+      i. Merge the reviewed feature release to develop via PR after CI passes.
+      ii. Wait for the matching Vercel deployment to succeed. Record its ID/commit
+          and confirm Preview variables point to DEV, including server credentials.
+      iii. Confirm public pages and admin login work before continuing.
 
   3. Update gyms
       pnpm import:247-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/247-fitness-hk-baseline.json
@@ -59,7 +154,69 @@ B. Deploy to DEV:
         --report-dir .cache/equipment-promotions/dev-apply-1 --apply
 
 
+  6. DEV acceptance gate
+      Review both preview and apply report.json. Require no failed/conflict
+      records; review every skipped_verified and pending image explicitly.
+      Confirm expected records are verified/unchanged or have an accepted skip.
+      Each retry requires a new report directory; do not reuse the paths above.
+
+      Verify gym listings, equipment counts/presence, localized equipment names,
+      public images, equipment links, admin previews, uploads and primary image
+      selection. Confirm private fields remain inaccessible to public users.
+      Check search, district, map and split views at 320px and 375px without
+      horizontal page scrolling. Keep deployment logs and private reports.
+      Start PROD only after these checks pass for the frozen release inputs.
+
 C. Deploy to PROD:
+  0. Release gate and backup
+      Confirm DEV acceptance is complete and release source inputs/bundle match.
+      Record the current PROD deployment ID/commit and migration history.
+      Back up the PROD database and affected Storage objects; record locations
+      and confirm the restore procedure before any writes.
+
+      # Start Docker. Pause relevant writes and schema changes until all dumps
+      # finish; separate dumps do not share a database snapshot.
+      # Run each command separately and stop immediately if any command fails.
+      umask 077
+      backup_dir=".cache/db-backups/prod-$(date +%Y%m%d-%H%M%S)"
+      mkdir -p "$backup_dir"
+
+      # Explicitly select PROD; importer env files do not control CLI dumps.
+      supabase link --project-ref qgldameylaysgfsvytjh
+
+      # Public schema definitions, including views/functions/triggers and ACLs.
+      supabase db dump --linked --schema public \
+        --file "$backup_dir/public-schema.sql"
+
+      # All public table data, including private fields; keep this file private.
+      supabase db dump --linked --schema public --data-only --use-copy \
+        --file "$backup_dir/public-data.sql"
+
+      # Preserve migration-history definitions and records separately.
+      supabase db dump --linked --schema supabase_migrations \
+        --file "$backup_dir/migration-schema.sql"
+      supabase db dump --linked --schema supabase_migrations --data-only --use-copy \
+        --file "$backup_dir/migration-history.sql"
+      supabase migration list --linked > "$backup_dir/migration-list.txt"
+
+      Confirm all commands succeeded and the expected SQL files are nonempty.
+      Copy this directory to durable private backup storage outside .cache.
+      Record the target project, backup time and deployed commit with the backup.
+      Test restoration in an isolated Supabase environment, including row counts,
+      public reads, RLS and column grants, before relying on these files.
+
+      These dumps cover public structure/data and migration-history data only.
+      They do not include Auth users, custom roles, other schema definitions or
+      cross-schema dependencies. Include those separately if needed for recovery.
+      Separately back up the equipment-images bucket files and the bucket/object
+      metadata needed to restore them. A DB dump does not contain image bytes.
+      Follow E for Storage backup and F for the restore rehearsal.
+      Complete and record both before proceeding to DB Migration.
+      Do not replay these SQL files directly into existing PROD as a rollback.
+      Repeat the pending migration review and old-app compatibility check from
+      B.0 for PROD's actual schema/deployed version. Use the rehearsed maintenance
+      procedure if incompatible. Do not assume PROD history matches DEV.
+
   1. DB Migration
       # Explicitly switch to PROD instead of relying on the previous linked target.
       supabase link --project-ref qgldameylaysgfsvytjh
@@ -77,7 +234,11 @@ C. Deploy to PROD:
       supabase migration list --linked
 
   2. Application Code Migration
-      i. Merge develop branch to main branch
+      i. Merge the tested develop release to main via PR after CI passes.
+         Verify no untested source changes have entered the release.
+      ii. Wait for the matching Vercel Production deployment to succeed. Record
+          its ID/commit and confirm Production variables point to PROD.
+      iii. Confirm public pages and admin login work before continuing.
 
   3. Update gyms
       pnpm import:247-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/247-fitness-hk-baseline.json
@@ -104,3 +265,171 @@ C. Deploy to PROD:
         --target prod --env-file apps/web/.env.prod \
         --bundle .cache/equipment-promotions/official-2026-11-11-retry6 \
         --report-dir .cache/equipment-promotions/prod-apply-1 --apply
+
+
+  6. PROD acceptance
+      Repeat B.6 report checks and public/admin smoke tests against PROD.
+      Confirm the deployment serves the intended release and retain the release
+      commit, migration output, backup references and private promotion reports.
+
+D. Failure handling:
+  - Stop immediately on migration/import/promotion/deployment errors. Do not
+    continue to the next step or environment until the cause is resolved.
+  - Importers and promotion can partially succeed across records. Preserve logs
+    and reports, resolve the cause, then rerun the same frozen inputs. Promotion
+    retries need fresh report directories. Review existing approvals/skips.
+  - Promotion before.json is a record snapshot, not an automatic rollback tool;
+    it does not replace the pre-migration database/Storage backup. Failed records
+    can leave unreferenced uploads; do not delete objects without checking usage.
+  - Redeploy the recorded previous app only after confirming it works with the
+    current schema and grants. App rollback does not undo migrations or data.
+  - For incompatible schema or incorrect data, keep maintenance active and use
+    the rehearsed restore procedure or a reviewed corrective migration/data fix.
+    Preserve legitimate writes made after the backup when planning recovery.
+    Do not reset/seed PROD, restore the local DB over it, delete applied migration
+    history, or restore the DB without considering associated Storage objects.
+  - After recovery, repeat migration-history, public/admin and permission checks
+    before reopening service or resuming the release.
+
+
+E. Storage backup (run during B.0 and C.0, before releasing the write pause):
+  1. Configure tools and source access
+      Install rclone and psql. Keep the backup_dir from the current DB backup.
+      In the SOURCE project's Dashboard, obtain its Storage S3 endpoint, region
+      and S3 access credentials. S3 credentials are not the Supabase secret key.
+      Configure a separate rclone S3 remote for each source using:
+
+      rclone config
+
+      Name the remotes gymory-dev and gymory-prod. Select S3 / Other, disable
+      environment authentication, and enter the matching project's S3 key,
+      secret, endpoint and region. Keep the local rclone config private.
+      For DEV only:
+        storage_source="gymory-dev"
+      For PROD only:
+        storage_source="gymory-prod"
+      Confirm the configured endpoint matches the project linked for the DB dump.
+
+  2. Download and verify actual image files
+      Pause Storage uploads/deletes as well as database writes until backup ends.
+      Use a new, empty backup directory; never reuse an earlier backup destination.
+
+      mkdir -p "$backup_dir/storage/equipment-images"
+      rclone copy "${storage_source}:equipment-images" \
+        "$backup_dir/storage/equipment-images" --metadata
+      rclone check "${storage_source}:equipment-images" \
+        "$backup_dir/storage/equipment-images" --download
+      rclone lsjson "${storage_source}:equipment-images" --recursive --files-only \
+        > "$backup_dir/storage/equipment-images-manifest.json"
+
+      Require successful exit codes, including the byte-content check. Do not
+      use sync: copy does not delete files. A zero-object bucket is valid only
+      after confirming it is genuinely empty on the intended source project.
+
+  3. Save bucket configuration and object metadata
+      Obtain the SOURCE database connection from Dashboard > Connect (direct or
+      session pooler, not transaction pooler). Use a private libpq service entry
+      named gymory-dev-backup or gymory-prod-backup in ~/.pg_service.conf, with
+      sslmode=require, and a matching private ~/.pgpass entry (chmod 600).
+      Do not put passwords in command arguments, shell history or the repository.
+      Set the matching source service; this does not change CLI linking:
+        source_db_service="gymory-dev-backup"
+      Or, for PROD only:
+        source_db_service="gymory-prod-backup"
+
+      psql "service=$source_db_service" -X --set ON_ERROR_STOP=1 \
+        --command "COPY (SELECT id,name,public,file_size_limit,allowed_mime_types FROM storage.buckets WHERE id='equipment-images') TO STDOUT WITH CSV HEADER" \
+        > "$backup_dir/storage/equipment-images-bucket.csv"
+      psql "service=$source_db_service" -X --set ON_ERROR_STOP=1 \
+        --command "COPY (SELECT name,metadata FROM storage.objects WHERE bucket_id='equipment-images' ORDER BY name) TO STDOUT WITH CSV HEADER" \
+        > "$backup_dir/storage/equipment-images-objects.csv"
+
+      These CSV files describe bucket settings, object paths and content metadata;
+      they are reference inputs, not a complete clone of Storage internals.
+      Save custom Storage policies separately if the recovery target needs them.
+      Copy the complete DB + Storage backup directory to durable private storage.
+      Record successful verification and source project before resuming writes.
+
+F. Isolated restore rehearsal (never run against existing DEV or PROD):
+  1. Prepare a disposable Supabase project
+      Create a separate private project with a compatible Postgres version and
+      required extensions. Do not deploy the application or enable background jobs.
+      Its public schema must contain no app tables. Do not apply app migrations
+      before importing public-schema.sql; doing both creates duplicate objects.
+      Prepare any external schema/role dependencies referenced by the dump first.
+      If objects already exist or dependencies are missing, stop and prepare a
+      fresh rehearsal target; do not add DROP/CASCADE commands to bypass errors.
+
+      Configure a private libpq service gymory-restore-rehearsal and its password
+      as in E.3, pointing only to this disposable project. Independently check its
+      host/project ref differs from BOTH DEV and PROD before executing psql.
+      Select the backup directory to test (replace the example with an existing
+      completed backup, not a newly generated timestamp):
+        restore_backup_dir=".cache/db-backups/dev-YYYYMMDD-HHMMSS"
+
+  2. Restore public structure and data in one transaction
+      psql "service=gymory-restore-rehearsal" -X \
+        --single-transaction --set ON_ERROR_STOP=1 \
+        --file "$restore_backup_dir/public-schema.sql" \
+        --command "SET session_replication_role = replica" \
+        --file "$restore_backup_dir/public-data.sql" \
+        --command "SET session_replication_role = origin"
+
+      Replica mode prevents importer/derived-data triggers from firing again.
+      It also bypasses FK triggers during load: validate relationships explicitly
+      afterwards. Require a successful exit; an error rolls back this transaction.
+      If the connection cannot set replica mode, stop and resolve restore access.
+      Do not continue by loading data with application triggers enabled.
+
+  3. Restore migration history only into an empty history schema
+      Inspect the rehearsal target's supabase_migrations schema first. If absent:
+
+      psql "service=gymory-restore-rehearsal" -X \
+        --single-transaction --set ON_ERROR_STOP=1 \
+        --file "$restore_backup_dir/migration-schema.sql" \
+        --file "$restore_backup_dir/migration-history.sql"
+
+      If definitions already exist, compare with migration-schema.sql and only load
+      history data when compatible and empty. Do not clear or overwrite history
+      in any existing environment. For the compatible, empty existing schema only:
+
+      psql "service=gymory-restore-rehearsal" -X \
+        --single-transaction --set ON_ERROR_STOP=1 \
+        --file "$restore_backup_dir/migration-history.sql"
+
+  4. Restore images through Storage, not SQL inserts into storage.objects
+      Recreate equipment-images in the rehearsal Dashboard using the saved bucket
+      settings (public flag, size limit, MIME allowlist). Configure another rclone
+      S3 remote gymory-restore-rehearsal using ONLY that project's S3 credentials.
+      Verify its endpoint differs from both source projects. Copy then byte-check:
+
+      rclone copy "$restore_backup_dir/storage/equipment-images" \
+        "gymory-restore-rehearsal:equipment-images" --metadata
+      rclone check "$restore_backup_dir/storage/equipment-images" \
+        "gymory-restore-rehearsal:equipment-images" --download
+
+      Uploads create fresh Storage object records. Do not replay source internal
+      object IDs. Compare paths, sizes and Content-Type against the saved metadata;
+      correct Content-Type through supported Storage/S3 uploads if needed.
+      Recreate required custom Storage policies from reviewed source definitions.
+
+  5. Acceptance and recovery record
+      Compare per-table counts with counts recorded at source backup time; capture
+      those counts through the source SQL editor while writes are paused. Check
+      representative gym, equipment, assignments and image-path relationships.
+      Verify no orphan foreign-key references; replica mode did not validate them.
+      Compare grants/RLS against the source definitions, including denied access
+      to restricted fields and successful authorized admin reads.
+      Verify public official images work, manual URLs remain private, and files
+      match the rclone byte checks. Run application smoke tests with credentials
+      pointing only to the rehearsal project. Record project ref, backup path,
+      commands, outcomes, dependencies and recovery duration with the release.
+      A failed rehearsal blocks deployment until the backup/restore gap is fixed.
+      This rehearsal does not authorize switching production to the restored
+      project: Auth, configuration, URLs and post-backup writes need a separate
+      recovery plan. Keep the verified backup after removing the disposable target.
+
+References:
+  https://supabase.com/docs/guides/platform/migrating-within-supabase/backup-restore
+  https://supabase.com/docs/guides/self-hosting/copy-from-platform-s3
+  https://supabase.com/docs/guides/storage/management/download-objects
