@@ -13,6 +13,23 @@ For every new or modified function, feature, page, and API, read, process, and r
 - Keep service-role access server-side. A public page using a server-side admin query does not justify granting public access to the underlying tables or internal columns.
 - When changing public data dependencies, update `docs/data/frontend-minimum-data-list.md` and any affected grants or views. Verify required reads and joins still work, private fields remain inaccessible, and row restrictions remain effective.
 
+## Restricted Columns
+
+These values are private. Every future code or schema change must preserve this restriction unless the user explicitly authorizes a change to this policy.
+
+| Table | Restricted columns / values |
+| --- | --- |
+| `equipment` | `source_url`, `source_external_id`, `official_review_note`, `captured_name`, `captured_name_zh` |
+| `equipment_images` | `source_external_key`; `url` on rows where `source_type = 'manual'` |
+| `equipment_type_assignments` | `source` |
+
+- Do not expose restricted values to anonymous users or ordinary authenticated users. Access is limited to authorized backend processes and authenticated, authorized admin workflows; using a service-role query does not make its results safe for public output.
+- Enforce this at both database and application boundaries. Do not grant public roles (`PUBLIC`, `anon`, `authenticated`) SELECT access to restricted columns, or expose them through views, RPCs, APIs, exports, public logs, caches, HTML, metadata, structured data, React Server Component payloads, or client props.
+- For the conditional restriction on `equipment_images.url`, keep the base column private and use an explicitly approved safe projection if non-manual URLs are needed. Never rely on frontend filtering to hide manual URLs. Include `source_type` in backend checks when deciding whether a URL may be returned; do not return it merely for this check.
+- Do not bypass these restrictions by copying, aliasing, transforming, or falling back to restricted values in public fields. In particular, do not publish `captured_name` or `captured_name_zh` through `name`, `name_zh`, or another public field. Independently approved public data is not restricted merely because its text happens to match a private value.
+- Before changing related reads, writes, migrations, grants, views, helpers, or serializers, trace downstream public consumers and derived fields. Add or update relevant permission and response tests to verify that public reads fail and restricted values cannot leak through indirect output, while authorized admin access still works. Keep `docs/data/frontend-minimum-data-list.md` consistent with this policy.
+- Existing code is not an exception to this policy. If a relevant change reveals an existing exposure, fix it within the authorized scope or explicitly report it; never silently preserve or expand it.
+
 ## Mobile Responsive Safety
 
 Before and after any UI/layout change, check that the change does not break mobile responsive design.
