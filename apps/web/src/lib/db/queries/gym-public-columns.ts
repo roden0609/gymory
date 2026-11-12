@@ -35,7 +35,6 @@ export const GYM_DETAIL_FIELDS = [
   "is_hyrox_official",
   "equipment_last_verified_at",
   "updated_at",
-  "data_source",
 ] as const satisfies readonly (keyof Gym)[];
 
 export const GYM_DETAIL_COLUMNS = GYM_DETAIL_FIELDS.join(", ");

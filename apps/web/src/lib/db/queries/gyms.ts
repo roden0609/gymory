@@ -9,7 +9,7 @@ import { GYM_SEARCH_COLUMNS } from "./search-gyms";
 export const GYM_SUBMISSION_COLUMNS = [...new Set([
   ...GYM_DETAIL_COLUMNS.split(", ").filter((field) => ![
     "lat", "lng", "postal_code", "is_verified", "is_hyrox_official",
-    "equipment_last_verified_at", "updated_at", "data_source",
+    "equipment_last_verified_at", "updated_at",
   ].includes(field)),
   ...GYM_SEARCH_COLUMNS.split(", ").filter((field) => ![
     "lat", "lng", "is_verified", "is_hyrox_official", "data_accuracy_status", "updated_at",

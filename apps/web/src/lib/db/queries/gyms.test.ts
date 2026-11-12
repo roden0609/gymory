@@ -27,7 +27,7 @@ describe("public gym projections", () => {
     expect(query.eq).toHaveBeenCalledWith("is_active", true);
     const fields = GYM_DETAIL_COLUMNS.split(", ");
     expect(fields).toEqual(expect.arrayContaining(["country_code", "postal_code", "contact_phone", "opening_hours_json"]));
-    for (const field of ["*", "rack_count", "hyrox_source_url", "last_reported_at", "data_accuracy_flagged_at"]) {
+    for (const field of ["*", "data_source", "rack_count", "hyrox_source_url", "last_reported_at", "data_accuracy_flagged_at"]) {
       expect(fields).not.toContain(field);
     }
     expect(getGymEquipmentInventory).toHaveBeenCalledWith("gym");

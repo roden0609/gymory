@@ -150,26 +150,6 @@ function sortOpeningHoursEntries(openingHours: Record<string, string>) {
   });
 }
 
-function formatDataSource(
-  value: PublicGymDetail["data_source"],
-  t: Awaited<ReturnType<typeof getTranslations>>
-) {
-  if (!value) return t("notListed");
-
-  switch (value) {
-    case "admin":
-      return t("dataSourceAdmin");
-    case "owner":
-      return t("dataSourceOwner");
-    case "import":
-      return t("dataSourceOnline");
-    case "user_submission":
-      return t("dataSourceUser");
-    default:
-      return formatLabel(value);
-  }
-}
-
 function formatDate(value: string | null, locale: Locale) {
   if (!value) return null;
   return new Intl.DateTimeFormat(locale, {
@@ -561,7 +541,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
             actionLabel={t("firstContributorAction")}
           />
         )}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <StatCard label={t("size")} value={formatSizeCategory(gym.size_category, t)} />
           <StatCard
             label={t("floorArea")}
@@ -574,10 +554,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           <StatCard
             label={t("dayPass")}
             value={dayPassPrice ?? t("notListed")}
-          />
-          <StatCard
-            label={t("dataSource")}
-            value={formatDataSource(gym.data_source, t)}
           />
         </div>
 

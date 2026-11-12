@@ -254,7 +254,6 @@ is_verified
 is_hyrox_official
 equipment_last_verified_at
 updated_at
-data_source
 ```
 
 來源：[gym-public-columns.ts](../../apps/web/src/lib/db/queries/gym-public-columns.ts)、[gyms.ts](../../apps/web/src/lib/db/queries/gyms.ts)、[詳情頁](../../apps/web/src/app/[locale]/gyms/[slug]/page.tsx)。
@@ -323,7 +322,7 @@ data_source
 
 ### gyms
 
-`id, name, slug, address, district_code, country_code, postal_code, website_url, instagram_url, contact_phone, lat, lng, size_category, estimated_size_sqft, opening_hours_json, day_pass_price, is_active, is_verified, dumbbell_max_weight_kg, plate_max_weight_kg, equipment_notes, data_source, equipment_last_verified_at, updated_at, name_zh, address_zh, plate_min_weight_kg, data_accuracy_status, has_washroom, has_bathroom, dumbbell_min_weight_kg, has_dry_sauna, has_wet_sauna, has_ice_bath, has_changing_room, has_free_water, is_hyrox_official`
+`id, name, slug, address, district_code, country_code, postal_code, website_url, instagram_url, contact_phone, lat, lng, size_category, estimated_size_sqft, opening_hours_json, day_pass_price, is_active, is_verified, dumbbell_max_weight_kg, plate_max_weight_kg, equipment_notes, equipment_last_verified_at, updated_at, name_zh, address_zh, plate_min_weight_kg, data_accuracy_status, has_washroom, has_bathroom, dumbbell_min_weight_kg, has_dry_sauna, has_wet_sauna, has_ice_bath, has_changing_room, has_free_water, is_hyrox_official`
 
 ### gyms_public
 
@@ -386,3 +385,5 @@ SQL 回歸測試：[frontend_column_read_access.sql](../../supabase/tests/fronte
 部署時需要先準備 migration，再切換 frontend 到 gyms_public。0067 會撤走舊 frontend 對 gyms_normalized 同舊較闊 SELECT 嘅權限，應安排協調切換，避免舊版本仍處理 request 時出現讀取錯誤。正式部署前應以 production schema migration dry-run 核對，唔好直接將 repo 狀態當成已部署。
 
 本次冇改 UI markup／CSS。已用本機資料喺 320px／375px 驗證 `/zh-HK/search`、`/zh-HK/districts/yau-tsim-mong`、定位搜尋、map、split 同 gym 詳情頁；全部 HTTP 200，documentElement／body scrollWidth 冇超過 viewport，列表有正常 gym 結果。瀏覽器測試只臨時建立本機 gyms_public（冇套用權限收窄），完成後已移除；完整 ACL 行為由上述 rollback SQL 測試獨立驗證。仍應喺部署測試環境驗證登入提交表單完整流程。
+
+公開 gym 詳情頁不顯示或查詢 `data_source`。Migration `0068` 撤銷 `PUBLIC`、`anon`、`authenticated` 對 `gyms.data_source` 及 `gyms_public.data_source` 的欄位讀取權限；後台 service-role 存取不變。
