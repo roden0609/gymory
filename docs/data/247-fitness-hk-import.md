@@ -129,8 +129,10 @@ pnpm import:247-equipment --env-file apps/web/.env.prod --upsert
 ```
 
 The env file must define `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SECRET_KEY`.
-Exported environment variables take precedence over the file. Node 22+ is
-required for `process.loadEnvFile`. Without `--upsert` no database is accessed.
+An explicit env file takes precedence over shell variables and must contain both
+credentials; missing or invalid files fail before generating the plan or writing
+to the database. Without `--env-file`, existing shell configuration is retained.
+Without `--upsert` no database is accessed.
 The plan is regenerated from source files on each run; editing the generated
 plan does not change the importer rules.
 

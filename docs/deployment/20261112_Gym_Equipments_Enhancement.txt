@@ -1,4 +1,18 @@
-A. Deploy to DEV:
+A. Local Preparation:
+  1. Prepare gyms data
+      pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-district-overrides.json
+      pnpm import:anytime-fitness-hk
+      pnpm import:efx24-hk
+      pnpm import:go24-fitness-hk
+      pnpm import:hyrox-official-hk
+      pnpm import:lcsd-fitness-hk
+      pnpm import:pure-fitness-hk --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
+      pnpm import:snap-fitness-hk
+
+  2. Import equipment catalog
+      pnpm import:247-equipment
+
+B. Deploy to DEV:
   1. DB Migration
       # Explicitly select the project whenever switching environments.
       supabase link --project-ref yzvipswjmgcolaepqwoz
@@ -19,12 +33,8 @@ A. Deploy to DEV:
       i. Merge feature branch to develop branch
 
   3. Update gyms
-      pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-district-overrides.json
       pnpm import:247-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/247-fitness-hk-baseline.json
-
-      pnpm import:pure-fitness-hk --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
       pnpm import:anytime-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/anytime-fitness-hk-baseline.json
-
       pnpm import:efx24-hk --env-file apps/web/.env.dev --upsert-file data/gyms/efx24-hk-baseline.json
       pnpm import:go24-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/go24-fitness-hk-baseline.json
       pnpm import:hyrox-official-hk --env-file apps/web/.env.dev --upsert-file data/gyms/hyrox-official-hk.json
@@ -32,7 +42,10 @@ A. Deploy to DEV:
       pnpm import:pure-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/pure-fitness-hk-baseline.json
       pnpm import:snap-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/snap-fitness-hk-baseline.json
 
-  4. Promote equipments
+  4. Import equipment catalog
+      pnpm import:247-equipment --env-file apps/web/.env.dev --upsert --verify
+
+  5. Promote equipments
       # Dry run
       node scripts/equipments/promote-official-equipment.mjs promote \
         --target dev --env-file apps/web/.env.dev \
@@ -46,7 +59,7 @@ A. Deploy to DEV:
         --report-dir .cache/equipment-promotions/dev-apply-1 --apply
 
 
-B. Deploy to PROD:
+C. Deploy to PROD:
   1. DB Migration
       # Explicitly switch to PROD instead of relying on the previous linked target.
       supabase link --project-ref qgldameylaysgfsvytjh
@@ -76,7 +89,10 @@ B. Deploy to PROD:
       pnpm import:pure-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/pure-fitness-hk-baseline.json
       pnpm import:snap-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/snap-fitness-hk-baseline.json
 
-  4. Promote equipments
+  4. Import equipment catalog
+      pnpm import:247-equipment --env-file apps/web/.env.prod --upsert --verify
+
+  5. Promote equipments
       # Dry run
       node scripts/equipments/promote-official-equipment.mjs promote \
         --target prod --env-file apps/web/.env.prod \

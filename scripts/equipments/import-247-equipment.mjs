@@ -3,6 +3,7 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { loadImporterEnv } from '../gyms/lib/importer-env.mjs';
 
 const slug = value => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const comparable = value => (value ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -254,7 +255,7 @@ export async function main(argv = process.argv.slice(2)) {
     if (!allowed.has(argv[i])) throw new Error(`Unknown argument ${argv[i]}`);
     if (argv[i] === '--env-file') { envFile = argv[++i]; if (!envFile || envFile.startsWith('--')) throw new Error('Missing env file'); }
   }
-  if (envFile) process.loadEnvFile(envFile);
+  await loadImporterEnv(envFile === undefined ? {} : { 'env-file': envFile });
   const baseline = JSON.parse(await readFile('data/gyms/247-fitness-hk-baseline.json', 'utf8'));
   const files = (await readdir('data/equipments/247-fitness-hk')).filter(f => f.endsWith('.json')).sort();
   const stores = await Promise.all(files.map(f => readFile(path.join('data/equipments/247-fitness-hk', f), 'utf8').then(JSON.parse)));
