@@ -7561,7 +7561,7 @@
       "brand_name": "Life Fitness",
       "name": "Leg Curl",
       "name_zh": "腿部彎曲訓練器",
-      "model_number": " SS-LC(SP)Full",
+      "model_number": "SS-LC(SP)Full",
       "equipment_type_code": "lying_leg_curl_machine",
       "classification": {
         "equipment_type_code": "lying_leg_curl_machine",
@@ -7680,7 +7680,7 @@
       "brand_name": "Life Fitness",
       "name": "Aspire SL Console Cross Trainer",
       "name_zh": "Aspire SL型控制枱 全功能訓練器",
-      "model_number": " ASPX-SL ",
+      "model_number": "ASPX-SL",
       "equipment_type_code": "elliptical_machine",
       "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=405&club_id=405&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
       "captured_at": "2026-10-24T17:45:23.249986+00:00"
@@ -8048,7 +8048,7 @@
       "brand_name": "Life Fitness",
       "name": "Triceps Extension",
       "name_zh": "三頭肌伸展訓練器",
-      "model_number": " SS-TE(SP)Full",
+      "model_number": "SS-TE(SP)Full",
       "equipment_type_code": "tricep_extension_machine",
       "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=446&club_id=446&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
       "captured_at": "2026-10-24T17:45:24.030215+00:00"
@@ -8059,7 +8059,7 @@
       "brand_name": "Life Fitness",
       "name": "Biceps Curl - Dependent",
       "name_zh": "二頭肌彎舉訓練器",
-      "model_number": " SS-BCD(SP)Full",
+      "model_number": "SS-BCD(SP)Full",
       "equipment_type_code": "bicep_curl_machine",
       "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=446&club_id=446&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
       "captured_at": "2026-10-24T17:45:24.030215+00:00"
@@ -11570,7 +11570,7 @@
       "brand_name": "Life Fitness",
       "name": "Lateral Raise",
       "name_zh": "肩膊提升訓練器",
-      "model_number": " SS-LR(SP)Full",
+      "model_number": "SS-LR(SP)Full",
       "equipment_type_code": "lateral_raise_machine",
       "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=441&club_id=441&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
       "captured_at": "2026-10-24T17:42:49.373991+00:00"
@@ -14463,7 +14463,7 @@
       "brand_name": "Life Fitness",
       "name": "Hip Adduction",
       "name_zh": "大腿內側肌訓練器",
-      "model_number": " SS-HAD(SP)Full",
+      "model_number": "SS-HAD(SP)Full",
       "equipment_type_code": "hip_adductor_machine",
       "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=429&club_id=429&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
       "captured_at": "2026-10-24T17:43:32.610198+00:00"
@@ -14474,7 +14474,7 @@
       "brand_name": "Life Fitness",
       "name": "Hip Abduction",
       "name_zh": "大腿外側肌訓練器",
-      "model_number": " SS-HAB(SP)Full",
+      "model_number": "SS-HAB(SP)Full",
       "equipment_type_code": "hip_abductor_machine",
       "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=429&club_id=429&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
       "captured_at": "2026-10-24T17:43:32.610198+00:00"
@@ -17432,7 +17432,7 @@
       "brand_name": "Life Fitness",
       "name": "Glute Bridge",
       "name_zh": "臀橋訓練器",
-      "model_number": " SS-GLD(SP)Full",
+      "model_number": "SS-GLD(SP)Full",
       "equipment_type_code": "hip_thrust_machine",
       "source_url": "https://www.247fitness.hk/app-api/app-client/store-equipment-inventory/clentList?storeId=349&club_id=349&pageNo=1&pageSize=100&status=1&platform=app&lang=en-US",
       "captured_at": "2026-10-24T17:45:05.664171+00:00"

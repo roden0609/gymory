@@ -29,9 +29,9 @@ import {
   validateImporterRows,
 } from "./lib/importer-output-validation.mjs";
 
-const SOURCE_URL = "https://hyrox.com/find-a-hyrox-partner-gym/";
+const SOURCE_URL = "https://hyrox-training-finder.hyrox.com/gyms?lat=22.381131&lng=114.135572&label=Hong+Kong";
 const FINDER_ENDPOINT =
-  "https://gyms.elbnetz.cloud/wp-admin/admin-ajax.php?action=store_search&lat=22.3193&lng=114.16936&max_results=1000&search_radius=100";
+  "https://onefiit-api.platform.onefiit.com/hyrox365/v1/gyms/map?latitude=22.381131&longitude=114.135572&radiusMeters=100000&limit=1000";
 
 const isDirectExecution =
   Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
@@ -121,31 +121,67 @@ export function parseArgs(argv) {
 
 async function loadDetailsFile(filePath) {
   const raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
-  return JSON.parse(raw);
+  const payload = JSON.parse(raw);
+  return Array.isArray(payload) ? payload : normalizeFinderPayload(payload);
 }
 
-async function fetchHyroxPartnerGyms() {
-  const response = await fetch(FINDER_ENDPOINT, {
-    headers: {
-      "User-Agent": "gymory-importer/1.0 (+https://gymory.io)",
-      Accept: "application/json",
-    },
-  });
+export async function fetchHyroxPartnerGyms(fetcher = fetch) {
+  let response;
+  try {
+    response = await fetcher(FINDER_ENDPOINT, {
+      headers: {
+        "User-Agent": "gymory-importer/1.0 (+https://gymory.io)",
+        Accept: "application/json",
+      },
+      signal: AbortSignal.timeout(30000),
+    });
+  } catch (error) {
+    const code = error?.cause?.code ?? error?.code ?? error?.name ?? "unknown";
+    throw new Error(
+      `HYROX partner finder request failed (${code}) at ${new URL(FINDER_ENDPOINT).hostname}. ` +
+      "Check DNS/network and whether the source endpoint is still current. " +
+      "No baseline was generated. Use --details-file only with a reviewed raw finder snapshot; " +
+      "data/gyms/hyrox-official-hk.json contains mapped rows, not raw details.",
+      { cause: error }
+    );
+  }
 
   const text = await response.text();
   if (!response.ok) {
     throw new Error(`HYROX partner finder failed: ${response.status} ${text.slice(0, 300)}`);
   }
 
-  const payload = JSON.parse(text);
-  if (!Array.isArray(payload)) {
-    throw new Error("Expected HYROX partner finder to return an array");
-  }
+  return normalizeFinderPayload(JSON.parse(text));
+}
 
-  return payload;
+// Project only listing fields consumed below; ignore images, emails and other API data.
+export function normalizeFinderPayload(payload) {
+  if (payload?.success !== true || payload.truncated !== false ||
+      !Array.isArray(payload.gyms) || payload.count !== payload.gyms.length) {
+    throw new Error("HYROX finder response is invalid or truncated; refusing incomplete import");
+  }
+  return payload.gyms.map((gym) => {
+    if (!getString(gym.hyroxEntityId) || !getString(gym.gymName) ||
+        !getString(gym.address?.country)) {
+      throw new Error("HYROX finder gym is missing identity, name or country");
+    }
+    return {
+      id: gym.hyroxEntityId,
+      store: gym.gymName,
+      country: gym.address.country,
+      city: gym.address.city,
+      address: gym.address.street,
+      phone: gym.address.contactDetails?.phone,
+      lat: gym.geoCoordinates?.lat,
+      lng: gym.geoCoordinates?.lon,
+    };
+  });
 }
 
 export function isHongKongPartnerGym(item) {
+  const country = normalizeText(item.country);
+  if (country === "hk" || country === "hong kong") return true;
+  if (country && country !== "china") return false;
   const haystack = [item.store, item.address, item.address2, item.city, item.country]
     .filter(Boolean)
     .join(" ")
@@ -161,7 +197,8 @@ export function mapPartnerGymToGymRow(item, now = new Date()) {
     [item.address, item.address2].map(getString).filter(Boolean).join(", ")
   );
   const city = decodeHtml(getString(item.city));
-  const slug = buildSlug([name, city && !name.toLowerCase().includes(city.toLowerCase()) ? city : null]);
+  const slug = buildSlug([name, city && !name.toLowerCase().includes(city.toLowerCase()) ? city : null]) ||
+    (getString(item.id) ? `hyrox-${getString(item.id)}` : "");
   const syncedAt = now.toISOString();
 
   return {
@@ -647,12 +684,12 @@ function distanceKm(originLat, originLng, targetLat, targetLng) {
 }
 
 const HYROX_DISTRICT_KEYWORDS = [
-    ["HK-CW", ["central", "sheung wan", "sai ying pun", "sai wan", "shek tong tsui", "kennedy town", "pok fu lam", "des voeux", "hollywood road", "possession st", "li yuen", "lyndhurst", "pottinger", "pedder", "belcher", "queen's road west", "south ln"]],
-    ["HK-WC", ["wan chai", "wanchai", "causeway bay", "happy valley", "admiralty", "fortress hill", "lockhart", "watson road", "tang lung", "pennington", "sports road", "queen's road east"]],
-    ["HK-EA", ["north point", "quarry bay", "taikoo", "taikoo shing", "taikooplace", "tak koo shing", "king's road", "westland", "eastern centre"]],
-    ["HK-SO", ["wong chuk hang", "repulse bay", "heung yip", "beach road"]],
-    ["HK-YTM", ["mong kok", "tsim sha tsui", "tst", "jordan", "austin", "nathan road", "kowloon park", "hillwood", "hollywood plaza", "k11 musea", "yue hwa"]],
-    ["HK-SSP", ["sham shui po", "cheung sha wan", "lai chi kok", "tonkin", "wing hong", "king lam", "kimberland", "burlington"]],
+    ["HK-CW", ["central", "admiralty", "sheung wan", "sai ying pun", "sai wan", "shek tong tsui", "kennedy town", "pok fu lam", "des voeux", "hollywood road", "possession st", "li yuen", "lyndhurst", "pottinger", "pedder", "belcher", "queen's road west", "south ln", "wyndham"]],
+    ["HK-WC", ["wan chai", "wanchai", "causeway bay", "happy valley", "lockhart", "watson road", "tang lung", "pennington", "sports road", "queen's road east"]],
+    ["HK-EA", ["north point", "fortress hill", "quarry bay", "taikoo", "taikoo shing", "taikooplace", "tak koo shing", "king's road", "king's rd", "westland", "eastern centre"]],
+    ["HK-SO", ["wong chuk hang", "repulse bay", "heung yip", "beach road", "aberdeen", "shum wan", "nam long shan", "chengtu"]],
+    ["HK-YTM", ["mong kok", "tsim sha tsui", "tst", "jordan", "austin", "nathan road", "kowloon park", "hillwood", "hollywood plaza", "k11 musea", "yue hwa", "tai kok tsui", "olympian", "hoi fai", "choi kam", "彌敦道"]],
+    ["HK-SSP", ["sham shui po", "cheung sha wan", "lai chi kok", "tonkin", "wing hong", "king lam", "kimberland", "burlington", "meifoo", "mei foo", "lai ying"]],
     ["HK-KC", ["kowloon city", "hung hom", "ho man tin", "to kwa wan", "kai tak", "airside", "concorde"]],
     ["HK-WTS", ["wong tai sin", "san po kong", "diamond hill", "tai yau street", "midas plaza", "choi hung"]],
     ["HK-KT", ["kwun tong", "kowloon bay", "ngau tau kok", "mega box", "megabox", "telford", "amoy", "hoi yuen", "how ming", "lai yip", "hung to", "westin centre", "kwun tong road"]],
@@ -660,9 +697,11 @@ const HYROX_DISTRICT_KEYWORDS = [
     ["HK-TW", ["tsuen wan", "kolour", "castle peak road"]],
     ["HK-TM", ["tuen mun", "lung mun"]],
     ["HK-N", ["fanling", "san wan"]],
-    ["HK-ST", ["sha tin", "shatin", "citylink", "lek yuen"]],
-    ["HK-SK", ["sai kung", "hang hau", "tko", "clear water bay", "mostown", "ma on shan", "mount pavilia", "wai man", "yip wong"]],
-    ["HK-YL", ["tin shui wai", "yuen long"]],
+    ["HK-ST", ["sha tin", "shatin", "citylink", "lek yuen", "shek mun", "on lai street", "wu kai sha", "tai wai", "che kung miu", "mostown", "ma on shan"]],
+    ["HK-SK", ["sai kung", "hang hau", "tko", "clear water bay", "mount pavilia", "wai man", "yip wong", "tseung kwan o", "lohas"]],
+    ["HK-IS", ["discovery bay", "tung chung"]],
+    ["HK-TP", ["tai po", "hoi ying road", "pak shek kok", "on cheung road"]],
+    ["HK-YL", ["tin shui wai", "yuen long", "元朗"]],
   ].map(([code, keywords]) => ({ code, keywords }));
 
 function buildSlug(parts) {

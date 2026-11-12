@@ -2,6 +2,8 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
 import {
+  fetchHyroxPartnerGyms,
+  normalizeFinderPayload,
   buildChangedFields,
   isHongKongPartnerGym,
   mapPartnerGymToGymRow,
@@ -120,4 +122,43 @@ describe("HYROX Official importer", () => {
       )
     ).toEqual({ is_hyrox_official: true });
   });
+});
+
+it("reports finder DNS failures without generating replacement data", async () => {
+  const fetcher = async () => { throw new TypeError("fetch failed", { cause: { code: "ENOTFOUND" } }); };
+  await expect(fetchHyroxPartnerGyms(fetcher)).rejects.toThrow("HYROX partner finder request failed (ENOTFOUND) at onefiit-api.platform.onefiit.com");
+});
+
+const finderGym = {
+  hyroxEntityId: "HGY_example", gymName: "Example Tai Wai",
+  address: { country: "HK", city: "Tai Wai", street: "18 Che Kung Miu Road", contactDetails: { phone: "12345678", email: "private@example.com" } },
+  geoCoordinates: { lat: 22.37, lon: 114.18 }, images: ["unused"],
+};
+const finderPayload = { success: true, count: 1, truncated: false, gyms: [finderGym] };
+
+it("reads the new official finder API and returns only consumed fields", async () => {
+  const rows = await fetchHyroxPartnerGyms(async (url) => {
+    expect(url).toContain("/hyrox365/v1/gyms/map?");
+    return { ok: true, text: async () => JSON.stringify(finderPayload) };
+  });
+  expect(rows[0]).toEqual({ id: "HGY_example", store: "Example Tai Wai", country: "HK", city: "Tai Wai", address: "18 Che Kung Miu Road", phone: "12345678", lat: 22.37, lng: 114.18 });
+  expect(mapPartnerGymsToRows(rows, fixedNow)[0]).toMatchObject({ district_code: "HK-ST", hyrox_partner_id: "HGY_example" });
+});
+
+it.each([
+  { ...finderPayload, truncated: true },
+  { ...finderPayload, count: 2 },
+  { ...finderPayload, success: false },
+  { ...finderPayload, gyms: [{ ...finderGym, hyroxEntityId: null }] },
+])("rejects incomplete or invalid finder payloads", (payload) => {
+  expect(() => normalizeFinderPayload(payload)).toThrow();
+});
+
+it("excludes other country codes and handles Chinese-only gym slugs", () => {
+  const rows = normalizeFinderPayload({ success: true, truncated: false, count: 2, gyms: [
+    { ...finderGym, gymName: "教練聯盟", address: { country: "HK", city: "", street: "元朗" } },
+    { ...finderGym, hyroxEntityId: "HGY_macau", address: { country: "MO", city: "Macau", street: "Hong Kong Road" } },
+  ] });
+  expect(mapPartnerGymsToRows(rows, fixedNow)).toHaveLength(1);
+  expect(mapPartnerGymsToRows(rows, fixedNow)[0]).toMatchObject({ slug: "hyrox-HGY_example", district_code: "HK-YL" });
 });

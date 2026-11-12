@@ -14,7 +14,7 @@ A. Local Preparation:
   1. Prepare gyms data
       pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-district-overrides.json
       pnpm import:anytime-fitness-hk
-      pnpm import:efx24-hk
+      pnpm import:efx24-hk --district-overrides data/gyms/efx24-hk-district-overrides.json
       pnpm import:go24-fitness-hk
       pnpm import:hyrox-official-hk
       pnpm import:lcsd-fitness-hk
