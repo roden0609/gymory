@@ -1,0 +1,90 @@
+A. Deploy to DEV:
+  1. DB Migration
+      # Explicitly select the project whenever switching environments.
+      supabase link --project-ref yzvipswjmgcolaepqwoz
+
+      # Compare migration history.
+      supabase migration list --linked
+
+      # Preview pending migrations without writing to the database.
+      supabase db push --linked --dry-run
+
+      # Apply after confirming the pending list matches expectations.
+      supabase db push --linked
+
+      # Confirm the migrations are recorded remotely.
+      supabase migration list --linked
+
+  2. Application Code Migration
+      i. Merge feature branch to develop branch
+
+  3. Update gyms
+      pnpm import:247-fitness-hk --district-overrides data/gyms/247-fitness-hk-district-overrides.json
+      pnpm import:247-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/247-fitness-hk-baseline.json
+
+      pnpm import:pure-fitness-hk --address-overrides data/gyms/pure-fitness-hk-address-overrides.json
+      pnpm import:anytime-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/anytime-fitness-hk-baseline.json
+
+      pnpm import:efx24-hk --env-file apps/web/.env.dev --upsert-file data/gyms/efx24-hk-baseline.json
+      pnpm import:go24-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/go24-fitness-hk-baseline.json
+      pnpm import:hyrox-official-hk --env-file apps/web/.env.dev --upsert-file data/gyms/hyrox-official-hk.json
+      pnpm import:lcsd-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/lcsd-fitness-hk-baseline.json
+      pnpm import:pure-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/pure-fitness-hk-baseline.json
+      pnpm import:snap-fitness-hk --env-file apps/web/.env.dev --upsert-file data/gyms/snap-fitness-hk-baseline.json
+
+  4. Promote equipments
+      # Dry run
+      node scripts/equipments/promote-official-equipment.mjs promote \
+        --target dev --env-file apps/web/.env.dev \
+        --bundle .cache/equipment-promotions/official-2026-11-11-retry6 \
+        --report-dir .cache/equipment-promotions/dev-preview-1
+
+      # Review report.json, then apply with a new report directory.
+      node scripts/equipments/promote-official-equipment.mjs promote \
+        --target dev --env-file apps/web/.env.dev \
+        --bundle .cache/equipment-promotions/official-2026-11-11-retry6 \
+        --report-dir .cache/equipment-promotions/dev-apply-1 --apply
+
+
+B. Deploy to PROD:
+  1. DB Migration
+      # Explicitly switch to PROD instead of relying on the previous linked target.
+      supabase link --project-ref qgldameylaysgfsvytjh
+
+      # Compare migration history.
+      supabase migration list --linked
+
+      # Preview pending migrations without writing to the database.
+      supabase db push --linked --dry-run
+
+      # Apply after confirming the pending list matches expectations.
+      supabase db push --linked
+
+      # Confirm the migrations are recorded remotely.
+      supabase migration list --linked
+
+  2. Application Code Migration
+      i. Merge develop branch to main branch
+
+  3. Update gyms
+      pnpm import:247-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/247-fitness-hk-baseline.json
+      pnpm import:anytime-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/anytime-fitness-hk-baseline.json
+      pnpm import:efx24-hk --env-file apps/web/.env.prod --upsert-file data/gyms/efx24-hk-baseline.json
+      pnpm import:go24-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/go24-fitness-hk-baseline.json
+      pnpm import:hyrox-official-hk --env-file apps/web/.env.prod --upsert-file data/gyms/hyrox-official-hk.json
+      pnpm import:lcsd-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/lcsd-fitness-hk-baseline.json
+      pnpm import:pure-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/pure-fitness-hk-baseline.json
+      pnpm import:snap-fitness-hk --env-file apps/web/.env.prod --upsert-file data/gyms/snap-fitness-hk-baseline.json
+
+  4. Promote equipments
+      # Dry run
+      node scripts/equipments/promote-official-equipment.mjs promote \
+        --target prod --env-file apps/web/.env.prod \
+        --bundle .cache/equipment-promotions/official-2026-11-11-retry6 \
+        --report-dir .cache/equipment-promotions/prod-preview-1
+
+      # Review report.json, then apply with a new report directory.
+      node scripts/equipments/promote-official-equipment.mjs promote \
+        --target prod --env-file apps/web/.env.prod \
+        --bundle .cache/equipment-promotions/official-2026-11-11-retry6 \
+        --report-dir .cache/equipment-promotions/prod-apply-1 --apply

@@ -94,15 +94,18 @@ describe("all importer CLIs", () => {
       globalThis.fetch = async (input, options = {}) => {
         const url = new URL(input);
         if (url.origin !== 'https://supabase.invalid') throw new Error('Unexpected source/geocode request: ' + url);
+        if (options.headers.apikey !== 'test-key') throw new Error('Wrong environment key');
         const method = options.method ?? 'GET';
         const body = options.body ? JSON.parse(options.body) : null;
         appendFileSync(process.env.REQUESTS_FILE, JSON.stringify({ path: url.pathname, method, body }) + '\\n');
         return new Response(JSON.stringify(method === 'POST' && url.pathname === '/rest/v1/gyms' ? [{ id: 'test-gym-id', ...body }] : []), { status: 200 });
       };
     `);
-    const result = spawnSync(process.execPath, ["--import", preload, `scripts/gyms/import-${source}.mjs`, "--upsert-file", file], {
+    const envFile = path.join(directory, "target.env");
+    await writeFile(envFile, "NEXT_PUBLIC_SUPABASE_URL=https://supabase.invalid\nSUPABASE_SECRET_KEY=test-key\n");
+    const result = spawnSync(process.execPath, ["--import", preload, `scripts/gyms/import-${source}.mjs`, "--upsert-file", file, "--env-file", envFile], {
       cwd: root, encoding: "utf8", timeout: 10000,
-      env: { ...process.env, NEXT_PUBLIC_SUPABASE_URL: "https://supabase.invalid", SUPABASE_SECRET_KEY: "test-key", REQUESTS_FILE: requestsFile },
+      env: { ...process.env, NEXT_PUBLIC_SUPABASE_URL: "https://wrong-target.invalid", SUPABASE_SECRET_KEY: "wrong-key", REQUESTS_FILE: requestsFile },
     });
     expect(result.status, result.stderr).toBe(0);
     expect(result.stdout).toContain("Imported 1 gym rows");

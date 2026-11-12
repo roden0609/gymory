@@ -14,7 +14,7 @@ export async function upsertGymsFromFile({
   if (typeof file !== "string" || !file.trim()) {
     throw new Error("Missing value for --upsert-file <path>");
   }
-  const otherArgs = Object.keys(args).filter((key) => key !== "upsert-file");
+  const otherArgs = Object.keys(args).filter((key) => key !== "upsert-file" && key !== "env-file");
   if (otherArgs.length) {
     throw new Error(
       `--upsert-file must be used alone; remove ${otherArgs.map((key) => `--${key}`).join(", ")}`

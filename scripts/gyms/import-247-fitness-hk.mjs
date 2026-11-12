@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { loadImporterEnv } from "./lib/importer-env.mjs";
 
 /**
  * Build a Gymory listing baseline from the 24/7 Fitness Hong Kong store API.
@@ -31,6 +32,7 @@ const DETAIL_URL_EN =
   "https://247.fitness/app-api/cms/store/global/detail?lang=en&countryCode=HK&storeId=";
 const SOURCE_URL = "https://247.fitness/zh-hk/contact_us/stores";
 const ALLOWED_ARGS = new Set([
+  "env-file",
   "upsert-file",
   "details-file",
   "district-overrides",
@@ -40,6 +42,7 @@ const ALLOWED_ARGS = new Set([
 ]);
 
 export async function main(args = parseArgs(process.argv.slice(2))) {
+  await loadImporterEnv(args);
   return runImporter(args);
 }
 
@@ -158,42 +161,6 @@ export function buildRowsFromDetails(details, districtOverrides = {}, now = new 
   }
 
   return rows;
-}
-
-async function loadEnvFiles(filePaths) {
-  for (const filePath of filePaths) {
-    let raw;
-    try {
-      raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
-    } catch (error) {
-      if (error?.code === "ENOENT") continue;
-      throw error;
-    }
-
-    for (const line of raw.split(/\r?\n/)) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-
-      const match = trimmed.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
-      if (!match) continue;
-
-      const [, key, rawValue] = match;
-      if (process.env[key] !== undefined) continue;
-
-      process.env[key] = parseEnvValue(rawValue);
-    }
-  }
-}
-
-function parseEnvValue(value) {
-  const trimmed = value.trim();
-  if (
-    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
-    (trimmed.startsWith("'") && trimmed.endsWith("'"))
-  ) {
-    return trimmed.slice(1, -1).replace(/\\n/g, "\n");
-  }
-  return trimmed;
 }
 
 async function fetchJson(url) {
@@ -565,7 +532,6 @@ function normalizeComparable(value) {
   return value.replace(/\s+/g, " ").trim().toLowerCase();
 }
 
-
 export function inferDistrictCode(text) {
   return inferDistrictFromSources({ addresses: [text], districts: DISTRICT_KEYWORDS });
 }
@@ -703,9 +669,6 @@ const isDirectExecution =
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isDirectExecution) {
-  // await loadEnvFiles(["apps/web/.env.dev"]);
-  await loadEnvFiles(["apps/web/.env.prod"]);
-
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { loadImporterEnv } from "./lib/importer-env.mjs";
 
 /**
  * Build a Gymory listing baseline from the EFX24 Hong Kong branch pages.
@@ -33,6 +34,7 @@ const LIST_URL = "https://efx24.com/find-us/";
 const SOURCE_URL = LIST_URL;
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const ALLOWED_ARGS = new Set([
+  "env-file",
   "upsert-file",
   "browser",
   "browser-profile",
@@ -50,8 +52,6 @@ const isDirectExecution =
 const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
 if (isDirectExecution) {
-  await loadEnvFiles(["apps/web/.env.dev"]);
-  // await loadEnvFiles(["apps/web/.env.prod"]);
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;
@@ -59,6 +59,7 @@ if (isDirectExecution) {
 }
 
 export async function main(parsedArgs = args) {
+  await loadImporterEnv(parsedArgs);
   return runImporter(parsedArgs);
 }
 
@@ -183,42 +184,6 @@ export function parseArgs(argv) {
     index += 1;
   }
   return parsed;
-}
-
-async function loadEnvFiles(filePaths) {
-  for (const filePath of filePaths) {
-    let raw;
-    try {
-      raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
-    } catch (error) {
-      if (error?.code === "ENOENT") continue;
-      throw error;
-    }
-
-    for (const line of raw.split(/\r?\n/)) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-
-      const match = trimmed.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
-      if (!match) continue;
-
-      const [, key, rawValue] = match;
-      if (process.env[key] !== undefined) continue;
-
-      process.env[key] = parseEnvValue(rawValue);
-    }
-  }
-}
-
-function parseEnvValue(value) {
-  const trimmed = value.trim();
-  if (
-    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
-    (trimmed.startsWith("'") && trimmed.endsWith("'"))
-  ) {
-    return trimmed.slice(1, -1).replace(/\\n/g, "\n");
-  }
-  return trimmed;
 }
 
 function createMapboxGeocoder(parsedArgs) {

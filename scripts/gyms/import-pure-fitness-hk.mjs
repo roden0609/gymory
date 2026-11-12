@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { loadImporterEnv } from "./lib/importer-env.mjs";
 
 /**
  * Build a Gymory listing baseline from the PURE Hong Kong club pages.
@@ -30,6 +31,7 @@ const LIST_URL_EN = "https://www.pure-360.com.hk/en/clubs/";
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const DETAIL_FETCH_CONCURRENCY = 4;
 const ALLOWED_ARGS = new Set([
+  "env-file",
   "upsert-file",
   "address-overrides",
   "details-file",
@@ -42,8 +44,7 @@ const ALLOWED_ARGS = new Set([
 ]);
 
 export async function main(args = parseArgs(process.argv.slice(2))) {
-  await loadEnvFiles(["apps/web/.env.dev"]);
-  // await loadEnvFiles(["apps/web/.env.prod"]);
+  await loadImporterEnv(args);
   return runImporter(args);
 }
 
@@ -184,42 +185,6 @@ export function buildRowsFromDetails(
   }
 
   return rows;
-}
-
-async function loadEnvFiles(filePaths) {
-  for (const filePath of filePaths) {
-    let raw;
-    try {
-      raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
-    } catch (error) {
-      if (error?.code === "ENOENT") continue;
-      throw error;
-    }
-
-    for (const line of raw.split(/\r?\n/)) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-
-      const match = trimmed.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
-      if (!match) continue;
-
-      const [, key, rawValue] = match;
-      if (process.env[key] !== undefined) continue;
-
-      process.env[key] = parseEnvValue(rawValue);
-    }
-  }
-}
-
-function parseEnvValue(value) {
-  const trimmed = value.trim();
-  if (
-    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
-    (trimmed.startsWith("'") && trimmed.endsWith("'"))
-  ) {
-    return trimmed.slice(1, -1).replace(/\\n/g, "\n");
-  }
-  return trimmed;
 }
 
 function createMapboxGeocoder(parsedArgs) {

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { loadImporterEnv } from "./lib/importer-env.mjs";
 
 /**
  * Build a Gymory listing baseline from LCSD Hong Kong fitness room pages.
@@ -41,8 +42,6 @@ const isDirectExecution =
 const args = isDirectExecution ? parseArgs(process.argv.slice(2)) : {};
 
 if (isDirectExecution) {
-  // await loadEnvFiles(["apps/web/.env.dev"]);
-  await loadEnvFiles(["apps/web/.env.prod"]);
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;
@@ -50,6 +49,7 @@ if (isDirectExecution) {
 }
 
 async function main() {
+  await loadImporterEnv(args);
   if (Object.hasOwn(args, "upsert-file")) {
     return upsertGymsFromFile({ args, upsertRows });
   }
@@ -134,42 +134,6 @@ export function parseArgs(argv) {
     }
   }
   return parsed;
-}
-
-async function loadEnvFiles(filePaths) {
-  for (const filePath of filePaths) {
-    let raw;
-    try {
-      raw = await readFile(path.resolve(process.cwd(), filePath), "utf8");
-    } catch (error) {
-      if (error?.code === "ENOENT") continue;
-      throw error;
-    }
-
-    for (const line of raw.split(/\r?\n/)) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-
-      const match = trimmed.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
-      if (!match) continue;
-
-      const [, key, rawValue] = match;
-      if (process.env[key] !== undefined) continue;
-
-      process.env[key] = parseEnvValue(rawValue);
-    }
-  }
-}
-
-function parseEnvValue(value) {
-  const trimmed = value.trim();
-  if (
-    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
-    (trimmed.startsWith("'") && trimmed.endsWith("'"))
-  ) {
-    return trimmed.slice(1, -1).replace(/\\n/g, "\n");
-  }
-  return trimmed;
 }
 
 function createMapboxGeocoder(parsedArgs) {
