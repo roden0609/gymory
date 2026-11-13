@@ -7,6 +7,8 @@ const getTimingRequestId = cache(() => randomUUID());
 
 type TimingEvent = "gym_search_timing" | "filter_options_timing" | "gym_brand_overview_timing";
 type Metric =
+  | "gym_fetch_headers_ms" | "gym_fetch_body_ms" | "gym_fetch_body_bytes"
+  | "gym_fetch_requests" | "gym_fetch_failures" | "gym_sdk_overhead_ms"
   | "catalog_lookup_ms" | "gym_query_ms" | "votes_query_ms"
   | "sort_paginate_ms" | "categories_ms" | "machine_suggestions_ms"
   | "brand_overview_ms" | "matched_gyms" | "returned_gyms" | "gym_query_batches";

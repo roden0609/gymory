@@ -2,13 +2,14 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 // Server-side Supabase client — for use in Server Components and Route Handlers
-export async function createClient() {
+export async function createClient(fetchOverride?: typeof fetch) {
   const cookieStore = await cookies();
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,
     {
+      ...(fetchOverride ? { global: { fetch: fetchOverride } } : {}),
       cookies: {
         getAll() {
           return cookieStore.getAll();

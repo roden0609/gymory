@@ -1,3 +1,4 @@
+import { createGymQueryTiming } from "../gym-query-timing";
 import { withServerTiming, type ServerTiming } from "@/lib/server-timing";
 import type { GymSummary } from "@gymory/shared";
 import { getGymChainsBySlug, searchParamsSchema } from "@gymory/shared";
@@ -325,7 +326,8 @@ async function searchGymsWithTiming(
       ? getTrainingPageDefinition(params.collection)
       : null;
 
-  const supabase = await createClient();
+  const queryTiming = createGymQueryTiming(timing);
+  const supabase = await createClient(queryTiming.fetch);
 
   const catalogGymIds = await timing.measure("catalog_lookup_ms", () => getCatalogSearchGymIds({
     machine: params.machine,
@@ -624,7 +626,7 @@ async function searchGymsWithTiming(
   let count = 0;
   timing.record("gym_query_batches", batches.length);
   for (const batch of batches) {
-    const result = await timing.measure("gym_query_ms", () => buildQuery(batch));
+    const result = await timing.measure("gym_query_ms", () => queryTiming.measure(() => buildQuery(batch)));
     if (result.error) throw new Error(`Failed to load gyms (${result.error.code ?? "unknown"})`);
     const rows = (result.data ?? []) as unknown as GymSummary[];
     data.push(...rows);

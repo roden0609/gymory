@@ -67,3 +67,32 @@ and is not added to API/client result projections. Existing seven slug-prefix
 memberships are backfilled, legacy inserts default from their public slug, and
 explicit classification survives later slug renames. Public URL slugs remain
 unchanged. The brand summary cache projection version is bumped to v2.
+
+
+## Detailed gym request timing
+
+`gym_search_timing` also reports these numeric metrics for requests to the
+`gym_search_public` endpoint, accumulated across sequential ID batches:
+
+| Metric | Meaning |
+| --- | --- |
+| `gym_fetch_headers_ms` | Time awaiting fetch to resolve with response headers: connection/network, gateway/pool/SQL/serialization waits and scheduling may all contribute. Not pure SQL time. |
+| `gym_fetch_body_ms` | Time consuming the response via the SDK's existing `response.text()` call: body transfer, decompression, UTF-8 decoding and scheduling. Headers do not mean the server has finished generating the body. |
+| `gym_fetch_body_bytes` | UTF-8 byte length of the decoded response text, not compressed bytes transferred on the wire. No body is logged. |
+| `gym_sdk_overhead_ms` | Query elapsed time minus the two measured fetch phases: auth/session preparation, SDK/JSON parsing, scheduling and small instrumentation costs. Not isolated JSON decoding time. |
+| `gym_fetch_requests` | Number of matching HTTP fetch attempts. |
+| `gym_fetch_failures` | Matching requests with a transport rejection, HTTP non-success, or failed body read. |
+
+The installed PostgREST SDK reads text and parses JSON internally. Instrumentation
+wraps that existing text read; it neither clones the response nor parses JSON
+again. Other endpoints, queries, cookies and response shapes are unchanged. HTTP
+errors/rejections still follow the existing SDK/application behavior. No URLs,
+parameters, response headers, credentials, error messages or row contents are
+written to these metrics. There are no extra database/network requests.
+
+Interpret a large headers phase as waiting before body consumption, a large body
+phase as receiving/decoding the response, and a large SDK remainder as application
+client work needing further investigation. These distinguish phases, not exact
+root causes. DNS/TLS, pool wait and pure SQL are not individually separated; use
+Supabase database diagnostics / EXPLAIN to correlate those. Logging must be
+deployed before Vercel can show the new fields; old logs cannot be split retroactively.
