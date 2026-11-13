@@ -21,10 +21,10 @@ const loadGymBrandOverview = unstable_cache(async (slug: string) => {
   const { data, error } = await supabase.from("gym_brand_overview_public")
     .select(BRAND_SUMMARY_COLUMNS)
     .eq("is_active", true)
-    .or(brand.slugPrefixes.map((prefix) => `slug.like.${prefix}*`).join(","));
+    .eq("gym_chain_code", brand.code);
   if (error) throw new Error("Failed to load gym brand overview");
   return summarizeGymBrand((data ?? []) as GymBrandSummaryRow[]);
-}, ["public-gym-brand-overview-v1", process.env.NEXT_PUBLIC_SUPABASE_URL ?? "unconfigured"], {
+}, ["public-gym-brand-overview-v2", process.env.NEXT_PUBLIC_SUPABASE_URL ?? "unconfigured"], {
   revalidate: PUBLIC_SEARCH_CACHE_SECONDS, tags: [PUBLIC_GYM_OVERVIEW_TAG],
 });
 

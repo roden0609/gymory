@@ -352,11 +352,10 @@ async function searchGymsWithTiming(
 
     if (params.gymChains && params.gymChains.length > 0) {
       const chains = getGymChainsBySlug(params.gymChains);
-      const slugPatterns = chains.flatMap((chain) => chain.slugPrefixes);
-
-      query = query.or(
-        slugPatterns.map((prefix) => `slug.like.${prefix}*`).join(",")
-      );
+      const codes = chains.map((chain) => chain.code);
+      query = codes.length === 1
+        ? query.eq("gym_chain_code", codes[0])
+        : query.in("gym_chain_code", codes);
     }
 
     if (params.district) {

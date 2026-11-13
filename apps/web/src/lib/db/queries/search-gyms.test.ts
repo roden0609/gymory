@@ -30,7 +30,8 @@ describe("multi-district gym search", () => {
   it("queries an OR set of district codes while retaining brand and equipment conditions", async () => {
     await searchGyms({ districts: "wan-chai,yau-tsim-mong", gymChains: "anytime-fitness", minRackCount: "2" });
     expect(query.in).toHaveBeenCalledWith("district_code", ["HK-WC", "HK-YTM"]);
-    expect(query.or).toHaveBeenCalledWith("slug.like.anytime-fitness-*");
+    expect(query.eq).toHaveBeenCalledWith("gym_chain_code", "anytime");
+    expect(query.or).not.toHaveBeenCalled();
     expect(query.gte).toHaveBeenCalledWith("rack_count", 2);
     expect(query.eq).not.toHaveBeenCalledWith("district_code", expect.anything());
   });
@@ -96,4 +97,17 @@ it("uses aggregated votes in the same query and preserves accuracy ranking", asy
   expect(query.select).toHaveBeenCalledWith(expect.stringContaining("accuracy_like_count, accuracy_dislike_count, accuracy_total_votes"), { count: "exact" });
   expect(result.gyms.map(({ id }) => id)).toEqual(["liked", "newer"]);
   expect(result.gyms[0].accuracy_total_votes).toBe(4);
+});
+
+it("uses equality for 24/7 Fitness and IN for multiple recognized gym chains", async () => {
+  await searchGyms({ gymChains: "24-7-fitness" });
+  expect(query.eq).toHaveBeenCalledWith("gym_chain_code", "247");
+  await searchGyms({ gymChains: "24-7-fitness,anytime-fitness,unknown" });
+  expect(query.in).toHaveBeenCalledWith("gym_chain_code", ["247", "anytime"]);
+  expect(query.or).not.toHaveBeenCalled();
+});
+
+it("does not query gyms for an entirely unknown chain", async () => {
+  expect((await searchGyms({ gymChains: "unknown" })).totalCount).toBe(0);
+  expect(from).not.toHaveBeenCalled();
 });

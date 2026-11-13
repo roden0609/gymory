@@ -11,7 +11,8 @@ import { getActiveGymDirectoryEntries, getGymBrandDirectory, getGymBrandOverview
 
 beforeEach(() => {
   vi.clearAllMocks();
-  for (const method of [query.select, query.eq, query.order]) method.mockReturnValue(query);
+  for (const method of [query.select, query.order]) method.mockReturnValue(query);
+  query.eq.mockReturnValue(query);
 });
 
 describe("gym brand directory queries", () => {
@@ -32,12 +33,13 @@ describe("gym brand directory queries", () => {
   });
 
   it("summarizes only active gym records matching the requested brand", async () => {
-    query.or.mockResolvedValue({ data: [{ district_code: "HK-WC", rack_count: 2, has_free_water: true }], error: null });
+    query.eq.mockReturnValueOnce(query).mockResolvedValueOnce({ data: [{ district_code: "HK-WC", rack_count: 2, has_free_water: true }], error: null });
     const summary = await getGymBrandOverview("anytime-fitness");
     expect(query.from).toHaveBeenCalledWith("gym_brand_overview_public");
     expect(query.select).toHaveBeenCalledWith("district_code, rack_count, dumbbell_max_weight_kg, treadmill_count, rower_count, has_bathroom, has_changing_room, has_free_water");
     expect(query.eq).toHaveBeenCalledWith("is_active", true);
-    expect(query.or).toHaveBeenCalledWith("slug.like.anytime-fitness-*");
+    expect(query.eq).toHaveBeenCalledWith("gym_chain_code", "anytime");
+    expect(query.or).not.toHaveBeenCalled();
     expect(summary?.features).toEqual([{ key: "racks", count: 1 }, { key: "drinkingWater", count: 1 }]);
     expect(await getGymBrandOverview("unknown-brand")).toBeNull();
   });

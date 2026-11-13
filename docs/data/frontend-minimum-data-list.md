@@ -433,3 +433,12 @@ PUBLIC execute 被撤銷，anon/authenticated/service_role 明確獲准執行。
 這個 helper 推斷為公開存在。回歸測試：public_inventory_visibility.sql。
 
 器材分類搜尋匹配嘅 gym IDs 每 50 個分批讀取 `gyms_public`，避免編碼後網址超過 proxy URI 限制。每批保留所有篩選條件；合併後統一排序及分頁。欄位投影、公開回應及權限不變。
+
+
+## 2026-11-13：Gym chain code（0075）
+
+`gyms.gym_chain_code` 係明確批准公開嘅品牌分類：`247`、`anytime`、`efx24`、`go24`、`lcsd`、`pure`、`snap`；獨立／未分類 gym 為 NULL。現有記錄按已公開 slug 前綴回填，唔使用 captured names、provenance 或私人來源欄位。新增 INSERT trigger 為未傳 code 嘅舊 importer／admin insert 補值，明確 code 優先；改 slug 唔會自動改分類。
+
+`gyms_public`、`gym_search_public` 同 `gym_brand_overview_public` 只追加此一欄，維持 security_invoker 同原有欄位身份、column grants、RLS。只增加該欄 SELECT 權限，其他新欄仍預設私人。搜尋品牌用 `gym_chain_code = code` 或 `IN (codes)`；品牌摘要用同一欄 equality。此欄只作 backend filter，唔加入 `GYM_SEARCH_COLUMNS`、卡片 props、品牌摘要 response 或 submission form。對應 URL／checkbox slug 保持不變。
+
+`idx_gyms_active_chain` 係 `gyms(gym_chain_code) WHERE is_active = true` partial index。普通獨立 gym NULL 唔會被任何品牌條件匹配。需先套用 migration 再部署新版 web；未修改 production。

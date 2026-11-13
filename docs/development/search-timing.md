@@ -59,3 +59,11 @@ Local transaction benchmarks (157 matching gyms, no existing votes) measured
 0074. These are SQL execution times, not deployed/browser measurements. Public
 permission/visibility fixtures include populated votes; fixture and schema tests
 roll back. Re-test Vercel Runtime Logs and browser timings after deployment.
+
+
+Migration 0075 adds public `gym_chain_code` and an active-gym partial index.
+Apply it before deploying the equality/IN brand filters. The code is filter-only
+and is not added to API/client result projections. Existing seven slug-prefix
+memberships are backfilled, legacy inserts default from their public slug, and
+explicit classification survives later slug renames. Public URL slugs remain
+unchanged. The brand summary cache projection version is bumped to v2.
