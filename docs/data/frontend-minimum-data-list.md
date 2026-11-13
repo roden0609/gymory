@@ -1,6 +1,6 @@
 # Frontend minimum data list
 
-更新日期：2026-11-12
+更新日期：2026-11-13
 
 ## 實作狀態及範圍
 
@@ -37,7 +37,7 @@
 
 ## 2. 搜尋／列表
 
-### 2.1 gyms_public：完整 SELECT
+### 2.1 gym_search_public：完整 SELECT（0073）
 
 `GYM_SEARCH_COLUMNS` 由 153 收窄至 148 個欄位。移除未用嘅 size_category、equipment_last_verified_at、hyrox_partner_id、hyrox_source_url、hyrox_source_synced_at。
 
@@ -198,11 +198,15 @@ updated_at
 
 來源：[search-gyms.ts](../../apps/web/src/lib/db/queries/search-gyms.ts)、[GymCard.tsx](../../apps/web/src/components/search/GymCard.tsx)、[training-pages.ts](../../apps/web/src/lib/training-pages.ts)。
 
+搜尋專用 `gym_search_public`（security invoker）只由 `gyms_public` 明確公開欄位同 `gym_accuracy_votes(gym_id, vote)` 聚合組成；唔包含 voter user_id、時間、provenance 或其他私人欄位。新增 view 用 column grants，底層權限不擴大。`GYM_SEARCH_COLUMNS` 保持原有 148 欄，避免將票數加入 submission form。總票數同排序結果仍即時，唔會快取。
+
+0074 將器材 inventory RLS 嘅 derived model 判斷改為批量 `public_gym_model_types()`，只返回已公開 gym_id／equipment_code。函數以固定空 search_path 同明確 joins 檢查 active gym、active model／brand、verified inventory、active assigned type/category 同 primary type/category。保留直接報告資料同 active gym row restrictions；唔返回 equipment source、captured names、manual image URL 或 assignment source。
+
 ### 2.2 票數、搜尋選項及條件式關聯
 
 | Table | SELECT | 額外條件／排序用途 |
 |---|---|---|
-| gym_accuracy_votes | gym_id, vote | gym_id；列表計算票數 |
+| gym_search_public | 上述 148 欄位 + accuracy_like_count, accuracy_dislike_count, accuracy_total_votes | is_active、estimated_size_sqft 只作 filter；0073 喺 DB 聚合投票，保留底層 RLS |
 | equipment_categories | slug, name, name_zh | is_active, sort_order, name；舊 schema fallback 只查 slug, name |
 | equipment | id, name；篩選 query 只查 id | slug, name, brand_id |
 | equipment_aliases | equipment_id, alias | alias |
@@ -211,6 +215,8 @@ updated_at
 | equipment_brands | id | slug；品牌 landing 另用 is_active |
 | gym_equipment_inventory | gym_id | equipment_id, verified_status |
 | gym_brand_inventory | gym_id | brand_id |
+
+器材選項同品牌摘要以無 request cookies 嘅 anon client 作共用 server cache，重驗間隔 60 秒；只 cache 最終明確公開 props／摘要。後台 catalog edits 會失效 catalog／brand tags，gym model edits 會失效 brand tag；其他寫入／import 依賴時間重驗。Next.js background refresh／refresh error 可繼續供應舊值，因此唔係嚴格 60 秒上限。唔會 cache service-role／登入者私有查詢結果，亦唔會將 restricted names 複製成公開 label。
 
 來源：[equipment-catalog-search.ts](../../apps/web/src/lib/db/queries/equipment-catalog-search.ts)、[equipment-pages.ts](../../apps/web/src/lib/db/queries/equipment-pages.ts)、[equipment-brands.ts](../../apps/web/src/lib/db/queries/equipment-brands.ts)。
 

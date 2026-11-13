@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const { query } = vi.hoisted(() => ({
   query: { from: vi.fn(), select: vi.fn(), eq: vi.fn(), order: vi.fn(), range: vi.fn(), or: vi.fn() },
 }));
+vi.mock("next/cache", () => ({ unstable_cache: (fn: unknown) => fn }));
+vi.mock("../supabase-public", () => ({ createPublicClient: () => ({ from: (table: string) => { query.from(table); return query; } }) }));
 vi.mock("react", () => ({ cache: (fn: unknown) => fn }));
 vi.mock("../supabase-server", () => ({ createClient: async () => ({ from: (table: string) => { query.from(table); return query; } }) }));
 import { getActiveGymDirectoryEntries, getGymBrandDirectory, getGymBrandOverview } from "./gym-brand-pages";

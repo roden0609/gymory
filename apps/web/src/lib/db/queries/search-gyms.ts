@@ -345,8 +345,8 @@ async function searchGymsWithTiming(
 
   const buildQuery = (matchingGymIds?: string[]) => {
     let query = supabase
-      .from("gyms_public")
-      .select(GYM_SEARCH_COLUMNS, { count: "exact" })
+      .from("gym_search_public")
+      .select(`${GYM_SEARCH_COLUMNS}, accuracy_like_count, accuracy_dislike_count, accuracy_total_votes`, { count: "exact" })
       .eq("is_active", true);
     if (matchingGymIds) query = query.in("id", matchingGymIds);
 
@@ -637,39 +637,6 @@ async function searchGymsWithTiming(
   );
 
   timing.record("matched_gyms", allGyms.length);
-  const gymIds = allGyms.map((gym) => gym.id);
-  if (gymIds.length > 0) {
-    const { data: votes } = await timing.measure("votes_query_ms", () => supabase
-      .from("gym_accuracy_votes")
-      .select("gym_id, vote")
-      .in("gym_id", gymIds));
-
-    const tallies = new Map<
-      string,
-      { likeCount: number; dislikeCount: number; totalVotes: number }
-    >();
-
-    for (const vote of votes ?? []) {
-      const current = tallies.get(vote.gym_id) ?? {
-        likeCount: 0,
-        dislikeCount: 0,
-        totalVotes: 0,
-      };
-
-      if (vote.vote === "like") current.likeCount += 1;
-      if (vote.vote === "dislike") current.dislikeCount += 1;
-      current.totalVotes += 1;
-      tallies.set(vote.gym_id, current);
-    }
-
-    for (const gym of allGyms) {
-      const tally = tallies.get(gym.id);
-      gym.accuracy_like_count = tally?.likeCount ?? 0;
-      gym.accuracy_dislike_count = tally?.dislikeCount ?? 0;
-      gym.accuracy_total_votes = tally?.totalVotes ?? 0;
-    }
-  }
-
   const sortStarted = performance.now();
   const hasUserLocation =
     typeof params.userLat === "number" &&

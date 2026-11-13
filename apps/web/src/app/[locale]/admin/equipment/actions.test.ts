@@ -9,8 +9,9 @@ const mocks = vi.hoisted(() => ({
 }));
 vi.mock("@/lib/auth/session", () => ({ requireAdminSession: mocks.authorize }));
 vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from, rpc: mocks.rpc, storage: { from: () => mocks.storage } }) }));
-vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
+vi.mock("next/cache", () => ({ revalidatePath: vi.fn(), revalidateTag: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
+import { revalidateTag } from "next/cache";
 import { deleteEquipmentType, saveEquipmentType, saveMachine, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
 
 function form(values: Record<string, string>) {
@@ -37,6 +38,8 @@ describe("equipment official review actions", () => {
   it("takes the reviewing identity from the admin session and preserves catalog context", async () => {
     await expect(saveOfficialReview(form({...review,verify:"on",official_verified_by:"forged",catalog_page:"3",catalog_model:"SS-GLD"})))
       .rejects.toThrow("result=success&entity=machine&action=save&page=3&model=SS-GLD");
+    expect(revalidateTag).toHaveBeenCalledWith("public-search-catalog");
+    expect(revalidateTag).toHaveBeenCalledWith("public-gym-brand-overviews");
     expect(mocks.rpc).toHaveBeenCalledWith("save_equipment_official_review",expect.objectContaining({p_actor:"trusted-firebase-admin",p_verify:true,p_status:"candidate_requires_review",p_expected_updated_at:expected_updated_at}));
   });
   it("blocks unauthenticated review and image mutations before DB access", async () => {

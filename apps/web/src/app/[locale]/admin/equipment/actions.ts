@@ -1,7 +1,8 @@
 "use server";
 
 import { parseEquipmentFilters } from "@/lib/admin-equipment-filters";
-import { revalidatePath } from "next/cache";
+import { PUBLIC_CATALOG_TAG, PUBLIC_GYM_OVERVIEW_TAG } from "@/lib/public-search-cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireAdminSession } from "@/lib/auth/session";
@@ -34,6 +35,8 @@ async function authorize(locale: string) {
 }
 
 function refreshCatalog() {
+  revalidateTag(PUBLIC_CATALOG_TAG);
+  revalidateTag(PUBLIC_GYM_OVERVIEW_TAG);
   for (const locale of ["en", "zh-HK"]) {
     for (const page of ["equipment", "brands", "equipment-types"]) {
       revalidatePath(`/${locale}/admin/${page}`);

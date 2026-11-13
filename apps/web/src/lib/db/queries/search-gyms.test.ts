@@ -3,12 +3,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 // Next.js supplies React cache in its Server Component runtime.
 vi.mock("react", () => ({ cache: (fn: unknown) => fn }));
 
-const { query, createClient } = vi.hoisted(() => {
+const { query, from, createClient } = vi.hoisted(() => {
   const query = {
     execute: vi.fn(), select: vi.fn(), eq: vi.fn(), in: vi.fn(), or: vi.fn(), gte: vi.fn(),
     then: (resolve: (value: unknown) => unknown) => query.execute().then(resolve),
   };
-  return { query, createClient: vi.fn(async () => ({ from: () => query })) };
+  const from = vi.fn(() => query);
+  return { query, from, createClient: vi.fn(async () => ({ from })) };
 });
 vi.mock("../supabase-server", () => ({ createClient }));
 vi.mock("./equipment-catalog-search", () => ({ getCatalogSearchGymIds: vi.fn(async () => null) }));
@@ -72,7 +73,7 @@ it("batches large category matches while retaining filters, totals, and global p
   expect(JSON.parse(vi.mocked(console.info).mock.calls[0][0])).toMatchObject({
     event: "gym_search_timing", status: "ok", gym_query_batches: 3,
     matched_gyms: 144, returned_gyms: 20, gym_query_ms: expect.any(Number),
-    votes_query_ms: expect.any(Number), sort_paginate_ms: expect.any(Number),
+    sort_paginate_ms: expect.any(Number),
   });
   expect(result.gyms.map(({ id }) => id)).toEqual(ids.slice(104, 124).reverse());
 });
@@ -82,4 +83,17 @@ it("rejects a failed category batch rather than returning partial results", asyn
   query.execute.mockResolvedValueOnce({ data: [], count: 0, error: null })
     .mockResolvedValueOnce({ data: null, count: null, error: { code: "57014" } });
   await expect(searchGyms({ category: "free-weight" })).rejects.toThrow("Failed to load gyms (57014)");
+});
+
+it("uses aggregated votes in the same query and preserves accuracy ranking", async () => {
+  query.execute.mockResolvedValue({ data: [
+    { id: "newer", slug: "newer", updated_at: "2026-11-13", data_accuracy_status: "normal", accuracy_like_count: 0, accuracy_dislike_count: 0, accuracy_total_votes: 0 },
+    { id: "liked", slug: "liked", updated_at: "2026-01-01", data_accuracy_status: "normal", accuracy_like_count: 3, accuracy_dislike_count: 1, accuracy_total_votes: 4 },
+  ], count: 2, error: null });
+  const result = await searchGyms({});
+  expect(from).toHaveBeenCalledTimes(1);
+  expect(from).toHaveBeenCalledWith("gym_search_public");
+  expect(query.select).toHaveBeenCalledWith(expect.stringContaining("accuracy_like_count, accuracy_dislike_count, accuracy_total_votes"), { count: "exact" });
+  expect(result.gyms.map(({ id }) => id)).toEqual(["liked", "newer"]);
+  expect(result.gyms[0].accuracy_total_votes).toBe(4);
 });

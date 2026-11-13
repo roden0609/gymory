@@ -1,3 +1,6 @@
+import { unstable_cache } from "next/cache";
+import { PUBLIC_CATALOG_TAG, PUBLIC_SEARCH_CACHE_SECONDS } from "@/lib/public-search-cache";
+import { createPublicClient } from "../supabase-public";
 import {
   PUBLIC_INVENTORY_STATUSES,
   combineBrandGymMatches,
@@ -17,12 +20,19 @@ export type EquipmentMachineSuggestion = {
 };
 
 export async function getEquipmentMachineSuggestions(): Promise<EquipmentMachineSuggestion[]> {
-  const supabase = await createClient();
+  try { return await loadMachineSuggestions(); } catch { return []; }
+}
+
+const loadMachineSuggestions = unstable_cache(async (): Promise<EquipmentMachineSuggestion[]> => {
+  const supabase = createPublicClient();
   const [equipmentResult, aliasResult] = await Promise.all([
     supabase.from("equipment").select("id, name").order("name"),
     supabase.from("equipment_aliases").select("equipment_id, alias").order("alias"),
   ]);
-  if (equipmentResult.error || !equipmentResult.data) return [];
+  // Throw inside the cache so a transient failure never becomes a cached empty list.
+  if (equipmentResult.error || aliasResult.error || !equipmentResult.data) {
+    throw new Error("Failed to load public machine suggestions");
+  }
 
   const names = new Map(equipmentResult.data.map(({ id, name }) => [id, name]));
   const suggestions: EquipmentMachineSuggestion[] = equipmentResult.data.map(({ name }) => ({
@@ -38,12 +48,18 @@ export async function getEquipmentMachineSuggestions(): Promise<EquipmentMachine
     }
   }
   return suggestions;
-}
+}, ["public-machine-suggestions-v1", process.env.NEXT_PUBLIC_SUPABASE_URL ?? "unconfigured"], {
+  revalidate: PUBLIC_SEARCH_CACHE_SECONDS, tags: [PUBLIC_CATALOG_TAG],
+});
 
 export async function getEquipmentCategoryFilterOptions(): Promise<
   EquipmentCategoryFilterOption[]
 > {
-  const supabase = await createClient();
+  try { return await loadCategoryOptions(); } catch { return []; }
+}
+
+const loadCategoryOptions = unstable_cache(async (): Promise<EquipmentCategoryFilterOption[]> => {
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("equipment_categories")
     .select("slug, name, name_zh")
@@ -57,11 +73,14 @@ export async function getEquipmentCategoryFilterOptions(): Promise<
       .eq("is_active", true)
       .order("sort_order")
       .order("name");
-    return (fallback.data ?? []).map((category) => ({ ...category, name_zh: null }));
+    if (fallback.error || !fallback.data) throw new Error("Failed to load public categories");
+    return fallback.data.map(({ slug, name }) => ({ slug, name, name_zh: null }));
   }
-  if (error || !data) return [];
-  return data;
-}
+  if (error || !data) throw new Error("Failed to load public categories");
+  return data.map(({ slug, name, name_zh }) => ({ slug, name, name_zh }));
+}, ["public-category-options-v1", process.env.NEXT_PUBLIC_SUPABASE_URL ?? "unconfigured"], {
+  revalidate: PUBLIC_SEARCH_CACHE_SECONDS, tags: [PUBLIC_CATALOG_TAG],
+});
 
 export async function getCatalogSearchGymIds({
   machine,

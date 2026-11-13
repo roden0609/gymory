@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({ results: [] as unknown[], calls: [] as { table: string; method: string; args: unknown[] }[] }));
+vi.mock("next/cache", () => ({ unstable_cache: (fn: unknown) => fn }));
+vi.mock("../supabase-public", () => ({ createPublicClient: vi.fn() }));
 vi.mock("../supabase-server", () => ({ createClient: async () => ({
   from: (table: string) => {
     const result = mocks.results.shift();

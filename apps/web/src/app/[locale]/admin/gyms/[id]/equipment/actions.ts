@@ -1,6 +1,7 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { PUBLIC_GYM_OVERVIEW_TAG } from "@/lib/public-search-cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireAdminSession } from "@/lib/auth/session";
@@ -71,6 +72,7 @@ export async function saveGymMachine(formData: FormData) {
     );
   }
 
+  revalidateTag(PUBLIC_GYM_OVERVIEW_TAG);
   revalidatePath(`/${locale}/admin/gyms/${gymId}/equipment`);
   revalidatePath("/[locale]/gyms/[slug]", "page");
   redirect(inventoryUrl(locale, gymId, "result=success&action=save"));
@@ -97,6 +99,7 @@ export async function removeGymMachine(formData: FormData) {
     );
   }
 
+  revalidateTag(PUBLIC_GYM_OVERVIEW_TAG);
   revalidatePath(`/${locale}/admin/gyms/${gymId}/equipment`);
   revalidatePath("/[locale]/gyms/[slug]", "page");
   redirect(inventoryUrl(locale, gymId, "result=success&action=remove"));

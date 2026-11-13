@@ -1,4 +1,4 @@
--- Run after 0072. Every fixture and state change rolls back.
+-- Run after 0074. Every fixture and state change rolls back.
 begin;
 insert into public.gyms(id,name,slug,district_code,is_active) values
 ('00000000-0072-4000-8000-000000000001','Visibility fixture','visibility-fixture-0072','HK-YTM',true);
@@ -16,6 +16,24 @@ begin
   if public.gym_type_has_public_models('00000000-0072-4000-8000-000000000001','chest_fly_machine') is distinct from p_primary
     or public.gym_type_has_public_models('00000000-0072-4000-8000-000000000001','reverse_fly_machine') is distinct from p_secondary then
     raise exception 'Visibility mismatch for %',current_user;
+  end if;
+  if exists(select 1 from public.public_gym_model_types()
+      where gym_id='00000000-0072-4000-8000-000000000001' and equipment_code='chest_fly_machine') is distinct from p_primary
+    or exists(select 1 from public.public_gym_model_types()
+      where gym_id='00000000-0072-4000-8000-000000000001' and equipment_code='reverse_fly_machine') is distinct from p_secondary then
+    raise exception 'Batch visibility mismatch for %',current_user;
+  end if;
+  if current_user <> 'service_role' then
+    if exists(select 1 from public.gym_equipment_type_inventory
+        where gym_id='00000000-0072-4000-8000-000000000001' and equipment_code='chest_fly_machine') is distinct from p_primary
+      or exists(select 1 from public.gym_equipment_type_inventory
+        where gym_id='00000000-0072-4000-8000-000000000001' and equipment_code='reverse_fly_machine') is distinct from p_secondary then
+      raise exception 'Inventory RLS mismatch for %',current_user;
+    end if;
+    if (select has_chest_fly_machine is true from public.gym_search_public
+        where id='00000000-0072-4000-8000-000000000001') is true and not p_primary then
+      raise exception 'Derived private model leaked via search response';
+    end if;
   end if;
   if public.gym_type_has_public_models('00000000-0072-4000-8000-000000000001','nonexistent') then
     raise exception 'Unknown type was published';
