@@ -9,10 +9,12 @@ const { query, createClient } = vi.hoisted(() => {
 });
 vi.mock("../supabase-server", () => ({ createClient }));
 vi.mock("./equipment-catalog-search", () => ({ getCatalogSearchGymIds: vi.fn(async () => null) }));
+import { getCatalogSearchGymIds } from "./equipment-catalog-search";
 import { searchGyms } from "./search-gyms";
 
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.mocked(getCatalogSearchGymIds).mockResolvedValue(null);
   query.execute.mockResolvedValue({ data: [], count: 0, error: null });
   for (const method of [query.select, query.eq, query.in, query.or, query.gte]) method.mockReturnValue(query);
 });
@@ -42,4 +44,28 @@ describe("multi-district gym search", () => {
 it("does not present a database timeout as a successful empty search", async () => {
   query.execute.mockResolvedValue({ data: null, count: null, error: { code: "57014", message: "canceling statement due to statement timeout" } });
   await expect(searchGyms({})).rejects.toThrow("Failed to load gyms (57014)");
+});
+
+it("batches large category matches while retaining filters, totals, and global pagination", async () => {
+  const ids = Array.from({ length: 144 }, (_, i) => `gym-${i}`);
+  vi.mocked(getCatalogSearchGymIds).mockResolvedValue(new Set(ids));
+  const rows = ids.map((id, i) => ({ id, slug: id, updated_at: new Date(2026, 0, i + 1).toISOString(), data_accuracy_status: "normal" }));
+  query.execute.mockResolvedValueOnce({ data: rows.slice(0, 50), count: 50, error: null })
+    .mockResolvedValueOnce({ data: rows.slice(50, 100), count: 50, error: null })
+    .mockResolvedValueOnce({ data: rows.slice(100), count: 44, error: null });
+  const result = await searchGyms({ category: "free-weight", district: "HK-YTM", minRackCount: "2", page: "2" });
+  expect(query.in.mock.calls.filter(([column]) => column === "id")).toEqual([
+    ["id", ids.slice(0, 50)], ["id", ids.slice(50, 100)], ["id", ids.slice(100)],
+  ]);
+  expect(query.eq.mock.calls.filter(([column]) => column === "district_code")).toHaveLength(3);
+  expect(query.gte.mock.calls.filter(([column]) => column === "rack_count")).toHaveLength(3);
+  expect(result.totalCount).toBe(144);
+  expect(result.gyms.map(({ id }) => id)).toEqual(ids.slice(104, 124).reverse());
+});
+
+it("rejects a failed category batch rather than returning partial results", async () => {
+  vi.mocked(getCatalogSearchGymIds).mockResolvedValue(new Set(Array.from({ length: 51 }, (_, i) => `gym-${i}`)));
+  query.execute.mockResolvedValueOnce({ data: [], count: 0, error: null })
+    .mockResolvedValueOnce({ data: null, count: null, error: { code: "57014" } });
+  await expect(searchGyms({ category: "free-weight" })).rejects.toThrow("Failed to load gyms (57014)");
 });

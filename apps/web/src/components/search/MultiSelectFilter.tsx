@@ -85,7 +85,9 @@ export function MultiSelectFilter({ filterKey, label, placeholder, hint, options
   return (
     <div ref={wrapper} className="relative w-full min-w-0 max-w-full"
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) close();
+        // Label clicks can briefly move focus to the document before activating
+        // their checkbox. Outside pointer presses are handled separately above.
+        if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) close();
       }}
       >
       <button ref={button} type="button" aria-label={label} aria-expanded={open} aria-controls={panelId}
@@ -105,7 +107,8 @@ export function MultiSelectFilter({ filterKey, label, placeholder, hint, options
           <div className="max-h-64 overflow-y-auto p-3">
             {hint && <p className="mb-2 break-words text-xs text-gray-500">{hint}</p>}
             {options.map((item) => (
-              <label key={item.value} className="flex min-h-10 min-w-0 cursor-pointer items-center gap-2 text-sm text-gray-700">
+              <label key={item.value}
+                className="flex min-h-10 w-full min-w-0 cursor-pointer items-center gap-2 rounded px-2 text-sm text-gray-700 hover:bg-gray-100 focus-within:bg-gray-100">
                 <input type="checkbox" value={item.value} checked={values.includes(item.value)}
                   onChange={(event) => toggle(item.value, event.target.checked)}
                   className="h-4 w-4 shrink-0 accent-gray-900" />

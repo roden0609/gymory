@@ -315,300 +315,311 @@ export async function searchGyms(
 
   const supabase = await createClient();
 
-  let query = supabase
-    .from("gyms_public")
-    .select(GYM_SEARCH_COLUMNS, { count: "exact" })
-    .eq("is_active", true);
-
   const catalogGymIds = await getCatalogSearchGymIds({
     machine: params.machine,
     category: params.category,
     brandSlugs: params.brandSlugs,
   });
-  if (catalogGymIds !== null) {
-    if (catalogGymIds.size === 0) return emptySearchResult(page, pageSize);
-    query = query.in("id", [...catalogGymIds]);
+  if (catalogGymIds !== null && catalogGymIds.size === 0) return emptySearchResult(page, pageSize);
+
+  if (params.gymChains?.length && getGymChainsBySlug(params.gymChains).length === 0) {
+    return emptySearchResult(page, pageSize);
   }
 
-  if (params.gymChains && params.gymChains.length > 0) {
-    const chains = getGymChainsBySlug(params.gymChains);
-    const slugPatterns = chains.flatMap((chain) => chain.slugPrefixes);
+  const districts = !params.district && params.districts?.length
+    ? getSelectedDistricts(new URLSearchParams({ districts: params.districts.join(",") }))
+    : null;
+  if (districts && !districts.length) return emptySearchResult(page, pageSize);
 
-    if (slugPatterns.length === 0) {
-      return {
-        gyms: [],
-        totalCount: 0,
-        page,
-        pageSize,
-        totalPages: 0,
-        hasNextPage: false,
-      };
+  const buildQuery = (matchingGymIds?: string[]) => {
+    let query = supabase
+      .from("gyms_public")
+      .select(GYM_SEARCH_COLUMNS, { count: "exact" })
+      .eq("is_active", true);
+    if (matchingGymIds) query = query.in("id", matchingGymIds);
+
+    if (params.gymChains && params.gymChains.length > 0) {
+      const chains = getGymChainsBySlug(params.gymChains);
+      const slugPatterns = chains.flatMap((chain) => chain.slugPrefixes);
+
+      query = query.or(
+        slugPatterns.map((prefix) => `slug.like.${prefix}*`).join(",")
+      );
     }
 
-    query = query.or(
-      slugPatterns.map((prefix) => `slug.like.${prefix}*`).join(",")
-    );
+    if (params.district) {
+      query = query.eq("district_code", params.district);
+    } else if (params.districts?.length) {
+      query = query.in("district_code", districts!.map((item) => item.code));
+    }
+    if (params.minRackCount) query = query.gte("rack_count", params.minRackCount);
+    if (params.minBenchCount) {
+      query = query.gte("bench_count", params.minBenchCount);
+    }
+    if (params.minBarbellCount) {
+      query = query.gte("barbell_count", params.minBarbellCount);
+    }
+    if (params.minPlatformCount) {
+      query = query.gte("platform_count", params.minPlatformCount);
+    }
+    if (params.minDumbbellWeight) {
+      query = query.gte("dumbbell_max_weight_kg", params.minDumbbellWeight);
+    }
+    if (params.minPlateWeight) {
+      query = query.lte("plate_min_weight_kg", params.minPlateWeight);
+    }
+    if (params.isHyroxOfficial === "true") {
+      query = query.eq("is_hyrox_official", true);
+    }
+    if (params.hasAssaultRunner === "true") {
+      query = query.gt("assault_runner_count", 0);
+    }
+    if (params.hasAssaultBike === "true") query = query.gt("assault_bike_count", 0);
+    if (params.hasSkiErg === "true") query = query.gt("ski_erg_count", 0);
+    if (params.hasRower === "true") query = query.gt("rower_count", 0);
+    if (params.hasSled === "true") query = query.gt("sled_count", 0);
+    if (params.hasWallBallPlate === "true") {
+      query = query.or(
+        "wall_ball_plate_9ft_count.gt.0,wall_ball_plate_10ft_count.gt.0"
+      );
+    }
+    if (params.hasWallBall === "true") {
+      query = query.or(
+        "has_wall_ball.eq.true,wall_ball_count.gt.0,wall_ball_4kg_count.gt.0,wall_ball_6kg_count.gt.0,wall_ball_8kg_count.gt.0,wall_ball_9kg_count.gt.0,wall_ball_10kg_count.gt.0,wall_ball_plate_9ft_count.gt.0,wall_ball_plate_10ft_count.gt.0"
+      );
+    }
+    if (params.hasSandbag === "true") query = query.eq("has_workout_sandbag", true);
+    if (params.hasKettlebell === "true") query = query.eq("has_kettlebell", true);
+    if (params.hasTreadmill === "true") query = query.gt("treadmill_count", 0);
+    if (params.hasExerciseBike === "true") {
+      query = query.gt("exercise_bike_count", 0);
+    }
+    if (params.hasClimber === "true") query = query.gt("climber_count", 0);
+    if (params.hasEllipticalMachine === "true") {
+      query = query.gt("elliptical_machine_count", 0);
+    }
+    if (params.hasPullUpBar === "true") query = query.eq("has_pull_up_bar", true);
+    if (params.hasDipStation === "true") query = query.eq("has_dip_station", true);
+    if (params.hasTrapBar === "true") query = query.eq("has_trap_bar", true);
+    if (params.hasSafetySquatBar === "true") {
+      query = query.eq("has_safety_squat_bar", true);
+    }
+    if (params.hasLandmineAttachment === "true") {
+      query = query.eq("has_landmine_attachment", true);
+    }
+    if (params.hasSwissBar === "true") query = query.eq("has_swiss_bar", true);
+    if (params.hasCamberedBar === "true") {
+      query = query.eq("has_cambered_bar", true);
+    }
+    if (params.hasEzBar === "true") query = query.eq("has_ez_bar", true);
+    if (params.hasGluteHamDeveloper === "true") {
+      query = query.eq("has_glute_ham_developer", true);
+    }
+    if (params.hasReverseHyper === "true") {
+      query = query.eq("has_reverse_hyper", true);
+    }
+    if (params.hasCableMachine === "true") {
+      query = query.gt("cable_machine_count", 0);
+    }
+    if (params.hasLatPulldownCable === "true") {
+      query = query.eq("has_lat_pulldown_cable", true);
+    }
+    if (params.hasSeatedRowCable === "true") {
+      query = query.eq("has_seated_row_cable", true);
+    }
+    if (params.hasSmithMachine === "true") query = query.gt("smith_machine_count", 0);
+    if (params.hasRomanChair === "true") query = query.eq("has_roman_chair", true);
+    if (params.hasAbCrunchBench === "true") {
+      query = query.eq("has_ab_crunch_bench", true);
+    }
+    if (params.hasTorsoRotationMachine === "true") {
+      query = query.eq("has_torso_rotation_machine", true);
+    }
+    if (params.hasAbCrunchMachine === "true") {
+      query = query.eq("has_ab_crunch_machine", true);
+    }
+    if (params.hasPreacherCurlBench === "true") {
+      query = query.eq("has_preacher_curl_bench", true);
+    }
+    if (params.hasBicepCurlMachine === "true") {
+      query = query.eq("has_bicep_curl_machine", true);
+    }
+    if (params.hasTricepExtensionMachine === "true") {
+      query = query.eq("has_tricep_extension_machine", true);
+    }
+    if (params.hasDipMachine === "true") query = query.eq("has_dip_machine", true);
+    if (params.hasChestPressMachine === "true") {
+      query = query.eq("has_chest_press_machine", true);
+    }
+    if (params.hasInclineChestPressMachine === "true") {
+      query = query.eq("has_incline_chest_press_machine", true);
+    }
+    if (params.hasDeclineChestPressMachine === "true") {
+      query = query.eq("has_decline_chest_press_machine", true);
+    }
+    if (params.hasBenchRack === "true") query = query.eq("has_bench_rack", true);
+    if (params.hasInclineBenchRack === "true") {
+      query = query.eq("has_incline_bench_rack", true);
+    }
+    if (params.hasIsoLateralChestPressMachine === "true") {
+      query = query.eq("has_iso_lateral_chest_press_machine", true);
+    }
+    if (params.hasPecDeckMachine === "true") {
+      query = query.eq("has_pec_deck_machine", true);
+    }
+    if (params.hasChestFlyMachine === "true") {
+      query = query.eq("has_chest_fly_machine", true);
+    }
+    if (params.hasLatPulldownMachine === "true") {
+      query = query.eq("has_lat_pulldown_machine", true);
+    }
+    if (params.hasSeatedRowMachine === "true") {
+      query = query.eq("has_seated_row_machine", true);
+    }
+    if (params.hasBackExtensionMachine === "true") {
+      query = query.eq("has_back_extension_machine", true);
+    }
+    if (params.hasIsoLateralRowMachine === "true") {
+      query = query.eq("has_iso_lateral_row_machine", true);
+    }
+    if (params.hasTBarRowMachine === "true") {
+      query = query.eq("has_t_bar_row_machine", true);
+    }
+    if (params.hasPullOverMachine === "true") {
+      query = query.eq("has_pull_over_machine", true);
+    }
+    if (params.hasLateralRaiseMachine === "true") {
+      query = query.eq("has_lateral_raise_machine", true);
+    }
+    if (params.hasStandingLateralRaiseMachine === "true") {
+      query = query.eq("has_standing_lateral_raise_machine", true);
+    }
+    if (params.hasReverseFlyMachine === "true") {
+      query = query.eq("has_reverse_fly_machine", true);
+    }
+    if (params.hasShoulderPressMachine === "true") {
+      query = query.eq("has_shoulder_press_machine", true);
+    }
+    if (params.hasIsoLateralShoulderPressMachine === "true") {
+      query = query.eq("has_iso_lateral_shoulder_press_machine", true);
+    }
+    if (params.hasMultiPressMachine === "true") {
+      query = query.eq("has_multi_press_machine", true);
+    }
+    if (params.hasMultiHipMachine === "true") {
+      query = query.eq("has_multi_hip_machine", true);
+    }
+    if (params.hasHipAbductorMachine === "true") {
+      query = query.eq("has_hip_abductor_machine", true);
+    }
+    if (params.hasHipAdductorMachine === "true") {
+      query = query.eq("has_hip_adductor_machine", true);
+    }
+    if (params.hasLegExtensionMachine === "true") {
+      query = query.eq("has_leg_extension_machine", true);
+    }
+    if (params.hasLegPressMachine === "true") {
+      query = query.eq("has_leg_press_machine", true);
+    }
+    if (params.hasSeatedLegPressMachine === "true") {
+      query = query.eq("has_seated_leg_press_machine", true);
+    }
+    if (params.hasLyingLegCurlMachine === "true") {
+      query = query.eq("has_lying_leg_curl_machine", true);
+    }
+    if (params.hasSeatedLegCurlMachine === "true") {
+      query = query.eq("has_seated_leg_curl_machine", true);
+    }
+    if (params.hasSeatedCalfRaiseMachine === "true") {
+      query = query.eq("has_seated_calf_raise_machine", true);
+    }
+    if (params.hasSquatMachine === "true") query = query.eq("has_squat_machine", true);
+    if (params.hasHackSquat === "true") query = query.eq("has_hack_squat", true);
+    if (params.hasDeadliftPlatform === "true") {
+      query = query.or("has_deadlift_platform.eq.true,platform_count.gt.0");
+    }
+    if (params.hasBeltSquatMachine === "true") {
+      query = query.eq("has_belt_squat_machine", true);
+    }
+    if (params.hasStandingCalfRaiseMachine === "true") {
+      query = query.eq("has_standing_calf_raise_machine", true);
+    }
+    if (params.hasGluteExtensionMachine === "true") {
+      query = query.eq("has_glute_extension_machine", true);
+    }
+    if (params.hasHipThrustMachine === "true") {
+      query = query.eq("has_hip_thrust_machine", true);
+    }
+    if (params.hasBoxingSandbag === "true") {
+      query = query.eq("has_boxing_sandbag", true);
+    }
+    if (params.hasBattleRope === "true") query = query.eq("has_battle_rope", true);
+    if (params.hasFoamRoller === "true") query = query.eq("has_foam_roller", true);
+    if (params.hasMedicineBall === "true") {
+      query = query.eq("has_medicine_ball", true);
+    }
+    if (params.hasExerciseStepper === "true") {
+      query = query.eq("has_exercise_stepper", true);
+    }
+    if (params.hasAbRoller === "true") query = query.eq("has_ab_roller", true);
+    if (params.hasMassageBall === "true") {
+      query = query.eq("has_massage_ball", true);
+    }
+    if (params.hasDipBelt === "true") query = query.eq("has_dip_belt", true);
+    if (params.hasWeightVest === "true") query = query.eq("has_weight_vest", true);
+    if (params.hasLiftingStraps === "true") {
+      query = query.eq("has_lifting_straps", true);
+    }
+    if (params.hasPlyoBox === "true") query = query.eq("has_plyo_box", true);
+    if (params.hasBalanceBall === "true") {
+      query = query.eq("has_balance_ball", true);
+    }
+    if (params.hasTrx === "true") query = query.eq("has_trx", true);
+    if (params.hasResistanceBand === "true") {
+      query = query.eq("has_resistance_band", true);
+    }
+    if (params.hasRings === "true") query = query.eq("has_rings", true);
+    if (params.hasYogaBlock === "true") query = query.eq("has_yoga_block", true);
+    if (params.hasYogaMat === "true") query = query.eq("has_yoga_mat", true);
+    if (params.hasStretchingMachine === "true") {
+      query = query.eq("has_stretching_machine", true);
+    }
+    if (params.hasMobilityStick === "true") {
+      query = query.eq("has_mobility_stick", true);
+    }
+    if (params.hasWashroom === "true") query = query.eq("has_washroom", true);
+    if (params.hasBathroom === "true") query = query.eq("has_bathroom", true);
+    if (params.hasChangingRoom === "true") {
+      query = query.eq("has_changing_room", true);
+    }
+    if (params.hasFreeWater === "true") query = query.eq("has_free_water", true);
+    if (params.hasDrySauna === "true") query = query.eq("has_dry_sauna", true);
+    if (params.hasWetSauna === "true") query = query.eq("has_wet_sauna", true);
+    if (params.hasIceBath === "true") query = query.eq("has_ice_bath", true);
+    if (params.minSize) query = query.gte("estimated_size_sqft", params.minSize);
+
+    return query;
+  };
+
+  // Keep encoded ID filters below proxy URI limits; apply every other filter
+  // to each disjoint batch before combining, sorting, and paginating results.
+  const matchingIds = catalogGymIds === null ? null : [...catalogGymIds];
+  const batches: (string[] | undefined)[] = [];
+  if (matchingIds === null) batches.push(undefined);
+  else for (let offset = 0; offset < matchingIds.length; offset += 50) {
+    batches.push(matchingIds.slice(offset, offset + 50));
+  }
+  const data: GymSummary[] = [];
+  let count = 0;
+  for (const batch of batches) {
+    const result = await buildQuery(batch);
+    if (result.error) throw new Error(`Failed to load gyms (${result.error.code ?? "unknown"})`);
+    const rows = (result.data ?? []) as unknown as GymSummary[];
+    data.push(...rows);
+    count += result.count ?? rows.length;
   }
 
-  if (params.district) {
-    query = query.eq("district_code", params.district);
-  } else if (params.districts?.length) {
-    const districts = getSelectedDistricts(new URLSearchParams({ districts: params.districts.join(",") }));
-    if (!districts.length) return emptySearchResult(page, pageSize);
-    query = query.in("district_code", districts.map((item) => item.code));
-  }
-  if (params.minRackCount) query = query.gte("rack_count", params.minRackCount);
-  if (params.minBenchCount) {
-    query = query.gte("bench_count", params.minBenchCount);
-  }
-  if (params.minBarbellCount) {
-    query = query.gte("barbell_count", params.minBarbellCount);
-  }
-  if (params.minPlatformCount) {
-    query = query.gte("platform_count", params.minPlatformCount);
-  }
-  if (params.minDumbbellWeight) {
-    query = query.gte("dumbbell_max_weight_kg", params.minDumbbellWeight);
-  }
-  if (params.minPlateWeight) {
-    query = query.lte("plate_min_weight_kg", params.minPlateWeight);
-  }
-  if (params.isHyroxOfficial === "true") {
-    query = query.eq("is_hyrox_official", true);
-  }
-  if (params.hasAssaultRunner === "true") {
-    query = query.gt("assault_runner_count", 0);
-  }
-  if (params.hasAssaultBike === "true") query = query.gt("assault_bike_count", 0);
-  if (params.hasSkiErg === "true") query = query.gt("ski_erg_count", 0);
-  if (params.hasRower === "true") query = query.gt("rower_count", 0);
-  if (params.hasSled === "true") query = query.gt("sled_count", 0);
-  if (params.hasWallBallPlate === "true") {
-    query = query.or(
-      "wall_ball_plate_9ft_count.gt.0,wall_ball_plate_10ft_count.gt.0"
-    );
-  }
-  if (params.hasWallBall === "true") {
-    query = query.or(
-      "has_wall_ball.eq.true,wall_ball_count.gt.0,wall_ball_4kg_count.gt.0,wall_ball_6kg_count.gt.0,wall_ball_8kg_count.gt.0,wall_ball_9kg_count.gt.0,wall_ball_10kg_count.gt.0,wall_ball_plate_9ft_count.gt.0,wall_ball_plate_10ft_count.gt.0"
-    );
-  }
-  if (params.hasSandbag === "true") query = query.eq("has_workout_sandbag", true);
-  if (params.hasKettlebell === "true") query = query.eq("has_kettlebell", true);
-  if (params.hasTreadmill === "true") query = query.gt("treadmill_count", 0);
-  if (params.hasExerciseBike === "true") {
-    query = query.gt("exercise_bike_count", 0);
-  }
-  if (params.hasClimber === "true") query = query.gt("climber_count", 0);
-  if (params.hasEllipticalMachine === "true") {
-    query = query.gt("elliptical_machine_count", 0);
-  }
-  if (params.hasPullUpBar === "true") query = query.eq("has_pull_up_bar", true);
-  if (params.hasDipStation === "true") query = query.eq("has_dip_station", true);
-  if (params.hasTrapBar === "true") query = query.eq("has_trap_bar", true);
-  if (params.hasSafetySquatBar === "true") {
-    query = query.eq("has_safety_squat_bar", true);
-  }
-  if (params.hasLandmineAttachment === "true") {
-    query = query.eq("has_landmine_attachment", true);
-  }
-  if (params.hasSwissBar === "true") query = query.eq("has_swiss_bar", true);
-  if (params.hasCamberedBar === "true") {
-    query = query.eq("has_cambered_bar", true);
-  }
-  if (params.hasEzBar === "true") query = query.eq("has_ez_bar", true);
-  if (params.hasGluteHamDeveloper === "true") {
-    query = query.eq("has_glute_ham_developer", true);
-  }
-  if (params.hasReverseHyper === "true") {
-    query = query.eq("has_reverse_hyper", true);
-  }
-  if (params.hasCableMachine === "true") {
-    query = query.gt("cable_machine_count", 0);
-  }
-  if (params.hasLatPulldownCable === "true") {
-    query = query.eq("has_lat_pulldown_cable", true);
-  }
-  if (params.hasSeatedRowCable === "true") {
-    query = query.eq("has_seated_row_cable", true);
-  }
-  if (params.hasSmithMachine === "true") query = query.gt("smith_machine_count", 0);
-  if (params.hasRomanChair === "true") query = query.eq("has_roman_chair", true);
-  if (params.hasAbCrunchBench === "true") {
-    query = query.eq("has_ab_crunch_bench", true);
-  }
-  if (params.hasTorsoRotationMachine === "true") {
-    query = query.eq("has_torso_rotation_machine", true);
-  }
-  if (params.hasAbCrunchMachine === "true") {
-    query = query.eq("has_ab_crunch_machine", true);
-  }
-  if (params.hasPreacherCurlBench === "true") {
-    query = query.eq("has_preacher_curl_bench", true);
-  }
-  if (params.hasBicepCurlMachine === "true") {
-    query = query.eq("has_bicep_curl_machine", true);
-  }
-  if (params.hasTricepExtensionMachine === "true") {
-    query = query.eq("has_tricep_extension_machine", true);
-  }
-  if (params.hasDipMachine === "true") query = query.eq("has_dip_machine", true);
-  if (params.hasChestPressMachine === "true") {
-    query = query.eq("has_chest_press_machine", true);
-  }
-  if (params.hasInclineChestPressMachine === "true") {
-    query = query.eq("has_incline_chest_press_machine", true);
-  }
-  if (params.hasDeclineChestPressMachine === "true") {
-    query = query.eq("has_decline_chest_press_machine", true);
-  }
-  if (params.hasBenchRack === "true") query = query.eq("has_bench_rack", true);
-  if (params.hasInclineBenchRack === "true") {
-    query = query.eq("has_incline_bench_rack", true);
-  }
-  if (params.hasIsoLateralChestPressMachine === "true") {
-    query = query.eq("has_iso_lateral_chest_press_machine", true);
-  }
-  if (params.hasPecDeckMachine === "true") {
-    query = query.eq("has_pec_deck_machine", true);
-  }
-  if (params.hasChestFlyMachine === "true") {
-    query = query.eq("has_chest_fly_machine", true);
-  }
-  if (params.hasLatPulldownMachine === "true") {
-    query = query.eq("has_lat_pulldown_machine", true);
-  }
-  if (params.hasSeatedRowMachine === "true") {
-    query = query.eq("has_seated_row_machine", true);
-  }
-  if (params.hasBackExtensionMachine === "true") {
-    query = query.eq("has_back_extension_machine", true);
-  }
-  if (params.hasIsoLateralRowMachine === "true") {
-    query = query.eq("has_iso_lateral_row_machine", true);
-  }
-  if (params.hasTBarRowMachine === "true") {
-    query = query.eq("has_t_bar_row_machine", true);
-  }
-  if (params.hasPullOverMachine === "true") {
-    query = query.eq("has_pull_over_machine", true);
-  }
-  if (params.hasLateralRaiseMachine === "true") {
-    query = query.eq("has_lateral_raise_machine", true);
-  }
-  if (params.hasStandingLateralRaiseMachine === "true") {
-    query = query.eq("has_standing_lateral_raise_machine", true);
-  }
-  if (params.hasReverseFlyMachine === "true") {
-    query = query.eq("has_reverse_fly_machine", true);
-  }
-  if (params.hasShoulderPressMachine === "true") {
-    query = query.eq("has_shoulder_press_machine", true);
-  }
-  if (params.hasIsoLateralShoulderPressMachine === "true") {
-    query = query.eq("has_iso_lateral_shoulder_press_machine", true);
-  }
-  if (params.hasMultiPressMachine === "true") {
-    query = query.eq("has_multi_press_machine", true);
-  }
-  if (params.hasMultiHipMachine === "true") {
-    query = query.eq("has_multi_hip_machine", true);
-  }
-  if (params.hasHipAbductorMachine === "true") {
-    query = query.eq("has_hip_abductor_machine", true);
-  }
-  if (params.hasHipAdductorMachine === "true") {
-    query = query.eq("has_hip_adductor_machine", true);
-  }
-  if (params.hasLegExtensionMachine === "true") {
-    query = query.eq("has_leg_extension_machine", true);
-  }
-  if (params.hasLegPressMachine === "true") {
-    query = query.eq("has_leg_press_machine", true);
-  }
-  if (params.hasSeatedLegPressMachine === "true") {
-    query = query.eq("has_seated_leg_press_machine", true);
-  }
-  if (params.hasLyingLegCurlMachine === "true") {
-    query = query.eq("has_lying_leg_curl_machine", true);
-  }
-  if (params.hasSeatedLegCurlMachine === "true") {
-    query = query.eq("has_seated_leg_curl_machine", true);
-  }
-  if (params.hasSeatedCalfRaiseMachine === "true") {
-    query = query.eq("has_seated_calf_raise_machine", true);
-  }
-  if (params.hasSquatMachine === "true") query = query.eq("has_squat_machine", true);
-  if (params.hasHackSquat === "true") query = query.eq("has_hack_squat", true);
-  if (params.hasDeadliftPlatform === "true") {
-    query = query.or("has_deadlift_platform.eq.true,platform_count.gt.0");
-  }
-  if (params.hasBeltSquatMachine === "true") {
-    query = query.eq("has_belt_squat_machine", true);
-  }
-  if (params.hasStandingCalfRaiseMachine === "true") {
-    query = query.eq("has_standing_calf_raise_machine", true);
-  }
-  if (params.hasGluteExtensionMachine === "true") {
-    query = query.eq("has_glute_extension_machine", true);
-  }
-  if (params.hasHipThrustMachine === "true") {
-    query = query.eq("has_hip_thrust_machine", true);
-  }
-  if (params.hasBoxingSandbag === "true") {
-    query = query.eq("has_boxing_sandbag", true);
-  }
-  if (params.hasBattleRope === "true") query = query.eq("has_battle_rope", true);
-  if (params.hasFoamRoller === "true") query = query.eq("has_foam_roller", true);
-  if (params.hasMedicineBall === "true") {
-    query = query.eq("has_medicine_ball", true);
-  }
-  if (params.hasExerciseStepper === "true") {
-    query = query.eq("has_exercise_stepper", true);
-  }
-  if (params.hasAbRoller === "true") query = query.eq("has_ab_roller", true);
-  if (params.hasMassageBall === "true") {
-    query = query.eq("has_massage_ball", true);
-  }
-  if (params.hasDipBelt === "true") query = query.eq("has_dip_belt", true);
-  if (params.hasWeightVest === "true") query = query.eq("has_weight_vest", true);
-  if (params.hasLiftingStraps === "true") {
-    query = query.eq("has_lifting_straps", true);
-  }
-  if (params.hasPlyoBox === "true") query = query.eq("has_plyo_box", true);
-  if (params.hasBalanceBall === "true") {
-    query = query.eq("has_balance_ball", true);
-  }
-  if (params.hasTrx === "true") query = query.eq("has_trx", true);
-  if (params.hasResistanceBand === "true") {
-    query = query.eq("has_resistance_band", true);
-  }
-  if (params.hasRings === "true") query = query.eq("has_rings", true);
-  if (params.hasYogaBlock === "true") query = query.eq("has_yoga_block", true);
-  if (params.hasYogaMat === "true") query = query.eq("has_yoga_mat", true);
-  if (params.hasStretchingMachine === "true") {
-    query = query.eq("has_stretching_machine", true);
-  }
-  if (params.hasMobilityStick === "true") {
-    query = query.eq("has_mobility_stick", true);
-  }
-  if (params.hasWashroom === "true") query = query.eq("has_washroom", true);
-  if (params.hasBathroom === "true") query = query.eq("has_bathroom", true);
-  if (params.hasChangingRoom === "true") {
-    query = query.eq("has_changing_room", true);
-  }
-  if (params.hasFreeWater === "true") query = query.eq("has_free_water", true);
-  if (params.hasDrySauna === "true") query = query.eq("has_dry_sauna", true);
-  if (params.hasWetSauna === "true") query = query.eq("has_wet_sauna", true);
-  if (params.hasIceBath === "true") query = query.eq("has_ice_bath", true);
-  if (params.minSize) query = query.gte("estimated_size_sqft", params.minSize);
-
-  const { data, error, count } = await query;
-  if (error) {
-    throw new Error(`Failed to load gyms (${error.code ?? "unknown"})`);
-  }
-
-  const allGyms = ((data ?? []) as unknown as GymSummary[]).filter((gym) =>
+  const allGyms = data.filter((gym) =>
     collection ? collection.matchesGym(gym) : true
   );
 

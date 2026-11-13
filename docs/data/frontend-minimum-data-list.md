@@ -425,3 +425,5 @@ active 主分類及其 category，以及 active 查詢分類及其 category。
 PUBLIC execute 被撤銷，anon/authenticated/service_role 明確獲准執行。
 底層 table/column grants 及 RLS policies 不變；未驗證或停用資料不能透過
 這個 helper 推斷為公開存在。回歸測試：public_inventory_visibility.sql。
+
+器材分類搜尋匹配嘅 gym IDs 每 50 個分批讀取 `gyms_public`，避免編碼後網址超過 proxy URI 限制。每批保留所有篩選條件；合併後統一排序及分頁。欄位投影、公開回應及權限不變。
