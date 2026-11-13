@@ -1,4 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+// Next.js supplies React cache in its Server Component runtime.
+vi.mock("react", () => ({ cache: (fn: unknown) => fn }));
 
 const { query, createClient } = vi.hoisted(() => {
   const query = {
@@ -14,10 +17,13 @@ import { searchGyms } from "./search-gyms";
 
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.spyOn(console, "info").mockImplementation(() => {});
   vi.mocked(getCatalogSearchGymIds).mockResolvedValue(null);
   query.execute.mockResolvedValue({ data: [], count: 0, error: null });
   for (const method of [query.select, query.eq, query.in, query.or, query.gte]) method.mockReturnValue(query);
 });
+
+afterEach(() => vi.restoreAllMocks());
 
 describe("multi-district gym search", () => {
   it("queries an OR set of district codes while retaining brand and equipment conditions", async () => {
@@ -44,6 +50,9 @@ describe("multi-district gym search", () => {
 it("does not present a database timeout as a successful empty search", async () => {
   query.execute.mockResolvedValue({ data: null, count: null, error: { code: "57014", message: "canceling statement due to statement timeout" } });
   await expect(searchGyms({})).rejects.toThrow("Failed to load gyms (57014)");
+  expect(JSON.parse(vi.mocked(console.info).mock.calls[0][0])).toMatchObject({
+    event: "gym_search_timing", status: "error", gym_query_ms: expect.any(Number),
+  });
 });
 
 it("batches large category matches while retaining filters, totals, and global pagination", async () => {
@@ -60,6 +69,11 @@ it("batches large category matches while retaining filters, totals, and global p
   expect(query.eq.mock.calls.filter(([column]) => column === "district_code")).toHaveLength(3);
   expect(query.gte.mock.calls.filter(([column]) => column === "rack_count")).toHaveLength(3);
   expect(result.totalCount).toBe(144);
+  expect(JSON.parse(vi.mocked(console.info).mock.calls[0][0])).toMatchObject({
+    event: "gym_search_timing", status: "ok", gym_query_batches: 3,
+    matched_gyms: 144, returned_gyms: 20, gym_query_ms: expect.any(Number),
+    votes_query_ms: expect.any(Number), sort_paginate_ms: expect.any(Number),
+  });
   expect(result.gyms.map(({ id }) => id)).toEqual(ids.slice(104, 124).reverse());
 });
 

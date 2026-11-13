@@ -1,3 +1,4 @@
+import { withServerTiming } from "@/lib/server-timing";
 import { SearchFilterLayout } from "./SearchFilterLayout";
 import { Suspense, type ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
@@ -38,10 +39,13 @@ export async function SearchExperience({
   fixedGymChain,
   introduction,
 }: SearchExperienceProps) {
-  const [equipmentCategories, machineSuggestions] = await Promise.all([
-    getEquipmentCategoryFilterOptions(),
-    getEquipmentMachineSuggestions(),
-  ]);
+  const [equipmentCategories, machineSuggestions] = await withServerTiming(
+    "filter_options_timing",
+    (timing) => Promise.all([
+      timing.measure("categories_ms", () => getEquipmentCategoryFilterOptions()),
+      timing.measure("machine_suggestions_ms", () => getEquipmentMachineSuggestions()),
+    ])
+  );
   const common = await getTranslations("common");
   const districtPages = await getTranslations("districtPages");
   const currentDistrictCode =

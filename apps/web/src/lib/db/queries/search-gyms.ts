@@ -1,3 +1,4 @@
+import { withServerTiming, type ServerTiming } from "@/lib/server-timing";
 import type { GymSummary } from "@gymory/shared";
 import { getGymChainsBySlug, searchParamsSchema } from "@gymory/shared";
 import { getSelectedDistricts } from "@/lib/search-navigation";
@@ -172,6 +173,17 @@ export const GYM_SEARCH_COLUMNS = [
 export async function searchGyms(
   rawParams: RawSearchParams
 ): Promise<PaginatedGymSearchResult> {
+  return withServerTiming("gym_search_timing", async (timing) => {
+    const result = await searchGymsWithTiming(rawParams, timing);
+    timing.record("returned_gyms", result.gyms.length);
+    return result;
+  });
+}
+
+async function searchGymsWithTiming(
+  rawParams: RawSearchParams,
+  timing: ServerTiming
+): Promise<PaginatedGymSearchResult> {
   const parsed = searchParamsSchema.safeParse({
     collection: rawParams.collection,
     district: rawParams.district,
@@ -315,11 +327,11 @@ export async function searchGyms(
 
   const supabase = await createClient();
 
-  const catalogGymIds = await getCatalogSearchGymIds({
+  const catalogGymIds = await timing.measure("catalog_lookup_ms", () => getCatalogSearchGymIds({
     machine: params.machine,
     category: params.category,
     brandSlugs: params.brandSlugs,
-  });
+  }));
   if (catalogGymIds !== null && catalogGymIds.size === 0) return emptySearchResult(page, pageSize);
 
   if (params.gymChains?.length && getGymChainsBySlug(params.gymChains).length === 0) {
@@ -611,8 +623,9 @@ export async function searchGyms(
   }
   const data: GymSummary[] = [];
   let count = 0;
+  timing.record("gym_query_batches", batches.length);
   for (const batch of batches) {
-    const result = await buildQuery(batch);
+    const result = await timing.measure("gym_query_ms", () => buildQuery(batch));
     if (result.error) throw new Error(`Failed to load gyms (${result.error.code ?? "unknown"})`);
     const rows = (result.data ?? []) as unknown as GymSummary[];
     data.push(...rows);
@@ -623,12 +636,13 @@ export async function searchGyms(
     collection ? collection.matchesGym(gym) : true
   );
 
+  timing.record("matched_gyms", allGyms.length);
   const gymIds = allGyms.map((gym) => gym.id);
   if (gymIds.length > 0) {
-    const { data: votes } = await supabase
+    const { data: votes } = await timing.measure("votes_query_ms", () => supabase
       .from("gym_accuracy_votes")
       .select("gym_id, vote")
-      .in("gym_id", gymIds);
+      .in("gym_id", gymIds));
 
     const tallies = new Map<
       string,
@@ -656,6 +670,7 @@ export async function searchGyms(
     }
   }
 
+  const sortStarted = performance.now();
   const hasUserLocation =
     typeof params.userLat === "number" &&
     Number.isFinite(params.userLat) &&
@@ -681,6 +696,7 @@ export async function searchGyms(
   const totalCount = collection ? sortedGyms.length : count ?? sortedGyms.length;
   const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
   const gyms = sortedGyms.slice(from, to + 1);
+  timing.record("sort_paginate_ms", performance.now() - sortStarted);
 
   return {
     gyms,

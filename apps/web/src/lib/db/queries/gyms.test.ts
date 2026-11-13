@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+// Next.js supplies React cache in its Server Component runtime.
+vi.mock("react", () => ({ cache: (fn: unknown) => fn }));
+
 const { query, from } = vi.hoisted(() => {
   const query = { select: vi.fn(), eq: vi.fn(), single: vi.fn() };
   return { query, from: vi.fn(() => query) };

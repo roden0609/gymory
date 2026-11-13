@@ -1,3 +1,4 @@
+import { withServerTiming } from "@/lib/server-timing";
 import { cache } from "react";
 import { GYM_CHAINS } from "@gymory/shared";
 import { getGymBrand, getGymBrandForGym, summarizeGymBrand, type GymBrandSummaryRow } from "@/lib/gym-brand-pages";
@@ -5,17 +6,17 @@ import { createClient } from "../supabase-server";
 
 const BRAND_SUMMARY_COLUMNS = "district_code, rack_count, dumbbell_max_weight_kg, treadmill_count, rower_count, has_bathroom, has_changing_room, has_free_water";
 
-export const getGymBrandOverview = cache(async (slug: string) => {
+export const getGymBrandOverview = cache(async (slug: string) => withServerTiming("gym_brand_overview_timing", async (timing) => {
   const brand = getGymBrand(slug);
   if (!brand) return null;
   const supabase = await createClient();
-  const { data, error } = await supabase.from("gym_brand_overview_public")
+  const { data, error } = await timing.measure("brand_overview_ms", () => supabase.from("gym_brand_overview_public")
     .select(BRAND_SUMMARY_COLUMNS)
     .eq("is_active", true)
-    .or(brand.slugPrefixes.map((prefix) => `slug.like.${prefix}*`).join(","));
+    .or(brand.slugPrefixes.map((prefix) => `slug.like.${prefix}*`).join(",")));
   if (error) throw new Error(`Failed to load gym brand overview: ${error.message}`);
   return summarizeGymBrand((data ?? []) as GymBrandSummaryRow[]);
-});
+}));
 
 // Fetch every page: Supabase limits a single response, which can otherwise omit whole brands.
 export const getActiveGymDirectoryEntries = cache(async () => {
