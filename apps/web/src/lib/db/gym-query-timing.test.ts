@@ -32,12 +32,12 @@ it("separates headers, one body read and SDK remainder across sequential batches
     }
   });
   expect(readText).toHaveBeenCalledTimes(2);
-  expect(JSON.parse(log.mock.calls[0][0])).toMatchObject({
+  expect(JSON.parse(log.mock.calls.find(([line]) => JSON.parse(line).event === "gym_search_timing")![0])).toMatchObject({
     gym_fetch_headers_ms: 40, gym_fetch_body_ms: 60,
     gym_sdk_overhead_ms: 10, gym_fetch_body_bytes: Buffer.byteLength(body) * 2,
     gym_fetch_requests: 2, gym_fetch_failures: 0, status: "ok",
   });
-  expect(log.mock.calls[0][0]).not.toMatch(/private|Authorization|中文|example/);
+  expect(log.mock.calls.find(([line]) => JSON.parse(line).event === "gym_search_timing")![0]).not.toMatch(/private|Authorization|中文|example/);
 });
 
 it("preserves transport rejection and logs elapsed headers wait", async () => {
@@ -47,8 +47,8 @@ it("preserves transport rejection and logs elapsed headers wait", async () => {
     const network = createGymQueryTiming(timing, async () => { throw error; });
     return network.measure(() => network.fetch("https://example.invalid/rest/v1/gym_search_public"));
   })).rejects.toBe(error);
-  expect(JSON.parse(log.mock.calls[0][0])).toMatchObject({ status: "error", gym_fetch_failures: 1, gym_fetch_requests: 1, gym_fetch_body_bytes: 0 });
-  expect(log.mock.calls[0][0]).not.toContain(error.message);
+  expect(JSON.parse(log.mock.calls.find(([line]) => JSON.parse(line).event === "gym_search_timing")![0])).toMatchObject({ status: "error", gym_fetch_failures: 1, gym_fetch_requests: 1, gym_fetch_body_bytes: 0 });
+  expect(log.mock.calls.find(([line]) => JSON.parse(line).event === "gym_search_timing")![0]).not.toContain(error.message);
 });
 
 it("works with the installed PostgREST SDK and retains exact counts and HTTP error handling", async () => {
@@ -89,6 +89,43 @@ it("preserves a failed body read and does not log partial contents", async () =>
     const network = createGymQueryTiming(timing, async () => response);
     return network.measure(async () => (await network.fetch("https://example.invalid/rest/v1/gym_search_public")).text());
   })).rejects.toBe(error);
-  expect(JSON.parse(log.mock.calls[0][0])).toMatchObject({ status: "error", gym_fetch_failures: 1, gym_fetch_body_bytes: 0 });
-  expect(log.mock.calls[0][0]).not.toContain(error.message);
+  expect(JSON.parse(log.mock.calls.find(([line]) => JSON.parse(line).event === "gym_search_timing")![0])).toMatchObject({ status: "error", gym_fetch_failures: 1, gym_fetch_body_bytes: 0 });
+  expect(log.mock.calls.find(([line]) => JSON.parse(line).event === "gym_search_timing")![0]).not.toContain(error.message);
+});
+
+it("correlates each batch with only validated upstream trace IDs and no raw headers", async () => {
+  const log = vi.spyOn(console, "info").mockImplementation(() => {});
+  const upstreamId = "12345678-1234-1234-1234-123456789abc";
+  await withServerTiming("gym_search_timing", async (timing) => {
+    const network = createGymQueryTiming(timing, async () => new Response("[]", {
+      headers: { "sb-request-id": upstreamId, "cf-ray": "abcdef1234567890-NRT", "set-cookie": "private-cookie", "server-timing": "private-description" },
+    }));
+    for (let i = 0; i < 2; i++) {
+      await network.measure(async () => (await network.fetch("https://example.invalid/rest/v1/gym_search_public?private=filter")).text());
+    }
+  });
+  const events = log.mock.calls.map(([line]) => JSON.parse(line));
+  const summary = events.find((e) => e.event === "gym_search_timing");
+  const attempts = events.filter((e) => e.event === "gym_fetch_timing");
+  expect(attempts).toHaveLength(2);
+  expect(attempts.map((e) => e.attempt)).toEqual([1, 2]);
+  for (const event of attempts) expect(event).toMatchObject({ requestId: summary.requestId,
+    supabase_request_id: upstreamId, cloudflare_ray: "abcdef1234567890-NRT",
+    observed_requests: 0, http_status: 200, status: "ok", body_bytes: 2 });
+  expect(JSON.stringify(events)).not.toMatch(/private|example|filter|cookie/);
+});
+
+it("drops invalid response trace values and reports HTTP/body errors separately", async () => {
+  const log = vi.spyOn(console, "info").mockImplementation(() => {});
+  await withServerTiming("gym_search_timing", async (timing) => {
+    const network = createGymQueryTiming(timing, async () => new Response("private-error", {
+      status: 503, headers: { "sb-request-id": "private-id", "cf-ray": "private-ray" },
+    }));
+    await network.measure(async () => (await network.fetch("https://example.invalid/rest/v1/gym_search_public")).text());
+  });
+  const event = log.mock.calls.map(([line]) => JSON.parse(line)).find((e) => e.event === "gym_fetch_timing");
+  expect(event).toMatchObject({ status: "http_error", http_status: 503 });
+  expect(event).not.toHaveProperty("supabase_request_id");
+  expect(event).not.toHaveProperty("cloudflare_ray");
+  expect(JSON.stringify(log.mock.calls)).not.toContain("private");
 });

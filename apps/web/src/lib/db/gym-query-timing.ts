@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer";
-import type { ServerTiming } from "@/lib/server-timing";
+import { observeGymTransport, type GymTransportDetails } from "./gym-fetch-diagnostics";
+import type { FetchTimingDetails, ServerTiming } from "@/lib/server-timing";
 
 /** Observe the existing SDK read once; never clone, reparse, or log its body/URL. */
 export function createGymQueryTiming(timing: ServerTiming, fetcher: typeof fetch = fetch) {
@@ -16,15 +17,30 @@ export function createGymQueryTiming(timing: ServerTiming, fetcher: typeof fetch
 
     requests += 1;
     const started = performance.now();
+    let transport: GymTransportDetails | undefined;
+    const detail: FetchTimingDetails = { attempt: requests, status: "transport_error", headers_ms: 0 };
+    let logged = false;
+    const log = () => {
+      if (logged) return;
+      logged = true;
+      try { timing.fetchDetails?.({ ...detail, ...transport }); } catch { /* best effort diagnostics */ }
+    };
     let response: Response;
     try {
-      response = await fetcher(input, init);
+      response = await observeGymTransport(new URL(url).origin, () => fetcher(input, init), (value) => { transport = value; });
     } catch (error) {
       failures += 1;
+      detail.headers_ms = performance.now() - started;
+      log();
       throw error;
     } finally {
       headersMs += performance.now() - started;
     }
+    detail.headers_ms = performance.now() - started;
+    detail.http_status = response.status;
+    detail.status = response.ok ? "ok" : "http_error";
+    detail.supabase_request_id = response.headers.get("sb-request-id") ?? undefined;
+    detail.cloudflare_ray = response.headers.get("cf-ray") ?? undefined;
     if (!response.ok) failures += 1;
 
     // The installed PostgREST SDK consumes response.text(), then JSON.parse().
@@ -38,10 +54,14 @@ export function createGymQueryTiming(timing: ServerTiming, fetcher: typeof fetch
         return body;
       } catch (error) {
         if (response.ok) failures += 1;
+        detail.status = "transport_error";
         throw error;
       } finally {
         bodyMs += performance.now() - start;
         if (body !== undefined) bodyBytes += Buffer.byteLength(body, "utf8");
+        detail.body_ms = performance.now() - start;
+        if (body !== undefined) detail.body_bytes = Buffer.byteLength(body, "utf8");
+        log();
       }
     };
     return response;

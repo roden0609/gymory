@@ -28,7 +28,9 @@ execution times. Use `EXPLAIN ANALYZE` for pure SQL comparisons. Event totals
 cover these operations, not the entire Next.js render or the browser's streamed
 response; compare against DevTools Network timings to locate remaining gaps.
 
-Logs contain only event names, generated IDs, status, durations, and counts.
+Summary logs contain only event names, generated IDs, status, durations, and counts.
+Per-fetch logs additionally allow validated upstream trace IDs, region and socket
+reuse state as documented below.
 Do not add raw parameters, coordinates, database rows, credentials, or error
 messages. Database projections, permissions, and public response shapes are
 unchanged by this instrumentation.
@@ -96,3 +98,58 @@ client work needing further investigation. These distinguish phases, not exact
 root causes. DNS/TLS, pool wait and pure SQL are not individually separated; use
 Supabase database diagnostics / EXPLAIN to correlate those. Logging must be
 deployed before Vercel can show the new fields; old logs cannot be split retroactively.
+
+## Per-fetch connection diagnostics
+
+Each consumed search response (including HTTP errors), or rejected transport,
+now produces a `gym_fetch_timing` event. It shares `requestId` with the enclosing
+`gym_search_timing`; `attempt` is the fetch ordinal within that search, including
+sequential batches. Search responses are consumed through the existing SDK text
+read. A caller that never consumes a successful response will not produce this
+per-fetch event. Aggregate search metrics remain unchanged.
+
+The observer uses Node's `diagnostics_channel` and `AsyncLocalStorage` without
+replacing fetch, changing connection pools, disabling TLS, adding requests, or
+buffering/parsing the response a second time. It does not force fresh connections.
+Request identity separates concurrent operations. No database projections, grants,
+public API responses or client props change.
+
+| Field | Meaning |
+| --- | --- |
+| `headers_ms`, `body_ms`, `body_bytes` | Per-fetch equivalents of the existing aggregate measurements. Bytes are decoded UTF-8 size, not compressed wire size. |
+| `observed_requests` | Matching Undici request events observed. Zero means unavailable, e.g. a runtime/custom transport without these channels or a cache hit; it does not mean zero network latency. |
+| `request_create_ms` | Fetch invocation to Undici request creation, including framework work/scheduling. |
+| `dispatch_wait_ms` | Request creation to first request write. Includes connection setup, connection availability and scheduling; NOT isolated pool queue time. |
+| `request_send_ms` | First request write to the body-sent event. |
+| `response_wait_ms` | Body-sent event to response headers received. Includes network, upstream gateway/queue/database/serialization and scheduling; NOT isolated SQL time or exact first-byte timing. |
+| `socket_setup_ms` | Observed socket creation to TLS readiness (TCP readiness for HTTP), for its first observed use in this fetch. Nested within dispatch wait, not an additional phase to add. |
+| `dns_lookup_ms` | Socket creation to its first lookup event, including lookup preparation/scheduling. Omitted for IP literals, missing events, and reused sockets. |
+| `tcp_connect_ms` | First lookup event to TCP connect. Can include address selection/retries; omitted when lookup is not observed. |
+| `tls_handshake_ms` | TCP connect to TLS secure-connect event, when both are observed. |
+| `socket_reused` | True only when earlier writes on the same observed socket are known. False means the first write on a socket whose creation was observed. Otherwise omitted until an earlier write is known. |
+| `http_status`, `status` | HTTP status when available; status is `ok`, `http_error`, or `transport_error` (also used for failed body reads). |
+| `supabase_request_id` | UUID-shaped `sb-request-id` response header, when provided; use to correlate Supabase gateway/API logs. |
+| `cloudflare_ray` | Validated hex/datacenter `cf-ray` trace value, when provided; not a database query ID. |
+| `region` | Validated `VERCEL_REGION`, when available. |
+
+Missing fields are unavailable, never fabricated zeros. If redirects or retries
+produce multiple Undici requests for one fetch, `observed_requests` is retained
+but individual connection phases are omitted to avoid attributing one socket's
+lifecycle to the entire fetch. Failed connections can have incomplete events.
+Socket setup is recorded on the actual socket used, not attributed from pooled
+`beforeConnect` events, which cannot reliably be assigned to a request.
+
+To investigate a slow search, find its `gym_search_timing` requestId, then inspect
+all `gym_fetch_timing` events with that ID. Large dispatch wait points toward
+connection/setup/scheduling; large response wait on a known reused connection
+points toward the network/upstream path after request sending. Search Supabase
+logs for the returned `supabase_request_id` around that timestamp. API logs and
+PostgreSQL diagnostics are still required to separate gateway/pool waits from the
+actual SQL execution of that same request. A separate EXPLAIN run cannot establish
+how long an earlier slow request's SQL took. Response headers are not guaranteed
+to contain database timings, so this instrumentation does not invent them.
+
+Only numeric metrics, boolean socket reuse, fixed status values, validated trace
+IDs and region are logged. Raw URLs/filters, request headers, cookies/tokens,
+response bodies, arbitrary Server-Timing descriptions, IPs and errors are excluded.
+Deploy this code before reproducing; old logs cannot be subdivided retroactively.

@@ -1,0 +1,28 @@
+# After 0075_add_gym_chain_code.sql
+
+# 1. 匯入現有 gym baseline
+pnpm import:247-fitness-hk --env-file apps/web/.env.local --upsert-file data/gyms/247-fitness-hk-baseline.json
+pnpm import:anytime-fitness-hk --env-file apps/web/.env.local --upsert-file data/gyms/anytime-fitness-hk-baseline.json
+pnpm import:efx24-hk --env-file apps/web/.env.local --upsert-file data/gyms/efx24-hk-baseline.json
+pnpm import:go24-fitness-hk --env-file apps/web/.env.local --upsert-file data/gyms/go24-fitness-hk-baseline.json
+pnpm import:lcsd-fitness-hk --env-file apps/web/.env.local --upsert-file data/gyms/lcsd-fitness-hk-baseline.json
+pnpm import:pure-fitness-hk --env-file apps/web/.env.local --upsert-file data/gyms/pure-fitness-hk-baseline.json
+pnpm import:snap-fitness-hk --env-file apps/web/.env.local --upsert-file data/gyms/snap-fitness-hk-baseline.json
+
+# HYROX 放最後，補上官方合作資料
+pnpm import:hyrox-official-hk --env-file apps/web/.env.local --upsert-file data/gyms/hyrox-official-hk.json
+
+# 2. 匯入 24/7 equipment catalog 同分店器材關聯
+pnpm import:247-equipment --env-file apps/web/.env.local --upsert --verify
+
+# 3. 預覽 official metadata 同圖片 promotion
+node scripts/equipments/promote-official-equipment.mjs promote \
+  --target local --env-file apps/web/.env.local \
+  --bundle .cache/equipment-promotions/official-2026-11-11-retry6 \
+  --report-dir .cache/equipment-promotions/local-preview-1
+
+# 檢查 report.json，處理 conflict／failed 後再 apply
+node scripts/equipments/promote-official-equipment.mjs promote \
+  --target local --env-file apps/web/.env.local \
+  --bundle .cache/equipment-promotions/official-2026-11-11-retry6 \
+  --report-dir .cache/equipment-promotions/local-apply-1 --apply
