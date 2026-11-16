@@ -2,10 +2,10 @@
 
 import { useId, useState, type ReactNode } from "react";
 
-export function CatalogRecordRow({ title, subtitle, summary, children, locale, create = false, columns = 2 }: {
-  title: string; subtitle?: string | null; summary?: ReactNode; children: ReactNode; locale: string; create?: boolean; columns?: number;
+export function CatalogRecordRow({ title, subtitle, summary, children, locale, create = false, columns = 2, initiallyEditing = false }: {
+  title: string; subtitle?: string | null; summary?: ReactNode; children: ReactNode; locale: string; create?: boolean; columns?: number; initiallyEditing?: boolean;
 }) {
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(initiallyEditing);
   const formId = useId();
   const chinese = locale === "zh-HK";
   const button = <button type="button" aria-expanded={editing} aria-controls={formId} onClick={() => setEditing(!editing)}

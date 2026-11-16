@@ -37,7 +37,7 @@ const labelClass = "min-w-0 space-y-1 text-sm font-medium text-gray-700";
 const PAGE_SIZE = 20;
 type CatalogSection = "brands" | "types" | "equipment";
 export type CatalogSearchParams = {
-  result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string; brand?: string; equipmentType?: string; status?: string; name?: string; model?: string;
+  editType?: string; result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string; brand?: string; equipmentType?: string; status?: string; name?: string; model?: string;
 };
 
 async function getCatalog(section: CatalogSection, requestedPage: number, category?: string, filters: EquipmentFilters = {}) {
@@ -220,7 +220,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
           <CatalogTable headers={tableHeaders}>
             {equipmentTypes.map((type) => {
               const category = EQUIPMENT_CATEGORIES.find((item) => item.code === type.category);
-              return <CatalogRecordRow key={type.code} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en} subtitle={type.code}
+              return <CatalogRecordRow key={type.code} initiallyEditing={searchParams?.editType === type.code} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en} subtitle={type.code}
                 summary={<RecordSummary fields={[
                   [locale === "zh-HK" ? "英文名稱" : "English name", type.name_en],
                   [locale === "zh-HK" ? "分類" : "Category", category ? (locale === "zh-HK" ? category.nameZh : category.name) : type.category],
@@ -280,7 +280,12 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
               return <CatalogRecordRow key={machine.id} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && machine.name_zh ? machine.name_zh : machine.name} subtitle={locale === "zh-HK" && machine.name_zh ? machine.name : undefined}
                 summary={<><RecordSummary fields={[
                   [locale === "zh-HK" ? "品牌" : "Brand", brand ? (locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en) : machine.brand_id],
-                  [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en) : primaryCode ?? null],
+                  [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (
+                    <Link href={{ pathname: "/admin/equipment-types", query: { page: String(Math.floor(equipmentTypes.indexOf(type) / PAGE_SIZE) + 1), editType: type.code } }}
+                      className="break-words text-blue-700 underline-offset-2 hover:text-blue-900 hover:underline [overflow-wrap:anywhere]">
+                      {locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}
+                    </Link>
+                  ) : primaryCode ?? null],
                   [locale === "zh-HK" ? "副功能" : "Additional types", machine.equipment_type_assignments.filter(a => !a.is_primary).map(a => {
                     const assigned = equipmentTypes.find(t => t.code === a.equipment_type_code);
                     return assigned ? (locale === "zh-HK" && assigned.name_zh ? assigned.name_zh : assigned.name_en) : a.equipment_type_code;
@@ -333,7 +338,7 @@ function CatalogTable({ headers, children }: { headers: string[]; children: Reac
   </div>;
 }
 
-function RecordSummary({ fields }: { fields: [string, string | null][] }) {
+function RecordSummary({ fields }: { fields: [string, React.ReactNode][] }) {
   return <>{fields.map(([label, value]) => {
     const status = label === "Status" || label === "狀態";
     const active = value === "Active" || value === "active" || value === "啟用";
