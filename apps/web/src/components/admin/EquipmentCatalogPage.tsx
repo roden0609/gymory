@@ -74,7 +74,13 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   ]);
   const error = brandsResult.error ?? categoriesResult.error ?? typesResult.error ?? machinesResult.error;
   if (error) throw new Error(error.message);
+  const machineIds = (machinesResult.data ?? []).map(machine => (machine as unknown as { id: string }).id);
+  const capturedResult = machineIds.length ? await supabase.from("equipment_captured_images")
+    .select("id, equipment_id, storage_path").in("equipment_id", machineIds).order("id") : { data: [], error: null };
+  if (capturedResult.error) throw new Error(capturedResult.error.message);
+  const capturedImages = (capturedResult.data ?? []).map(image => ({ id: image.id as string, equipment_id: image.equipment_id as string, hasStorage: Boolean(image.storage_path) }));
   return {
+    capturedImages,
     page, totalPages, totalCount,
     brands: (brandsResult.data ?? []) as Brand[],
     categories: (categoriesResult.data ?? []) as Category[],
@@ -119,7 +125,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
   const filters = section === "equipment" ? parseEquipmentFilters(searchParams ?? {}) : {};
   const pageParam = Number(searchParams?.page ?? 1);
   const requestedPage = Number.isSafeInteger(pageParam) && pageParam > 0 ? pageParam : 1;
-  const { brands, categories, equipmentTypes, machines, page, totalPages, totalCount } = await getCatalog(section, requestedPage, selectedCategory, filters);
+  const { brands, categories, equipmentTypes, machines, capturedImages, page, totalPages, totalCount } = await getCatalog(section, requestedPage, selectedCategory, filters);
   const chinese = locale === "zh-HK";
   const tableHeaders = section === "brands"
     ? (chinese ? ["品牌", "國家", "網站", "狀態", "操作"] : ["Brand", "Country", "Website", "Status", "Actions"])
@@ -281,9 +287,10 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
               // This fallback is admin-only: remote/manual image URLs stay behind requireAdminSession.
               const images = [...machine.equipment_images].sort((a, b) => a.sort_order - b.sort_order || a.id.localeCompare(b.id));
               const image = images.find(image => image.is_primary) ?? images.find(image => image.image_role === "official") ?? images[0];
+              const capturedImage = capturedImages.find(image => image.equipment_id === machine.id && image.hasStorage);
               const imageUrl = image?.storage_path && process.env.NEXT_PUBLIC_SUPABASE_URL
                 ? equipmentStorageImageUrl(process.env.NEXT_PUBLIC_SUPABASE_URL, image.storage_path)
-                : image?.url;
+                : image?.url || (capturedImage ? `/api/admin/equipment-captured-images/${capturedImage.id}` : null);
               const imageName = chinese ? machine.name_zh || machine.name : machine.name;
               const thumbnail = imageUrl ? <a href={imageUrl} target="_blank" rel="noopener noreferrer"
                 aria-label={chinese ? `開啟 ${imageName} 原圖（新分頁）` : `Open original image of ${imageName} (new tab)`}
@@ -310,7 +317,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                 ]} /><MachineGyms machine={machine} locale={locale} /></>}>
                 <div className="min-w-0 space-y-4">
                   <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
-                  <EquipmentImageReview machine={machine} locale={locale} page={page} filters={filters} />
+                  <EquipmentImageReview capturedImages={capturedImages.filter(image => image.equipment_id === machine.id).map(image => ({ id: image.id, hasStorage: image.hasStorage }))} machine={machine} locale={locale} page={page} filters={filters} />
                 </div>
               </CatalogRecordRow>;
             })}

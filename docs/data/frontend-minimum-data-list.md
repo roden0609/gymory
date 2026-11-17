@@ -442,3 +442,13 @@ PUBLIC execute 被撤銷，anon/authenticated/service_role 明確獲准執行。
 `gyms_public`、`gym_search_public` 同 `gym_brand_overview_public` 只追加此一欄，維持 security_invoker 同原有欄位身份、column grants、RLS。只增加該欄 SELECT 權限，其他新欄仍預設私人。搜尋品牌用 `gym_chain_code = code` 或 `IN (codes)`；品牌摘要用同一欄 equality。此欄只作 backend filter，唔加入 `GYM_SEARCH_COLUMNS`、卡片 props、品牌摘要 response 或 submission form。對應 URL／checkbox slug 保持不變。
 
 `idx_gyms_active_chain` 係 `gyms(gym_chain_code) WHERE is_active = true` partial index。普通獨立 gym NULL 唔會被任何品牌條件匹配。需先套用 migration 再部署新版 web；未修改 production。
+
+### 私人擷取圖片（0076）
+
+`equipment_captured_images` 全表（包括 `source_url`、`storage_path`）只限 service-role backend；
+`PUBLIC`、`anon`、`authenticated` 無表／欄位權限，並啟用 RLS，無 client policies。
+`equipment-captured-images` 為 private bucket，Storage restrictive policy 阻擋普通 client 讀寫。
+Firebase admin 經 `/api/admin/equipment-captured-images/[id]` 每次驗證後讀取原尺寸圖片；
+`?original=1` 同樣驗證後先開來源網址。回應 `private, no-store`，不發出 signed URL。
+管理畫面只收到私人圖片 id 同已上傳狀態；公開 queries、views、props 不加入任何私人圖片欄位。
+私人圖片不屬於公開 `equipment_images`，不參與公開主圖／fallback 選擇。

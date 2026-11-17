@@ -9,7 +9,8 @@ function httpUrl(value: string | null) {
   try { const url = new URL(value || ""); return ["https:","http:"].includes(url.protocol) ? value! : null; } catch { return null; }
 }
 
-export function EquipmentImageReview({ machine, locale, page, filters = {} }: {
+export function EquipmentImageReview({ machine, locale, page, filters = {}, capturedImages = [] }: {
+  capturedImages?: { id: string; hasStorage: boolean }[];
   machine: EquipmentOfficialReview; locale: string; page: number; filters?: EquipmentFilters;
 }) {
   const zh = locale === "zh-HK";
@@ -49,6 +50,15 @@ export function EquipmentImageReview({ machine, locale, page, filters = {} }: {
     <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2">
       {(["captured","official"] as const).map(role => <section key={role} className="min-w-0 max-w-full space-y-3 rounded-lg border border-gray-200 p-3">
         <h4 className="font-medium">{role === "captured" ? (zh ? "擷取原圖" : "Captured images") : (zh ? "官方／官方候選圖片" : "Official / candidate images")}</h4>
+        {role === "captured" ? capturedImages.map(image => <article key={image.id} className="min-w-0 space-y-2 border-b border-gray-100 pb-4">
+          {image.hasStorage ? <a href={`/api/admin/equipment-captured-images/${image.id}`} target="_blank" rel="noopener noreferrer" className="block min-w-0 max-w-full">
+            <Image src={`/api/admin/equipment-captured-images/${image.id}`} unoptimized width={640} height={480}
+              alt={zh ? "擷取器材圖片（僅限管理員）" : "Captured equipment (admin only)"}
+              className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" />
+          </a> : <p className="text-sm text-gray-500">{zh ? "等待私人圖片回填" : "Private image upload pending"}</p>}
+          <a href={`/api/admin/equipment-captured-images/${image.id}?original=1`} target="_blank" rel="noopener noreferrer"
+            className="block break-words text-sm text-blue-700 underline">{zh ? "開啟擷取來源原圖（僅限管理員）" : "Open original source image (admin only)"}</a>
+        </article>) : null}
         {machine.equipment_images.filter(image => image.image_role === role).sort((a,b) => a.sort_order-b.sort_order || a.id.localeCompare(b.id)).map(image => <article key={image.id} className="min-w-0 space-y-3 border-b border-gray-100 pb-4">
           {httpUrl(image.url) ? <a href={image.url} target="_blank" rel="noreferrer" className="block min-w-0 max-w-full">
             <Image src={image.storage_path && process.env.NEXT_PUBLIC_SUPABASE_URL ? equipmentStorageImageUrl(process.env.NEXT_PUBLIC_SUPABASE_URL,image.storage_path) : image.url} unoptimized width={640} height={480} alt={role === "captured" ? (zh ? "擷取器材圖片" : "Captured equipment") : (zh ? "官方器材圖片候選" : "Official equipment candidate")}
@@ -71,7 +81,7 @@ export function EquipmentImageReview({ machine, locale, page, filters = {} }: {
             <button className={button}>{zh ? "上傳／設為展示主圖" : "Upload / use as primary image"}</button>
           </form>
         </article>)}
-        {!machine.equipment_images.some(image => image.image_role === role) ? <p className="text-sm text-gray-500">{zh ? "暫無圖片" : "No images yet"}</p> : null}
+        {!machine.equipment_images.some(image => image.image_role === role) && !(role === "captured" && capturedImages.length) ? <p className="text-sm text-gray-500">{zh ? "暫無圖片" : "No images yet"}</p> : null}
         <details className="min-w-0"><summary className="cursor-pointer text-sm">{zh ? "新增圖片" : "Add image"}</summary>
           <form action={saveReviewImage} className="mt-2 min-w-0 space-y-2">{context}<input type="hidden" name="image_role" value={role} />
             <label className="block min-w-0 text-sm">{zh ? "圖片網址" : "Image URL"}<input type="url" name="url" required maxLength={4000} className={input} /></label>
