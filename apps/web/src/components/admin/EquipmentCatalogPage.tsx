@@ -2,7 +2,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { parseEquipmentFilters, equipmentFilterConditions, equipmentTextFilterConditions, type EquipmentFilters } from "@/lib/admin-equipment-filters";
 import { EquipmentFilterForm } from "./EquipmentFilterForm";
 import { EquipmentImageReview } from "./EquipmentImageReview";
-import type { EquipmentOfficialReview } from "@/lib/equipment-image-review";
+import Image from "next/image";
+import { equipmentStorageImageUrl, type EquipmentOfficialReview } from "@/lib/equipment-image-review";
 import { CatalogRecordRow } from "./CatalogRecordRow";
 import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
@@ -124,7 +125,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
     ? (chinese ? ["品牌", "國家", "網站", "狀態", "操作"] : ["Brand", "Country", "Website", "Status", "Actions"])
     : section === "types"
       ? (chinese ? ["器材類型", "英文名稱", "分類", "器材數量", "Labels", "操作"] : ["Equipment type", "English name", "Category", "Equipment count", "Labels", "Actions"])
-      : (chinese ? ["器材", "品牌", "器材類型", "副功能", "系列 / 型號", "狀態", "Labels", "所屬健身室", "操作"] : ["Equipment", "Brand", "Equipment type", "Additional types", "Series / model", "Status", "Labels", "Gyms", "Actions"]);
+      : (chinese ? ["圖片", "器材", "品牌", "器材類型", "副功能", "系列 / 型號", "狀態", "Labels", "所屬健身室", "操作"] : ["Image", "Equipment", "Brand", "Equipment type", "Additional types", "Series / model", "Status", "Labels", "Gyms", "Actions"]);
   const pagination = <CatalogPagination locale={locale} path={path} page={page} totalPages={totalPages} totalCount={totalCount} category={selectedCategory} filters={filters} />;
 
   return (
@@ -277,7 +278,20 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
               const brand = brands.find((item) => item.id === machine.brand_id);
               const primaryCode = machine.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code;
               const type = equipmentTypes.find((item) => item.code === primaryCode);
-              return <CatalogRecordRow key={machine.id} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && machine.name_zh ? machine.name_zh : machine.name} subtitle={locale === "zh-HK" && machine.name_zh ? machine.name : undefined}
+              // This fallback is admin-only: remote/manual image URLs stay behind requireAdminSession.
+              const images = [...machine.equipment_images].sort((a, b) => a.sort_order - b.sort_order || a.id.localeCompare(b.id));
+              const image = images.find(image => image.is_primary) ?? images.find(image => image.image_role === "official") ?? images[0];
+              const imageUrl = image?.storage_path && process.env.NEXT_PUBLIC_SUPABASE_URL
+                ? equipmentStorageImageUrl(process.env.NEXT_PUBLIC_SUPABASE_URL, image.storage_path)
+                : image?.url;
+              const imageName = chinese ? machine.name_zh || machine.name : machine.name;
+              const thumbnail = imageUrl ? <a href={imageUrl} target="_blank" rel="noopener noreferrer"
+                aria-label={chinese ? `開啟 ${imageName} 原圖（新分頁）` : `Open original image of ${imageName} (new tab)`}
+                className="inline-flex max-w-full rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700">
+                <Image src={imageUrl} alt={imageName} unoptimized width={80} height={80}
+                  className="h-20 w-20 max-w-full rounded-lg border border-gray-200 bg-white object-contain" />
+              </a> : <span className="break-words text-xs text-gray-500">{chinese ? "暫無圖片" : "No image"}</span>;
+              return <CatalogRecordRow thumbnail={thumbnail} key={machine.id} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && machine.name_zh ? machine.name_zh : machine.name} subtitle={locale === "zh-HK" && machine.name_zh ? machine.name : undefined}
                 summary={<><RecordSummary fields={[
                   [locale === "zh-HK" ? "品牌" : "Brand", brand ? (locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en) : machine.brand_id],
                   [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (

@@ -2,8 +2,8 @@
 
 import { useId, useState, type ReactNode } from "react";
 
-export function CatalogRecordRow({ title, subtitle, summary, children, locale, create = false, columns = 2, initiallyEditing = false }: {
-  title: string; subtitle?: string | null; summary?: ReactNode; children: ReactNode; locale: string; create?: boolean; columns?: number; initiallyEditing?: boolean;
+export function CatalogRecordRow({ title, subtitle, thumbnail, summary, children, locale, create = false, columns = 2, initiallyEditing = false }: {
+  title: string; subtitle?: string | null; thumbnail?: ReactNode; summary?: ReactNode; children: ReactNode; locale: string; create?: boolean; columns?: number; initiallyEditing?: boolean;
 }) {
   const [editing, setEditing] = useState(initiallyEditing);
   const formId = useId();
@@ -18,6 +18,7 @@ export function CatalogRecordRow({ title, subtitle, summary, children, locale, c
   </section>;
   return <>
     <tr className="grid min-w-0 grid-cols-2 border-b border-gray-100 last:border-b-0 md:table-row">
+      {thumbnail ? <td className="col-span-2 min-w-0 px-4 py-3 md:table-cell">{thumbnail}</td> : null}
       <td className="col-span-2 min-w-0 break-words px-4 py-3 font-medium text-gray-900 [overflow-wrap:anywhere]">
         {title}{subtitle ? <p className="mt-1 break-words text-xs font-normal text-gray-500">{subtitle}</p> : null}
       </td>
