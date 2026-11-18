@@ -432,7 +432,11 @@ PUBLIC execute 被撤銷，anon/authenticated/service_role 明確獲准執行。
 底層 table/column grants 及 RLS policies 不變；未驗證或停用資料不能透過
 這個 helper 推斷為公開存在。回歸測試：public_inventory_visibility.sql。
 
-器材分類搜尋匹配嘅 gym IDs 每 50 個分批讀取 `gyms_public`，避免編碼後網址超過 proxy URI 限制。每批保留所有篩選條件；合併後統一排序及分頁。欄位投影、公開回應及權限不變。
+0077 後，器材分類匹配嘅 gym IDs 放入 `search_gyms` RPC POST body，一次查詢取代每 50 IDs 分批。RPC security invoker、固定 search_path，明確列出既有 `gym_search_public` 公開欄位及衍生 `search_order`；未來 view 新欄不會自動加入輸出，底層 grants／RLS 不變。`p_gym_ids` 為 NULL 代表所有可見 gyms，空陣列不匹配任何 gym。
+
+普通／定位搜尋用 SQL 計算距離、準確度／票數／驗證、更新日期及 slug 排序；PostgREST 套用原有 filters、exact count、order 同 range，僅下載當頁資料。為兼容 PostgREST，backend SELECT 包含 `search_order`，但最終 serializer 逐欄 allowlist，只輸出既有 148 欄及三個 vote counts；排序欄、filter-only is_active／estimated_size_sqft／gym_chain_code 不進入 API／props。Collection 保留完整公開 candidates 同原有 matchesGym、排序、分頁；不讀取 search_order。超出頁碼時以第二次 limit 0、只選 id 嘅相同篩選 RPC 恢復總數。
+
+需先部署 `0077_paginated_gym_search.sql`。SQL 回歸測試 `paginated_gym_search.sql` 驗證 anon／authenticated 結果、排名、分頁、inactive RLS、私人欄位拒讀、未來 view 新欄仍私人、RPC 固定輸出及 service_role 存取。
 
 
 ## 2026-11-13：Gym chain code（0075）

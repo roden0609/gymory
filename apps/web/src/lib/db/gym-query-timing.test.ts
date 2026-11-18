@@ -129,3 +129,25 @@ it("drops invalid response trace values and reports HTTP/body errors separately"
   expect(event).not.toHaveProperty("cloudflare_ray");
   expect(JSON.stringify(log.mock.calls)).not.toContain("private");
 });
+
+it("tracks POST search RPC bodies without logging IDs or coordinates", async () => {
+  const log = vi.spyOn(console, "info").mockImplementation(() => {});
+  const fetcher = vi.fn(async (_input: RequestInfo | URL, _init?: RequestInit) => new Response('[{"id":"public-gym"}]', {
+    headers: { "Content-Type": "application/json", "Content-Range": "0-0/144" },
+  }));
+  await withServerTiming("gym_search_timing", async (timing) => {
+    const network = createGymQueryTiming(timing, fetcher);
+    const client = createServerClient("https://example.invalid", "public-key", {
+      cookies: { getAll: () => [], setAll() {} }, global: { fetch: network.fetch },
+    });
+    const result = await network.measure(() => client.rpc("search_gyms", {
+      p_gym_ids: ["private-filter-id"], p_user_lat: 22.3, p_user_lng: 114.1,
+    }, { count: "exact" }).select("id").order("search_order").range(0, 19));
+    expect(result.count).toBe(144);
+    expect(result.data).toEqual([{ id: "public-gym" }]);
+  });
+  expect(fetcher.mock.calls[0]?.[1]).toMatchObject({ method: "POST" });
+  const events = log.mock.calls.map(([line]) => JSON.parse(line));
+  expect(events.find((e) => e.event === "gym_search_timing")).toMatchObject({ gym_fetch_requests: 1, gym_fetch_failures: 0 });
+  expect(JSON.stringify(events)).not.toMatch(/private-filter-id|22\.3|114\.1|public-gym/);
+});

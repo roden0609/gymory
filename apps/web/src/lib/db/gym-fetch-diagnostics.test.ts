@@ -6,7 +6,7 @@ import { observeGymTransport } from "./gym-fetch-diagnostics";
 afterEach(() => vi.restoreAllMocks());
 const publish = (name: string, value: object) => channel(name).publish(value);
 const origin = "https://example.invalid";
-const request = () => ({ origin, path: "/rest/v1/gym_search_public?secret=private" });
+const request = () => ({ origin, path: "/rest/v1/rpc/search_gyms?secret=private" });
 
 it("observes socket setup, dispatch and server wait without changing the operation", async () => {
   let now = 0;

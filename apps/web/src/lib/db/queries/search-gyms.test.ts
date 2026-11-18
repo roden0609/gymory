@@ -3,13 +3,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 // Next.js supplies React cache in its Server Component runtime.
 vi.mock("react", () => ({ cache: (fn: unknown) => fn }));
 
-const { query, from, createClient } = vi.hoisted(() => {
+const { query, rpc, createClient } = vi.hoisted(() => {
   const query = {
-    execute: vi.fn(), select: vi.fn(), eq: vi.fn(), in: vi.fn(), or: vi.fn(), gte: vi.fn(),
+    execute: vi.fn(), select: vi.fn(), eq: vi.fn(), in: vi.fn(), or: vi.fn(), gte: vi.fn(), order: vi.fn(), range: vi.fn(), limit: vi.fn(),
     then: (resolve: (value: unknown) => unknown) => query.execute().then(resolve),
   };
-  const from = vi.fn(() => query);
-  return { query, from, createClient: vi.fn(async () => ({ from })) };
+  const rpc = vi.fn(() => query);
+  return { query, rpc, createClient: vi.fn(async () => ({ rpc })) };
 });
 vi.mock("../supabase-server", () => ({ createClient }));
 vi.mock("./equipment-catalog-search", () => ({ getCatalogSearchGymIds: vi.fn(async () => null) }));
@@ -21,7 +21,7 @@ beforeEach(() => {
   vi.spyOn(console, "info").mockImplementation(() => {});
   vi.mocked(getCatalogSearchGymIds).mockResolvedValue(null);
   query.execute.mockResolvedValue({ data: [], count: 0, error: null });
-  for (const method of [query.select, query.eq, query.in, query.or, query.gte]) method.mockReturnValue(query);
+  for (const method of [query.select, query.eq, query.in, query.or, query.gte, query.order, query.range, query.limit]) method.mockReturnValue(query);
 });
 
 afterEach(() => vi.restoreAllMocks());
@@ -57,46 +57,61 @@ it("does not present a database timeout as a successful empty search", async () 
   });
 });
 
-it("batches large category matches while retaining filters, totals, and global pagination", async () => {
+it("sends all category IDs in one RPC body and paginates after database filtering", async () => {
   const ids = Array.from({ length: 144 }, (_, i) => `gym-${i}`);
   vi.mocked(getCatalogSearchGymIds).mockResolvedValue(new Set(ids));
-  const rows = ids.map((id, i) => ({ id, slug: id, updated_at: new Date(2026, 0, i + 1).toISOString(), data_accuracy_status: "normal" }));
-  query.execute.mockResolvedValueOnce({ data: rows.slice(0, 50), count: 50, error: null })
-    .mockResolvedValueOnce({ data: rows.slice(50, 100), count: 50, error: null })
-    .mockResolvedValueOnce({ data: rows.slice(100), count: 44, error: null });
+  const rows = [{ id: "page-2", slug: "page-2" }];
+  query.execute.mockResolvedValue({ data: rows, count: 144, error: null });
   const result = await searchGyms({ category: "free-weight", district: "HK-YTM", minRackCount: "2", page: "2" });
-  expect(query.in.mock.calls.filter(([column]) => column === "id")).toEqual([
-    ["id", ids.slice(0, 50)], ["id", ids.slice(50, 100)], ["id", ids.slice(100)],
-  ]);
-  expect(query.eq.mock.calls.filter(([column]) => column === "district_code")).toHaveLength(3);
-  expect(query.gte.mock.calls.filter(([column]) => column === "rack_count")).toHaveLength(3);
-  expect(result.totalCount).toBe(144);
+  expect(rpc).toHaveBeenCalledExactlyOnceWith("search_gyms", { p_gym_ids: ids, p_user_lat: null, p_user_lng: null }, { count: "exact" });
+  expect(query.in).not.toHaveBeenCalledWith("id", expect.anything());
+  expect(query.eq).toHaveBeenCalledWith("district_code", "HK-YTM");
+  expect(query.gte).toHaveBeenCalledWith("rack_count", 2);
+  expect(query.order).toHaveBeenCalledWith("search_order", { ascending: true });
+  expect(query.range).toHaveBeenCalledWith(20, 39);
+  expect(result).toMatchObject({ gyms: rows, totalCount: 144, page: 2, totalPages: 8, hasNextPage: true });
   expect(JSON.parse(vi.mocked(console.info).mock.calls[0][0])).toMatchObject({
-    event: "gym_search_timing", status: "ok", gym_query_batches: 3,
-    matched_gyms: 144, returned_gyms: 20, gym_query_ms: expect.any(Number),
-    sort_paginate_ms: expect.any(Number),
+    gym_query_batches: 1, matched_gyms: 144, returned_gyms: 1,
   });
-  expect(result.gyms.map(({ id }) => id)).toEqual(ids.slice(104, 124).reverse());
 });
 
-it("rejects a failed category batch rather than returning partial results", async () => {
-  vi.mocked(getCatalogSearchGymIds).mockResolvedValue(new Set(Array.from({ length: 51 }, (_, i) => `gym-${i}`)));
-  query.execute.mockResolvedValueOnce({ data: [], count: 0, error: null })
-    .mockResolvedValueOnce({ data: null, count: null, error: { code: "57014" } });
-  await expect(searchGyms({ category: "free-weight" })).rejects.toThrow("Failed to load gyms (57014)");
+it("passes location to SQL and does not sort or slice a returned page again", async () => {
+  const rows = [{ id: "closer", slug: "z", search_order: 1 }, { id: "further", slug: "a", search_order: 2 }];
+  query.execute.mockResolvedValue({ data: rows, count: 42, error: null });
+  const result = await searchGyms({ userLat: "22.3", userLng: "114.1", page: "3" });
+  expect(rpc).toHaveBeenCalledWith("search_gyms", { p_gym_ids: null, p_user_lat: 22.3, p_user_lng: 114.1 }, { count: "exact" });
+  expect(result.gyms.map(({ id }) => id)).toEqual(["closer", "further"]);
+  expect(result.gyms.every((gym) => !("search_order" in gym))).toBe(true);
+  expect(result).toMatchObject({ totalCount: 42, totalPages: 3, hasNextPage: false });
 });
 
-it("uses aggregated votes in the same query and preserves accuracy ranking", async () => {
+it("retains total count for an empty out-of-range page", async () => {
+  query.execute.mockResolvedValue({ data: [], count: 42, error: null });
+  expect(await searchGyms({ page: "4" })).toMatchObject({ gyms: [], totalCount: 42, totalPages: 3, hasNextPage: false });
+});
+
+it("filters collections across all candidates before sorting and pagination", async () => {
+  query.execute.mockResolvedValue({ data: [
+    { id: "no", slug: "no", is_hyrox_official: false },
+    { id: "yes", slug: "yes", is_hyrox_official: true },
+  ], count: 2, error: null });
+  const result = await searchGyms({ collection: "hyrox-official-hong-kong" });
+  expect(query.range).not.toHaveBeenCalled();
+  expect(query.order).not.toHaveBeenCalled();
+  expect(result.gyms.map(({ id }) => id)).toEqual(["yes"]);
+  expect(result.totalCount).toBe(1);
+});
+
+it("selects aggregated votes and preserves the database page order", async () => {
   query.execute.mockResolvedValue({ data: [
     { id: "newer", slug: "newer", updated_at: "2026-11-13", data_accuracy_status: "normal", accuracy_like_count: 0, accuracy_dislike_count: 0, accuracy_total_votes: 0 },
     { id: "liked", slug: "liked", updated_at: "2026-01-01", data_accuracy_status: "normal", accuracy_like_count: 3, accuracy_dislike_count: 1, accuracy_total_votes: 4 },
   ], count: 2, error: null });
   const result = await searchGyms({});
-  expect(from).toHaveBeenCalledTimes(1);
-  expect(from).toHaveBeenCalledWith("gym_search_public");
-  expect(query.select).toHaveBeenCalledWith(expect.stringContaining("accuracy_like_count, accuracy_dislike_count, accuracy_total_votes"), { count: "exact" });
-  expect(result.gyms.map(({ id }) => id)).toEqual(["liked", "newer"]);
-  expect(result.gyms[0].accuracy_total_votes).toBe(4);
+  expect(rpc).toHaveBeenCalledTimes(1);
+  expect(query.select).toHaveBeenCalledWith(expect.stringContaining("accuracy_like_count, accuracy_dislike_count, accuracy_total_votes"));
+  expect(result.gyms.map(({ id }) => id)).toEqual(["newer", "liked"]);
+  expect(result.gyms[1].accuracy_total_votes).toBe(4);
 });
 
 it("uses equality for 24/7 Fitness and IN for multiple recognized gym chains", async () => {
@@ -109,5 +124,25 @@ it("uses equality for 24/7 Fitness and IN for multiple recognized gym chains", a
 
 it("does not query gyms for an entirely unknown chain", async () => {
   expect((await searchGyms({ gymChains: "unknown" })).totalCount).toBe(0);
-  expect(from).not.toHaveBeenCalled();
+  expect(rpc).not.toHaveBeenCalled();
+});
+
+it("recovers exact totals after PostgREST rejects an out-of-range offset", async () => {
+  query.execute.mockResolvedValueOnce({ data: null, count: null, error: { code: "PGRST103" } })
+    .mockResolvedValueOnce({ data: [], count: 42, error: null });
+  expect(await searchGyms({ page: "4", district: "HK-YTM" })).toMatchObject({ gyms: [], totalCount: 42, totalPages: 3, hasNextPage: false });
+  expect(query.limit).toHaveBeenCalledWith(0);
+  expect(query.select).toHaveBeenLastCalledWith("id");
+  expect(query.eq.mock.calls.filter(([column]) => column === "district_code")).toHaveLength(2);
+});
+
+it("returns only the approved summary columns, excluding RPC rank and unexpected private fields", async () => {
+  query.execute.mockResolvedValue({ data: [{
+    id: "public", slug: "public", search_order: 1,
+    source_url: "private-source", captured_name: "private-name", source: "private-assignment",
+  }], count: 1, error: null });
+  const result = await searchGyms({});
+  expect(query.select).toHaveBeenCalledWith(expect.stringContaining(", search_order"));
+  expect(result.gyms[0].id).toBe("public");
+  expect(JSON.stringify(result)).not.toMatch(/search_order|private-|source_url|captured_name/);
 });

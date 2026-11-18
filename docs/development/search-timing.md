@@ -16,11 +16,10 @@ have separate IDs. No ID is added to client props or API responses.
 Every event also includes `total_ms` and `status` (`ok` if the operation returned,
 `error` if it threw). Existing query fallbacks that return empty data instead of
 throwing still report `ok`; this is not a database health status. Skipped phases
-are omitted. `gym_query_ms` accumulates all sequential ID batches, including SQL vote aggregation.
+are omitted. `gym_query_ms` measures the search RPC, including SQL vote aggregation. A request normally uses one RPC; an out-of-range page can require a second count-only RPC.
 After migration 0073 there is no separate vote request or `votes_query_ms`. The two filter
 option phases run concurrently, so their sum can exceed that event's total.
-`matched_gyms` is the number of loaded gyms after collection filtering, before
-pagination; `returned_gyms` is the number returned for the requested page.
+`matched_gyms` is the exact filtered total before pagination (the in-memory collection total for collection searches); `returned_gyms` is the number returned for the requested page.
 
 Supabase timings measure the awaited application call, including network,
 PostgREST, database execution, and response handling. They are not pure SQL
@@ -43,8 +42,7 @@ Apply migrations `0073_add_gym_search_vote_totals.sql` and
 0073 joins live vote totals into a dedicated security-invoker search view, with
 explicit column grants. 0074 replaces per-row model visibility checks with a
 statement-level set of approved public gym/type keys, retaining all publication
-conditions and RLS. Existing sorting, collection filtering, and global pagination
-remain in application code to preserve results.
+conditions and RLS. Migration 0077 subsequently moves ordinary search sorting and pagination into SQL; compound collection filtering remains in application code.
 
 Machine suggestions, category options, and gym brand summaries use the Next.js
 Data Cache with a 60-second revalidation interval and anonymous-only reads. They
@@ -74,7 +72,7 @@ unchanged. The brand summary cache projection version is bumped to v2.
 ## Detailed gym request timing
 
 `gym_search_timing` also reports these numeric metrics for requests to the
-`gym_search_public` endpoint, accumulated across sequential ID batches:
+`rpc/search_gyms` endpoint (and the legacy `gym_search_public` endpoint), accumulated across requests:
 
 | Metric | Meaning |
 | --- | --- |
@@ -103,8 +101,7 @@ deployed before Vercel can show the new fields; old logs cannot be split retroac
 
 Each consumed search response (including HTTP errors), or rejected transport,
 now produces a `gym_fetch_timing` event. It shares `requestId` with the enclosing
-`gym_search_timing`; `attempt` is the fetch ordinal within that search, including
-sequential batches. Search responses are consumed through the existing SDK text
+`gym_search_timing`; `attempt` is the fetch ordinal within that search, including count recovery. Search responses are consumed through the existing SDK text
 read. A caller that never consumes a successful response will not produce this
 per-fetch event. Aggregate search metrics remain unchanged.
 
@@ -153,3 +150,35 @@ Only numeric metrics, boolean socket reuse, fixed status values, validated trace
 IDs and region are logged. Raw URLs/filters, request headers, cookies/tokens,
 response bodies, arbitrary Server-Timing descriptions, IPs and errors are excluded.
 Deploy this code before reproducing; old logs cannot be subdivided retroactively.
+
+## Paginated search RPC (0077)
+
+Deploy `0077_paginated_gym_search.sql` before the updated application. It adds
+`search_gyms(uuid[], double precision, double precision)` as a stable
+security-invoker SQL function with a fixed, explicit output allowlist. It uses the
+existing public search view, column grants and RLS; no production migration is
+applied by the code change. Future view columns do not become RPC outputs.
+
+Catalog-matched gym IDs travel in one POST body rather than 50-ID URL batches.
+PostgREST applies existing filters, exact count, rank order and range. Ranking
+preserves distance, accuracy/votes/verification, update date and slug tie-breaks
+(the SQL slug comparison uses en-US ICU). `search_order` is selected to support
+PostgREST record ordering but an explicit serializer removes it from API/client
+results. Ordinary and location searches download only the requested page.
+Compound training collections still load candidates, apply matchesGym and paginate
+in the application; they do not request the SQL rank column.
+
+For offsets beyond the filtered total, PostgREST returns PGRST103/HTTP 416. The
+application performs a second RPC with identical filters, selecting only `id`
+and limit zero to recover the exact total without downloading gym records.
+The timing event is successful if recovery succeeds; fetch diagnostics retain the
+first HTTP error and `gym_query_batches` is 2. Other database errors still throw.
+`sort_paginate_ms` is now present only for the application collection path.
+
+Local HTTP before/after regression checks compared full responses for unfiltered,
+district, location, chain, category, page 2, out-of-range, empty and two collection
+searches (three rounds). All results matched. With 458 local gyms, an unfiltered
+20-row page dropped from about 1.94 MB to 84 KB decoded JSON; the 144-gym category
+search dropped from three gym requests to one. These are local measurements;
+production/Vercel latency must be remeasured after migration and deployment.
+SQL permission/ranking regression: `supabase/tests/paginated_gym_search.sql`.

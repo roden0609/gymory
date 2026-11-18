@@ -58,7 +58,7 @@ function install() {
   observe("undici:request:create", ({ request }: { request: { origin: string; path: string } }) => {
     const scope = scopes.getStore();
     if (!scope?.active || String(request.origin) !== scope.origin ||
-      request.path.split("?", 1)[0] !== "/rest/v1/gym_search_public") return;
+      !["/rest/v1/gym_search_public", "/rest/v1/rpc/search_gyms"].includes(request.path.split("?", 1)[0])) return;
     const trace: RequestTrace = { created: performance.now() };
     requests.set(request, trace);
     scope.requests.push(trace);

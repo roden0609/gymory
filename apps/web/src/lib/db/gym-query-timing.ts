@@ -13,7 +13,7 @@ export function createGymQueryTiming(timing: ServerTiming, fetcher: typeof fetch
 
   const trackedFetch: typeof fetch = async (input, init) => {
     const url = input instanceof Request ? input.url : input.toString();
-    if (new URL(url).pathname !== "/rest/v1/gym_search_public") return fetcher(input, init);
+    if (!["/rest/v1/gym_search_public", "/rest/v1/rpc/search_gyms"].includes(new URL(url).pathname)) return fetcher(input, init);
 
     requests += 1;
     const started = performance.now();

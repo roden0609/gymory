@@ -20,7 +20,7 @@ export type PaginatedGymSearchResult = {
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_PAGE_SIZE = 20;
-export const GYM_SEARCH_COLUMNS = [
+const GYM_SEARCH_COLUMN_NAMES = [
   "id",
   "name",
   "name_zh",
@@ -169,7 +169,19 @@ export const GYM_SEARCH_COLUMNS = [
   "is_hyrox_official",
   "data_accuracy_status",
   "updated_at",
-].join(", ");
+] as const;
+export const GYM_SEARCH_COLUMNS = GYM_SEARCH_COLUMN_NAMES.join(", ");
+const GYM_SEARCH_RESULT_COLUMNS = [
+  ...GYM_SEARCH_COLUMN_NAMES,
+  "accuracy_like_count", "accuracy_dislike_count", "accuracy_total_votes",
+] as const;
+type SearchSummary = Pick<GymSummary, (typeof GYM_SEARCH_RESULT_COLUMNS)[number]>;
+type RankedSearchRow = SearchSummary & { search_order?: number };
+
+function publicGymSummary(row: RankedSearchRow): SearchSummary {
+  // Explicit output allowlist: even the RPC ordering column stays server-side.
+  return Object.fromEntries(GYM_SEARCH_RESULT_COLUMNS.map((column) => [column, row[column]])) as SearchSummary;
+}
 
 export async function searchGyms(
   rawParams: RawSearchParams
@@ -345,12 +357,19 @@ async function searchGymsWithTiming(
     : null;
   if (districts && !districts.length) return emptySearchResult(page, pageSize);
 
-  const buildQuery = (matchingGymIds?: string[]) => {
+  const hasUserLocation =
+    typeof params.userLat === "number" && Number.isFinite(params.userLat) &&
+    typeof params.userLng === "number" && Number.isFinite(params.userLng);
+
+  const buildQuery = (columns = `${GYM_SEARCH_RESULT_COLUMNS.join(", ")}${collection ? "" : ", search_order"}`) => {
     let query = supabase
-      .from("gym_search_public")
-      .select(`${GYM_SEARCH_COLUMNS}, accuracy_like_count, accuracy_dislike_count, accuracy_total_votes`, { count: "exact" })
+      .rpc("search_gyms", {
+        p_gym_ids: catalogGymIds === null ? null : [...catalogGymIds],
+        p_user_lat: hasUserLocation ? params.userLat : null,
+        p_user_lng: hasUserLocation ? params.userLng : null,
+      }, { count: "exact" })
+      .select(columns)
       .eq("is_active", true);
-    if (matchingGymIds) query = query.in("id", matchingGymIds);
 
     if (params.gymChains && params.gymChains.length > 0) {
       const chains = getGymChainsBySlug(params.gymChains);
@@ -614,23 +633,27 @@ async function searchGymsWithTiming(
     return query;
   };
 
-  // Keep encoded ID filters below proxy URI limits; apply every other filter
-  // to each disjoint batch before combining, sorting, and paginating results.
-  const matchingIds = catalogGymIds === null ? null : [...catalogGymIds];
-  const batches: (string[] | undefined)[] = [];
-  if (matchingIds === null) batches.push(undefined);
-  else for (let offset = 0; offset < matchingIds.length; offset += 50) {
-    batches.push(matchingIds.slice(offset, offset + 50));
+  // IDs travel in the POST body. PostgREST applies all filters and exact count
+  // before range. PostgREST requires search_order in the selected RPC record;
+  // publicGymSummary removes it before returning data to any consumer.
+  // Collections still need every candidate for their compound matchesGym rules.
+  let query = buildQuery();
+  if (!collection) query = query.order("search_order", { ascending: true }).range(from, to);
+  timing.record("gym_query_batches", 1);
+  let result = await timing.measure("gym_query_ms", () => queryTiming.measure(() => query));
+  if (!collection && from > 0 && result.error?.code === "PGRST103") {
+    // PostgREST rejects offsets beyond the filtered count. Recover the exact
+    // total with an empty projection result instead of downloading all gyms.
+    timing.record("gym_query_batches", 2);
+    result = await timing.measure("gym_query_ms", () => queryTiming.measure(() => buildQuery("id").limit(0)));
   }
-  const data: GymSummary[] = [];
-  let count = 0;
-  timing.record("gym_query_batches", batches.length);
-  for (const batch of batches) {
-    const result = await timing.measure("gym_query_ms", () => queryTiming.measure(() => buildQuery(batch)));
-    if (result.error) throw new Error(`Failed to load gyms (${result.error.code ?? "unknown"})`);
-    const rows = (result.data ?? []) as unknown as GymSummary[];
-    data.push(...rows);
-    count += result.count ?? rows.length;
+  if (result.error) throw new Error(`Failed to load gyms (${result.error.code ?? "unknown"})`);
+  const data = ((result.data ?? []) as unknown as RankedSearchRow[]).map(publicGymSummary);
+  if (!collection) {
+    const totalCount = result.count ?? data.length;
+    const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
+    timing.record("matched_gyms", totalCount);
+    return { gyms: data, totalCount, page, pageSize, totalPages, hasNextPage: page < totalPages };
   }
 
   const allGyms = data.filter((gym) =>
@@ -639,12 +662,6 @@ async function searchGymsWithTiming(
 
   timing.record("matched_gyms", allGyms.length);
   const sortStarted = performance.now();
-  const hasUserLocation =
-    typeof params.userLat === "number" &&
-    Number.isFinite(params.userLat) &&
-    typeof params.userLng === "number" &&
-    Number.isFinite(params.userLng);
-
   const sortedGyms = [...allGyms].sort((a, b) => {
     if (hasUserLocation) {
       const aDistance = distanceKm(params.userLat!, params.userLng!, a.lat, a.lng);
@@ -661,7 +678,7 @@ async function searchGymsWithTiming(
     return a.slug.localeCompare(b.slug);
   });
 
-  const totalCount = collection ? sortedGyms.length : count ?? sortedGyms.length;
+  const totalCount = sortedGyms.length;
   const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
   const gyms = sortedGyms.slice(from, to + 1);
   timing.record("sort_paginate_ms", performance.now() - sortStarted);
