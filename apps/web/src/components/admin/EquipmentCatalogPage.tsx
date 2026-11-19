@@ -38,13 +38,13 @@ const labelClass = "min-w-0 space-y-1 text-sm font-medium text-gray-700";
 const PAGE_SIZE = 20;
 type CatalogSection = "brands" | "types" | "equipment";
 export type CatalogSearchParams = {
-  editType?: string; result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string; brand?: string; equipmentType?: string; status?: string; name?: string; model?: string;
+  editType?: string; result?: string; entity?: string; reason?: string; action?: string; category?: string; page?: string; brand?: string; equipmentType?: string; status?: string; verification?: string; name?: string; model?: string;
 };
 
 async function getCatalog(section: CatalogSection, requestedPage: number, category?: string, filters: EquipmentFilters = {}) {
   const supabase = createAdminClient();
   const table = section === "brands" ? "equipment_brands" : section === "types" ? "equipment_types" : "equipment";
-  let countQuery = supabase.from(table).select(section === "equipment" && filters.equipmentType ? "*, matching_types:equipment_type_assignments!inner(equipment_type_code)" : "*", { count: "exact", head: true });
+  let countQuery = supabase.from(table).select(section === "equipment" && filters.equipmentType ? "id, matching_types:equipment_type_assignments!inner(equipment_type_code)" : section === "types" ? "code" : "id", { count: "exact", head: true });
   if (section === "types") {
     countQuery = countQuery.eq("is_active", true);
     if (category) countQuery = countQuery.eq("category", category);
@@ -52,6 +52,8 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   if (section === "equipment") {
     for (const [column, value] of equipmentFilterConditions(filters)) countQuery = countQuery.eq(column, value);
     for (const condition of equipmentTextFilterConditions(filters)) countQuery = countQuery.or(condition);
+    if (filters.verification === "verified") countQuery = countQuery.not("official_verified_at", "is", null);
+    if (filters.verification === "unverified") countQuery = countQuery.is("official_verified_at", null);
   }
   const countResult = await countQuery;
   if (countResult.error) throw new Error(countResult.error.message);
@@ -66,6 +68,8 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, updated_at, source_external_id, captured_name, captured_name_zh, official_name, official_name_zh, official_model_number, official_product_url, official_status, official_review_note, official_verified_at, official_verified_by, equipment_images(id, image_role, url, source_url, storage_path, is_primary, sort_order), gym_equipment_inventory(gyms(id, name, name_zh)), equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
   for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
   for (const condition of equipmentTextFilterConditions(filters)) machinesQuery = machinesQuery.or(condition);
+  if (filters.verification === "verified") machinesQuery = machinesQuery.not("official_verified_at", "is", null);
+  if (filters.verification === "unverified") machinesQuery = machinesQuery.is("official_verified_at", null);
   const [brandsResult, categoriesResult, typesResult, machinesResult] = await Promise.all([
     section === "brands" ? brandsQuery.range(from, to) : section === "equipment" ? brandsQuery : { data: [], error: null },
     supabase.from("equipment_categories").select("id, name, name_zh, slug, parent_id, sort_order, is_active").order("sort_order").order("name"),
@@ -272,6 +276,13 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                 <option value="active">{chinese ? "現役" : "Active"}</option>
                 <option value="discontinued">{chinese ? "已停產" : "Discontinued"}</option>
                 <option value="unknown">{chinese ? "未知" : "Unknown"}</option>
+              </select>
+            </label>
+            <label className={labelClass}>{chinese ? "官方資料確認" : "Official verification"}
+              <select name="verification" defaultValue={filters.verification ?? ""} className={inputClass}>
+                <option value="">{chinese ? "全部確認狀態" : "All verification states"}</option>
+                <option value="verified">{chinese ? "已確認" : "Verified"}</option>
+                <option value="unverified">{chinese ? "未確認" : "Unverified"}</option>
               </select>
             </label>
             <div className="flex min-w-0 flex-wrap items-end gap-3">

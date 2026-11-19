@@ -1,3 +1,4 @@
+import { EQUIPMENT_CATEGORIES } from "@gymory/shared";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -10,9 +11,7 @@ type CatalogMachine = {
   id: string;
   name: string;
   model_number: string | null;
-  status: string;
   equipment_brands: { name_en: string } | null;
-  equipment_categories: { name: string; name_zh: string | null } | null;
 };
 
 type InventoryRow = {
@@ -21,8 +20,9 @@ type InventoryRow = {
   condition: "good" | "fair" | "poor" | "unknown" | null;
   notes: string | null;
   verified_status: string;
-  verified_at: string | null;
-  equipment: CatalogMachine | null;
+  equipment: (CatalogMachine & {
+    equipment_type_assignments: { equipment_types: { category: string } | null }[];
+  }) | null;
 };
 
 const inputClass =
@@ -32,22 +32,23 @@ const labelClass = "min-w-0 space-y-1 text-sm font-medium text-gray-700";
 async function getGymInventory(gymId: string) {
   const supabase = createAdminClient();
   const [gymResult, machinesResult, inventoryResult] = await Promise.all([
-    supabase.from("gyms").select("id, name, name_zh, slug, is_active").eq("id", gymId).maybeSingle(),
+    supabase.from("gyms").select("id, name, name_zh").eq("id", gymId).maybeSingle(),
     supabase
       .from("equipment")
-      .select("id, name, model_number, status, equipment_brands(name_en), equipment_categories(name, name_zh)")
+      .select("id, name, model_number, equipment_brands(name_en)")
       .neq("status", "discontinued")
       .order("name"),
     supabase
       .from("gym_equipment_inventory")
-      .select("equipment_id, quantity, condition, notes, verified_status, verified_at, equipment(id, name, model_number, status, equipment_brands(name_en), equipment_categories(name, name_zh))")
+      .select("equipment_id, quantity, condition, notes, verified_status, equipment(id, name, model_number, equipment_brands(name_en), equipment_type_assignments(equipment_types(category)))")
       .eq("gym_id", gymId)
+      .eq("equipment.equipment_type_assignments.is_primary", true)
       .order("updated_at", { ascending: false }),
   ]);
   const error = gymResult.error ?? machinesResult.error ?? inventoryResult.error;
   if (error) throw new Error(error.message);
   return {
-    gym: gymResult.data as { id: string; name: string; name_zh: string | null; slug: string; is_active: boolean } | null,
+    gym: gymResult.data,
     machines: (machinesResult.data ?? []) as unknown as CatalogMachine[],
     inventory: (inventoryResult.data ?? []) as unknown as InventoryRow[],
   };
@@ -116,21 +117,26 @@ export default async function AdminGymEquipmentPage({ params, searchParams }: {
             <div className="rounded-xl border border-gray-200 bg-white p-5 text-sm text-gray-500">
               {isChinese ? "未有品牌／型號器械記錄。" : "No brand/model inventory yet."}
             </div>
-          ) : inventory.map((row) => (
-            <div key={row.equipment_id} className="min-w-0 rounded-xl border border-gray-200 bg-white p-4">
-              <div className="mb-4 min-w-0">
-                <p className="break-words font-semibold text-gray-900">{machineLabel(row.equipment)}</p>
-                <p className="mt-1 text-xs text-gray-500">{(isChinese && row.equipment?.equipment_categories?.name_zh) || row.equipment?.equipment_categories?.name || "Uncategorized"} · {row.verified_status}</p>
+          ) : inventory.map((row) => {
+            const categoryCode = row.equipment?.equipment_type_assignments[0]?.equipment_types?.category;
+            const category = EQUIPMENT_CATEGORIES.find(({ code }) => code === categoryCode);
+            const categoryName = (isChinese ? category?.nameZh : category?.name) ?? (isChinese ? "未分類" : "Uncategorized");
+            return (
+              <div key={row.equipment_id} className="min-w-0 rounded-xl border border-gray-200 bg-white p-4">
+                <div className="mb-4 min-w-0">
+                  <p className="break-words font-semibold text-gray-900">{machineLabel(row.equipment)}</p>
+                  <p className="mt-1 text-xs text-gray-500">{categoryName} · {row.verified_status}</p>
+                </div>
+                <InventoryForm locale={locale} gymId={id} machines={row.equipment ? [row.equipment] : []} row={row} />
+                <AdminRemoveGymMachineForm
+                  locale={locale}
+                  gymId={id}
+                  machineId={row.equipment_id}
+                  machineName={machineLabel(row.equipment)}
+                />
               </div>
-              <InventoryForm locale={locale} gymId={id} machines={row.equipment ? [row.equipment] : []} row={row} />
-              <AdminRemoveGymMachineForm
-                locale={locale}
-                gymId={id}
-                machineId={row.equipment_id}
-                machineName={machineLabel(row.equipment)}
-              />
-            </div>
-          ))}
+            );
+          })}
         </section>
       </div>
     </main>

@@ -4,6 +4,8 @@ import { useEffect, useRef, useTransition, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "@/i18n/navigation";
 
+const filterKeys = ["brand", "equipmentType", "status", "name", "model", "verification"];
+
 export function EquipmentFilterForm({ children, locale }: { children: ReactNode; locale: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -13,7 +15,7 @@ export function EquipmentFilterForm({ children, locale }: { children: ReactNode;
 
   useEffect(() => () => clearTimeout(timer.current), []);
   useEffect(() => {
-    for (const name of ["brand", "equipmentType", "status", "name", "model"]) {
+    for (const name of filterKeys) {
       const field = formRef.current?.elements.namedItem(name);
       if ((field instanceof HTMLInputElement || field instanceof HTMLSelectElement) && field !== document.activeElement) {
         field.value = searchParams.get(name) ?? "";
@@ -26,7 +28,7 @@ export function EquipmentFilterForm({ children, locale }: { children: ReactNode;
     clearTimeout(timer.current);
     const data = new FormData(form);
     const query = new URLSearchParams();
-    for (const name of ["brand", "equipmentType", "status", "name", "model"]) {
+    for (const name of filterKeys) {
       const value = String(data.get(name) ?? "").trim();
       if (value) query.set(name, value);
     }

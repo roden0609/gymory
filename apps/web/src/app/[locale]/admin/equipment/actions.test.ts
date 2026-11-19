@@ -149,8 +149,8 @@ describe("equipment type admin actions", () => {
 
   it("preserves equipment filters after a failed save", async () => {
     const brand = "123e4567-e89b-42d3-a456-426614174000";
-    await expect(saveMachine(form({ catalog_page: "2", catalog_brand: brand, catalog_equipmentType: "chest_press_machine", catalog_status: "active" })))
-      .rejects.toThrow(`action=save&page=2&brand=${brand}&equipmentType=chest_press_machine&status=active`);
+    await expect(saveMachine(form({ catalog_page: "2", catalog_brand: brand, catalog_equipmentType: "chest_press_machine", catalog_status: "active", catalog_verification: "unverified" })))
+      .rejects.toThrow(`action=save&page=2&brand=${brand}&equipmentType=chest_press_machine&status=active&verification=unverified`);
   });
 
   it("saves the machine, multiple additional capabilities and aliases with one atomic RPC", async () => {

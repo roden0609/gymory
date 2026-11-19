@@ -1,18 +1,21 @@
 import { z } from "zod";
 
+const equipmentFilterKeys = ["brand", "equipmentType", "status", "name", "model", "verification"] as const;
+
 const filterSchemas = {
   name: z.string().trim().min(1).max(200),
   model: z.string().trim().min(1).max(200),
   brand: z.string().uuid(),
   equipmentType: z.string().regex(/^[a-z][a-z0-9_]*$/).max(120),
+  verification: z.enum(["verified", "unverified"]),
   status: z.enum(["active", "discontinued", "unknown"]),
 };
 
-export type EquipmentFilters = { brand?: string; equipmentType?: string; status?: string; name?: string; model?: string };
+export type EquipmentFilters = Partial<Record<(typeof equipmentFilterKeys)[number], string>>;
 
 export function parseEquipmentFilters(values: EquipmentFilters): EquipmentFilters {
   const filters: EquipmentFilters = {};
-  for (const key of ["brand", "equipmentType", "status", "name", "model"] as const) {
+  for (const key of equipmentFilterKeys) {
     const parsed = filterSchemas[key].safeParse(values[key]);
     if (parsed.success) filters[key] = parsed.data;
   }
@@ -20,9 +23,13 @@ export function parseEquipmentFilters(values: EquipmentFilters): EquipmentFilter
 }
 
 export function equipmentFilterConditions(filters: EquipmentFilters): [string, string][] {
-  return Object.entries(filters).filter(([key]) => key !== "name" && key !== "model").map(([key, value]) => [
-    { brand: "brand_id", equipmentType: "matching_types.equipment_type_code", status: "status" }[key as "brand" | "equipmentType" | "status"], value,
-  ]);
+  const columns = { brand: "brand_id", equipmentType: "matching_types.equipment_type_code", status: "status" } as const;
+  const conditions: [string, string][] = [];
+  for (const key of ["brand", "equipmentType", "status"] as const) {
+    const value = filters[key];
+    if (value) conditions.push([columns[key], value]);
+  }
+  return conditions;
 }
 
 // Quote PostgREST values and escape LIKE wildcards so input stays a literal substring.
