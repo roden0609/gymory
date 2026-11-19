@@ -1,9 +1,9 @@
 "use client";
 
+import { useSearchNavigation } from "./SearchNavigation";
+
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
 import type { EquipmentCategoryFilterOption, EquipmentMachineSuggestion } from "@/lib/db/queries/equipment-catalog-search";
 
 export function EquipmentSearch({
@@ -15,8 +15,9 @@ export function EquipmentSearch({
   equipmentCategories: EquipmentCategoryFilterOption[];
   machineSuggestions: EquipmentMachineSuggestion[];
 }) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigation = useSearchNavigation();
+  const { searchParams, navigate } = navigation;
+  basePath = navigation.target?.pathname ?? basePath;
   const t = useTranslations("search");
   const locale = useLocale();
   const [machine, setMachine] = useState(searchParams.get("machine") ?? "");
@@ -44,18 +45,21 @@ export function EquipmentSearch({
     else params.delete("machine");
     if (nextCategory) params.set("category", nextCategory);
     else params.delete("category");
-    router.replace(params.size ? `${basePath}?${params}` : basePath, { scroll: false });
-  }, [basePath, router, searchParams]);
+    navigate(params.size ? `${basePath}?${params}` : basePath, { replace: true, scroll: false });
+  }, [basePath, navigate, searchParams]);
 
   useEffect(() => {
+    if (machineDirty) return;
     setMachine(searchParams.get("machine") ?? "");
     setCategory(searchParams.get("category") ?? "");
-    setMachineDirty(false);
-  }, [searchParams]);
+  }, [searchParams, machineDirty]);
 
   useEffect(() => {
     if (!machineDirty) return;
-    const timer = window.setTimeout(() => applySearch(machine, category), 300);
+    const timer = window.setTimeout(() => {
+      setMachineDirty(false);
+      applySearch(machine, category);
+    }, 300);
     return () => window.clearTimeout(timer);
   }, [applySearch, category, machine, machineDirty]);
 

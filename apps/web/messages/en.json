@@ -238,6 +238,11 @@
     "accuracyVoteFailed": "Unable to submit vote right now."
   },
   "search": {
+    "updatingFilters": "Updating…",
+    "updatingResults": "Updating results. Previous results are shown…",
+    "updateResultsFailed": "Could not update results. Previous results are shown.",
+    "retryResults": "Try again",
+    "loadMoreFailed": "Could not load more results. Please try again.",
     "title": "Find a gym",
     "placeholder": "Search by district or equipment...",
     "clearFilters": "Clear filters",

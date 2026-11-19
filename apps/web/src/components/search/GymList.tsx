@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import { useTranslations } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { ResultClickSource } from "@/lib/analytics";
+import { useSearchNavigation } from "./SearchNavigation";
 import { GymCard } from "./GymCard";
 
 type GymListProps = {
@@ -32,10 +32,22 @@ export function GymList({
 }: GymListProps) {
   const t = useTranslations("search");
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const navigation = useSearchNavigation();
+  const { searchParams, navigate } = navigation;
   const [visibleGyms, setVisibleGyms] = useState(gyms);
   const [loadedPage, setLoadedPage] = useState(page);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const loadRequest = useRef<AbortController | null>(null);
+  const searchKey = searchParams.toString();
+
+  useEffect(() => {
+    loadRequest.current?.abort();
+    loadRequest.current = null;
+    setLoadingMore(false);
+    setLoadError(false);
+    return () => { loadRequest.current?.abort(); loadRequest.current = null; };
+  }, [searchKey, navigation.isPending]);
 
   useEffect(() => {
     setVisibleGyms(gyms);
@@ -61,8 +73,18 @@ export function GymList({
     return query ? `${pathname}?${query}` : pathname;
   }
 
+  function navigatePage(event: MouseEvent<HTMLAnchorElement>, href: string) {
+    if (event.currentTarget.getAttribute("aria-disabled") === "true") { event.preventDefault(); return; }
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    navigate(href, { scroll: true });
+  }
+
   async function handleLoadMore() {
-    if (loadingMore || loadedPage >= totalPages) return;
+    if (loadRequest.current || navigation.isPending || loadedPage >= totalPages) return;
+    const controller = new AbortController();
+    loadRequest.current = controller;
+    setLoadError(false);
 
     setLoadingMore(true);
     const params = new URLSearchParams(apiSearchParams);
@@ -76,14 +98,20 @@ export function GymList({
     params.set("pageSize", String(pageSize));
 
     try {
-      const response = await fetch(`/api/search?${params.toString()}`);
+      const response = await fetch(`/api/search?${params.toString()}`, { signal: controller.signal });
       if (!response.ok) throw new Error("Failed to load more gyms");
 
       const data = (await response.json()) as SearchApiResponse;
+      if (controller.signal.aborted || loadRequest.current !== controller) return;
       setVisibleGyms((current) => [...current, ...data.gyms]);
       setLoadedPage(data.page);
+    } catch {
+      if (!controller.signal.aborted && loadRequest.current === controller) setLoadError(true);
     } finally {
-      setLoadingMore(false);
+      if (loadRequest.current === controller) {
+        loadRequest.current = null;
+        setLoadingMore(false);
+      }
     }
   }
 
@@ -118,15 +146,17 @@ export function GymList({
         ))}
       </div>
 
+      {loadError ? <p role="alert" className="mt-4 text-sm text-red-700">{t("loadMoreFailed")}</p> : null}
       <div className="mt-6 flex justify-center md:hidden">
         {loadedPage < totalPages && (
           <button
             type="button"
             onClick={handleLoadMore}
-            disabled={loadingMore}
+            disabled={loadingMore || navigation.isPending}
             className="inline-flex min-h-10 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-400"
           >
-            {loadingMore ? t("loadingMore") : t("loadMore")}
+            {loadingMore ? <span aria-hidden="true" className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900 motion-reduce:animate-none" /> : null}
+            {loadingMore ? t("loadingMore") : loadError ? t("retryResults") : t("loadMore")}
           </button>
         )}
       </div>
@@ -138,6 +168,7 @@ export function GymList({
         >
           <Link
             href={getPageHref(page - 1)}
+            onClick={(event) => navigatePage(event, getPageHref(page - 1))}
             aria-disabled={page === 1}
             className={`inline-flex min-h-10 items-center justify-center rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
               page === 1
@@ -157,6 +188,7 @@ export function GymList({
               <Link
                 key={item}
                 href={getPageHref(item)}
+            onClick={(event) => navigatePage(event, getPageHref(item))}
                 aria-current={item === page ? "page" : undefined}
                 className={`inline-flex min-h-10 min-w-10 items-center justify-center rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
                   item === page
@@ -171,6 +203,7 @@ export function GymList({
 
           <Link
             href={getPageHref(page + 1)}
+            onClick={(event) => navigatePage(event, getPageHref(page + 1))}
             aria-disabled={page === totalPages}
             className={`inline-flex min-h-10 items-center justify-center rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
               page === totalPages

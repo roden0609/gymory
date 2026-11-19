@@ -1,9 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchNavigation } from "./SearchNavigation";
+
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
 import {
   trackDistrictFilter,
   trackEquipmentBrandFilter,
@@ -346,9 +346,15 @@ export function SearchFilters({
   machineSuggestions = [],
   showEquipmentSearch = true,
 }: SearchFiltersProps) {
-  const router = useRouter();
+  const navigation = useSearchNavigation();
+  const { searchParams, navigate } = navigation;
+  if (navigation.target) {
+    basePath = navigation.target.pathname;
+    fixedDistrict = navigation.target.district;
+    fixedGymChain = navigation.target.gymChain;
+    fixedCollection = navigation.target.collection;
+  }
   const setFilterActions = useSearchFilterActions();
-  const searchParams = useSearchParams();
   const locale = useLocale();
   const t = useTranslations("search");
   const tCommon = useTranslations("common");
@@ -541,9 +547,9 @@ export function SearchFilters({
 
   const replaceWithoutScroll = useCallback(
     (href: string) => {
-      router.replace(href, { scroll: false });
+      navigate(href, { replace: true, scroll: false });
     },
-    [router]
+    [navigate]
   );
 
   useEffect(() => {

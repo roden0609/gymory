@@ -1,10 +1,11 @@
 "use client";
 
+import { useSearchNavigation } from "./SearchNavigation";
+
 import dynamic from "next/dynamic";
 import { useCallback, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { usePathname } from "@/i18n/navigation";
 import type { PaginatedGymSearchResult } from "@/lib/db/queries/search-gyms";
 import { GymList } from "./GymList";
 
@@ -36,10 +37,11 @@ export function SearchResultsPanel({
   apiSearchParams?: Record<string, string>;
 }) {
   const t = useTranslations("search");
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const currentView = parseViewMode(searchParams.get("view") ?? initialView ?? null);
+  const navigation = useSearchNavigation();
+  const { searchParams, navigate } = navigation;
+  const committedPathname = usePathname();
+  const pathname = navigation.target?.pathname ?? committedPathname;
+  const currentView = parseViewMode(searchParams.get("view") ?? (navigation.target ? null : initialView) ?? null);
 
   const updateView = useCallback(
     (nextView: ViewMode) => {
@@ -50,9 +52,9 @@ export function SearchResultsPanel({
         params.set("view", nextView);
       }
       const query = params.toString();
-      router.push(query ? `${pathname}?${query}` : pathname);
+      navigate(query ? `${pathname}?${query}` : pathname);
     },
-    [pathname, router, searchParams]
+    [pathname, navigate, searchParams]
   );
 
   const controls = useMemo(
@@ -87,28 +89,43 @@ export function SearchResultsPanel({
         })}
       </div>
 
-      {currentView === "list" ? (
-        <GymList
-          {...result}
-          apiSearchParams={apiSearchParams}
-          resultSource="search_results"
-        />
-      ) : null}
-
-      {currentView === "map" ? (
-        <GymMap gyms={result.gyms} onFallbackToList={() => updateView("list")} />
-      ) : null}
-
-      {currentView === "split" ? (
-        <div className="grid min-w-0 max-w-full gap-4 overflow-hidden lg:grid-cols-2">
+      <div className={navigation.isPending || navigation.failed ? "min-w-0 text-sm" : "sr-only"} role="status" aria-live="polite" aria-atomic="true">
+        {navigation.isPending ? (
+          <span className="inline-flex max-w-full items-center gap-2 text-gray-600">
+            <span aria-hidden="true" className="h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900 motion-reduce:animate-none" />
+            <span className="min-w-0 break-words">{t("updatingResults")}</span>
+          </span>
+        ) : navigation.failed ? (
+          <span className="flex flex-wrap items-center gap-2 text-red-700">
+            <span>{t("updateResultsFailed")}</span>
+            <button type="button" onClick={navigation.retry} className="min-h-9 rounded px-2 font-medium underline">{t("retryResults")}</button>
+          </span>
+        ) : null}
+      </div>
+      <div aria-busy={navigation.isPending} className="min-w-0 max-w-full space-y-4">
+        {currentView === "list" ? (
           <GymList
             {...result}
             apiSearchParams={apiSearchParams}
             resultSource="search_results"
           />
+        ) : null}
+
+        {currentView === "map" ? (
           <GymMap gyms={result.gyms} onFallbackToList={() => updateView("list")} />
-        </div>
-      ) : null}
+        ) : null}
+
+        {currentView === "split" ? (
+          <div className="grid min-w-0 max-w-full gap-4 overflow-hidden lg:grid-cols-2">
+            <GymList
+              {...result}
+              apiSearchParams={apiSearchParams}
+              resultSource="search_results"
+            />
+            <GymMap gyms={result.gyms} onFallbackToList={() => updateView("list")} />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchNavigation } from "./SearchNavigation";
+
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
-import { useRouter } from "@/i18n/navigation";
 import { trackDistrictFilter } from "@/lib/analytics";
 import { DISTRICT_PAGE_DEFINITIONS, getDistrictPageLabel } from "@/lib/district-pages";
 import { getSearchBrowseHref, getSelectedDistricts } from "@/lib/search-navigation";
@@ -22,8 +22,13 @@ export function DistrictBrowseControls({
   currentGymChainSlug,
 }: DistrictBrowseControlsProps) {
   const locale = useLocale() as "en" | "zh-HK";
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigation = useSearchNavigation();
+  const { searchParams, navigate } = navigation;
+  if (navigation.target) {
+    currentDistrictCode = navigation.target.district;
+    currentGymChainSlug = navigation.target.gymChain;
+    trainingSlug = navigation.target.collection;
+  }
   const t = useTranslations("search");
   const params = new URLSearchParams(searchParams.toString());
   const selected = getSelectedDistricts(params, currentDistrictCode).map((item) => item.slug);
@@ -41,10 +46,15 @@ export function DistrictBrowseControls({
       if (selected.includes(district.slug) === next.includes(district.slug)) continue;
       trackDistrictFilter({ district: district.slug, filter_param: "districts", selected: next.includes(district.slug), source: "search_page" });
     }
-    router.push(getSearchBrowseHref({ params, districtSlugs: next, gymChainSlugs: gymChains, trainingSlug }), { scroll: false });
+    navigate(getSearchBrowseHref({ params, districtSlugs: next, gymChainSlugs: gymChains, trainingSlug }), { scroll: false });
   };
 
+  const locationContextKey = `${currentDistrictCode ?? ""}|${currentGymChainSlug ?? ""}|${trainingSlug ?? ""}|${searchParams}`;
+  const latestLocationContext = useRef(locationContextKey);
+  latestLocationContext.current = locationContextKey;
+
   const requestUserLocation = useCallback(() => {
+    const requestedContext = latestLocationContext.current;
     if (!navigator.geolocation) {
       setLocationError(t("locationUnsupported"));
       return;
@@ -55,6 +65,8 @@ export function DistrictBrowseControls({
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setIsLocating(false);
+        // A newer filter choice takes precedence over an earlier location request.
+        if (latestLocationContext.current !== requestedContext) return;
         const params = new URLSearchParams(searchParams.toString());
         params.delete("district");
         params.delete("districts");
@@ -64,7 +76,7 @@ export function DistrictBrowseControls({
         params.delete("pageSize");
         params.set("userLat", position.coords.latitude.toFixed(6));
         params.set("userLng", position.coords.longitude.toFixed(6));
-        router.push(`/search?${params.toString()}`);
+        navigate(`/search?${params.toString()}`);
       },
       (error) => {
         setIsLocating(false);
@@ -84,7 +96,7 @@ export function DistrictBrowseControls({
         maximumAge: 300000,
       }
     );
-  }, [currentGymChainSlug, router, searchParams, t, trainingSlug]);
+  }, [currentGymChainSlug, navigate, searchParams, t, trainingSlug]);
 
   const clearLocation = useCallback(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -93,8 +105,8 @@ export function DistrictBrowseControls({
     params.delete("page");
     params.delete("pageSize");
     setLocationError(null);
-    router.push(getSearchBrowseHref({ params, districtSlugs: selected, gymChainSlugs: gymChains, trainingSlug }), { scroll: false });
-  }, [gymChains, router, searchParams, selected, trainingSlug]);
+    navigate(getSearchBrowseHref({ params, districtSlugs: selected, gymChainSlugs: gymChains, trainingSlug }), { scroll: false });
+  }, [gymChains, navigate, searchParams, selected, trainingSlug]);
 
   return (
     <div className="w-full min-w-0 max-w-full">

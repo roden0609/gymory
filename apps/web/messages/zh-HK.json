@@ -238,6 +238,11 @@
     "accuracyVoteFailed": "暫時未能提交投票。"
   },
   "search": {
+    "updatingFilters": "更新中…",
+    "updatingResults": "更新結果中，暫時顯示之前嘅結果…",
+    "updateResultsFailed": "未能更新結果，現正顯示之前嘅結果。",
+    "retryResults": "重試",
+    "loadMoreFailed": "未能載入更多結果，請重試。",
     "title": "搵健身房",
     "placeholder": "按地區或器械搜尋...",
     "clearFilters": "清除篩選",

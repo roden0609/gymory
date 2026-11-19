@@ -1,9 +1,10 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchNavigation } from "./SearchNavigation";
+
 import { useLocale, useTranslations } from "next-intl";
 import { GYM_CHAINS } from "@gymory/shared";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { trackGymBrandFilter } from "@/lib/analytics";
 import { getSearchBrowseHref, getSelectedDistricts } from "@/lib/search-navigation";
 import { MultiSelectFilter } from "./MultiSelectFilter";
@@ -13,8 +14,13 @@ export function GymBrandSearch({ currentDistrictCode, currentGymChainSlug, train
   currentGymChainSlug?: string;
   trainingSlug?: string;
 }) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigation = useSearchNavigation();
+  const { searchParams, navigate } = navigation;
+  if (navigation.target) {
+    currentDistrictCode = navigation.target.district;
+    currentGymChainSlug = navigation.target.gymChain;
+    trainingSlug = navigation.target.collection;
+  }
   const locale = useLocale();
   const t = useTranslations("search");
   const params = new URLSearchParams(searchParams.toString());
@@ -31,7 +37,7 @@ export function GymBrandSearch({ currentDistrictCode, currentGymChainSlug, train
             if (selected.includes(chain.slug) === next.includes(chain.slug)) continue;
             trackGymBrandFilter({ gym_chain: chain.slug, filter_param: "gymChains", selected: next.includes(chain.slug), source: "search_page" });
           }
-          router.push(getSearchBrowseHref({ params, districtSlugs: getSelectedDistricts(params, currentDistrictCode).map((item) => item.slug), gymChainSlugs: next, trainingSlug }), { scroll: false });
+          navigate(getSearchBrowseHref({ params, districtSlugs: getSelectedDistricts(params, currentDistrictCode).map((item) => item.slug), gymChainSlugs: next, trainingSlug }), { scroll: false });
         }} />
     </section>
   );
