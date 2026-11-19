@@ -1,11 +1,14 @@
 "use client";
 
+import { isPlainLinkClick } from "@/lib/link-navigation";
+
 import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { ResultClickSource } from "@/lib/analytics";
 import { useSearchNavigation } from "./SearchNavigation";
+import { useGymNavigation, type GymListSnapshot } from "./GymNavigation";
 import { GymCard } from "./GymCard";
 
 type GymListProps = {
@@ -32,6 +35,8 @@ export function GymList({
 }: GymListProps) {
   const t = useTranslations("search");
   const pathname = usePathname();
+  const locale = useLocale();
+  const { saveList, getList } = useGymNavigation();
   const navigation = useSearchNavigation();
   const { searchParams, navigate } = navigation;
   const [visibleGyms, setVisibleGyms] = useState(gyms);
@@ -40,6 +45,9 @@ export function GymList({
   const [loadError, setLoadError] = useState(false);
   const loadRequest = useRef<AbortController | null>(null);
   const searchKey = searchParams.toString();
+  const listKey = `${locale}:${pathname}?${searchKey}:${JSON.stringify(apiSearchParams ?? {})}`;
+  const firstPageKey = JSON.stringify({ gyms, page, pageSize, totalCount });
+  const restored = useRef<GymListSnapshot | null>(null);
 
   useEffect(() => {
     loadRequest.current?.abort();
@@ -50,10 +58,18 @@ export function GymList({
   }, [searchKey, navigation.isPending]);
 
   useEffect(() => {
-    setVisibleGyms(gyms);
-    setLoadedPage(page);
+    if (navigation.isPending) return;
+    const snapshot = getList(listKey, firstPageKey);
+    setVisibleGyms(snapshot?.gyms ?? gyms);
+    setLoadedPage(snapshot?.loadedPage ?? page);
     setLoadingMore(false);
-  }, [gyms, page]);
+    if (!snapshot || restored.current === snapshot) return;
+    restored.current = snapshot;
+    // Wait for restored cards to have layout before restoring the old position.
+    let secondFrame = 0;
+    const frame = requestAnimationFrame(() => { secondFrame = requestAnimationFrame(() => window.scrollTo(0, snapshot.scrollY)); });
+    return () => { cancelAnimationFrame(frame); cancelAnimationFrame(secondFrame); };
+  }, [firstPageKey, getList, gyms, listKey, navigation.isPending, page]);
 
   const desktopPagination = useMemo(
     () => buildPaginationItems(page, totalPages),
@@ -128,7 +144,12 @@ export function GymList({
   }
 
   return (
-    <div className="min-w-0 flex-1">
+    <div className="min-w-0 flex-1" onClickCapture={(event) => {
+      if (!isPlainLinkClick(event)) return;
+      const anchor = (event.target as Element).closest("a");
+      if (!anchor || !new URL(anchor.href).pathname.startsWith(`/${locale}/gyms/`)) return;
+      saveList({ key: listKey, firstPageKey, gyms: visibleGyms, loadedPage, scrollY: window.scrollY });
+    }}>
       <p className="mb-4 text-sm text-gray-500">
         {totalCount === 1
           ? t("gymsFound", { count: totalCount })

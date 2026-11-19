@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -8,6 +8,8 @@ import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMo
 import { TrackedExternalLink } from "@/components/analytics/TrackedExternalLink";
 import { EquipmentSection, EquipmentSections } from "@/components/gym/EquipmentSections";
 import { EquipmentTypeInventory } from "@/components/gym/EquipmentTypeInventory";
+import { GymBackLink } from "@/components/gym/GymBackLink";
+import { GymDetailSectionsSkeleton } from "@/components/gym/GymDetailSkeleton";
 import { GymAccuracyVoting } from "@/components/gym/GymAccuracyVoting";
 import { TransientBanner } from "@/components/common/TransientBanner";
 import { Link } from "@/i18n/navigation";
@@ -370,9 +372,88 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const { locale, slug } = await params;
   const { flash } = await searchParams;
   setRequestLocale(locale);
-
   const gym = await getGymBySlug(slug);
   if (!gym) notFound();
+  const [t, common] = await Promise.all([getTranslations("gym"), getTranslations("common")]);
+  const display = getLocalizedGym(gym, locale);
+  const gymBrand = getGymBrandForGym(gym.slug);
+  const verifiedDate = formatDate(gym.equipment_last_verified_at, locale);
+  const updatedDate = formatDate(gym.updated_at, locale);
+  const submitHref = `/submit?gymId=${gym.id}&returnTo=/gyms/${gym.slug}`;
+  const jsonLd = buildGymJsonLd({ gym, locale, display,
+    description: [display.district, display.address].filter(Boolean).join(" · ") || "Gym equipment, location, and training details on Gymory.",
+  });
+  return (
+    <main className="min-h-screen min-w-0 bg-gray-50">
+      <AnalyticsEventOnMount eventName="view_gym" params={{ gym_slug: gym.slug, gym_name: display.name, district: gym.district_code, chain: gymBrand?.slug, locale }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <div className="border-b border-gray-200 bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-8">
+          <GymBackLink>{common("back")}</GymBackLink>
+
+          <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="min-w-0 break-words text-3xl font-bold text-gray-900 [overflow-wrap:anywhere]">
+                  {display.name}
+                </h1>
+                {gym.is_verified && (
+                  <span className="rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+                    {t("verified")}
+                  </span>
+                )}
+                {gym.is_hyrox_official && (
+                  <span
+                    className="rounded-full border border-yellow-200 bg-yellow-50 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
+                    title={t("hyroxOfficialSource")}
+                  >
+                    {t("hyroxOfficial")}
+                  </span>
+                )}
+              </div>
+              <p className="mt-2 break-words text-gray-500">
+                {display.district}
+                {display.address ? ` · ${display.address}` : ""}
+              </p>
+              {gymBrand && (
+                <Link href={`/gym-brands/${gymBrand.slug}`} className="mt-2 inline-block max-w-full break-words text-sm text-gray-600 underline underline-offset-4">
+                  {locale === "zh-HK" ? gymBrand.name_zh : gymBrand.name_en}
+                </Link>
+              )}
+              {gym.is_verified && verifiedDate && (
+                <p className="mt-2 text-sm text-gray-400">
+                  {t("verifiedAt", { date: verifiedDate })}
+                </p>
+              )}
+              {updatedDate && (
+                <p className="mt-2 text-sm text-gray-400">
+                  {t("lastUpdated", { date: updatedDate })}
+                </p>
+              )}
+            </div>
+
+            <Link
+              href={submitHref}
+              className="inline-flex h-10 shrink-0 whitespace-nowrap items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+            >
+              {t("suggestUpdate")}
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <Suspense fallback={<GymDetailSectionsSkeleton />}>
+        <GymDetailBody gym={gym} locale={locale} flash={flash} />
+      </Suspense>
+    </main>
+  );
+}
+
+async function GymDetailBody({ gym, locale, flash }: {
+  gym: NonNullable<Awaited<ReturnType<typeof getGymBySlug>>>;
+  locale: Locale;
+  flash?: string;
+}) {
   const sessionUser = await getFirebaseSessionUser();
   const [brands, machineInventory, accuracySnapshot] = await Promise.all([
     getGymEquipmentBrands(gym.id),
@@ -385,18 +466,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
   const display = getLocalizedGym(gym, locale);
-  const gymBrand = getGymBrandForGym(gym.slug);
-  const metaDescription =
-    [display.district, display.address].filter(Boolean).join(" · ") ||
-    "Gym equipment, location, and training details on Gymory.";
-  const jsonLd = buildGymJsonLd({
-    gym,
-    locale,
-    display,
-    description: metaDescription,
-  });
-  const verifiedDate = formatDate(gym.equipment_last_verified_at, locale);
-  const updatedDate = formatDate(gym.updated_at, locale);
   const dayPassPrice = formatPrice(gym.day_pass_price, gym.country_code, locale);
   const mapsUrl =
     gym.lat !== null && gym.lng !== null
@@ -448,83 +517,6 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
     equipmentGroups.some(({ items }) => items.length > 0) || hasFreeWeightRanges || brands.length > 0;
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <AnalyticsEventOnMount
-        eventName="view_gym"
-        params={{
-          gym_slug: gym.slug,
-          gym_name: display.name,
-          district: gym.district_code,
-          chain: getGymBrandForGym(gym.slug)?.slug,
-          locale,
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <div className="border-b border-gray-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-8">
-          <Link
-            href="/search"
-            className="text-sm text-gray-500 transition-colors hover:text-gray-900"
-          >
-            {common("back")}
-          </Link>
-
-          <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  {display.name}
-                </h1>
-                {gym.is_verified && (
-                  <span className="rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
-                    {t("verified")}
-                  </span>
-                )}
-                {gym.is_hyrox_official && (
-                  <span
-                    className="rounded-full border border-yellow-200 bg-yellow-50 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
-                    title={t("hyroxOfficialSource")}
-                  >
-                    {t("hyroxOfficial")}
-                  </span>
-                )}
-              </div>
-              <p className="mt-2 break-words text-gray-500">
-                {display.district}
-                {display.address ? ` · ${display.address}` : ""}
-              </p>
-              {gymBrand && (
-                <Link href={`/gym-brands/${gymBrand.slug}`} className="mt-2 inline-block max-w-full break-words text-sm text-gray-600 underline underline-offset-4">
-                  {locale === "zh-HK" ? gymBrand.name_zh : gymBrand.name_en}
-                </Link>
-              )}
-              {gym.is_verified && verifiedDate && (
-                <p className="mt-2 text-sm text-gray-400">
-                  {t("verifiedAt", { date: verifiedDate })}
-                </p>
-              )}
-              {updatedDate && (
-                <p className="mt-2 text-sm text-gray-400">
-                  {t("lastUpdated", { date: updatedDate })}
-                </p>
-              )}
-            </div>
-
-            <Link
-              href={submitHref}
-              className="inline-flex h-10 shrink-0 whitespace-nowrap items-center justify-center rounded-lg bg-gray-900 px-4 text-sm font-medium text-white transition-colors hover:bg-gray-700"
-            >
-              {t("suggestUpdate")}
-            </Link>
-          </div>
-        </div>
-      </div>
-
       <div className="mx-auto max-w-5xl px-4 py-8">
         {flash === "submission-success" && (
           <TransientBanner
@@ -725,6 +717,5 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
           />
         </div>
       </div>
-    </main>
   );
 }

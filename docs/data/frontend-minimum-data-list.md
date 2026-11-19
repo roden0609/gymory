@@ -456,3 +456,17 @@ Firebase admin 經 `/api/admin/equipment-captured-images/[id]` 每次驗證後�
 `?original=1` 同樣驗證後先開來源網址。回應 `private, no-store`，不發出 signed URL。
 管理畫面只收到私人圖片 id 同已上傳狀態；公開 queries、views、props 不加入任何私人圖片欄位。
 私人圖片不屬於公開 `equipment_images`，不參與公開主圖／fallback 選擇。
+
+
+### Gym detail navigation and streaming
+
+Gym detail metadata/page share the same explicit `GYM_DETAIL_COLUMNS` read via
+React request-scoped cache; no cross-user or persistent server cache is added.
+Missing rows remain 404s; read failures throw a generic error for the detail retry UI.
+The verified header/structured data can stream before the existing brands, machine
+inventory and voting reads finish. Skeletons contain no gym data or new projections.
+A single volatile client-side list snapshot retains only the already-public visible
+GymSummary rows, loaded page, list identity and scroll position for list/detail Back
+navigation. It is not persisted to Storage/sessionStorage or sent to an API; locale,
+filters and initial-page content must match before restoration. Database grants,
+views and restricted-field boundaries are unchanged.

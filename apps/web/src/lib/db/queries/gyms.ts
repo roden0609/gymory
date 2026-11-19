@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createClient } from "../supabase-server";
 import type { Gym } from "@gymory/shared";
 import { getGymEquipmentInventory } from "./gym-equipment-inventory";
@@ -16,7 +17,8 @@ export const GYM_SUBMISSION_COLUMNS = [...new Set([
   ].includes(field)),
 ])].join(", ");
 
-export async function getGymBySlug(slug: string) {
+// Share the same public read between metadata and the page within one render only.
+export const getGymBySlug = cache(async (slug: string) => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("gyms_public")
@@ -25,11 +27,12 @@ export async function getGymBySlug(slug: string) {
     .eq("is_active", true)
     .single();
 
+  if (error && error.code !== "PGRST116") throw new Error("Failed to load gym details");
   if (error || !data) return null;
   const gym = data as unknown as PublicGymDetail;
   const equipmentInventory = await getGymEquipmentInventory(gym.id);
   return { ...gym, equipment_inventory: equipmentInventory };
-}
+});
 
 export async function getGymById(id: string): Promise<(Partial<Gym> & Pick<Gym, "id" | "slug">) | null> {
   const supabase = await createClient();

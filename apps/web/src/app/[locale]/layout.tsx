@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
+import { GymNavigationProvider } from "@/components/search/GymNavigation";
 import { SiteHeader } from "@/components/common/SiteHeader";
 import { routing } from "@/i18n/routing";
 import { getBaseUrl } from "@/lib/seo";
@@ -56,7 +57,7 @@ export default async function LocaleLayout({
         <Suspense fallback={null}>
           <SiteHeader />
         </Suspense>
-        {children}
+        <GymNavigationProvider>{children}</GymNavigationProvider>
       </div>
     </NextIntlClientProvider>
   );

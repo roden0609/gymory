@@ -20,6 +20,9 @@
     "heroSub": "Search gyms by racks, machines, and real training gear."
   },
   "gym": {
+    "loadingDetail": "Loading gym details…",
+    "detailLoadFailed": "Could not load this gym. Please try again.",
+    "retryDetail": "Try again",
     "equipment": "Equipment",
     "location": "Location",
     "openingHours": "Opening Hours",
@@ -238,6 +241,7 @@
     "accuracyVoteFailed": "Unable to submit vote right now."
   },
   "search": {
+    "openingGym": "Opening…",
     "updatingFilters": "Updating…",
     "updatingResults": "Updating results. Previous results are shown…",
     "updateResultsFailed": "Could not update results. Previous results are shown.",

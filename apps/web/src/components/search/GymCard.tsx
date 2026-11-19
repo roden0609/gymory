@@ -1,5 +1,8 @@
 "use client";
 
+import { isPlainLinkClick } from "@/lib/link-navigation";
+
+import { useGymNavigation } from "./GymNavigation";
 import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import type { GymSummary } from "@gymory/shared";
@@ -173,6 +176,8 @@ export function GymCard({
   const locale = useLocale() as "en" | "zh-HK";
   const t = useTranslations("search");
   const tGym = useTranslations("gym");
+  const { pendingSlug, openGym } = useGymNavigation();
+  const isOpening = pendingSlug === gym.slug;
   const displayName = locale === "zh-HK" && gym.name_zh ? gym.name_zh : gym.name;
   const displayAddress =
     locale === "zh-HK" && gym.address_zh ? gym.address_zh : gym.address;
@@ -223,18 +228,28 @@ export function GymCard({
       <Link
         href={`/gyms/${gym.slug}`}
         className="block p-5"
-        onClick={() =>
+        aria-busy={isOpening}
+        onClick={(event) => {
+          if (isPlainLinkClick(event)) {
+            event.preventDefault();
+            if (isOpening) return;
+            openGym(gym.slug);
+          }
           trackResultClick({
             gym_slug: gym.slug,
             gym_name: displayName,
             result_position: resultPosition,
             source: resultSource,
-          })
-        }
+          });
+        }}
       >
         <div className="flex min-w-0 items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
-            <h3 className="truncate font-semibold text-gray-900">{displayName}</h3>
+            <div className="flex min-w-0 items-center gap-2">
+              <h3 className="min-w-0 truncate font-semibold text-gray-900">{displayName}</h3>
+              {isOpening ? <span aria-hidden="true" className="h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900 motion-reduce:animate-none" /> : null}
+            </div>
+            <span aria-hidden="true" className={isOpening ? "mt-1 block text-xs text-gray-600" : "sr-only"}>{isOpening ? t("openingGym") : ""}</span>
             <p className="mt-0.5 break-words text-sm text-gray-500 [overflow-wrap:anywhere]">
               {districtLabel}
               {displayAddress ? ` · ${displayAddress}` : ""}
@@ -266,6 +281,7 @@ export function GymCard({
           </div>
         )}
       </Link>
+      <span role="status" className="sr-only">{isOpening ? t("openingGym") : ""}</span>
 
       {equipmentHighlights.length === 0 && !hasAnyEquipmentData && (
         <div className="-mt-2 px-5 pb-1">

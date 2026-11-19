@@ -57,3 +57,11 @@ describe("public gym projections", () => {
     expect(fields).toContain("plate_min_weight_kg"); // Training collection membership.
   });
 });
+
+it("keeps a missing gym distinct from a transient read failure", async () => {
+  query.single.mockResolvedValueOnce({ data: null, error: { code: "PGRST116" } });
+  expect(await getGymBySlug("missing")).toBeNull();
+  query.single.mockResolvedValueOnce({ data: null, error: { code: "57014", message: "private-database-details" } });
+  await expect(getGymBySlug("timeout")).rejects.toThrow("Failed to load gym details");
+  expect(getGymEquipmentInventory).not.toHaveBeenCalled();
+});

@@ -20,6 +20,9 @@
     "heroSub": "按器械搜尋健身房——深蹲架、機械、真正訓練器具。"
   },
   "gym": {
+    "loadingDetail": "正在載入健身房資料…",
+    "detailLoadFailed": "未能載入健身房資料，請再試一次。",
+    "retryDetail": "重試",
     "equipment": "器械",
     "location": "地點",
     "openingHours": "營業時間",
@@ -238,6 +241,7 @@
     "accuracyVoteFailed": "暫時未能提交投票。"
   },
   "search": {
+    "openingGym": "開啟中…",
     "updatingFilters": "更新中…",
     "updatingResults": "更新結果中，暫時顯示之前嘅結果…",
     "updateResultsFailed": "未能更新結果，現正顯示之前嘅結果。",
