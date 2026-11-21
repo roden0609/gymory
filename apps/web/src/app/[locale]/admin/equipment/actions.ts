@@ -14,6 +14,7 @@ import {
   equipmentBrandSchema,
   equipmentMachineSchema,
   equipmentOfficialReviewSchema,
+  equipmentCapturedNamesSchema,
   equipmentReviewImageSchema,
 } from "@/lib/admin-equipment-validation";
 import { EQUIPMENT_IMAGE_BUCKET, equipmentImageFileType } from "@/lib/equipment-image-review";
@@ -48,7 +49,7 @@ function refreshCatalog() {
   revalidatePath("/[locale]/equipment/[equipment]", "page");
 }
 
-type CatalogEntity = "brand" | "machine" | "type";
+type CatalogEntity = "brand" | "machine" | "type" | "image";
 
 async function runCatalogSave(
   locale: string,
@@ -63,7 +64,7 @@ async function runCatalogSave(
   if (Number.isSafeInteger(requestedPage) && requestedPage > 1) context.set("page", String(requestedPage));
   const category = textValue(formData, "catalog_category");
   if (entity === "type" && equipmentTypeSchema.shape.category.safeParse(category).success) context.set("category", category);
-  if (entity === "machine") {
+  if (entity === "machine" || entity === "image") {
     const filters = parseEquipmentFilters({ name: textValue(formData, "catalog_name"), model: textValue(formData, "catalog_model"), brand: textValue(formData, "catalog_brand"), equipmentType: textValue(formData, "catalog_equipmentType"), status: textValue(formData, "catalog_status"), verification: textValue(formData, "catalog_verification") });
     for (const [key, value] of Object.entries(filters)) context.set(key, value);
   }
@@ -85,6 +86,7 @@ function getFailureReason(error: unknown) {
   if (error instanceof z.ZodError) return "invalid";
   const message = error instanceof Error ? error.message.toLowerCase() : "";
   if (message.includes("check constraint")) return "invalid";
+  if (message === "image storage cleanup failed") return "storageCleanup";
   if (message.includes("stale")) return "stale";
   if (message.includes("duplicate key") || message.includes("unique constraint")) {
     return "duplicate";
@@ -123,73 +125,103 @@ export async function saveBrand(formData: FormData) {
   }, formData);
 }
 
+async function persistMachine(formData: FormData) {
+  const parsed = equipmentMachineSchema.parse({
+    id: textValue(formData, "id") || undefined,
+    brand_id: textValue(formData, "brand_id"),
+    equipment_type_code: textValue(formData, "equipment_type_code"),
+    additional_type_codes: formData.getAll("additional_type_codes"),
+    labels: formData.getAll("labels"),
+    name: textValue(formData, "name"),
+    name_zh: textValue(formData, "name_zh"),
+    series: textValue(formData, "series"),
+    model_number: textValue(formData, "model_number"),
+    product_url: textValue(formData, "product_url"),
+    description: textValue(formData, "description"),
+    status: textValue(formData, "status"),
+    source_type: textValue(formData, "source_type"),
+    aliases: textValue(formData, "aliases"),
+  });
+  const captured = parsed.id && (formData.has("captured_name") || formData.has("captured_name_zh"))
+    ? equipmentCapturedNamesSchema.parse({
+        id: parsed.id,
+        expected_updated_at: formData.get("expected_updated_at"),
+        captured_name: formData.get("captured_name"),
+        captured_name_zh: formData.get("captured_name_zh"),
+      })
+    : undefined;
+  const supabase = createAdminClient();
+  const payload = {
+    brand_id: parsed.brand_id,
+    primary_type_code: parsed.equipment_type_code,
+    labels: parsed.labels,
+    name: parsed.name,
+    name_zh: parsed.name_zh,
+    slug: toSlug(parsed.name),
+    series: parsed.series,
+    model_number: parsed.model_number,
+    product_url: parsed.product_url || null,
+    description: parsed.description,
+    status: parsed.status,
+    source_type: parsed.source_type,
+    import_method: "admin",
+    ...(captured && {
+      captured_name: captured.captured_name,
+      captured_name_zh: captured.captured_name_zh,
+      expected_updated_at: captured.expected_updated_at,
+    }),
+  };
+
+  const aliases = [...new Set(parsed.aliases.split("\n").map(alias => alias.trim()).filter(Boolean))];
+  const { error } = await supabase.rpc("save_equipment_catalog_machine", {
+    p_id: parsed.id ?? null,
+    p_machine: payload,
+    p_additional_codes: parsed.additional_type_codes,
+    p_aliases: aliases,
+  });
+  if (error) throw new Error(error.message);
+}
+
 export async function saveMachine(formData: FormData) {
   const locale = textValue(formData, "locale") || "en";
   await authorize(locale);
-  await runCatalogSave(locale, "machine", async () => {
-    const parsed = equipmentMachineSchema.parse({
-      id: textValue(formData, "id") || undefined,
-      brand_id: textValue(formData, "brand_id"),
-      equipment_type_code: textValue(formData, "equipment_type_code"),
-      additional_type_codes: formData.getAll("additional_type_codes"),
-      labels: formData.getAll("labels"),
-      name: textValue(formData, "name"),
-      name_zh: textValue(formData, "name_zh"),
-      series: textValue(formData, "series"),
-      model_number: textValue(formData, "model_number"),
-      product_url: textValue(formData, "product_url"),
-      description: textValue(formData, "description"),
-      status: textValue(formData, "status"),
-      source_type: textValue(formData, "source_type"),
-      aliases: textValue(formData, "aliases"),
-    });
-    const supabase = createAdminClient();
-    const payload = {
-      brand_id: parsed.brand_id,
-      primary_type_code: parsed.equipment_type_code,
-      labels: parsed.labels,
-      name: parsed.name,
-      name_zh: parsed.name_zh,
-      slug: toSlug(parsed.name),
-      series: parsed.series,
-      model_number: parsed.model_number,
-      product_url: parsed.product_url || null,
-      description: parsed.description,
-      status: parsed.status,
-      source_type: parsed.source_type,
-      import_method: "admin",
-    };
+  await runCatalogSave(locale, "machine", () => persistMachine(formData), formData);
+}
 
-    const aliases = [...new Set(parsed.aliases.split("\n").map(alias => alias.trim()).filter(Boolean))];
-    const { error } = await supabase.rpc("save_equipment_catalog_machine", {
-      p_id: parsed.id ?? null,
-      p_machine: payload,
-      p_additional_codes: parsed.additional_type_codes,
-      p_aliases: aliases,
-    });
-    if (error) throw new Error(error.message);
-  }, formData);
+async function persistOfficialReview(formData: FormData, actorUid: string) {
+  const parsed = equipmentOfficialReviewSchema.parse({
+    id: textValue(formData,"id"), expected_updated_at:textValue(formData,"expected_updated_at"),
+    official_name:textValue(formData,"official_name"), official_name_zh:textValue(formData,"official_name_zh"),
+    official_model_number:textValue(formData,"official_model_number"),
+    official_product_url:textValue(formData,"official_product_url"), official_status:textValue(formData,"official_status"),
+    official_review_note:textValue(formData,"official_review_note"), verify:checked(formData,"verify"),
+  });
+  const { error } = await createAdminClient().rpc("save_equipment_official_review", {
+    p_id:parsed.id, p_expected_updated_at:parsed.expected_updated_at,
+    p_name:parsed.official_name,p_model:parsed.official_model_number,p_product_url:parsed.official_product_url,
+    p_status:parsed.official_status,p_note:parsed.official_review_note,p_verify:parsed.verify,p_actor:actorUid,
+    p_name_zh:parsed.official_name_zh,
+  });
+  if(error) throw new Error(error.message);
 }
 
 export async function saveOfficialReview(formData: FormData) {
   const locale = textValue(formData, "locale") || "en";
   const actor = await authorize(locale);
-  await runCatalogSave(locale, "machine", async () => {
-    const parsed = equipmentOfficialReviewSchema.parse({
-      id: textValue(formData,"id"), expected_updated_at:textValue(formData,"expected_updated_at"),
-      official_name:textValue(formData,"official_name"), official_name_zh:textValue(formData,"official_name_zh"),
-      apply_official_names:checked(formData,"apply_official_names"), official_model_number:textValue(formData,"official_model_number"),
-      official_product_url:textValue(formData,"official_product_url"), official_status:textValue(formData,"official_status"),
-      official_review_note:textValue(formData,"official_review_note"), verify:checked(formData,"verify"),
-    });
-    const { error } = await createAdminClient().rpc("save_equipment_official_review", {
-      p_id:parsed.id, p_expected_updated_at:parsed.expected_updated_at,
-      p_name:parsed.official_name,p_model:parsed.official_model_number,p_product_url:parsed.official_product_url,
-      p_status:parsed.official_status,p_note:parsed.official_review_note,p_verify:parsed.verify,p_actor:actor.uid,
-      p_name_zh:parsed.official_name_zh,p_apply_names:parsed.apply_official_names,
-    });
-    if(error) throw new Error(error.message);
-  }, formData);
+  await runCatalogSave(locale, "machine", () => persistOfficialReview(formData, actor.uid), formData);
+}
+
+export async function saveEquipmentEditor(section: "equipment" | "review", formData: FormData) {
+  const actor = await authorize(textValue(formData, "locale") || "en");
+  try {
+    if (section === "equipment") await persistMachine(formData);
+    else if (section === "review") await persistOfficialReview(formData, actor.uid);
+    else return { ok: false as const, reason: "invalid" };
+    refreshCatalog();
+    return { ok: true as const };
+  } catch (error) {
+    return { ok: false as const, reason: getFailureReason(error) };
+  }
 }
 
 export async function saveReviewImage(formData: FormData) {
@@ -238,6 +270,43 @@ export async function selectReviewImage(formData: FormData) {
       throw error;
     }
   },formData);
+}
+
+export async function deleteEquipmentImage(formData: FormData) {
+  const locale = textValue(formData, "locale") || "en";
+  await authorize(locale);
+  await runCatalogSave(locale, "image", async () => {
+    const parseUuid = z.string().uuid();
+    const parseRevision = z.string().datetime({ offset: true });
+    const id = parseUuid.parse(formData.get("id"));
+    const imageId = parseUuid.parse(formData.get("image_id"));
+    const revision = parseRevision.parse(formData.get("expected_updated_at"));
+    const isPrivate = z.enum(["review", "private"]).parse(formData.get("image_kind")) === "private";
+    const supabase = createAdminClient();
+    const { data: path, error } = await supabase.rpc("delete_equipment_image", {
+      p_id: id,
+      p_image_id: imageId,
+      p_expected_updated_at: revision,
+      p_private: isPrivate,
+      p_image_updated_at: isPrivate ? null : parseRevision.parse(formData.get("image_updated_at")),
+      p_expected_display_id: parseUuid.nullable().parse(formData.get("display_id") || null),
+      p_expected_next_display_id: parseUuid.nullable().parse(formData.get("next_display_id") || null),
+    });
+    if (error) throw new Error(error.message);
+    if (!path) return;
+
+    const table = isPrivate ? "equipment_captured_images" : "equipment_images";
+    const { count, error: referenceError } = await supabase.from(table)
+      .select("id", { count: "exact", head: true }).eq("storage_path", path);
+    if (!referenceError && count !== null && count > 0) return;
+    if (!referenceError && count === 0) {
+      const bucket = isPrivate ? "equipment-captured-images" : EQUIPMENT_IMAGE_BUCKET;
+      const { error: cleanupError } = await supabase.storage.from(bucket).remove([path]);
+      if (!cleanupError) return;
+    }
+    refreshCatalog();
+    throw new Error("Image Storage cleanup failed");
+  }, formData, "delete");
 }
 
 export async function saveEquipmentType(formData: FormData) {

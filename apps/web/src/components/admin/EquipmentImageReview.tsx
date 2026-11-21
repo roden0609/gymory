@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { saveOfficialReview, saveReviewImage, selectReviewImage } from "@/app/[locale]/admin/equipment/actions";
-import { OFFICIAL_STATUSES, equipmentStorageImageUrl, type EquipmentOfficialReview } from "@/lib/equipment-image-review";
+import type { ReactNode } from "react";
+import { deleteEquipmentImage, saveOfficialReview, saveReviewImage, selectReviewImage } from "@/app/[locale]/admin/equipment/actions";
+import { OFFICIAL_STATUSES, equipmentStorageImageUrl, primaryEquipmentImage, type EquipmentOfficialReview, type EquipmentReviewImage } from "@/lib/equipment-image-review";
 import type { EquipmentFilters } from "@/lib/admin-equipment-filters";
 
 const input = "min-h-10 w-full min-w-0 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900";
@@ -9,11 +10,76 @@ function httpUrl(value: string | null) {
   try { const url = new URL(value || ""); return ["https:","http:"].includes(url.protocol) ? value! : null; } catch { return null; }
 }
 
+function DeleteImageForm({ zh, context, id, revision, displayId, nextDisplayId, replacementUrl, clearsApproval }: {
+  zh: boolean; context: ReactNode; id: string; revision?: string;
+  displayId?: string; nextDisplayId?: string; replacementUrl?: string; clearsApproval?: boolean;
+}) {
+  return <details className="min-w-0">
+    <summary className="cursor-pointer text-sm font-medium text-red-700">{zh ? "刪除圖片" : "Delete image"}</summary>
+    <form action={deleteEquipmentImage} className="mt-2 min-w-0 space-y-2 rounded-lg border border-red-200 p-3">
+      {context}
+      <input type="hidden" name="image_id" value={id} />
+      <input type="hidden" name="image_kind" value={revision ? "review" : "private"} />
+      <input type="hidden" name="image_updated_at" value={revision ?? ""} />
+      <input type="hidden" name="display_id" value={displayId ?? ""} />
+      <input type="hidden" name="next_display_id" value={nextDisplayId ?? ""} />
+      <p className="break-words text-sm">{zh ? "刪除後無法復原。" : "This deletion cannot be undone."}</p>
+      {id === displayId ? <div className="min-w-0 space-y-2 text-sm">
+        {replacementUrl ? <>
+          <p>{zh ? "刪除後公開頁會顯示呢張圖。" : "The public page will show this image after deletion."}</p>
+          <Image src={replacementUrl} unoptimized width={160} height={120}
+            className="h-auto max-w-full rounded border border-gray-200"
+            alt={zh ? "刪除後展示嘅圖片" : "Image shown after deletion"} />
+        </> : <p>{zh ? "刪除後公開頁將冇圖片。" : "The public page will have no image after deletion."}</p>}
+        <p>{zh ? "要用另一張圖，可以先將嗰張圖設為展示主圖。" : "To use a different image, set it as primary first."}</p>
+      </div> : null}
+      {clearsApproval ? <p className="text-sm">{zh ? "刪除後需要重新核對官方資料。" : "Deleting this image withdraws official approval."}</p> : null}
+      <button type="submit" className="min-h-10 max-w-full rounded-lg bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800">{zh ? "確認刪除圖片" : "Confirm deletion"}</button>
+    </form>
+  </details>;
+}
+
+function PrimaryImageForm({ zh, context, image, mode = "select" }: {
+  zh: boolean; context: ReactNode; image: EquipmentReviewImage; mode?: "select" | "replace" | "pin";
+}) {
+  const requiresUpload = mode === "replace" || !image.storage_path;
+  const upload = <label className="block min-w-0 text-sm">
+    {zh ? "上傳圖片（JPEG／PNG／WebP，最多 5 MB）" : "Upload image (JPEG / PNG / WebP, max 5 MB)"}
+    <input name="image_file" type="file" accept="image/jpeg,image/png,image/webp" required={requiresUpload}
+      className="mt-1 block w-full min-w-0 max-w-full text-sm file:mr-2 file:rounded file:border-0 file:px-2 file:py-2" />
+  </label>;
+  return <form action={selectReviewImage} className="min-w-0 space-y-2">
+    {context}
+    <input type="hidden" name="image_id" value={image.id} />
+    <input type="hidden" name="expected_url" value={image.url} />
+    {requiresUpload ? upload : mode === "select" ? <details className="min-w-0">
+      <summary className="cursor-pointer text-sm">{zh ? "上傳新版（可選）" : "Upload a replacement (optional)"}</summary>
+      <div className="mt-2">{upload}</div>
+    </details> : null}
+    <button type="submit" className={button}>{mode === "replace"
+      ? (zh ? "更換展示圖片" : "Replace displayed image")
+      : image.storage_path
+        ? (zh ? "設為展示主圖" : "Set as primary image")
+        : (zh ? "上傳並設為展示主圖" : "Upload and set as primary")}</button>
+  </form>;
+}
+
 export function EquipmentImageReview({ machine, locale, page, filters = {}, capturedImages = [] }: {
   capturedImages?: { id: string; hasStorage: boolean }[];
   machine: EquipmentOfficialReview; locale: string; page: number; filters?: EquipmentFilters;
 }) {
   const zh = locale === "zh-HK";
+  const displayImage = primaryEquipmentImage(machine.equipment_images);
+  const fallbackImage = primaryEquipmentImage(machine.equipment_images.filter(image => image.id !== displayImage?.id));
+  const storageBase = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const currentImage = machine.equipment_images.find(image => image.id === displayImage?.id);
+  const displayUrl = storageBase && displayImage?.storage_path
+    ? equipmentStorageImageUrl(storageBase, displayImage.storage_path)
+    : undefined;
+  const fallbackUrl = storageBase && fallbackImage?.storage_path
+    ? equipmentStorageImageUrl(storageBase, fallbackImage.storage_path)
+    : undefined;
+
   const context = <><input type="hidden" name="locale" value={locale} /><input type="hidden" name="id" value={machine.id} />
     <input type="hidden" name="expected_updated_at" value={machine.updated_at} /><input type="hidden" name="catalog_page" value={page} />
     {Object.entries(filters).map(([key,value]) => <input key={key} type="hidden" name={`catalog_${key}`} value={value} />)}</>;
@@ -27,11 +93,7 @@ export function EquipmentImageReview({ machine, locale, page, filters = {}, capt
         ? `${zh ? "已人工確認" : "Admin verified"} · ${machine.official_verified_at} · ${machine.official_verified_by || "—"}`
         : zh ? "未人工確認" : "Not admin verified"}</p>
     </div>
-    <dl className="grid min-w-0 gap-3 rounded-lg bg-gray-50 p-3 text-sm sm:grid-cols-2">
-      <div className="min-w-0"><dt className="text-gray-500">{zh ? "擷取英文名稱" : "Captured English name"}</dt><dd className="break-words [overflow-wrap:anywhere]">{machine.captured_name || "—"}</dd></div>
-      <div className="min-w-0"><dt className="text-gray-500">{zh ? "擷取中文名稱" : "Captured Chinese name"}</dt><dd className="break-words [overflow-wrap:anywhere]">{machine.captured_name_zh || "—"}</dd></div>
-    </dl>
-    <form action={saveOfficialReview} className="grid min-w-0 gap-3 sm:grid-cols-2">
+    <form action={saveOfficialReview} data-equipment-editor="review" className="grid min-w-0 gap-3 sm:grid-cols-2">
       {context}
       <label className="min-w-0 text-sm">{zh ? "官方名稱" : "Official name"}<input name="official_name" maxLength={200} defaultValue={machine.official_name ?? ""} className={input} /></label>
       <label className="min-w-0 text-sm">{zh ? "官方中文名稱（官方未提供則留空）" : "Official Chinese name (leave blank if unavailable)"}<input name="official_name_zh" maxLength={200} defaultValue={machine.official_name_zh ?? ""} className={input} /></label>
@@ -43,13 +105,29 @@ export function EquipmentImageReview({ machine, locale, page, filters = {}, capt
       <label className="min-w-0 text-sm sm:col-span-2">{zh ? "核對備註／型號差異" : "Review notes / model differences"}<textarea name="official_review_note" rows={3} maxLength={5000} defaultValue={machine.official_review_note ?? ""} className={input} /></label>
       <label className="flex min-w-0 items-start gap-2 text-sm sm:col-span-2"><input type="checkbox" name="verify" defaultChecked={Boolean(machine.official_verified_at)} className="mt-1 shrink-0" />
         <span>{zh ? "我已核對所有官方資料及官方圖片，確認正確（取消勾選可撤回確認）" : "I checked all official data and official images and confirm they are correct (uncheck to withdraw approval)."}</span></label>
-      <p className="text-sm text-gray-500 sm:col-span-2">{zh ? "儲存後展示名稱會優先使用該語言的官方名稱；留空則使用擷取名稱。人工確認獨立記錄。" : "Saving uses the official name for each language, falling back to its captured name. Admin approval is recorded separately."}</p>
       <div className="sm:col-span-2"><button className={button}>{zh ? "儲存核對結果" : "Save review"}</button></div>
     </form>
-    <p className="text-sm text-gray-500">{zh ? "兩邊圖片供對比；官方來源唔代表已確認正確。改動圖片或型號資料後須重新確認。未指定主圖時，公開頁會使用已上傳的官方圖片。" : "Compare both sources below. An official source is not approval. Image or model changes require a new review. Without a selected primary image, public pages use an uploaded official image."}</p>
+    <section className="min-w-0 space-y-3 rounded-lg border border-gray-200 p-3">
+      <h4 className="font-medium">{zh ? "公開展示圖片" : "Public display image"}</h4>
+      {currentImage && displayUrl ? <div className="grid min-w-0 gap-4 sm:grid-cols-2">
+        <a href={displayUrl} target="_blank" rel="noreferrer" className="block min-w-0">
+          <Image src={displayUrl} unoptimized width={640} height={480}
+            className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain"
+            alt={zh ? "公開頁目前顯示嘅器材圖片" : "Equipment image currently shown on public pages"} />
+        </a>
+        <div className="min-w-0 space-y-3">
+          <p className="text-sm text-gray-600">{currentImage.is_primary
+            ? (zh ? "手動指定主圖" : "Manually selected primary image")
+            : (zh ? "自動採用官方圖" : "Automatically selected official image")}</p>
+          <PrimaryImageForm zh={zh} context={context} image={currentImage} mode="replace" />
+          {!currentImage.is_primary ? <PrimaryImageForm zh={zh} context={context} image={currentImage} mode="pin" /> : null}
+        </div>
+      </div> : <p className="text-sm text-gray-500">{zh ? "目前冇公開展示圖片。" : "No image is currently displayed publicly."}</p>}
+      <p className="text-sm text-gray-500">{zh ? "可以喺下方揀另一張圖設為主圖。" : "Choose another image below to set it as primary."}</p>
+    </section>
     <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2">
       {(["captured","official"] as const).map(role => <section key={role} className="min-w-0 max-w-full space-y-3 rounded-lg border border-gray-200 p-3">
-        <h4 className="font-medium">{role === "captured" ? (zh ? "擷取原圖" : "Captured images") : (zh ? "官方／官方候選圖片" : "Official / candidate images")}</h4>
+        <h4 className="font-medium">{role === "captured" ? (zh ? "擷取原圖（只限管理員）" : "Captured originals (admin only)") : (zh ? "官方／官方候選圖片" : "Official / candidate images")}</h4>
         {role === "captured" ? capturedImages.map(image => <article key={image.id} className="min-w-0 space-y-2 border-b border-gray-100 pb-4">
           {image.hasStorage ? <a href={`/api/admin/equipment-captured-images/${image.id}`} target="_blank" rel="noopener noreferrer" className="block min-w-0 max-w-full">
             <Image src={`/api/admin/equipment-captured-images/${image.id}`} unoptimized width={640} height={480}
@@ -58,15 +136,15 @@ export function EquipmentImageReview({ machine, locale, page, filters = {}, capt
           </a> : <p className="text-sm text-gray-500">{zh ? "等待私人圖片回填" : "Private image upload pending"}</p>}
           <a href={`/api/admin/equipment-captured-images/${image.id}?original=1`} target="_blank" rel="noopener noreferrer"
             className="block break-words text-sm text-blue-700 underline">{zh ? "開啟擷取來源原圖（僅限管理員）" : "Open original source image (admin only)"}</a>
+          <DeleteImageForm zh={zh} context={context} id={image.id} />
         </article>) : null}
         {machine.equipment_images.filter(image => image.image_role === role).sort((a,b) => a.sort_order-b.sort_order || a.id.localeCompare(b.id)).map(image => <article key={image.id} className="min-w-0 space-y-3 border-b border-gray-100 pb-4">
           {httpUrl(image.url) ? <a href={image.url} target="_blank" rel="noreferrer" className="block min-w-0 max-w-full">
-            <Image src={image.storage_path && process.env.NEXT_PUBLIC_SUPABASE_URL ? equipmentStorageImageUrl(process.env.NEXT_PUBLIC_SUPABASE_URL,image.storage_path) : image.url} unoptimized width={640} height={480} alt={role === "captured" ? (zh ? "擷取器材圖片" : "Captured equipment") : (zh ? "官方器材圖片候選" : "Official equipment candidate")}
+            <Image src={image.url} unoptimized width={640} height={480} alt={role === "captured" ? (zh ? "擷取器材圖片" : "Captured equipment") : (zh ? "官方器材圖片候選" : "Official equipment candidate")}
               className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" />
           </a> : <p className="text-sm text-gray-500">{zh ? "圖片網址無效" : "Invalid image URL"}</p>}
-          <p className="break-words text-sm text-gray-600">{image.is_primary ? (zh ? "目前展示主圖" : "Current primary image") : image.storage_path ? (zh ? "已上傳 Storage" : "Uploaded to Storage") : (zh ? "未上傳 Storage" : "Not uploaded to Storage")}</p>
+          <p className="break-words text-sm text-gray-600">{image.id === displayImage?.id ? (zh ? "目前展示" : "Currently displayed") : image.storage_path ? (zh ? "已上傳 Storage" : "Uploaded to Storage") : (zh ? "未上傳 Storage" : "Not uploaded to Storage")}</p>
           {httpUrl(image.source_url) ? <a href={image.source_url!} target="_blank" rel="noreferrer" className="block break-words text-sm text-blue-700 underline [overflow-wrap:anywhere]">{zh ? "查看來源頁" : "View source page"}</a> : null}
-          {image.storage_path && process.env.NEXT_PUBLIC_SUPABASE_URL ? <a href={equipmentStorageImageUrl(process.env.NEXT_PUBLIC_SUPABASE_URL,image.storage_path)} target="_blank" rel="noreferrer" className="block text-sm text-blue-700 underline">{zh ? "查看 Storage 圖片" : "View Storage image"}</a> : null}
           <details className="min-w-0"><summary className="cursor-pointer text-sm">{zh ? "修改圖片網址" : "Edit image URL"}</summary>
             <form action={saveReviewImage} className="mt-2 min-w-0 space-y-2">{context}<input type="hidden" name="image_id" value={image.id} /><input type="hidden" name="image_role" value={role} />
               <label className="block min-w-0 text-sm">{zh ? "原始圖片網址" : "Original image URL"}<input type="url" name="url" required maxLength={4000} defaultValue={image.url} className={input} /></label>
@@ -74,12 +152,10 @@ export function EquipmentImageReview({ machine, locale, page, filters = {}, capt
               <button className={button}>{zh ? "儲存圖片資料" : "Save image details"}</button>
             </form>
           </details>
-          <form action={selectReviewImage} className="min-w-0 space-y-2">{context}<input type="hidden" name="image_id" value={image.id} /><input type="hidden" name="expected_url" value={image.url} />
-            <label className="block min-w-0 text-sm">{zh ? "上傳選定圖片（JPEG／PNG／WebP，最多 5 MB）" : "Upload selected image (JPEG / PNG / WebP, max 5 MB)"}
-              <input name="image_file" type="file" accept="image/jpeg,image/png,image/webp" required={!image.storage_path} className="mt-1 block w-full min-w-0 max-w-full text-sm file:mr-2 file:rounded file:border-0 file:px-2 file:py-2" /></label>
-            <p className="text-xs text-gray-500">{zh ? "可按上方原圖另存圖片後上傳；已有 Storage 圖片可直接選用。" : "Save the original image above and upload it here; an existing Storage image can be selected directly."}</p>
-            <button className={button}>{zh ? "上傳／設為展示主圖" : "Upload / use as primary image"}</button>
-          </form>
+          {image.id !== displayImage?.id ? <PrimaryImageForm zh={zh} context={context} image={image} /> : null}
+          <DeleteImageForm zh={zh} context={context} id={image.id} revision={image.updated_at}
+            displayId={displayImage?.id} nextDisplayId={image.id === displayImage?.id ? fallbackImage?.id : displayImage?.id}
+            replacementUrl={fallbackUrl} clearsApproval={Boolean(machine.official_verified_at)} />
         </article>)}
         {!machine.equipment_images.some(image => image.image_role === role) && !(role === "captured" && capturedImages.length) ? <p className="text-sm text-gray-500">{zh ? "暫無圖片" : "No images yet"}</p> : null}
         <details className="min-w-0"><summary className="cursor-pointer text-sm">{zh ? "新增圖片" : "Add image"}</summary>

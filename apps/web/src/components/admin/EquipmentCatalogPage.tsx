@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { parseEquipmentFilters, equipmentFilterConditions, equipmentTextFilterConditions, type EquipmentFilters } from "@/lib/admin-equipment-filters";
 import { EquipmentFilterForm } from "./EquipmentFilterForm";
+import { EquipmentEditor } from "./EquipmentEditor";
 import { EquipmentImageReview } from "./EquipmentImageReview";
 import Image from "next/image";
 import { equipmentStorageImageUrl, type EquipmentOfficialReview } from "@/lib/equipment-image-review";
@@ -65,7 +66,7 @@ async function getCatalog(section: CatalogSection, requestedPage: number, catego
   const brandsQuery = supabase.from("equipment_brands").select("id, name_en, name_zh, country, website_url, is_active").order("name_en").order("id");
   let typesQuery = supabase.from("equipment_types").select("code, name_en, name_zh, category, labels, equipment_type_assignments(count)").eq("is_active", true).order("name_en").order("code");
   if (section === "types" && category) typesQuery = typesQuery.eq("category", category);
-  let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, updated_at, source_external_id, captured_name, captured_name_zh, official_name, official_name_zh, official_model_number, official_product_url, official_status, official_review_note, official_verified_at, official_verified_by, equipment_images(id, image_role, url, source_url, storage_path, is_primary, sort_order), gym_equipment_inventory(gyms(id, name, name_zh)), equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
+  let machinesQuery = supabase.from("equipment").select("id, brand_id, name, name_zh, series, model_number, labels, product_url, description, status, source_type, updated_at, source_external_id, captured_name, captured_name_zh, official_name, official_name_zh, official_model_number, official_product_url, official_status, official_review_note, official_verified_at, official_verified_by, equipment_images(id, image_role, url, source_url, storage_path, is_primary, sort_order, updated_at), gym_equipment_inventory(gyms(id, name, name_zh)), equipment_aliases(alias), equipment_type_assignments(equipment_type_code, is_primary)" + (filters.equipmentType ? ", matching_types:equipment_type_assignments!inner(equipment_type_code)" : "")).order("name").order("id");
   for (const [column, value] of equipmentFilterConditions(filters)) machinesQuery = machinesQuery.eq(column, value);
   for (const condition of equipmentTextFilterConditions(filters)) machinesQuery = machinesQuery.or(condition);
   if (filters.verification === "verified") machinesQuery = machinesQuery.not("official_verified_at", "is", null);
@@ -326,10 +327,10 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
                   ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
                 ]} /><MachineGyms machine={machine} locale={locale} /></>}>
-                <div className="min-w-0 space-y-4">
+                <EquipmentEditor locale={locale}>
                   <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
                   <EquipmentImageReview capturedImages={capturedImages.filter(image => image.equipment_id === machine.id).map(image => ({ id: image.id, hasStorage: image.hasStorage }))} machine={machine} locale={locale} page={page} filters={filters} />
-                </div>
+                </EquipmentEditor>
               </CatalogRecordRow>;
             })}
           </CatalogTable>
@@ -427,8 +428,8 @@ function getSaveMessage(
   if (params?.result !== "success" && params?.result !== "error") return null;
   const isChinese = locale === "zh-HK";
   const entity = isChinese
-    ? { brand: "品牌", category: "分類", type: "器材類型", machine: "器械" }[params.entity ?? ""] ?? "項目"
-    : { brand: "Brand", category: "Category", type: "Equipment type", machine: "Machine" }[params.entity ?? ""] ?? "Item";
+    ? { brand: "品牌", category: "分類", type: "器材類型", machine: "器械", image: "圖片" }[params.entity ?? ""] ?? "項目"
+    : { brand: "Brand", category: "Category", type: "Equipment type", machine: "Machine", image: "Image" }[params.entity ?? ""] ?? "Item";
 
   if (params.result === "success") {
     return {
@@ -437,6 +438,12 @@ function getSaveMessage(
         ? (isChinese ? `${entity}已成功刪除。` : `${entity} deleted successfully.`)
         : (isChinese ? `${entity}已成功儲存。` : `${entity} saved successfully.`),
     };
+  }
+
+  if (params.reason === "storageCleanup") {
+    return { kind: "error" as const, text: isChinese
+      ? "已刪除圖片記錄，但 Storage 檔案未能清理。"
+      : "Image removed, but its Storage file could not be cleaned up." };
   }
 
   const reason = isChinese
@@ -465,11 +472,15 @@ function MachineForm({ locale, brands, equipmentTypes, machine, page, filters }:
   filters?: EquipmentFilters; page: number; locale: string; brands: Brand[]; equipmentTypes: EquipmentType[]; machine?: Machine;
 }) {
   return (
-    <form action={saveMachine} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
+    <form action={saveMachine} data-equipment-editor={machine ? "equipment" : undefined} className="grid min-w-0 gap-3 rounded-xl border border-gray-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
       <input type="hidden" name="locale" value={locale} /><CatalogContext page={page} filters={filters} />{machine ? <input type="hidden" name="id" value={machine.id} /> : null}
-      <label className={labelClass}>{locale === "zh-HK" ? "英文展示名稱" : "English display name"}<input required name="name" readOnly={Boolean(machine?.official_name?.trim() || machine?.captured_name?.trim())} defaultValue={machine?.name ?? ""} className={inputClass} /></label>
-      <label className={labelClass}>{locale === "zh-HK" ? "中文展示名稱" : "Chinese display name"}<input name="name_zh" readOnly={Boolean(machine?.official_name_zh?.trim() || machine?.captured_name_zh?.trim())} defaultValue={machine?.name_zh ?? ""} className={inputClass} /></label>
-      {machine ? <p className="min-w-0 break-words text-sm text-gray-500 sm:col-span-2 lg:col-span-4">{locale === "zh-HK" ? "有來源資料的名稱會自動使用官方名稱，缺少時使用擷取名稱。可在下方「官方資料及圖片核對」修改官方名稱。" : "Names with source data use the official name, then the captured name. Edit official names in the review section below."}</p> : null}
+      <label className={labelClass}>{locale === "zh-HK" ? "英文展示名稱" : "English display name"}<input required name="name" defaultValue={machine?.name ?? ""} className={inputClass} /></label>
+      <label className={labelClass}>{locale === "zh-HK" ? "中文展示名稱" : "Chinese display name"}<input name="name_zh" defaultValue={machine?.name_zh ?? ""} className={inputClass} /></label>
+      {machine ? <>
+        <input type="hidden" name="expected_updated_at" value={machine.updated_at} />
+        <label className={labelClass}>{locale === "zh-HK" ? "擷取英文名稱" : "Captured English name"}<input name="captured_name" maxLength={200} defaultValue={machine.captured_name ?? ""} className={inputClass} /></label>
+        <label className={labelClass}>{locale === "zh-HK" ? "擷取中文名稱" : "Captured Chinese name"}<input name="captured_name_zh" maxLength={200} defaultValue={machine.captured_name_zh ?? ""} className={inputClass} /></label>
+      </> : null}
       <label className={labelClass}>Brand<select required name="brand_id" defaultValue={machine?.brand_id ?? ""} className={inputClass}><option value="" disabled>Select brand</option>{brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name_en}</option>)}</select></label>
       <label className={labelClass}>{locale === "zh-HK" ? "主要器材類型" : "Primary equipment type"}<select required name="equipment_type_code" defaultValue={machine?.equipment_type_assignments.find(a => a.is_primary)?.equipment_type_code ?? ""} className={inputClass}><option value="" disabled>Select type</option>{equipmentTypes.map((type) => <option key={type.code} value={type.code}>{locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}</option>)}</select></label>
       <fieldset className="min-w-0 max-w-full space-y-2 sm:col-span-2 lg:col-span-4">
@@ -506,7 +517,7 @@ function MachineForm({ locale, brands, equipmentTypes, machine, page, filters }:
       <label className={`${labelClass} sm:col-span-2`}>Product URL<input name="product_url" type="url" defaultValue={machine?.product_url ?? ""} className={inputClass} /></label>
       <label className={`${labelClass} sm:col-span-2`}>Aliases, one per line<textarea name="aliases" rows={3} defaultValue={machine?.equipment_aliases.map(({ alias }) => alias).join("\n") ?? ""} className={`${inputClass} resize-y`} /></label>
       <label className={`${labelClass} sm:col-span-2 lg:col-span-4`}>Description<textarea name="description" rows={3} defaultValue={machine?.description ?? ""} className={`${inputClass} resize-y`} /></label>
-      <div className="flex justify-end sm:col-span-2 lg:col-span-4"><SubmitButton>{machine ? "Save equipment" : "Add equipment"}</SubmitButton></div>
+      <div className="flex justify-end sm:col-span-2 lg:col-span-4"><SubmitButton>{machine ? (locale === "zh-HK" ? "儲存器材資料" : "Save equipment details") : "Add equipment"}</SubmitButton></div>
     </form>
   );
 }

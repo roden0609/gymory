@@ -4,7 +4,7 @@ create function pg_temp.assert(ok boolean, message text) returns void language p
 begin if not coalesce(ok,false) then raise exception '%',message; end if; end $$;
 insert into public.equipment_brands(id,name_en,slug) values('00000000-0066-4000-8000-000000000001','Promotion test','promotion-test-0066');
 insert into public.equipment(id,brand_id,name,slug,model_number,source_external_id,source_type,captured_name,captured_name_zh)
-values('00000000-0066-4000-8000-000000000002','00000000-0066-4000-8000-000000000001','Captured','promotion-test-0066','M1','247-fitness:660000','manual','Captured','擷取');
+values('00000000-0066-4000-8000-000000000002','00000000-0066-4000-8000-000000000001','Curated','promotion-test-0066','M1','247-fitness:660000','manual','Captured','擷取');
 insert into public.equipment_images(id,equipment_id,image_role,url,source_type)
 values('00000000-0066-4000-8000-000000000003','00000000-0066-4000-8000-000000000002','captured','https://example.com/captured.webp','manual');
 insert into storage.objects(bucket_id,name) values('equipment-images','00000000-0066-4000-8000-000000000002/00000000-0066-4000-8000-000000000003/captured.webp');
@@ -13,7 +13,7 @@ insert into storage.objects(bucket_id,name) values('equipment-images','00000000-
 select public.promote_equipment_research(id,updated_at,to_jsonb(e) || '{"official_name":"Official","official_name_zh":"官方","official_status":"model_verified"}',
   '{"id":"00000000-0066-4000-8000-000000000004","url":"https://example.com/official.webp","source_url":"https://example.com/product","storage_path":"00000000-0066-4000-8000-000000000002/00000000-0066-4000-8000-000000000004/official.webp"}')
 from public.equipment e where id='00000000-0066-4000-8000-000000000002';
-select pg_temp.assert((select name='Official' and name_zh='官方' and captured_name='Captured' and official_verified_at is null from public.equipment where id='00000000-0066-4000-8000-000000000002'),'Promotion synchronizes names without claiming human approval');
+select pg_temp.assert((select name='Curated' and name_zh is null and official_name='Official' and official_name_zh='官方' and captured_name='Captured' and official_verified_at is null from public.equipment where id='00000000-0066-4000-8000-000000000002'),'Promotion changes only official names without claiming human approval');
 select pg_temp.assert((select is_primary from public.equipment_images where id='00000000-0066-4000-8000-000000000003'),'Existing captured primary remains selected');
 select pg_temp.assert((select not is_primary and storage_path is not null from public.equipment_images where id='00000000-0066-4000-8000-000000000004'),'New official image is stored without overriding primary');
 do $$

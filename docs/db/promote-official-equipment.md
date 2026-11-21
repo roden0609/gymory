@@ -34,8 +34,8 @@ metadata but does not manufacture replacement images or new image rows for them.
 
 Back up the target DB and any existing Storage assets using your normal backup
 process. Follow [the Supabase deployment guide](../../supabase/README.md) to inspect
-and apply pending migrations **through 0066**, first in DEV and then in PROD.
-Migration 0065 maintains official → captured display-name priority. Migration
+and apply pending migrations **through 0078**, first in DEV and then in PROD.
+Migration 0078 keeps public display names independent of official and captured names. Migration
 0066 provides an atomic, service-role-only promotion RPC.
 
 CLI linking and script env files are independent. The script reads credentials

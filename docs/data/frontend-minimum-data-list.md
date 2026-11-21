@@ -401,7 +401,8 @@ SQL 回歸測試：[frontend_column_read_access.sql](../../supabase/tests/fronte
 - 初次 migration 會更新全部現有 slug，同組重複記錄全部加後綴；往後只替新增記錄分配 slug，名稱／品牌修改保持既有 slug。全表 unique index 防止重複。
 - 舊 slug 可能包含 restricted source inventory ID，唔複製到公開 aliases；使用舊 slug 嘅搜尋 bookmark 需更新。現有 name／alias 搜尋及按 equipment UUID 關聯不變。
 - Helper functions 撤走 PUBLIC／anon／authenticated EXECUTE；不新增公開欄位、view 或 grant。
-- 注意：既有 migration 0065 display-name trigger 仍有 captured-name fallback；0069 不讀取 captured 欄位生成 slug，亦不修改該既有名稱政策。該 fallback 與現行 restricted-column 政策不一致，需獨立修正。
+- Migration 0078 移除展示名稱對擷取名稱嘅 fallback。管理員分別編輯公開展示名、官方名同私有擷取名。擷取名只經已核對管理員身分嘅後台 RPC 寫入，公開資料投影及欄位權限維持原有範圍。
+- 0078 清理同私有擷取名相符且未經相同官方名稱確認嘅展示值。英文改用 Equipment 加型號，中文清空。新匯入亦用同一個公開英文預設。現有 slug 維持原值以保留網址；部分 0069 期間建立嘅舊 slug 可能包含當時由擷取名填入展示欄嘅文字，需另行核對同更換。
 
 
 Migration `0070` 修正 `gyms_public` 的 security-invoker 依賴：保留原有

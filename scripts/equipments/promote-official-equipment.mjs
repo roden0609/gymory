@@ -118,7 +118,8 @@ async function promote(options) {
   const directory=path.resolve(options.bundle),bundle=await readBundle(directory);
   const api=await client(options['env-file'],options.target),before=await snapshot(api);
   const schema=await api.request('/rest/v1/');
-  if(!schema.paths?.['/rpc/promote_equipment_research'])throw Error('Apply migrations through 0066 before promotion');
+  if(!schema.paths?.['/rpc/promote_equipment_research'] || !schema.paths?.['/rpc/save_equipment_captured_names'])
+    throw Error('Apply migrations through 0078 before promotion');
   const plan=buildPromotionPlan(bundle,before.equipment,before.images,before.brands);
   const output=path.resolve(options['report-dir']);await fs.mkdir(output); // Unique report/backup per attempt.
   const report={target:options.target,url:api.base,mode:options.apply?'apply':'dry-run',started_at:new Date().toISOString(),
@@ -127,9 +128,6 @@ async function promote(options) {
       ...(p.status==='ready'?{target_id:p.target.id,
         changes:Object.fromEntries(FIELDS.filter(k=>k!=='model_number' && p.target[k]!==p.record.machine[k])
           .map(k=>[k,{before:p.target[k],after:p.record.machine[k]}])),
-        display_names:{before:{name:p.target.name,name_zh:p.target.name_zh},
-          after:{name:trim(p.record.machine.official_name)||trim(p.record.machine.captured_name)||p.target.name,
-            name_zh:trim(p.record.machine.official_name_zh)||trim(p.record.machine.captured_name_zh)||p.target.name_zh}},
         image:p.record.image?{id:p.imageId,url:p.record.image.url,before_path:p.image?.storage_path??null,
           after_path:p.storagePath,preserve_primary:p.image?.is_primary??false}:null}:{}),
     }))};
@@ -158,12 +156,12 @@ async function promote(options) {
         && (!image || item.image?.storage_path===item.storagePath);
       if(!unchanged)await api.request('/rest/v1/rpc/promote_equipment_research',{method:'POST',body:{p_id:item.target.id,p_expected_updated_at:item.target.updated_at,p_machine:item.record.machine,p_image:image}});
       // Verify fresh DB state and actual Storage bytes; a successful RPC alone is insufficient.
-      const [current]=await api.request(`/rest/v1/equipment?id=eq.${item.target.id}&select=*`);
+      const [current]=await api.request(`/rest/v1/equipment?id=eq.${item.target.id}&select=${[...FIELDS,'name','name_zh'].join(',')}`);
       if(!current || FIELDS.filter(k=>!['model_number'].includes(k)).some(k=>current[k]!==item.record.machine[k])
-        || current.name!==(trim(current.official_name)||trim(current.captured_name)||current.name)
-        || current.name_zh!==(trim(current.official_name_zh)||trim(current.captured_name_zh)||current.name_zh)) throw Error('Equipment verification failed');
+        || current.name!==item.target.name
+        || current.name_zh!==item.target.name_zh) throw Error('Equipment verification failed');
       if(image){
-        const [saved]=await api.request(`/rest/v1/equipment_images?id=eq.${item.imageId}&select=*`);
+        const [saved]=await api.request(`/rest/v1/equipment_images?id=eq.${item.imageId}&select=storage_path,url,is_primary`);
         if(!saved || saved.storage_path!==item.storagePath || saved.url!==image.url || (item.image && saved.is_primary!==item.image.is_primary)) throw Error('Image verification failed');
         const bytes=await api.request(`/storage/v1/object/public/${BUCKET}/${objectUrl(item.storagePath)}`,{raw:true});
         if(sha(bytes)!==item.record.image.sha256)throw Error('Public Storage verification failed');

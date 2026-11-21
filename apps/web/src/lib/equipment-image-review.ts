@@ -11,7 +11,7 @@ export type EquipmentOfficialReview = {
   official_name: string | null; official_name_zh: string | null; official_model_number: string | null;
   official_product_url: string | null; official_status: OfficialStatus;
   official_review_note: string | null; official_verified_at: string | null; official_verified_by: string | null;
-  equipment_images: EquipmentReviewImage[];
+  equipment_images: (EquipmentReviewImage & { updated_at: string })[];
 };
 
 export function equipmentStorageImageUrl(base: string, path: string): string {
@@ -22,10 +22,14 @@ export type PublicEquipmentImage = Pick<EquipmentReviewImage, "id" | "image_role
 
 // Explicit admin selection wins; imported official Storage images work without
 // a separate primary-selection step. Never publish remote/captured fallbacks.
-export function primaryEquipmentImageUrl(base: string, images: PublicEquipmentImage[]): string | null {
+export function primaryEquipmentImage(images: PublicEquipmentImage[]) {
   const stored = images.filter(image => image.storage_path)
     .sort((a, b) => a.sort_order - b.sort_order || a.id.localeCompare(b.id));
-  const image = stored.find(image => image.is_primary) ?? stored.find(image => image.image_role === "official");
+  return stored.find(image => image.is_primary) ?? stored.find(image => image.image_role === "official");
+}
+
+export function primaryEquipmentImageUrl(base: string, images: PublicEquipmentImage[]): string | null {
+  const image = primaryEquipmentImage(images);
   return image?.storage_path ? equipmentStorageImageUrl(base, image.storage_path) : null;
 }
 

@@ -12,7 +12,7 @@ vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mo
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn(), revalidateTag: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
 import { revalidateTag } from "next/cache";
-import { deleteEquipmentType, saveEquipmentType, saveMachine, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
+import { deleteEquipmentImage, deleteEquipmentType, saveEquipmentEditor, saveEquipmentType, saveMachine, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
 
 function form(values: Record<string, string>) {
   const data = new FormData();
@@ -47,16 +47,51 @@ describe("equipment official review actions", () => {
     for (const action of [saveOfficialReview,saveReviewImage,selectReviewImage]) await expect(action(form(review))).rejects.toThrow("login required");
     expect(mocks.rpc).not.toHaveBeenCalled();expect(mocks.from).not.toHaveBeenCalled();
   });
-  it("passes the official Chinese name and explicit display-name choice to the atomic review RPC",async()=>{
+  it("saves official Chinese independently of the display name", async () => {
     await expect(saveOfficialReview(form({...review,verify:"on",official_name_zh:"臀橋",apply_official_names:"on"}))).rejects.toThrow("result=success");
-    expect(mocks.rpc).toHaveBeenCalledWith("save_equipment_official_review",expect.objectContaining({p_name_zh:"臀橋",p_apply_names:true,p_verify:true}));
-    mocks.rpc.mockClear();
-    await expect(saveOfficialReview(form({...review,apply_official_names:"on"}))).rejects.toThrow("reason=invalid");
-    expect(mocks.rpc).not.toHaveBeenCalled();
+    const [, payload] = mocks.rpc.mock.calls[0];
+    expect(payload).toMatchObject({p_name_zh:"臀橋",p_verify:true});
+    expect(payload).not.toHaveProperty("p_apply_names");
+  });
+  it("saves display and captured names in one catalog write, with no official review write", async () => {
+    const data = form({id, expected_updated_at, captured_name:" Source ", captured_name_zh:" ",
+      name:"Public name", brand_id:"123e4567-e89b-42d3-a456-426614174000",
+      equipment_type_code:"chest_fly_machine", status:"active", source_type:"manual"});
+    await expect(saveEquipmentEditor("equipment", data)).resolves.toEqual({ ok:true });
+    expect(mocks.rpc).toHaveBeenCalledExactlyOnceWith("save_equipment_catalog_machine", expect.objectContaining({
+      p_id:id, p_machine:expect.objectContaining({
+        name:"Public name", captured_name:"Source", captured_name_zh:"", expected_updated_at,
+      }),
+    }));
   });
   it("reports stale reviews instead of overwriting the new data", async () => {
     mocks.rpc.mockResolvedValue({error:{message:"Stale equipment review"}});
     await expect(saveOfficialReview(form(review))).rejects.toThrow("reason=stale");
+  });
+  it("deletes an image and cleans up only its unreferenced Storage object", async () => {
+    const path = `${id}/${imageId}/photo.webp`;
+    mocks.rpc.mockResolvedValue({ data: path, error: null });
+    mocks.query.eq.mockResolvedValueOnce({ count: 0, error: null });
+    mocks.storage.remove.mockResolvedValue({ error: null });
+    await expect(deleteEquipmentImage(form({id, image_id:imageId, expected_updated_at,
+      image_kind:"review", image_updated_at:expected_updated_at, display_id:imageId})))
+      .rejects.toThrow("result=success&entity=image&action=delete");
+    expect(mocks.rpc).toHaveBeenCalledWith("delete_equipment_image", expect.objectContaining({
+      p_id:id, p_image_id:imageId, p_expected_display_id:imageId, p_expected_next_display_id:null,
+    }));
+    expect(mocks.query.eq).toHaveBeenCalledWith("storage_path", path);
+    expect(mocks.storage.remove).toHaveBeenCalledWith([path]);
+  });
+  it("preserves a referenced object and rejects unauthorized image deletion", async () => {
+    mocks.rpc.mockResolvedValue({ data: "shared.webp", error: null });
+    mocks.query.eq.mockResolvedValueOnce({ count: 1, error: null });
+    const data = form({id, image_id:imageId, expected_updated_at, image_kind:"private"});
+    await expect(deleteEquipmentImage(data)).rejects.toThrow("result=success");
+    expect(mocks.storage.remove).not.toHaveBeenCalled();
+    mocks.rpc.mockClear();
+    mocks.authorize.mockRejectedValue(new Error("login required"));
+    await expect(deleteEquipmentImage(data)).rejects.toThrow("login required");
+    expect(mocks.rpc).not.toHaveBeenCalled();
   });
   it("does not treat an image-source role as human approval",async()=>{
     await expect(saveReviewImage(form({id,expected_updated_at,image_role:"official",url:"https://example.com/image.webp",source_url:""}))).rejects.toThrow("result=success");
