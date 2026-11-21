@@ -1,7 +1,8 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { deleteEquipmentImage, saveOfficialReview, saveReviewImage, selectReviewImage } from "@/app/[locale]/admin/equipment/actions";
-import { OFFICIAL_STATUSES, equipmentStorageImageUrl, primaryEquipmentImage, type EquipmentOfficialReview, type EquipmentReviewImage } from "@/lib/equipment-image-review";
+import { deleteEquipmentImage, saveOfficialReview, saveReviewImage } from "@/app/[locale]/admin/equipment/actions";
+import { OFFICIAL_STATUSES, equipmentStorageImageUrl, primaryEquipmentImage, type EquipmentOfficialReview } from "@/lib/equipment-image-review";
+import { EquipmentDisplayImageForm, EquipmentImageSelection, SelectEquipmentDisplayImage } from "./EquipmentDisplayImageForm";
 import type { EquipmentFilters } from "@/lib/admin-equipment-filters";
 
 const input = "min-h-10 w-full min-w-0 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900";
@@ -39,31 +40,6 @@ function DeleteImageForm({ zh, context, id, revision, displayId, nextDisplayId, 
   </details>;
 }
 
-function PrimaryImageForm({ zh, context, image, mode = "select" }: {
-  zh: boolean; context: ReactNode; image: EquipmentReviewImage; mode?: "select" | "replace" | "pin";
-}) {
-  const requiresUpload = mode === "replace" || !image.storage_path;
-  const upload = <label className="block min-w-0 text-sm">
-    {zh ? "上傳圖片（JPEG／PNG／WebP，最多 5 MB）" : "Upload image (JPEG / PNG / WebP, max 5 MB)"}
-    <input name="image_file" type="file" accept="image/jpeg,image/png,image/webp" required={requiresUpload}
-      className="mt-1 block w-full min-w-0 max-w-full text-sm file:mr-2 file:rounded file:border-0 file:px-2 file:py-2" />
-  </label>;
-  return <form action={selectReviewImage} className="min-w-0 space-y-2">
-    {context}
-    <input type="hidden" name="image_id" value={image.id} />
-    <input type="hidden" name="expected_url" value={image.url} />
-    {requiresUpload ? upload : mode === "select" ? <details className="min-w-0">
-      <summary className="cursor-pointer text-sm">{zh ? "上傳新版（可選）" : "Upload a replacement (optional)"}</summary>
-      <div className="mt-2">{upload}</div>
-    </details> : null}
-    <button type="submit" className={button}>{mode === "replace"
-      ? (zh ? "更換展示圖片" : "Replace displayed image")
-      : image.storage_path
-        ? (zh ? "設為展示主圖" : "Set as primary image")
-        : (zh ? "上傳並設為展示主圖" : "Upload and set as primary")}</button>
-  </form>;
-}
-
 export function EquipmentImageReview({ machine, locale, page, filters = {}, capturedImages = [] }: {
   capturedImages?: { id: string; hasStorage: boolean }[];
   machine: EquipmentOfficialReview; locale: string; page: number; filters?: EquipmentFilters;
@@ -79,6 +55,22 @@ export function EquipmentImageReview({ machine, locale, page, filters = {}, capt
   const fallbackUrl = storageBase && fallbackImage?.storage_path
     ? equipmentStorageImageUrl(storageBase, fallbackImage.storage_path)
     : undefined;
+
+  const imageGroups = (["captured", "official"] as const).map(role => ({
+    role,
+    images: machine.equipment_images.filter(image => image.image_role === role)
+      .sort((a, b) => a.sort_order - b.sort_order || a.id.localeCompare(b.id))
+      .map((image, index) => ({
+        ...image,
+        label: role === "captured"
+          ? (zh ? `擷取來源圖 ${index + 1}` : `Captured source image ${index + 1}`)
+          : (zh ? `官方／官方候選圖 ${index + 1}` : `Official / candidate image ${index + 1}`),
+      })),
+  }));
+  const options = [...imageGroups].reverse().flatMap(({ images }) => images
+    .filter(image => httpUrl(image.url))
+    .map(image => ({ id: image.id, label: image.label, url: image.url, stored: Boolean(image.storage_path) })));
+  const initialId = options.find(image => image.id === displayImage?.id)?.id ?? options[0]?.id ?? "";
 
   const context = <><input type="hidden" name="locale" value={locale} /><input type="hidden" name="id" value={machine.id} />
     <input type="hidden" name="expected_updated_at" value={machine.updated_at} /><input type="hidden" name="catalog_page" value={page} />
@@ -107,65 +99,69 @@ export function EquipmentImageReview({ machine, locale, page, filters = {}, capt
         <span>{zh ? "我已核對所有官方資料及官方圖片，確認正確（取消勾選可撤回確認）" : "I checked all official data and official images and confirm they are correct (uncheck to withdraw approval)."}</span></label>
       <div className="sm:col-span-2"><button className={button}>{zh ? "儲存核對結果" : "Save review"}</button></div>
     </form>
-    <section className="min-w-0 space-y-3 rounded-lg border border-gray-200 p-3">
-      <h4 className="font-medium">{zh ? "公開展示圖片" : "Public display image"}</h4>
-      {currentImage && displayUrl ? <div className="grid min-w-0 gap-4 sm:grid-cols-2">
-        <a href={displayUrl} target="_blank" rel="noreferrer" className="block min-w-0">
-          <Image src={displayUrl} unoptimized width={640} height={480}
-            className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain"
-            alt={zh ? "公開頁目前顯示嘅器材圖片" : "Equipment image currently shown on public pages"} />
-        </a>
-        <div className="min-w-0 space-y-3">
-          <p className="text-sm text-gray-600">{currentImage.is_primary
-            ? (zh ? "手動指定主圖" : "Manually selected primary image")
-            : (zh ? "自動採用官方圖" : "Automatically selected official image")}</p>
-          <PrimaryImageForm zh={zh} context={context} image={currentImage} mode="replace" />
-          {!currentImage.is_primary ? <PrimaryImageForm zh={zh} context={context} image={currentImage} mode="pin" /> : null}
+    <EquipmentImageSelection initialImageId={initialId} key={initialId}>
+      <section className="min-w-0 space-y-3 rounded-lg border border-gray-200 p-3">
+        <h4 className="font-medium">{zh ? "公開展示圖片" : "Public display image"}</h4>
+        <div className={displayUrl ? "grid min-w-0 gap-4 sm:grid-cols-2" : "min-w-0 space-y-3"}>
+          {displayUrl ? <div className="min-w-0 space-y-2">
+            <a href={displayUrl} target="_blank" rel="noreferrer" className="block min-w-0">
+              <Image src={displayUrl} unoptimized width={640} height={480}
+                className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain"
+                alt={zh ? "公開頁目前顯示嘅器材圖片" : "Equipment image currently shown on public pages"} />
+            </a>
+            <p className="text-sm text-gray-600">{currentImage?.is_primary
+              ? (zh ? "手動指定主圖" : "Manually selected primary image")
+              : (zh ? "自動採用官方圖" : "Automatically selected official image")}</p>
+          </div> : <p className="text-sm text-gray-500">{zh ? "目前冇公開展示圖片。" : "No image is currently displayed publicly."}</p>}
+          <EquipmentDisplayImageForm zh={zh} context={context} images={options} currentId={displayImage?.id}
+            manuallySelected={Boolean(currentImage?.is_primary)} />
         </div>
-      </div> : <p className="text-sm text-gray-500">{zh ? "目前冇公開展示圖片。" : "No image is currently displayed publicly."}</p>}
-      <p className="text-sm text-gray-500">{zh ? "可以喺下方揀另一張圖設為主圖。" : "Choose another image below to set it as primary."}</p>
-    </section>
-    <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2">
-      {(["captured","official"] as const).map(role => <section key={role} className="min-w-0 max-w-full space-y-3 rounded-lg border border-gray-200 p-3">
-        <h4 className="font-medium">{role === "captured" ? (zh ? "擷取原圖（只限管理員）" : "Captured originals (admin only)") : (zh ? "官方／官方候選圖片" : "Official / candidate images")}</h4>
-        {role === "captured" ? capturedImages.map(image => <article key={image.id} className="min-w-0 space-y-2 border-b border-gray-100 pb-4">
-          {image.hasStorage ? <a href={`/api/admin/equipment-captured-images/${image.id}`} target="_blank" rel="noopener noreferrer" className="block min-w-0 max-w-full">
-            <Image src={`/api/admin/equipment-captured-images/${image.id}`} unoptimized width={640} height={480}
-              alt={zh ? "擷取器材圖片（僅限管理員）" : "Captured equipment (admin only)"}
-              className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" />
-          </a> : <p className="text-sm text-gray-500">{zh ? "等待私人圖片回填" : "Private image upload pending"}</p>}
-          <a href={`/api/admin/equipment-captured-images/${image.id}?original=1`} target="_blank" rel="noopener noreferrer"
-            className="block break-words text-sm text-blue-700 underline">{zh ? "開啟擷取來源原圖（僅限管理員）" : "Open original source image (admin only)"}</a>
-          <DeleteImageForm zh={zh} context={context} id={image.id} />
-        </article>) : null}
-        {machine.equipment_images.filter(image => image.image_role === role).sort((a,b) => a.sort_order-b.sort_order || a.id.localeCompare(b.id)).map(image => <article key={image.id} className="min-w-0 space-y-3 border-b border-gray-100 pb-4">
-          {httpUrl(image.url) ? <a href={image.url} target="_blank" rel="noreferrer" className="block min-w-0 max-w-full">
-            <Image src={image.url} unoptimized width={640} height={480} alt={role === "captured" ? (zh ? "擷取器材圖片" : "Captured equipment") : (zh ? "官方器材圖片候選" : "Official equipment candidate")}
-              className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" />
-          </a> : <p className="text-sm text-gray-500">{zh ? "圖片網址無效" : "Invalid image URL"}</p>}
-          <p className="break-words text-sm text-gray-600">{image.id === displayImage?.id ? (zh ? "目前展示" : "Currently displayed") : image.storage_path ? (zh ? "已上傳 Storage" : "Uploaded to Storage") : (zh ? "未上傳 Storage" : "Not uploaded to Storage")}</p>
-          {httpUrl(image.source_url) ? <a href={image.source_url!} target="_blank" rel="noreferrer" className="block break-words text-sm text-blue-700 underline [overflow-wrap:anywhere]">{zh ? "查看來源頁" : "View source page"}</a> : null}
-          <details className="min-w-0"><summary className="cursor-pointer text-sm">{zh ? "修改圖片網址" : "Edit image URL"}</summary>
-            <form action={saveReviewImage} className="mt-2 min-w-0 space-y-2">{context}<input type="hidden" name="image_id" value={image.id} /><input type="hidden" name="image_role" value={role} />
-              <label className="block min-w-0 text-sm">{zh ? "原始圖片網址" : "Original image URL"}<input type="url" name="url" required maxLength={4000} defaultValue={image.url} className={input} /></label>
-              <label className="block min-w-0 text-sm">{zh ? "來源頁" : "Source page"}<input type="url" name="source_url" maxLength={4000} defaultValue={image.source_url ?? ""} className={input} /></label>
-              <button className={button}>{zh ? "儲存圖片資料" : "Save image details"}</button>
+      </section>
+      <div className="mt-4 grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2">
+        {imageGroups.map(({ role, images }) => <section key={role} className="min-w-0 max-w-full space-y-3 rounded-lg border border-gray-200 p-3">
+          <h4 className="font-medium">{role === "captured" ? (zh ? "擷取原圖（只限管理員）" : "Captured originals (admin only)") : (zh ? "官方／官方候選圖片" : "Official / candidate images")}</h4>
+          {role === "captured" ? capturedImages.map(image => <article key={image.id} className="min-w-0 space-y-2 border-b border-gray-100 pb-4">
+            {image.hasStorage ? <a href={`/api/admin/equipment-captured-images/${image.id}`} target="_blank" rel="noopener noreferrer" className="block min-w-0 max-w-full">
+              <Image src={`/api/admin/equipment-captured-images/${image.id}`} unoptimized width={640} height={480}
+                alt={zh ? "擷取器材圖片（僅限管理員）" : "Captured equipment (admin only)"}
+                className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" />
+            </a> : <p className="text-sm text-gray-500">{zh ? "等待私人圖片回填" : "Private image upload pending"}</p>}
+            <a href={`/api/admin/equipment-captured-images/${image.id}?original=1`} target="_blank" rel="noopener noreferrer"
+              className="block break-words text-sm text-blue-700 underline">{zh ? "開啟擷取來源原圖（僅限管理員）" : "Open original source image (admin only)"}</a>
+            <DeleteImageForm zh={zh} context={context} id={image.id} />
+          </article>) : null}
+          {images.map(image => <article key={image.id} className="min-w-0 space-y-3 border-b border-gray-100 pb-4">
+            {role === "captured" ? <h5 className="text-sm font-medium">{image.label}</h5> : null}
+            {httpUrl(image.url) ? <a href={image.url} target="_blank" rel="noreferrer" className="block min-w-0 max-w-full">
+              <Image src={image.url} unoptimized width={640} height={480} alt={role === "captured" ? (zh ? "擷取器材圖片" : "Captured equipment") : (zh ? "官方器材圖片候選" : "Official equipment candidate")}
+                className="aspect-[4/3] h-auto w-full max-w-full rounded-lg bg-gray-50 object-contain" />
+            </a> : <p className="text-sm text-gray-500">{zh ? "圖片網址無效" : "Invalid image URL"}</p>}
+            {image.id !== displayImage?.id ? <p className="break-words text-sm text-gray-600">
+              {image.storage_path ? (zh ? "已上傳 Storage" : "Uploaded to Storage") : (zh ? "未上傳 Storage" : "Not uploaded to Storage")}
+            </p> : null}
+            {httpUrl(image.source_url) ? <a href={image.source_url!} target="_blank" rel="noreferrer" className="block break-words text-sm text-blue-700 underline [overflow-wrap:anywhere]">{zh ? "查看來源頁" : "View source page"}</a> : null}
+            <details className="min-w-0"><summary className="cursor-pointer text-sm">{zh ? "修改圖片網址" : "Edit image URL"}</summary>
+              <form action={saveReviewImage} className="mt-2 min-w-0 space-y-2">{context}<input type="hidden" name="image_id" value={image.id} /><input type="hidden" name="image_role" value={role} />
+                <label className="block min-w-0 text-sm">{zh ? "原始圖片網址" : "Original image URL"}<input type="url" name="url" required maxLength={4000} defaultValue={image.url} className={input} /></label>
+                <label className="block min-w-0 text-sm">{zh ? "來源頁" : "Source page"}<input type="url" name="source_url" maxLength={4000} defaultValue={image.source_url ?? ""} className={input} /></label>
+                <button className={button}>{zh ? "儲存圖片資料" : "Save image details"}</button>
+              </form>
+            </details>
+            {httpUrl(image.url) ? <SelectEquipmentDisplayImage id={image.id}>{zh ? "選用此圖" : "Use this image"}</SelectEquipmentDisplayImage> : null}
+            <DeleteImageForm zh={zh} context={context} id={image.id} revision={image.updated_at}
+              displayId={displayImage?.id} nextDisplayId={image.id === displayImage?.id ? fallbackImage?.id : displayImage?.id}
+              replacementUrl={fallbackUrl} clearsApproval={Boolean(machine.official_verified_at)} />
+          </article>)}
+          {!images.length && !(role === "captured" && capturedImages.length) ? <p className="text-sm text-gray-500">{zh ? "暫無圖片" : "No images yet"}</p> : null}
+          <details className="min-w-0"><summary className="cursor-pointer text-sm">{zh ? "新增圖片" : "Add image"}</summary>
+            <form action={saveReviewImage} className="mt-2 min-w-0 space-y-2">{context}<input type="hidden" name="image_role" value={role} />
+              <label className="block min-w-0 text-sm">{zh ? "圖片網址" : "Image URL"}<input type="url" name="url" required maxLength={4000} className={input} /></label>
+              <label className="block min-w-0 text-sm">{zh ? "來源頁" : "Source page"}<input type="url" name="source_url" maxLength={4000} className={input} /></label>
+              <button className={button}>{zh ? "新增圖片" : "Add image"}</button>
             </form>
           </details>
-          {image.id !== displayImage?.id ? <PrimaryImageForm zh={zh} context={context} image={image} /> : null}
-          <DeleteImageForm zh={zh} context={context} id={image.id} revision={image.updated_at}
-            displayId={displayImage?.id} nextDisplayId={image.id === displayImage?.id ? fallbackImage?.id : displayImage?.id}
-            replacementUrl={fallbackUrl} clearsApproval={Boolean(machine.official_verified_at)} />
-        </article>)}
-        {!machine.equipment_images.some(image => image.image_role === role) && !(role === "captured" && capturedImages.length) ? <p className="text-sm text-gray-500">{zh ? "暫無圖片" : "No images yet"}</p> : null}
-        <details className="min-w-0"><summary className="cursor-pointer text-sm">{zh ? "新增圖片" : "Add image"}</summary>
-          <form action={saveReviewImage} className="mt-2 min-w-0 space-y-2">{context}<input type="hidden" name="image_role" value={role} />
-            <label className="block min-w-0 text-sm">{zh ? "圖片網址" : "Image URL"}<input type="url" name="url" required maxLength={4000} className={input} /></label>
-            <label className="block min-w-0 text-sm">{zh ? "來源頁" : "Source page"}<input type="url" name="source_url" maxLength={4000} className={input} /></label>
-            <button className={button}>{zh ? "新增圖片" : "Add image"}</button>
-          </form>
-        </details>
-      </section>)}
-    </div>
+        </section>)}
+      </div>
+    </EquipmentImageSelection>
   </section>;
 }
