@@ -90,16 +90,16 @@ it("retains total count for an empty out-of-range page", async () => {
   expect(await searchGyms({ page: "4" })).toMatchObject({ gyms: [], totalCount: 42, totalPages: 3, hasNextPage: false });
 });
 
-it("filters collections across all candidates before sorting and pagination", async () => {
-  query.execute.mockResolvedValue({ data: [
-    { id: "no", slug: "no", is_hyrox_official: false },
-    { id: "yes", slug: "yes", is_hyrox_official: true },
-  ], count: 2, error: null });
-  const result = await searchGyms({ collection: "hyrox-official-hong-kong" });
-  expect(query.range).not.toHaveBeenCalled();
-  expect(query.order).not.toHaveBeenCalled();
-  expect(result.gyms.map(({ id }) => id)).toEqual(["yes"]);
-  expect(result.totalCount).toBe(1);
+it("filters collections before database pagination and preserves the exact filtered count", async () => {
+  query.execute.mockResolvedValue({ data: [{ id: "yes", slug: "yes", search_order: 21 }], count: 21, error: null });
+  const result = await searchGyms({ collection: "hyrox-official-hong-kong", district: "HK-YTM", page: "2" });
+  expect(rpc).toHaveBeenCalledExactlyOnceWith("search_gyms", {
+    p_gym_ids: null, p_user_lat: null, p_user_lng: null, p_collection: "hyrox-official-hong-kong",
+  }, { count: "exact" });
+  expect(query.eq).toHaveBeenCalledWith("district_code", "HK-YTM");
+  expect(query.range).toHaveBeenCalledWith(20, 39);
+  expect(query.order).toHaveBeenCalledWith("search_order", { ascending: true });
+  expect(result).toMatchObject({ gyms: [{ id: "yes" }], totalCount: 21, totalPages: 2, hasNextPage: false });
 });
 
 it("selects aggregated votes and preserves the database page order", async () => {

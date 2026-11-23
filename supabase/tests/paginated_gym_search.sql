@@ -1,4 +1,4 @@
--- Run after 0077 against a local/test database. All fixtures roll back.
+-- Run after 0081 against a local/test database. All fixtures roll back.
 begin;
 insert into public.gyms(id, name, slug, district_code, is_active, data_source,
   data_accuracy_status, is_verified, updated_at, lat, lng) values
@@ -7,6 +7,8 @@ insert into public.gyms(id, name, slug, district_code, is_active, data_source,
 ('00000000-0077-4000-8000-000000000003', 'Search flagged', 'search-flagged-0077', 'HK-WC', true, 'import', 'needs_review', true, '2026-02-01', null, null),
 ('00000000-0077-4000-8000-000000000004', 'Search hidden', 'search-hidden-0077', 'HK-YTM', false, 'import', 'normal', true, '2026-02-01', 22.3, 114.1),
 ('00000000-0077-4000-8000-000000000005', 'Search recent', 'search-recent-0077', 'HK-YTM', true, 'import', 'normal', false, '2026-01-02', null, null);
+update public.gyms set is_hyrox_official = true
+where slug in ('search-liked-0077', 'search-verified-0077', 'search-hidden-0077');
 insert into public.users(id, firebase_uid, firebase_email) values
 ('00000000-0077-4000-8000-000000000006', 'search-0077', 'search-0077@example.invalid');
 insert into public.gym_accuracy_votes(gym_id,user_id,vote) values
@@ -49,6 +51,27 @@ begin
   if actual is distinct from array['search-liked-0077','search-recent-0077'] then
     raise exception 'Filters and global pagination changed: %', actual;
   end if;
+  select array_agg(slug order by search_order) into actual
+  from public.search_gyms(ids, null, null, 'hyrox-official-hong-kong');
+  if actual is distinct from array['search-verified-0077','search-liked-0077'] then
+    raise exception 'Collection membership, active rows, or ranking changed: %', actual;
+  end if;
+  select array_agg(slug order by search_order) into actual from (
+    select slug, search_order from public.search_gyms(ids, 22.3, 114.1, 'hyrox-official-hong-kong')
+    where district_code = 'HK-YTM' order by search_order limit 1
+  ) page;
+  if actual is distinct from array['search-liked-0077'] then
+    raise exception 'Collection distance ranking or pagination changed: %', actual;
+  end if;
+  if exists(select from public.search_gyms(ids, null, null, 'unknown'))
+    or exists(select from public.search_gyms(array[]::uuid[], null, null, 'hyrox-official-hong-kong')) then
+    raise exception 'Unknown collections or empty IDs widened the search';
+  end if;
+  if exists(select from jsonb_object_keys((select to_jsonb(r)
+    from public.search_gyms(ids, null, null, 'hyrox-official-hong-kong') r limit 1)) k
+    where k in ('source_url','captured_name','captured_name_zh','source','data_source','user_id','url','future_private')) then
+    raise exception 'Collection RPC exposes restricted output';
+  end if;
   if (select count(*) from public.search_gyms(ids) where district_code='HK-YTM') <> 3 then
     raise exception 'Filtered total changed';
   end if;
@@ -88,11 +111,11 @@ set local role authenticated; select pg_temp.assert_paginated_search(); reset ro
 
 -- The fixed RETURNS TABLE allowlist must not adopt future view columns.
 do $$ begin
-  if (select prosecdef from pg_proc where oid='public.search_gyms(uuid[],double precision,double precision)'::regprocedure) then
+  if (select prosecdef from pg_proc where oid='public.search_gyms(uuid[],double precision,double precision,text)'::regprocedure) then
     raise exception 'Search must remain security invoker';
   end if;
   if exists(select 1 from pg_proc p, lateral aclexplode(p.proacl) a
-    where p.oid='public.search_gyms(uuid[],double precision,double precision)'::regprocedure and a.grantee=0) then
+    where p.oid='public.search_gyms(uuid[],double precision,double precision,text)'::regprocedure and a.grantee=0) then
     raise exception 'PUBLIC execute must be revoked';
   end if;
 end $$;

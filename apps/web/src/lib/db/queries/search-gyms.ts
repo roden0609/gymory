@@ -361,12 +361,13 @@ async function searchGymsWithTiming(
     typeof params.userLat === "number" && Number.isFinite(params.userLat) &&
     typeof params.userLng === "number" && Number.isFinite(params.userLng);
 
-  const buildQuery = (columns = `${GYM_SEARCH_RESULT_COLUMNS.join(", ")}${collection ? "" : ", search_order"}`) => {
+  const buildQuery = (columns = `${GYM_SEARCH_RESULT_COLUMNS.join(", ")}, search_order`) => {
     let query = supabase
       .rpc("search_gyms", {
         p_gym_ids: catalogGymIds === null ? null : [...catalogGymIds],
         p_user_lat: hasUserLocation ? params.userLat : null,
         p_user_lng: hasUserLocation ? params.userLng : null,
+        ...(collection ? { p_collection: collection.slug } : {}),
       }, { count: "exact" })
       .select(columns)
       .eq("is_active", true);
@@ -636,12 +637,10 @@ async function searchGymsWithTiming(
   // IDs travel in the POST body. PostgREST applies all filters and exact count
   // before range. PostgREST requires search_order in the selected RPC record;
   // publicGymSummary removes it before returning data to any consumer.
-  // Collections still need every candidate for their compound matchesGym rules.
-  let query = buildQuery();
-  if (!collection) query = query.order("search_order", { ascending: true }).range(from, to);
+  const query = buildQuery().order("search_order", { ascending: true }).range(from, to);
   timing.record("gym_query_batches", 1);
   let result = await timing.measure("gym_query_ms", () => queryTiming.measure(() => query));
-  if (!collection && from > 0 && result.error?.code === "PGRST103") {
+  if (from > 0 && result.error?.code === "PGRST103") {
     // PostgREST rejects offsets beyond the filtered count. Recover the exact
     // total with an empty projection result instead of downloading all gyms.
     timing.record("gym_query_batches", 2);
@@ -649,95 +648,12 @@ async function searchGymsWithTiming(
   }
   if (result.error) throw new Error(`Failed to load gyms (${result.error.code ?? "unknown"})`);
   const data = ((result.data ?? []) as unknown as RankedSearchRow[]).map(publicGymSummary);
-  if (!collection) {
-    const totalCount = result.count ?? data.length;
-    const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
-    timing.record("matched_gyms", totalCount);
-    return { gyms: data, totalCount, page, pageSize, totalPages, hasNextPage: page < totalPages };
-  }
-
-  const allGyms = data.filter((gym) =>
-    collection ? collection.matchesGym(gym) : true
-  );
-
-  timing.record("matched_gyms", allGyms.length);
-  const sortStarted = performance.now();
-  const sortedGyms = [...allGyms].sort((a, b) => {
-    if (hasUserLocation) {
-      const aDistance = distanceKm(params.userLat!, params.userLng!, a.lat, a.lng);
-      const bDistance = distanceKm(params.userLat!, params.userLng!, b.lat, b.lng);
-      if (aDistance !== bDistance) return aDistance - bDistance;
-    }
-
-    const accuracyDiff = accuracyScore(b) - accuracyScore(a);
-    if (accuracyDiff !== 0) return accuracyDiff;
-
-    const updatedDiff = timestampMs(b.updated_at) - timestampMs(a.updated_at);
-    if (updatedDiff !== 0) return updatedDiff;
-
-    return a.slug.localeCompare(b.slug);
-  });
-
-  const totalCount = sortedGyms.length;
+  const totalCount = result.count ?? data.length;
   const totalPages = totalCount === 0 ? 0 : Math.ceil(totalCount / pageSize);
-  const gyms = sortedGyms.slice(from, to + 1);
-  timing.record("sort_paginate_ms", performance.now() - sortStarted);
-
-  return {
-    gyms,
-    totalCount,
-    page,
-    pageSize,
-    totalPages,
-    hasNextPage: page < totalPages,
-  };
+  timing.record("matched_gyms", totalCount);
+  return { gyms: data, totalCount, page, pageSize, totalPages, hasNextPage: page < totalPages };
 }
 
 function emptySearchResult(page: number, pageSize: number): PaginatedGymSearchResult {
   return { gyms: [], totalCount: 0, page, pageSize, totalPages: 0, hasNextPage: false };
-}
-
-function accuracyScore(gym: GymSummary): number {
-  const statusScore = gym.data_accuracy_status === "normal" ? 1000 : 0;
-  const voteScore =
-    (gym.accuracy_like_count ?? 0) -
-    (gym.accuracy_dislike_count ?? 0) +
-    Math.min(gym.accuracy_total_votes ?? 0, 20) * 0.1;
-  const verifiedScore = gym.is_verified ? 50 : 0;
-  return statusScore + voteScore + verifiedScore;
-}
-
-function timestampMs(value: string | null | undefined): number {
-  if (!value) return 0;
-  const parsed = Date.parse(value);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
-
-function distanceKm(
-  originLat: number,
-  originLng: number,
-  targetLat: number | null,
-  targetLng: number | null
-): number {
-  if (
-    targetLat === null ||
-    targetLng === null ||
-    !Number.isFinite(targetLat) ||
-    !Number.isFinite(targetLng)
-  ) {
-    return Number.POSITIVE_INFINITY;
-  }
-
-  const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
-  const earthRadiusKm = 6371;
-  const deltaLat = toRadians(targetLat - originLat);
-  const deltaLng = toRadians(targetLng - originLng);
-  const lat1 = toRadians(originLat);
-  const lat2 = toRadians(targetLat);
-
-  const a =
-    Math.sin(deltaLat / 2) ** 2 +
-    Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLng / 2) ** 2;
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return earthRadiusKm * c;
 }

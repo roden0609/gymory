@@ -1,10 +1,9 @@
 import { SearchFilterLayout } from "@/components/search/SearchFilterLayout";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
+import { cache, Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getGymsForTrainingPage } from "@/lib/db/queries/training-pages";
 import { searchGyms, type RawSearchParams } from "@/lib/db/queries/search-gyms";
 import { getEquipmentCategoryFilterOptions, getEquipmentMachineSuggestions } from "@/lib/db/queries/equipment-catalog-search";
 import {
@@ -14,13 +13,25 @@ import {
 } from "@/lib/district-pages";
 import { getEquipmentPageDefinition } from "@/lib/equipment-pages";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
-import { buildListingSeoMetadata } from "@/lib/listing-seo";
+import { buildListingSeoMetadata, getListingSeoState } from "@/lib/listing-seo";
 import { DistrictBrowseControls } from "@/components/search/DistrictBrowseControls";
 import { SearchFilters } from "@/components/search/SearchFilters";
 import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 
 type Locale = "en" | "zh-HK";
+
+// Metadata and rendering receive separate props objects. Use a stable string key
+// so React can reuse the result within the same request, including its exact count.
+const searchTrainingCollection = cache((serializedParams: string) =>
+  searchGyms(JSON.parse(serializedParams) as RawSearchParams)
+);
+
+function loadTrainingCollection(slug: string, searchParams: RawSearchParams, district?: string) {
+  const params = { ...searchParams, collection: slug, ...(district ? { district } : {}) };
+  const entries = Object.entries(params).sort(([a], [b]) => a.localeCompare(b));
+  return searchTrainingCollection(JSON.stringify(Object.fromEntries(entries)));
+}
 
 export async function generateTrainingCollectionMetadata({
   locale,
@@ -37,26 +48,20 @@ export async function generateTrainingCollectionMetadata({
   if (!definition) return {};
 
   const t = await getTranslations({ locale, namespace: "trainingPages" });
-  const result = district
-    ? await searchGyms({
-        collection: definition.slug,
-        district: district.code,
-        pageSize: "1",
-      })
-    : await getGymsForTrainingPage(definition);
+  const path = district ? `/${definition.slug}/districts/${district.slug}` : `/${definition.slug}`;
+  const { filtered } = getListingSeoState(path, searchParams);
+  const empty = !filtered && (await loadTrainingCollection(definition.slug, searchParams ?? {}, district?.code)).totalCount === 0;
   const districtName = district ? getDistrictPageLabel(district, locale) : null;
 
   return buildListingSeoMetadata({
     locale,
-    path: district
-      ? `/${definition.slug}/districts/${district.slug}`
-      : `/${definition.slug}`,
+    path,
     title: districtName
       ? `${t(`items.${definition.slug}.title`)} - ${districtName}`
       : t(`items.${definition.slug}.title`),
     description: t(`items.${definition.slug}.description`),
     searchParams,
-    empty: result.totalCount === 0,
+    empty,
   });
 }
 
@@ -90,11 +95,7 @@ export async function TrainingCollectionPage({
       ? getDistrictPageLabel(currentDistrict, locale)
       : null;
   const [result, equipmentCategories, machineSuggestions] = await Promise.all([
-    searchGyms({
-      ...searchParams,
-      collection: definition.slug,
-      ...(fixedDistrict ? { district: fixedDistrict } : {}),
-    }),
+    loadTrainingCollection(definition.slug, searchParams, fixedDistrict),
     getEquipmentCategoryFilterOptions(),
     getEquipmentMachineSuggestions(),
   ]);
