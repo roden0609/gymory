@@ -39,13 +39,14 @@ function SearchFilterToolbar({ actions }: { actions: FilterActions | null }) {
   );
 }
 
-export function SearchFilterLayout({ children, controls }: { children: ReactNode; controls?: ReactNode }) {
+export function SearchFilterLayout({ children, controls, navigation }: { children: ReactNode; controls?: ReactNode; navigation?: ReactNode }) {
   const [actions, setActions] = useState<FilterActions | null>(null);
 
   return (
     <SearchNavigationProvider>
       <FilterActionsContext.Provider value={setActions}>
         <div className="min-w-0 max-w-full">
+          {navigation}
           <SearchFilterToolbar actions={actions} />
           {controls}
           <div className="flex min-w-0 flex-col gap-6 md:flex-row">{children}</div>

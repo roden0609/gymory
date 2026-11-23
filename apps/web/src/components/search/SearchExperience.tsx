@@ -93,11 +93,10 @@ export async function SearchExperience({
           />
         )}
         {introduction}
-        <TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />
         {currentDistrictName && !introduction ? (
           <h1 className="sr-only">{districtPages("h1", { district: currentDistrictName })}</h1>
         ) : null}
-        <SearchFilterLayout controls={
+        <SearchFilterLayout navigation={<TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />} controls={
           <div className="mb-5 grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)]">
             <section className="min-w-0 max-w-full">
               <h2 className="mb-2 text-sm font-semibold text-gray-900">

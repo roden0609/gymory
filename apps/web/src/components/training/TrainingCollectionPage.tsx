@@ -1,3 +1,4 @@
+import { TrainingTagLinks } from "@/components/search/TrainingTagLinks";
 import { SearchFilterLayout } from "@/components/search/SearchFilterLayout";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -176,7 +177,7 @@ export async function TrainingCollectionPage({
           </section>
         ) : null}
 
-        <SearchFilterLayout controls={
+        <SearchFilterLayout navigation={<TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />} controls={
           <section className="mb-5 min-w-0 max-w-full">
             <h2 className="mb-2 text-sm font-semibold text-gray-900">
               {districtPages("browseTitle")}

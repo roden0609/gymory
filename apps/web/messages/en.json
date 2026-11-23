@@ -628,6 +628,7 @@
     "noResultsSub": "This brand page is available, but it will only be indexed once Gymory has matching gym data."
   },
   "trainingPages": {
+    "navigationLabel": "Training categories",
     "openInSearch": "Open in search",
     "matchedGyms": "Matching gyms",
     "verifiedGyms": "Verified gyms",

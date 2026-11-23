@@ -628,6 +628,7 @@
     "noResultsSub": "呢個品牌頁可以訪問，但要等到 Gymory 有符合健身房資料先會被 index。"
   },
   "trainingPages": {
+    "navigationLabel": "訓練類別",
     "openInSearch": "喺搜尋開啟",
     "matchedGyms": "符合健身房",
     "verifiedGyms": "已驗證健身房",

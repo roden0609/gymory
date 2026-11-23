@@ -1,5 +1,9 @@
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
+import { isPlainLinkClick } from "@/lib/link-navigation";
+import { useSearchNavigation } from "./SearchNavigation";
 
 const TRAINING_TAG_SLUGS = [
   "hyrox-official-hong-kong",
@@ -9,30 +13,35 @@ const TRAINING_TAG_SLUGS = [
   "hybrid-training-hong-kong",
 ] as const;
 
-export async function TrainingTagLinks({
-  currentDistrictSlug,
-}: {
-  currentDistrictSlug?: string;
-}) {
-  const trainingPages = await getTranslations("trainingPages");
+export function TrainingTagLinks({ currentDistrictSlug }: { currentDistrictSlug?: string }) {
+  const t = useTranslations("trainingPages");
+  const pathname = usePathname();
+  const { target, navigate, isPending } = useSearchNavigation();
+  const activePath = isPending && target ? target.pathname : pathname;
 
   return (
-    <section className="mb-5">
-      <div className="flex flex-wrap gap-2">
-        {TRAINING_TAG_SLUGS.map((slug) => (
+    <nav aria-label={t("navigationLabel")} className="mb-5 flex min-w-0 flex-wrap gap-2">
+      {TRAINING_TAG_SLUGS.map((slug) => {
+        const href = currentDistrictSlug ? `/${slug}/districts/${currentDistrictSlug}` : `/${slug}`;
+        const active = href === activePath;
+        return (
           <Link
             key={slug}
-            href={
-              currentDistrictSlug
-                ? `/${slug}/districts/${currentDistrictSlug}`
-                : `/${slug}`
-            }
-            className="inline-flex min-h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+            href={href}
+            aria-current={href === pathname ? "page" : undefined}
+            onClick={(event) => {
+              if (!isPlainLinkClick(event)) return;
+              event.preventDefault();
+              navigate(href);
+            }}
+            className={`inline-flex min-h-9 max-w-full items-center justify-center rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${active
+              ? "border-gray-900 bg-gray-900 text-white"
+              : "border-gray-300 bg-white text-gray-700 hover:border-gray-400 hover:bg-gray-50"}`}
           >
-            {trainingPages(`items.${slug}.tagLabel`)}
+            {t(`items.${slug}.tagLabel`)}
           </Link>
-        ))}
-      </div>
-    </section>
+        );
+      })}
+    </nav>
   );
 }
