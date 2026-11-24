@@ -383,6 +383,29 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const jsonLd = buildGymJsonLd({ gym, locale, display,
     description: [display.district, display.address].filter(Boolean).join(" · ") || "Gym equipment, location, and training details on Gymory.",
   });
+  const mapsUrl =
+    gym.lat !== null && gym.lng !== null
+      ? `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`
+      : null;
+
+  const openingHours = sortOpeningHoursEntries(gym.opening_hours_json ?? {})
+    .filter(([, hours]) => hours.trim());
+  const today = new Intl.DateTimeFormat("en", {
+    weekday: "long",
+    timeZone: "Asia/Hong_Kong",
+  }).format(new Date()).toLowerCase();
+  const todayHours = openingHours.find(([day]) => day === today)?.[1];
+  const holidayHours = openingHours.find(([day]) => day === "public_holidays")?.[1];
+  const hasDifferentHolidayHours = holidayHours && holidayHours !== todayHours;
+
+  const contactLinkClass = "inline-flex min-h-10 min-w-0 items-center rounded-lg border border-gray-300 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-50";
+
+  function formatHours(hours: string) {
+    return /^(?:00:00\s*[-–—]\s*24:00|24\s*hours?)$/i.test(hours.trim())
+      ? t("open24Hours")
+      : hours;
+  }
+
   return (
     <main className="min-h-screen min-w-0 bg-gray-50">
       <AnalyticsEventOnMount eventName="view_gym" params={{ gym_slug: gym.slug, gym_name: display.name, district: gym.district_code, chain: gymBrand?.slug, locale }} />
@@ -411,10 +434,96 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                   </span>
                 )}
               </div>
-              <p className="mt-2 break-words text-gray-500">
-                {display.district}
-                {display.address ? ` · ${display.address}` : ""}
-              </p>
+              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <p className="min-w-0 break-words text-gray-500">
+                  {display.district}
+                  {display.address ? ` · ${display.address}` : ""}
+                </p>
+                {mapsUrl && (
+                  <TrackedExternalLink
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-10 items-center rounded-lg border border-gray-300 px-3 py-1 text-sm font-medium text-gray-900 hover:bg-gray-50"
+                    tracking={{
+                      eventName: "open_google_maps",
+                      gymSlug: gym.slug,
+                      gymName: display.name,
+                      district: gym.district_code,
+                    }}
+                  >
+                    {t("openMap")}
+                  </TrackedExternalLink>
+                )}
+              </div>
+              {openingHours.length > 0 && (
+                <details className="mt-2 text-sm text-gray-700">
+                  <summary className="min-h-10 cursor-pointer py-2 pr-2">
+                    <span className="font-medium">
+                      {todayHours
+                        ? t(hasDifferentHolidayHours ? "todayRegularOpeningHours" : "todayOpeningHours", {
+                            hours: formatHours(todayHours),
+                          })
+                        : t("openingHours")}
+                    </span>
+                    <span className="ms-2 text-gray-500 underline underline-offset-4">
+                      {t("viewWeeklyHours")}
+                    </span>
+                  </summary>
+                  <dl className="mt-1 grid gap-1 rounded-lg bg-gray-50 p-3">
+                    {openingHours.map(([day, hours]) => (
+                      <div key={day} className="flex flex-wrap justify-between gap-x-3 gap-y-1">
+                        <dt className="font-medium">{formatOpeningHoursDay(day, t)}</dt>
+                        <dd className="min-w-0 break-words">{formatHours(hours)}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </details>
+              )}
+              {(gym.website_url || gym.instagram_url || gym.contact_phone) && (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {gym.website_url && (
+                    <TrackedExternalLink
+                      href={gym.website_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={contactLinkClass}
+                      tracking={{
+                        eventName: "visit_gym_website",
+                        gymSlug: gym.slug,
+                        gymName: display.name,
+                        linkType: "official_website",
+                      }}
+                    >
+                      {t("website")}
+                    </TrackedExternalLink>
+                  )}
+                  {gym.instagram_url && (
+                    <TrackedExternalLink
+                      href={gym.instagram_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={contactLinkClass}
+                      tracking={{
+                        eventName: "visit_gym_website",
+                        gymSlug: gym.slug,
+                        gymName: display.name,
+                        linkType: "instagram",
+                      }}
+                    >
+                      Instagram
+                    </TrackedExternalLink>
+                  )}
+                  {gym.contact_phone && (
+                    <a
+                      href={`tel:${gym.contact_phone}`}
+                      className={contactLinkClass}
+                    >
+                      <span className="break-all">{gym.contact_phone}</span>
+                    </a>
+                  )}
+                </div>
+              )}
               {gymBrand && (
                 <Link href={`/gym-brands/${gymBrand.slug}`} className="mt-2 inline-block max-w-full break-words text-sm text-gray-600 underline underline-offset-4">
                   {locale === "zh-HK" ? gymBrand.name_zh : gymBrand.name_en}
@@ -467,10 +576,6 @@ async function GymDetailBody({ gym, locale, flash }: {
   const common = await getTranslations("common");
   const display = getLocalizedGym(gym, locale);
   const dayPassPrice = formatPrice(gym.day_pass_price, gym.country_code, locale);
-  const mapsUrl =
-    gym.lat !== null && gym.lng !== null
-      ? `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`
-      : null;
 
   const freeWeightRanges = [
     { label: t("dumbbellMin"), value: formatWeight(gym.dumbbell_min_weight_kg, t("notListed")) },
@@ -612,101 +717,6 @@ async function GymDetailBody({ gym, locale, flash }: {
             ) : (
               missingEquipmentCta(SUBMIT_SECTION_HASHES.equipmentBrands)
             )}
-          </Section>
-
-          <Section title={t("location")}>
-            <div className="rounded-lg bg-gray-50 p-4">
-              <p className="font-medium text-gray-900">{display.district}</p>
-              {display.address && (
-                <p className="mt-1 text-sm text-gray-600">{display.address}</p>
-              )}
-              {mapsUrl && (
-                <TrackedExternalLink
-                  href={mapsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex text-sm font-medium text-gray-900 underline"
-                  tracking={{
-                    eventName: "open_google_maps",
-                    gymSlug: gym.slug,
-                    gymName: display.name,
-                    district: gym.district_code,
-                  }}
-                >
-                  {t("openMap")}
-                </TrackedExternalLink>
-              )}
-            </div>
-          </Section>
-
-          <Section title={t("openingHours")}>
-            {gym.opening_hours_json ? (
-              <dl className="grid gap-2 sm:grid-cols-2">
-                {sortOpeningHoursEntries(gym.opening_hours_json).map(
-                  ([day, hours]) => (
-                    <div
-                      key={day}
-                      className="flex justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm"
-                    >
-                      <dt className="font-medium text-gray-700">
-                        {formatOpeningHoursDay(day, t)}
-                      </dt>
-                      <dd className="text-gray-600">{hours}</dd>
-                    </div>
-                  )
-                )}
-              </dl>
-            ) : (
-              <p className="text-sm text-gray-500">{t("notListed")}</p>
-            )}
-          </Section>
-
-          <Section title={t("contact")}>
-            <div className="flex flex-wrap gap-3">
-              {gym.website_url && (
-                <TrackedExternalLink
-                  href={gym.website_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                  tracking={{
-                    eventName: "visit_gym_website",
-                    gymSlug: gym.slug,
-                    gymName: display.name,
-                    linkType: "official_website",
-                  }}
-                >
-                  {t("website")}
-                </TrackedExternalLink>
-              )}
-              {gym.instagram_url && (
-                <TrackedExternalLink
-                  href={gym.instagram_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                  tracking={{
-                    eventName: "visit_gym_website",
-                    gymSlug: gym.slug,
-                    gymName: display.name,
-                    linkType: "instagram",
-                  }}
-                >
-                  Instagram
-                </TrackedExternalLink>
-              )}
-              {gym.contact_phone && (
-                <a
-                  href={`tel:${gym.contact_phone}`}
-                  className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                >
-                  {gym.contact_phone}
-                </a>
-              )}
-              {!gym.website_url && !gym.instagram_url && !gym.contact_phone && (
-                <p className="text-sm text-gray-500">{t("notListed")}</p>
-              )}
-            </div>
           </Section>
         </div>
         <div className="mt-8">
