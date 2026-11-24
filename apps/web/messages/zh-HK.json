@@ -39,6 +39,7 @@
     "openingDaySunday": "星期日",
     "openingDayPublicHolidays": "公眾假期",
     "dayPass": "單次入場",
+    "dayPassWithPrice": "單次入場 {price}",
     "suggestUpdate": "建議更新",
     "allGyms": "所有健身房",
     "verified": "已驗證",

@@ -13,8 +13,6 @@ export const GYM_DETAIL_FIELDS = [
   "lng",
   "country_code",
   "postal_code",
-  "size_category",
-  "estimated_size_sqft",
   "dumbbell_min_weight_kg",
   "dumbbell_max_weight_kg",
   "plate_min_weight_kg",

@@ -8,6 +8,8 @@ import { GYM_SEARCH_COLUMNS } from "./search-gyms";
 // The submission form edits flat compatibility fields, but needs no trust,
 // provenance or internal moderation metadata.
 export const GYM_SUBMISSION_COLUMNS = [...new Set([
+  "size_category",
+  "estimated_size_sqft",
   ...GYM_DETAIL_COLUMNS.split(", ").filter((field) => ![
     "lat", "lng", "postal_code", "is_verified", "is_hyrox_official",
     "equipment_last_verified_at", "updated_at",

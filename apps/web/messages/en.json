@@ -39,6 +39,7 @@
     "openingDaySunday": "Sunday",
     "openingDayPublicHolidays": "Public holidays",
     "dayPass": "Day Pass",
+    "dayPassWithPrice": "Day pass {price}",
     "suggestUpdate": "Suggest an Update",
     "allGyms": "All Gyms",
     "verified": "Verified",

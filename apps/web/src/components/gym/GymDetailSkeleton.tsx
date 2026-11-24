@@ -8,10 +8,7 @@ function SkeletonBlock({ className }: { className: string }) {
 export function GymDetailSectionsSkeleton() {
   return (
     <div aria-hidden="true" className="mx-auto w-full max-w-5xl min-w-0 px-4 py-8">
-      <div className="grid min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {[0, 1, 2].map((key) => <div key={key} className="rounded-lg border border-gray-200 bg-white p-4"><SkeletonBlock className="h-4 w-20 max-w-full" /><SkeletonBlock className="mt-3 h-7 w-28 max-w-full" /></div>)}
-      </div>
-      <div className="mt-8 rounded-lg border border-gray-200 bg-white px-5">
+      <div className="rounded-lg border border-gray-200 bg-white px-5">
         {[0, 1, 2, 3].map((key) => <div key={key} className="border-b border-gray-100 py-6 last:border-0"><SkeletonBlock className="h-5 w-32 max-w-full" /><SkeletonBlock className="mt-4 h-16 w-full" /></div>)}
       </div>
     </div>

@@ -29,8 +29,8 @@ describe("public gym projections", () => {
     expect(query.select).toHaveBeenCalledWith(GYM_DETAIL_COLUMNS);
     expect(query.eq).toHaveBeenCalledWith("is_active", true);
     const fields = GYM_DETAIL_COLUMNS.split(", ");
-    expect(fields).toEqual(expect.arrayContaining(["country_code", "postal_code", "contact_phone", "opening_hours_json"]));
-    for (const field of ["*", "data_source", "rack_count", "hyrox_source_url", "last_reported_at", "data_accuracy_flagged_at"]) {
+    expect(fields).toEqual(expect.arrayContaining(["country_code", "postal_code", "contact_phone", "opening_hours_json", "day_pass_price"]));
+    for (const field of ["*", "data_source", "rack_count", "hyrox_source_url", "last_reported_at", "data_accuracy_flagged_at", "size_category", "estimated_size_sqft"]) {
       expect(fields).not.toContain(field);
     }
     expect(getGymEquipmentInventory).toHaveBeenCalledWith("gym");
@@ -42,7 +42,7 @@ describe("public gym projections", () => {
     expect(query.eq).toHaveBeenCalledWith("is_active", true);
     expect(getGymEquipmentInventory).not.toHaveBeenCalled();
     const fields = GYM_SUBMISSION_COLUMNS.split(", ");
-    expect(fields).toEqual(expect.arrayContaining(["equipment_notes", "has_ice_bath", "rack_count", "country_code"]));
+    expect(fields).toEqual(expect.arrayContaining(["equipment_notes", "has_ice_bath", "rack_count", "country_code", "size_category", "estimated_size_sqft"]));
     for (const field of ["*", "data_source", "is_verified", "hyrox_partner_id", "hyrox_source_synced_at", "data_accuracy_status"]) {
       expect(fields).not.toContain(field);
     }

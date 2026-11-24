@@ -167,7 +167,7 @@ function formatPrice(value: number | null, countryCode: string, locale: Locale) 
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
   }).format(value);
 }
 
@@ -175,38 +175,11 @@ function formatWeight(value: number | null, fallback: string) {
   return value === null ? fallback : `${value}kg`;
 }
 
-function formatSizeCategory(
-  value: PublicGymDetail["size_category"],
-  t: Awaited<ReturnType<typeof getTranslations>>
-) {
-  if (!value) return t("notListed");
-
-  switch (value) {
-    case "small":
-      return t("sizeSmall");
-    case "medium":
-      return t("sizeMedium");
-    case "large":
-      return t("sizeLarge");
-    default:
-      return formatLabel(value);
-  }
-}
-
 function hasKnownData(values: readonly unknown[]) {
   return values.some((value) => {
     if (typeof value === "string") return value.trim().length > 0;
     return value !== null && value !== undefined;
   });
-}
-
-function StatCard({ label, value }: { label: string; value: string | number }) {
-  return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4">
-      <p className="text-sm text-gray-500">{label}</p>
-      <p className="mt-1 text-xl font-semibold text-gray-900">{value}</p>
-    </div>
-  );
 }
 
 function Section({
@@ -388,6 +361,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
       ? `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`
       : null;
 
+  const dayPassPrice = formatPrice(gym.day_pass_price, gym.country_code, locale);
   const openingHours = sortOpeningHoursEntries(gym.opening_hours_json ?? {})
     .filter(([, hours]) => hours.trim());
   const today = new Intl.DateTimeFormat("en", {
@@ -479,6 +453,11 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                     ))}
                   </dl>
                 </details>
+              )}
+              {dayPassPrice !== null && (
+                <p className="mt-2 break-words text-sm text-gray-700">
+                  {t("dayPassWithPrice", { price: dayPassPrice })}
+                </p>
               )}
               {(gym.website_url || gym.instagram_url || gym.contact_phone) && (
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -575,7 +554,6 @@ async function GymDetailBody({ gym, locale, flash }: {
   const t = await getTranslations("gym");
   const common = await getTranslations("common");
   const display = getLocalizedGym(gym, locale);
-  const dayPassPrice = formatPrice(gym.day_pass_price, gym.country_code, locale);
 
   const freeWeightRanges = [
     { label: t("dumbbellMin"), value: formatWeight(gym.dumbbell_min_weight_kg, t("notListed")) },
@@ -638,23 +616,7 @@ async function GymDetailBody({ gym, locale, flash }: {
             actionLabel={t("firstContributorAction")}
           />
         )}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <StatCard label={t("size")} value={formatSizeCategory(gym.size_category, t)} />
-          <StatCard
-            label={t("floorArea")}
-            value={
-              gym.estimated_size_sqft !== null
-                ? `${gym.estimated_size_sqft.toLocaleString()} sqft`
-                : t("notListed")
-            }
-          />
-          <StatCard
-            label={t("dayPass")}
-            value={dayPassPrice ?? t("notListed")}
-          />
-        </div>
-
-        <div className="mt-8 rounded-lg border border-gray-200 bg-white px-5">
+        <div className="rounded-lg border border-gray-200 bg-white px-5">
           <EquipmentSections>
             {equipmentGroups.map(({ category, items }) => (
               <Fragment key={category.code}>

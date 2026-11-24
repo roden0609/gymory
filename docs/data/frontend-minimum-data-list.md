@@ -224,7 +224,7 @@ updated_at
 
 ### 3.1 gyms_public：明確 SELECT
 
-取代原有 `select("*")`，以 PublicGymDetail 型別表達實際欄位。包含顯示、聯絡連結及 SEO structured data。
+取代原有 `select("*")`，以 PublicGymDetail 型別表達實際欄位。包含顯示、聯絡連結及 SEO structured data。場館頁首只喺有單次入場價錢時顯示該資料。規模同面積由建議更新表單嘅獨立 projection 讀取，面積亦用於搜尋篩選。
 
 ```text
 id
@@ -238,8 +238,6 @@ lat
 lng
 country_code
 postal_code
-size_category
-estimated_size_sqft
 dumbbell_min_weight_kg
 dumbbell_max_weight_kg
 plate_min_weight_kg
