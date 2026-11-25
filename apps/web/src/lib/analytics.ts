@@ -13,6 +13,7 @@ export type ResultClickSource =
 export type ExternalGymLinkType =
   | "official_website"
   | "instagram"
+  | "threads"
   | "facebook"
   | "booking"
   | "other";

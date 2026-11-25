@@ -30,6 +30,7 @@ describe("public gym projections", () => {
     expect(query.eq).toHaveBeenCalledWith("is_active", true);
     const fields = GYM_DETAIL_COLUMNS.split(", ");
     expect(fields).toEqual(expect.arrayContaining(["country_code", "postal_code", "contact_phone", "opening_hours_json", "day_pass_price"]));
+    expect(fields).toEqual(expect.arrayContaining(["instagram_url", "threads_url", "facebook_url"]));
     for (const field of ["*", "data_source", "rack_count", "hyrox_source_url", "last_reported_at", "data_accuracy_flagged_at", "size_category", "estimated_size_sqft"]) {
       expect(fields).not.toContain(field);
     }
@@ -43,14 +44,14 @@ describe("public gym projections", () => {
     expect(getGymEquipmentInventory).not.toHaveBeenCalled();
     const fields = GYM_SUBMISSION_COLUMNS.split(", ");
     expect(fields).toEqual(expect.arrayContaining(["equipment_notes", "has_ice_bath", "rack_count", "country_code", "size_category", "estimated_size_sqft"]));
-    for (const field of ["*", "data_source", "is_verified", "hyrox_partner_id", "hyrox_source_synced_at", "data_accuracy_status"]) {
+    for (const field of ["*", "data_source", "is_verified", "hyrox_partner_id", "hyrox_source_synced_at", "data_accuracy_status", "threads_url", "facebook_url"]) {
       expect(fields).not.toContain(field);
     }
   });
 
   it("excludes unused provenance from listing queries", () => {
     const fields = GYM_SEARCH_COLUMNS.split(", ");
-    for (const field of ["*", "hyrox_partner_id", "hyrox_source_url", "hyrox_source_synced_at", "equipment_last_verified_at", "size_category"]) {
+    for (const field of ["*", "hyrox_partner_id", "hyrox_source_url", "hyrox_source_synced_at", "equipment_last_verified_at", "size_category", "threads_url", "facebook_url"]) {
       expect(fields).not.toContain(field);
     }
     expect(fields).toContain("equipment_notes"); // Used for the missing-equipment CTA.

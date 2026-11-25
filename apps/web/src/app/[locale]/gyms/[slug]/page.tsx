@@ -1,5 +1,6 @@
 import { Fragment, Suspense } from "react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { PublicGymDetail } from "@/lib/db/queries/gym-public-columns";
@@ -23,6 +24,29 @@ import { getGymBrandForGym } from "@/lib/gym-brand-pages";
 import { buildSeoMetadata, getLocalizedUrl } from "@/lib/seo";
 
 type Locale = "en" | "zh-HK";
+
+const SOCIAL_PLATFORMS = [
+  { field: "instagram_url", label: "Instagram", type: "instagram", icon: "/social/instagram.svg" },
+  { field: "threads_url", label: "Threads", type: "threads", icon: "/social/threads.svg" },
+  { field: "facebook_url", label: "Facebook", type: "facebook", icon: null },
+] as const;
+
+function getGymSocialLinks(gym: PublicGymDetail) {
+  return SOCIAL_PLATFORMS.flatMap(({ field, label, type, icon }) => {
+    const value = gym[field]?.trim();
+    if (!value) return [];
+
+    try {
+      const { protocol } = new URL(value);
+      if (protocol === "https:" || protocol === "http:") {
+        return [{ url: value, label, type, icon }];
+      }
+    } catch {
+      // Invalid stored links are omitted from the page.
+    }
+    return [];
+  });
+}
 
 const OPENING_HOURS_DAY_ORDER = [
   "monday",
@@ -71,13 +95,15 @@ function buildGymJsonLd({
   locale,
   display,
   description,
+  socialLinks,
 }: {
   gym: PublicGymDetail;
   locale: Locale;
   display: ReturnType<typeof getLocalizedGym>;
   description: string;
+  socialLinks: ReturnType<typeof getGymSocialLinks>;
 }) {
-  const sameAs = [gym.website_url, gym.instagram_url].filter(Boolean);
+  const sameAs = [gym.website_url, ...socialLinks.map(({ url }) => url)].filter(Boolean);
 
   return removeUndefinedValues({
     "@context": "https://schema.org",
@@ -353,7 +379,8 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
   const verifiedDate = formatDate(gym.equipment_last_verified_at, locale);
   const updatedDate = formatDate(gym.updated_at, locale);
   const submitHref = `/submit?gymId=${gym.id}&returnTo=/gyms/${gym.slug}`;
-  const jsonLd = buildGymJsonLd({ gym, locale, display,
+  const socialLinks = getGymSocialLinks(gym);
+  const jsonLd = buildGymJsonLd({ gym, locale, display, socialLinks,
     description: [display.district, display.address].filter(Boolean).join(" · ") || "Gym equipment, location, and training details on Gymory.",
   });
   const mapsUrl =
@@ -459,7 +486,7 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                   {t("dayPassWithPrice", { price: dayPassPrice })}
                 </p>
               )}
-              {(gym.website_url || gym.instagram_url || gym.contact_phone) && (
+              {(gym.website_url || socialLinks.length > 0 || gym.contact_phone) && (
                 <div className="mt-2 flex flex-wrap gap-2">
                   {gym.website_url && (
                     <TrackedExternalLink
@@ -477,22 +504,26 @@ export default async function GymDetailPage({ params, searchParams }: Props) {
                       {t("website")}
                     </TrackedExternalLink>
                   )}
-                  {gym.instagram_url && (
+                  {socialLinks.map(({ url, label, type, icon }) => (
                     <TrackedExternalLink
-                      href={gym.instagram_url}
+                      key={type}
+                      href={url}
                       target="_blank"
                       rel="noreferrer"
-                      className={contactLinkClass}
+                      className={`${contactLinkClass} gap-2`}
                       tracking={{
                         eventName: "visit_gym_website",
                         gymSlug: gym.slug,
                         gymName: display.name,
-                        linkType: "instagram",
+                        linkType: type,
                       }}
                     >
-                      Instagram
+                      {icon && (
+                        <Image src={icon} alt="" width={29} height={29} className="my-1 size-[29px] shrink-0 object-contain" />
+                      )}
+                      {label}
                     </TrackedExternalLink>
-                  )}
+                  ))}
                   {gym.contact_phone && (
                     <a
                       href={`tel:${gym.contact_phone}`}

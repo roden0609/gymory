@@ -1,5 +1,10 @@
 import type { Gym } from "@gymory/shared";
 
+type GymDetailSource = Gym & {
+  threads_url: string | null;
+  facebook_url: string | null;
+};
+
 // Public detail display, contact links and structured SEO data only.
 export const GYM_DETAIL_FIELDS = [
   "id",
@@ -28,12 +33,14 @@ export const GYM_DETAIL_FIELDS = [
   "opening_hours_json",
   "website_url",
   "instagram_url",
+  "threads_url",
+  "facebook_url",
   "contact_phone",
   "is_verified",
   "is_hyrox_official",
   "equipment_last_verified_at",
   "updated_at",
-] as const satisfies readonly (keyof Gym)[];
+] as const satisfies readonly (keyof GymDetailSource)[];
 
 export const GYM_DETAIL_COLUMNS = GYM_DETAIL_FIELDS.join(", ");
-export type PublicGymDetail = Pick<Gym, (typeof GYM_DETAIL_FIELDS)[number]>;
+export type PublicGymDetail = Pick<GymDetailSource, (typeof GYM_DETAIL_FIELDS)[number]>;

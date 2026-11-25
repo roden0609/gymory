@@ -253,6 +253,8 @@ day_pass_price
 opening_hours_json
 website_url
 instagram_url
+threads_url
+facebook_url
 contact_phone
 is_verified
 is_hyrox_official
@@ -326,11 +328,13 @@ updated_at
 
 ### gyms
 
-`id, name, slug, address, district_code, country_code, postal_code, website_url, instagram_url, contact_phone, lat, lng, size_category, estimated_size_sqft, opening_hours_json, day_pass_price, is_active, is_verified, dumbbell_max_weight_kg, plate_max_weight_kg, equipment_notes, equipment_last_verified_at, updated_at, name_zh, address_zh, plate_min_weight_kg, data_accuracy_status, has_washroom, has_bathroom, dumbbell_min_weight_kg, has_dry_sauna, has_wet_sauna, has_ice_bath, has_changing_room, has_free_water, is_hyrox_official`
+`id, name, slug, address, district_code, country_code, postal_code, website_url, instagram_url, threads_url, facebook_url, contact_phone, lat, lng, size_category, estimated_size_sqft, opening_hours_json, day_pass_price, is_active, is_verified, dumbbell_max_weight_kg, plate_max_weight_kg, equipment_notes, equipment_last_verified_at, updated_at, name_zh, address_zh, plate_min_weight_kg, data_accuracy_status, has_washroom, has_bathroom, dumbbell_min_weight_kg, has_dry_sauna, has_wet_sauna, has_ice_bath, has_changing_room, has_free_water, is_hyrox_official`
 
 ### gyms_public
 
 搜尋及詳情清單嘅聯集，另加 is_active。完整欄位見 migration；所有欄位都有明確 column GRANT，冇 table-level SELECT。
+
+Migration `0084` 為 `gyms` 同 `gyms_public` 增加 `threads_url`、`facebook_url` 嘅欄位 SELECT 權限。詳情頁用 IG、Threads 同 Facebook 連結顯示聯絡按鈕及 structured data。搜尋、分店品牌頁同提交表單嘅 projections 維持原有欄位。分店可見性繼續由 `gyms` RLS 控制。
 
 ### equipment_types
 

@@ -1,9 +1,14 @@
--- Run after 0070. Transactional fixtures and schema changes are rolled back.
+-- Run after 0084. Transactional fixtures and schema changes are rolled back.
 begin;
 
 insert into public.gyms (id, name, slug, district_code, is_active)
 values ('00000000-0067-4000-8000-000000000001', 'Public permission fixture', 'public-permission-fixture-0067', 'HK-YTM', true),
        ('00000000-0067-4000-8000-000000000002', 'Private permission fixture', 'private-permission-fixture-0067', 'HK-YTM', false);
+
+update public.gyms
+set threads_url = 'https://www.threads.com/@gymory',
+    facebook_url = 'https://www.facebook.com/gymory'
+where id in ('00000000-0067-4000-8000-000000000001', '00000000-0067-4000-8000-000000000002');
 
 -- A newly added internal column must not inherit public SELECT.
 alter table public.gyms add column frontend_acl_future_private text;
@@ -81,6 +86,11 @@ begin
   select count(*) into visible_count from public.gyms_public
     where id in ('00000000-0067-4000-8000-000000000001', '00000000-0067-4000-8000-000000000002');
   if visible_count <> 1 then raise exception 'Active gym RLS failed: % rows', visible_count; end if;
+  select count(*) into visible_count from public.gyms_public
+    where id = '00000000-0067-4000-8000-000000000001'
+      and threads_url = 'https://www.threads.com/@gymory'
+      and facebook_url = 'https://www.facebook.com/gymory';
+  if visible_count <> 1 then raise exception 'Public gym social links are unreadable'; end if;
   -- A narrow projection must work without access to ANY provenance column.
   perform id, name, slug from public.gyms_public limit 1;
   begin

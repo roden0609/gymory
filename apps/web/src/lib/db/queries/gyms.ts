@@ -13,6 +13,7 @@ export const GYM_SUBMISSION_COLUMNS = [...new Set([
   ...GYM_DETAIL_COLUMNS.split(", ").filter((field) => ![
     "lat", "lng", "postal_code", "is_verified", "is_hyrox_official",
     "equipment_last_verified_at", "updated_at",
+    "threads_url", "facebook_url",
   ].includes(field)),
   ...GYM_SEARCH_COLUMNS.split(", ").filter((field) => ![
     "lat", "lng", "is_verified", "is_hyrox_official", "data_accuracy_status", "updated_at",
