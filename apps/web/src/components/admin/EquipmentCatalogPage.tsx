@@ -10,7 +10,7 @@ import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { EQUIPMENT_CATEGORIES, EQUIPMENT_LABELS, getEquipmentLabel } from "@gymory/shared";
-import { saveBrand, saveMachine, saveMachineQuickFields, saveEquipmentType, deleteEquipmentType } from "@/app/[locale]/admin/equipment/actions";
+import { saveBrand, saveMachine, saveMachineAndReview, saveEquipmentType, deleteEquipmentType } from "@/app/[locale]/admin/equipment/actions";
 
 type Brand = {
   id: string; name_en: string; name_zh: string | null; country: string | null;
@@ -330,14 +330,8 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
                 ]} />}
                 quickEdit={{
-                  action: saveMachineQuickFields,
-                  context: <>
-                    <input type="hidden" name="locale" value={locale} />
-                    <input type="hidden" name="id" value={machine.id} />
-                    <input type="hidden" name="expected_updated_at" value={machine.updated_at} />
-                  </>,
+                  action: saveMachineAndReview,
                   verified: machine.official_verified_at !== null,
-                  canVerify: Boolean(machine.official_verified_at || machine.official_name?.trim()),
                   verificationLabel,
                   verificationStatus: machine.official_verified_at !== null ? verifiedLabel : unverifiedLabel,
                   labels: machine.labels,

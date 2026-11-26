@@ -4,10 +4,8 @@ import { useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { EQUIPMENT_LABELS, getEquipmentLabel } from "@gymory/shared";
 
 type QuickEdit = {
-  action: (data: FormData) => Promise<{ ok: true } | { ok: false; reason: string }>;
-  context: ReactNode;
+  action: (machine: FormData, review: FormData) => Promise<{ ok: true } | { ok: false; reason: string }>;
   verified: boolean;
-  canVerify: boolean;
   verificationLabel: string;
   verificationStatus: string;
   labels: string[];
@@ -20,20 +18,38 @@ export function CatalogRecordRow({ title, subtitle, thumbnail, summary, quickEdi
 }) {
   const [editing, setEditing] = useState(initiallyEditing);
   const formId = useId();
+  const row = useRef<HTMLTableRowElement>(null);
+  const editor = useRef<HTMLDivElement>(null);
   const saving = useRef(false);
   const [pending, setPending] = useState(false);
   const [saveError, setSaveError] = useState<string>();
   const chinese = locale === "zh-HK";
+  function syncCheckboxes(input: EventTarget, destination: HTMLElement | null) {
+    if (!(input instanceof HTMLInputElement) || input.type !== "checkbox") return;
+    if ((input.name !== "labels" && input.name !== "verify") || !destination) return;
+
+    for (const checkbox of destination.querySelectorAll<HTMLInputElement>(
+      `input[type="checkbox"][name="${input.name}"]`
+    )) {
+      if (checkbox.value === input.value) checkbox.checked = input.checked;
+    }
+  }
+
   async function saveQuickFields(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!quickEdit || saving.current) return;
 
-    const data = new FormData(event.currentTarget);
+    const machine = editor.current?.querySelector<HTMLFormElement>('form[data-equipment-editor="equipment"]');
+    const review = editor.current?.querySelector<HTMLFormElement>('form[data-equipment-editor="review"]');
+    if (!machine || !review || !machine.reportValidity() || !review.reportValidity()) return;
+
+    const machineData = new FormData(machine);
+    const reviewData = new FormData(review);
     saving.current = true;
     setPending(true);
     setSaveError(undefined);
     try {
-      const result = await quickEdit.action(data);
+      const result = await quickEdit.action(machineData, reviewData);
       if (result.ok) setEditing(false);
       else setSaveError(result.reason);
     } catch {
@@ -54,7 +70,7 @@ export function CatalogRecordRow({ title, subtitle, thumbnail, summary, quickEdi
     <div id={formId}>{editing ? <div className="mt-4 min-w-0">{children}</div> : null}</div>
   </section>;
   return <>
-    <tr className="grid min-w-0 grid-cols-2 border-b border-gray-100 last:border-b-0 md:table-row">
+    <tr ref={row} onChange={quickEdit ? (event) => syncCheckboxes(event.target, editor.current) : undefined} className="grid min-w-0 grid-cols-2 border-b border-gray-100 last:border-b-0 md:table-row">
       {thumbnail ? <td className="col-span-2 min-w-0 px-4 py-3 md:table-cell">{thumbnail}</td> : null}
       <td className="col-span-2 min-w-0 break-words px-4 py-3 font-medium text-gray-900 [overflow-wrap:anywhere]">
         {title}{subtitle ? <p className="mt-1 break-words text-xs font-normal text-gray-500">{subtitle}</p> : null}
@@ -62,19 +78,16 @@ export function CatalogRecordRow({ title, subtitle, thumbnail, summary, quickEdi
       {summary}
       {quickEdit ? <>
         <td className={quickCellClass}>
-          {editing ? <input type="checkbox" name="verify" form={`${formId}-quick`} defaultChecked={quickEdit.verified}
-            aria-label={quickEdit.verificationLabel} disabled={pending || !quickEdit.canVerify} className="h-4 w-4" /> : <>
+          {editing ? <input type="checkbox" name="verify" defaultChecked={quickEdit.verified}
+            aria-label={quickEdit.verificationLabel} disabled={pending} className="h-4 w-4" /> : <>
             <span className="mb-1 block text-xs text-gray-500 md:hidden">{quickEdit.verificationLabel}</span>
             {quickEdit.verificationStatus}
           </>}
-          {editing && !quickEdit.canVerify ? <p className="mt-1 text-xs text-gray-500">
-            {chinese ? "請先儲存官方名稱。" : "Save the official name first."}
-          </p> : null}
         </td>
         <td className={quickCellClass}>
           {editing ? <div className="min-w-0 space-y-1" role="group" aria-label="Labels">
               {EQUIPMENT_LABELS.map((label) => <label key={label} className="flex min-h-8 min-w-0 items-start gap-1">
-                <input type="checkbox" name="labels" value={label} form={`${formId}-quick`}
+                <input type="checkbox" name="labels" value={label}
                   defaultChecked={quickEdit.labels.includes(label)} disabled={pending} className="mt-1 h-4 w-4 shrink-0" />
                 <span>{getEquipmentLabel(label, locale)}</span>
               </label>)}
@@ -89,7 +102,6 @@ export function CatalogRecordRow({ title, subtitle, thumbnail, summary, quickEdi
         <div className="flex min-w-0 flex-wrap items-center gap-x-2">
           {button}
           {editing && quickEdit ? <form id={`${formId}-quick`} onSubmit={saveQuickFields} className="min-w-0">
-            {quickEdit.context}
             <button type="submit" disabled={pending}
               className="min-h-10 break-words text-sm font-semibold text-blue-700 hover:underline disabled:opacity-50">
               {pending ? (chinese ? "儲存中…" : "Saving…") : (chinese ? "儲存" : "Save")}
@@ -99,10 +111,14 @@ export function CatalogRecordRow({ title, subtitle, thumbnail, summary, quickEdi
         {saveError ? <p role="alert" className="break-words text-xs text-red-700 [overflow-wrap:anywhere]">
           {saveError === "stale"
             ? (chinese ? "資料已更新，請重新載入。" : "This record changed. Reload the page.")
-            : (chinese ? "儲存失敗，請再試。" : "Could not save. Try again.")}
+            : saveError === "invalid"
+              ? (chinese ? "請檢查必填欄位。如要確認，請填寫官方名稱。" : "Check required fields. An official name is required for verification.")
+              : (chinese ? "儲存失敗，請再試。" : "Could not save. Try again.")}
         </p> : null}
       </td>
     </tr>
-    {editing ? <tr className="block border-b border-gray-100 bg-gray-50 md:table-row"><td colSpan={columns} className="block min-w-0 p-3 md:table-cell"><div id={formId}>{children}</div></td></tr> : <tr className="hidden"><td colSpan={columns}><div id={formId} /></td></tr>}
+    {editing ? <tr className="block border-b border-gray-100 bg-gray-50 md:table-row"><td colSpan={columns} className="block min-w-0 p-3 md:table-cell"><div id={formId} ref={editor} onChange={quickEdit ? (event) => syncCheckboxes(event.target, row.current) : undefined}>
+      <fieldset disabled={pending} className="min-w-0">{children}</fieldset>
+    </div></td></tr> : <tr className="hidden"><td colSpan={columns}><div id={formId} /></td></tr>}
   </>;
 }

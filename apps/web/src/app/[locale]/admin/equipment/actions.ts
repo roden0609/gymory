@@ -13,9 +13,7 @@ import {
   equipmentTypeCodeSchema,
   equipmentBrandSchema,
   equipmentMachineSchema,
-  equipmentLabelsSchema,
   equipmentOfficialReviewSchema,
-  equipmentReviewIdentitySchema,
   equipmentCapturedNamesSchema,
   equipmentReviewImageSchema,
 } from "@/lib/admin-equipment-validation";
@@ -127,7 +125,7 @@ export async function saveBrand(formData: FormData) {
   }, formData);
 }
 
-async function persistMachine(formData: FormData) {
+function parseMachine(formData: FormData) {
   const parsed = equipmentMachineSchema.parse({
     id: textValue(formData, "id") || undefined,
     brand_id: textValue(formData, "brand_id"),
@@ -152,7 +150,6 @@ async function persistMachine(formData: FormData) {
         captured_name_zh: formData.get("captured_name_zh"),
       })
     : undefined;
-  const supabase = createAdminClient();
   const payload = {
     brand_id: parsed.brand_id,
     primary_type_code: parsed.equipment_type_code,
@@ -175,12 +172,11 @@ async function persistMachine(formData: FormData) {
   };
 
   const aliases = [...new Set(parsed.aliases.split("\n").map(alias => alias.trim()).filter(Boolean))];
-  const { error } = await supabase.rpc("save_equipment_catalog_machine", {
-    p_id: parsed.id ?? null,
-    p_machine: payload,
-    p_additional_codes: parsed.additional_type_codes,
-    p_aliases: aliases,
-  });
+  return { p_id: parsed.id ?? null, p_machine: payload, p_additional_codes: parsed.additional_type_codes, p_aliases: aliases };
+}
+
+async function persistMachine(formData: FormData) {
+  const { error } = await createAdminClient().rpc("save_equipment_catalog_machine", parseMachine(formData));
   if (error) throw new Error(error.message);
 }
 
@@ -190,42 +186,21 @@ export async function saveMachine(formData: FormData) {
   await runCatalogSave(locale, "machine", () => persistMachine(formData), formData);
 }
 
-export async function saveMachineQuickFields(formData: FormData) {
-  const locale = textValue(formData, "locale") || "en";
-  const actor = await authorize(locale);
+export async function saveMachineAndReview(machineData: FormData, reviewData: FormData) {
+  const actor = await authorize(textValue(machineData, "locale") || "en");
   try {
-    const { id, expected_updated_at } = equipmentReviewIdentitySchema.parse({
-      id: formData.get("id"),
-      expected_updated_at: formData.get("expected_updated_at"),
-    });
-    const labels = equipmentLabelsSchema.parse(formData.getAll("labels"));
-    const verify = checked(formData, "verify");
-    const supabase = createAdminClient();
-    const { data: current, error: readError } = await supabase.from("equipment")
-      .select("official_name, official_verified_at")
-      .eq("id", id)
-      .eq("updated_at", expected_updated_at)
-      .maybeSingle();
-    if (readError) throw new Error(readError.message);
-    if (!current) throw new Error("Stale equipment record");
-
-    const wasVerified = current.official_verified_at !== null;
-    if (verify && !wasVerified) {
-      z.string().trim().min(1).parse(current.official_name);
+    const machine = parseMachine(machineData);
+    const { id, expected_updated_at, ...review } = parseOfficialReview(reviewData);
+    if (machine.p_id !== id || machine.p_machine.expected_updated_at !== expected_updated_at) {
+      return { ok: false as const, reason: "invalid" };
     }
-    const verification = verify === wasVerified ? {} : {
-      official_verified_at: verify ? new Date().toISOString() : null,
-      official_verified_by: verify ? z.string().trim().min(1).parse(actor.uid) : null,
-    };
 
-    const { data: updated, error: updateError } = await supabase.from("equipment")
-      .update({ labels, ...verification })
-      .eq("id", id)
-      .eq("updated_at", expected_updated_at)
-      .select("id")
-      .maybeSingle();
-    if (updateError) throw new Error(updateError.message);
-    if (!updated) throw new Error("Stale equipment record");
+    const { error } = await createAdminClient().rpc("save_equipment_catalog_machine_and_review", {
+      ...machine,
+      p_review: review,
+      p_actor: actor.uid,
+    });
+    if (error) throw new Error(error.message);
     refreshCatalog();
     return { ok: true as const };
   } catch (error) {
@@ -233,14 +208,18 @@ export async function saveMachineQuickFields(formData: FormData) {
   }
 }
 
-async function persistOfficialReview(formData: FormData, actorUid: string) {
-  const parsed = equipmentOfficialReviewSchema.parse({
+function parseOfficialReview(formData: FormData) {
+  return equipmentOfficialReviewSchema.parse({
     id: textValue(formData,"id"), expected_updated_at:textValue(formData,"expected_updated_at"),
     official_name:textValue(formData,"official_name"), official_name_zh:textValue(formData,"official_name_zh"),
     official_model_number:textValue(formData,"official_model_number"),
     official_product_url:textValue(formData,"official_product_url"), official_status:textValue(formData,"official_status"),
     official_review_note:textValue(formData,"official_review_note"), verify:checked(formData,"verify"),
   });
+}
+
+async function persistOfficialReview(formData: FormData, actorUid: string) {
+  const parsed = parseOfficialReview(formData);
   const { error } = await createAdminClient().rpc("save_equipment_official_review", {
     p_id:parsed.id, p_expected_updated_at:parsed.expected_updated_at,
     p_name:parsed.official_name,p_model:parsed.official_model_number,p_product_url:parsed.official_product_url,

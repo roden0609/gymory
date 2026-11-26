@@ -5,14 +5,14 @@ const mocks = vi.hoisted(() => ({
   from: vi.fn(),
   rpc: vi.fn(),
   storage: { upload: vi.fn(), remove: vi.fn() },
-  query: { select: vi.fn(), eq: vi.fn(), single: vi.fn(), maybeSingle: vi.fn(), insert: vi.fn(), update: vi.fn(), delete: vi.fn() },
+  query: { select: vi.fn(), eq: vi.fn(), single: vi.fn(), insert: vi.fn(), update: vi.fn(), delete: vi.fn() },
 }));
 vi.mock("@/lib/auth/session", () => ({ requireAdminSession: mocks.authorize }));
 vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from, rpc: mocks.rpc, storage: { from: () => mocks.storage } }) }));
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn(), revalidateTag: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
 import { revalidateTag } from "next/cache";
-import { deleteEquipmentImage, deleteEquipmentType, saveEquipmentEditor, saveEquipmentType, saveMachine, saveMachineQuickFields, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
+import { deleteEquipmentImage, deleteEquipmentType, saveEquipmentEditor, saveEquipmentType, saveMachine, saveMachineAndReview, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
 
 function form(values: Record<string, string>) {
   const data = new FormData();
@@ -44,38 +44,46 @@ describe("equipment official review actions", () => {
   });
   it("blocks unauthenticated review and image mutations before DB access", async () => {
     mocks.authorize.mockRejectedValue(new Error("login required"));
-    for (const action of [saveOfficialReview,saveMachineQuickFields,saveReviewImage,selectReviewImage]) await expect(action(form(review))).rejects.toThrow("login required");
+    for (const action of [saveOfficialReview,saveReviewImage,selectReviewImage]) await expect(action(form(review))).rejects.toThrow("login required");
+    await expect(saveMachineAndReview(form(review), form(review))).rejects.toThrow("login required");
     expect(mocks.rpc).not.toHaveBeenCalled();expect(mocks.from).not.toHaveBeenCalled();
   });
-  it("saves quick labels and verification together with the admin identity", async () => {
-    mocks.query.maybeSingle
-      .mockResolvedValueOnce({ data: { official_name: "Glute Bridge", official_verified_at: null }, error: null })
-      .mockResolvedValueOnce({ data: { id }, error: null });
-    const data = form({ id, expected_updated_at, verify: "on", official_verified_by: "forged" });
-    data.append("labels", "plate-loaded");
-    data.append("labels", "hyrox");
-
-    await expect(saveMachineQuickFields(data)).resolves.toEqual({ ok: true });
-    expect(mocks.query.update).toHaveBeenCalledExactlyOnceWith({
-      labels: ["plate-loaded", "hyrox"],
-      official_verified_at: expect.any(String),
-      official_verified_by: "trusted-firebase-admin",
+  function machineForm() {
+    return form({
+      id, expected_updated_at, name: "Display name", captured_name: "Captured name",
+      captured_name_zh: "", brand_id: "123e4567-e89b-42d3-a456-426614174000",
+      equipment_type_code: "chest_fly_machine", status: "active", source_type: "manual",
     });
-    expect(mocks.query.eq).toHaveBeenNthCalledWith(4, "updated_at", expected_updated_at);
+  }
+
+  it("submits the complete catalog and official review in one admin-only RPC", async () => {
+    const machine = machineForm();
+    machine.append("labels", "plate-loaded");
+    machine.append("labels", "hyrox");
+    const officialReview = form({ ...review, verify: "on", official_verified_by: "forged" });
+
+    await expect(saveMachineAndReview(machine, officialReview)).resolves.toEqual({ ok: true });
+    expect(mocks.rpc).toHaveBeenCalledExactlyOnceWith("save_equipment_catalog_machine_and_review", {
+      p_id: id,
+      p_machine: expect.objectContaining({ name: "Display name", expected_updated_at, labels: ["plate-loaded", "hyrox"] }),
+      p_additional_codes: [],
+      p_aliases: [],
+      p_review: expect.objectContaining({ official_name: "Glute Bridge", official_review_note: "GLB image accepted", verify: true }),
+      p_actor: "trusted-firebase-admin",
+    });
   });
 
-  it("preserves an existing approval when editing labels and reports writes lost to concurrent edits", async () => {
-    mocks.query.maybeSingle
-      .mockResolvedValueOnce({ data: { official_name: "Glute Bridge", official_verified_at: expected_updated_at }, error: null })
-      .mockResolvedValueOnce({ data: null, error: null });
-    await expect(saveMachineQuickFields(form({ id, expected_updated_at, verify: "on" }))).resolves.toEqual({ ok: false, reason: "stale" });
-    expect(mocks.query.update).toHaveBeenCalledExactlyOnceWith({ labels: [] });
+  it("reports stale combined writes", async () => {
+    mocks.rpc.mockResolvedValueOnce({ error: { message: "Stale or missing equipment" } });
+    await expect(saveMachineAndReview(machineForm(), form(review))).resolves.toEqual({ ok: false, reason: "stale" });
   });
 
-  it("rejects quick verification when an official name has not been saved", async () => {
-    mocks.query.maybeSingle.mockResolvedValueOnce({ data: { official_name: null, official_verified_at: null }, error: null });
-    await expect(saveMachineQuickFields(form({ id, expected_updated_at, verify: "on" }))).resolves.toEqual({ ok: false, reason: "invalid" });
-    expect(mocks.query.update).not.toHaveBeenCalled();
+  it("validates both forms before writing and requires matching versions", async () => {
+    await expect(saveMachineAndReview(machineForm(), form({ ...review, official_name: "", verify: "on" })))
+      .resolves.toEqual({ ok: false, reason: "invalid" });
+    await expect(saveMachineAndReview(machineForm(), form({ ...review, expected_updated_at: "2026-11-03T01:00:00+00:00" })))
+      .resolves.toEqual({ ok: false, reason: "invalid" });
+    expect(mocks.rpc).not.toHaveBeenCalled();
   });
 
   it("saves official Chinese independently of the display name", async () => {
