@@ -132,11 +132,14 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
   const requestedPage = Number.isSafeInteger(pageParam) && pageParam > 0 ? pageParam : 1;
   const { brands, categories, equipmentTypes, machines, capturedImages, page, totalPages, totalCount } = await getCatalog(section, requestedPage, selectedCategory, filters);
   const chinese = locale === "zh-HK";
+  const verificationLabel = chinese ? "官方資料確認" : "Official verification";
+  const verifiedLabel = chinese ? "已確認" : "Verified";
+  const unverifiedLabel = chinese ? "未確認" : "Unverified";
   const tableHeaders = section === "brands"
     ? (chinese ? ["品牌", "國家", "網站", "狀態", "操作"] : ["Brand", "Country", "Website", "Status", "Actions"])
     : section === "types"
       ? (chinese ? ["器材類型", "英文名稱", "分類", "器材數量", "Labels", "操作"] : ["Equipment type", "English name", "Category", "Equipment count", "Labels", "Actions"])
-      : (chinese ? ["圖片", "器材", "品牌", "器材類型", "副功能", "系列 / 型號", "狀態", "Labels", "所屬健身室", "操作"] : ["Image", "Equipment", "Brand", "Equipment type", "Additional types", "Series / model", "Status", "Labels", "Gyms", "Actions"]);
+      : (chinese ? ["圖片", "器材", "品牌", "器材類型", "副功能", "系列 / 型號", "狀態", verificationLabel, "Labels", "所屬健身室", "操作"] : ["Image", "Equipment", "Brand", "Equipment type", "Additional types", "Series / model", "Status", verificationLabel, "Labels", "Gyms", "Actions"]);
   const pagination = <CatalogPagination locale={locale} path={path} page={page} totalPages={totalPages} totalCount={totalCount} category={selectedCategory} filters={filters} />;
 
   return (
@@ -279,11 +282,11 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                 <option value="unknown">{chinese ? "未知" : "Unknown"}</option>
               </select>
             </label>
-            <label className={labelClass}>{chinese ? "官方資料確認" : "Official verification"}
+            <label className={labelClass}>{verificationLabel}
               <select name="verification" defaultValue={filters.verification ?? ""} className={inputClass}>
                 <option value="">{chinese ? "全部確認狀態" : "All verification states"}</option>
-                <option value="verified">{chinese ? "已確認" : "Verified"}</option>
-                <option value="unverified">{chinese ? "未確認" : "Unverified"}</option>
+                <option value="verified">{verifiedLabel}</option>
+                <option value="unverified">{unverifiedLabel}</option>
               </select>
             </label>
             <div className="flex min-w-0 flex-wrap items-end gap-3">
@@ -325,6 +328,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   }).join(", ")],
                   [locale === "zh-HK" ? "系列 / 型號" : "Series / model", [machine.series, machine.model_number].filter(Boolean).join(" / ")],
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
+                  [verificationLabel, machine.official_verified_at !== null ? verifiedLabel : unverifiedLabel],
                   ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
                 ]} /><MachineGyms machine={machine} locale={locale} /></>}>
                 <EquipmentEditor locale={locale}>
