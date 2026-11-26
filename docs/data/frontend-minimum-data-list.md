@@ -304,7 +304,7 @@ updated_at
 
 目錄 query 同 sitemap 共用；保留 district_code、updated_at。
 
-訓練類型 sitemap 使用訓練清單共用嘅公開 search_gyms RPC，只讀 district_code。以 p_collection 同 is_active 限定合資格健身室，按 id 分頁；只提交有符合條件嘅訓練類型及地區組合。
+訓練類型 sitemap 使用訓練清單共用嘅公開 search_gyms RPC，讀取 district_code 判斷地區，並選取 id 作穩定分頁排序。以 p_collection 同 is_active 限定合資格健身室；只提交有符合條件嘅訓練類型及地區組合。
 
 來源：[gym-brand-pages.ts](../../apps/web/src/lib/db/queries/gym-brand-pages.ts)。
 

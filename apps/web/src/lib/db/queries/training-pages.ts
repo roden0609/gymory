@@ -41,7 +41,7 @@ export async function getIndexableTrainingPages() {
     let hasGyms = false;
     const batchSize = 1000;
 
-    // Use the same collection predicate as the public training listings.
+    // Use the public listing predicate and project id for PostgREST pagination.
     for (let offset = 0; ; offset += batchSize) {
       const { data, error } = await supabase
         .rpc("search_gyms", {
@@ -50,7 +50,7 @@ export async function getIndexableTrainingPages() {
           p_user_lat: null,
           p_user_lng: null,
         })
-        .select("district_code")
+        .select("id, district_code")
         .eq("is_active", true)
         .order("id", { ascending: true })
         .range(offset, offset + batchSize - 1);
