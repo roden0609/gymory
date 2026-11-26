@@ -34,15 +34,42 @@ export async function getGymsForTrainingPage(
   };
 }
 
-export async function getIndexableTrainingPageSlugs() {
-  const results = await Promise.all(
-    TRAINING_PAGE_DEFINITIONS.map(async (definition) => {
-      const result = await getGymsForTrainingPage(definition);
-      return result.totalCount > 0 ? definition.slug : null;
-    })
-  );
+export async function getIndexableTrainingPages() {
+  const supabase = await createClient();
+  const results = await Promise.all(TRAINING_PAGE_DEFINITIONS.map(async ({ slug }) => {
+    const districtCodes = new Set<string>();
+    let hasGyms = false;
+    const batchSize = 1000;
 
-  return results.filter((slug): slug is string => Boolean(slug));
+    // Use the same collection predicate as the public training listings.
+    for (let offset = 0; ; offset += batchSize) {
+      const { data, error } = await supabase
+        .rpc("search_gyms", {
+          p_collection: slug,
+          p_gym_ids: null,
+          p_user_lat: null,
+          p_user_lng: null,
+        })
+        .select("district_code")
+        .eq("is_active", true)
+        .order("id", { ascending: true })
+        .range(offset, offset + batchSize - 1);
+
+      if (error) throw new Error(`Failed to load indexable training pages: ${error.message}`);
+
+      if (!Array.isArray(data)) throw new Error("Expected a list of training gym districts");
+
+      for (const { district_code } of data) {
+        if (district_code) districtCodes.add(district_code);
+      }
+      hasGyms ||= data.length > 0;
+      if (data.length < batchSize) break;
+    }
+
+    return { slug, districtCodes, hasGyms };
+  }));
+
+  return results.filter(({ hasGyms }) => hasGyms);
 }
 
 async function attachAccuracyTallies(gyms: GymSummary[]) {

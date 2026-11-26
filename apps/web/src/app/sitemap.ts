@@ -8,7 +8,7 @@ import {
   getIndexableEquipmentDistrictPagePaths,
   getIndexableEquipmentPageSlugs,
 } from "@/lib/db/queries/equipment-pages";
-import { getIndexableTrainingPageSlugs } from "@/lib/db/queries/training-pages";
+import { getIndexableTrainingPages } from "@/lib/db/queries/training-pages";
 import { DISTRICT_PAGE_DEFINITIONS } from "@/lib/district-pages";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const equipmentDistrictPaths = await getIndexableEquipmentDistrictPagePaths(
     DISTRICT_PAGE_DEFINITIONS
   );
-  const trainingPageSlugs = await getIndexableTrainingPageSlugs();
+  const trainingPages = await getIndexableTrainingPages();
   const brandPageSlugs = await getIndexableBrandPageSlugs(
     EQUIPMENT_BRANDS.map((brand) => brand.slug)
   );
@@ -52,14 +52,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     }));
-    const trainingUrls = trainingPageSlugs.map((slug) => ({
+    const trainingUrls = trainingPages.map(({ slug }) => ({
       url: `${localeBaseUrl}/${slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.85,
     }));
-    const trainingDistrictUrls = trainingPageSlugs.flatMap((slug) =>
+    const trainingDistrictUrls = trainingPages.flatMap(({ slug, districtCodes }) =>
       DISTRICT_PAGE_DEFINITIONS.filter((district) =>
-        activeDistrictCodes.has(district.code)
+        districtCodes.has(district.code)
       ).map((district) => ({
         url: `${localeBaseUrl}/${slug}/districts/${district.slug}`,
         changeFrequency: "weekly" as const,
