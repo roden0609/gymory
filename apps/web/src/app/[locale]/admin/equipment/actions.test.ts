@@ -5,14 +5,14 @@ const mocks = vi.hoisted(() => ({
   from: vi.fn(),
   rpc: vi.fn(),
   storage: { upload: vi.fn(), remove: vi.fn() },
-  query: { select: vi.fn(), eq: vi.fn(), single: vi.fn(), insert: vi.fn(), update: vi.fn(), delete: vi.fn() },
+  query: { select: vi.fn(), eq: vi.fn(), single: vi.fn(), maybeSingle: vi.fn(), insert: vi.fn(), update: vi.fn(), delete: vi.fn() },
 }));
 vi.mock("@/lib/auth/session", () => ({ requireAdminSession: mocks.authorize }));
 vi.mock("@/lib/db/supabase-admin", () => ({ createAdminClient: () => ({ from: mocks.from, rpc: mocks.rpc, storage: { from: () => mocks.storage } }) }));
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn(), revalidateTag: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => { throw new Error(url); } }));
 import { revalidateTag } from "next/cache";
-import { deleteEquipmentImage, deleteEquipmentType, saveEquipmentEditor, saveEquipmentType, saveMachine, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
+import { deleteEquipmentImage, deleteEquipmentType, saveEquipmentEditor, saveEquipmentType, saveMachine, saveMachineQuickFields, saveOfficialReview, saveReviewImage, selectReviewImage } from "./actions";
 
 function form(values: Record<string, string>) {
   const data = new FormData();
@@ -44,9 +44,40 @@ describe("equipment official review actions", () => {
   });
   it("blocks unauthenticated review and image mutations before DB access", async () => {
     mocks.authorize.mockRejectedValue(new Error("login required"));
-    for (const action of [saveOfficialReview,saveReviewImage,selectReviewImage]) await expect(action(form(review))).rejects.toThrow("login required");
+    for (const action of [saveOfficialReview,saveMachineQuickFields,saveReviewImage,selectReviewImage]) await expect(action(form(review))).rejects.toThrow("login required");
     expect(mocks.rpc).not.toHaveBeenCalled();expect(mocks.from).not.toHaveBeenCalled();
   });
+  it("saves quick labels and verification together with the admin identity", async () => {
+    mocks.query.maybeSingle
+      .mockResolvedValueOnce({ data: { official_name: "Glute Bridge", official_verified_at: null }, error: null })
+      .mockResolvedValueOnce({ data: { id }, error: null });
+    const data = form({ id, expected_updated_at, verify: "on", official_verified_by: "forged" });
+    data.append("labels", "plate-loaded");
+    data.append("labels", "hyrox");
+
+    await expect(saveMachineQuickFields(data)).resolves.toEqual({ ok: true });
+    expect(mocks.query.update).toHaveBeenCalledExactlyOnceWith({
+      labels: ["plate-loaded", "hyrox"],
+      official_verified_at: expect.any(String),
+      official_verified_by: "trusted-firebase-admin",
+    });
+    expect(mocks.query.eq).toHaveBeenNthCalledWith(4, "updated_at", expected_updated_at);
+  });
+
+  it("preserves an existing approval when editing labels and reports writes lost to concurrent edits", async () => {
+    mocks.query.maybeSingle
+      .mockResolvedValueOnce({ data: { official_name: "Glute Bridge", official_verified_at: expected_updated_at }, error: null })
+      .mockResolvedValueOnce({ data: null, error: null });
+    await expect(saveMachineQuickFields(form({ id, expected_updated_at, verify: "on" }))).resolves.toEqual({ ok: false, reason: "stale" });
+    expect(mocks.query.update).toHaveBeenCalledExactlyOnceWith({ labels: [] });
+  });
+
+  it("rejects quick verification when an official name has not been saved", async () => {
+    mocks.query.maybeSingle.mockResolvedValueOnce({ data: { official_name: null, official_verified_at: null }, error: null });
+    await expect(saveMachineQuickFields(form({ id, expected_updated_at, verify: "on" }))).resolves.toEqual({ ok: false, reason: "invalid" });
+    expect(mocks.query.update).not.toHaveBeenCalled();
+  });
+
   it("saves official Chinese independently of the display name", async () => {
     await expect(saveOfficialReview(form({...review,verify:"on",official_name_zh:"臀橋",apply_official_names:"on"}))).rejects.toThrow("result=success");
     const [, payload] = mocks.rpc.mock.calls[0];

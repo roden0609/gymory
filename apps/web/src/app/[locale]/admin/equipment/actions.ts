@@ -13,7 +13,9 @@ import {
   equipmentTypeCodeSchema,
   equipmentBrandSchema,
   equipmentMachineSchema,
+  equipmentLabelsSchema,
   equipmentOfficialReviewSchema,
+  equipmentReviewIdentitySchema,
   equipmentCapturedNamesSchema,
   equipmentReviewImageSchema,
 } from "@/lib/admin-equipment-validation";
@@ -186,6 +188,49 @@ export async function saveMachine(formData: FormData) {
   const locale = textValue(formData, "locale") || "en";
   await authorize(locale);
   await runCatalogSave(locale, "machine", () => persistMachine(formData), formData);
+}
+
+export async function saveMachineQuickFields(formData: FormData) {
+  const locale = textValue(formData, "locale") || "en";
+  const actor = await authorize(locale);
+  try {
+    const { id, expected_updated_at } = equipmentReviewIdentitySchema.parse({
+      id: formData.get("id"),
+      expected_updated_at: formData.get("expected_updated_at"),
+    });
+    const labels = equipmentLabelsSchema.parse(formData.getAll("labels"));
+    const verify = checked(formData, "verify");
+    const supabase = createAdminClient();
+    const { data: current, error: readError } = await supabase.from("equipment")
+      .select("official_name, official_verified_at")
+      .eq("id", id)
+      .eq("updated_at", expected_updated_at)
+      .maybeSingle();
+    if (readError) throw new Error(readError.message);
+    if (!current) throw new Error("Stale equipment record");
+
+    const wasVerified = current.official_verified_at !== null;
+    if (verify && !wasVerified) {
+      z.string().trim().min(1).parse(current.official_name);
+    }
+    const verification = verify === wasVerified ? {} : {
+      official_verified_at: verify ? new Date().toISOString() : null,
+      official_verified_by: verify ? z.string().trim().min(1).parse(actor.uid) : null,
+    };
+
+    const { data: updated, error: updateError } = await supabase.from("equipment")
+      .update({ labels, ...verification })
+      .eq("id", id)
+      .eq("updated_at", expected_updated_at)
+      .select("id")
+      .maybeSingle();
+    if (updateError) throw new Error(updateError.message);
+    if (!updated) throw new Error("Stale equipment record");
+    refreshCatalog();
+    return { ok: true as const };
+  } catch (error) {
+    return { ok: false as const, reason: getFailureReason(error) };
+  }
 }
 
 async function persistOfficialReview(formData: FormData, actorUid: string) {

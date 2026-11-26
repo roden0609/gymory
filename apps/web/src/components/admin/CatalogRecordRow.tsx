@@ -1,14 +1,51 @@
 "use client";
 
-import { useId, useState, type ReactNode } from "react";
+import { useId, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { EQUIPMENT_LABELS, getEquipmentLabel } from "@gymory/shared";
 
-export function CatalogRecordRow({ title, subtitle, thumbnail, summary, children, locale, create = false, columns = 2, initiallyEditing = false }: {
-  title: string; subtitle?: string | null; thumbnail?: ReactNode; summary?: ReactNode; children: ReactNode; locale: string; create?: boolean; columns?: number; initiallyEditing?: boolean;
+type QuickEdit = {
+  action: (data: FormData) => Promise<{ ok: true } | { ok: false; reason: string }>;
+  context: ReactNode;
+  verified: boolean;
+  canVerify: boolean;
+  verificationLabel: string;
+  verificationStatus: string;
+  labels: string[];
+};
+
+const quickCellClass = "min-w-0 break-words px-4 py-3 text-gray-600 [overflow-wrap:anywhere]";
+
+export function CatalogRecordRow({ title, subtitle, thumbnail, summary, quickEdit, trailingSummary, children, locale, create = false, columns = 2, initiallyEditing = false }: {
+  title: string; subtitle?: string | null; thumbnail?: ReactNode; summary?: ReactNode; quickEdit?: QuickEdit; trailingSummary?: ReactNode; children: ReactNode; locale: string; create?: boolean; columns?: number; initiallyEditing?: boolean;
 }) {
   const [editing, setEditing] = useState(initiallyEditing);
   const formId = useId();
+  const saving = useRef(false);
+  const [pending, setPending] = useState(false);
+  const [saveError, setSaveError] = useState<string>();
   const chinese = locale === "zh-HK";
-  const button = <button type="button" aria-expanded={editing} aria-controls={formId} onClick={() => setEditing(!editing)}
+  async function saveQuickFields(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!quickEdit || saving.current) return;
+
+    const data = new FormData(event.currentTarget);
+    saving.current = true;
+    setPending(true);
+    setSaveError(undefined);
+    try {
+      const result = await quickEdit.action(data);
+      if (result.ok) setEditing(false);
+      else setSaveError(result.reason);
+    } catch {
+      setSaveError("unknown");
+    } finally {
+      saving.current = false;
+      setPending(false);
+    }
+  }
+
+  const button = <button type="button" aria-expanded={editing} aria-controls={formId} disabled={pending}
+    onClick={() => { setSaveError(undefined); setEditing(!editing); }}
     className="inline-flex min-h-10 items-center text-sm font-medium text-blue-700 underline-offset-2 hover:text-blue-900 hover:underline">
     {editing ? (chinese ? "取消" : "Cancel") : create ? (chinese ? "新增" : "Add") : (chinese ? "編輯" : "Edit")}
   </button>;
@@ -23,7 +60,48 @@ export function CatalogRecordRow({ title, subtitle, thumbnail, summary, children
         {title}{subtitle ? <p className="mt-1 break-words text-xs font-normal text-gray-500">{subtitle}</p> : null}
       </td>
       {summary}
-      <td className="min-w-0 px-4 py-3">{button}</td>
+      {quickEdit ? <>
+        <td className={quickCellClass}>
+          {editing ? <input type="checkbox" name="verify" form={`${formId}-quick`} defaultChecked={quickEdit.verified}
+            aria-label={quickEdit.verificationLabel} disabled={pending || !quickEdit.canVerify} className="h-4 w-4" /> : <>
+            <span className="mb-1 block text-xs text-gray-500 md:hidden">{quickEdit.verificationLabel}</span>
+            {quickEdit.verificationStatus}
+          </>}
+          {editing && !quickEdit.canVerify ? <p className="mt-1 text-xs text-gray-500">
+            {chinese ? "請先儲存官方名稱。" : "Save the official name first."}
+          </p> : null}
+        </td>
+        <td className={quickCellClass}>
+          {editing ? <div className="min-w-0 space-y-1" role="group" aria-label="Labels">
+              {EQUIPMENT_LABELS.map((label) => <label key={label} className="flex min-h-8 min-w-0 items-start gap-1">
+                <input type="checkbox" name="labels" value={label} form={`${formId}-quick`}
+                  defaultChecked={quickEdit.labels.includes(label)} disabled={pending} className="mt-1 h-4 w-4 shrink-0" />
+                <span>{getEquipmentLabel(label, locale)}</span>
+              </label>)}
+          </div> : <>
+            <span className="mb-1 block text-xs text-gray-500 md:hidden">Labels</span>
+            {quickEdit.labels.map((label) => getEquipmentLabel(label, locale)).join(", ") || "—"}
+          </>}
+        </td>
+      </> : null}
+      {trailingSummary}
+      <td className="min-w-0 px-4 py-3">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-2">
+          {button}
+          {editing && quickEdit ? <form id={`${formId}-quick`} onSubmit={saveQuickFields} className="min-w-0">
+            {quickEdit.context}
+            <button type="submit" disabled={pending}
+              className="min-h-10 break-words text-sm font-semibold text-blue-700 hover:underline disabled:opacity-50">
+              {pending ? (chinese ? "儲存中…" : "Saving…") : (chinese ? "儲存" : "Save")}
+            </button>
+          </form> : null}
+        </div>
+        {saveError ? <p role="alert" className="break-words text-xs text-red-700 [overflow-wrap:anywhere]">
+          {saveError === "stale"
+            ? (chinese ? "資料已更新，請重新載入。" : "This record changed. Reload the page.")
+            : (chinese ? "儲存失敗，請再試。" : "Could not save. Try again.")}
+        </p> : null}
+      </td>
     </tr>
     {editing ? <tr className="block border-b border-gray-100 bg-gray-50 md:table-row"><td colSpan={columns} className="block min-w-0 p-3 md:table-cell"><div id={formId}>{children}</div></td></tr> : <tr className="hidden"><td colSpan={columns}><div id={formId} /></td></tr>}
   </>;

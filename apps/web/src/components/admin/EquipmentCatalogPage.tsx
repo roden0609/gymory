@@ -10,7 +10,7 @@ import { Link } from "@/i18n/navigation";
 import { requireAdminSession } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/supabase-admin";
 import { EQUIPMENT_CATEGORIES, EQUIPMENT_LABELS, getEquipmentLabel } from "@gymory/shared";
-import { saveBrand, saveMachine, saveEquipmentType, deleteEquipmentType } from "@/app/[locale]/admin/equipment/actions";
+import { saveBrand, saveMachine, saveMachineQuickFields, saveEquipmentType, deleteEquipmentType } from "@/app/[locale]/admin/equipment/actions";
 
 type Brand = {
   id: string; name_en: string; name_zh: string | null; country: string | null;
@@ -314,7 +314,7 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   className="h-20 w-20 max-w-full rounded-lg border border-gray-200 bg-white object-contain" />
               </a> : <span className="break-words text-xs text-gray-500">{chinese ? "暫無圖片" : "No image"}</span>;
               return <CatalogRecordRow thumbnail={thumbnail} key={machine.id} columns={tableHeaders.length} locale={locale} title={locale === "zh-HK" && machine.name_zh ? machine.name_zh : machine.name} subtitle={locale === "zh-HK" && machine.name_zh ? machine.name : undefined}
-                summary={<><RecordSummary fields={[
+                summary={<RecordSummary fields={[
                   [locale === "zh-HK" ? "品牌" : "Brand", brand ? (locale === "zh-HK" && brand.name_zh ? brand.name_zh : brand.name_en) : machine.brand_id],
                   [locale === "zh-HK" ? "器材類型" : "Equipment type", type ? (
                     <Link href={{ pathname: "/admin/equipment-types", query: { page: String(Math.floor(equipmentTypes.indexOf(type) / PAGE_SIZE) + 1), editType: type.code } }}
@@ -328,9 +328,21 @@ export async function EquipmentCatalogPage({ params, searchParams, section }: {
                   }).join(", ")],
                   [locale === "zh-HK" ? "系列 / 型號" : "Series / model", [machine.series, machine.model_number].filter(Boolean).join(" / ")],
                   [locale === "zh-HK" ? "狀態" : "Status", machine.status],
-                  [verificationLabel, machine.official_verified_at !== null ? verifiedLabel : unverifiedLabel],
-                  ["Labels", machine.labels.map((label) => getEquipmentLabel(label, locale)).join(", ")],
-                ]} /><MachineGyms machine={machine} locale={locale} /></>}>
+                ]} />}
+                quickEdit={{
+                  action: saveMachineQuickFields,
+                  context: <>
+                    <input type="hidden" name="locale" value={locale} />
+                    <input type="hidden" name="id" value={machine.id} />
+                    <input type="hidden" name="expected_updated_at" value={machine.updated_at} />
+                  </>,
+                  verified: machine.official_verified_at !== null,
+                  canVerify: Boolean(machine.official_verified_at || machine.official_name?.trim()),
+                  verificationLabel,
+                  verificationStatus: machine.official_verified_at !== null ? verifiedLabel : unverifiedLabel,
+                  labels: machine.labels,
+                }}
+                trailingSummary={<MachineGyms machine={machine} locale={locale} />}>
                 <EquipmentEditor locale={locale}>
                   <MachineForm filters={filters} locale={locale} page={page} brands={brands} equipmentTypes={equipmentTypes} machine={machine} />
                   <EquipmentImageReview capturedImages={capturedImages.filter(image => image.equipment_id === machine.id).map(image => ({ id: image.id, hasStorage: image.hasStorage }))} machine={machine} locale={locale} page={page} filters={filters} />

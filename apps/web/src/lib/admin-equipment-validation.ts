@@ -16,12 +16,14 @@ export const equipmentBrandSchema = z.object({
   is_active: z.boolean(),
 });
 
+export const equipmentLabelsSchema = z.array(z.enum(EQUIPMENT_LABELS)).default([]).transform((labels) => [...new Set(labels)]);
+
 export const equipmentMachineSchema = z.object({
   id: z.string().uuid().optional(),
   brand_id: z.string().uuid(),
   equipment_type_code: z.string().trim().regex(/^[a-z][a-z0-9_]*$/),
   additional_type_codes: z.array(z.string().trim().max(120).regex(/^[a-z][a-z0-9_]*$/)).max(200).default([]).transform(codes => [...new Set(codes)]),
-  labels: z.array(z.enum(EQUIPMENT_LABELS)).default([]).transform((labels) => [...new Set(labels)]),
+  labels: equipmentLabelsSchema,
   name: z.string().trim().min(1).max(200),
   name_zh: optionalText,
   series: optionalText,
@@ -78,5 +80,5 @@ export const equipmentTypeSchema = z.object({
   name_en: z.string().trim().min(1).max(120),
   name_zh: optionalText,
   category: z.string().refine((value) => EQUIPMENT_CATEGORIES.some(({ code }) => code === value)),
-  labels: z.array(z.enum(EQUIPMENT_LABELS)).default([]).transform((labels) => [...new Set(labels)]),
+  labels: equipmentLabelsSchema,
 });
