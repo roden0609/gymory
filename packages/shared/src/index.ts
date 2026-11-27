@@ -16,6 +16,8 @@ export {
   buildEquipmentInventoryPatch,
   isLegacyEquipmentField,
   legacyEquipmentFieldToCode,
+  SUBMIT_EQUIPMENT_PRESENCE_CODES,
+  type SubmitEquipmentPresenceCode,
 } from "./equipment-inventory";
 export type { SearchParams } from "./types/search";
 export type { SubmissionType, Submission } from "./types/submission";

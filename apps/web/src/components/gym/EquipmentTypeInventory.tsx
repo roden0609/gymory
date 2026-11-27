@@ -9,6 +9,7 @@ type Props = {
   absentLabel: string;
   detailsLabel: string;
   quantityLabel: (quantity: number) => string;
+  showAvailability?: boolean;
 };
 
 function Labels({ labels, locale }: { labels: string[]; locale: string }) {
@@ -24,26 +25,26 @@ function Labels({ labels, locale }: { labels: string[]; locale: string }) {
   );
 }
 
-export function EquipmentTypeSummary({ items, locale, absentLabel, quantityLabel }: Pick<Props, "items" | "locale" | "absentLabel" | "quantityLabel">) {
+export function EquipmentTypeSummary({ items, locale, availableLabel, absentLabel, quantityLabel }: Pick<Props, "items" | "locale" | "absentLabel" | "quantityLabel"> & { availableLabel?: string }) {
   return (
     <ul className="flex min-w-0 flex-wrap gap-2">
       {items.map(({ type, isPresent, quantity }) => (
         <li key={type.code} className="max-w-full break-words rounded-lg bg-gray-50 px-2.5 py-1.5 text-sm text-gray-700 [overflow-wrap:anywhere]">
           {locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}
-          {!isPresent ? ` · ${absentLabel}` : quantity !== null ? ` · ${quantityLabel(quantity)}` : ""}
+          {!isPresent ? ` · ${absentLabel}` : quantity !== null ? ` · ${quantityLabel(quantity)}` : availableLabel ? ` · ${availableLabel}` : ""}
         </li>
       ))}
     </ul>
   );
 }
 
-export function EquipmentTypeInventory({ items, locale, availableLabel, absentLabel, detailsLabel, quantityLabel }: Props) {
+export function EquipmentTypeInventory({ items, locale, availableLabel, absentLabel, detailsLabel, quantityLabel, showAvailability }: Props) {
   const detailedItems = items.filter(({ machines }) => machines.length > 0);
 
   return (
     <div className="min-w-0">
       <div className="min-w-0 md:hidden" data-equipment-summary>
-        <EquipmentTypeSummary items={items} locale={locale} absentLabel={absentLabel} quantityLabel={quantityLabel} />
+        <EquipmentTypeSummary items={items} locale={locale} availableLabel={showAvailability ? availableLabel : undefined} absentLabel={absentLabel} quantityLabel={quantityLabel} />
       </div>
       <div className="hidden min-w-0 gap-3 md:grid md:grid-cols-2 lg:grid-cols-3">
         {items.map(({ type, isPresent, quantity }) => (
@@ -53,7 +54,7 @@ export function EquipmentTypeInventory({ items, locale, availableLabel, absentLa
                 {locale === "zh-HK" && type.name_zh ? type.name_zh : type.name_en}
               </h3>
               <span className="text-xs text-gray-500">
-                {quantity !== null ? quantityLabel(quantity) : isPresent ? availableLabel : absentLabel}
+                {showAvailability && !isPresent ? absentLabel : quantity !== null ? quantityLabel(quantity) : isPresent ? availableLabel : absentLabel}
               </span>
             </div>
             <Labels labels={type.labels.filter((label) => label !== "hyrox")} locale={locale} />

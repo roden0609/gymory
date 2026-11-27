@@ -657,6 +657,7 @@ async function GymDetailBody({ gym, locale, flash }: {
                   {items.length > 0 ? (
                     <EquipmentTypeInventory
                       items={items}
+                      showAvailability={category.code === "cardio"}
                       locale={locale}
                       availableLabel={t("available")}
                       absentLabel={t("equipmentAbsent")}
@@ -671,11 +672,12 @@ async function GymDetailBody({ gym, locale, flash }: {
                   )}
                 </EquipmentSection>
                 {category.code === "cardio" && (
-                  <EquipmentSection title={t("hyrox")} count={hyroxEquipment.length}
+                  <EquipmentSection title={t("hyrox")} count={hyroxEquipment.filter((item) => item.isPresent).length}
                     collapsible={hyroxEquipment.length > 0}>
                     {hyroxEquipment.length > 0 ? (
                       <EquipmentTypeInventory
                         items={hyroxEquipment}
+                        showAvailability
                         locale={locale}
                         availableLabel={t("available")}
                         absentLabel={t("equipmentAbsent")}

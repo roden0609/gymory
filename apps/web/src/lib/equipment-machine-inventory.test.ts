@@ -96,10 +96,17 @@ describe("HYROX display section", () => {
     expect(items[0].machines).toHaveLength(2);
     expect(groups.find(({ category }) => category.code === "chest")!.items[0]).toBe(items[0]);
   });
-  it("supports type-only HYROX inventory and excludes known absences", () => {
+  it("includes type-only HYROX presence and absence, including a plate without a specified height", () => {
     const hyroxType = { ...type, labels: ["hyrox"] };
     expect(getHyroxEquipmentTypes(groupGymEquipmentTypes([inventory({ equipment_type: hyroxType })], []))[0].machines).toEqual([]);
-    expect(getHyroxEquipmentTypes(groupGymEquipmentTypes([inventory({ equipment_type: hyroxType, is_present: false, quantity: 0 })], []))).toEqual([]);
+    const plateType = { ...type, code: "wall_ball_plate", labels: [] };
+    expect(getHyroxEquipmentTypes(groupGymEquipmentTypes([
+      inventory({ equipment_type: hyroxType, is_present: false, quantity: 0 }),
+      inventory({ equipment_code: plateType.code, equipment_type: plateType, is_present: false }),
+    ], []))).toMatchObject([
+      { type: { code: "wall_ball_plate" }, isPresent: false, quantity: null },
+      { type: { code: type.code }, isPresent: false, quantity: 0 },
+    ]);
   });
   it("includes only labelled models when the type itself is not HYROX", () => {
     const groups = groupGymEquipmentTypes([inventory({ quantity: 8 })], [

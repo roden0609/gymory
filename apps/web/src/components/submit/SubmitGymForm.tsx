@@ -8,6 +8,8 @@ import { trackSubmissionSuccess } from "@/lib/analytics";
 import {
   buildEquipmentInventoryPatch,
   EQUIPMENT_BRANDS,
+  SUBMIT_EQUIPMENT_PRESENCE_CODES,
+  type SubmitEquipmentPresenceCode,
   HK_DISTRICTS,
   SIZE_CATEGORIES,
   type EquipmentInventoryPatchItem,
@@ -19,11 +21,20 @@ type Status = "idle" | "submitting" | "success" | "error";
 type SubmitGymFormProps = {
   gymId?: string;
   initialGym?: Partial<Gym> | null;
+  initialEquipmentPresence?: Partial<Record<SubmitEquipmentPresenceCode, boolean>>;
   initialBrandSlugs?: string[];
   returnTo?: string;
 };
 
-type FeatureFieldName = (typeof FEATURE_FIELD_NAMES)[number];
+type FeatureFieldName = (typeof FEATURE_FIELD_NAMES)[number] | `has_${SubmitEquipmentPresenceCode}`;
+const CARDIO_FEATURES = {
+  treadmill_count: ["has_treadmill", "treadmill"],
+  assault_bike_count: ["has_assault_bike", "assaultBike"],
+  exercise_bike_count: ["has_exercise_bike", "exerciseBike"],
+  climber_count: ["has_climber", "climber"],
+  elliptical_machine_count: ["has_elliptical_machine", "ellipticalMachine"],
+} as const;
+type CardioCountField = keyof typeof CARDIO_FEATURES;
 type FeatureStateMap = Record<FeatureFieldName, boolean | null>;
 type CollapsibleSectionId = "hyrox" | "machines" | "amenities" | "brands";
 
@@ -177,10 +188,17 @@ const NUMBER_FIELD_STEPS: Partial<Record<keyof Gym, string>> = {
   plate_max_weight_kg: "0.25",
 };
 
-function buildFeatureStateMap(initialGym?: Partial<Gym> | null): FeatureStateMap {
-  return Object.fromEntries(
-    FEATURE_FIELD_NAMES.map((name) => [name, initialGym?.[name] ?? null])
-  ) as FeatureStateMap;
+function buildFeatureStateMap(
+  initialGym: SubmitGymFormProps["initialGym"],
+  initialPresence: SubmitGymFormProps["initialEquipmentPresence"]
+): FeatureStateMap {
+  const entries = FEATURE_FIELD_NAMES.map((name) => [name, initialGym?.[name] ?? null]);
+  const presenceEntries = SUBMIT_EQUIPMENT_PRESENCE_CODES.map((code) => {
+    const countField = `${code}_count` as CardioCountField;
+    const count = initialGym?.[countField];
+    return [`has_${code}`, initialPresence?.[code] ?? (count == null ? null : count > 0)];
+  });
+  return Object.fromEntries([...entries, ...presenceEntries]) as FeatureStateMap;
 }
 
 function toNumber(value: string) {
@@ -293,6 +311,7 @@ function isPlainRecord(value: unknown): value is Record<string, unknown> {
 export function SubmitGymForm({
   gymId,
   initialGym,
+  initialEquipmentPresence,
   initialBrandSlugs = [],
   returnTo,
 }: SubmitGymFormProps) {
@@ -304,12 +323,13 @@ export function SubmitGymForm({
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const initialFeatureState = useMemo(
-    () => buildFeatureStateMap(initialGym),
-    [initialGym]
+    () => buildFeatureStateMap(initialGym, initialEquipmentPresence),
+    [initialGym, initialEquipmentPresence]
   );
   const [featureStates, setFeatureStates] = useState<FeatureStateMap>(
     initialFeatureState
   );
+  const [cardioCountEdits, setCardioCountEdits] = useState<Partial<Record<CardioCountField, string>>>({});
   const [selectedBrandSlugs, setSelectedBrandSlugs] =
     useState<string[]>(initialBrandSlugs);
 
@@ -372,16 +392,18 @@ export function SubmitGymForm({
   );
 
   function cycleFeatureState(feature: FeatureFieldName) {
-    setFeatureStates((current) => {
-      const currentValue = current[feature];
-      const nextValue =
-        currentValue === null ? true : currentValue === true ? false : null;
+    const currentValue = featureStates[feature];
+    const nextValue = currentValue === null ? true : currentValue === true ? false : null;
+    setFeatureStates((current) => ({ ...current, [feature]: nextValue }));
 
-      return {
-        ...current,
-        [feature]: nextValue,
-      };
-    });
+    const countField = Object.keys(CARDIO_FEATURES).find(
+      (name) => CARDIO_FEATURES[name as CardioCountField][0] === feature
+    ) as CardioCountField | undefined;
+    if (countField && nextValue !== true) {
+      setCardioCountEdits((current) => ({ ...current, [countField]: nextValue === false ? "0" : "" }));
+    } else if (countField && Number(cardioCountEdits[countField] ?? getDefaultValue(countField)) === 0) {
+      setCardioCountEdits((current) => ({ ...current, [countField]: "" }));
+    }
   }
 
   function getDefaultValue(field: keyof Gym) {
@@ -473,10 +495,16 @@ export function SubmitGymForm({
       ],
     },
     {
+      id: "submit-section-cardio-features",
+      title: t("cardio"),
+      fields: Object.values(CARDIO_FEATURES).map(([name, label]) => [name, tGym(label)]),
+    },
+    {
       id: "submit-section-hyrox-features",
       title: t("hyrox"),
       fields: [
         ["has_kettlebell", tGym("kettlebell")],
+        ["has_wall_ball_plate", tGym("wallBallPlate")],
       ],
     },
     {
@@ -629,7 +657,21 @@ export function SubmitGymForm({
               type="number"
               min={0}
               step={NUMBER_FIELD_STEPS[name as keyof Gym] ?? "1"}
-              defaultValue={getDefaultValue(name as keyof Gym)}
+              {...(Object.hasOwn(CARDIO_FEATURES, name)
+                ? {
+                    value: cardioCountEdits[name as CardioCountField] ?? getDefaultValue(name as keyof Gym),
+                    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                      const field = name as CardioCountField;
+                      const value = event.currentTarget.value;
+                      const count = toNumber(value);
+                      setCardioCountEdits((current) => ({ ...current, [field]: value }));
+                      setFeatureStates((current) => ({
+                        ...current,
+                        [CARDIO_FEATURES[field][0]]: count === null ? null : count > 0,
+                      }));
+                    },
+                  }
+                : { defaultValue: getDefaultValue(name as keyof Gym) })}
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
             />
           </label>
@@ -763,7 +805,9 @@ export function SubmitGymForm({
       ? Object.fromEntries(
           Object.keys(legacyEquipmentValues).map((field) => [
             field,
-            initialGym[field as keyof Gym] as boolean | number | null,
+            Object.hasOwn(initialFeatureState, field)
+              ? initialFeatureState[field as FeatureFieldName]
+              : initialGym[field as keyof Gym] as boolean | number | null,
           ])
         )
       : null;
@@ -854,6 +898,7 @@ export function SubmitGymForm({
 
       form.reset();
       setFeatureStates(initialFeatureState);
+      setCardioCountEdits({});
       setSelectedBrandSlugs(initialBrandSlugs);
       router.push(
         withFlashParam(isUpdate && returnTo ? returnTo : "/", "submission-success")
@@ -1070,7 +1115,7 @@ export function SubmitGymForm({
           </details>
         </fieldset>
 
-        <fieldset className="space-y-6 border-t border-gray-200 pt-6">
+        <fieldset className="min-w-0 space-y-6 border-t border-gray-200 pt-6">
           <legend className="text-lg font-semibold text-gray-900">
             {t("equipment")}
           </legend>
@@ -1121,7 +1166,7 @@ export function SubmitGymForm({
             className="scroll-mt-24 rounded-lg border border-gray-200 p-4"
           >
             <summary className="cursor-pointer text-sm font-semibold text-gray-900">
-              {t("machineOptional")}
+              {t("equipmentDetails")}
             </summary>
             <div className="mt-4 space-y-5">
               <p className="text-sm text-gray-500">{t("featureStateHint")}</p>
@@ -1140,7 +1185,7 @@ export function SubmitGymForm({
                         key={name}
                         type="button"
                         onClick={() => cycleFeatureState(name as FeatureFieldName)}
-                        className={`rounded-full border px-3 py-1 text-sm font-medium transition-colors ${
+                        className={`max-w-full break-words rounded-full border px-3 py-1 text-sm font-medium transition-colors ${
                           featureStates[name as FeatureFieldName] === true
                             ? "border-gray-900 bg-gray-900 text-white"
                             : featureStates[name as FeatureFieldName] === false

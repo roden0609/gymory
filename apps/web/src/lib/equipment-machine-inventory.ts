@@ -38,6 +38,7 @@ export function groupGymEquipmentTypes(
     if (!type?.is_active) continue;
     // Derived rows are publishable only when a public model is available.
     if (!item.is_directly_reported) continue;
+    if (item.is_present == null && item.quantity == null) continue;
     const present = item.is_present ?? ((item.quantity ?? 0) > 0);
     summaries.set(type.code, { type, isPresent: present, quantity: item.quantity, machines: [] });
   }
@@ -69,10 +70,10 @@ export function groupGymEquipmentTypes(
 
 const HYROX_DISPLAY_ORDER = [
   "assault_runner", "ski_erg", "sled", "rower",
-  "kettlebell_16kg", "kettlebell_24kg", "kettlebell_32kg",
+  "kettlebell", "kettlebell_16kg", "kettlebell_24kg", "kettlebell_32kg",
   "sandbag_10kg", "sandbag_20kg", "sandbag_30kg",
   "wall_ball_4kg", "wall_ball_6kg", "wall_ball_9kg",
-  "wall_ball_plate_9ft", "wall_ball_plate_10ft",
+  "wall_ball_plate", "wall_ball_plate_9ft", "wall_ball_plate_10ft",
 ];
 
 function hyroxDisplayOrder(code: string) {
@@ -85,8 +86,8 @@ export function getHyroxEquipmentTypes(
   groups: ReturnType<typeof groupGymEquipmentTypes>
 ): GymEquipmentTypeSummary[] {
   return groups.flatMap(({ items }) => items.flatMap((item) => {
-    if (!item.isPresent) return [];
-    if (item.type.labels.includes("hyrox")) return [item];
+    if (item.type.labels.includes("hyrox") ||
+        item.type.code === "wall_ball_plate" || item.type.code === "kettlebell") return [item];
 
     const machines = item.machines.filter((machine) => machine.labels.includes("hyrox"));
     if (machines.length === 0) return [];

@@ -30,7 +30,7 @@
 | `/gym-brands` | 連鎖品牌目錄 |
 | `/contributors`、`/contributors/[handle]` | Server admin 查公開貢獻者資料 |
 | `/login` | 頁面本身冇直接查 Supabase 業務資料 |
-| `/submit` | 需要登入；只讀可編輯 gym 欄位同品牌 slug，唔再載入未用嘅種類 inventory |
+| `/submit` | 需要登入；讀取可編輯 gym 欄位、品牌 slug，同六種設備嘅三態資料 |
 | `/account` | 登入後私人資料，唔納入匿名公開欄位清單 |
 
 舊 `/gyms/*-hong-kong` 訓練路徑係 redirect；metadata 使用訓練分類查詢。
@@ -321,6 +321,7 @@ updated_at
 
 - `/submit` 嘅 GYM_SUBMISSION_COLUMNS 取詳情／搜尋欄位中表單需要嘅聯集，排除位置、驗證及準確度狀態等非編輯資料；只查 active gym。
 - `/submit` 品牌 prefill 只讀 equipment_brands.slug；唔再同品牌展示共用較闊查詢。
+- `/submit` 設備三態 prefill 喺現有 inventory 權限下只讀 `equipment_code, is_present`，按 gym ID 同五種 Cardio 設備及 `wall_ball_plate` 篩選。牆球目標板嘅一般有無紀錄可以同 9ft／10ft 數量分開填寫。
 - `/account` 需要登入並用 server admin client 處理本人資料／統計。
 - GET `/api/gyms` 同 `/api/gyms/[id]` 有 session + admin 驗證，仍可用 gyms_normalized.*；唔係匿名公開 API。
 

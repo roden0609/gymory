@@ -3,6 +3,16 @@ import type { EquipmentInventoryPatchItem } from "./types/equipment";
 type LegacyEquipmentValue = boolean | number | null | undefined;
 type LegacyEquipmentValues = Record<string, LegacyEquipmentValue>;
 
+export const SUBMIT_EQUIPMENT_PRESENCE_CODES = [
+  "treadmill",
+  "assault_bike",
+  "exercise_bike",
+  "climber",
+  "elliptical_machine",
+  "wall_ball_plate",
+] as const;
+export type SubmitEquipmentPresenceCode = (typeof SUBMIT_EQUIPMENT_PRESENCE_CODES)[number];
+
 const AMENITY_FIELDS = new Set([
   "has_washroom",
   "has_bathroom",
