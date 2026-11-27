@@ -157,6 +157,10 @@ describe("EFX24 importer", () => {
       <a href="${echo}">Echo House</a>
       <a href="${central}">Central</a>
       <a href="${townPlaza}">Tuen Mun Town Plaza</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=example">Share</a>
+      <a href="https://www.facebook.com/EFX24HK/">Facebook</a>
+      <a href="https://www.instagram.com/efx24_hk/">Instagram</a>
+      <script>var ASL_REMOTE = {"ajax_url":"https://efx24.com/wp-admin/admin-ajax.php","nonce":"test"};</script>
       <option data-address="1/F &amp; 2/F, Echo House, 28 Tonkin St, Cheung Sha Wan, Hong Kong, Hong Kong"
         data-title="EFX24 Echo House"></option>
       <option data-title="EFX24 Citywalk (Coming soon)"
@@ -173,14 +177,30 @@ describe("EFX24 importer", () => {
       [townPlaza, `
         <nav><div>EFX24 Tuen Mun Town Plaza</div><div>Other Branch (Coming soon)</div></nav>
         <a href="${townPlazaZh}">繁</a>
+        <a href="https://www.instagram.com/efx24_townplaza/?igsh=example">Branch Instagram</a>
         <section class="efx24-sp-hero"><h1>EFX24 Tuen Mun Town Plaza</h1></section>
       `],
       [townPlazaZh, `
         <h1>EFX24 屯門市廣場</h1>
         <p>輕鐵市中心站步行2分鐘</p>
         <dl><dt>地址</dt><dd>屯門市廣場一期2樓2219號舖</dd></dl>
+        <a href="https://www.threads.com/@efx24_townplaza">Threads</a>
       `],
     ]);
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = new URL(input);
+      if (url.searchParams.get("action") === "asl_load_stores") {
+        return Response.json([
+          { website: townPlaza, fb: "https://www.facebook.com/profile.php?id=123&ref=example",
+            ig: "https://www.instagram.com/efx24_townplaza/?igsh=example" },
+          { title: "EFX24 Central", ig: "https://www.instagram.com/efx24_st/" },
+        ]);
+      }
+      if (url.pathname === "/efx24_townplaza/") {
+        return new Response('<a href="https://www.threads.com/">Threads</a><a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.threads.com%2F%40efx24_townplaza">Profile</a>');
+      }
+      return new Response(null, { status: 429 });
+    });
     const { rows } = await runImporter({ browser: true, "skip-geocode": true }, {
       createChromeHtmlFetcher: async () => ({
         fetchHtml: async (url) => pages.get(url),
@@ -188,7 +208,7 @@ describe("EFX24 importer", () => {
       }),
       writeRows: vi.fn(),
       log: vi.fn(),
-    });
+    }).finally(() => fetchMock.mockRestore());
 
     expect(rows.map(({ address }) => address)).toEqual([
       "30 Third Road, Central",
@@ -200,5 +220,19 @@ describe("EFX24 importer", () => {
       .toBe("屯門市廣場一期2樓2219號舖");
     expect(rows.find(({ website_url }) => website_url === townPlaza)?.is_active).toBe(true);
     expect(rows.find(({ website_url }) => website_url === citywalk)?.is_active).toBe(false);
+    expect(rows.find(({ website_url }) => website_url === townPlaza)).toMatchObject({
+      facebook_url: "https://www.facebook.com/profile.php?id=123",
+      instagram_url: "https://www.instagram.com/efx24_townplaza/",
+      threads_url: "https://www.threads.com/@efx24_townplaza",
+    });
+    expect(rows.find(({ website_url }) => website_url === central)).toMatchObject({
+      instagram_url: "https://www.instagram.com/efx24_st/",
+      facebook_url: null,
+      threads_url: "https://www.threads.com/@efx24_st",
+    });
+    expect(rows.find(({ website_url }) => website_url === citywalk)).toMatchObject({
+      instagram_url: null,
+      facebook_url: null,
+    });
   });
 });

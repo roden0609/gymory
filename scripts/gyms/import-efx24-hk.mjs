@@ -31,6 +31,29 @@ import { assertNotChallengeHtml as assertNotSharedChallengeHtml } from "./lib/im
 import { upsertGymsWithSubmissions } from "./lib/upsert-gyms-with-submissions.mjs";
 
 const LIST_URL = "https://efx24.com/find-us/";
+// Threads badges observed on the individual Instagram profiles.
+const KNOWN_THREADS_PROFILES = new Map([
+  ["efx24_abd", "https://www.threads.com/@efx24_abd"],
+  ["efx24_citywalk", "https://www.threads.com/@efx24_citywalk"],
+  ["efx24_csw", "https://www.threads.com/@efx24_csw"],
+  ["efx24_fl", "https://www.threads.com/@efx24_fl"],
+  ["efx24_klb", "https://www.threads.com/@efx24_klb"],
+  ["efx24_kt", "https://www.threads.com/@efx24_kt"],
+  ["efx24_mos", "https://www.threads.com/@efx24_mos"],
+  ["efx24_spk", "https://www.threads.com/@efx24_spk"],
+  ["efx24_ssw", "https://www.threads.com/@efx24_ssw"],
+  ["efx24_st", "https://www.threads.com/@efx24_st"],
+  ["efx24_taiwai", "https://www.threads.com/@efx24_taiwai"],
+  ["efx24_tko", "https://www.threads.com/@efx24_tko"],
+  ["efx24_tkt", "https://www.threads.com/@efx24_tkt"],
+  ["efx24_tm", "https://www.threads.com/@efx24_tm"],
+  ["efx24_tmtp", "https://www.threads.com/@efx24_tmtp"],
+  ["efx24_tst_elements", "https://www.threads.com/@efx24_tst_elements"],
+  ["efx24_tw", "https://www.threads.com/@efx24_tw"],
+  ["efx24_wc", "https://www.threads.com/@efx24_wc"],
+  ["efx24_wukaisha", "https://www.threads.com/@efx24_wukaisha"],
+  ["efx24_yl", "https://www.threads.com/@efx24_yl"],
+]);
 const SOURCE_URL = LIST_URL;
 const MAPBOX_GEOCODE_URL = "https://api.mapbox.com/search/geocode/v6/forward";
 const ALLOWED_ARGS = new Set([
@@ -300,11 +323,19 @@ async function fetchBranchDetailsFromSite(limit, htmlFetcher = fetchHtml) {
   const listHtml = await htmlFetcher(LIST_URL);
   const branchUrls = extractBranchUrls(listHtml);
   const listedAddresses = extractListedAddresses(listHtml);
+  const storeSocialUrls = await fetchStoreSocialUrls(listHtml);
   const limitedUrls = limit ? branchUrls.slice(0, Number(limit)) : branchUrls;
   const details = [];
 
   for (const url of limitedUrls) {
-    details.push(await fetchBranchDetail(url, htmlFetcher, listedAddresses));
+    const detail = await fetchBranchDetail(url, htmlFetcher, listedAddresses);
+    const social = storeSocialUrls.get(branchUrlKey(url)) ??
+      storeSocialUrls.get(branchTitleKey(detail.title ?? ""));
+    details.push({
+      ...detail,
+      ...social,
+      threads_url: await fetchThreadsUrl(social?.instagram_url),
+    });
   }
 
   return details;
@@ -444,6 +475,83 @@ function extractHrefs(html) {
     if (href) hrefs.push(href);
   }
   return hrefs;
+}
+
+function branchUrlKey(url) {
+  return url.replace(/\/$/, "");
+}
+
+async function fetchStoreSocialUrls(html) {
+  const config = html.match(/\bvar ASL_REMOTE\s*=\s*(\{[^\r\n]+?\});/);
+  if (!config) return new Map();
+
+  const { ajax_url: ajaxUrl, nonce, lang } = JSON.parse(config[1]);
+  const endpoint = new URL("/wp-admin/admin-ajax.php", LIST_URL);
+  if (ajaxUrl !== endpoint.href || !nonce) throw new Error("Invalid EFX24 store locator configuration");
+  endpoint.search = new URLSearchParams({
+    action: "asl_load_stores", nonce, asl_lang: lang ?? "", load_all: "1", layout: "1",
+  });
+  const response = await fetch(endpoint, { signal: AbortSignal.timeout(10000) });
+  if (!response.ok) throw new Error(`EFX24 store locator returned HTTP ${response.status}`);
+  const stores = await response.json();
+  if (!Array.isArray(stores)) throw new Error("Invalid EFX24 store locator response");
+
+  const socials = new Map();
+  for (const store of stores) {
+    const url = resolveUrl(LIST_URL, getString(store.website) ?? "");
+    const title = cleanTitle(store.title);
+    const social = {
+      facebook_url: socialProfileUrl(store.fb || store.facebook, ["facebook.com"]),
+      instagram_url: socialProfileUrl(store.ig || store.instagram, ["instagram.com"]),
+    };
+    if (isBranchDetailUrl(url)) socials.set(branchUrlKey(url), social);
+    if (title) {
+      const key = branchTitleKey(title);
+      // A title is only safe as a fallback when it identifies one store.
+      socials.set(key, socials.has(key) ? null : social);
+    }
+  }
+  return socials;
+}
+
+function socialProfileUrl(value, domains) {
+  const resolved = typeof value === "string" && resolveUrl(LIST_URL, decodeHtmlEntities(value));
+  if (!resolved) return null;
+
+  const url = new URL(resolved);
+  const domain = url.hostname.replace(/^(www|m)\./, "");
+  if (url.protocol !== "https:" || url.username || url.password || url.port || !domains.includes(domain)) return null;
+  const profile = url.pathname.replace(/^\/|\/$/g, "");
+  const facebookId = domain === "facebook.com" && profile === "profile.php" ? url.searchParams.get("id") : null;
+  if (profile === "profile.php" && !/^\d+$/.test(facebookId ?? "")) return null;
+  if (domain.startsWith("threads.") ? !/^@[\w.]+$/.test(profile) : !/^[\w.-]+$/.test(profile)) return null;
+  if (/^(share|sharer(?:\.php)?|share\.php|login(?:\.php)?|accounts|reels|explore)$/i.test(profile)) return null;
+  url.search = facebookId ? new URLSearchParams({ id: facebookId }) : "";
+  url.hash = "";
+  return url.toString();
+}
+
+async function fetchThreadsUrl(instagramUrl) {
+  if (!instagramUrl) return null;
+  const handle = new URL(instagramUrl).pathname.replace(/^\/|\/$/g, "").toLowerCase();
+  const knownThreadsUrl = KNOWN_THREADS_PROFILES.get(handle);
+  if (knownThreadsUrl) return knownThreadsUrl;
+
+  try {
+    const response = await fetch(instagramUrl, { signal: AbortSignal.timeout(5000) });
+    if (!response.ok) return null;
+    for (const href of extractHrefs(await response.text())) {
+      const resolved = resolveUrl(instagramUrl, decodeHtmlEntities(href));
+      if (!resolved) continue;
+      const link = new URL(resolved);
+      const target = link.hostname === "l.instagram.com" ? link.searchParams.get("u") : resolved;
+      const threadsUrl = socialProfileUrl(target, ["threads.net", "threads.com"]);
+      if (threadsUrl) return threadsUrl;
+    }
+  } catch {
+    // Instagram availability should not prevent importing the official store data.
+  }
+  return null;
 }
 
 function resolveUrl(baseUrl, href) {
@@ -720,6 +828,9 @@ export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date
       }),
     country_code: "HK",
     website_url: detail.url ?? SOURCE_URL,
+    instagram_url: detail.instagram_url ?? null,
+    threads_url: detail.threads_url ?? null,
+    facebook_url: detail.facebook_url ?? null,
     contact_phone: normalizePhone(detail.phone),
     lat: null,
     lng: null,
@@ -916,6 +1027,9 @@ async function loadDetailsFile(filePath, limit) {
     address_zh: getString(item.address_zh),
     phone: getString(item.phone),
     email: getString(item.email),
+    instagram_url: getString(item.instagram_url),
+    threads_url: getString(item.threads_url),
+    facebook_url: getString(item.facebook_url),
     is_active: typeof item.is_active === "boolean" ? item.is_active : true,
   }));
 
