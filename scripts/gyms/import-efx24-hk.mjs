@@ -299,17 +299,18 @@ export function assertNotChallengeHtml(html, source = "EFX24") {
 async function fetchBranchDetailsFromSite(limit, htmlFetcher = fetchHtml) {
   const listHtml = await htmlFetcher(LIST_URL);
   const branchUrls = extractBranchUrls(listHtml);
+  const listedAddresses = extractListedAddresses(listHtml);
   const limitedUrls = limit ? branchUrls.slice(0, Number(limit)) : branchUrls;
   const details = [];
 
   for (const url of limitedUrls) {
-    details.push(await fetchBranchDetail(url, htmlFetcher));
+    details.push(await fetchBranchDetail(url, htmlFetcher, listedAddresses));
   }
 
   return details;
 }
 
-async function fetchBranchDetail(url, htmlFetcher = fetchHtml) {
+async function fetchBranchDetail(url, htmlFetcher, listedAddresses) {
   const html = await htmlFetcher(url);
   const zhUrl = extractLocalizedDetailUrl(html, url);
   const zhHtml = zhUrl ? await htmlFetcher(zhUrl) : null;
@@ -325,8 +326,9 @@ async function fetchBranchDetail(url, htmlFetcher = fetchHtml) {
 
   const phone = extractPhone(blocks, titleIndex);
   const email = extractEmail(blocks);
-  const address = extractAddress(blocks, { phone, locale: "en", titleIndex });
-  const addressZh = extractAddress(zhBlocks, {
+  const listedAddress = cleanPageTitle && listedAddresses.get(branchTitleKey(cleanPageTitle));
+  const address = listedAddress ?? extractAddress(blocks, { phone, locale: "en", titleIndex });
+  const addressZh = extractLabeledChineseAddress(zhHtml) ?? extractAddress(zhBlocks, {
     phone,
     locale: "zh",
     titleIndex: zhTitleIndex,
@@ -340,8 +342,40 @@ async function fetchBranchDetail(url, htmlFetcher = fetchHtml) {
     address_zh: addressZh,
     phone,
     email,
-    is_active: inferIsActive(blocks, titleIndex),
+    is_active: inferIsActive(html, pageTitle),
   };
+}
+
+function extractLabeledChineseAddress(html) {
+  const field = html?.match(/<dt\b[^>]*>\s*地址\s*<\/dt>\s*<dd\b[^>]*>([\s\S]*?)<\/dd>/i);
+  if (!field) return null;
+
+  const address = decodeHtmlEntities(stripTags(field[1]));
+  return address ? normalizeAddress(address, "zh") : null;
+}
+
+function extractListedAddresses(html) {
+  const addresses = new Map();
+  for (const [option] of html.matchAll(/<option\b[^>]*>/gi)) {
+    const title = cleanTitle(readOptionAttribute(option, "data-title"));
+    const rawAddress = readOptionAttribute(option, "data-address");
+    if (!title || !rawAddress) continue;
+
+    const key = branchTitleKey(title);
+    const address = normalizeAddress(rawAddress, "en");
+    // The site repeats the selector. If rows disagree, use the branch detail instead.
+    addresses.set(key, addresses.has(key) && addresses.get(key) !== address ? null : address);
+  }
+  return addresses;
+}
+
+function readOptionAttribute(option, name) {
+  const match = option.match(new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"));
+  return decodeHtmlEntities(match?.[1] ?? match?.[2] ?? "");
+}
+
+function branchTitleKey(title) {
+  return normalizeComparableText(title).replace(/\s*\(\s*/g, "(").replace(/[‧・]/g, "·");
 }
 
 export function extractBranchUrls(html) {
@@ -592,6 +626,7 @@ function looksLikeAddress(value, locale) {
   if (/^efx24\b/i.test(value)) return false;
 
   if (locale === "zh") {
+    if (/步行.{0,12}分鐘|分鐘.{0,12}步行/.test(value)) return false;
     return (
       /[\u3400-\u9fff]/.test(value) &&
       /\d/.test(value) &&
@@ -657,15 +692,13 @@ function normalizeEnglishAddressSegment(value) {
     .trim();
 }
 
-function inferIsActive(blocks, titleIndex = -1) {
+function inferIsActive(html, pageTitle) {
   const statusPattern = /(coming soon|temporarily closed|branch closed|closed permanently)/i;
-  if (!Array.isArray(blocks) || blocks.length === 0) return true;
-
-  // Only inspect text near the branch-specific section to avoid footer/menu noise.
-  const start = titleIndex >= 0 ? Math.max(0, titleIndex - 2) : 0;
-  const end = titleIndex >= 0 ? Math.min(blocks.length, titleIndex + 16) : Math.min(blocks.length, 12);
-  const localText = blocks.slice(start, end).join("\n");
-  return !statusPattern.test(localText);
+  const hero = html.match(/<section\b[^>]*\bclass\s*=\s*["'][^"']*\befx24-sp-hero(?=[\s"'])[^"']*["'][^>]*>([\s\S]*?)<\/section>/i)?.[1];
+  const hours = html.match(/<dt\b[^>]*>\s*Hours\s*<\/dt>\s*<dd\b[^>]*>([\s\S]*?)<\/dd>/i)?.[1];
+  return ![pageTitle, hero, hours].some((value) =>
+    value && statusPattern.test(decodeHtmlEntities(stripTags(value)))
+  );
 }
 
 export function mapBranchToGymRow(detail, districtOverrides = {}, now = new Date()) {

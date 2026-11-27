@@ -144,4 +144,61 @@ describe("EFX24 importer", () => {
     expect(writeRows).toHaveBeenCalledOnce();
     expect(result.rows).toHaveLength(1);
   });
+
+  it("prefers the matching selector address and falls back when it is ambiguous", async () => {
+    const listUrl = "https://efx24.com/find-us/";
+    const citywalk = `${listUrl}citywalk/`;
+    const echo = `${listUrl}echo/`;
+    const central = `${listUrl}central/`;
+    const townPlaza = `${listUrl}tuen-mun-town-plaza/`;
+    const townPlazaZh = "https://efx24.com/zh-hant/tuen-mun-town-plaza/";
+    const list = `
+      <a href="${citywalk}">Citywalk</a>
+      <a href="${echo}">Echo House</a>
+      <a href="${central}">Central</a>
+      <a href="${townPlaza}">Tuen Mun Town Plaza</a>
+      <option data-address="1/F &amp; 2/F, Echo House, 28 Tonkin St, Cheung Sha Wan, Hong Kong, Hong Kong"
+        data-title="EFX24 Echo House"></option>
+      <option data-title="EFX24 Citywalk (Coming soon)"
+        data-address="Citywalk 1, Tsuen Wan, Tsuen Wan, Hong Kong, Hong Kong"></option>
+      <option data-title="EFX24 Citywalk" data-address="Citywalk 1, Tsuen Wan, Hong Kong"></option>
+      <option data-title="EFX24 Central" data-address="10 First Road"></option>
+      <option data-title="EFX24 Central" data-address="20 Second Road"></option>
+    `;
+    const pages = new Map([
+      [listUrl, list],
+      [citywalk, "<h1>EFX24 Citywalk</h1><dl><dt>Hours</dt><dd>Coming soon</dd></dl>"],
+      [echo, "<h1>EFX24 Echo House</h1><div>28 Tonkin St</div>"],
+      [central, "<h1>EFX24 Central</h1><div>30 Third Road, Central</div>"],
+      [townPlaza, `
+        <nav><div>EFX24 Tuen Mun Town Plaza</div><div>Other Branch (Coming soon)</div></nav>
+        <a href="${townPlazaZh}">繁</a>
+        <section class="efx24-sp-hero"><h1>EFX24 Tuen Mun Town Plaza</h1></section>
+      `],
+      [townPlazaZh, `
+        <h1>EFX24 屯門市廣場</h1>
+        <p>輕鐵市中心站步行2分鐘</p>
+        <dl><dt>地址</dt><dd>屯門市廣場一期2樓2219號舖</dd></dl>
+      `],
+    ]);
+    const { rows } = await runImporter({ browser: true, "skip-geocode": true }, {
+      createChromeHtmlFetcher: async () => ({
+        fetchHtml: async (url) => pages.get(url),
+        close: vi.fn(),
+      }),
+      writeRows: vi.fn(),
+      log: vi.fn(),
+    });
+
+    expect(rows.map(({ address }) => address)).toEqual([
+      "30 Third Road, Central",
+      "Citywalk 1, Tsuen Wan, Hong Kong",
+      "1/F & 2/F, Echo House, 28 Tonkin St, Cheung Sha Wan, Hong Kong",
+      null,
+    ]);
+    expect(rows.find(({ website_url }) => website_url === townPlaza)?.address_zh)
+      .toBe("屯門市廣場一期2樓2219號舖");
+    expect(rows.find(({ website_url }) => website_url === townPlaza)?.is_active).toBe(true);
+    expect(rows.find(({ website_url }) => website_url === citywalk)?.is_active).toBe(false);
+  });
 });
