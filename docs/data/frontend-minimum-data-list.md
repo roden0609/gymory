@@ -206,7 +206,7 @@ updated_at
 
 | Table | SELECT | 額外條件／排序用途 |
 |---|---|---|
-| gym_search_public | 上述 148 欄位 + accuracy_like_count, accuracy_dislike_count, accuracy_total_votes | is_active、estimated_size_sqft 只作 filter；0073 喺 DB 聚合投票，保留底層 RLS |
+| gym_search_public | 上述 148 欄位 + accuracy_like_count, accuracy_dislike_count, accuracy_total_votes | is_active、estimated_size_sqft 只作 filter；搜尋健身房名稱使用現有 name、name_zh；0073 喺 DB 聚合投票，保留底層 RLS |
 | equipment_categories | slug, name, name_zh | is_active, sort_order, name；舊 schema fallback 只查 slug, name |
 | equipment | id, name；篩選 query 只查 id | slug, name, brand_id |
 | equipment_aliases | equipment_id, alias | alias |

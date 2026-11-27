@@ -279,6 +279,8 @@
     "equipmentSearch": "Equipment",
     "machine": "Machine name or alias",
     "machinePlaceholder": "e.g. hack squat",
+    "gymName": "Gym name",
+    "gymNamePlaceholder": "e.g. EFX24",
     "equipmentCategory": "Machine category",
     "anyEquipmentCategory": "Any",
     "anyGymBrand": "Any",

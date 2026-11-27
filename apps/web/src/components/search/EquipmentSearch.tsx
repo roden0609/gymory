@@ -1,5 +1,6 @@
 "use client";
 
+import { MultiSelectFilter } from "./MultiSelectFilter";
 import { useSearchNavigation } from "./SearchNavigation";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -74,29 +75,27 @@ export function EquipmentSearch({
   return (
     <section className="min-w-0 max-w-full">
       <h2 className="mb-2 text-sm font-semibold text-gray-900">{t("equipmentSearch")}</h2>
-      <div className="grid min-w-0 gap-2 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-        <div className="relative min-w-0 max-w-full">
-          <select
-            aria-label={t("equipmentCategory")}
-            value={category}
-            onChange={(event) => {
-              setCategory(event.target.value);
-              setMachineDirty(false);
-              applySearch(machine, event.target.value);
-            }}
-            className="h-9 w-full min-w-0 max-w-full appearance-none rounded-lg border border-gray-300 bg-white py-1.5 pl-3 pr-10 text-sm text-gray-900"
-          >
-            <option value="">{t("anyEquipmentCategory")}</option>
-            {equipmentCategories.map((option) => (
-              <option key={option.slug} value={option.slug}>
-                {locale === "zh-HK" && option.name_zh ? option.name_zh : option.name}
-              </option>
-            ))}
-          </select>
-          <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600">
-            <path d="m5 7.5 5 5 5-5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-          </svg>
-        </div>
+      <div className="grid min-w-0 gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <MultiSelectFilter
+          filterKey="equipment-category"
+          label={t("equipmentCategory")}
+          placeholder={t("anyEquipmentCategory")}
+          options={[
+            { value: "", label: t("anyEquipmentCategory") },
+            ...equipmentCategories.map((option) => ({
+              value: option.slug,
+              label: locale === "zh-HK" && option.name_zh ? option.name_zh : option.name,
+            })),
+          ]}
+          selected={category ? [category] : []}
+          onChange={([nextCategory]) => {
+            setCategory(nextCategory);
+            setMachineDirty(false);
+            applySearch(machine, nextCategory);
+          }}
+          widePanel
+          single
+        />
         <div className="relative min-w-0 max-w-full">
           <input
             aria-label={t("machine")}

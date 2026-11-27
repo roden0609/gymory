@@ -26,6 +26,15 @@ beforeEach(() => {
 
 afterEach(() => vi.restoreAllMocks());
 
+it("filters both public names literally before pagination and retains other filters", async () => {
+  await searchGyms({ gymName: "  健身, (EFX24)*  ", district: "HK-YTM", page: "2" });
+  const operand = String.raw`"健身, \\(EFX24\\)\\*"`;
+  expect(query.or).toHaveBeenCalledWith(`name.imatch.${operand},name_zh.imatch.${operand}`);
+  expect(query.eq).toHaveBeenCalledWith("district_code", "HK-YTM");
+  expect(query.range).toHaveBeenCalled();
+  expect(query.or.mock.invocationCallOrder[0]).toBeLessThan(query.range.mock.invocationCallOrder[0]);
+});
+
 describe("multi-district gym search", () => {
   it("queries an OR set of district codes while retaining brand and equipment conditions", async () => {
     await searchGyms({ districts: "wan-chai,yau-tsim-mong", gymChains: "anytime-fitness", minRackCount: "2" });

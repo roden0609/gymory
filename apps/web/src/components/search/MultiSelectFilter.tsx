@@ -8,7 +8,7 @@ let focusedOption: { filterKey: string; value: string } | null = null;
 
 type Option = { value: string; label: string };
 
-export function MultiSelectFilter({ filterKey, label, placeholder, hint, options, selected, onChange }: {
+export function MultiSelectFilter({ filterKey, label, placeholder, hint, options, selected, onChange, widePanel, single = false }: {
   filterKey: string;
   label: string;
   placeholder: string;
@@ -16,6 +16,8 @@ export function MultiSelectFilter({ filterKey, label, placeholder, hint, options
   options: Option[];
   selected: string[];
   onChange: (values: string[]) => void;
+  widePanel?: boolean;
+  single?: boolean;
 }) {
   const [open, setOpen] = useState(() => openFilterKey === filterKey);
   const [values, setValues] = useState(selected);
@@ -38,6 +40,13 @@ export function MultiSelectFilter({ filterKey, label, placeholder, hint, options
   }, []);
 
   const toggle = (value: string, checked: boolean) => {
+    if (single) {
+      setValues([value]);
+      close();
+      button.current?.focus({ preventScroll: true });
+      changeCallback.current([value]);
+      return;
+    }
     focusedOption = { filterKey, value };
     const next = checked ? [...values, value] : values.filter((item) => item !== value);
     setValues(next);
@@ -97,19 +106,19 @@ export function MultiSelectFilter({ filterKey, label, placeholder, hint, options
         }}
         className="flex min-h-9 w-full min-w-0 max-w-full items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-left text-sm text-gray-900">
         <span className="min-w-0 flex-1 truncate" title={labels.join(", ")}>{labels.length ? labels.join(", ") : placeholder}</span>
-        {labels.length > 0 && <span className="shrink-0 rounded-full bg-gray-100 px-2 text-xs">{labels.length}</span>}
+        {!single && labels.length > 0 && <span className="shrink-0 rounded-full bg-gray-100 px-2 text-xs">{labels.length}</span>}
         <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-gray-600">
           <path d="m5 7.5 5 5 5-5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
         </svg>
       </button>
       {open && (
-        <div id={panelId} className="absolute inset-x-0 top-full z-40 mt-1 min-w-0 max-w-full rounded-lg border border-gray-200 bg-white shadow-lg">
+        <div id={panelId} className={`absolute inset-x-0 top-full z-40 mt-1 min-w-0 max-w-full rounded-lg border border-gray-200 bg-white shadow-lg ${widePanel ? "sm:right-auto sm:w-56 sm:min-w-full sm:max-w-none" : ""}`}>
           <div className="max-h-64 overflow-y-auto p-3">
             {hint && <p className="mb-2 break-words text-xs text-gray-500">{hint}</p>}
             {options.map((item) => (
               <label key={item.value}
                 className="flex min-h-10 w-full min-w-0 cursor-pointer items-center gap-2 rounded px-2 text-sm text-gray-700 hover:bg-gray-100 focus-within:bg-gray-100">
-                <input type="checkbox" value={item.value} checked={values.includes(item.value)}
+                <input type={single ? "radio" : "checkbox"} name={single ? panelId : undefined} value={item.value} checked={single ? (values[0] ?? "") === item.value : values.includes(item.value)}
                   onChange={(event) => toggle(item.value, event.target.checked)}
                   className="h-4 w-4 shrink-0 accent-gray-900" />
                 <span className="min-w-0 break-words">{item.label}</span>

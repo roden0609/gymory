@@ -279,6 +279,8 @@
     "equipmentSearch": "器材",
     "machine": "器械名稱或別名",
     "machinePlaceholder": "例如：hack squat",
+    "gymName": "健身房名稱",
+    "gymNamePlaceholder": "例如：EFX24",
     "equipmentCategory": "器械分類",
     "anyEquipmentCategory": "不限",
     "anyGymBrand": "不限",

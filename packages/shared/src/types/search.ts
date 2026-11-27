@@ -21,6 +21,7 @@ export const searchParamsSchema = z.object({
   district: z.string().optional(),
   districts: commaSeparatedListSchema.optional(),
   machine: z.string().trim().max(200).optional(),
+  gymName: z.string().trim().max(200).optional(),
   category: z.string().trim().max(120).optional(),
   userLat: z.coerce.number().min(-90).max(90).optional(),
   userLng: z.coerce.number().min(-180).max(180).optional(),

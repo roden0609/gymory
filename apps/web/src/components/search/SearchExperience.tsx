@@ -16,6 +16,7 @@ import { DistrictBrowseControls } from "./DistrictBrowseControls";
 import { SearchFilters } from "./SearchFilters";
 import { GymBrandSearch } from "./GymBrandSearch";
 import { EquipmentSearch } from "./EquipmentSearch";
+import { GymNameSearch } from "./GymNameSearch";
 import { SearchResultsPanel } from "./SearchResultsPanel";
 import { TrainingTagLinks } from "./TrainingTagLinks";
 
@@ -72,7 +73,7 @@ export async function SearchExperience({
           <h1 className="sr-only">{districtPages("h1", { district: currentDistrictName })}</h1>
         ) : null}
         <SearchFilterLayout navigation={<TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />} controls={
-          <div className="mb-5 grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)]">
+          <div className="mb-5 grid min-w-0 gap-5 sm:grid-cols-2 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.8fr)]">
             <section className="min-w-0 max-w-full">
               <h2 className="mb-2 text-sm font-semibold text-gray-900">
                 {districtPages("browseTitle")}
@@ -82,6 +83,7 @@ export async function SearchExperience({
             <Suspense fallback={null}>
               <GymBrandSearch currentDistrictCode={currentDistrictCode} currentGymChainSlug={fixedGymChain} />
             </Suspense>
+            <GymNameSearch basePath={filterBasePath} />
             <Suspense fallback={null}>
               <EquipmentSearch basePath={filterBasePath} equipmentCategories={equipmentCategories} machineSuggestions={machineSuggestions} />
             </Suspense>

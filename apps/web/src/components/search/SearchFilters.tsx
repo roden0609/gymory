@@ -422,6 +422,7 @@ export function SearchFilters({
       Number(Boolean(minSize)) +
       Number(Boolean(collection) && !fixedCollection) +
       Number(Boolean(searchParams.get("machine"))) +
+      Number(Boolean(searchParams.get("gymName"))) +
       Number(Boolean(searchParams.get("category"))) +
       Number(Boolean(searchParams.get("userLat")) && Boolean(searchParams.get("userLng"))) +
       selectedFilters.size +
@@ -516,8 +517,10 @@ export function SearchFilters({
       params.set("brandSlugs", selectedBrandSlugs.join(","));
     }
     const machine = searchParams.get("machine");
+    const gymName = searchParams.get("gymName");
     const category = searchParams.get("category");
     if (machine) params.set("machine", machine);
+    if (gymName) params.set("gymName", gymName);
     if (category) params.set("category", category);
     if (!fixedGymChain && selectedGymChains.length > 0) {
       params.set("gymChains", selectedGymChains.join(","));

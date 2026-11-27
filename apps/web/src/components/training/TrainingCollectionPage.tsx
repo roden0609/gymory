@@ -17,6 +17,7 @@ import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { buildListingSeoMetadata, getListingSeoState } from "@/lib/listing-seo";
 import { DistrictBrowseControls } from "@/components/search/DistrictBrowseControls";
 import { SearchFilters } from "@/components/search/SearchFilters";
+import { GymNameSearch } from "@/components/search/GymNameSearch";
 import { SearchResultsPanel } from "@/components/search/SearchResultsPanel";
 import { AnalyticsEventOnMount } from "@/components/analytics/AnalyticsEventOnMount";
 
@@ -178,15 +179,18 @@ export async function TrainingCollectionPage({
         ) : null}
 
         <SearchFilterLayout navigation={<TrainingTagLinks currentDistrictSlug={currentDistrict?.slug} />} controls={
-          <section className="mb-5 min-w-0 max-w-full">
-            <h2 className="mb-2 text-sm font-semibold text-gray-900">
-              {districtPages("browseTitle")}
-            </h2>
-            <DistrictBrowseControls
-              currentDistrictCode={currentDistrictCode}
-              trainingSlug={definition.slug}
-            />
-          </section>
+          <div className="mb-5 grid min-w-0 gap-5 sm:grid-cols-2">
+            <section className="min-w-0 max-w-full">
+              <h2 className="mb-2 text-sm font-semibold text-gray-900">
+                {districtPages("browseTitle")}
+              </h2>
+              <DistrictBrowseControls
+                currentDistrictCode={currentDistrictCode}
+                trainingSlug={definition.slug}
+              />
+            </section>
+            <GymNameSearch basePath={filterBasePath} />
+          </div>
         }>
           <Suspense fallback={<div className="min-w-0 w-full shrink-0 md:w-64" />}>
             <SearchFilters

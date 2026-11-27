@@ -202,6 +202,7 @@ async function searchGymsWithTiming(
     district: rawParams.district,
     districts: rawParams.districts,
     machine: rawParams.machine,
+    gymName: rawParams.gymName,
     category: rawParams.category,
     userLat: rawParams.userLat,
     userLng: rawParams.userLng,
@@ -371,6 +372,13 @@ async function searchGymsWithTiming(
       }, { count: "exact" })
       .select(columns)
       .eq("is_active", true);
+
+    if (params.gymName) {
+      // Escape literal regex characters, then quote for PostgREST's OR grammar.
+      const pattern = params.gymName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const operand = `"${pattern.replace(/["\\]/g, "\\$&")}"`;
+      query = query.or(`name.imatch.${operand},name_zh.imatch.${operand}`);
+    }
 
     if (params.gymChains && params.gymChains.length > 0) {
       const chains = getGymChainsBySlug(params.gymChains);
