@@ -6,6 +6,7 @@ import { getSelectedDistricts } from "@/lib/search-navigation";
 import { getTrainingPageDefinition } from "@/lib/training-pages";
 import { getCatalogSearchGymIds } from "./equipment-catalog-search";
 import { createClient } from "../supabase-server";
+import { gymNameFilter } from "./gym-name-filter";
 
 export type RawSearchParams = Record<string, string | string[] | undefined>;
 
@@ -373,12 +374,7 @@ async function searchGymsWithTiming(
       .select(columns)
       .eq("is_active", true);
 
-    if (params.gymName) {
-      // Escape literal regex characters, then quote for PostgREST's OR grammar.
-      const pattern = params.gymName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const operand = `"${pattern.replace(/["\\]/g, "\\$&")}"`;
-      query = query.or(`name.imatch.${operand},name_zh.imatch.${operand}`);
-    }
+    if (params.gymName) query = query.or(gymNameFilter(params.gymName));
 
     if (params.gymChains && params.gymChains.length > 0) {
       const chains = getGymChainsBySlug(params.gymChains);

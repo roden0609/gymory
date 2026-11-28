@@ -767,6 +767,15 @@
   "admin": {
     "dashboard": "管理員面板",
     "manageGyms": "管理健身房",
+    "gymStatus": {
+      "label": "狀態",
+      "any": "不限",
+      "active": "啟用",
+      "inactive": "停用",
+      "verified": "已驗證",
+      "unverified": "未驗證"
+    },
+    "noGymsFound": "搵唔到健身房。",
     "submissions": "待審提交",
     "manageBrands": "管理品牌",
     "equipmentCount": "{count} 款器材",

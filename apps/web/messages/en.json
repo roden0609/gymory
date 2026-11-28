@@ -767,6 +767,15 @@
   "admin": {
     "dashboard": "Admin Dashboard",
     "manageGyms": "Manage Gyms",
+    "gymStatus": {
+      "label": "Status",
+      "any": "Any",
+      "active": "Active",
+      "inactive": "Inactive",
+      "verified": "Verified",
+      "unverified": "Unverified"
+    },
+    "noGymsFound": "No gyms found.",
     "submissions": "Pending Submissions",
     "manageBrands": "Manage Brands",
     "equipmentCount": "{count, plural, =0 {0 equipment items} one {# equipment item} other {# equipment items}}",
